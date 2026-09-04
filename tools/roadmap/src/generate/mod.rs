@@ -31,10 +31,12 @@ pub fn render(repo: &Repo, derived: &Derived) -> Result<BTreeMap<String, String>
         with_header(&benchmarks_markdown(repo)),
     );
     files.insert("generated/graph.dot".to_string(), graph_dot(repo, derived));
+    let index = index_json(repo, derived)?;
     files.insert(
-        "generated/index.json".to_string(),
-        index_json(repo, derived)?,
+        "generated/dashboard.html".to_string(),
+        dashboard_html(&index),
     );
+    files.insert("generated/index.json".to_string(), index);
     for token in repo.schema.ordered_milestones() {
         files.insert(
             format!("generated/by-milestone/{token}.md"),
@@ -527,12 +529,33 @@ fn index_json(repo: &Repo, derived: &Derived) -> Result<String> {
     }
     let payload = IndexExport {
         tasks,
+        workstreams: repo
+            .workstreams
+            .iter()
+            .map(|workstream| WorkstreamExport {
+                prefix: workstream.prefix.clone(),
+                name: workstream.name.clone(),
+                lead: workstream.lead().to_string(),
+                file: workstream.file.clone(),
+            })
+            .collect(),
         milestones: repo
             .milestones
             .iter()
             .map(|milestone| MilestoneExport {
                 token: milestone.token.clone(),
                 title: milestone.display_title().to_string(),
+                sequence: milestone.sequence(),
+                file: milestone.file.clone(),
+                demos: milestone
+                    .demos
+                    .iter()
+                    .map(|demo| DemoExport {
+                        id: demo.id.clone(),
+                        title: demo.title.clone(),
+                        verified_by: demo.verified_by(),
+                    })
+                    .collect(),
                 status: derived
                     .milestone_status
                     .get(&milestone.token)
@@ -544,6 +567,8 @@ fn index_json(repo: &Repo, derived: &Derived) -> Result<String> {
                     .map(|gate| GateExport {
                         id: gate.id.clone(),
                         title: gate.title.clone(),
+                        kind: gate.kind().to_string(),
+                        verified_by: gate.verified_by(),
                         satisfied: derived
                             .gate_satisfied
                             .get(&gate.id)
@@ -568,6 +593,7 @@ fn index_json(repo: &Repo, derived: &Derived) -> Result<String> {
 #[derive(Serialize)]
 struct IndexExport {
     tasks: Vec<TaskExport>,
+    workstreams: Vec<WorkstreamExport>,
     milestones: Vec<MilestoneExport>,
     totals: crate::derive::Progress,
     milestone_progress: BTreeMap<String, crate::derive::Progress>,
@@ -593,19 +619,47 @@ struct TaskExport {
 }
 
 #[derive(Serialize)]
+struct WorkstreamExport {
+    prefix: String,
+    name: String,
+    lead: String,
+    file: String,
+}
+
+#[derive(Serialize)]
+struct DemoExport {
+    id: String,
+    title: String,
+    verified_by: Vec<String>,
+}
+
+#[derive(Serialize)]
 struct MilestoneExport {
     token: String,
     title: String,
+    sequence: u32,
+    file: String,
     status: String,
     gates: Vec<GateExport>,
+    demos: Vec<DemoExport>,
 }
 
 #[derive(Serialize)]
 struct GateExport {
     id: String,
     title: String,
+    kind: String,
+    verified_by: Vec<String>,
     satisfied: bool,
     reasons: Vec<String>,
+}
+
+const DASHBOARD_TEMPLATE: &str = include_str!("dashboard.html");
+const DASHBOARD_DATA_MARKER: &str = "__INDEX_JSON__";
+
+fn dashboard_html(index: &str) -> String {
+    let safe = index.replace("</", "<\\/");
+    DASHBOARD_TEMPLATE.replacen(DASHBOARD_DATA_MARKER, &safe, 1)
 }
 
 fn by_milestone(repo: &Repo, derived: &Derived, token: &str) -> String {

@@ -10,6 +10,9 @@ It is: the source of truth for every task, decision, gate, benchmark definition,
 
 It is not: source code for the operating system (those live in the repositories listed in `registers/repos.md`), an issue tracker for bugs, a place for measured results outside the `reports/` skeletons, or a document with dates in it.
 
+
+**Dashboard.** `generated/dashboard.html` is a self-contained page produced by `roadmap gen`: ladder progress, workstream heatmap, gates with their verifying tasks, ready queue, blockers, decision leverage, critical path and a searchable task explorer with a detail drawer. Open it directly in a browser (`open generated/dashboard.html`); it embeds the same data as `generated/index.json`, so it is exactly as current as the last `roadmap gen`.
+
 ## Sixty-second reading guide
 
 1. `ROADMAP.md` (generated): the ladder, which milestone is active, gate status, progress as count, size-weighted and gate percentages, the ready head and the critical path.

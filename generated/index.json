@@ -60065,15 +60065,260 @@
       "anchored": true
     }
   ],
+  "workstreams": [
+    {
+      "prefix": "KRN",
+      "name": "Kernel fork and upstream tracking",
+      "lead": "none",
+      "file": "workstreams/KRN.md"
+    },
+    {
+      "prefix": "BOOT",
+      "name": "Boot and firmware",
+      "lead": "none",
+      "file": "workstreams/BOOT.md"
+    },
+    {
+      "prefix": "ABI",
+      "name": "Native kernel ABI",
+      "lead": "none",
+      "file": "workstreams/ABI.md"
+    },
+    {
+      "prefix": "CAP",
+      "name": "Capabilities",
+      "lead": "none",
+      "file": "workstreams/CAP.md"
+    },
+    {
+      "prefix": "CMP",
+      "name": "Components",
+      "lead": "none",
+      "file": "workstreams/CMP.md"
+    },
+    {
+      "prefix": "TSK",
+      "name": "Tasks, operations, structured concurrency",
+      "lead": "none",
+      "file": "workstreams/TSK.md"
+    },
+    {
+      "prefix": "IPC",
+      "name": "Channels and typed interfaces",
+      "lead": "none",
+      "file": "workstreams/IPC.md"
+    },
+    {
+      "prefix": "MEM",
+      "name": "Memory objects and zero-copy",
+      "lead": "none",
+      "file": "workstreams/MEM.md"
+    },
+    {
+      "prefix": "SCH",
+      "name": "Scheduling intent and resource domains",
+      "lead": "none",
+      "file": "workstreams/SCH.md"
+    },
+    {
+      "prefix": "OBS",
+      "name": "Observability and tracing",
+      "lead": "none",
+      "file": "workstreams/OBS.md"
+    },
+    {
+      "prefix": "SVC",
+      "name": "Service lifecycle, user-space driver hosting, core system services",
+      "lead": "none",
+      "file": "workstreams/SVC.md"
+    },
+    {
+      "prefix": "STO",
+      "name": "Storage and user-selected authority",
+      "lead": "none",
+      "file": "workstreams/STO.md"
+    },
+    {
+      "prefix": "PKG",
+      "name": "Packages, dependencies, generations, history",
+      "lead": "none",
+      "file": "workstreams/PKG.md"
+    },
+    {
+      "prefix": "GFX",
+      "name": "Graphics and compositor",
+      "lead": "none",
+      "file": "workstreams/GFX.md"
+    },
+    {
+      "prefix": "UIP",
+      "name": "Native UI protocol and toolkit",
+      "lead": "none",
+      "file": "workstreams/UIP.md"
+    },
+    {
+      "prefix": "TXT",
+      "name": "Text, fonts, input methods, i18n",
+      "lead": "none",
+      "file": "workstreams/TXT.md"
+    },
+    {
+      "prefix": "ACC",
+      "name": "Accessibility",
+      "lead": "none",
+      "file": "workstreams/ACC.md"
+    },
+    {
+      "prefix": "SEM",
+      "name": "Semantic interfaces, automation, AI",
+      "lead": "none",
+      "file": "workstreams/SEM.md"
+    },
+    {
+      "prefix": "LNX",
+      "name": "Linux personality",
+      "lead": "none",
+      "file": "workstreams/LNX.md"
+    },
+    {
+      "prefix": "WIN",
+      "name": "Windows personality",
+      "lead": "none",
+      "file": "workstreams/WIN.md"
+    },
+    {
+      "prefix": "VIRT",
+      "name": "Fallback virtualisation",
+      "lead": "none",
+      "file": "workstreams/VIRT.md"
+    },
+    {
+      "prefix": "ENV",
+      "name": "Native development environments",
+      "lead": "none",
+      "file": "workstreams/ENV.md"
+    },
+    {
+      "prefix": "HET",
+      "name": "Heterogeneous compute",
+      "lead": "none",
+      "file": "workstreams/HET.md"
+    },
+    {
+      "prefix": "WASM",
+      "name": "WebAssembly components",
+      "lead": "none",
+      "file": "workstreams/WASM.md"
+    },
+    {
+      "prefix": "SEC",
+      "name": "Security model and hardening",
+      "lead": "none",
+      "file": "workstreams/SEC.md"
+    },
+    {
+      "prefix": "NET",
+      "name": "Networking",
+      "lead": "none",
+      "file": "workstreams/NET.md"
+    },
+    {
+      "prefix": "AUD",
+      "name": "Audio",
+      "lead": "none",
+      "file": "workstreams/AUD.md"
+    },
+    {
+      "prefix": "MED",
+      "name": "Media",
+      "lead": "none",
+      "file": "workstreams/MED.md"
+    },
+    {
+      "prefix": "HW",
+      "name": "Hardware enablement",
+      "lead": "none",
+      "file": "workstreams/HW.md"
+    },
+    {
+      "prefix": "PWR",
+      "name": "Power management",
+      "lead": "none",
+      "file": "workstreams/PWR.md"
+    },
+    {
+      "prefix": "SDK",
+      "name": "Native SDK and developer tools",
+      "lead": "none",
+      "file": "workstreams/SDK.md"
+    },
+    {
+      "prefix": "APP",
+      "name": "Native applications and shell",
+      "lead": "none",
+      "file": "workstreams/APP.md"
+    },
+    {
+      "prefix": "INS",
+      "name": "Installer, updater, recovery, migration",
+      "lead": "none",
+      "file": "workstreams/INS.md"
+    },
+    {
+      "prefix": "BLD",
+      "name": "Build, toolchain, CI",
+      "lead": "none",
+      "file": "workstreams/BLD.md"
+    },
+    {
+      "prefix": "LAB",
+      "name": "Physical hardware lab",
+      "lead": "none",
+      "file": "workstreams/LAB.md"
+    },
+    {
+      "prefix": "BEN",
+      "name": "Benchmarks",
+      "lead": "none",
+      "file": "workstreams/BEN.md"
+    },
+    {
+      "prefix": "REL",
+      "name": "Release engineering and security response",
+      "lead": "none",
+      "file": "workstreams/REL.md"
+    },
+    {
+      "prefix": "DOC",
+      "name": "Documentation",
+      "lead": "none",
+      "file": "workstreams/DOC.md"
+    },
+    {
+      "prefix": "GOV",
+      "name": "Governance, legal, process",
+      "lead": "none",
+      "file": "workstreams/GOV.md"
+    }
+  ],
   "milestones": [
     {
       "token": "V0",
       "title": "Execution model",
+      "sequence": 1,
+      "file": "milestones/V0.md",
       "status": "active",
       "gates": [
         {
           "id": "V0-G01",
           "title": "Fork boots on QEMU and the reference desktop",
+          "kind": "functional",
+          "verified_by": [
+            "BOOT-001",
+            "BOOT-002",
+            "BOOT-005",
+            "KRN-019"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-001` is todo — Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image",
@@ -60085,6 +60330,12 @@
         {
           "id": "V0-G02",
           "title": "Component create, run and destroy reclaims resources",
+          "kind": "functional",
+          "verified_by": [
+            "CMP-005",
+            "CMP-004",
+            "CAP-006"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-005` is todo — Implement Component creation as one kernel Operation over Linux internals",
@@ -60095,6 +60346,11 @@
         {
           "id": "V0-G03",
           "title": "Capability derivation attenuates and forgery fails",
+          "kind": "functional",
+          "verified_by": [
+            "CAP-003",
+            "CAP-011"
+          ],
           "satisfied": false,
           "reasons": [
             "`CAP-003` is todo — Implement Capability mint and attenuating derive with rights monotonicity tests",
@@ -60104,6 +60360,10 @@
         {
           "id": "V0-G04",
           "title": "Revocation invalidates derived capabilities",
+          "kind": "functional",
+          "verified_by": [
+            "CAP-004"
+          ],
           "satisfied": false,
           "reasons": [
             "`CAP-004` is todo — Implement Capability revocation invalidating all derived Capabilities"
@@ -60112,6 +60372,13 @@
         {
           "id": "V0-G05",
           "title": "Channel carries typed messages and Layer 1 negotiation",
+          "kind": "functional",
+          "verified_by": [
+            "IPC-010",
+            "IPC-012",
+            "IPC-021",
+            "ABI-004"
+          ],
           "satisfied": false,
           "reasons": [
             "`IPC-010` is todo — Implement the Channel kernel Object with typed endpoints, send, receive and inspect data",
@@ -60123,6 +60390,12 @@
         {
           "id": "V0-G06",
           "title": "MemoryObject ownership transfer copies no payload",
+          "kind": "functional",
+          "verified_by": [
+            "MEM-010",
+            "MEM-012",
+            "IPC-014"
+          ],
           "satisfied": false,
           "reasons": [
             "`MEM-010` is todo — Implement single-owner MemoryObject transfer over a Channel with sender losing access",
@@ -60133,6 +60406,13 @@
         {
           "id": "V0-G07",
           "title": "Operations submit, complete, time out and cancel",
+          "kind": "functional",
+          "verified_by": [
+            "TSK-024",
+            "TSK-010",
+            "TSK-011",
+            "TSK-012"
+          ],
           "satisfied": false,
           "reasons": [
             "`TSK-024` is todo — Build V0 Operation acceptance suite for six kinds, deadline and cancellation",
@@ -60144,6 +60424,11 @@
         {
           "id": "V0-G08",
           "title": "TaskGroup cancellation is bounded",
+          "kind": "functional",
+          "verified_by": [
+            "TSK-023",
+            "TSK-022"
+          ],
           "satisfied": false,
           "reasons": [
             "`TSK-023` is todo — Implement Object<TaskGroup> with ownership hierarchy",
@@ -60153,6 +60438,12 @@
         {
           "id": "V0-G09",
           "title": "ResourceDomain enforces memory budget and CPU share",
+          "kind": "functional",
+          "verified_by": [
+            "SCH-008",
+            "SCH-006",
+            "SCH-009"
+          ],
           "satisfied": false,
           "reasons": [
             "`SCH-008` is todo — Enforce the ResourceDomain memory budget for member Components",
@@ -60163,6 +60454,15 @@
         {
           "id": "V0-G10",
           "title": "os inspect and os trace cover every live primitive",
+          "kind": "functional",
+          "verified_by": [
+            "SDK-007",
+            "SDK-008",
+            "OBS-007",
+            "OBS-005",
+            "OBS-009",
+            "CAP-002"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-007` is todo — Ship os inspect for every V0 Object kind",
@@ -60176,6 +60476,11 @@
         {
           "id": "V0-G11",
           "title": "Component creation latency published",
+          "kind": "benchmark",
+          "verified_by": [
+            "CMP-001",
+            "BEN-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-001` is todo — Benchmark Component creation latency p50/p99 on QEMU and reference hardware",
@@ -60186,6 +60491,11 @@
         {
           "id": "V0-G12",
           "title": "Task creation latency published",
+          "kind": "benchmark",
+          "verified_by": [
+            "TSK-021",
+            "BEN-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`TSK-021` is todo — Implement Task as the native concurrency abstraction",
@@ -60195,6 +60505,11 @@
         {
           "id": "V0-G13",
           "title": "IPC round trip published",
+          "kind": "benchmark",
+          "verified_by": [
+            "IPC-008",
+            "BEN-003"
+          ],
           "satisfied": false,
           "reasons": [
             "`IPC-008` is todo — Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong",
@@ -60204,6 +60519,11 @@
         {
           "id": "V0-G14",
           "title": "MemoryObject transfer cost published",
+          "kind": "benchmark",
+          "verified_by": [
+            "MEM-012",
+            "BEN-003"
+          ],
           "satisfied": false,
           "reasons": [
             "`MEM-012` is todo — Verify MemoryObject transfer by physical-page identity in the V0 Demo pipeline",
@@ -60213,6 +60533,11 @@
         {
           "id": "V0-G15",
           "title": "Idle component and task memory overhead published",
+          "kind": "benchmark",
+          "verified_by": [
+            "CMP-002",
+            "BEN-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-002` is todo — Benchmark resident memory overhead per idle Component",
@@ -60222,6 +60547,11 @@
         {
           "id": "V0-G16",
           "title": "Task switch and native handoff published",
+          "kind": "benchmark",
+          "verified_by": [
+            "TSK-002",
+            "BEN-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`TSK-002` is todo — Benchmark native Task handoff against Linux thread switch and publish",
@@ -60231,6 +60561,11 @@
         {
           "id": "V0-G17",
           "title": "Tracing overhead published",
+          "kind": "benchmark",
+          "verified_by": [
+            "OBS-001",
+            "BEN-003"
+          ],
           "satisfied": false,
           "reasons": [
             "`OBS-001` is todo — Measure tracing overhead enabled versus disabled on the IPC benchmark",
@@ -60240,6 +60575,12 @@
         {
           "id": "V0-G18",
           "title": "V0 demo pipeline published and CI publishes results",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-002",
+            "BEN-005",
+            "BLD-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-002` is todo — Publish V0 Demo pipeline latency, copies and memory",
@@ -60250,6 +60591,13 @@
         {
           "id": "V0-G19",
           "title": "L0 corpus has zero regressions",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-002",
+            "KRN-019",
+            "KRN-014",
+            "HW-005"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-002` is todo — Run the L0 Corpus with zero regressions",
@@ -60261,6 +60609,22 @@
         {
           "id": "V0-G20",
           "title": "V0 decisions, Rust policy, threat model and roll-up",
+          "kind": "process",
+          "verified_by": [
+            "CAP-008",
+            "ABI-010",
+            "CAP-010",
+            "IPC-006",
+            "IPC-003",
+            "CMP-010",
+            "WIN-001",
+            "BOOT-004",
+            "GOV-007",
+            "ABI-020",
+            "ABI-021",
+            "LAB-004",
+            "SDK-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`CAP-008` is todo — Decide the userspace Capability<T> handle representation and table design",
@@ -60281,10 +60645,60 @@
         {
           "id": "V0-G21",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "GOV-008",
+            "MEM-009"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-008` is todo — Record the V0 exit review",
             "`MEM-009` is todo — Document MemoryObject security semantics for the V0 threat model"
+          ]
+        }
+      ],
+      "demos": [
+        {
+          "id": "V0-D01",
+          "title": "Component to Channel to MemoryObject round trip",
+          "verified_by": [
+            "CMP-011",
+            "MEM-012",
+            "SDK-002"
+          ]
+        },
+        {
+          "id": "V0-D02",
+          "title": "TaskGroup cancellation tears down the pipeline",
+          "verified_by": [
+            "TSK-022",
+            "CMP-004"
+          ]
+        },
+        {
+          "id": "V0-D03",
+          "title": "Component panic yields a typed disconnect",
+          "verified_by": [
+            "CMP-011",
+            "IPC-011"
+          ]
+        },
+        {
+          "id": "V0-D04",
+          "title": "Isolation denial is a typed error in the audit log",
+          "verified_by": [
+            "CMP-012",
+            "CAP-001",
+            "SEC-001"
+          ]
+        },
+        {
+          "id": "V0-D05",
+          "title": "Linux busybox and L0 run beside native components",
+          "verified_by": [
+            "BOOT-005",
+            "LNX-001",
+            "LNX-002"
           ]
         }
       ]
@@ -60292,11 +60706,21 @@
     {
       "token": "V0.5",
       "title": "Application model",
+      "sequence": 2,
+      "file": "milestones/V0.5.md",
       "status": "next",
       "gates": [
         {
           "id": "V0.5-G01",
           "title": "Native compositor presents on the reference GPU",
+          "kind": "functional",
+          "verified_by": [
+            "GFX-010",
+            "GFX-008",
+            "GFX-006",
+            "GFX-029",
+            "GFX-041"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-010` is todo — Run the compositor as a privileged Component holding Display and DRM master",
@@ -60309,6 +60733,13 @@
         {
           "id": "V0.5-G02",
           "title": "Native application window, input and declarative UI",
+          "kind": "functional",
+          "verified_by": [
+            "UIP-026",
+            "SDK-023",
+            "UIP-012",
+            "UIP-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`UIP-026` is todo — Automate V0.5 UI gates: window, input, animation, clipboard denial, a11y dump",
@@ -60320,6 +60751,13 @@
         {
           "id": "V0.5-G03",
           "title": "Compositor crash recovery rebinds every window",
+          "kind": "functional",
+          "verified_by": [
+            "GFX-007",
+            "GFX-009",
+            "GFX-039",
+            "SVC-002"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-007` is todo — Automate compositor kill and verify every client Surface rebinds and renders",
@@ -60331,6 +60769,18 @@
         {
           "id": "V0.5-G04",
           "title": "Immutable packages and coexisting versions",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-025",
+            "STO-032",
+            "PKG-032",
+            "PKG-042",
+            "STO-008",
+            "PKG-029",
+            "PKG-024",
+            "MEM-016",
+            "CMP-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-025` is todo — Implement install as make-available into the store and next SystemGeneration",
@@ -60347,6 +60797,12 @@
         {
           "id": "V0.5-G05",
           "title": "System generations switch and roll back at the boot menu",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-016",
+            "BOOT-014",
+            "PKG-015"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-016` is todo — Compose SystemGeneration N+1 as a content-addressed tree sharing objects with N",
@@ -60357,6 +60813,15 @@
         {
           "id": "V0.5-G06",
           "title": "File chooser returns UserSelected and nothing else",
+          "kind": "functional",
+          "verified_by": [
+            "STO-034",
+            "STO-007",
+            "APP-002",
+            "SDK-017",
+            "GFX-040",
+            "OBS-024"
+          ],
           "satisfied": false,
           "reasons": [
             "`STO-034` is todo — Implement UserSelected<T> and the chooser grant returning Capability<Image, ReadWrite>",
@@ -60370,6 +60835,12 @@
         {
           "id": "V0.5-G07",
           "title": "Clipboard is a capability",
+          "kind": "functional",
+          "verified_by": [
+            "UIP-003",
+            "UIP-014",
+            "UIP-026"
+          ],
           "satisfied": false,
           "reasons": [
             "`UIP-003` is todo — Build clipboard service as Capability with typed lazy MemoryObject transfer",
@@ -60380,6 +60851,13 @@
         {
           "id": "V0.5-G08",
           "title": "Four native applications pass scripted scenarios",
+          "kind": "functional",
+          "verified_by": [
+            "APP-004",
+            "APP-006",
+            "APP-003",
+            "APP-005"
+          ],
           "satisfied": false,
           "reasons": [
             "`APP-004` is todo — Build the Demo native Terminal on the system text stack",
@@ -60391,6 +60869,11 @@
         {
           "id": "V0.5-G09",
           "title": "A Wayland Linux application appears as a native window",
+          "kind": "functional",
+          "verified_by": [
+            "LNX-006",
+            "LNX-007"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-006` is todo — Bridge Wayland apps as native compositor windows",
@@ -60400,6 +60883,13 @@
         {
           "id": "V0.5-G10",
           "title": "Every widget emits accessibility metadata",
+          "kind": "functional",
+          "verified_by": [
+            "UIP-001",
+            "ACC-003",
+            "BLD-014",
+            "ACC-002"
+          ],
           "satisfied": false,
           "reasons": [
             "`UIP-001` is todo — Emit role, name and state for every widget and expose via os inspect",
@@ -60411,6 +60901,11 @@
         {
           "id": "V0.5-G11",
           "title": "UI protocol versioning is exercised end to end",
+          "kind": "functional",
+          "verified_by": [
+            "UIP-015",
+            "IPC-040"
+          ],
           "satisfied": false,
           "reasons": [
             "`UIP-015` is todo — Version UI protocol under §12 rules and bump v0 to v0.1 with old clients running",
@@ -60420,6 +60915,12 @@
         {
           "id": "V0.5-G12",
           "title": "Native init supervises native components",
+          "kind": "functional",
+          "verified_by": [
+            "SVC-007",
+            "SVC-015",
+            "BOOT-012"
+          ],
           "satisfied": false,
           "reasons": [
             "`SVC-007` is todo — Build the native init Component that starts the supervisor from a SystemGeneration",
@@ -60430,6 +60931,14 @@
         {
           "id": "V0.5-G13",
           "title": "Native application warm startup published",
+          "kind": "benchmark",
+          "verified_by": [
+            "CMP-019",
+            "APP-001",
+            "BEN-009",
+            "CMP-018",
+            "TXT-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-019` is todo — Benchmark native application warm startup from click to first presented frame",
@@ -60442,6 +60951,11 @@
         {
           "id": "V0.5-G14",
           "title": "Compositor frame latency published",
+          "kind": "benchmark",
+          "verified_by": [
+            "GFX-003",
+            "BEN-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-003` is todo — Benchmark compositor commit-to-scanout latency against a Wayland compositor",
@@ -60451,6 +60965,12 @@
         {
           "id": "V0.5-G15",
           "title": "Input-to-photon latency published",
+          "kind": "benchmark",
+          "verified_by": [
+            "GFX-004",
+            "BEN-010",
+            "LAB-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-004` is todo — Benchmark GUI Input-to-photon latency on the photodiode rig",
@@ -60461,6 +60981,14 @@
         {
           "id": "V0.5-G16",
           "title": "Compositor restart-to-rebound published",
+          "kind": "benchmark",
+          "verified_by": [
+            "GFX-002",
+            "SVC-001",
+            "PKG-003",
+            "BEN-011",
+            "PKG-004"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-002` is todo — Benchmark compositor restart-to-rebound time",
@@ -60473,6 +61001,10 @@
         {
           "id": "V0.5-G17",
           "title": "Prior benchmarks show no unexplained regression",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-015"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-015` is todo — Verify no V0 benchmark regression at V0.5"
@@ -60481,6 +61013,12 @@
         {
           "id": "V0.5-G18",
           "title": "L0 corpus still has zero regressions",
+          "kind": "compatibility",
+          "verified_by": [
+            "KRN-020",
+            "LNX-007",
+            "BLD-017"
+          ],
           "satisfied": false,
           "reasons": [
             "`KRN-020` is todo — Merge the first upstream stable release into the fork with boot matrix green",
@@ -60491,6 +61029,11 @@
         {
           "id": "V0.5-G19",
           "title": "L1 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-007",
+            "BLD-017"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-007` is todo — Define and run the L1 Corpus",
@@ -60500,6 +61043,36 @@
         {
           "id": "V0.5-G20",
           "title": "V0.5 decisions, image builder and roll-up",
+          "kind": "process",
+          "verified_by": [
+            "STO-016",
+            "PKG-011",
+            "PKG-005",
+            "STO-013",
+            "UIP-006",
+            "GFX-015",
+            "PKG-008",
+            "SEC-007",
+            "ACC-002",
+            "GOV-017",
+            "MEM-021",
+            "SCH-017",
+            "OBS-014",
+            "STO-015",
+            "BEN-022",
+            "DOC-002",
+            "HW-007",
+            "LAB-005",
+            "LAB-008",
+            "OBS-023",
+            "PWR-001",
+            "PWR-002",
+            "PWR-004",
+            "PWR-005",
+            "SDK-031",
+            "SEM-003",
+            "STO-027"
+          ],
           "satisfied": false,
           "reasons": [
             "`STO-016` is todo — Decide the initial Linux filesystem under the native storage layer",
@@ -60534,6 +61107,18 @@
         {
           "id": "V0.5-G21",
           "title": "Standing lints and continuous checks in force",
+          "kind": "process",
+          "verified_by": [
+            "BLD-028",
+            "CAP-016",
+            "CMP-023",
+            "GOV-019",
+            "MEM-032",
+            "PKG-027",
+            "SCH-027",
+            "SDK-015",
+            "STO-028"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-028` is todo — Add virtio-gpu QEMU configurations to the compositor CI matrix",
@@ -60550,6 +61135,20 @@
         {
           "id": "V0.5-G22",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "APP-008",
+            "DOC-003",
+            "DOC-004",
+            "DOC-005",
+            "GOV-014",
+            "GOV-015",
+            "GOV-018",
+            "SDK-029",
+            "UIP-009",
+            "UIP-019",
+            "WASM-004"
+          ],
           "satisfied": false,
           "reasons": [
             "`APP-008` is todo — Document first-party applications as Component graphs",
@@ -60568,6 +61167,19 @@
         {
           "id": "V0.5-G23",
           "title": "Publish-only benchmark series published",
+          "kind": "functional",
+          "verified_by": [
+            "BEN-014",
+            "BOOT-006",
+            "CAP-018",
+            "MEM-013",
+            "MEM-014",
+            "PKG-001",
+            "PKG-002",
+            "SCH-013",
+            "STO-004",
+            "UIP-002"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-014` is todo — Publish storage-Object access against Linux file I/O",
@@ -60585,6 +61197,28 @@
         {
           "id": "V0.5-G24",
           "title": "Native platform features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "CMP-020",
+            "IPC-027",
+            "IPC-030",
+            "IPC-036",
+            "IPC-037",
+            "IPC-039",
+            "MEM-015",
+            "OBS-016",
+            "OBS-017",
+            "OBS-021",
+            "OBS-022",
+            "SCH-018",
+            "SCH-022",
+            "SCH-024",
+            "SVC-010",
+            "TSK-025",
+            "TSK-029",
+            "TSK-030",
+            "TSK-036"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-020` is todo — Verify the native isolation path needs no daemon, namespace, overlay or fork",
@@ -60611,6 +61245,12 @@
         {
           "id": "V0.5-G25",
           "title": "Storage and package features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-036",
+            "STO-003",
+            "STO-033"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-036` is todo — Assemble the 20-Package benchmark Corpus from native apps and dependencies",
@@ -60621,6 +61261,11 @@
         {
           "id": "V0.5-G26",
           "title": "Security and boot features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "BOOT-013",
+            "SEC-008"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-013` is todo — Maintain ESP space so at least three previous SystemGeneration kernels stay bootable",
@@ -60630,6 +61275,13 @@
         {
           "id": "V0.5-G27",
           "title": "Desktop and UI features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "GFX-025",
+            "GFX-044",
+            "UIP-011",
+            "UIP-016"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-025` is todo — Build golden-image comparison tolerant of documented rasterisation differences",
@@ -60641,6 +61293,11 @@
         {
           "id": "V0.5-G28",
           "title": "Hardware, media and networking features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "HW-012",
+            "LAB-007"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-012` is todo — Re-issue InputDevice Capabilities on HID hot-plug and unplug",
@@ -60650,6 +61307,13 @@
         {
           "id": "V0.5-G29",
           "title": "Delivery, tooling and governance features complete for V0.5",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-025",
+            "GOV-010",
+            "GOV-011",
+            "GOV-012"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-025` is todo — Deploy a shared content-addressed remote build cache",
@@ -60658,16 +61322,70 @@
             "`GOV-012` is todo — Implement roadmap mutation commands from claim through renumber"
           ]
         }
+      ],
+      "demos": [
+        {
+          "id": "V0.5-D01",
+          "title": "Cold boot to the four native applications",
+          "verified_by": [
+            "APP-007",
+            "INS-001"
+          ]
+        },
+        {
+          "id": "V0.5-D02",
+          "title": "Image Viewer chooser grants exactly one capability",
+          "verified_by": [
+            "APP-002",
+            "STO-034",
+            "CAP-029"
+          ]
+        },
+        {
+          "id": "V0.5-D03",
+          "title": "Compositor kill keeps the editor buffer",
+          "verified_by": [
+            "GFX-021",
+            "APP-003"
+          ]
+        },
+        {
+          "id": "V0.5-D04",
+          "title": "Install then roll back at the boot menu",
+          "verified_by": [
+            "PKG-034",
+            "PKG-015",
+            "BOOT-014"
+          ]
+        },
+        {
+          "id": "V0.5-D05",
+          "title": "Wayland GTK editor beside native apps with copy-paste",
+          "verified_by": [
+            "LNX-006",
+            "UIP-003"
+          ]
+        }
       ]
     },
     {
       "token": "V1",
       "title": "Developer preview",
+      "sequence": 3,
+      "file": "milestones/V1.md",
       "status": "planned",
       "gates": [
         {
           "id": "V1-G01",
           "title": "Self-hosted image builds bit-for-bit",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-049",
+            "ENV-020",
+            "BLD-043",
+            "BLD-041",
+            "PKG-065"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-049` is todo — Deliver Linux-host bootstrap and self-hosted full-system builds",
@@ -60680,6 +61398,17 @@
         {
           "id": "V1-G02",
           "title": "Core team daily-drives the OS",
+          "kind": "functional",
+          "verified_by": [
+            "HW-015",
+            "APP-010",
+            "APP-016",
+            "APP-011",
+            "GOV-032",
+            "INS-003",
+            "MEM-042",
+            "KRN-035"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-015` is todo — Bring up the V1 Intel laptop Reference machine for daily-driving",
@@ -60695,6 +61424,13 @@
         {
           "id": "V1-G03",
           "title": "SDK v1 published with a compatibility suite",
+          "kind": "functional",
+          "verified_by": [
+            "SDK-059",
+            "SDK-036",
+            "BLD-037",
+            "SDK-057"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-059` is todo — Publish SDK v1 with semver policy and compatibility suite",
@@ -60706,6 +61442,12 @@
         {
           "id": "V1-G04",
           "title": "Cached os env enter presents a working shell",
+          "kind": "functional",
+          "verified_by": [
+            "SDK-041",
+            "ENV-018",
+            "ENV-014"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-041` is todo — Implement the os env enter command",
@@ -60716,6 +61458,13 @@
         {
           "id": "V1-G05",
           "title": "Wi-Fi connects, roams and survives suspend",
+          "kind": "functional",
+          "verified_by": [
+            "NET-020",
+            "NET-021",
+            "NET-012",
+            "NET-003"
+          ],
           "satisfied": false,
           "reasons": [
             "`NET-020` is todo — Verify the V1 network Gate: Wi-Fi, DHCP, DNS and Capability denial",
@@ -60727,6 +61476,12 @@
         {
           "id": "V1-G06",
           "title": "Native audio and PipeWire compatibility coexist",
+          "kind": "functional",
+          "verified_by": [
+            "AUD-010",
+            "AUD-001",
+            "AUD-014"
+          ],
           "satisfied": false,
           "reasons": [
             "`AUD-010` is todo — Ship native playback and capture on reference hardware",
@@ -60737,6 +61492,13 @@
         {
           "id": "V1-G07",
           "title": "Suspend and resume succeed on laptop and desktop",
+          "kind": "functional",
+          "verified_by": [
+            "PWR-014",
+            "LAB-009",
+            "AUD-012",
+            "TSK-041"
+          ],
           "satisfied": false,
           "reasons": [
             "`PWR-014` is todo — Implement suspend and resume cycle gates on laptop and desktop",
@@ -60748,6 +61510,16 @@
         {
           "id": "V1-G08",
           "title": "GPU-accelerated Linux applications run",
+          "kind": "functional",
+          "verified_by": [
+            "LNX-031",
+            "GFX-057",
+            "LNX-061",
+            "LNX-049",
+            "LNX-055",
+            "LNX-021",
+            "KRN-033"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-031` is todo — GPU-accelerate Linux apps via Mesa EGL, Vulkan and dma-buf",
@@ -60762,6 +61534,13 @@
         {
           "id": "V1-G09",
           "title": "Signed repository rejects a tampered package",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-055",
+            "REL-007",
+            "PKG-062",
+            "PKG-066"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-055` is todo — Verify Package signatures against trust roots before activation and reject tampering",
@@ -60773,6 +61552,14 @@
         {
           "id": "V1-G10",
           "title": "Native debugger attaches to an async task",
+          "kind": "functional",
+          "verified_by": [
+            "SDK-038",
+            "SDK-051",
+            "OBS-041",
+            "SDK-046",
+            "SDK-037"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-038` is todo — Attach a debugger to a Component with async Task stacks",
@@ -60785,6 +61572,11 @@
         {
           "id": "V1-G11",
           "title": "os restore returns to a previous generation",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-060",
+            "SDK-044"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-060` is todo — Build `os restore` to a previous SystemGeneration verified after a simulated bad update",
@@ -60794,6 +61586,14 @@
         {
           "id": "V1-G12",
           "title": "Semantic interfaces and a Wasm channel prototype",
+          "kind": "functional",
+          "verified_by": [
+            "SEM-008",
+            "APP-015",
+            "WASM-012",
+            "WASM-013",
+            "DOC-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEM-008` is todo — Ship Terminal.run and Editor.open Semantic Interface v0",
@@ -60806,6 +61606,10 @@
         {
           "id": "V1-G13",
           "title": "Kernel fork tracks one upstream stable release",
+          "kind": "functional",
+          "verified_by": [
+            "KRN-040"
+          ],
           "satisfied": false,
           "reasons": [
             "`KRN-040` is todo — Rebase or adapt one upstream stable release during V1 per the divergence policy"
@@ -60814,6 +61618,10 @@
         {
           "id": "V1-G14",
           "title": "Prior benchmarks show no unexplained regression",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-029` is todo — Verify V1 absolute targets and prior-Rung regression"
@@ -60822,6 +61630,14 @@
         {
           "id": "V1-G15",
           "title": "IPC round trip meets the V1 absolute target",
+          "kind": "benchmark",
+          "verified_by": [
+            "IPC-054",
+            "BEN-029",
+            "CMP-034",
+            "CMP-035",
+            "BEN-026"
+          ],
           "satisfied": false,
           "reasons": [
             "`IPC-054` is todo — Tune the IPC fast path to the V1 same-core and cross-core round-trip targets",
@@ -60834,6 +61650,13 @@
         {
           "id": "V1-G16",
           "title": "Cached environment startup meets the V1 absolute target",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-025",
+            "ENV-014",
+            "BEN-030",
+            "MEM-036"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-025` is todo — Publish os env startup against Docker Compose",
@@ -60845,6 +61668,15 @@
         {
           "id": "V1-G17",
           "title": "Idle power and battery runtime published",
+          "kind": "benchmark",
+          "verified_by": [
+            "PWR-006",
+            "BEN-024",
+            "AUD-004",
+            "LNX-026",
+            "BEN-027",
+            "BEN-023"
+          ],
           "satisfied": false,
           "reasons": [
             "`PWR-006` is todo — Publish idle power draw and battery runtime on the Intel laptop",
@@ -60858,6 +61690,12 @@
         {
           "id": "V1-G18",
           "title": "L0 corpus still has zero regressions",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-041",
+            "KRN-040",
+            "LNX-037"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-041` is todo — Keep L0 and L1 Corpus results green",
@@ -60868,6 +61706,14 @@
         {
           "id": "V1-G19",
           "title": "L2 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-056",
+            "LNX-038",
+            "UIP-042",
+            "LNX-041",
+            "SCH-043"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-056` is todo — Define and run the L2 Corpus",
@@ -60880,6 +61726,40 @@
         {
           "id": "V1-G20",
           "title": "V1 decisions, freeze candidates and roll-up",
+          "kind": "process",
+          "verified_by": [
+            "SDK-054",
+            "SDK-055",
+            "NET-006",
+            "AUD-002",
+            "REL-003",
+            "LNX-018",
+            "WASM-007",
+            "SDK-028",
+            "LNX-015",
+            "KRN-024",
+            "KRN-026",
+            "GOV-037",
+            "STO-040",
+            "GFX-058",
+            "UIP-030",
+            "SEC-031",
+            "SEC-032",
+            "NET-018",
+            "PWR-007",
+            "BLD-050",
+            "GOV-026",
+            "DOC-009",
+            "ENV-007",
+            "ENV-021",
+            "IPC-041",
+            "MED-010",
+            "NET-005",
+            "SCH-030",
+            "TSK-042",
+            "WASM-008",
+            "WIN-011"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-054` is todo — Decide the Layer 3 SDK semver and deprecation policy",
@@ -60918,6 +61798,14 @@
         {
           "id": "V1-G21",
           "title": "Standing lints and continuous checks in force",
+          "kind": "process",
+          "verified_by": [
+            "BLD-030",
+            "BLD-031",
+            "DOC-012",
+            "HW-020",
+            "IPC-050"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-030` is todo — Keep an ARM64 kernel and userspace cross-build compiling in CI",
@@ -60930,6 +61818,28 @@
         {
           "id": "V1-G22",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "ACC-010",
+            "BEN-034",
+            "CMP-037",
+            "CMP-041",
+            "DOC-011",
+            "DOC-013",
+            "DOC-015",
+            "GFX-052",
+            "GOV-033",
+            "GOV-034",
+            "GOV-038",
+            "IPC-053",
+            "NET-010",
+            "PKG-061",
+            "SEM-005",
+            "SVC-021",
+            "TSK-037",
+            "UIP-031",
+            "WIN-016"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-010` is todo — Publish accessibility guidelines for native application developers",
@@ -60956,6 +61866,17 @@
         {
           "id": "V1-G23",
           "title": "Publish-only benchmark series published",
+          "kind": "functional",
+          "verified_by": [
+            "BEN-028",
+            "BOOT-016",
+            "BOOT-017",
+            "MEM-033",
+            "NET-004",
+            "SDK-032",
+            "TXT-014",
+            "WASM-006"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-028` is todo — Publish developer onboarding time",
@@ -60971,6 +61892,42 @@
         {
           "id": "V1-G24",
           "title": "Native platform features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "CAP-031",
+            "CAP-036",
+            "ENV-012",
+            "ENV-015",
+            "ENV-016",
+            "ENV-023",
+            "IPC-046",
+            "IPC-049",
+            "MEM-044",
+            "OBS-026",
+            "OBS-033",
+            "OBS-038",
+            "SCH-031",
+            "SCH-039",
+            "SDK-035",
+            "SDK-042",
+            "SDK-045",
+            "SDK-047",
+            "SDK-048",
+            "SDK-050",
+            "SDK-058",
+            "SVC-022",
+            "SVC-025",
+            "SVC-026",
+            "SVC-027",
+            "SVC-030",
+            "SVC-033",
+            "TSK-040",
+            "TSK-046",
+            "TSK-047",
+            "WASM-010",
+            "WASM-011",
+            "WASM-014"
+          ],
           "satisfied": false,
           "reasons": [
             "`CAP-031` is todo — Declare Capability L1 surfaces freeze candidates with conformance tests",
@@ -61011,6 +61968,16 @@
         {
           "id": "V1-G25",
           "title": "Storage and package features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-063",
+            "PKG-067",
+            "STO-045",
+            "STO-046",
+            "STO-049",
+            "STO-050",
+            "STO-053"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-063` is todo — Support content-addressed precompiled artefacts in Packages",
@@ -61025,6 +61992,15 @@
         {
           "id": "V1-G26",
           "title": "Security and boot features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "BOOT-023",
+            "BOOT-024",
+            "SEC-017",
+            "SEC-023",
+            "SEC-024",
+            "SEC-030"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-023` is todo — Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed",
@@ -61038,6 +62014,14 @@
         {
           "id": "V1-G27",
           "title": "Desktop and UI features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-011",
+            "APP-012",
+            "GFX-050",
+            "TXT-023",
+            "UIP-039"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-011` is todo — Define and implement the focus order and keyboard traversal contract",
@@ -61050,6 +62034,17 @@
         {
           "id": "V1-G28",
           "title": "Hardware, media and networking features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "AUD-011",
+            "HW-025",
+            "LAB-012",
+            "NET-013",
+            "NET-016",
+            "NET-017",
+            "PWR-013",
+            "PWR-015"
+          ],
           "satisfied": false,
           "reasons": [
             "`AUD-011` is todo — Convert sample rate, format and Channel layout on mix",
@@ -61065,6 +62060,12 @@
         {
           "id": "V1-G29",
           "title": "Compatibility features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "LNX-027",
+            "LNX-035",
+            "VIRT-001"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-027` is todo — Capture Linux core dumps and Crashpad minidumps",
@@ -61075,6 +62076,16 @@
         {
           "id": "V1-G30",
           "title": "Delivery, tooling and governance features complete for V1",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-036",
+            "BLD-046",
+            "DOC-006",
+            "GOV-027",
+            "GOV-028",
+            "GOV-029",
+            "INS-005"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-036` is todo — Measure kernel and userspace coverage and Gate security-critical paths",
@@ -61086,16 +62097,69 @@
             "`INS-005` is todo — Run scripted install on the Intel laptop and AMD desktop"
           ]
         }
+      ],
+      "demos": [
+        {
+          "id": "V1-D01",
+          "title": "Clone, edit, build, install, reboot, roll back on the OS",
+          "verified_by": [
+            "BLD-040"
+          ]
+        },
+        {
+          "id": "V1-D02",
+          "title": "Developer day on the Intel laptop",
+          "verified_by": [
+            "HW-015",
+            "APP-010",
+            "AUD-010",
+            "PWR-014",
+            "HW-032"
+          ]
+        },
+        {
+          "id": "V1-D03",
+          "title": "Browser download grants the editor exactly one file",
+          "verified_by": [
+            "LNX-036",
+            "APP-010"
+          ]
+        },
+        {
+          "id": "V1-D04",
+          "title": "Typed automation opens a project and runs tests",
+          "verified_by": [
+            "SEM-008",
+            "APP-015"
+          ]
+        },
+        {
+          "id": "V1-D05",
+          "title": "Wasm plugin in the editor with declared capabilities only",
+          "verified_by": [
+            "WASM-009",
+            "CMP-038"
+          ]
+        }
       ]
     },
     {
       "token": "V2",
       "title": "Desktop preview",
+      "sequence": 4,
+      "file": "milestones/V2.md",
       "status": "planned",
       "gates": [
         {
           "id": "V2-G01",
           "title": "Desktop shell passes the UX script on all three machines",
+          "kind": "functional",
+          "verified_by": [
+            "APP-048",
+            "BLD-056",
+            "UIP-051",
+            "SCH-051"
+          ],
           "satisfied": false,
           "reasons": [
             "`APP-048` is todo — Run the 40-scenario desktop UX script on the three target machines",
@@ -61107,6 +62171,13 @@
         {
           "id": "V2-G02",
           "title": "Multi-monitor hot-plug does not lose windows",
+          "kind": "functional",
+          "verified_by": [
+            "GFX-077",
+            "GFX-071",
+            "GFX-075",
+            "UIP-047"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-077` is todo — Support multi-monitor hot-plug, docks and USB-C DisplayPort Alt Mode",
@@ -61118,6 +62189,14 @@
         {
           "id": "V2-G03",
           "title": "HDR10 and VRR verified on the reference display",
+          "kind": "functional",
+          "verified_by": [
+            "GFX-068",
+            "GFX-088",
+            "WIN-032",
+            "GFX-067",
+            "GFX-079"
+          ],
           "satisfied": false,
           "reasons": [
             "`GFX-068` is todo — Output HDR10 from the compositor with a native HDR test application",
@@ -61130,6 +62209,13 @@
         {
           "id": "V2-G04",
           "title": "Bluetooth pairing and reconnect meet the cycle threshold",
+          "kind": "functional",
+          "verified_by": [
+            "HW-060",
+            "HW-037",
+            "HW-038",
+            "SVC-034"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-060` is todo — Verify headset, mouse and keyboard pairing cycles on target laptops",
@@ -61141,6 +62227,13 @@
         {
           "id": "V2-G05",
           "title": "Laptop suspend soak and battery estimate",
+          "kind": "functional",
+          "verified_by": [
+            "PWR-024",
+            "LAB-014",
+            "PWR-023",
+            "SEC-048"
+          ],
           "satisfied": false,
           "reasons": [
             "`PWR-024` is todo — Run the V2 suspend cycle Gate on both laptops",
@@ -61152,6 +62245,15 @@
         {
           "id": "V2-G06",
           "title": "Windows application launches as a native citizen",
+          "kind": "functional",
+          "verified_by": [
+            "WIN-027",
+            "WIN-024",
+            "WIN-020",
+            "WIN-021",
+            "WIN-042",
+            "WIN-044"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-027` is todo — Launch a .exe by double-click as a normal application window",
@@ -61165,6 +62267,10 @@
         {
           "id": "V2-G07",
           "title": "Gaming proof of concept on W1 Gold titles",
+          "kind": "functional",
+          "verified_by": [
+            "WIN-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-029` is todo — Run ten Gold W1 titles with HDR or VRR and gamepad input"
@@ -61173,6 +62279,14 @@
         {
           "id": "V2-G08",
           "title": "Snapshots, rollback UI and automatic rollback",
+          "kind": "functional",
+          "verified_by": [
+            "INS-014",
+            "PKG-077",
+            "BOOT-028",
+            "PKG-073",
+            "CAP-043"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-014` is todo — Expose SystemGeneration restore in Settings and boot UX",
@@ -61185,6 +62299,15 @@
         {
           "id": "V2-G09",
           "title": "Native repository with capability review at install",
+          "kind": "functional",
+          "verified_by": [
+            "APP-045",
+            "SEC-038",
+            "SEC-047",
+            "CMP-043",
+            "PKG-075",
+            "WASM-016"
+          ],
           "satisfied": false,
           "reasons": [
             "`APP-045` is todo — Build the store client with install-time Capability review",
@@ -61198,6 +62321,13 @@
         {
           "id": "V2-G10",
           "title": "Permissions UI lists and revokes every grant",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-045",
+            "APP-029",
+            "SEC-036",
+            "CAP-044"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-045` is todo — Ship permissions UI to view and revoke grants",
@@ -61209,6 +62339,14 @@
         {
           "id": "V2-G11",
           "title": "Screen sharing is an explicit capability with an indicator",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-046",
+            "GFX-061",
+            "GFX-082",
+            "APP-031",
+            "APP-038"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-046` is todo — Verify screen-share denial on the V2 Gate",
@@ -61221,6 +62359,16 @@
         {
           "id": "V2-G12",
           "title": "Semantic automation and an AI-assistant demo",
+          "kind": "functional",
+          "verified_by": [
+            "SEM-019",
+            "SEM-020",
+            "SEM-021",
+            "SEM-010",
+            "SEM-009",
+            "SEM-029",
+            "SEC-033"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEM-019` is todo — Demonstrate Download.completed to Extractor.extract",
@@ -61235,6 +62383,11 @@
         {
           "id": "V2-G13",
           "title": "Screen-reader prototype completes the four-app script",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-021",
+            "ACC-017"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-021` is todo — Build the native screen reader: focus tracking, navigation modes, review cursor",
@@ -61244,6 +62397,12 @@
         {
           "id": "V2-G14",
           "title": "ComputeDevice dispatch follows preference",
+          "kind": "functional",
+          "verified_by": [
+            "HET-013",
+            "HET-015",
+            "SDK-065"
+          ],
           "satisfied": false,
           "reasons": [
             "`HET-013` is todo — Route Throughput to GPU and LowLatency to CPU in the V2 Demo",
@@ -61254,6 +62413,12 @@
         {
           "id": "V2-G15",
           "title": "Safe-mode session after restart-budget exhaustion",
+          "kind": "functional",
+          "verified_by": [
+            "SVC-035",
+            "SVC-036",
+            "APP-037"
+          ],
           "satisfied": false,
           "reasons": [
             "`SVC-035` is todo — Escalate exhausted shell or compositor restart budgets to the safe-mode session",
@@ -61264,6 +62429,21 @@
         {
           "id": "V2-G16",
           "title": "Prior benchmarks show no unexplained regression",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-043",
+            "BEN-037",
+            "HW-033",
+            "PWR-017",
+            "BEN-039",
+            "BEN-042",
+            "CMP-047",
+            "STO-054",
+            "HW-034",
+            "APP-022",
+            "CMP-044",
+            "CMP-048"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-043` is todo — Verify no V1 benchmark regression at V2",
@@ -61283,6 +62463,12 @@
         {
           "id": "V2-G17",
           "title": "Windows compatibility overhead published",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-044",
+            "BEN-041",
+            "WIN-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-044` is todo — Publish Windows Personality overhead against Proton and Windows",
@@ -61293,6 +62479,12 @@
         {
           "id": "V2-G18",
           "title": "L3 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-084",
+            "LNX-066",
+            "LNX-073"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-084` is todo — Define and run the L3 Corpus",
@@ -61303,6 +62495,11 @@
         {
           "id": "V2-G19",
           "title": "W1 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "WIN-051",
+            "WIN-030"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-051` is todo — Run the W1 Corpus to the V2 Gold and Silver thresholds",
@@ -61312,6 +62509,36 @@
         {
           "id": "V2-G20",
           "title": "V2 decisions and roll-up",
+          "kind": "process",
+          "verified_by": [
+            "HW-003",
+            "WIN-036",
+            "GFX-063",
+            "HW-040",
+            "SEC-043",
+            "SEM-018",
+            "WIN-002",
+            "HW-042",
+            "GOV-045",
+            "CAP-045",
+            "IPC-056",
+            "MEM-045",
+            "STO-066",
+            "STO-068",
+            "TXT-027",
+            "LNX-062",
+            "LNX-087",
+            "WIN-033",
+            "SEC-035",
+            "AUD-016",
+            "AUD-019",
+            "HW-044",
+            "APP-054",
+            "GOV-042",
+            "GOV-043",
+            "APP-055",
+            "IPC-055"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-003` is todo — Decide the V1 through V2 Reference machine list and security criteria",
@@ -61346,6 +62573,18 @@
         {
           "id": "V2-G21",
           "title": "Standing lints and continuous checks in force",
+          "kind": "process",
+          "verified_by": [
+            "BLD-053",
+            "BLD-057",
+            "BLD-058",
+            "BLD-059",
+            "BLD-060",
+            "GFX-066",
+            "KRN-043",
+            "LAB-019",
+            "TXT-037"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-053` is todo — Rehearse disaster recovery of the CI and lab pipeline",
@@ -61362,6 +62601,16 @@
         {
           "id": "V2-G22",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "GOV-046",
+            "GOV-048",
+            "HW-056",
+            "INS-012",
+            "KRN-046",
+            "KRN-047",
+            "SDK-073"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-046` is todo — Publish vendor NDA policy for hardware documentation",
@@ -61376,6 +62625,21 @@
         {
           "id": "V2-G23",
           "title": "Publish-only benchmark series published",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-018",
+            "AUD-017",
+            "BEN-036",
+            "BEN-038",
+            "BEN-040",
+            "BEN-045",
+            "HET-018",
+            "MED-012",
+            "MED-028",
+            "SCH-044",
+            "SEM-014",
+            "SEM-015"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-018` is todo — Benchmark focus-change to speech-onset and tree update latency",
@@ -61395,6 +62659,32 @@
         {
           "id": "V2-G24",
           "title": "Native platform features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "ENV-024",
+            "ENV-027",
+            "ENV-029",
+            "IPC-058",
+            "KRN-044",
+            "KRN-049",
+            "MEM-047",
+            "MEM-048",
+            "OBS-046",
+            "OBS-047",
+            "SCH-050",
+            "SDK-064",
+            "SDK-066",
+            "SDK-067",
+            "SDK-068",
+            "SDK-070",
+            "SDK-071",
+            "SEM-016",
+            "SEM-024",
+            "SVC-037",
+            "WASM-015",
+            "WASM-017",
+            "WASM-018"
+          ],
           "satisfied": false,
           "reasons": [
             "`ENV-024` is todo — Attach the native Terminal and Editor to a development environment",
@@ -61425,6 +62715,14 @@
         {
           "id": "V2-G25",
           "title": "Storage and package features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-074",
+            "STO-057",
+            "STO-058",
+            "STO-064",
+            "STO-069"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-074` is todo — Expose a typed SystemGeneration management Interface for settings and rollback UI",
@@ -61437,6 +62735,14 @@
         {
           "id": "V2-G26",
           "title": "Security and boot features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-037",
+            "SEC-040",
+            "SEC-041",
+            "SEC-049",
+            "SEC-051"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-037` is todo — Add hardware-enforcement hooks in Capability checks",
@@ -61449,6 +62755,28 @@
         {
           "id": "V2-G27",
           "title": "Desktop and UI features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-022",
+            "APP-024",
+            "APP-028",
+            "APP-034",
+            "APP-035",
+            "APP-042",
+            "APP-044",
+            "APP-046",
+            "APP-047",
+            "APP-049",
+            "GFX-059",
+            "GFX-072",
+            "GFX-076",
+            "GFX-078",
+            "TXT-024",
+            "TXT-025",
+            "UIP-046",
+            "UIP-048",
+            "UIP-049"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-022` is todo — Make the screen reader an accessibility client of semantic interfaces",
@@ -61475,6 +62803,30 @@
         {
           "id": "V2-G28",
           "title": "Hardware, media and networking features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "AUD-015",
+            "AUD-018",
+            "HW-045",
+            "HW-048",
+            "HW-049",
+            "HW-054",
+            "HW-058",
+            "LAB-015",
+            "LAB-018",
+            "MED-011",
+            "MED-014",
+            "MED-015",
+            "MED-019",
+            "MED-021",
+            "NET-022",
+            "NET-023",
+            "NET-025",
+            "NET-026",
+            "PWR-016",
+            "PWR-018",
+            "PWR-020"
+          ],
           "satisfied": false,
           "reasons": [
             "`AUD-015` is todo — Apply ducking and exclusive-mode audio focus",
@@ -61503,6 +62855,16 @@
         {
           "id": "V2-G29",
           "title": "Compatibility features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "LNX-072",
+            "LNX-074",
+            "LNX-075",
+            "VIRT-004",
+            "WIN-025",
+            "WIN-037",
+            "WIN-046"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-072` is todo — Implement the incremental native-Interface bridge",
@@ -61517,6 +62879,12 @@
         {
           "id": "V2-G30",
           "title": "Delivery, tooling and governance features complete for V2",
+          "kind": "functional",
+          "verified_by": [
+            "DOC-018",
+            "DOC-019",
+            "DOC-020"
+          ],
           "satisfied": false,
           "reasons": [
             "`DOC-018` is todo — Package documentation into the SystemGeneration store",
@@ -61524,16 +62892,93 @@
             "`DOC-020` is todo — Ship offline os help from the generated docs Corpus"
           ]
         }
+      ],
+      "demos": [
+        {
+          "id": "V2-D01",
+          "title": "Laptop day with lid, Wi-Fi, Bluetooth and HDR display",
+          "verified_by": [
+            "PWR-021",
+            "HW-037",
+            "GFX-077",
+            "GFX-068"
+          ]
+        },
+        {
+          "id": "V2-D02",
+          "title": "Double-click a Windows executable from the file browser",
+          "verified_by": [
+            "WIN-048",
+            "WIN-027"
+          ]
+        },
+        {
+          "id": "V2-D03",
+          "title": "W1 title with VRR and HDR on the AMD desktop",
+          "verified_by": [
+            "WIN-029",
+            "WIN-050",
+            "WIN-032",
+            "BEN-044"
+          ]
+        },
+        {
+          "id": "V2-D04",
+          "title": "Update, discover a bug, roll back from Settings",
+          "verified_by": [
+            "INS-014",
+            "PKG-077",
+            "PKG-059"
+          ]
+        },
+        {
+          "id": "V2-D05",
+          "title": "AI assistant runs a multi-step task through capabilities",
+          "verified_by": [
+            "SEM-009",
+            "SEM-010",
+            "CAP-041",
+            "OBS-042"
+          ]
+        },
+        {
+          "id": "V2-D06",
+          "title": "Screen reader navigating the shell and Text Editor",
+          "verified_by": [
+            "ACC-021",
+            "ACC-017"
+          ]
+        },
+        {
+          "id": "V2-D07",
+          "title": "Permissions prompt denied without a crash",
+          "verified_by": [
+            "SEC-044",
+            "APP-025",
+            "LNX-080",
+            "MED-020"
+          ]
+        }
       ]
     },
     {
       "token": "V3",
       "title": "Public alpha",
+      "sequence": 5,
+      "file": "milestones/V3.md",
       "status": "planned",
       "gates": [
         {
           "id": "V3-G01",
           "title": "Installer completes on Tier 1 with full-disk encryption",
+          "kind": "functional",
+          "verified_by": [
+            "INS-032",
+            "LAB-022",
+            "SEC-055",
+            "INS-028",
+            "BOOT-026"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-032` is todo — Prove installer success rate on every Tier 1 machine",
@@ -61546,6 +62991,11 @@
         {
           "id": "V3-G02",
           "title": "A stranger installs from public documentation",
+          "kind": "functional",
+          "verified_by": [
+            "INS-029",
+            "DOC-026"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-029` is todo — Run the unaided public-install usability study",
@@ -61555,6 +63005,13 @@
         {
           "id": "V3-G03",
           "title": "Updater, automatic rollback and recovery",
+          "kind": "functional",
+          "verified_by": [
+            "INS-043",
+            "REL-043",
+            "INS-040",
+            "SVC-040"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-043` is todo — Prove six consecutive Channel updates with automatic rollback",
@@ -61566,6 +63023,13 @@
         {
           "id": "V3-G04",
           "title": "Crash reports are symbolicated and opted in",
+          "kind": "functional",
+          "verified_by": [
+            "REL-038",
+            "REL-023",
+            "INS-020",
+            "OBS-050"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-038` is todo — Build the crash-report intake pipeline from Component state",
@@ -61577,6 +63041,14 @@
         {
           "id": "V3-G05",
           "title": "Hardware compatibility database and live probe",
+          "kind": "functional",
+          "verified_by": [
+            "HW-065",
+            "REL-048",
+            "HW-066",
+            "HW-067",
+            "HW-068"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-065` is todo — Ingest community Hardware Compatibility List probes for 100 machines",
@@ -61589,6 +63061,12 @@
         {
           "id": "V3-G06",
           "title": "Public package repository drill",
+          "kind": "functional",
+          "verified_by": [
+            "REL-033",
+            "REL-050",
+            "PKG-087"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-033` is todo — Rehearse third-party submit, review, sign, publish and revoke",
@@ -61599,6 +63077,13 @@
         {
           "id": "V3-G07",
           "title": "Secure Boot and measured boot on Tier 1",
+          "kind": "functional",
+          "verified_by": [
+            "BOOT-043",
+            "BOOT-045",
+            "SEC-058",
+            "SEC-065"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-043` is todo — Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine",
@@ -61610,6 +63095,13 @@
         {
           "id": "V3-G08",
           "title": "Permissions UI v2 with audit history and one-time grants",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-062",
+            "SEC-063",
+            "CAP-048",
+            "OBS-048"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-062` is todo — Add audit history and one-time grants to permissions UI",
@@ -61621,6 +63113,13 @@
         {
           "id": "V3-G09",
           "title": "Security response exercised",
+          "kind": "functional",
+          "verified_by": [
+            "REL-034",
+            "KRN-052",
+            "REL-018",
+            "PKG-051"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-034` is todo — Exercise the security-response process with public postmortems",
@@ -61632,6 +63131,14 @@
         {
           "id": "V3-G10",
           "title": "Kernel and IPC fuzzing has no stale open crasher",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-063",
+            "IPC-061",
+            "MEM-052",
+            "SCH-054",
+            "GFX-091"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-063` is todo — Gate V3 on no known open Native ABI fuzzer crasher",
@@ -61644,6 +63151,21 @@
         {
           "id": "V3-G11",
           "title": "Multi-user sessions isolate capability stores",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-060",
+            "SEC-064",
+            "CAP-049",
+            "SEC-061",
+            "SVC-039",
+            "CMP-051",
+            "STO-075",
+            "SCH-052",
+            "ENV-031",
+            "SEM-039",
+            "MED-034",
+            "AUD-024"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-060` is todo — Implement multi-user login with isolated sessions",
@@ -61663,6 +63185,24 @@
         {
           "id": "V3-G12",
           "title": "Layer 1 ABI reference pages exist for every entry point",
+          "kind": "functional",
+          "verified_by": [
+            "DOC-023",
+            "ABI-046",
+            "IPC-059",
+            "DOC-024",
+            "DOC-030",
+            "DOC-032",
+            "DOC-028",
+            "TXT-043",
+            "ENV-030",
+            "WASM-021",
+            "SEM-036",
+            "VIRT-015",
+            "AUD-023",
+            "SCH-040",
+            "OBS-031"
+          ],
           "satisfied": false,
           "reasons": [
             "`DOC-023` is todo — Generate complete Layer 1 reference pages for every entry point",
@@ -61685,6 +63225,12 @@
         {
           "id": "V3-G13",
           "title": "Opt-in telemetry meets the crash-free target",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-049",
+            "BEN-051",
+            "REL-042"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-049` is todo — Publish crash-free session rate from opt-in telemetry",
@@ -61695,6 +63241,13 @@
         {
           "id": "V3-G14",
           "title": "Public RFC process has decided external RFCs",
+          "kind": "process",
+          "verified_by": [
+            "GOV-064",
+            "GOV-062",
+            "GOV-068",
+            "GOV-060"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-064` is todo — Exercise the RFC process through five external RFCs to Decision",
@@ -61706,6 +63259,15 @@
         {
           "id": "V3-G15",
           "title": "Prior benchmarks re-run across Tier 1",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-053",
+            "BEN-054",
+            "BLD-066",
+            "BEN-050",
+            "SVC-038",
+            "VIRT-010"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-053` is todo — Verify no V2 benchmark regression at V3",
@@ -61719,6 +63281,12 @@
         {
           "id": "V3-G16",
           "title": "Install, first-boot and update-apply time published",
+          "kind": "benchmark",
+          "verified_by": [
+            "INS-016",
+            "INS-015",
+            "BEN-048"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-016` is todo — Publish install, first-boot and update-apply times",
@@ -61729,6 +63297,12 @@
         {
           "id": "V3-G17",
           "title": "Linux compatibility overhead published on L4",
+          "kind": "benchmark",
+          "verified_by": [
+            "LNX-092",
+            "WIN-071",
+            "PWR-025"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-092` is todo — Publish Linux compatibility overhead on L4 workloads",
@@ -61739,6 +63313,11 @@
         {
           "id": "V3-G18",
           "title": "L4 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-100",
+            "LNX-097"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-100` is todo — Define and run the L4 Corpus",
@@ -61748,6 +63327,14 @@
         {
           "id": "V3-G19",
           "title": "W2 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "WIN-071",
+            "WIN-068",
+            "WIN-067",
+            "REL-022",
+            "LNX-091"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-071` is todo — Run the W2 Corpus to the V3 Gold and Silver thresholds",
@@ -61760,6 +63347,33 @@
         {
           "id": "V3-G20",
           "title": "V3 decisions and roll-up",
+          "kind": "process",
+          "verified_by": [
+            "INS-008",
+            "INS-007",
+            "REL-004",
+            "OBS-029",
+            "GOV-055",
+            "BOOT-031",
+            "REL-028",
+            "SEC-042",
+            "CAP-047",
+            "STO-072",
+            "GFX-089",
+            "WIN-058",
+            "VIRT-014",
+            "SEC-066",
+            "NET-029",
+            "INS-023",
+            "INS-024",
+            "INS-044",
+            "REL-026",
+            "REL-030",
+            "GOV-049",
+            "GOV-050",
+            "GOV-052",
+            "GOV-053"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-008` is todo — Decide installer disk layout, wipe and dual-boot policy",
@@ -61791,6 +63405,16 @@
         {
           "id": "V3-G21",
           "title": "Standing lints and continuous checks in force",
+          "kind": "process",
+          "verified_by": [
+            "BLD-061",
+            "BLD-064",
+            "BLD-069",
+            "BLD-070",
+            "MED-031",
+            "SDK-076",
+            "UIP-054"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-061` is todo — Produce nightly images for the alpha Channel",
@@ -61805,6 +63429,27 @@
         {
           "id": "V3-G22",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "CAP-046",
+            "CMP-050",
+            "DOC-027",
+            "DOC-029",
+            "DOC-031",
+            "GOV-057",
+            "GOV-058",
+            "GOV-069",
+            "HET-022",
+            "INS-039",
+            "IPC-063",
+            "KRN-051",
+            "KRN-053",
+            "PKG-085",
+            "REL-052",
+            "TSK-050",
+            "WIN-065",
+            "WIN-070"
+          ],
           "satisfied": false,
           "reasons": [
             "`CAP-046` is todo — Document every Capability Object type and right for the Layer 1 reference",
@@ -61830,6 +63475,10 @@
         {
           "id": "V3-G23",
           "title": "Publish-only benchmark series published",
+          "kind": "functional",
+          "verified_by": [
+            "BEN-052"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-052` is todo — Publish update success rate"
@@ -61838,6 +63487,20 @@
         {
           "id": "V3-G24",
           "title": "Native platform features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "CMP-049",
+            "ENV-032",
+            "HET-024",
+            "HET-025",
+            "OBS-051",
+            "SCH-055",
+            "SDK-079",
+            "SEM-037",
+            "SEM-038",
+            "WASM-019",
+            "WASM-020"
+          ],
           "satisfied": false,
           "reasons": [
             "`CMP-049` is todo — Add fuzz targets for the Component spawn, exit and code-mapping Surface",
@@ -61856,6 +63519,12 @@
         {
           "id": "V3-G25",
           "title": "Storage and package features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "PKG-083",
+            "PKG-088",
+            "STO-074"
+          ],
           "satisfied": false,
           "reasons": [
             "`PKG-083` is todo — Implement delta Object transfer for repository updates",
@@ -61866,6 +63535,15 @@
         {
           "id": "V3-G26",
           "title": "Security and boot features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "BOOT-039",
+            "BOOT-041",
+            "SEC-054",
+            "SEC-056",
+            "SEC-057",
+            "SEC-059"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-039` is todo — Expose SystemGenerations to foreign bootloaders via BLS entries and an os-release descriptor",
@@ -61879,6 +63557,14 @@
         {
           "id": "V3-G27",
           "title": "Desktop and UI features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-027",
+            "APP-057",
+            "APP-059",
+            "APP-060",
+            "APP-062"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-027` is todo — Add braille display output with BRLTTY-equivalent drivers to the screen reader",
@@ -61891,6 +63577,26 @@
         {
           "id": "V3-G28",
           "title": "Hardware, media and networking features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "HW-062",
+            "HW-063",
+            "HW-069",
+            "HW-073",
+            "HW-074",
+            "HW-075",
+            "HW-076",
+            "LAB-020",
+            "LAB-021",
+            "MED-032",
+            "MED-033",
+            "NET-030",
+            "NET-031",
+            "NET-032",
+            "NET-033",
+            "NET-034",
+            "PWR-026"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-062` is todo — Bring up one additional Intel laptop and one additional AMD laptop",
@@ -61915,6 +63621,14 @@
         {
           "id": "V3-G29",
           "title": "Compatibility features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "VIRT-011",
+            "WIN-057",
+            "WIN-060",
+            "WIN-063",
+            "WIN-066"
+          ],
           "satisfied": false,
           "reasons": [
             "`VIRT-011` is todo — Implement virtio-gpu acceleration for Linux and Windows guests",
@@ -61927,6 +63641,24 @@
         {
           "id": "V3-G30",
           "title": "Delivery, tooling and governance features complete for V3",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-068",
+            "DOC-025",
+            "INS-017",
+            "INS-018",
+            "INS-019",
+            "INS-033",
+            "INS-036",
+            "INS-038",
+            "INS-042",
+            "INS-046",
+            "INS-048",
+            "INS-049",
+            "REL-031",
+            "REL-045",
+            "REL-051"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-068` is todo — Gate releases on complete SBOMs for every SystemGeneration",
@@ -61946,16 +63678,85 @@
             "`REL-051` is todo — Publish SBOM and signed provenance for every release artifact"
           ]
         }
+      ],
+      "demos": [
+        {
+          "id": "V3-D01",
+          "title": "Public install on a fresh Tier 1 laptop",
+          "verified_by": [
+            "INS-027",
+            "DOC-026",
+            "SEC-055",
+            "BOOT-043",
+            "BOOT-035"
+          ]
+        },
+        {
+          "id": "V3-D02",
+          "title": "Deliberate broken update boots the previous generation",
+          "verified_by": [
+            "INS-043",
+            "INS-045",
+            "REL-023"
+          ]
+        },
+        {
+          "id": "V3-D03",
+          "title": "Third-party developer publishes a native package",
+          "verified_by": [
+            "SDK-082",
+            "PKG-084",
+            "REL-033",
+            "SCH-053"
+          ]
+        },
+        {
+          "id": "V3-D04",
+          "title": "Compatibility database probe from the live installer",
+          "verified_by": [
+            "INS-028",
+            "HW-066",
+            "INS-034"
+          ]
+        },
+        {
+          "id": "V3-D05",
+          "title": "Windows game and Linux IDE on the AMD laptop",
+          "verified_by": [
+            "WIN-069",
+            "AUD-025",
+            "MED-035"
+          ]
+        }
       ]
     },
     {
       "token": "V4",
       "title": "Beta",
+      "sequence": 6,
+      "file": "milestones/V4.md",
       "status": "planned",
       "gates": [
         {
           "id": "V4-G01",
           "title": "Layer 1 ABI frozen with a conformance suite",
+          "kind": "functional",
+          "verified_by": [
+            "ABI-049",
+            "ABI-051",
+            "ABI-047",
+            "CAP-051",
+            "CMP-052",
+            "MEM-054",
+            "TSK-052",
+            "SCH-058",
+            "OBS-054",
+            "IPC-065",
+            "IPC-064",
+            "HET-026",
+            "STO-080",
+            "SDK-087"
+          ],
           "satisfied": false,
           "reasons": [
             "`ABI-049` is todo — Decide the Layer 1 freeze: accept the freeze ADR over the reviewed candidate set",
@@ -61977,6 +63778,28 @@
         {
           "id": "V4-G02",
           "title": "Layer 2 interface versions for 1.x are locked",
+          "kind": "functional",
+          "verified_by": [
+            "IPC-068",
+            "IPC-062",
+            "ACC-035",
+            "AUD-026",
+            "ENV-034",
+            "GFX-095",
+            "HET-027",
+            "LNX-105",
+            "MED-039",
+            "NET-035",
+            "OBS-052",
+            "PKG-090",
+            "SEM-042",
+            "STO-082",
+            "SVC-041",
+            "TXT-045",
+            "UIP-055",
+            "WASM-022",
+            "PWR-008"
+          ],
           "satisfied": false,
           "reasons": [
             "`IPC-068` is todo — Enumerate and lock the Layer 2 Interface versions served for 1.x",
@@ -62003,6 +63826,13 @@
         {
           "id": "V4-G03",
           "title": "Feature freeze with zero open P0 or P1",
+          "kind": "process",
+          "verified_by": [
+            "APP-065",
+            "BLD-071",
+            "GOV-074",
+            "WIN-076"
+          ],
           "satisfied": false,
           "reasons": [
             "`APP-065` is todo — Freeze remaining native application and shell features for 1.0",
@@ -62014,6 +63844,22 @@
         {
           "id": "V4-G04",
           "title": "External security audit High and Critical closed",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-070",
+            "SEC-067",
+            "SEC-069",
+            "SEC-068",
+            "KRN-054",
+            "IPC-066",
+            "CAP-050",
+            "CMP-053",
+            "GFX-093",
+            "STO-081",
+            "BOOT-046",
+            "LNX-103",
+            "WIN-073"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-070` is todo — Commission an independent security audit",
@@ -62034,6 +63880,13 @@
         {
           "id": "V4-G05",
           "title": "Fuzzing clean window and unsafe-code inventory",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-073",
+            "KRN-056",
+            "IPC-067",
+            "SEC-071"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-073` is todo — Gate V4 on a clean Native ABI fuzz window",
@@ -62045,6 +63898,15 @@
         {
           "id": "V4-G06",
           "title": "Beta fleet meets crash-free and panic-rate targets",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-049",
+            "BEN-051",
+            "REL-055",
+            "OBS-053",
+            "SCH-057",
+            "REL-056"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-049` is todo — Publish crash-free session rate from opt-in telemetry",
@@ -62058,6 +63920,13 @@
         {
           "id": "V4-G07",
           "title": "Two release-candidate soak cycles on Tier 1",
+          "kind": "process",
+          "verified_by": [
+            "BLD-076",
+            "LAB-024",
+            "GOV-074",
+            "REL-061"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-076` is todo — Run release-candidate soak matrices on the Tier 1 fleet",
@@ -62069,6 +63938,13 @@
         {
           "id": "V4-G08",
           "title": "In-place upgrade from V3 preserves user data",
+          "kind": "benchmark",
+          "verified_by": [
+            "INS-054",
+            "REL-059",
+            "PKG-089",
+            "STO-079"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-054` is todo — Upgrade V3 installs to V4 with data preserved and rollback",
@@ -62080,6 +63956,21 @@
         {
           "id": "V4-G09",
           "title": "Ten-machine hardware suite passes each RC",
+          "kind": "functional",
+          "verified_by": [
+            "HW-086",
+            "LAB-023",
+            "HW-080",
+            "HW-081",
+            "BLD-078",
+            "PWR-028",
+            "NET-037",
+            "AUD-027",
+            "MED-037",
+            "GFX-090",
+            "INS-052",
+            "SVC-042"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-086` is todo — Run the full hardware suite on every Tier 1 machine each release candidate",
@@ -62099,6 +63990,12 @@
         {
           "id": "V4-G10",
           "title": "Assistive-technology script completes in full",
+          "kind": "functional",
+          "verified_by": [
+            "ACC-031",
+            "ACC-034",
+            "UIP-056"
+          ],
           "satisfied": false,
           "reasons": [
             "`ACC-031` is todo — Extend the assistive-technology script to 50 tasks across shell and every native app",
@@ -62109,6 +64006,12 @@
         {
           "id": "V4-G11",
           "title": "Localization and CJK input methods",
+          "kind": "functional",
+          "verified_by": [
+            "TXT-046",
+            "TXT-044",
+            "APP-066"
+          ],
           "satisfied": false,
           "reasons": [
             "`TXT-046` is todo — Reach ten languages at the V4-G11 string-coverage threshold with a CI coverage Gate",
@@ -62119,6 +64022,16 @@
         {
           "id": "V4-G12",
           "title": "Reproducible builds of every generation package",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-077",
+            "BLD-074",
+            "BLD-075",
+            "BOOT-048",
+            "WIN-075",
+            "WASM-023",
+            "SDK-091"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-077` is todo — Make every SystemGeneration Package reproduce bit-for-bit",
@@ -62133,6 +64046,11 @@
         {
           "id": "V4-G13",
           "title": "Signing key rotation drill",
+          "kind": "functional",
+          "verified_by": [
+            "REL-054",
+            "BOOT-047"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-054` is todo — Execute a signing-key rotation drill on the testing Channel",
@@ -62142,6 +64060,13 @@
         {
           "id": "V4-G14",
           "title": "Documentation complete for 1.0",
+          "kind": "functional",
+          "verified_by": [
+            "DOC-035",
+            "DOC-036",
+            "DOC-034",
+            "SDK-092"
+          ],
           "satisfied": false,
           "reasons": [
             "`DOC-035` is todo — Complete remaining user, admin, SDK, compatibility and ABI docs",
@@ -62153,6 +64078,14 @@
         {
           "id": "V4-G15",
           "title": "External native packages and contributors",
+          "kind": "process",
+          "verified_by": [
+            "GOV-073",
+            "GOV-071",
+            "DOC-039",
+            "SDK-075",
+            "PKG-072"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-073` is todo — Track external-contributor and native-Package ecosystem metrics",
@@ -62165,6 +64098,14 @@
         {
           "id": "V4-G16",
           "title": "Support policy documents accepted via RFC",
+          "kind": "process",
+          "verified_by": [
+            "GOV-075",
+            "REL-053",
+            "ABI-050",
+            "REL-060",
+            "KRN-055"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-075` is todo — Draft support window, CVE SLA, HCL and ABI-stability policy",
@@ -62177,6 +64118,18 @@
         {
           "id": "V4-G17",
           "title": "Prior benchmarks within the V4 regression band",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-059",
+            "BEN-058",
+            "BEN-056",
+            "BEN-055",
+            "BEN-057",
+            "GFX-094",
+            "PWR-027",
+            "LNX-102",
+            "MED-040"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-059` is todo — Verify no V3 benchmark regression at V4",
@@ -62193,6 +64146,11 @@
         {
           "id": "V4-G18",
           "title": "L5 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-107",
+            "LNX-104"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-107` is todo — Define and run the L5 Corpus",
@@ -62202,6 +64160,14 @@
         {
           "id": "V4-G19",
           "title": "W3 corpus meets its threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "WIN-080",
+            "WIN-078",
+            "WIN-077",
+            "WIN-074",
+            "LNX-106"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-080` is todo — Run the W3 Corpus to the V4 Gold and Silver thresholds",
@@ -62214,6 +64180,11 @@
         {
           "id": "V4-G20",
           "title": "V4 roll-up complete",
+          "kind": "process",
+          "verified_by": [
+            "HW-082",
+            "INS-051"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-082` is todo — Decide policy for third-party user-space drivers and firmware packages",
@@ -62223,6 +64194,12 @@
         {
           "id": "V4-G21",
           "title": "Standing lints and continuous checks in force",
+          "kind": "process",
+          "verified_by": [
+            "SDK-089",
+            "SEC-072",
+            "SEM-040"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-089` is todo — Lint deprecated Layer 3 APIs with a deprecation window",
@@ -62233,6 +64210,13 @@
         {
           "id": "V4-G22",
           "title": "Policy, guideline and reference documents published",
+          "kind": "process",
+          "verified_by": [
+            "DOC-038",
+            "GOV-072",
+            "GOV-077",
+            "WIN-079"
+          ],
           "satisfied": false,
           "reasons": [
             "`DOC-038` is todo — Write the C SDK guide",
@@ -62244,6 +64228,13 @@
         {
           "id": "V4-G23",
           "title": "Native platform features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "ABI-048",
+            "SCH-056",
+            "SDK-090",
+            "SEM-041"
+          ],
           "satisfied": false,
           "reasons": [
             "`ABI-048` is todo — Remove deprecated Layer 1 entry points before the freeze candidate",
@@ -62255,6 +64246,10 @@
         {
           "id": "V4-G24",
           "title": "Storage and package features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "STO-078"
+          ],
           "satisfied": false,
           "reasons": [
             "`STO-078` is todo — Ship the 1.0 cloud storage providers with on-demand hydration"
@@ -62263,6 +64258,10 @@
         {
           "id": "V4-G25",
           "title": "Security and boot features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-073"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-073` is todo — Ship a WebAuthn platform authenticator"
@@ -62271,6 +64270,11 @@
         {
           "id": "V4-G26",
           "title": "Hardware, media and networking features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "HW-085",
+            "NET-036"
+          ],
           "satisfied": false,
           "reasons": [
             "`HW-085` is todo — Implement signed third-party driver and firmware Packages with revocation",
@@ -62280,6 +64284,11 @@
         {
           "id": "V4-G27",
           "title": "Compatibility features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "VIRT-018",
+            "VIRT-019"
+          ],
           "satisfied": false,
           "reasons": [
             "`VIRT-018` is todo — Boot an existing Windows dual-boot partition as a VM guest",
@@ -62289,6 +64298,13 @@
         {
           "id": "V4-G28",
           "title": "Delivery, tooling and governance features complete for V4",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-072",
+            "INS-050",
+            "INS-053",
+            "REL-058"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-072` is todo — Eliminate flaky tests or expire their quarantine",
@@ -62297,16 +64313,79 @@
             "`REL-058` is todo — Operate a public transparency log for signing actions"
           ]
         }
+      ],
+      "demos": [
+        {
+          "id": "V4-D01",
+          "title": "Freeze-candidate binary runs unchanged on the final beta",
+          "verified_by": [
+            "ABI-047",
+            "SDK-087"
+          ]
+        },
+        {
+          "id": "V4-D02",
+          "title": "Fleet dashboard of crash-free rate, panic rate and update success",
+          "verified_by": [
+            "REL-055",
+            "OBS-053"
+          ]
+        },
+        {
+          "id": "V4-D03",
+          "title": "Upgrade a real V3 alpha laptop and roll it back",
+          "verified_by": [
+            "INS-054",
+            "REL-059"
+          ]
+        },
+        {
+          "id": "V4-D04",
+          "title": "Assistive-technology user completes daily tasks",
+          "verified_by": [
+            "ACC-032",
+            "ACC-031"
+          ]
+        },
+        {
+          "id": "V4-D05",
+          "title": "Ten-machine hardware lab run of the full test suite",
+          "verified_by": [
+            "HW-086",
+            "LAB-024",
+            "AUD-027"
+          ]
+        },
+        {
+          "id": "V4-D06",
+          "title": "External developer publishes in a non-Rust SDK language",
+          "verified_by": [
+            "SDK-088",
+            "DOC-037",
+            "DOC-039"
+          ]
+        }
       ]
     },
     {
       "token": "1.0",
       "title": "Public stable",
+      "sequence": 7,
+      "file": "milestones/1.0.md",
       "status": "planned",
       "gates": [
         {
           "id": "1.0-G01",
           "title": "Final release candidate soak with zero open P0 or P1",
+          "kind": "process",
+          "verified_by": [
+            "REL-066",
+            "LAB-025",
+            "BLD-079",
+            "OBS-055",
+            "HW-087",
+            "APP-067"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-066` is todo — Soak the 1.0 release candidate on Tier 1 and the beta fleet",
@@ -62320,6 +64399,18 @@
         {
           "id": "1.0-G02",
           "title": "Layer 1 ABI declared stable for 1.x",
+          "kind": "functional",
+          "verified_by": [
+            "ABI-052",
+            "ABI-053",
+            "ABI-054",
+            "CAP-053",
+            "CMP-055",
+            "TSK-053",
+            "SCH-060",
+            "HET-029",
+            "SDK-094"
+          ],
           "satisfied": false,
           "reasons": [
             "`ABI-052` is todo — Run reference, conformance and compatibility suites on the 1.0 candidate and publish",
@@ -62336,6 +64427,14 @@
         {
           "id": "1.0-G03",
           "title": "Layer 2 supported versions and deprecation policy published",
+          "kind": "functional",
+          "verified_by": [
+            "IPC-070",
+            "SEM-043",
+            "OBS-056",
+            "UIP-057",
+            "SDK-095"
+          ],
           "satisfied": false,
           "reasons": [
             "`IPC-070` is todo — Publish the supported Layer 2 Interface versions and deprecation policy for 1.x",
@@ -62348,6 +64447,15 @@
         {
           "id": "1.0-G04",
           "title": "Support window and CVE SLA published and met",
+          "kind": "process",
+          "verified_by": [
+            "REL-064",
+            "KRN-057",
+            "GOV-083",
+            "HW-088",
+            "MEM-055",
+            "NET-039"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-064` is todo — Publish trailing inherited-CVE response against the SLA",
@@ -62361,6 +64469,12 @@
         {
           "id": "1.0-G05",
           "title": "Security posture holds",
+          "kind": "functional",
+          "verified_by": [
+            "SEC-076",
+            "SEC-077",
+            "REL-044"
+          ],
           "satisfied": false,
           "reasons": [
             "`SEC-076` is todo — Verify 1.0 security-posture claims against the threat model",
@@ -62371,6 +64485,15 @@
         {
           "id": "1.0-G06",
           "title": "Update and rollback guarantee verified on every Tier 1 machine",
+          "kind": "benchmark",
+          "verified_by": [
+            "BOOT-049",
+            "PKG-091",
+            "STO-083",
+            "SVC-043",
+            "REL-062",
+            "REL-067"
+          ],
           "satisfied": false,
           "reasons": [
             "`BOOT-049` is todo — Verify the update and rollback guarantee by fault injection on every Tier 1 machine",
@@ -62384,6 +64507,15 @@
         {
           "id": "1.0-G07",
           "title": "Installer with FDE and Secure Boot on every Tier 1 machine",
+          "kind": "functional",
+          "verified_by": [
+            "INS-055",
+            "HW-088",
+            "HW-089",
+            "GFX-097",
+            "NET-038",
+            "PWR-030"
+          ],
           "satisfied": false,
           "reasons": [
             "`INS-055` is todo — Prove full-disk encryption install with Secure Boot on Tier 1",
@@ -62397,6 +64529,12 @@
         {
           "id": "1.0-G08",
           "title": "L5 corpus holds at the V4 threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "LNX-110",
+            "LNX-111",
+            "AUD-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`LNX-110` is todo — Hold L5 pass rate with zero Gold regressions",
@@ -62407,6 +64545,15 @@
         {
           "id": "1.0-G09",
           "title": "W3 corpus holds at the V4 threshold",
+          "kind": "compatibility",
+          "verified_by": [
+            "WIN-085",
+            "WIN-084",
+            "WIN-082",
+            "WIN-083",
+            "LNX-109",
+            "VIRT-020"
+          ],
           "satisfied": false,
           "reasons": [
             "`WIN-085` is todo — Hold W3 Gold and Silver thresholds with zero V4 Gold regressions",
@@ -62420,6 +64567,12 @@
         {
           "id": "1.0-G10",
           "title": "Stability targets hold over the final soak",
+          "kind": "benchmark",
+          "verified_by": [
+            "REL-062",
+            "REL-066",
+            "OBS-055"
+          ],
           "satisfied": false,
           "reasons": [
             "`REL-062` is todo — Publish crash-free-session and boot-success rates per Channel",
@@ -62430,6 +64583,20 @@
         {
           "id": "1.0-G11",
           "title": "Documentation complete",
+          "kind": "functional",
+          "verified_by": [
+            "DOC-041",
+            "DOC-042",
+            "SDK-096",
+            "REL-065",
+            "DOC-040",
+            "ACC-036",
+            "TXT-047",
+            "STO-084",
+            "WIN-081",
+            "MED-041",
+            "GFX-096"
+          ],
           "satisfied": false,
           "reasons": [
             "`DOC-041` is todo — Verify documentation completeness for the 1.0 Gate",
@@ -62448,6 +64615,11 @@
         {
           "id": "1.0-G12",
           "title": "Third party reproduces the release image",
+          "kind": "functional",
+          "verified_by": [
+            "BLD-080",
+            "REL-063"
+          ],
           "satisfied": false,
           "reasons": [
             "`BLD-080` is todo — Reproduce the 1.0 image with two independent rebuilders",
@@ -62457,6 +64629,20 @@
         {
           "id": "1.0-G13",
           "title": "Every §54 metric published against Linux, Windows and macOS",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-061",
+            "BEN-060",
+            "BEN-062",
+            "BEN-063",
+            "IPC-069",
+            "AUD-028",
+            "HET-028",
+            "MED-042",
+            "WASM-024",
+            "SCH-059",
+            "CMP-054"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-061` is todo — Verify no V4 benchmark regression at 1.0",
@@ -62475,6 +64661,12 @@
         {
           "id": "1.0-G14",
           "title": "Execution-model absolute targets hold",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-060",
+            "CMP-054",
+            "IPC-069"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-060` is todo — Publish 1.0 cross-OS comparison on every Tier 1 machine",
@@ -62485,6 +64677,12 @@
         {
           "id": "1.0-G15",
           "title": "Application and environment startup targets hold",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-060",
+            "ENV-036",
+            "CMP-054"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-060` is todo — Publish 1.0 cross-OS comparison on every Tier 1 machine",
@@ -62495,6 +64693,13 @@
         {
           "id": "1.0-G16",
           "title": "Input-to-photon and compositor deadline targets hold",
+          "kind": "benchmark",
+          "verified_by": [
+            "BEN-060",
+            "LNX-108",
+            "WIN-084",
+            "PWR-029"
+          ],
           "satisfied": false,
           "reasons": [
             "`BEN-060` is todo — Publish 1.0 cross-OS comparison on every Tier 1 machine",
@@ -62506,6 +64711,15 @@
         {
           "id": "1.0-G17",
           "title": "Governance, 1.x branch and 2.0 planning RFC",
+          "kind": "process",
+          "verified_by": [
+            "GOV-084",
+            "GOV-080",
+            "GOV-081",
+            "KRN-058",
+            "GOV-082",
+            "KRN-059"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-084` is todo — Record the 1.0 exit review",
@@ -62519,6 +64733,14 @@
         {
           "id": "1.0-G18",
           "title": "All earlier milestones are complete",
+          "kind": "process",
+          "verified_by": [
+            "GOV-084",
+            "SEC-074",
+            "SEC-075",
+            "GOV-078",
+            "GOV-079"
+          ],
           "satisfied": false,
           "reasons": [
             "`GOV-084` is todo — Record the 1.0 exit review",
@@ -62531,9 +64753,62 @@
         {
           "id": "1.0-G19",
           "title": "Native platform features complete for 1.0",
+          "kind": "functional",
+          "verified_by": [
+            "SDK-093"
+          ],
           "satisfied": false,
           "reasons": [
             "`SDK-093` is todo — Restore opted-in application state through os restore"
+          ]
+        }
+      ],
+      "demos": [
+        {
+          "id": "1.0-D01",
+          "title": "Signed 1.0 image reproduced independently then installed",
+          "verified_by": [
+            "REL-063",
+            "BLD-080",
+            "INS-055"
+          ]
+        },
+        {
+          "id": "1.0-D02",
+          "title": "V4 ABI-freeze binary runs unmodified on 1.0",
+          "verified_by": [
+            "ABI-052",
+            "SDK-094"
+          ]
+        },
+        {
+          "id": "1.0-D03",
+          "title": "Power pulled during an update boots the previous generation",
+          "verified_by": [
+            "INS-056",
+            "BOOT-049",
+            "STO-048"
+          ]
+        },
+        {
+          "id": "1.0-D04",
+          "title": "Public HCL, corpora, benchmarks and advisory feed shown live",
+          "verified_by": [
+            "HW-088",
+            "LNX-111",
+            "WIN-084",
+            "BEN-060",
+            "REL-044"
+          ]
+        },
+        {
+          "id": "1.0-D05",
+          "title": "A full working day on 1.0",
+          "verified_by": [
+            "ENV-036",
+            "ENV-035",
+            "WIN-084",
+            "SEM-044"
           ]
         }
       ]
@@ -62541,8 +64816,11 @@
     {
       "token": "LATER",
       "title": "Deferred work",
+      "sequence": 99,
+      "file": "milestones/LATER.md",
       "status": "planned",
-      "gates": []
+      "gates": [],
+      "demos": []
     }
   ],
   "totals": {

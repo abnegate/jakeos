@@ -132,6 +132,7 @@ fn generated_snapshot(root: &std::path::Path) -> BTreeMap<String, String> {
         "generated/benchmarks.md",
         "generated/graph.dot",
         "generated/index.json",
+        "generated/dashboard.html",
         "generated/by-milestone/V0.md",
         "generated/by-workstream/GOV.md",
         "workstreams/GOV.md",
