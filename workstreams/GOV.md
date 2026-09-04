@@ -2128,7 +2128,7 @@ V4 exit: support window, CVE SLA, HCL tiers and ABI stability statement drafted,
 <!-- covers: INV-1251, INV-0155 -->
 
 #### Out of scope
-Support-policy drafts (GOV-075). Layer 1 freeze Decision (ABI-049). External audit contract (GOV-@docs-commission-external-audit). Phase D entry (KRN-042).
+Support-policy drafts (GOV-075). Layer 1 freeze Decision (ABI-049). External audit contract (SEC-070). Phase D entry (KRN-042).
 
 #### Acceptance criteria
 - [ ] `milestones/V4.md` and `milestones/1.0.md` each have Gates covering stability, audit, ABI freeze, support commitment, hardware list and compatibility, all citing B-IDs or C-IDs (I-088).

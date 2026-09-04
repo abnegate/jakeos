@@ -275,7 +275,7 @@ Update bandwidth and rollback speed determine whether generations feel first-cla
 <!-- covers: GAP-0543 -->
 
 #### Out of scope
-Client delta fetch (INS-025). Store-level object diff (PKG-083). B-035 publication (BEN-@bench-delta-rollback).
+Client delta fetch (INS-025). Store-level object diff (PKG-083). B-035 publication (INS-015).
 
 #### Acceptance criteria
 - [ ] The report records delta bytes and full generation bytes for the same consecutive generation pair on the chosen store format.

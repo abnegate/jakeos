@@ -365,7 +365,7 @@ IDE strategy (APP-020). Personality IDEs (LNX-032). Semantic `Editor.open` (APP-
 Ship a read-only grant log viewer so V1 daily driving can inspect Capability grants, derivations, revocations and denials without a full permissions Settings surface. V1 scope excludes permissions UI beyond this log; revocation, expiry and timeline wait for APP-029.
 
 #### Out of scope
-Grant Settings surface (APP-029). Audit export (CAP-030). SEC grant-log policy (SEC-@grant-log-viewer). Tamper-evident store (OBS-044).
+Grant Settings surface (APP-029). Audit export (CAP-030). Grant taxonomy Decision (SEC-007). Tamper-evident store (OBS-044).
 
 #### Acceptance criteria
 - [ ] The viewer lists grant, derive, revoke and deny events for the current session from CAP-030 on H-003.
@@ -877,7 +877,7 @@ Ship permissions UI v1: every persistent Capability grant per application, with 
 <!-- covers: GAP-0229 -->
 
 #### Out of scope
-One-time grants and v2 history (APP-@build-permissions-v2). Immediate-revocation matrix (CAP-044). Prompt chrome (APP-025). SEC UI-level proof (SEC-036).
+One-time grants and v2 history (SEC-062). Immediate-revocation matrix (CAP-044). Prompt chrome (APP-025). SEC UI-level proof (SEC-036).
 
 #### Acceptance criteria
 - [ ] Settings lists every persistent grant per application including type, rights, expiry and last use from OBS-043.
@@ -1752,7 +1752,7 @@ Close remaining P0/P1 in shell and first-party applications on Tier 1 so the V3 
 <!-- covers: INV-1247 -->
 
 #### Out of scope
-New shell features (APP-065). Localisation (APP-066). A11y script (APP-@build-a11y-hold). Installer (INS).
+New shell features (APP-065). Localisation (APP-066). A11y script (APP-067). Installer (INS).
 
 #### Acceptance criteria
 - [ ] Zero open P0/P1 against shell and first-party applications on the V3 Tier 1 set (H-002, H-004, H-005 and the V3 added machines in hardware scope).

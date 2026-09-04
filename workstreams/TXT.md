@@ -581,7 +581,7 @@ V1 L2 integration scores scaling, and §49 requires compatibility windows to fee
 <!-- covers: GAP-0246, GAP-0251 -->
 
 #### Out of scope
-Personality hosting of the fontconfig daemon (LNX-@expose-fontconfig-view). Wine font directories (WIN). Native FontMatcher (TXT-006).
+Personality process hosting (LNX-052). Wine font directories (WIN). Native FontMatcher (TXT-006).
 
 #### Acceptance criteria
 - [ ] A generated fontconfig view lists the same family, weight and script fallbacks as FontMatcher for the default set.
@@ -1343,7 +1343,7 @@ V4-G11 requires CJK input methods functional in native and Linux-personality app
 <!-- covers: GAP-0253, INV-0780, INV-0893 -->
 
 #### Out of scope
-Personality-only verification job (LNX-@verify-cjk-linux-ime). Engine implementation (TXT-042).
+IBus and text-input host (LNX-064). Engine implementation (TXT-042).
 
 #### Acceptance criteria
 - [ ] Scripted Chinese, Japanese and Korean typing scenarios pass on every machine in V4 hardware scope for a native text field.
@@ -1353,7 +1353,7 @@ Personality-only verification job (LNX-@verify-cjk-linux-ime). Engine implementa
 
 #### Verification
 - Integration: RC matrix on H-002, H-004, H-005, H-006, H-007, H-008, H-009, H-010, H-011, H-012, H-013, H-014.
-- Compat: Linux-personality CJK scenarios scored with LNX-@verify-cjk-linux-ime.
+- Compat: Linux-personality CJK scenarios scored on the same RC matrix.
 - Demo: native and Linux-personality fields committing CJK on H-002.
 
 #### Evidence

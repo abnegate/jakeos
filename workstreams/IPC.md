@@ -1868,7 +1868,7 @@ ABI golden binary suite (ABI-047). Freeze Decision (IPC-064).
 V4 scope: external audit of IPC among kernel Capability enforcement and personalities with all High and Critical fixed before RC1.
 
 #### Out of scope
-Commissioning the audit (GOV-@docs-commission-external-audit). Auditor re-verify (SEC-069). Medium triage (SEC-068).
+Commissioning the audit (SEC-070). Auditor re-verify (SEC-069). Medium triage (SEC-068).
 
 #### Acceptance criteria
 - [ ] Every High and Critical finding tagged IPC has a fix and a regression test.
@@ -1922,7 +1922,7 @@ V4 exit: Layer 2 versions for 1.x enumerated and locked with the evolution test 
 <!-- covers: INV-1285 -->
 
 #### Out of scope
-ABI register of versions (ABI-@build-layer2-version-lock). 1.0 supported-versions document (IPC-070).
+Layer 1 freeze (ABI-049). 1.0 supported-versions document (IPC-070).
 
 #### Acceptance criteria
 - [ ] Every core Layer 2 Interface has a locked version identity listed for 1.x.

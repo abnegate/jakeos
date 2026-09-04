@@ -137,7 +137,7 @@ Repository fetch (PKG-064). STO ingest microbenchmarks.
 
 Measure the ratio of unique stored bytes to total Package bytes after
 installing the 20-Package corpus that shares dependencies. Results publish
-under B-021. STO-@bench-store-dedup-ratio owns the store-ingest view of the
+under B-021. PKG-004 owns the store-ingest view of the
 same metric.
 
 <!-- covers: INV-0547, INV-0512 -->
@@ -811,7 +811,7 @@ forbids mutable paths in PKG code.
 <!-- covers: INV-1298, INV-0043, INV-0553, INV-0526 -->
 
 #### Out of scope
-Install filesystem-diff test (PKG-@install-no-mutation-test). STO volume
+Install filesystem-diff test (STO-032). STO volume
 harness (STO-032).
 
 #### Acceptance criteria
@@ -2898,7 +2898,7 @@ fault-injected failure returns automatically, and `os history` plus
 hardware ceremony; this task is the PKG evidence pack.
 
 #### Out of scope
-INS-@rollback-guarantee-verify. BOOT-049.
+INS-041. BOOT-049.
 INS-056.
 
 #### Acceptance criteria

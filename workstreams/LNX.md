@@ -999,7 +999,7 @@ PipeWire server and AudioStream (AUD-001). Simultaneous native-plus-PipeWire ver
 V1 non-gated Wine-on-LNX bring-up from the ladder (R-031). WIN owns the Wine test suite, W1 corpus and hosting Decision; this task is the Linux-personality host a PE binary starts under. Native software sees no Win32.
 
 #### Out of scope
-Wine test suite CI (WIN-@wine-test-ci). Wine-on-LNX bring-up owned by WIN (WIN-015). Win32 surface (WIN-053).
+Wine test suite CI (WIN-017). Wine-on-LNX bring-up owned by WIN (WIN-015). Win32 surface (WIN-053).
 
 #### Acceptance criteria
 - [ ] A PE binary starts under Wine hosted by the Personality on H-001 and exits with a recorded status, with no V1 pass-rate gate.
@@ -1864,7 +1864,7 @@ zwp_text_input_v3 plus IBus/Fcitx D-Bus so one active IME types into Linux windo
 <!-- covers: GAP-0255 -->
 
 #### Out of scope
-IME host Component (TXT-029). Wayland text-input mapping (TXT-030). Wine IMM32 (WIN-060). CJK gate (LNX-@verify-cjk-linux-ime).
+IME host Component (TXT-029). Wayland text-input mapping (TXT-030). Wine IMM32 (WIN-060). CJK gate (TXT-044).
 
 #### Acceptance criteria
 - [ ] Typing through the native IME into a GTK and a Qt C-004 window commits the same preedit and commit sequence as a native Text Editor.
@@ -2971,7 +2971,7 @@ B-026 V4 publish on L5 workloads on every Tier 1 machine. No superiority claim w
 V4 external security audit of personalities. All High and Critical Linux-personality findings are fixed and re-verified. WIN owns Windows-personality findings.
 
 #### Out of scope
-Audit commissioning (GOV-@docs-commission-external-audit, SEC-070). Kernel capability findings (CAP-050). Windows findings (WIN-073).
+Audit commissioning (SEC-070, SEC-070). Kernel capability findings (CAP-050). Windows findings (WIN-073).
 
 #### Acceptance criteria
 - [ ] Every High and Critical finding tagged Linux personality is fixed with a regression test.

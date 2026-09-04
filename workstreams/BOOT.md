@@ -1400,7 +1400,7 @@ PCR coverage (BOOT-034). Inspect CLI for the log (SEC-065). Attestation protocol
 V4 exit: the external security audit GOV commissions names the bootloader chain. Every High and Critical finding against that chain is fixed and re-verified by the auditor. This task is the BOOT fix queue, not the contract.
 
 #### Out of scope
-Commissioning the auditor (GOV-@docs-commission-external-audit). Capability-kernel and FDE findings (SEC, KRN).
+Commissioning the auditor (SEC-070). Capability-kernel and FDE findings (SEC, KRN).
 
 #### Acceptance criteria
 - [ ] Every High and Critical bootloader-chain finding from the V4 audit has a linked fix commit and a re-test note in Evidence.
@@ -1488,7 +1488,7 @@ Full package reproducibility (BLD-077). Independent rebuilders (BLD-074). Key cu
 <!-- covers: INV-0562, GAP-0174 -->
 
 #### Out of scope
-User-data preservation (PKG, STO). Installer recovery UX (INS-@rollback-guarantee-verify). Fleet success-rate publication (BEN, B-043 register ownership).
+User-data preservation (PKG, STO). Installer recovery UX (INS-041). Fleet success-rate publication (BEN, B-043 register ownership).
 
 #### Acceptance criteria
 - [ ] Fault injection of a failing generation on each Tier 1 H-ID in hardware scope boots the previous generation unattended.

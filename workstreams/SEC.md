@@ -883,7 +883,7 @@ State what isolation Capabilities claim, which shared resources (glyph atlas, sh
 <!-- covers: EXTRA-015 -->
 
 #### Out of scope
-Glyph atlas implementation (TXT). Mitigation measurement (SEC-@mitigation-overhead). Kernel hardening config (KRN-034).
+Glyph atlas implementation (TXT). Mitigation measurement (KRN-029). Kernel hardening config (KRN-034).
 
 #### Acceptance criteria
 - [ ] The statement names what the Capability model claims and what it does not claim about microarchitectural isolation.
@@ -1872,7 +1872,7 @@ V3 permissions UI v2: per-application audit history, one-time grants, and compat
 <!-- covers: INV-1244, INV-0932 -->
 
 #### Out of scope
-One-time grant mechanics (CAP-048). Usage history store (OBS-048). Settings chrome (APP-@build-permissions-v2). Usability study (SEC-063).
+One-time grant mechanics (CAP-048). Usage history store (OBS-048). Settings grant Surface (APP-029). Usability study (SEC-063).
 
 #### Acceptance criteria
 - [ ] Per-application history lists each grant and when it was last used.
@@ -2066,7 +2066,7 @@ Code fixes for High and Critical (SEC-067). Auditor letter (SEC-069).
 V4 gate: High and Critical findings re-verified by the auditor, not only by the authors.
 
 #### Out of scope
-Fixes (SEC-067). Legal contract (GOV-@docs-commission-external-audit).
+Fixes (SEC-067). Legal contract (SEC-070).
 
 #### Acceptance criteria
 - [ ] The auditor's re-verification letter names each High and Critical finding as closed or still open.
@@ -2095,14 +2095,14 @@ V4 gate: independent audit of Capability enforcement, native ABI and update pipe
 <!-- covers: GAP-0358, GAP-0240 -->
 
 #### Out of scope
-Legal contract (GOV-@docs-commission-external-audit). Closing findings (SEC-067). Personality-specific findings (LNX, WIN). Compositor findings (GFX).
+Legal-entity form (GOV-024). Closing findings (SEC-067). Personality-specific findings (LNX, WIN). Compositor findings (GFX).
 
 #### Acceptance criteria
 - [ ] The commissioned scope names Capability enforcement, native ABI and the update pipeline.
 - [ ] A written summary is published; it does not claim certifications (I-091).
 - [ ] Findings are ingested as tracked items with severity High, Critical or Medium.
 - [ ] The audit cites the V0 threat model as the evaluation baseline.
-- [ ] Review records GOV lead confirmation that the contract matches GOV-@docs-commission-external-audit.
+- [ ] Review records GOV lead confirmation that the commissioning contract is recorded with the published summary.
 
 #### Verification
 - Review: GOV and SEC leads sign off on scope and published summary.
@@ -2124,7 +2124,7 @@ Legal contract (GOV-@docs-commission-external-audit). Closing findings (SEC-067)
 V4 gate: exploit mitigations enabled and measured, unsafe-code inventory published, unsafe authority minimized per §51. KRN and BLD produce the data; SEC publishes the security evidence pack.
 
 #### Out of scope
-Inventory generation (KRN-056). Hardening config (KRN-034). B-040 measurement (SEC-@mitigation-overhead).
+Inventory generation (KRN-056). Hardening config (KRN-034). B-040 measurement (KRN-029).
 
 #### Acceptance criteria
 - [ ] The pack links the kernel unsafe inventory, the hardening config baseline and the B-040 reports for in-scope H-IDs.
@@ -2133,7 +2133,7 @@ Inventory generation (KRN-056). Hardening config (KRN-034). B-040 measurement (S
 
 #### Verification
 - Review: KRN and BEN leads sign off that linked reports exist.
-- Bench: B-040 reports cited are those produced by SEC-@mitigation-overhead.
+- Bench: B-040 reports cited are those produced by KRN-029.
 
 #### Evidence
 - none

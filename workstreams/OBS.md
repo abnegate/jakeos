@@ -1412,10 +1412,10 @@ Wait-object recording (TSK-020, OBS-005). UX script (APP-048). Supervisor restar
 - Depends on: OBS-044, OBS-002, OBS-043
 - Baseline: §9, §24
 
-V3-G08: a user can see for any application every grant and when it was used. Aggregate live Capability events into per-grant last-use records in the audit store for SEC-062 and APP-@build-permissions-v2.
+V3-G08: a user can see for any application every grant and when it was used. Aggregate live Capability events into per-grant last-use records in the audit store for SEC-062 and SEC-062.
 
 #### Out of scope
-Permissions UI (SEC-062, APP-@build-permissions-v2). One-time grant semantics (CAP-048). Query Interface (OBS-043).
+Permissions UI (SEC-062, SEC-062). One-time grant semantics (CAP-048). Query Interface (OBS-043).
 
 #### Acceptance criteria
 - [ ] Each use of a persistent grant updates last-used time in the audit store.

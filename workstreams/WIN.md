@@ -445,7 +445,7 @@ Non-gated V1 bring-up: a PE binary starts under Wine hosted by the Linux persona
 <!-- covers: EXTRA-069, INV-0894 -->
 
 #### Out of scope
-Wine test suite CI (WIN-@wine-test-ci). V2 personality core (WIN-054). Hosting architecture Decision (WIN-013).
+Wine test suite CI (WIN-017). V2 personality core (WIN-054). Hosting architecture Decision (WIN-013).
 
 #### Acceptance criteria
 - [ ] A named 64-bit PE binary packaged for CI starts under Wine on H-001 via LNX-034 and exits with a recorded status.
@@ -473,7 +473,7 @@ Wine test suite CI (WIN-@wine-test-ci). V2 personality core (WIN-054). Hosting a
 Publish the V1 compatibility-gate feasibility report on running C-011 under the Linux personality, with no pass-rate gate.
 
 #### Out of scope
-Nightly runner (WIN-@wine-test-ci). GPU corpus (WIN-030). W1 ratings (WIN-051).
+Nightly runner (WIN-017). GPU corpus (WIN-030). W1 ratings (WIN-051).
 
 #### Acceptance criteria
 - [ ] A committed report records C-011 pass, fail and skip counts on H-001 against the V1 publish threshold, with no pass-rate target claimed.
@@ -502,7 +502,7 @@ Package C-011 as a WIN-owned CI artefact (test binaries, skip taxonomy, result s
 <!-- covers: INV-0912, EXTRA-069 -->
 
 #### Out of scope
-Nightly execution (WIN-@wine-test-ci). BLD runner hardware (BLD). W1 title harness (WIN-006).
+Nightly GPU lab run (WIN-030). BLD runner hardware (BLD). W1 title harness (WIN-006).
 
 #### Acceptance criteria
 - [ ] The Wine test suite is a content-addressed artefact CI can fetch, with a published skip taxonomy matching C-011 Scale.
@@ -892,7 +892,7 @@ Run C-011 plus a curated W1 smoke subset nightly on GPU-equipped lab machines so
 <!-- covers: GAP-0117, INV-0912 -->
 
 #### Out of scope
-QEMU C-011 (WIN-@wine-test-ci). Full W1 gate (WIN-051). Lab procurement (LAB).
+QEMU C-011 (WIN-017). Full W1 gate (WIN-051). Lab procurement (LAB).
 
 #### Acceptance criteria
 - [ ] A nightly job on H-002 and H-017 runs C-011 and the named W1 smoke subset with GPU acceleration confirmed via RenderQueue inspect.
@@ -1541,7 +1541,7 @@ Map WASAPI and XAudio2 inside the personality onto native AudioStream objects. A
 <!-- covers: INV-1075, INV-0913 -->
 
 #### Out of scope
-AudioStream service (AUD-022, AUD-006). B-028 publication (AUD-004, BEN-@bench-audio-roundtrip). Linux PipeWire (LNX-033).
+AudioStream service (AUD-022, AUD-006). B-028 publication (AUD-004, AUD-004). Linux PipeWire (LNX-033).
 
 #### Acceptance criteria
 - [ ] A W1 title playing via WASAPI or XAudio2 holds an AudioStream Capability inspectable with `os inspect`.

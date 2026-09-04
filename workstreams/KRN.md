@@ -851,7 +851,7 @@ The V4 benchmark gate cites mitigation overhead measured and published. The harn
 <!-- covers: GAP-0185 -->
 
 #### Out of scope
-V4 gate publication of B-040 (SEC-@mitigation-overhead). Hardening config contents (KRN-034). BEN methodology (Q-001).
+V4 gate publication of B-040 (BEN-055). Hardening config contents (KRN-034). BEN methodology (Q-001).
 
 #### Acceptance criteria
 - [ ] `bench:mitigation-overhead` runs mitigations-on versus mitigations-off on the B-001, B-004, B-016 and B-026 workloads named by B-040.

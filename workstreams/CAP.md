@@ -1475,7 +1475,7 @@ Remote-machine transport prototype (IPC-071). VM transport implementation (IPC, 
 V3 permissions UI v2 includes per-application audit history and one-time grants. CAP implements one-time and time-bounded grants so converting a persistent grant to one-time is a kernel-visible state change, not only a UI flag.
 
 #### Out of scope
-Permissions UI v2 (APP-@build-permissions-v2). Usage-history aggregation (OBS-048). Grant taxonomy Decision (SEC-007).
+Permissions UI v2 (SEC-062). Usage-history aggregation (OBS-048). Grant taxonomy Decision (SEC-007).
 
 #### Acceptance criteria
 - [ ] A one-time grant is unusable after a single successful Operation; the second Operation returns `Error::Rights`.

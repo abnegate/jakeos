@@ -1071,7 +1071,7 @@ Wi-Fi enterprise EAP (NET-028). Secrets storage (SEC-027). Shell UI (APP).
 V4 exit: Layer 2 interface versions for 1.x are enumerated and locked with old-client/new-service tests. NET-owned L2 surfaces are netmgr, resolver, mDNS, VPN and S-026. NetworkConnection remains L1 and freezes with ABI, not here (I-040).
 
 #### Out of scope
-Layer 1 NetworkConnection freeze (ABI-049). Umbrella L2 version lock (IPC-068, ABI-@build-layer2-version-lock). Service-manifest lock (SVC-041).
+Layer 1 NetworkConnection freeze (ABI-049). Umbrella L2 version lock (IPC-068, IPC-068). Service-manifest lock (SVC-041).
 
 #### Acceptance criteria
 - [ ] S-026 and the netmgr, resolver, mDNS and VPN Interfaces have enumerated 1.x versions recorded in the surfaces register with this task as Frozen by.

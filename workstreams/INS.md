@@ -446,7 +446,7 @@ Expose SystemGeneration restore as a first-class Settings action and at boot, no
 Run harness `bench:delta-rollback` so V3, V4 and 1.0 gates can publish B-035: client download size for a typical release-to-release update relative to the full generation, and wall time from boot-failure detection to the previous generation's greeter. PKG benches store-level delta size; this task is the client and rollback-time half. Publish-only; no superiority claim.
 
 #### Out of scope
-Register ownership and methodology (BEN-@bench-delta-rollback, Q-001). Store-level delta encoding (PKG-@bench-delta-update-size, PKG-083).
+Register ownership and methodology (BEN-007, Q-001). Store-level delta encoding (REL-009, PKG-083).
 
 #### Acceptance criteria
 - [ ] A committed B-035 report exists for every V3 Tier 1 H-ID with client bytes downloaded and rollback time to greeter.
@@ -476,7 +476,7 @@ Run harness `bench:install-update-time` so V3, V4 and 1.0 gates can publish B-03
 <!-- covers: GAP-0411 -->
 
 #### Out of scope
-Methodology (Q-001, BEN-@bench-install-time). Boot-to-login excluding installer (B-032, BOOT, SVC).
+Methodology (Q-001, BEN-007). Boot-to-login excluding installer (B-032, BOOT, SVC).
 
 #### Acceptance criteria
 - [ ] A committed B-034 report exists for every V3 Tier 1 H-ID with the three stages named in the register.

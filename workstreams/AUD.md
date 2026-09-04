@@ -125,7 +125,7 @@ Consent prompt UI (APP-025, SEC-044). Shell in-use indicator (APP-031, GFX-082).
 V1 publishes native low-latency round trip beside PipeWire on Linux on the same hardware. This harness implements `bench:audio-roundtrip`: loopback capture-to-playback and a ten-minute glitch run on the native path. BEN owns the register; SCH-028 remains the scheduler-jitter sibling. No superiority claim without the report.
 
 #### Out of scope
-Register ownership and cross-OS publication (BEN-@bench-audio-roundtrip). Audio-callback jitter under intent class (SCH-028). Loopback cable and fixture (LAB-011).
+Register ownership and cross-OS publication (BEN-007). Audio-callback jitter under intent class (SCH-028). Loopback cable and fixture (LAB-011).
 
 #### Acceptance criteria
 - [ ] Harness `bench:audio-roundtrip` records loopback p50 and p99 and a ten-minute glitch count on the native path on H-002 and H-004.
@@ -249,7 +249,7 @@ GAP-0539 requires a latency measurement before choosing PipeWire as the native a
 <!-- covers: GAP-0539 -->
 
 #### Out of scope
-The object-model Decision (AUD-002). Production AudioStream (AUD-006). Register ownership (BEN-@bench-audio-roundtrip). User-space driver residency (AUD-019).
+The object-model Decision (AUD-002). Production AudioStream (AUD-006). Register ownership (AUD-004). User-space driver residency (AUD-019).
 
 #### Acceptance criteria
 - [ ] A report exists at `reports/spikes/AUD-008.md` comparing PipeWire wrapping AudioStream against a native AudioStream service with PipeWire as client, on H-002.
@@ -517,7 +517,7 @@ The measured prototype (AUD-019). Shipping the USB path (AUD-018). Driver framew
 V2 publishes Bluetooth audio latency on the native path. Pairing cycles stay with HW-033. This harness records loopback latency per negotiated codec on the Intel and AMD laptops and publishes beside BlueZ plus PipeWire on Linux. No superiority claim without the report.
 
 #### Out of scope
-Pairing and reconnect cycle counts (HW-033, HW-036). Register ownership (BEN-@bench-bluetooth). Host stack (HW-035).
+Pairing and reconnect cycle counts (HW-033, HW-036). Register ownership (HW-033). Host stack (HW-035).
 
 #### Acceptance criteria
 - [ ] Harness `bench:bluetooth` audio-latency series records loopback p50 and p99 per negotiated codec on H-004 and H-005.
@@ -762,7 +762,7 @@ Session objects and login (SEC-060, SEC-028). Per-user grant stores (CAP-049). S
 V3 hardware breadth and the public-alpha demo (Bluetooth headset, video call) require jack, HDMI/DP, USB and Bluetooth audio on all six Tier 1 machines, including the NVIDIA desktop. Probe output feeds REL's HCL.
 
 #### Out of scope
-HCL publication (REL-048, REL-035). NVIDIA GPU bring-up (HW-070, GFX-@nvidia-desktop-bringup). Camera (MED-030). Combined hardware suite ownership (HW-086 at V4).
+HCL publication (REL-048, REL-035). NVIDIA GPU bring-up (HW-070, HW-052). Camera (MED-030). Combined hardware suite ownership (HW-086 at V4).
 
 #### Acceptance criteria
 - [ ] Native playback and capture complete on H-002, H-004, H-005, H-006, H-007 and H-008 through AudioStream.
@@ -792,7 +792,7 @@ HCL publication (REL-048, REL-035). NVIDIA GPU bring-up (HW-070, GFX-@nvidia-des
 V4 locks Layer 2 interface versions. S-025 is the Layer 2 audio-objects surface explored by AUD-008 and decided by AUD-002. This task is the conformance suite for rights, rebind, mixer and personality bridges. ABI and IPC own the freeze adrs; AUD owns the audio cases. S-025 is L2; this task does not freeze a Layer 1 surface.
 
 #### Out of scope
-Layer 1 freeze adr (ABI-049). Layer 2 version lock register (ABI-@build-layer2-version-lock, IPC-068). Channel conformance (IPC-065). Capability conformance (CAP-051).
+Layer 1 freeze adr (ABI-049). Layer 2 version lock register (IPC-068, IPC-068). Channel conformance (IPC-065). Capability conformance (CAP-051).
 
 #### Acceptance criteria
 - [ ] A conformance suite covers play and capture rights, `Error::Rights` denials, mixer gain, mix-monitor, server rebind, hot-plug default switch, and personality holders for PipeWire and WASAPI termini.

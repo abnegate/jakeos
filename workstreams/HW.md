@@ -962,7 +962,7 @@ Gestures (HW-058). Layouts (HW-027).
 V2 benchmark gate: Bluetooth audio latency and pairing time measured and published on the three target machines. Numbers live in B-029. This harness produces pairing and reconnect series. AUD owns codec round-trip on the same B-ID.
 
 #### Out of scope
-Register ownership (BEN-@bench-bluetooth). Audio path (AUD-017). Functional 95-of-100 cycles (HW-060).
+Register ownership (BEN-007). Audio path (AUD-017). Functional 95-of-100 cycles (HW-060).
 
 #### Acceptance criteria
 - [ ] Harness `bench:bluetooth` records pairing request to first audio and power-on to reconnect for headset, mouse and keyboard on H-004 and H-005.
@@ -2027,7 +2027,7 @@ V3 hardware scope adds one NVIDIA desktop, proprietary or open path decided by H
 <!-- covers: INV-1064 -->
 
 #### Out of scope
-Compositor NVIDIA stance (GFX-@nvidia-desktop-bringup). Experimental-only boot (HW-052).
+Compositor NVIDIA stance (HW-052). Experimental-only boot (HW-052).
 
 #### Acceptance criteria
 - [ ] H-006 is Status in-lab in `registers/hardware.md` with SKU, firmware, IOMMU, TPM 2.0 and Secure Boot enrolment.

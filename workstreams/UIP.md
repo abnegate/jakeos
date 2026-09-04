@@ -1128,7 +1128,7 @@ Light/dark, accent, icon, cursor, wallpaper and font scale as typed settings (UI
 Build keyboard focus traversal, a visible focus ring and access keys across all toolkit widgets. V4 keyboard-only operation of the shell and the V2 screen-reader prototype both need every toolkit widget reachable and activatable by keyboard. ACC owns the AT client and the focus-order contract; UIP owns widget traversal.
 
 #### Out of scope
-Focus-order contract (ACC-011). Screen reader (ACC-021). Keyboard-only shell verification (APP-@build-a11y-hold).
+Focus-order contract (ACC-011). Screen reader (ACC-021). Keyboard-only shell verification (APP-067).
 
 #### Acceptance criteria
 - [ ] Tab and shift-tab visit every interactive widget in each V0.5 widget, in tree order, on `qemu-virtio-gpu`.

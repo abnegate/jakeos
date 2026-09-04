@@ -337,7 +337,7 @@ Docs site generator (DOC-010). Widget lint (ACC-015). V3 checklist (ACC-028). To
 Define and implement the focus-order and keyboard-traversal contract that the V2 screen reader tracks and that V4 keyboard-only shell verification consumes. Focus order is derived from the tree; focus-visible indication is mandatory; traversal rules are testable. UIP owns widget-level tab order and the focus ring; ACC owns the tree-derived contract AT clients rely on.
 
 #### Out of scope
-Widget tab order and focus ring (UIP-039). Screen reader (ACC-021). Keyboard-only shell verification (APP-@build-a11y-hold). Global shortcuts (UIP-037).
+Widget tab order and focus ring (UIP-039). Screen reader (ACC-021). Keyboard-only shell verification (APP-067). Global shortcuts (UIP-037).
 
 #### Acceptance criteria
 - [ ] Focus order of every V0.5 widget gallery matches tree order; a unit test fails when they diverge.
@@ -948,12 +948,12 @@ Wine core (WIN-054). W2 corpus definition (WIN-070). AT-SPI2 (ACC-026). Native s
 - Baseline: §41, §42
 - Risks: R-042
 
-Verify V4-G10: the fifty-task script completes in full with the screen reader across shell, Settings and every shipped native application, and also runs under magnifier and high contrast. APP-@build-a11y-hold owns making those applications pass; this task owns the script and the AT-client run.
+Verify V4-G10: the fifty-task script completes in full with the screen reader across shell, Settings and every shipped native application, and also runs under magnifier and high contrast. APP-067 owns making those applications pass; this task owns the script and the AT-client run.
 
 <!-- covers: GAP-0266, GAP-0263 -->
 
 #### Out of scope
-Application defect closure (APP-@build-a11y-hold). Widget gallery (UIP-056). Conformance audit write-up (ACC-034). User study (ACC-032).
+Application defect closure (APP-067). Widget gallery (UIP-056). Conformance audit write-up (ACC-034). User study (ACC-032).
 
 #### Acceptance criteria
 - [ ] A committed fifty-task script covers shell, Settings and every shipped native application named by APP-061.
@@ -980,7 +980,7 @@ Application defect closure (APP-@build-a11y-hold). Widget gallery (UIP-056). Con
 V4-D04: an assistive-technology user completes daily tasks across the shell and native applications. A moderated study with blind and low-vision participants produces a report that feeds the RC fix list and the 1.0 evidence dossier. No calendar date is recorded; the report is evidence for the demo.
 
 #### Out of scope
-Fifty-task lab script (ACC-031). 1.0 evidence publication (ACC-036). APP defect closure (APP-@build-a11y-hold).
+Fifty-task lab script (ACC-031). 1.0 evidence publication (ACC-036). APP defect closure (APP-067).
 
 #### Acceptance criteria
 - [ ] A committed report lists tasks drawn from ACC-031, participant class (blind and low-vision), and every defect filed as a task id.
@@ -1041,7 +1041,7 @@ Run the V3 checklist over every first-party surface, track fixes to closure, and
 <!-- covers: GAP-0266, GAP-0264 -->
 
 #### Out of scope
-Checklist text (ACC-028). Widget-level CI (UIP-056). APP script pass (APP-@build-a11y-hold). 1.0 publication (ACC-036).
+Checklist text (ACC-028). Widget-level CI (UIP-056). APP script pass (APP-067). 1.0 publication (ACC-036).
 
 #### Acceptance criteria
 - [ ] Every checklist row for shell, installer, greeter, lock, recovery and each shipped native application is pass or is tracked by a non-P0/P1 task id.

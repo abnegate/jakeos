@@ -375,7 +375,7 @@ Cheap isolation and fast startup degrade through bloat unless kernel image size,
 <!-- covers: GAP-0159 -->
 
 #### Out of scope
-Bootloader and firmware path (BOOT). Installer media wall time (BEN-@bench-install-time). Unlock-to-desktop (BEN-035).
+Bootloader and firmware path (BOOT). Installer media wall time (INS-016). Unlock-to-desktop (BEN-035).
 
 #### Acceptance criteria
 - [ ] B-044 reports exist for every CI build of main covering kernel image, minimal generation, and installer image sizes.
@@ -904,7 +904,7 @@ V1 benchmark gate: Terminal and Editor warm startup against B-016 on V1 hardware
 <!-- covers: INV-0636 -->
 
 #### Out of scope
-Cold startup (BEN-@bench-cold-startup). Launch-path profile (BEN-021). Toolkit text path (TXT).
+Cold startup (CMP-018). Launch-path profile (BEN-021). Toolkit text path (TXT).
 
 #### Acceptance criteria
 - [ ] B-016 reports exist for Terminal and Editor on H-002 and H-004 using the visible-UI boundary.
@@ -1162,7 +1162,7 @@ Shell implementation (APP). IME engines (TXT). Camera service (MED). Wi-Fi (NET)
 V2 gates: idle desktop energy and mixed-workload battery runtime on H-004 and H-005 beside mainline Linux and Windows where dual-boot exists. Extends B-031 from the V1 Intel laptop.
 
 #### Out of scope
-Energy methodology (BEN-018). Suspend latency (BEN-@bench-suspend). V3 Tier 1 laptops (PWR-025).
+Energy methodology (BEN-018). Suspend latency (PWR-017). V3 Tier 1 laptops (PWR-025).
 
 #### Acceptance criteria
 - [ ] B-031 reports exist for H-004 and H-005 covering idle and mixed-workload runtime.
@@ -1426,7 +1426,7 @@ Dual-boot install mechanics (LAB). W1 overhead publication (BEN-044). End-user d
 V3 gate: boot time to login on each of the six Tier 1 machines beside a mainline Linux distribution and Windows where dual-boot exists. Extends B-032 from V0.5/V2 hardware.
 
 #### Out of scope
-Bootloader (BOOT). Installer wall time (BEN-@bench-install-time). Unlock-to-desktop (B-033).
+Bootloader (BOOT). Installer wall time (INS-016). Unlock-to-desktop (B-033).
 
 #### Acceptance criteria
 - [ ] B-032 reports exist for H-002, H-004, H-005, H-006, H-007, and H-008.

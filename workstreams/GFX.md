@@ -1893,7 +1893,7 @@ V3 Tier 1 adds an NVIDIA desktop decided by this adr. Proprietary userspace driv
 <!-- covers: GAP-0512 -->
 
 #### Out of scope
-Kernel-module policy (GFX-047). NVIDIA desktop bring-up (GFX-@nvidia-desktop-bringup). Secure Boot signing (KRN, HW).
+Kernel-module policy (GFX-047). NVIDIA desktop bring-up (HW-052). Secure Boot signing (KRN, HW).
 
 #### Acceptance criteria
 - [ ] The decision evaluates open kernel modules plus NVK/Mesa, proprietary userspace via the Linux personality, and unsupported.
@@ -2575,7 +2575,7 @@ V2 tracks an NVIDIA desktop as experimental. The spike measures each stack behin
 <!-- covers: GAP-0512 -->
 
 #### Out of scope
-NVIDIA 1.0 stance (GFX-064). Tier 1 NVIDIA bring-up (GFX-@nvidia-desktop-bringup).
+NVIDIA 1.0 stance (GFX-064). Tier 1 NVIDIA bring-up (HW-052).
 
 #### Acceptance criteria
 - [ ] The report measures open kernel modules plus NVK/Mesa behind the GPU broker.
@@ -2667,7 +2667,7 @@ Hardware Compatibility List publication (HW, REL). Lab fleet (LAB).
 - [ ] The suite runs display hot-plug, HDR/VRR where the SKU supports it, and multi-monitor on H-002, H-004, H-005, H-006, H-007 and H-008.
 - [ ] Each machine produces a per-feature pass/fail record consumed by the Hardware Compatibility List.
 - [ ] A failing display case is a release-qualification failure.
-- [ ] NVIDIA rows follow GFX-@nvidia-desktop-bringup.
+- [ ] NVIDIA rows follow HW-070.
 
 #### Verification
 - Integration: `gfx:tests/hcl/display_suite_*` on CI matrix entries `hw-h002`, `hw-h004`, `hw-h005`, `hw-h006`, `hw-h007` and `hw-h008`.

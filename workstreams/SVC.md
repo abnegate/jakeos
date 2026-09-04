@@ -35,7 +35,7 @@ The V0.5 compositor restart-to-rebound gate cites B-023, owned by BEN. This harn
 <!-- covers: INV-0611 -->
 
 #### Out of scope
-Compositor surface rebind timing (GFX-009). Register ownership and cross-OS publication (BEN-@bench-service-rebind).
+Compositor surface rebind timing (GFX-009). Register ownership and cross-OS publication (BEN-007).
 
 #### Acceptance criteria
 - [ ] Harness `bench:service-rebind` records death-detection, respawn and readiness intervals as separate series on CI matrix entries `qemu-x86_64` and `hw-h002`.

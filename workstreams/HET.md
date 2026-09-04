@@ -668,7 +668,7 @@ Page generation and the docs site (DOC). ABI-wide reference (ABI-046). Layer 2 p
 V3 hardware scope adds gated H-006. ComputeDevice enumeration and dispatch must work on that GPU using the V1 backend Decision, not a native NVIDIA driver rewrite (§56.1, I-045). Driver residency and Secure Boot module load stay with HW.
 
 #### Out of scope
-NVIDIA kernel-module and Secure Boot Decision (HW-018). Compositor bring-up on H-006 (GFX-@nvidia-desktop-bringup). Native NVIDIA driver stack (forbidden before 1.0).
+NVIDIA kernel-module and Secure Boot Decision (HW-018). Compositor bring-up on H-006 (HW-052). Native NVIDIA driver stack (forbidden before 1.0).
 
 #### Acceptance criteria
 - [ ] The NVIDIA GPU on H-006 enumerates as a ComputeDevice; inspect reports the GPU class without a vendor character-device path as authority.

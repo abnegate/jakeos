@@ -230,7 +230,7 @@ V0.5 exit verifies deduplication by store size: two Packages that share a Blob o
 <!-- covers: INV-0512 -->
 
 #### Out of scope
-User-data idle reflink (STO-053). Dedup-ratio publication (STO-@bench-store-dedup-ratio).
+User-data idle reflink (STO-053). Dedup-ratio publication (PKG-004).
 
 #### Acceptance criteria
 - [ ] Ingesting a second copy of an identical Blob does not increase unique stored bytes.

@@ -1383,7 +1383,7 @@ ASLR, NX, CET where the CPU supports them, guard pages and a hardened allocator 
 <!-- covers: GAP-0187 -->
 
 #### Out of scope
-Threat model (SEC-002). Mitigation overhead bench (SEC-@mitigation-overhead). Kernel hardening (KRN).
+Threat model (SEC-002). Mitigation overhead bench (KRN-029). Kernel hardening (KRN).
 
 #### Acceptance criteria
 - [ ] Native Components run with ASLR, NX and guard pages on H-001 and H-004.
