@@ -1,0 +1,8 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+#### Acceptance criteria
+- [ ] `roadmap check` validates the fixture repository.
+
+
+=>
+

@@ -1,0 +1,494 @@
+[
+ {
+  "id": "GAP-0510",
+  "toPrefix": "VIRT",
+  "reason": "Official KVM fallback for software the personalities cannot run is VIRT's product decision (GAP-0443, EXTRA-053/056); WIN keeps only the no-obvious-VM UX nongoal on the scoping adr.",
+  "from": "WIN"
+ },
+ {
+  "id": "INV-0333",
+  "toPrefix": "MEM",
+  "reason": "Device locality of a MemoryObject is a MemoryObject property (MEM already has INV-0720 for the locality/placement attribute model). HET consumes that attribute via dispatch locality preferences (INV-0692) rather than owning the MemoryObject field.",
+  "from": "HET"
+ },
+ {
+  "id": "GAP-0522",
+  "toPrefix": "IPC",
+  "reason": "Duplicate of IPC INV-0276: the V0.5 Decision on native IDL versus WIT (same language, bidirectional mapping, or independent). IPC owns the IDL; WASM implements the mapping after that adr.",
+  "from": "WASM"
+ },
+ {
+  "id": "GAP-0124",
+  "toPrefix": "BLD",
+  "reason": "CI-generated unsafe inventory, SAFETY comments, and trend lines are BLD INV-0957 (unsafe-code policy and tooling). SEC safety-layers-policy keeps the \u00a751 standing rule.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0130",
+  "toPrefix": "BLD",
+  "reason": "Userspace parser fuzzing (manifests, fonts, images, PE/ELF, capability serialisation) belongs to the BLD fuzzing programme (GAP-0128, GAP-0548), not the security-model workstream.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0959",
+  "toPrefix": "KRN",
+  "reason": "Retaining KASLR, CFI, stack protector, SMEP/SMAP, and IBT/CET is KRN GAP-0185 (checked-in hardening config). SEC cites that baseline in the V4 evidence pack.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0184",
+  "toPrefix": "KRN",
+  "reason": "Kernel lockdown when Secure Boot is active is a kernel config. BOOT already owns developer-mode lockdown disable (GAP-0178).",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-1139",
+  "toPrefix": "DOC",
+  "reason": "Critique: \u00a758 research studies move to the DOC research programme. Android permissions/Binder/A/B is not one of the six V0 surface-informing studies.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0315",
+  "toPrefix": "MEM",
+  "reason": "The encrypted MemoryObject property sits with the other \u00a716 properties already in MEM (writable, immutable, DMA, pinned).",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0319",
+  "toPrefix": "MEM",
+  "reason": "Encrypted MemoryObject key ownership and hardware memory encryption are MEM semantics, parallel to STO INV-0318 for the persistent property.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0421",
+  "toPrefix": "SCH",
+  "reason": "Which Scheduling intent classes require a Capability is scheduling-intent policy owned by SCH (\u00a722), not the SEC permission UI.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0470",
+  "toPrefix": "OBS",
+  "reason": "Security-aware tracing (Capability to read another Component's traces, no ambient payload leak) is OBS tracing substrate; CAP already models debugger/trace attach as a Capability (GAP-0189).",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0627",
+  "toPrefix": "HW",
+  "reason": "IOMMU as a requirement for user-space driver DMA is HW GAP-0210, GAP-0536, and INV-0623.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0639",
+  "toPrefix": "PKG",
+  "reason": "Verified-once launch trust (dm-verity, signed content-store index, or per-launch manifest hash) is package/content-store verification. STO already has GAP-0173 for the system-store verity chain.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0046",
+  "toPrefix": "REL",
+  "reason": "SECURITY.md, CNA, embargo, and linux-distros participation are REL CVE ops (GAP-0239, GAP-0355, INV-1249).",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0350",
+  "toPrefix": "REL",
+  "reason": "Public disclosure policy, contact, embargo, and CNA registration duplicate REL GAP-0239.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0078",
+  "toPrefix": "GOV",
+  "reason": "EU Cyber Resilience Act steward-versus-manufacturer status, SBOM, and update-duration duties are legal/governance; GOV already owns SBOM (GAP-0010).",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0047",
+  "toPrefix": "GOV",
+  "reason": "A bug bounty is a legal and financial commitment, not a security-model surface.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0933",
+  "toPrefix": "LNX",
+  "reason": "Default capability bundle for compatibility applications is LNX GAP-0231 (Linux and Windows), which is already the earlier V1 decision.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0215",
+  "toPrefix": "APP",
+  "reason": "Login greeter is APP shell (GAP-0283, greeter/lock). Pull the greeter to V1 for daily-driving; SEC keeps identity-service and authenticators the greeter consumes.",
+  "from": "SEC"
+ },
+ {
+  "id": "INV-0832",
+  "toPrefix": "APP",
+  "reason": "Assistant consent/permissions UI is APP consent UI and Settings (GAP-0229). SEC keeps the AI-principal adr those screens implement.",
+  "from": "SEC"
+ },
+ {
+  "id": "GAP-0433",
+  "toPrefix": "STO",
+  "reason": "workstreams.md and the critique MIG fold give foreign/network filesystems and SMB/NFS/WebDAV clients to STO; STO-@network-share-providers already covers GAP-0317 (shares as storage-provider Collections). UNC/mount views inside personalities are LNX/WIN consumers of those providers, not a NET protocol stack.",
+  "from": "NET"
+ },
+ {
+  "id": "GAP-0436",
+  "toPrefix": "STO",
+  "reason": "NFS and WebDAV clients are network filesystems owned by STO (foreign/network filesystems; GAP-0317 already lists NFS and WebDAV). NET does not own filesystem providers.",
+  "from": "NET"
+ },
+ {
+  "id": "INV-0026",
+  "toPrefix": "KRN",
+  "reason": "Retain Linux ALSA drivers in the fork is a retain-mechanism inventory item. Critique collapse puts those in KRN (at most two retain tasks), not the native audio service. AUD consumes retained ALSA behind AudioStream.",
+  "from": "AUD"
+ },
+ {
+  "id": "GAP-0079",
+  "toPrefix": "GOV",
+  "reason": "Vendor NDA policy for hardware documentation is a legal/governance rule (what may be read versus reproduced), not device enablement; HW consumes the policy when writing drivers.",
+  "from": "HW"
+ },
+ {
+  "id": "GAP-0270",
+  "toPrefix": "APP",
+  "reason": "The shared PDF renderer is used by the document viewer, file-browser thumbnails and print preview; APP owns those surfaces. HW's print service consumes the chosen library after the APP adr.",
+  "from": "HW"
+ },
+ {
+  "id": "GAP-0271",
+  "toPrefix": "LNX",
+  "reason": "Exposing the native print service as a CUPS-compatible IPP socket is Linux personality bridging; the Wine spooler follows in WIN. HW owns the native print service those bridges call.",
+  "from": "HW"
+ },
+ {
+  "id": "GAP-0313",
+  "toPrefix": "PWR",
+  "reason": "thermald/power-profiles-daemon equivalents, thermal policy and frequency are PWR scope (\u00a722/\u00a761/\u00a762). HW keeps laptop function keys, backlight and brightness via INV-1219.",
+  "from": "HW"
+ },
+ {
+  "id": "INV-0167",
+  "toPrefix": "MED",
+  "reason": "Object<Camera> is minted by the camera service (MED EXTRA-059, GAP-0303); HW enables UVC/webcams as USB devices, MED defines the Camera object and Capability.",
+  "from": "HW"
+ },
+ {
+  "id": "INV-1206",
+  "toPrefix": "PWR",
+  "reason": "CPU frequency scaling, idle states and display power are PWR (suspend, battery, thermal, DPMS, frequency via SCH intent), not HW device enablement.",
+  "from": "HW"
+ },
+ {
+  "id": "INV-1207",
+  "toPrefix": "PWR",
+  "reason": "Suspend/resume on the reference laptops is the V1 PWR gate; LAB owns the cycle rig, PWR owns the policy and success criteria.",
+  "from": "HW"
+ },
+ {
+  "id": "INV-1220",
+  "toPrefix": "PWR",
+  "reason": "Battery reporting, charge thresholds and power-profile policy are PWR scope.",
+  "from": "HW"
+ },
+ {
+  "id": "INV-1221",
+  "toPrefix": "PWR",
+  "reason": "s2idle/S3 suspend and measured resume latency are PWR; HW supplies laptop quirks (lid, docks) that PWR tests against.",
+  "from": "HW"
+ },
+ {
+  "id": "GAP-0369",
+  "toPrefix": "REL",
+  "reason": "The hardware probe exists to ingest anonymized fingerprints into the compatibility database and HCL; REL owns that publication path, not the native SDK.",
+  "from": "SDK"
+ },
+ {
+  "id": "GAP-0387",
+  "toPrefix": "INS",
+  "reason": "A built-in bug reporter that bundles traces and inspect output is the crash-report client; INS owns that client, consent UI and field telemetry path.",
+  "from": "SDK"
+ },
+ {
+  "id": "GAP-0455",
+  "toPrefix": "DOC",
+  "reason": "A POSIX/Win32-to-native porting guide is documentation; DOC already owns developer migration guides (GAP-0382) and the V1/V3 guide gates.",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-0234",
+  "toPrefix": "CMP",
+  "reason": "A browser-shaped Component graph is component composition; CMP owns graphs, isolation and the launch path the sample would exercise.",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-0629",
+  "toPrefix": "PKG",
+  "reason": "Mapping executables from the content-addressed store at launch is package/startup work already on PKG (INV-0999, INV-1013), not an SDK API.",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-0631",
+  "toPrefix": "CMP",
+  "reason": "Caching launch metadata across launches belongs to the native launch path; CMP owns Component creation and address-space setup.",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-0796",
+  "toPrefix": "BLD",
+  "reason": "A UI test harness driven through Semantic interfaces is CI/harness infrastructure; BLD already has the semantic GUI-harness decision (GAP-0118).",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-1287",
+  "toPrefix": "UIP",
+  "reason": "Layer 4 is UI toolkit and app frameworks; UIP owns that toolkit. SDK is Layer 3 only.",
+  "from": "SDK"
+ },
+ {
+  "id": "INV-1103",
+  "toPrefix": "LNX",
+  "reason": "A usable browser is the Linux personality V1 product (L2 corpus 100% browser gate). APP keeps the strategy ADR (GAP-0307/INV-1104) and launcher/chooser/URL integration.",
+  "from": "APP"
+ },
+ {
+  "id": "INV-1105",
+  "toPrefix": "LNX",
+  "reason": "A usable IDE is the Linux personality V1 product (L2 corpus 100% IDE gate). APP keeps the IDE strategy ADR (INV-1106) and the native Text Editor.",
+  "from": "APP"
+ },
+ {
+  "id": "INV-1198",
+  "toPrefix": "LNX",
+  "reason": "Git available and usable is a Linux personality CLI on the L1/L2 corpora. APP only integrates it into launcher, clipboard and file chooser (build-compat-launch).",
+  "from": "APP"
+ },
+ {
+  "id": "INV-1199",
+  "toPrefix": "LNX",
+  "reason": "Browser for documentation and web development is the same V1 personality browser as INV-1103. APP covers default-browser and URL/chooser integration via GAP-0308.",
+  "from": "APP"
+ },
+ {
+  "id": "INV-1112",
+  "toPrefix": "MED",
+  "reason": "Video/audio codecs and hardware decode are MED (sandboxed codec Components, VA-API/Vulkan Video). Whether a first-party player ships is APP's GAP-0318 first-party set Decision.",
+  "from": "APP"
+ },
+ {
+  "id": "GAP-0043",
+  "toPrefix": "GOV",
+  "reason": "A GDPR privacy policy and data-handling design for crash reporting, Hardware Compatibility List submissions and telemetry is governance; critique folds policy to GOV (REL GAP-0360 and GOV GAP-0320 already own telemetry policy). INS implements opt-in consent UI in the crash-report client (INV-1240).",
+  "from": "INS"
+ },
+ {
+  "id": "GAP-0416",
+  "toPrefix": "STO",
+  "reason": "Critique folds three-view data mapping (native Collections, Linux personality POSIX home, Windows personality C:\\Users) into STO; INS migration imports consume that mapping rather than defining it.",
+  "from": "INS"
+ },
+ {
+  "id": "GAP-0449",
+  "toPrefix": "VIRT",
+  "reason": "VIRT already owns JakeOS guest images (EXTRA-055) and guest tools; virtio, guest agents, dynamic resolution and hypervisor image publish for JakeOS-as-guest are VIRT, consuming INS's SystemGeneration image builder.",
+  "from": "INS"
+ },
+ {
+  "id": "INV-0006",
+  "toPrefix": "KRN",
+  "reason": "Language policy and rewrite-versus-retain criteria for inherited C are the kernel C/Rust boundary KRN already owns (rewrite-versus-retain policy and rust-first lint); BLD implements the toolchain that policy assumes.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-0139",
+  "toPrefix": "KRN",
+  "reason": "Booting the unmodified fork on QEMU and the reference machine is the first KRN fork task; BLD supplies the CI image and boot harness rather than the kernel bring-up.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-0865",
+  "toPrefix": "LNX",
+  "reason": "LTP, glibc and Linux application smoke suites are the Linux personality product (LNX GAP-0116); BLD only hosts the nightly job plumbing.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-0892",
+  "toPrefix": "LNX",
+  "reason": "The Linux GUI compatibility matrix (Firefox, LibreOffice, GIMP, VS Code, Steam) is LNX corpus content; BLD does not own personality scenarios.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-0912",
+  "toPrefix": "WIN",
+  "reason": "The Windows compatibility matrix and Wine test suite are WIN scope (EXTRA-069, GAP-0117); BLD provisions GPU CI capacity only.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-1101",
+  "toPrefix": "KRN",
+  "reason": "Divergence measurement (patch count, subsystems, conflict hotspots) is KRN's ledger and upstream-delta report, not a toolchain deliverable.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-1130",
+  "toPrefix": "ABI",
+  "reason": "Rejecting POSIX-shaped names, Linux syscall numbers and Wayland objects in native surfaces is ABI's firewall lint (ABI-@build-firewall-lint); BLD only runs that lint in pre-merge CI.",
+  "from": "BLD"
+ },
+ {
+  "id": "INV-1289",
+  "toPrefix": "ABI",
+  "reason": "Classifying public symbols into stability layers is ABI's surfaces-register and Layer 1/2 policy work; BLD would only execute the resulting CI check.",
+  "from": "BLD"
+ },
+ {
+  "id": "GAP-0329",
+  "toPrefix": "REL",
+  "reason": "Whether the package repository accepts publisher prebuilts or rebuilds every Package from source is REL repository and curation policy (alongside the repository-model adr); BLD implements rebuild-from-source if chosen.",
+  "from": "BLD"
+ },
+ {
+  "id": "GAP-0362",
+  "toPrefix": "OBS",
+  "reason": "Operating a debuginfod-compatible symbol server is already OBS GAP-0151 (crash artifacts and symbol retrieval); BLD only produces and uploads content-hashed symbols.",
+  "from": "BLD"
+ },
+ {
+  "id": "GAP-0372",
+  "toPrefix": "LAB",
+  "reason": "The physical lab with remote power, serial and capture is LAB (GAP-0140, EXTRA-052); BLD wires lab jobs into CI rather than procuring racks.",
+  "from": "BLD"
+ },
+ {
+  "id": "GAP-0375",
+  "toPrefix": "INS",
+  "reason": "Signed install media and the image builder are INS (EXTRA-070, installer/media pipeline); BLD consumes that builder for test images.",
+  "from": "BLD"
+ },
+ {
+  "id": "GAP-0081",
+  "toPrefix": "GOV",
+  "reason": "CC0 versus ODbL for published community datasets is a licensing Decision; GOV owns licensing policy. REL consumes the HCL terms and BEN consumes the result-dataset terms.",
+  "from": "BEN"
+ },
+ {
+  "id": "GAP-0135",
+  "toPrefix": "BLD",
+  "reason": "workstreams.md gives the quiet bare-metal perf-CI fleet to BLD; critique lists that fleet as a BLD gap. BEN consumes the pinned machines under methodology and does not rack hardware.",
+  "from": "BEN"
+ },
+ {
+  "id": "GAP-0546",
+  "toPrefix": "LAB",
+  "reason": "workstreams.md and EXTRA-049 give the photodiode input-to-photon rig to LAB. BEN owns B-020 method and publication (INV-1028); the pinned hardware set is decided by decide-methodology.",
+  "from": "BEN"
+ },
+ {
+  "id": "INV-1228",
+  "toPrefix": "APP",
+  "reason": "The native store client is APP Applications sub-scope (workstreams.md) and the V2 gate lists PKG/SEC/APP; REL owns the repository backend and metadata API, not the browsing UI.",
+  "from": "REL"
+ },
+ {
+  "id": "INV-0540",
+  "toPrefix": "PKG",
+  "reason": "Signature verification before a Package becomes available is the PKG install path (PKG-@install-signature-verification, reserved manifest fields EXTRA-067/GAP-0323); REL owns key material and repository signatures, not activation.",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0450",
+  "toPrefix": "VIRT",
+  "reason": "Critique assigns the personality-failure triage that offers the VM fallback to VIRT (EXTRA-056); REL still publishes the public compatibility database those prompts consult (GAP-0451, GAP-0366).",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0360",
+  "toPrefix": "GOV",
+  "reason": "Critique TEL split: telemetry policy is GOV (already GAP-0320); REL implements intake and dashboards after that policy exists.",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0365",
+  "toPrefix": "INS",
+  "reason": "Critique TEL split: crash/telemetry client, consent, exact-contents preview and redaction are INS; capability-scoping the agent is an INS/SEC invariant, not REL intake.",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0044",
+  "toPrefix": "GOV",
+  "reason": "Developer agreement, content policy, malware-removal and DMCA notice/counter-notice are legal intermediary duties; GOV owns licensing and legal, REL implements the repo that those terms govern.",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0463",
+  "toPrefix": "GOV",
+  "reason": "Redistribution licensing and wrapper ownership for third-party Linux/Windows software are GOV legal policy; PKG already decides personality packaging mechanics (INV-0541).",
+  "from": "REL"
+ },
+ {
+  "id": "GAP-0010",
+  "toPrefix": "BLD",
+  "reason": "Critique folds mechanised SBOM generation into BLD; BLD already has GAP-0352 (SBOM per package and SystemGeneration) and REL GAP-0095 publishes signed SBOMs. GOV keeps license policy only.",
+  "from": "GOV"
+ },
+ {
+  "id": "GAP-0011",
+  "toPrefix": "BLD",
+  "reason": "Critique assigns license-scanning CI (SPDX, cargo-deny, zero-unknown gate) to BLD; BLD already holds GAP-0009 and GAP-0096. GOV publishes the allowlist policy as GAP-0012.",
+  "from": "GOV"
+ },
+ {
+  "id": "GAP-0155",
+  "toPrefix": "BLD",
+  "reason": "CI licence scanning over kernel, crates, firmware and corpora is BLD. The userspace-licence ADR named in the item is GOV GAP-0005.",
+  "from": "GOV"
+ },
+ {
+  "id": "GAP-0374",
+  "toPrefix": "REL",
+  "reason": "Corresponding-source publication and the automated source offer are REL; REL already has GAP-0013 for every distributed generation.",
+  "from": "GOV"
+ },
+ {
+  "id": "GAP-0241",
+  "toPrefix": "DOC",
+  "reason": "User-facing platform security guide is documentation (DOC scope: user docs and compatibility notes). SEC owns the threat model; GOV owns telemetry and disclosure policy.",
+  "from": "GOV"
+ },
+ {
+  "id": "GAP-0477",
+  "toPrefix": "DOC",
+  "reason": "User-facing support matrix and personality decision tree is DOC compatibility documentation, consumed by APP/LNX/WIN/VIRT.",
+  "from": "GOV"
+ },
+ {
+  "id": "INV-0978",
+  "toPrefix": "SDK",
+  "reason": "SDK documentation, API reference and the window/chooser/decode/render tutorial are SDK (and DOC IDL-to-docs). Not governance.",
+  "from": "GOV"
+ },
+ {
+  "id": "INV-1110",
+  "toPrefix": "DOC",
+  "reason": "Generic user, developer and contributor documentation is DOC's V1/V3 gate, not GOV process.",
+  "from": "GOV"
+ },
+ {
+  "id": "INV-1248",
+  "toPrefix": "DOC",
+  "reason": "Install, user, developer, compatibility and contributor guides are the DOC V3 documentation gate.",
+  "from": "GOV"
+ },
+ {
+  "id": "INV-0155",
+  "toPrefix": "KRN",
+  "reason": "Which kernel-evolution phase is required at 1.0 is KRN divergence policy (Phases C\u2013E), not a GOV legal decision.",
+  "from": "GOV"
+ },
+ {
+  "id": "INV-1151",
+  "toPrefix": "DOC",
+  "reason": "Critique and workstreams.md give comparative-study documents under research/ to DOC. GOV keeps only the research-programme process (GAP-0070) and the citation index.",
+  "from": "GOV"
+ }
+]

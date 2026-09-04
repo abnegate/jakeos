@@ -1,0 +1,12 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Status: todo
+- Size: M
+=>
+- Status: dropped
+- Size: M
+replace:
+- Decision: D-0001
+=>
+- Decision: D-0001
+- Dropped because: descoped: unused

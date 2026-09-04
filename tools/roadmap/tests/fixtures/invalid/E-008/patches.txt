@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+### GOV-001 · Decide the roadmap repository process
+=>
+### GOV-003 · Decide the roadmap repository process

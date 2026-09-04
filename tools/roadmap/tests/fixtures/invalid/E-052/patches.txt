@@ -1,0 +1,15 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+### GOV-002 · Implement the roadmap validator
+- Type: build
+- Milestone: V0
+- Status: todo
+- Size: L
+- Owner: none
+=>
+### GOV-002 · Implement the roadmap validator
+- Type: build
+- Milestone: V0
+- Status: in-progress
+- Size: XL
+- Owner: @human

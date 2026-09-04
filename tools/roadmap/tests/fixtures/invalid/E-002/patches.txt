@@ -1,0 +1,6 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Type: build
+=>
+- Type: build
+- Type: build

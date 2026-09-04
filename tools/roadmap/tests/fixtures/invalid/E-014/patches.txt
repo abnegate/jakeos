@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Unit: `tools/roadmap` tests on the local crate.
+=>
+- Foo: not a kind

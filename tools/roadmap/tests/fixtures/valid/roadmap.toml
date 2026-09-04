@@ -1,0 +1,12 @@
+[weights]
+S = 1
+M = 3
+L = 8
+XL = 20
+
+[policy]
+require_independent_verification = false
+verify_freezes_and_adr_always = true
+fan_in_warning = 60
+workstream_lines_warning = 6000
+task_lines_warning = 100

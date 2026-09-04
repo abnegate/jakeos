@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+### GOV-002 · Implement the roadmap validator
+=>
+### GOV-002 Implement the roadmap validator

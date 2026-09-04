@@ -1,0 +1,7 @@
+# Generated output. Marked linguist-generated and -diff so reviews hide it, and
+# merge=ours so a conflict resolves to either side; the documented resolution is
+# "take either side, then run roadmap gen", which is deterministic and identical
+# for both sides at the same source content.
+generated/** linguist-generated -diff merge=ours
+ROADMAP.md linguist-generated -diff merge=ours
+STATUS.md linguist-generated -diff merge=ours

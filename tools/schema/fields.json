@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "milestones": ["V0", "V0.5", "V1", "V2", "V3", "V4", "1.0", "LATER"],
+  "milestoneRank": {"V0": 1, "V0.5": 2, "V1": 3, "V2": 4, "V3": 5, "V4": 6, "1.0": 7, "LATER": 99},
+  "workstreams": [
+    "KRN", "BOOT", "ABI", "CAP", "CMP", "TSK", "IPC", "MEM", "SCH", "OBS", "SVC", "STO", "PKG",
+    "GFX", "UIP", "TXT", "ACC", "SEM", "LNX", "WIN", "VIRT", "ENV", "HET", "WASM", "SEC", "NET",
+    "AUD", "MED", "HW", "PWR", "SDK", "APP", "INS", "BLD", "LAB", "BEN", "REL", "DOC", "GOV"
+  ],
+  "baselineGapAllowed": ["BOOT", "NET", "AUD", "TXT", "PWR", "SVC", "DOC", "LAB", "MED", "VIRT"],
+  "examplePrefix": "EX",
+  "task": {
+    "headingPattern": "^### ([A-Z]{2,4})-(\\d{3,}|@[a-z0-9][a-z0-9-]*) · (.+)$",
+    "fieldOrder": [
+      "Type", "Milestone", "Status", "Size", "Owner", "Depends on", "Baseline",
+      "Benchmarks", "Corpora", "Decision", "Explores", "Freezes", "Risks", "Threats", "Invariants",
+      "Verified by", "Superseded by", "Dropped because"
+    ],
+    "required": ["Type", "Milestone", "Status", "Size", "Owner", "Depends on", "Baseline"],
+    "enums": {
+      "Type": ["build", "adr", "spike", "benchmark", "docs"],
+      "Status": ["todo", "in-progress", "done", "dropped"],
+      "Size": ["S", "M", "L", "XL"]
+    },
+    "conditional": {
+      "Benchmarks": {"requiredWhen": {"Type": "benchmark"}, "idFamily": "B"},
+      "Corpora": {"idFamily": "C"},
+      "Decision": {"requiredWhen": {"Type": "adr"}, "forbiddenUnless": {"Type": "adr"}, "idFamily": "D", "single": true},
+      "Explores": {"forbiddenUnless": {"Type": "spike"}, "idFamily": "S"},
+      "Freezes": {"forbiddenWhen": {"Type": "spike"}, "idFamily": "S"},
+      "Risks": {"idFamily": "R"},
+      "Threats": {"idFamily": "T"},
+      "Invariants": {"idFamily": "I"},
+      "Verified by": {"requiredWhen": {"Status": "done", "policy": "require_independent_verification"}, "forbiddenUnless": {"Status": "done"}},
+      "Superseded by": {"forbiddenUnless": {"Status": "dropped"}, "idFamily": "TASK"},
+      "Dropped because": {"requiredWhen": {"Status": "dropped"}, "forbiddenUnless": {"Status": "dropped"}}
+    },
+    "dependsOnFamilies": ["TASK", "Q"],
+    "droppedReasons": ["duplicate", "descoped", "superseded", "infeasible", "merged"],
+    "ownerPattern": "^(none|@[a-z0-9][a-z0-9-]*|@agent/[a-z0-9][a-z0-9-]*)$",
+    "sections": {
+      "Out of scope": {"required": false},
+      "Acceptance criteria": {"required": true, "minItems": 1, "checkbox": true},
+      "Verification": {"required": true, "minItems": 1, "lineKinds": ["Unit", "Integration", "Fuzz", "Bench", "Compat", "Manual", "Review", "Demo", "Report"]},
+      "Evidence": {"required": true, "minItems": 1}
+    },
+    "verificationRequiredKind": {"benchmark": "Bench", "spike": "Report"},
+    "coversComment": "^<!-- covers: ((?:INV|GAP|EXTRA)-\\d{3,}(?:, (?:INV|GAP|EXTRA)-\\d{3,})*) -->$",
+    "nullToken": "none",
+    "maxLinesWarning": 100,
+    "bannedCriteriaWords": ["should"],
+    "sizeWeights": {"S": 1, "M": 3, "L": 8, "XL": 20}
+  },
+  "idFamilies": {
+    "TASK": "^[A-Z]{2,4}-\\d{3,}$",
+    "DRAFT": "^[A-Z]{2,4}-@[a-z0-9][a-z0-9-]*$",
+    "D": "^D-\\d{4}$",
+    "R": "^R-\\d{3}$",
+    "B": "^B-\\d{3}$",
+    "C": "^C-\\d{3}$",
+    "T": "^T-\\d{3}$",
+    "I": "^I-\\d{3}$",
+    "Q": "^Q-\\d{3}$",
+    "H": "^H-\\d{3}$",
+    "S": "^S-\\d{3}$",
+    "GATE": "^(V\\d(?:\\.\\d)?|1\\.0)-G\\d{2}$",
+    "DEMO": "^(V\\d(?:\\.\\d)?|1\\.0)-D\\d{2}$"
+  },
+  "milestoneFile": {
+    "fieldOrder": ["Sequence", "Title", "Baseline", "Hardware scope", "Surfaces to freeze", "Risks to retire"],
+    "sections": ["Purpose", "Not in this milestone", "Gates", "Demos", "Notes"],
+    "gate": {
+      "headingPattern": "^### ((?:V\\d(?:\\.\\d)?|1\\.0)-G\\d{2}) · (.+)$",
+      "fieldOrder": ["Kind", "Verified by", "Benchmark", "Corpus", "Or"],
+      "enums": {"Kind": ["functional", "benchmark", "compatibility", "demo", "process"]},
+      "required": ["Kind", "Verified by"]
+    },
+    "demo": {
+      "headingPattern": "^### ((?:V\\d(?:\\.\\d)?|1\\.0)-D\\d{2}) · (.+)$",
+      "fieldOrder": ["Verified by"],
+      "required": ["Verified by"]
+    }
+  },
+  "decision": {
+    "headingPattern": "^# (D-\\d{4}) · (.+)$",
+    "fieldOrder": ["Status", "Task", "Surfaces", "Layer", "Spikes", "Supersedes", "Superseded by", "Baseline", "Revisit when"],
+    "enums": {"Status": ["proposed", "accepted", "rejected", "superseded"], "Layer": ["L1", "L2", "L3", "L4", "none"]},
+    "sections": ["Context", "Options", "Decision", "Consequences", "Rejected options and why", "Follow-ups"],
+    "minOptions": 2
+  },
+  "registers": {
+    "R": {"file": "registers/risks.md", "fields": ["Likelihood", "Impact", "Status", "Mitigated by", "Retire by"], "enums": {"Likelihood": ["low", "medium", "high"], "Impact": ["low", "medium", "high", "critical"], "Status": ["open", "mitigated", "accepted", "closed"]}},
+    "B": {"file": "registers/benchmarks.md", "fields": ["Metric", "Method", "Harness", "Baselines", "Targets", "Status"], "targetKinds": ["absolute", "regression", "publish"], "enums": {"Status": ["defined", "harnessed", "measured"]}},
+    "C": {"file": "registers/corpora.md", "fields": ["Personality", "Size", "Scenario", "Scale", "Thresholds", "Status"], "enums": {"Personality": ["linux", "windows"], "Status": ["defined", "scripted", "measured"]}},
+    "T": {"file": "registers/threats.md", "fields": ["Actor", "Asset", "Vector", "Status", "Addressed by"], "enums": {"Status": ["open", "mitigated", "accepted"]}},
+    "I": {"file": "registers/invariants.md", "fields": ["Baseline", "Enforced by", "Status"], "enums": {"Status": ["stated", "enforced"]}},
+    "Q": {"file": "registers/questions.md", "fields": ["Workstream", "Status", "Answered by"], "enums": {"Status": ["open", "answered", "withdrawn"]}},
+    "H": {"file": "registers/hardware.md", "fields": ["Kind", "Tier", "CPU", "GPU", "Network", "First milestone", "Status"], "enums": {"Kind": ["qemu", "desktop", "laptop"], "Status": ["planned", "procured", "in-lab", "retired"]}},
+    "S": {"file": "registers/surfaces.md", "fields": ["Layer", "Owner", "State", "Explored by", "Decided by", "Frozen by"], "enums": {"Layer": ["L1", "L2", "L3", "L4"], "State": ["open", "prototyped", "frozen", "superseded"]}}
+  },
+  "generated": {
+    "wholeFiles": ["ROADMAP.md", "STATUS.md"],
+    "directory": "generated",
+    "markerBegin": "<!-- roadmap:generated:begin {name} -->",
+    "markerEnd": "<!-- roadmap:generated:end -->"
+  },
+  "datePattern": "\\b(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])\\b|\\b(January|February|March|April|May|June|July|August|September|October|November|December) (19|20)\\d{2}\\b|\\bQ[1-4] (19|20)\\d{2}\\b"
+}

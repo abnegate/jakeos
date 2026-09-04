@@ -1,0 +1,6 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Baseline: §1, §67
+=>
+- Baseline: §1, §67
+- Baseline gap: GOV should not declare a gap

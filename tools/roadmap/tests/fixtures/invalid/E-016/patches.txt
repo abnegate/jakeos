@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Owner: none
+=>
+- Owner: bob

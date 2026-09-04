@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Decision: D-0001
+=>
+- Decision: D-0001, D-0002

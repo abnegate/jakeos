@@ -1,0 +1,230 @@
+[
+  {
+    "id": "INV-0436",
+    "toPrefix": "SCH",
+    "reason": "ResourceDomain implementation over cgroups v2 controllers is \u00a723, owned by SCH (resource domains and budgets); KRN only supplies the Phase A tree layout it lands in.",
+    "from": "KRN"
+  },
+  {
+    "id": "INV-0863",
+    "toPrefix": "LNX",
+    "reason": "The phase at which the Linux personality moves from direct syscall ABI to translation over native primitives is LNX's stated scope (syscall retention to translation); KRN's divergence policy is an input, not the owner.",
+    "from": "KRN"
+  },
+  {
+    "id": "INV-1135",
+    "toPrefix": "DOC",
+    "reason": "\u00a758 research studies (Redox) are DOC's scope per the workstream table and the critique's ordering fix; the study does not inform a V0 kernel surface.",
+    "from": "KRN"
+  },
+  {
+    "id": "INV-1138",
+    "toPrefix": "DOC",
+    "reason": "\u00a758 research studies (macOS/XNU Mach ports, launchd, entitlements) are DOC's scope; the launchd and sandbox lessons feed SVC and SEC, not the kernel fork.",
+    "from": "KRN"
+  },
+  {
+    "id": "GAP-0203",
+    "toPrefix": "HW",
+    "reason": "workstreams.md gives the firmware update service (LVFS/fwupd-equivalent) to HW, which already holds EXTRA-043, GAP-0343 and GAP-0442 for the same deliverable; BOOT keeps only the boot-chain side (ESP capsule staging and PCR re-seal hooks) in uefi-capsule-staging.",
+    "from": "BOOT"
+  },
+  {
+    "id": "INV-0038",
+    "toPrefix": "TSK",
+    "reason": "Thread-replacement invariant belongs to TSK (Task/TaskGroup owner per workstreams.md).",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0047",
+    "toPrefix": "TSK",
+    "reason": "Define and implement Task is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0048",
+    "toPrefix": "TSK",
+    "reason": "Define and implement TaskGroup is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0071",
+    "toPrefix": "TSK",
+    "reason": "Thread-to-Task/TaskGroup adr and mapping onto kernel execution contexts is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0169",
+    "toPrefix": "TSK",
+    "reason": "Object<TaskGroup> definition belongs with TaskGroup in TSK.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0377",
+    "toPrefix": "TSK",
+    "reason": "Lightweight Task creation without kernel threads is the TSK multiplexing model.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0379",
+    "toPrefix": "TSK",
+    "reason": "M:N Task multiplexing is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0380",
+    "toPrefix": "TSK",
+    "reason": "Kernel/runtime scheduling split for Task multiplexing is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0381",
+    "toPrefix": "TSK",
+    "reason": "Kernel-visible Task identity decision is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0385",
+    "toPrefix": "TSK",
+    "reason": "Execution-context blocking study concerns Task multiplexing (TSK).",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0386",
+    "toPrefix": "TSK",
+    "reason": "Personality thread to Task mapping is TSK scope (with LNX/WIN cross-refs).",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0387",
+    "toPrefix": "TSK",
+    "reason": "Task ownership hierarchy is structured concurrency (TSK); Component owning a TaskGroup stays covered by CMP INV-0226.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0388",
+    "toPrefix": "TSK",
+    "reason": "TaskGroup kernel object owning Tasks and child groups is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0389",
+    "toPrefix": "TSK",
+    "reason": "Cancellation propagation down the ownership hierarchy is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0390",
+    "toPrefix": "TSK",
+    "reason": "app.cancel() deterministic cancellation is TSK structured concurrency.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0392",
+    "toPrefix": "TSK",
+    "reason": "No-orphan-Task invariant and background-execution capability belong to TSK cancellation semantics.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0393",
+    "toPrefix": "TSK",
+    "reason": "Orphan/cancellation regression test belongs with TSK cancellation.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0394",
+    "toPrefix": "TSK",
+    "reason": "Cleanup semantics of cancelled Tasks is TSK cancellation scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0395",
+    "toPrefix": "TSK",
+    "reason": "Cancellation versus uninterruptible sleep is TSK cancellation scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0396",
+    "toPrefix": "TSK",
+    "reason": "Cooperative vs forced cancellation decision is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-0721",
+    "toPrefix": "TSK",
+    "reason": "Task ABI must not embed x86 assumptions; Task ABI is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1149",
+    "toPrefix": "TSK",
+    "reason": "Structured concurrency study informs TaskGroup cancellation (TSK).",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1156",
+    "toPrefix": "TSK",
+    "reason": "V0 Task creation and multiplexing deliverable is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1157",
+    "toPrefix": "TSK",
+    "reason": "V0 TaskGroup hierarchy deliverable is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1165",
+    "toPrefix": "TSK",
+    "reason": "V0 cancellation propagation through TaskGroup hierarchy is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1314",
+    "toPrefix": "TSK",
+    "reason": "Native Platform layer Tasks/TaskGroups is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "GAP-0492",
+    "toPrefix": "TSK",
+    "reason": "Task multiplexing model prototype at 500,000 Tasks is TSK scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "GAP-0493",
+    "toPrefix": "TSK",
+    "reason": "Hidden kernel blocking of a worker context is TSK multiplexing scope.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1185",
+    "toPrefix": "SVC",
+    "reason": "Compositor restart with client rebind is SVC supervision/restart/rebind scope (critique: SVC supervision at V0.5); CMP supplies restart-identity-rebind for the Component side.",
+    "from": "CMP"
+  },
+  {
+    "id": "INV-1301",
+    "toPrefix": "SVC",
+    "reason": "Principle 10 'every service interface defines restart/rebind behaviour' is enforced by SVC supervision semantics and IPC interface guidelines, not by the Component primitive.",
+    "from": "CMP"
+  },
+  {
+    "id": "GAP-0285",
+    "toPrefix": "PWR",
+    "reason": "Idle and suspend inhibition as Capability<InhibitIdle>/Capability<InhibitSuspend> is power and session state, not scheduling intent or resource budgets; PWR owns suspend/resume and DPMS and is thin, and SEC's Session object (GAP-0214) carries the suspend-inhibit hook it plugs into.",
+    "from": "SCH"
+  },
+  {
+    "id": "GAP-0280",
+    "toPrefix": "SVC",
+    "reason": "Critique folds the default-application registry into SVC as a headless typed service; PKG keeps only the manifest declaration of handled content types and URL schemes (manifest-handler-declarations).",
+    "from": "PKG"
+  },
+  {
+    "id": "INV-1226",
+    "toPrefix": "INS",
+    "reason": "workstreams.md gives rollback UX (boot menu and desktop selection of a previous generation) to INS; PKG supplies the typed generation management interface it consumes (generation-management-interface).",
+    "from": "PKG"
+  }
+]

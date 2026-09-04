@@ -1,0 +1,15 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Type: build
+=>
+- Type: benchmark
+replace:
+- Baseline: §1
+
+Build the validator
+=>
+- Baseline: §1
+- Benchmarks: B-001
+
+Build the validator
+file: registers/benchmarks.md

@@ -1,0 +1,14 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Type: build
+=>
+- Type: adr
+replace:
+- Baseline: §1
+
+Build the validator
+=>
+- Baseline: §1
+- Decision: D-0001
+
+Build the validator

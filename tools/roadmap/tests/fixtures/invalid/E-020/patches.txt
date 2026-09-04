@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Depends on: GOV-001
+=>
+- Depends on: GOV-999

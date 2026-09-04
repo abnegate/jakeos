@@ -1,0 +1,5 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- [ ] `roadmap check` validates the fixture repository.
+=>
+- this is not a checkbox

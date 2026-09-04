@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Enable with: git config core.hooksPath .githooks
+set -euo pipefail
+
+root="$(git rev-parse --show-toplevel)"
+cd "$root"
+
+roadmap() {
+  cargo run -q --manifest-path tools/roadmap/Cargo.toml -- "$@"
+}
+
+roadmap fmt
+roadmap gen
+roadmap check
+
+git add -A -- \
+  ROADMAP.md STATUS.md generated \
+  workstreams milestones decisions registers

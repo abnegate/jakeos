@@ -1,0 +1,9 @@
+# overlay patches applied on tests/fixtures/valid
+replace:
+- Baseline: §1
+
+Build
+=>
+- Baseline: none
+
+Build

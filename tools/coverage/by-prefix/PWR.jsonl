@@ -1,0 +1,1 @@
+{"id": "EXTRA-021", "source": "critique", "workstream": "PWR", "milestone": "V1", "shape": "task", "text": "Implement display power management (DPMS, panel self-refresh, idle dim and off) tied to idle, lock and lid state."}
