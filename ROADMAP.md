@@ -8,8 +8,8 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/20 | 0% (0/217) | 0% | 34 | 183 |
-| V0.5 | Application model | next | 0/20 | 0% (0/436) | 0% | 12 | 424 |
+| V0 | Execution model | active | 0/20 | 0% (1/217) | 0% | 35 | 181 |
+| V0.5 | Application model | next | 0/20 | 0% (0/436) | 0% | 13 | 423 |
 | V1 | Developer preview | planned | 0/20 | 0% (0/569) | 0% | 4 | 565 |
 | V2 | Desktop preview | planned | 0/20 | 0% (0/474) | 0% | 1 | 473 |
 | V3 | Public alpha | planned | 0/20 | 0% (0/315) | 0% | 0 | 315 |
@@ -19,7 +19,7 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 0 done / 2268 live (0 dropped). Weighted 0%. Gates 0/138.
+Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/138.
 
 ## Workstream × milestone
 
@@ -63,14 +63,14 @@ Tasks 0 done / 2268 live (0 dropped). Weighted 0%. Gates 0/138.
 | BEN | 0/8 | 0/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 0/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
 | DOC | 0/0 | 0/5 | 0/12 | 0/5 | 0/11 | 0/6 | 0/3 | 0/0 |
-| GOV | 0/8 | 0/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
+| GOV | 1/8 | 0/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
 
 ## Ready head
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | V0 | S | 5627 |
 | KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | V0 | S | 5620 |
+| GOV-001 | Decide code hosting forge and repository layout | V0 | S | 5567 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 |
 | SEC-002 | Publish threat model and threat Register | V0 | M | 5360 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 |
@@ -150,7 +150,6 @@ Makespan (size-weight estimates): 78.
 
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
-| GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | 1902 | 5627 |
 | KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | 1888 | 5620 |
 | GOV-001 | Decide code hosting forge and repository layout | 1873 | 5567 |
 | KRN-003 | Decide the licence for new native kernel code | 1842 | 5524 |
@@ -170,6 +169,7 @@ Makespan (size-weight estimates): 78.
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1732 | 5231 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1643 | 4922 |
 | GOV-003 | Decide the license firewall and outbound project licenses | 1677 | 4899 |
+| BEN-007 | Decide benchmark methodology and target-kind policy | 1651 | 4898 |
 
 ## Blocked by
 
@@ -594,7 +594,6 @@ Makespan (size-weight estimates): 78.
 | GFX-020 | 5 |
 | GFX-026 | 5 |
 | GFX-042 | 5 |
-| GOV-004 | 5 |
 | GOV-006 | 5 |
 | GOV-020 | 5 |
 | GOV-055 | 5 |

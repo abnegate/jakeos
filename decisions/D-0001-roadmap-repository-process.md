@@ -1,5 +1,5 @@
 # D-0001 · Roadmap repository process
-- Status: proposed
+- Status: accepted
 - Task: GOV-004
 - Surfaces: none
 - Layer: none

@@ -4,8 +4,8 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
-| GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | V0 | S | 5627 | none |
 | KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | V0 | S | 5620 | none |
+| GOV-001 | Decide code hosting forge and repository layout | V0 | S | 5567 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 | none |
 | SEC-002 | Publish threat model and threat Register | V0 | M | 5360 | none |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 | none |
@@ -35,6 +35,7 @@
 | SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3169 | none |
 | PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2901 | none |
 | HW-002 | Decide pragmatic driver residency over microkernel purity | V0 | S | 2311 | none |
+| GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2007 | none |
 | CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1629 | none |
 | SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1619 | none |
 | LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1589 | none |
@@ -55,4 +56,5 @@
 | TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
 | MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | V0 | S | 22 | none |
+| GOV-013 | Complete roadmap registers, ADR CI and Task parseability | V0.5 | M | 14 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

@@ -42,7 +42,7 @@
 | BEN | 63 | 0 | 0 | 63 | 0 | 1 | 62 | 0% |
 | REL | 67 | 0 | 0 | 67 | 0 | 1 | 66 | 0% |
 | DOC | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
-| GOV | 84 | 0 | 0 | 84 | 0 | 2 | 82 | 0% |
+| GOV | 84 | 1 | 0 | 83 | 0 | 4 | 79 | 1% |
 
 ## Unanchored
 
@@ -214,7 +214,6 @@ none
 - critical-path task GOV-001 has Owner none on the active rung
 - critical-path task GOV-002 has Owner none on the active rung
 - critical-path task GOV-003 has Owner none on the active rung
-- critical-path task GOV-004 has Owner none on the active rung
 - critical-path task GOV-005 has Owner none on the active rung
 - critical-path task GOV-006 has Owner none on the active rung
 - critical-path task GOV-007 has Owner none on the active rung

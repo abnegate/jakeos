@@ -26,7 +26,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 <!-- roadmap:generated:begin index -->
 | ID | Title | Status | Task | Surfaces |
 | --- | --- | --- | --- | --- |
-| D-0001 | Roadmap repository process | proposed | GOV-004 | none |
+| D-0001 | Roadmap repository process | accepted | GOV-004 | none |
 | D-0002 | Decide the 1.x stability declaration superseding the freeze ADR with stable for 1.x | proposed | ABI-053 | none |
 | D-0003 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | proposed | ABI-007 | none |
 | D-0004 | Decide the Layer 1 and platform deprecation process: announcement, overlap, detection | proposed | ABI-045 | none |

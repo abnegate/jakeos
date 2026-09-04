@@ -2138,17 +2138,14 @@
 | DOC-040 | Snapshot the 1.0 documentation set per release | todo | DOC-007, DOC-035 | 1.0 |
 | DOC-041 | Verify documentation completeness for the 1.0 Gate | todo | DOC-035, DOC-036, DOC-034, DOC-042, DOC-040, DOC-038, SDK-096 | 1.0 |
 | DOC-042 | Write 1.0 release notes with V3 and V4 migration paths | todo | REL-014, DOC-015, APP-068, LNX-109, WIN-083, GOV-083 | 1.0 |
-| GOV-001 | Decide code hosting forge and repository layout | todo | GOV-004 | V0 |
 | GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | todo | GOV-003 | V0 |
-| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | GOV-004, GOV-006 | V0 |
-| GOV-006 | Publish charter, vision, architecture map and layer stability policy | todo | GOV-004 | V0 |
+| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | GOV-006 | V0 |
 | GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | GOV-002, GOV-001, GOV-005 | V0 |
 | GOV-008 | Record the V0 exit review | todo | CAP-008, ABI-010, CAP-010, IPC-006, IPC-003, CMP-010, WIN-001, BOOT-004 | V0 |
 | GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | GOV-003 | V0.5 |
 | GOV-010 | Implement roadmap check --base, impact summary and covers audit | todo | GOV-013 | V0.5 |
 | GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | todo | GOV-013 | V0.5 |
 | GOV-012 | Implement roadmap mutation commands from claim through renumber | todo | GOV-013 | V0.5 |
-| GOV-013 | Complete roadmap registers, ADR CI and Task parseability | todo | GOV-004 | V0.5 |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | todo | GOV-001 | V0.5 |
 | GOV-015 | Publish the research-programme index that every ADR must cite | todo | GOV-005 | V0.5 |
 | GOV-016 | Publish the userspace dependency license allowlist | todo | GOV-003 | V0.5 |
@@ -2178,7 +2175,7 @@
 | GOV-040 | Decide the license for published benchmark and HCL datasets | todo | GOV-021 | V2 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | GOV-024, Q-053 | V2 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | GOV-035, SEM-007 | V2 |
-| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | GOV-004, GOV-011 | V2 |
+| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | GOV-011 | V2 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | GOV-036 | V2 |
 | GOV-045 | Author the V2 Milestone gates mapping the desktop preview | todo | GOV-037 | V2 |
 | GOV-046 | Publish vendor NDA policy for hardware documentation | todo | GOV-026 | V2 |
@@ -2644,7 +2641,6 @@
 | GFX-020 | 5 |
 | GFX-026 | 5 |
 | GFX-042 | 5 |
-| GOV-004 | 5 |
 | GOV-006 | 5 |
 | GOV-020 | 5 |
 | GOV-055 | 5 |

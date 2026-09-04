@@ -57657,15 +57657,13 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-004"
       ],
-      "blockers": [
-        "GOV-004"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0384"
       ],
@@ -57723,10 +57721,10 @@
       "title": "Decide the Markdown-plus-Rust-CLI roadmap process",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -57752,7 +57750,6 @@
         "GOV-006"
       ],
       "blockers": [
-        "GOV-004",
         "GOV-006"
       ],
       "covers": [
@@ -57778,15 +57775,13 @@
       "type": "docs",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-004"
       ],
-      "blockers": [
-        "GOV-004"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0059",
         "INV-0116",
@@ -57951,15 +57946,13 @@
       "type": "build",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-004"
       ],
-      "blockers": [
-        "GOV-004"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-062",
         "EXTRA-064",
@@ -58690,7 +58683,6 @@
         "GOV-011"
       ],
       "blockers": [
-        "GOV-004",
         "GOV-011"
       ],
       "covers": [],
@@ -61735,12 +61727,12 @@
   ],
   "totals": {
     "total": 2268,
-    "done": 0,
-    "todo": 2268,
+    "done": 1,
+    "todo": 2267,
     "in_progress": 0,
     "dropped": 0,
     "weight_total": 6416,
-    "weight_done": 0,
+    "weight_done": 1,
     "gates_total": 138,
     "gates_satisfied": 0
   },
@@ -61769,12 +61761,12 @@
     },
     "V0": {
       "total": 217,
-      "done": 0,
-      "todo": 217,
+      "done": 1,
+      "todo": 216,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 673,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 20,
       "gates_satisfied": 0
     },
@@ -61969,12 +61961,12 @@
     },
     "GOV": {
       "total": 84,
-      "done": 0,
-      "todo": 84,
+      "done": 1,
+      "todo": 83,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 139,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },

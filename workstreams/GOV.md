@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 0 done, 0 in-progress, 84 todo, 0 dropped. Ready: 2. Blocked: 82. Weighted: 0%.
+Tasks: 84 live, 1 done, 0 in-progress, 83 todo, 0 dropped. Ready: 4. Blocked: 79. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -110,13 +110,14 @@ New in-tree kernel license choice (KRN-003). SDK crate license (SDK-027). IDL ge
 ### GOV-004 · Decide the Markdown-plus-Rust-CLI roadmap process
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §54, §65, §66, §67
 - Decision: D-0001
 - Invariants: I-087
+- Verified by: @jakebarnby
 
 The roadmap must stay truthful under years of parallel human and agent edits: a claim of progress needs Evidence, a freeze needs a Spike then a Decision, and a performance claim needs a B-ID (§54, §65). This Decision records how the graph is stored and validated so a single task ID is enough to start work.
 
@@ -126,15 +127,15 @@ The roadmap must stay truthful under years of parallel human and agent edits: a 
 Register schema completion and parse CI (GOV-013). Mutation commands (GOV-012). Diff-aware check (GOV-010).
 
 #### Acceptance criteria
-- [ ] Options evaluated include Markdown only, Markdown plus a Python validator, Markdown plus a Rust tool, and an issue tracker as source of truth.
-- [ ] The accepted option forbids calendar dates in sources the tool reads (I-087) and requires generated roll-ups never to be hand-edited.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include Markdown only, Markdown plus a Python validator, Markdown plus a Rust tool, and an issue tracker as source of truth.
+- [x] The accepted option forbids calendar dates in sources the tool reads (I-087) and requires generated roll-ups never to be hand-edited.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0001
 
 ### GOV-005 · Publish RFC, ADR, research and ABI-review process with principles
 - Type: docs
