@@ -264,6 +264,7 @@ none
 - critical-path task KRN-019 has Owner none on the active rung
 - critical-path task LAB-002 has Owner none on the active rung
 - critical-path task LAB-003 has Owner none on the active rung
+- critical-path task LAB-004 has Owner none on the active rung
 - critical-path task LNX-001 has Owner none on the active rung
 - critical-path task LNX-002 has Owner none on the active rung
 - critical-path task MEM-001 has Owner none on the active rung

@@ -60263,7 +60263,6 @@
           "title": "V0 decisions, Rust policy, threat model and roll-up",
           "satisfied": false,
           "reasons": [
-            "`GOV-008` is todo — Record the V0 exit review",
             "`CAP-008` is todo — Decide the userspace Capability<T> handle representation and table design",
             "`ABI-010` is todo — Decide Capability handle representation: dense index, sparse id or sealed value",
             "`CAP-010` is todo — Decide rights and transfer-rights encoding including Admin authority",
@@ -60273,6 +60272,18 @@
             "`WIN-001` is todo — Accept the Windows Personality scoping Decision",
             "`BOOT-004` is todo — Decide V0 boots Linux init from a retained initramfs with native Components beside it",
             "`GOV-007` is todo — Publish contributing, CODEOWNERS, AI policy and V0 Gate governance",
+            "`ABI-020` is todo — Prototype typed kernel-boundary errors without errno",
+            "`ABI-021` is todo — Prototype Layer 1 version and feature handshake",
+            "`LAB-004` is todo — Prototype photodiode versus camera Input-to-photon measurement",
+            "`SDK-010` is todo — Decide the userspace executor shape for the native runtime"
+          ]
+        },
+        {
+          "id": "V0-G21",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`GOV-008` is todo — Record the V0 exit review",
             "`MEM-009` is todo — Document MemoryObject security semantics for the V0 threat model"
           ]
         }
@@ -60491,7 +60502,6 @@
           "title": "V0.5 decisions, image builder and roll-up",
           "satisfied": false,
           "reasons": [
-            "`GOV-018` is todo — Record the V0.5 exit review",
             "`STO-016` is todo — Decide the initial Linux filesystem under the native storage layer",
             "`PKG-011` is todo — Decide the Package manifest schema shape and its Layer 2 evolution rules",
             "`PKG-005` is todo — Decide the content hash algorithm and chunking strategy for the store",
@@ -60502,55 +60512,150 @@
             "`SEC-007` is todo — Decide user-mediated grant taxonomy",
             "`ACC-002` is todo — Decide the accessibility tree model shared by the toolkit and semantic interfaces",
             "`GOV-017` is todo — Author the V0.5 Milestone gates mapping the application model",
+            "`MEM-021` is todo — Decide the per-Component page-table and huge-page policy for MemoryObjects",
+            "`SCH-017` is todo — Decide intent and priority inheritance across Channel handoff",
+            "`OBS-014` is todo — Decide who may trace and inspect which Components",
+            "`STO-015` is todo — Decide how an application gains authority to create one new file in a user-chosen place",
+            "`BEN-022` is todo — Measure harness noise floor on QEMU versus hardware",
+            "`DOC-002` is todo — Prototype IDL-to-docs Generation from the V0 IDL",
+            "`HW-007` is todo — Decide Capability<InputDevice> rights with no ambient device nodes",
+            "`LAB-005` is todo — Decide lab job-scheduler family and unbootable-machine recovery",
+            "`LAB-008` is todo — Prototype lab reservation, image flash and unbootable recovery",
+            "`OBS-023` is todo — Prototype inspect and trace Layer 2 Interface shape",
+            "`PWR-001` is todo — Decide the Layer 2 power service model over retained ACPI",
+            "`PWR-002` is todo — Decide the suspend state for V1 reference machines",
+            "`PWR-004` is todo — Probe suspend, battery, thermal and frequency paths on reference machines",
+            "`PWR-005` is todo — Prototype Layer 2 Power, Battery and inhibit Interface shapes",
+            "`SDK-031` is todo — Prototype the SDK v1 crate Surface used by daily-driving apps",
+            "`SEM-003` is todo — Prototype one Editor method as a typed Semantic Interface",
+            "`STO-027` is todo — Prototype File, Directory and UserSelected Interfaces"
+          ]
+        },
+        {
+          "id": "V0.5-G21",
+          "title": "Standing lints and continuous checks in force",
+          "satisfied": false,
+          "reasons": [
+            "`BLD-028` is todo — Add virtio-gpu QEMU configurations to the compositor CI matrix",
             "`CAP-016` is todo — Lint native SDK and system Components for ambient authority and descriptor-shaped APIs",
-            "`CAP-018` is todo — Benchmark Capability mint, derive, transfer and revocation cost",
-            "`CMP-020` is todo — Verify the native isolation path needs no daemon, namespace, overlay or fork",
             "`CMP-023` is todo — Enforce constraints on dynamically created child Components",
-            "`TSK-025` is todo — Require an explicit Capability for Tasks that outlive their TaskGroup",
-            "`TSK-029` is todo — Implement a native Event Object signalled by user space and consumed via Wait",
-            "`TSK-036` is todo — Inherit TaskGroup deadlines and outstanding-Operation limits by owned Operations",
+            "`GOV-019` is todo — Encode standing invariants and non-goals as linted Register rules",
+            "`MEM-032` is todo — Add an Interface review lint that large payloads move MemoryObjects by default",
+            "`PKG-027` is todo — Build the Package manifest validator and CI lint",
+            "`SCH-027` is todo — Add CI lints enforcing native intent, universal accounting and no cgroup steps",
+            "`SDK-015` is todo — Provide a developer command that builds, boots QEMU and runs CI tests",
+            "`STO-028` is todo — Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix"
+          ]
+        },
+        {
+          "id": "V0.5-G22",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`APP-008` is todo — Document first-party applications as Component graphs",
+            "`DOC-003` is todo — Write the Android permissions, Binder and A/B updates study",
+            "`DOC-004` is todo — Write the Redox Rust-in-kernel and schemes study",
+            "`DOC-005` is todo — Write the XNU Mach ports, launchd and entitlements study",
+            "`GOV-014` is todo — Populate the repository-alias Register from the hosting Decision",
+            "`GOV-015` is todo — Publish the research-programme index that every ADR must cite",
+            "`GOV-018` is todo — Record the V0.5 exit review",
+            "`SDK-029` is todo — Document the unstable V0.5 SDK used by the four native apps",
+            "`UIP-009` is todo — Document input-stack ownership split between HW and UIP",
+            "`UIP-019` is todo — Write UI protocol threat review: focus stealing, input injection, exfiltration",
+            "`WASM-004` is todo — Specify Wasm Component artefact layout in Package"
+          ]
+        },
+        {
+          "id": "V0.5-G23",
+          "title": "Publish-only benchmark series published",
+          "satisfied": false,
+          "reasons": [
+            "`BEN-014` is todo — Publish storage-Object access against Linux file I/O",
+            "`BOOT-006` is todo — Build the harness measuring reboot-into-previous-Generation time and publish results",
+            "`CAP-018` is todo — Benchmark Capability mint, derive, transfer and revocation cost",
+            "`MEM-013` is todo — Benchmark CoW snapshot creation and first-write fault cost",
+            "`MEM-014` is todo — Benchmark resident-page sharing across the four V0.5 applications",
+            "`PKG-001` is todo — Benchmark SystemGeneration rollback time",
+            "`PKG-002` is todo — Benchmark SystemGeneration switch time",
+            "`SCH-013` is todo — Benchmark wakeup latency per intent class under contention",
+            "`STO-004` is todo — Benchmark Capability-scoped storage Object I/O against direct Linux file I/O",
+            "`UIP-002` is todo — Build scripted UI frame-time benchmark and publish p99 against frame interval"
+          ]
+        },
+        {
+          "id": "V0.5-G24",
+          "title": "Native platform features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
+            "`CMP-020` is todo — Verify the native isolation path needs no daemon, namespace, overlay or fork",
             "`IPC-027` is todo — Charge Channel queue memory and handle slots to the owning ResourceDomain",
             "`IPC-030` is todo — Implement the same-Component transport for generated Interface stubs",
             "`IPC-036` is todo — Lower large and variable-size payload types to MemoryObject transfer in codegen",
+            "`IPC-037` is todo — Harden receiver-side wire validation for bounds, handle counts and type tags",
             "`IPC-039` is todo — Support stream (multi-value) results with flow control in the IDL and runtime",
-            "`MEM-013` is todo — Benchmark CoW snapshot creation and first-write fault cost",
-            "`MEM-014` is todo — Benchmark resident-page sharing across the four V0.5 applications",
             "`MEM-015` is todo — Move MemoryObject charging with ownership and never double-charge a borrow",
-            "`MEM-021` is todo — Decide the per-Component page-table and huge-page policy for MemoryObjects",
-            "`MEM-032` is todo — Add an Interface review lint that large payloads move MemoryObjects by default",
-            "`SCH-017` is todo — Decide intent and priority inheritance across Channel handoff",
-            "`SCH-018` is todo — Export per-ResourceDomain usage and scheduling-delay data for inspection",
-            "`SCH-022` is todo — Replace nice, chrt and cpuset tuning with ResourceDomain policy in the SDK",
-            "`SCH-024` is todo — Implement intent inheritance across Channel handoff for shared services",
-            "`SCH-027` is todo — Add CI lints enforcing native intent, universal accounting and no cgroup steps",
-            "`OBS-014` is todo — Decide who may trace and inspect which Components",
             "`OBS-016` is todo — Inspect an application's live Component graph via os inspect",
             "`OBS-017` is todo — Add the observability review Gate requiring inspect and trace support per primitive",
             "`OBS-021` is todo — Record MemoryObject transfer history and property-change events",
             "`OBS-022` is todo — Emit ResourceDomain throttling and budget-exhaustion events",
+            "`SCH-018` is todo — Export per-ResourceDomain usage and scheduling-delay data for inspection",
+            "`SCH-022` is todo — Replace nice, chrt and cpuset tuning with ResourceDomain policy in the SDK",
+            "`SCH-024` is todo — Implement intent inheritance across Channel handoff for shared services",
+            "`SVC-010` is todo — Expose service control and supervision-tree state via `os service` and `os inspect`",
+            "`TSK-025` is todo — Require an explicit Capability for Tasks that outlive their TaskGroup",
+            "`TSK-029` is todo — Implement a native Event Object signalled by user space and consumed via Wait",
+            "`TSK-030` is todo — Implement batched submission and linked Operation chains",
+            "`TSK-036` is todo — Inherit TaskGroup deadlines and outstanding-Operation limits by owned Operations"
+          ]
+        },
+        {
+          "id": "V0.5-G25",
+          "title": "Storage and package features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
+            "`PKG-036` is todo — Assemble the 20-Package benchmark Corpus from native apps and dependencies",
             "`STO-003` is todo — Implement atomic replacement of a file or tree with no partial reads",
-            "`STO-004` is todo — Benchmark Capability-scoped storage Object I/O against direct Linux file I/O",
-            "`STO-015` is todo — Decide how an application gains authority to create one new file in a user-chosen place",
-            "`STO-028` is todo — Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix",
-            "`STO-033` is todo — Provide the Component-scoped temporary-storage Capability granted at launch",
-            "`PKG-027` is todo — Build the Package manifest validator and CI lint",
+            "`STO-033` is todo — Provide the Component-scoped temporary-storage Capability granted at launch"
+          ]
+        },
+        {
+          "id": "V0.5-G26",
+          "title": "Security and boot features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
+            "`BOOT-013` is todo — Maintain ESP space so at least three previous SystemGeneration kernels stay bootable",
+            "`SEC-008` is todo — Implement scoped Inspect Capability"
+          ]
+        },
+        {
+          "id": "V0.5-G27",
+          "title": "Desktop and UI features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
             "`GFX-025` is todo — Build golden-image comparison tolerant of documented rasterisation differences",
             "`GFX-044` is todo — Import a MemoryObject into the GPU driver without copying",
-            "`UIP-009` is todo — Document input-stack ownership split between HW and UIP",
-            "`SEC-008` is todo — Implement scoped Inspect Capability",
-            "`SDK-015` is todo — Provide a developer command that builds, boots QEMU and runs CI tests",
-            "`SDK-029` is todo — Document the unstable V0.5 SDK used by the four native apps",
+            "`UIP-011` is todo — Instrument input pipeline stages with trace timestamps for latency measurement",
+            "`UIP-016` is todo — Add privileged shell Surface roles to protocol v0 for panel and launcher"
+          ]
+        },
+        {
+          "id": "V0.5-G28",
+          "title": "Hardware, media and networking features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
+            "`HW-012` is todo — Re-issue InputDevice Capabilities on HID hot-plug and unplug",
+            "`LAB-007` is todo — Procure and rack the Intel laptop with remote power and console"
+          ]
+        },
+        {
+          "id": "V0.5-G29",
+          "title": "Delivery, tooling and governance features complete for V0.5",
+          "satisfied": false,
+          "reasons": [
             "`BLD-025` is todo — Deploy a shared content-addressed remote build cache",
-            "`BEN-014` is todo — Publish storage-Object access against Linux file I/O",
-            "`DOC-003` is todo — Write the Android permissions, Binder and A/B updates study",
-            "`DOC-004` is todo — Write the Redox Rust-in-kernel and schemes study",
-            "`DOC-005` is todo — Write the XNU Mach ports, launchd and entitlements study",
             "`GOV-010` is todo — Implement roadmap check --base, impact summary and covers audit",
             "`GOV-011` is todo — Warn when a hub Task's fan-in exceeds the configured threshold",
-            "`GOV-012` is todo — Implement roadmap mutation commands from claim through renumber",
-            "`GOV-014` is todo — Populate the repository-alias Register from the hosting Decision",
-            "`GOV-015` is todo — Publish the research-programme index that every ADR must cite",
-            "`GOV-019` is todo — Encode standing invariants and non-goals as linted Register rules"
+            "`GOV-012` is todo — Implement roadmap mutation commands from claim through renumber"
           ]
         }
       ]
@@ -60777,7 +60882,6 @@
           "title": "V1 decisions, freeze candidates and roll-up",
           "satisfied": false,
           "reasons": [
-            "`GOV-038` is todo — Record the V1 exit review",
             "`SDK-054` is todo — Decide the Layer 3 SDK semver and deprecation policy",
             "`SDK-055` is todo — Decide the SDK v1 crate API freeze candidate",
             "`NET-006` is todo — Decide per-application network Capability granularity and inbound firewall",
@@ -60789,47 +60893,100 @@
             "`LNX-015` is todo — Decide whether ia32 emulation is retained",
             "`KRN-024` is todo — Decide eBPF's native role and the Linux Personality's bpf() exposure",
             "`KRN-026` is todo — Decide that kernel live-patching is a non-goal in favour of generations plus reboot",
-            "`IPC-046` is todo — Freeze Layer 2 Interface-evolution rules for SDK v1",
-            "`WIN-016` is todo — Publish the V1 Wine test-suite feasibility report",
-            "`NET-017` is todo — Provide sshd remote shell via the Linux Personality with listen Capability",
             "`GOV-037` is todo — Author the V1 Milestone gates including self-hosting and dogfooding",
-            "`BOOT-017` is todo — Build the pre-boot unlock latency harness and publish results",
-            "`BOOT-023` is todo — Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed",
-            "`BOOT-024` is todo — Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs",
-            "`CMP-041` is todo — Document a browser-shaped Component graph as the composition example",
-            "`TSK-037` is todo — Publish Operation, deadline and cancellation guidelines for service authors",
-            "`IPC-050` is todo — Add an IDL lint enforcing the Interface design guidelines",
-            "`IPC-053` is todo — Publish Interface evolution guidelines for SDK authors",
-            "`MEM-033` is todo — Benchmark copies and bytes moved in the NIC to Decoder to Renderer to GPU path",
-            "`SCH-031` is todo — Add ResourceDomain GPU budget enforced through graphics and compute queues",
-            "`SCH-039` is todo — Map Scheduling intent to GPU priority for RenderQueue and ComputeQueue",
             "`STO-040` is todo — Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing",
-            "`STO-045` is todo — Provide on-demand and boot-time integrity Verification of stored objects and generations",
-            "`STO-046` is todo — Implement the persistent MemoryObject property backed by durable storage",
-            "`STO-049` is todo — Add `os inspect storage` and trace events for storage Operations and snapshots",
-            "`STO-053` is todo — Deduplicate identical content in user data with an idle-intent reflink pass",
-            "`PKG-063` is todo — Support content-addressed precompiled artefacts in Packages",
-            "`PKG-067` is todo — Implement unreferenced store Object collection safe for running Components",
-            "`GFX-050` is todo — Report explicit degraded recovery to users and clients after GPU reset",
             "`GFX-058` is todo — Spike GPU time and memory budgets via DRM scheduler and cgroup GPU controllers",
             "`UIP-030` is todo — Decide global shortcut model: named actions bound in Settings, no key grabs",
-            "`TXT-014` is todo — Benchmark per-Component text memory and shaping CPU with shared versus private caches",
-            "`TXT-023` is todo — Make the text service restartable with client rebind and cache regeneration",
-            "`VIRT-001` is todo — Publish JakeOS guest images for common hypervisors",
-            "`ENV-023` is todo — Store environment build outputs as content-addressed objects",
-            "`WASM-010` is todo — Fuzz the Wasm host ABI and Capability import table",
-            "`WASM-011` is todo — Transfer MemoryObjects into Wasm guest resources",
-            "`SEC-023` is todo — Forbid setuid binaries in native Packages",
-            "`SEC-024` is todo — Mirror the CA trust store into personalities",
-            "`SEC-030` is todo — Back SSH agent and Git credentials with secrets",
             "`SEC-031` is todo — Decide disk-key eviction on suspend",
             "`SEC-032` is todo — Evaluate MPK, CET, and LAM for unsafe isolation",
-            "`NET-004` is todo — Publish NetworkConnection throughput and latency against Linux sockets",
             "`NET-018` is todo — Investigate NIC-to-MemoryObject DMA on retained drivers via AF_XDP",
-            "`HW-020` is todo — Lint-forbid flag-day replacement of any inherited driver class",
-            "`HW-025` is todo — Define and test user-space driver degradation when IOMMU is absent",
             "`PWR-007` is todo — Decide hibernation policy for 1.0",
+            "`BLD-050` is todo — Spike Component and ResourceDomain isolation for parallel tests",
+            "`GOV-026` is todo — Decide vendor NDA policy for hardware documentation",
+            "`DOC-009` is todo — Decide the documentation toolchain, search and snapshots",
+            "`ENV-007` is todo — Decide whether DevelopmentEnvironment is kernel or userspace",
+            "`ENV-021` is todo — Prototype environment.yaml versus Package-manifest profiles",
+            "`IPC-041` is todo — Decide which Channel syscalls become Layer 1 freeze candidates for SDK v1",
+            "`MED-010` is todo — Prototype decoder, encoder, Camera and Frame Interfaces",
+            "`NET-005` is todo — Decide the native TLS library and how it consumes the CA trust store",
+            "`SCH-030` is todo — Decide which ResourceDomain and intent surfaces are Layer 1 freeze candidates",
+            "`TSK-042` is todo — Decide which Operation ABI surfaces become Layer 1 freeze candidates",
+            "`WASM-008` is todo — Decide WASI imports bound to native Capability",
+            "`WIN-011` is todo — Survey Win32 APIs required by the W1 productivity set"
+          ]
+        },
+        {
+          "id": "V1-G21",
+          "title": "Standing lints and continuous checks in force",
+          "satisfied": false,
+          "reasons": [
+            "`BLD-030` is todo — Keep an ARM64 kernel and userspace cross-build compiling in CI",
+            "`BLD-031` is todo — Automate CI-validated dependency update proposals",
+            "`DOC-012` is todo — Wire documentation Generation into CI",
+            "`HW-020` is todo — Lint-forbid flag-day replacement of any inherited driver class",
+            "`IPC-050` is todo — Add an IDL lint enforcing the Interface design guidelines"
+          ]
+        },
+        {
+          "id": "V1-G22",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`ACC-010` is todo — Publish accessibility guidelines for native application developers",
+            "`BEN-034` is todo — Write the contributor guide for adding a benchmark",
+            "`CMP-037` is todo — Write the Component design guidelines for SDK v1",
+            "`CMP-041` is todo — Document a browser-shaped Component graph as the composition example",
+            "`DOC-011` is todo — Publish architecture, Decision and glossary records",
+            "`DOC-013` is todo — Write the os CLI reference from command metadata",
+            "`DOC-015` is todo — Write the documentation style guide",
+            "`GFX-052` is todo — Review Surface, Buffer, RenderQueue, Display and Frame as SDK v1 freeze candidates",
+            "`GOV-033` is todo — Document kernel-fork maintenance staffing and process",
+            "`GOV-034` is todo — Register domains, namespaces and handles under the entity",
+            "`GOV-038` is todo — Record the V1 exit review",
+            "`IPC-053` is todo — Publish Interface evolution guidelines for SDK authors",
+            "`NET-010` is todo — Write the native NetworkConnection programming model for SDK v1",
+            "`PKG-061` is todo — Write the Package format and manifest reference for SDK v1",
+            "`SEM-005` is todo — Publish Semantic Interface authoring guidelines",
+            "`SVC-021` is todo — Write the guide for authoring a supervised service with rebind and restore-state",
+            "`TSK-037` is todo — Publish Operation, deadline and cancellation guidelines for service authors",
+            "`UIP-031` is todo — Write UI protocol reference and toolkit SDK guide from IDL at V1",
+            "`WIN-016` is todo — Publish the V1 Wine test-suite feasibility report"
+          ]
+        },
+        {
+          "id": "V1-G23",
+          "title": "Publish-only benchmark series published",
+          "satisfied": false,
+          "reasons": [
+            "`BEN-028` is todo — Publish developer onboarding time",
+            "`BOOT-016` is todo — Build the boot-to-login timing harness and publish results beside Linux and Windows",
+            "`BOOT-017` is todo — Build the pre-boot unlock latency harness and publish results",
+            "`MEM-033` is todo — Benchmark copies and bytes moved in the NIC to Decoder to Renderer to GPU path",
+            "`NET-004` is todo — Publish NetworkConnection throughput and latency against Linux sockets",
             "`SDK-032` is todo — Measure timed onboarding from SDK install to a hello-Component",
+            "`TXT-014` is todo — Benchmark per-Component text memory and shaping CPU with shared versus private caches",
+            "`WASM-006` is todo — Measure Wasm instantiation and Channel round trip"
+          ]
+        },
+        {
+          "id": "V1-G24",
+          "title": "Native platform features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`CAP-031` is todo — Declare Capability L1 surfaces freeze candidates with conformance tests",
+            "`CAP-036` is todo — Register typed rights and Admin authority for every kernel Object type",
+            "`ENV-012` is todo — Implement development environment create, rebuild and destroy",
+            "`ENV-015` is todo — Inject service secrets as Capabilities into environment Components",
+            "`ENV-016` is todo — Expose DevelopmentEnvironment state through os inspect",
+            "`ENV-023` is todo — Store environment build outputs as content-addressed objects",
+            "`IPC-046` is todo — Freeze Layer 2 Interface-evolution rules for SDK v1",
+            "`IPC-049` is todo — Carry doc comments and semantic metadata through the IDL compiler IR",
+            "`MEM-044` is todo — Preserve pinned and DMA-compatible MemoryObjects across suspend and resume",
+            "`OBS-026` is todo — Capture Component crashes with typed exit cause, async Task stacks and trace window",
+            "`OBS-033` is todo — Define inspection and trace schemas as versioned Layer 2 interfaces",
+            "`OBS-038` is todo — Attribute Linux-Personality processes and syscalls in os trace and os inspect",
+            "`SCH-031` is todo — Add ResourceDomain GPU budget enforced through graphics and compute queues",
+            "`SCH-039` is todo — Map Scheduling intent to GPU priority for RenderQueue and ComputeQueue",
             "`SDK-035` is todo — Add machine-readable os CLI output and shell completions",
             "`SDK-042` is todo — Implement os env list, status, leave, destroy and rebuild",
             "`SDK-045` is todo — Implement os test running the Component harness",
@@ -60837,19 +60994,96 @@
             "`SDK-048` is todo — Enable userspace exploit mitigations in the native runtime",
             "`SDK-050` is todo — Provide a Component test harness with mock capabilities",
             "`SDK-058` is todo — Fuzz SDK handle wrappers for use-after-revoke and double-drop",
-            "`BLD-030` is todo — Keep an ARM64 kernel and userspace cross-build compiling in CI",
-            "`BLD-031` is todo — Automate CI-validated dependency update proposals",
+            "`SVC-022` is todo — Host user-space driver Components under supervision with per-device restart",
+            "`SVC-025` is todo — Build the system locale, keyboard-layout and timezone settings service",
+            "`SVC-026` is todo — Supervise Linux-Personality daemons as services with the same restart semantics",
+            "`SVC-027` is todo — Build per-user session supervision trees under the system supervisor",
+            "`SVC-030` is todo — Implement ordered shutdown, reboot and Generation-switch sequencing in init",
+            "`SVC-033` is todo — Wire kernel watchdog and hung-Task signals into supervisor escalation",
+            "`TSK-040` is todo — Harden shared submission/completion memory against forgery, TOCTOU and exhaustion",
+            "`TSK-046` is todo — Tune Task multiplexing with per-core completion affinity and work distribution",
+            "`TSK-047` is todo — Add slack and coalescing to Timer Operations for energy efficiency",
+            "`WASM-010` is todo — Fuzz the Wasm host ABI and Capability import table",
+            "`WASM-011` is todo — Transfer MemoryObjects into Wasm guest resources",
+            "`WASM-014` is todo — Version WIT worlds across native Channel endpoints"
+          ]
+        },
+        {
+          "id": "V1-G25",
+          "title": "Storage and package features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`PKG-063` is todo — Support content-addressed precompiled artefacts in Packages",
+            "`PKG-067` is todo — Implement unreferenced store Object collection safe for running Components",
+            "`STO-045` is todo — Provide on-demand and boot-time integrity Verification of stored objects and generations",
+            "`STO-046` is todo — Implement the persistent MemoryObject property backed by durable storage",
+            "`STO-049` is todo — Add `os inspect storage` and trace events for storage Operations and snapshots",
+            "`STO-050` is todo — Add old-client/new-service versioning tests for every storage L2 Interface",
+            "`STO-053` is todo — Deduplicate identical content in user data with an idle-intent reflink pass"
+          ]
+        },
+        {
+          "id": "V1-G26",
+          "title": "Security and boot features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`BOOT-023` is todo — Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed",
+            "`BOOT-024` is todo — Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs",
+            "`SEC-017` is todo — Provide encrypted volumes for developer machines",
+            "`SEC-023` is todo — Forbid setuid binaries in native Packages",
+            "`SEC-024` is todo — Mirror the CA trust store into personalities",
+            "`SEC-030` is todo — Back SSH agent and Git credentials with secrets"
+          ]
+        },
+        {
+          "id": "V1-G27",
+          "title": "Desktop and UI features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`ACC-011` is todo — Define and implement the focus order and keyboard traversal contract",
+            "`APP-012` is todo — Build a grant log viewer for Capability audit events",
+            "`GFX-050` is todo — Report explicit degraded recovery to users and clients after GPU reset",
+            "`TXT-023` is todo — Make the text service restartable with client rebind and cache regeneration",
+            "`UIP-039` is todo — Build keyboard focus traversal, focus ring and access keys across all widgets"
+          ]
+        },
+        {
+          "id": "V1-G28",
+          "title": "Hardware, media and networking features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`AUD-011` is todo — Convert sample rate, format and Channel layout on mix",
+            "`HW-025` is todo — Define and test user-space driver degradation when IOMMU is absent",
+            "`LAB-012` is todo — Install Linux comparison baselines on lab Reference machines",
+            "`NET-013` is todo — Export link, route and network Capability state to os inspect",
+            "`NET-016` is todo — Expose network namespace isolation as a Capability-scoped primitive",
+            "`NET-017` is todo — Provide sshd remote shell via the Linux Personality with listen Capability",
+            "`PWR-013` is todo — Implement the Power Component with suspend and shutdown Operations",
+            "`PWR-015` is todo — Expose battery, thermal, inhibit and suspend state through inspect"
+          ]
+        },
+        {
+          "id": "V1-G29",
+          "title": "Compatibility features complete for V1",
+          "satisfied": false,
+          "reasons": [
+            "`LNX-027` is todo — Capture Linux core dumps and Crashpad minidumps",
+            "`LNX-035` is todo — Ship ia32 userland if emulation is retained",
+            "`VIRT-001` is todo — Publish JakeOS guest images for common hypervisors"
+          ]
+        },
+        {
+          "id": "V1-G30",
+          "title": "Delivery, tooling and governance features complete for V1",
+          "satisfied": false,
+          "reasons": [
             "`BLD-036` is todo — Measure kernel and userspace coverage and Gate security-critical paths",
-            "`BLD-050` is todo — Spike Component and ResourceDomain isolation for parallel tests",
-            "`BEN-028` is todo — Publish developer onboarding time",
+            "`BLD-046` is todo — Pin the userspace rustc and rustup profile for self-host builds",
             "`DOC-006` is todo — Add full-text search to the documentation site",
-            "`DOC-011` is todo — Publish architecture, Decision and glossary records",
-            "`DOC-013` is todo — Write the os CLI reference from command metadata",
-            "`GOV-026` is todo — Decide vendor NDA policy for hardware documentation",
             "`GOV-027` is todo — Enable independent Verification for every done V1 and later Task",
             "`GOV-028` is todo — Implement roadmap stale, slipped, history and dropped reasons",
-            "`GOV-033` is todo — Document kernel-fork maintenance staffing and process",
-            "`GOV-034` is todo — Register domains, namespaces and handles under the entity"
+            "`GOV-029` is todo — Add See also citations so gates can name LATER tasks",
+            "`INS-005` is todo — Run scripted install on the Intel laptop and AMD desktop"
           ]
         }
       ]
@@ -61080,7 +61314,6 @@
           "title": "V2 decisions and roll-up",
           "satisfied": false,
           "reasons": [
-            "`GOV-048` is todo — Record the V2 exit review",
             "`HW-003` is todo — Decide the V1 through V2 Reference machine list and security criteria",
             "`WIN-036` is todo — Decide how Wine and Proton map onto native Objects",
             "`GFX-063` is todo — Decide the HDR and colour management pipeline",
@@ -61090,103 +61323,205 @@
             "`WIN-002` is todo — Decide the kernel-level anti-cheat policy",
             "`HW-042` is todo — Decide 1.0 sensor support per device class in or out of scope",
             "`GOV-045` is todo — Author the V2 Milestone gates mapping the desktop preview",
-            "`KRN-043` is todo — Publish the architecture maintenance plan with build-only ARM64 and RISC-V CI",
-            "`KRN-044` is todo — Prune the kernel attack Surface for the three target machines",
-            "`KRN-046` is todo — Write the hardware enablement process for new devices after divergence",
-            "`KRN-047` is todo — Write the Phase D playbook for adapting upstream driver improvements",
-            "`KRN-049` is todo — Add kernel config fragments for the Intel and AMD target laptops",
             "`CAP-045` is todo — Study hardware provenance tracking for Capability audit",
             "`IPC-056` is todo — Decide how Capabilities and handles cross a VM transport boundary",
-            "`IPC-058` is todo — Build the virtio VM transport from a native guest Component to a host service",
             "`MEM-045` is todo — Decide encrypted MemoryObject key ownership and hardware encryption",
-            "`MEM-047` is todo — Add a discardable property and pressure-driven release of MemoryObjects",
-            "`MEM-048` is todo — Implement the encrypted MemoryObject property and key-ownership semantics",
-            "`SCH-050` is todo — Steer interrupt affinity from LowLatency domain CPU policy",
-            "`SVC-037` is todo — Add timezone auto-detection via the location Capability and the time settings Interface",
-            "`STO-057` is todo — Build disk health: TRIM/discard policy and SMART monitoring with notifications",
-            "`STO-058` is todo — Support exFAT and FAT32 removable media with formatting and known limitations",
-            "`STO-064` is todo — Schedule checksum scrubs and report corruption to the user with recovery actions",
             "`STO-066` is todo — Define and re-evaluate the criteria that would justify a native filesystem or Object store",
             "`STO-068` is todo — Decide how user data maps across native, Linux home and Windows profile views",
-            "`STO-069` is todo — Implement Trash and undo-delete on storage snapshots",
-            "`GFX-066` is todo — Enforce ResourceDomain GPU time and memory budgets",
-            "`GFX-072` is todo — Support render offload selection and mux switching across both personalities",
-            "`GFX-076` is todo — Render on one GPU and scan out on another",
-            "`GFX-078` is todo — Implement night-light colour temperature mode",
-            "`UIP-046` is todo — Provide locale-aware date, number, currency and collation APIs to native apps",
-            "`UIP-048` is todo — Implement right-to-left layout mirroring as a toolkit property",
-            "`UIP-049` is todo — Ship basic touchscreen and touchpad gestures in toolkit and routing",
-            "`TXT-024` is todo — Ship CLDR, tzdata and Unicode data as a Package updating independently of SystemGenerations",
-            "`TXT-025` is todo — Render emoji ZWJ sequences and COLRv1 colour glyphs",
             "`TXT-027` is todo — Decide hinting, subpixel positioning and gamma policy across scale factors",
-            "`TXT-037` is todo — Run Unicode and text-rendering conformance suites as a CI Gate",
-            "`ACC-018` is todo — Benchmark focus-change to speech-onset and tree update latency",
-            "`ACC-022` is todo — Make the screen reader an accessibility client of semantic interfaces",
-            "`SEM-014` is todo — Publish Semantic Interface registry lookup latency",
-            "`SEM-015` is todo — Publish Automation rule dispatch latency",
-            "`SEM-016` is todo — Prove cross-app integration over Semantic interfaces",
             "`LNX-062` is todo — Decide incremental native-Interface adoption",
-            "`LNX-072` is todo — Implement the incremental native-Interface bridge",
             "`LNX-087` is todo — Evaluate Flatpak and Snap as Personality Package sources",
-            "`WIN-025` is todo — Map Credential Manager and DPAPI onto the native secrets service",
             "`WIN-033` is todo — Decide how prefix installers become installed applications",
-            "`WIN-037` is todo — Bridge OLE drag-and-drop onto native Capability-granting drops",
-            "`ENV-027` is todo — Rebuild a development environment when environment.yaml changes",
-            "`WASM-015` is todo — Host Wasm automation modules over typed Interface",
-            "`WASM-017` is todo — Run portable services as supervised Wasm Components",
-            "`WASM-018` is todo — Ship architecture-independent Wasm Component Packages",
             "`SEC-035` is todo — Study secure enclaves as a confidentiality home",
-            "`SEC-037` is todo — Add hardware-enforcement hooks in Capability checks",
-            "`SEC-040` is todo — Support passphrase change and cryptographic erase",
-            "`SEC-041` is todo — Expose coarse and precise location as Capabilities",
-            "`SEC-049` is todo — Provide passphrase-only unlock without a TPM",
-            "`SEC-051` is todo — Reseal TPM-bound keys across firmware updates",
-            "`NET-022` is todo — Implement airplane-mode that drops radio Capabilities without tearing profiles",
-            "`NET-025` is todo — Deliver NIC DMA receive directly into a MemoryObject",
-            "`NET-026` is todo — Implement split DNS per Interface and per VPN tunnel",
             "`AUD-016` is todo — Decide which audio device classes run in user space",
-            "`AUD-018` is todo — Host USB audio in user space within the latency budget",
             "`AUD-019` is todo — Measure user-space audio-driver latency against ALSA",
-            "`MED-011` is todo — Ship a first-party Camera capture application",
-            "`MED-012` is todo — Instrument Camera cold start for the B-045 harness",
-            "`MED-019` is todo — Restart the media and Camera services with client rebind",
             "`HW-044` is todo — Decide public vendor priorities for purchase guidance",
-            "`HW-045` is todo — Enable basic touchscreen and pen digitizer as InputDevice Capabilities",
-            "`HW-048` is todo — Enable iGPU plus dGPU mux and render-offload on hybrid laptops",
-            "`HW-054` is todo — Implement in-scope sensor classes as user-space Components",
+            "`APP-054` is todo — Decide status-tray policy: StatusNotifierItem compatibility versus none",
+            "`GOV-042` is todo — Decide governance of the standard Semantic Interface catalogue",
+            "`GOV-043` is todo — Decide the Workstream-split procedure at the size warning",
+            "`APP-055` is todo — Prototype Capability-scoped desktop search without ambient home access",
+            "`IPC-055` is todo — Decide how the IDL language itself is versioned"
+          ]
+        },
+        {
+          "id": "V2-G21",
+          "title": "Standing lints and continuous checks in force",
+          "satisfied": false,
+          "reasons": [
+            "`BLD-053` is todo — Rehearse disaster recovery of the CI and lab pipeline",
+            "`BLD-057` is todo — Run a QEMU-hosted JakeOS CI runner as the self-host step",
+            "`BLD-058` is todo — Run CI on the three V2 target machines",
+            "`BLD-059` is todo — Run userspace sanitizer profiles for native Components in nightly CI",
+            "`BLD-060` is todo — Provision GPU-equipped nightly capacity for the W1 Corpus",
+            "`GFX-066` is todo — Enforce ResourceDomain GPU time and memory budgets",
+            "`KRN-043` is todo — Publish the architecture maintenance plan with build-only ARM64 and RISC-V CI",
+            "`LAB-019` is todo — Run Vulkan CTS and compositor tests nightly on lab GPUs",
+            "`TXT-037` is todo — Run Unicode and text-rendering conformance suites as a CI Gate"
+          ]
+        },
+        {
+          "id": "V2-G22",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`GOV-046` is todo — Publish vendor NDA policy for hardware documentation",
+            "`GOV-048` is todo — Record the V2 exit review",
             "`HW-056` is todo — Document the three coexisting driver classes and per-class residency",
-            "`HW-058` is todo — Enable multi-finger touchpad gestures on the reference laptops",
-            "`PWR-016` is todo — Attribute energy use to ResourceDomain for Settings",
-            "`PWR-018` is todo — Implement display brightness policy including ambient-light option",
-            "`PWR-020` is todo — Deliver the accepted hibernation policy on V2 laptops",
+            "`INS-012` is todo — Write the installer and updater threat model",
+            "`KRN-046` is todo — Write the hardware enablement process for new devices after divergence",
+            "`KRN-047` is todo — Write the Phase D playbook for adapting upstream driver improvements",
+            "`SDK-073` is todo — Document the C++ SDK binding"
+          ]
+        },
+        {
+          "id": "V2-G23",
+          "title": "Publish-only benchmark series published",
+          "satisfied": false,
+          "reasons": [
+            "`ACC-018` is todo — Benchmark focus-change to speech-onset and tree update latency",
+            "`AUD-017` is todo — Measure Bluetooth audio latency on the native path",
+            "`BEN-036` is todo — Publish ComputeDevice dispatch overhead",
+            "`BEN-038` is todo — Publish desktop-essentials latency suite",
+            "`BEN-040` is todo — Publish disk-encryption overhead on NVMe",
+            "`BEN-045` is todo — Publish Zero-copy NIC-to-GPU copies per stage",
+            "`HET-018` is todo — Measure ComputeDevice dispatch overhead against Vulkan and Rayon",
+            "`MED-012` is todo — Instrument Camera cold start for the B-045 harness",
+            "`MED-028` is todo — Publish the Zero-copy media path harness for B-046",
+            "`SCH-044` is todo — Benchmark Interactive and Deadline latency under a scripted mixed desktop workload",
+            "`SEM-014` is todo — Publish Semantic Interface registry lookup latency",
+            "`SEM-015` is todo — Publish Automation rule dispatch latency"
+          ]
+        },
+        {
+          "id": "V2-G24",
+          "title": "Native platform features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`ENV-024` is todo — Attach the native Terminal and Editor to a development environment",
+            "`ENV-027` is todo — Rebuild a development environment when environment.yaml changes",
+            "`ENV-029` is todo — Expose a semantic startEnvironment action for automation",
+            "`IPC-058` is todo — Build the virtio VM transport from a native guest Component to a host service",
+            "`KRN-044` is todo — Prune the kernel attack Surface for the three target machines",
+            "`KRN-049` is todo — Add kernel config fragments for the Intel and AMD target laptops",
+            "`MEM-047` is todo — Add a discardable property and pressure-driven release of MemoryObjects",
+            "`MEM-048` is todo — Implement the encrypted MemoryObject property and key-ownership semantics",
+            "`OBS-046` is todo — Derive per-display frame deadline-miss metrics across multi-monitor and VRR",
+            "`OBS-047` is todo — Detect hung Tasks and wait cycles from waiting-on relationships and dump them",
+            "`SCH-050` is todo — Steer interrupt affinity from LowLatency domain CPU policy",
             "`SDK-064` is todo — Render flame graphs by TaskGroup exportable with traces",
             "`SDK-066` is todo — Invoke Semantic interfaces from the os CLI",
             "`SDK-067` is todo — Implement os help serving offline on-device SDK documentation",
             "`SDK-068` is todo — Implement the os profile command over the native profiler",
+            "`SDK-070` is todo — Run the same SDK integration tests through C and C++",
             "`SDK-071` is todo — Attribute GPU samples to Task and Component",
+            "`SEM-016` is todo — Prove cross-app integration over Semantic interfaces",
+            "`SEM-024` is todo — Ship Extractor and Notes fixture Components",
+            "`SVC-037` is todo — Add timezone auto-detection via the location Capability and the time settings Interface",
+            "`WASM-015` is todo — Host Wasm automation modules over typed Interface",
+            "`WASM-017` is todo — Run portable services as supervised Wasm Components",
+            "`WASM-018` is todo — Ship architecture-independent Wasm Component Packages"
+          ]
+        },
+        {
+          "id": "V2-G25",
+          "title": "Storage and package features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`PKG-074` is todo — Expose a typed SystemGeneration management Interface for settings and rollback UI",
+            "`STO-057` is todo — Build disk health: TRIM/discard policy and SMART monitoring with notifications",
+            "`STO-058` is todo — Support exFAT and FAT32 removable media with formatting and known limitations",
+            "`STO-064` is todo — Schedule checksum scrubs and report corruption to the user with recovery actions",
+            "`STO-069` is todo — Implement Trash and undo-delete on storage snapshots"
+          ]
+        },
+        {
+          "id": "V2-G26",
+          "title": "Security and boot features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`SEC-037` is todo — Add hardware-enforcement hooks in Capability checks",
+            "`SEC-040` is todo — Support passphrase change and cryptographic erase",
+            "`SEC-041` is todo — Expose coarse and precise location as Capabilities",
+            "`SEC-049` is todo — Provide passphrase-only unlock without a TPM",
+            "`SEC-051` is todo — Reseal TPM-bound keys across firmware updates"
+          ]
+        },
+        {
+          "id": "V2-G27",
+          "title": "Desktop and UI features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`ACC-022` is todo — Make the screen reader an accessibility client of semantic interfaces",
             "`APP-024` is todo — Build clipboard history with sensitive-item exclusion",
             "`APP-028` is todo — Build the emoji picker as an input-method protocol client",
             "`APP-034` is todo — Build the media session shell controls bound to media keys",
             "`APP-035` is todo — Build power and battery UX mapped to ResourceDomain energy policy",
             "`APP-042` is todo — Build on-screen display overlays for volume, brightness and lock",
+            "`APP-044` is todo — Build the Settings UI for named global shortcut bindings",
             "`APP-046` is todo — Build the status-tray host according to the tray Decision",
             "`APP-047` is todo — Build the running-application update prompt for Generation switches",
             "`APP-049` is todo — Build the sandboxed native WebView Component",
-            "`APP-054` is todo — Decide status-tray policy: StatusNotifierItem compatibility versus none",
-            "`BLD-053` is todo — Rehearse disaster recovery of the CI and lab pipeline",
-            "`BLD-057` is todo — Run a QEMU-hosted JakeOS CI runner as the self-host step",
-            "`BLD-059` is todo — Run userspace sanitizer profiles for native Components in nightly CI",
-            "`LAB-019` is todo — Run Vulkan CTS and compositor tests nightly on lab GPUs",
-            "`BEN-036` is todo — Publish ComputeDevice dispatch overhead",
-            "`BEN-038` is todo — Publish desktop-essentials latency suite",
-            "`BEN-040` is todo — Publish disk-encryption overhead on NVMe",
-            "`BEN-045` is todo — Publish Zero-copy NIC-to-GPU copies per stage",
+            "`GFX-059` is todo — Bring up the AMD APU internal panel and external displays on the AMD laptop",
+            "`GFX-072` is todo — Support render offload selection and mux switching across both personalities",
+            "`GFX-076` is todo — Render on one GPU and scan out on another",
+            "`GFX-078` is todo — Implement night-light colour temperature mode",
+            "`TXT-024` is todo — Ship CLDR, tzdata and Unicode data as a Package updating independently of SystemGenerations",
+            "`TXT-025` is todo — Render emoji ZWJ sequences and COLRv1 colour glyphs",
+            "`UIP-046` is todo — Provide locale-aware date, number, currency and collation APIs to native apps",
+            "`UIP-048` is todo — Implement right-to-left layout mirroring as a toolkit property",
+            "`UIP-049` is todo — Ship basic touchscreen and touchpad gestures in toolkit and routing"
+          ]
+        },
+        {
+          "id": "V2-G28",
+          "title": "Hardware, media and networking features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`AUD-015` is todo — Apply ducking and exclusive-mode audio focus",
+            "`AUD-018` is todo — Host USB audio in user space within the latency budget",
+            "`HW-045` is todo — Enable basic touchscreen and pen digitizer as InputDevice Capabilities",
+            "`HW-048` is todo — Enable iGPU plus dGPU mux and render-offload on hybrid laptops",
+            "`HW-049` is todo — Enumerate gamepads as Capability<InputDevice> for native and personalities",
+            "`HW-054` is todo — Implement in-scope sensor classes as user-space Components",
+            "`HW-058` is todo — Enable multi-finger touchpad gestures on the reference laptops",
+            "`LAB-015` is todo — Install Windows dual-boot baselines on the AMD desktop",
+            "`LAB-018` is todo — Procure and rack V2 target machines, dock and extra displays",
+            "`MED-011` is todo — Ship a first-party Camera capture application",
+            "`MED-014` is todo — Integrate Camera encode with the audio echo-cancellation path",
+            "`MED-015` is todo — Isolate container demux Components for MP4 WebM and Matroska",
+            "`MED-019` is todo — Restart the media and Camera services with client rebind",
+            "`MED-021` is todo — Implement media clock and audio-video synchronization",
+            "`NET-022` is todo — Implement airplane-mode that drops radio Capabilities without tearing profiles",
+            "`NET-023` is todo — Fuzz NetworkConnection Connect, Accept, Send and Receive without panic",
+            "`NET-025` is todo — Deliver NIC DMA receive directly into a MemoryObject",
+            "`NET-026` is todo — Implement split DNS per Interface and per VPN tunnel",
+            "`PWR-016` is todo — Attribute energy use to ResourceDomain for Settings",
+            "`PWR-018` is todo — Implement display brightness policy including ambient-light option",
+            "`PWR-020` is todo — Deliver the accepted hibernation policy on V2 laptops"
+          ]
+        },
+        {
+          "id": "V2-G29",
+          "title": "Compatibility features complete for V2",
+          "satisfied": false,
+          "reasons": [
+            "`LNX-072` is todo — Implement the incremental native-Interface bridge",
+            "`LNX-074` is todo — Expose SDL game-controller evdev to Linux games",
+            "`LNX-075` is todo — Present HDR and VRR to Linux fullscreen applications",
+            "`VIRT-004` is todo — Provide OVMF firmware and TPM emulation for Windows guests",
+            "`WIN-025` is todo — Map Credential Manager and DPAPI onto the native secrets service",
+            "`WIN-037` is todo — Bridge OLE drag-and-drop onto native Capability-granting drops",
+            "`WIN-046` is todo — Launch Steam Proton titles through the Windows Personality"
+          ]
+        },
+        {
+          "id": "V2-G30",
+          "title": "Delivery, tooling and governance features complete for V2",
+          "satisfied": false,
+          "reasons": [
             "`DOC-018` is todo — Package documentation into the SystemGeneration store",
             "`DOC-019` is todo — Ship man-page equivalent docs inside the Linux Personality",
-            "`DOC-020` is todo — Ship offline os help from the generated docs Corpus",
-            "`GOV-042` is todo — Decide governance of the standard Semantic Interface catalogue",
-            "`GOV-043` is todo — Decide the Workstream-split procedure at the size warning",
-            "`GOV-046` is todo — Publish vendor NDA policy for hardware documentation"
+            "`DOC-020` is todo — Ship offline os help from the generated docs Corpus"
           ]
         }
       ]
@@ -61427,7 +61762,6 @@
           "title": "V3 decisions and roll-up",
           "satisfied": false,
           "reasons": [
-            "`GOV-069` is todo — Record the V3 exit review",
             "`INS-008` is todo — Decide installer disk layout, wipe and dual-boot policy",
             "`INS-007` is todo — Decide installer encryption default with opt-out",
             "`REL-004` is todo — Define update channels and promotion criteria",
@@ -61436,80 +61770,180 @@
             "`BOOT-031` is todo — Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both",
             "`REL-028` is todo — Define repository curation and free versus non-free channels",
             "`SEC-042` is todo — Decide 1.0 multi-user and per-user encryption scope",
+            "`CAP-047` is todo — Decide how Capability unforgeability survives machine boundaries",
+            "`STO-072` is todo — Decide whether BitLocker volumes are readable via user-space dislocker-style support",
+            "`GFX-089` is todo — Decide whether RDP/VNC clients and a remote-desktop server are in 1.0 scope",
+            "`WIN-058` is todo — Decide anti-cheat vendor engagement and required legal agreements",
+            "`VIRT-014` is todo — Evaluate booting a physical Windows partition as a VM",
+            "`SEC-066` is todo — Research a WebAuthn platform authenticator",
+            "`NET-029` is todo — Decide whether 1.0 ships an SMB server and where it is hosted",
+            "`INS-023` is todo — Decide Linux home adopt-in-place versus copy",
+            "`INS-024` is todo — Decide dual-boot shared data partition format",
+            "`INS-044` is todo — Spike Wi-Fi credential import from NetworkManager and Windows",
+            "`REL-026` is todo — Declare fleet-management and paid-app non-goals for 1.0",
+            "`REL-030` is todo — Decide whether releases use a transparency log",
+            "`GOV-049` is todo — Decide redistribution licensing for Personality software wrappers",
+            "`GOV-050` is todo — Assess export-control and cryptography distribution obligations",
+            "`GOV-052` is todo — Decide Open Invention Network membership and a patent pledge",
+            "`GOV-053` is todo — Decide redistribution policy for third-party Linux and Windows software"
+          ]
+        },
+        {
+          "id": "V3-G21",
+          "title": "Standing lints and continuous checks in force",
+          "satisfied": false,
+          "reasons": [
+            "`BLD-061` is todo — Produce nightly images for the alpha Channel",
+            "`BLD-064` is todo — Migrate CI runners to bare-metal JakeOS",
+            "`BLD-069` is todo — Run nightly CI on all six Tier 1 machines",
+            "`BLD-070` is todo — Emit SLSA-style build provenance from hermetic CI",
+            "`MED-031` is todo — Fuzz isolated decoder Components in continuous CI",
+            "`SDK-076` is todo — Integrate os publish with GitHub Actions and GitLab CI",
+            "`UIP-054` is todo — Publish UI protocol conformance suite for third-party toolkits and bridges"
+          ]
+        },
+        {
+          "id": "V3-G22",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`CAP-046` is todo — Document every Capability Object type and right for the Layer 1 reference",
+            "`CMP-050` is todo — Complete the Component L1 reference documentation",
+            "`DOC-027` is todo — Write the administrator guide",
+            "`DOC-029` is todo — Write the public contribution guide",
+            "`DOC-031` is todo — Write migration guides for users and SDK porters",
+            "`GOV-057` is todo — Stand up community channels with moderation and archives",
+            "`GOV-058` is todo — File the EAR encryption-source notice and classification",
+            "`GOV-069` is todo — Record the V3 exit review",
+            "`HET-022` is todo — Publish Layer 1 reference pages for ComputeDevice and ComputeQueue",
+            "`INS-039` is todo — Write public install and recovery procedures for strangers",
+            "`IPC-063` is todo — Review that Interfaces permit a remote transport with surfaced latency and failure",
             "`KRN-051` is todo — Establish the process for adopting upstream architecture improvements",
             "`KRN-053` is todo — Establish selective adoption of upstream mm, scheduler and subsystem patches",
-            "`BOOT-039` is todo — Expose SystemGenerations to foreign bootloaders via BLS entries and an os-release descriptor",
-            "`BOOT-041` is todo — Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder",
-            "`CAP-047` is todo — Decide how Capability unforgeability survives machine boundaries",
-            "`IPC-063` is todo — Review that Interfaces permit a remote transport with surfaced latency and failure",
-            "`STO-072` is todo — Decide whether BitLocker volumes are readable via user-space dislocker-style support",
-            "`STO-074` is todo — Unlock and mount LUKS, ext4, Btrfs and XFS volumes from other Linux installs",
-            "`GFX-089` is todo — Decide whether RDP/VNC clients and a remote-desktop server are in 1.0 scope",
-            "`ACC-027` is todo — Add braille display output with BRLTTY-equivalent drivers to the screen reader",
+            "`PKG-085` is todo — Write the public packaging guide for native and Personality applications",
+            "`REL-052` is todo — Write and rehearse supply-chain incident runbooks",
+            "`TSK-050` is todo — Write Layer 1 reference pages for every Operation kind, result and completion record",
+            "`WIN-065` is todo — Write the Windows Personality threat addendum for the external audit",
+            "`WIN-070` is todo — Define the W2 Corpus of 150 titles and scenario scripts"
+          ]
+        },
+        {
+          "id": "V3-G23",
+          "title": "Publish-only benchmark series published",
+          "satisfied": false,
+          "reasons": [
+            "`BEN-052` is todo — Publish update success rate"
+          ]
+        },
+        {
+          "id": "V3-G24",
+          "title": "Native platform features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`CMP-049` is todo — Add fuzz targets for the Component spawn, exit and code-mapping Surface",
+            "`ENV-032` is todo — Publish environment runtimes as third-party Packages",
+            "`HET-024` is todo — Fuzz GPUDispatch submission and preference decoding without panic",
+            "`HET-025` is todo — Integrate dispatch preferences with scheduler intent and frequency",
+            "`OBS-051` is todo — Record crash-free session and kernel panic metrics locally for opt-in telemetry",
+            "`SCH-055` is todo — Validate intent and domain benchmarks across the six Tier 1 machines",
+            "`SDK-079` is todo — Implement os bisect across SystemGenerations",
             "`SEM-037` is todo — Fuzz the registry and Automation rule engine",
             "`SEM-038` is todo — Record Automation rule changes as system history events",
-            "`WIN-057` is todo — Adopt existing Steam, Wine, Proton and Bottles libraries in place",
-            "`WIN-058` is todo — Decide anti-cheat vendor engagement and required legal agreements",
-            "`WIN-060` is todo — Bridge Wine IMM32 and TSF onto the native input-method host",
-            "`WIN-066` is todo — Bound Windows services, tasks and autostart to Component lifecycle",
-            "`VIRT-014` is todo — Evaluate booting a physical Windows partition as a VM",
-            "`ENV-032` is todo — Publish environment runtimes as third-party Packages",
-            "`HET-025` is todo — Integrate dispatch preferences with scheduler intent and frequency",
             "`WASM-019` is todo — Debug Wasm Components with source-level breakpoints",
+            "`WASM-020` is todo — Publish WASI subset conformance for third-party Components"
+          ]
+        },
+        {
+          "id": "V3-G25",
+          "title": "Storage and package features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`PKG-083` is todo — Implement delta Object transfer for repository updates",
+            "`PKG-088` is todo — Build `os store verify` and repair for corrupted generations in recovery",
+            "`STO-074` is todo — Unlock and mount LUKS, ext4, Btrfs and XFS volumes from other Linux installs"
+          ]
+        },
+        {
+          "id": "V3-G26",
+          "title": "Security and boot features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`BOOT-039` is todo — Expose SystemGenerations to foreign bootloaders via BLS entries and an os-release descriptor",
+            "`BOOT-041` is todo — Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder",
             "`SEC-054` is todo — Enrol enterprise CAs into the trust store",
             "`SEC-056` is todo — Support FIDO2 keys for disk unlock and login",
             "`SEC-057` is todo — Add fingerprint login through pluggable authenticators",
-            "`SEC-059` is todo — Lock the Session with hardware-backed secrets",
-            "`SEC-066` is todo — Research a WebAuthn platform authenticator",
-            "`NET-029` is todo — Decide whether 1.0 ships an SMB server and where it is hosted",
-            "`NET-030` is todo — Implement Wi-Fi hotspot and USB/Bluetooth tethering",
-            "`NET-031` is todo — Implement metered-connection flagging and MAC address randomisation",
-            "`NET-032` is todo — Implement system proxy configuration applied to native and Personality traffic",
-            "`NET-034` is todo — Implement wired 802.1X authentication on Ethernet profiles",
-            "`MED-031` is todo — Fuzz isolated decoder Components in continuous CI",
-            "`MED-032` is todo — Enable hardware video decode on the NVIDIA Tier 1 desktop",
-            "`MED-033` is todo — Restrict patent-encumbered codecs to hardware decode Packages",
+            "`SEC-059` is todo — Lock the Session with hardware-backed secrets"
+          ]
+        },
+        {
+          "id": "V3-G27",
+          "title": "Desktop and UI features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`ACC-027` is todo — Add braille display output with BRLTTY-equivalent drivers to the screen reader",
+            "`APP-057` is todo — Build the Settings About panel with notices and license texts",
+            "`APP-059` is todo — Build the automation-rule editor over Semantic interfaces",
+            "`APP-060` is todo — Build the backup and restore UI over snapshot-based user-data backup",
+            "`APP-062` is todo — Build the migration assistant UI over the installer import engine"
+          ]
+        },
+        {
+          "id": "V3-G28",
+          "title": "Hardware, media and networking features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`HW-062` is todo — Bring up one additional Intel laptop and one additional AMD laptop",
             "`HW-063` is todo — Enable fingerprint readers as Device objects for the identity service",
             "`HW-069` is todo — Support MTP and PTP phone-to-desktop transfer for Android and iOS",
             "`HW-073` is todo — Enable SD and MMC readers as Capability-gated removable storage",
             "`HW-074` is todo — Enable CCID smartcard readers as Device objects for authentication",
-            "`SDK-076` is todo — Integrate os publish with GitHub Actions and GitLab CI",
-            "`SDK-079` is todo — Implement os bisect across SystemGenerations",
-            "`APP-057` is todo — Build the Settings About panel with notices and license texts",
-            "`APP-059` is todo — Build the automation-rule editor over Semantic interfaces",
-            "`APP-060` is todo — Build the backup and restore UI over snapshot-based user-data backup",
-            "`APP-062` is todo — Build the migration assistant UI over the installer import engine",
+            "`HW-075` is todo — Enable common USB classes on Tier 1 and record them in the driver registry",
+            "`HW-076` is todo — Expose USB mass-storage volumes through Capability-gated storage",
+            "`LAB-020` is todo — Procure assistive-technology hardware including a braille display",
+            "`LAB-021` is todo — Procure and rack the six-machine V3 Tier 1 lab fleet",
+            "`MED-032` is todo — Enable hardware video decode on the NVIDIA Tier 1 desktop",
+            "`MED-033` is todo — Restrict patent-encumbered codecs to hardware decode Packages",
+            "`NET-030` is todo — Implement Wi-Fi hotspot and USB/Bluetooth tethering",
+            "`NET-031` is todo — Implement metered-connection flagging and MAC address randomisation",
+            "`NET-032` is todo — Implement system proxy configuration applied to native and Personality traffic",
+            "`NET-033` is todo — Verify Wi-Fi on community hardware via inherited drivers and the HCL probe",
+            "`NET-034` is todo — Implement wired 802.1X authentication on Ethernet profiles",
+            "`PWR-026` is todo — Verify suspend, battery and thermal on V3 Tier 1 machines"
+          ]
+        },
+        {
+          "id": "V3-G29",
+          "title": "Compatibility features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`VIRT-011` is todo — Implement virtio-gpu acceleration for Linux and Windows guests",
+            "`WIN-057` is todo — Adopt existing Steam, Wine, Proton and Bottles libraries in place",
+            "`WIN-060` is todo — Bridge Wine IMM32 and TSF onto the native input-method host",
+            "`WIN-063` is todo — Capture Windows application crashes as native crash records",
+            "`WIN-066` is todo — Bound Windows services, tasks and autostart to Component lifecycle"
+          ]
+        },
+        {
+          "id": "V3-G30",
+          "title": "Delivery, tooling and governance features complete for V3",
+          "satisfied": false,
+          "reasons": [
+            "`BLD-068` is todo — Gate releases on complete SBOMs for every SystemGeneration",
+            "`DOC-025` is todo — Set up the documentation translation pipeline and string freeze",
             "`INS-017` is todo — Share Bluetooth pairing keys across dual-boot",
             "`INS-018` is todo — Import browser bookmarks, history, passwords and extensions",
             "`INS-019` is todo — Ship a built-in bug reporter bundling traces, inspect output and Generation ID",
-            "`INS-023` is todo — Decide Linux home adopt-in-place versus copy",
-            "`INS-024` is todo — Decide dual-boot shared data partition format",
             "`INS-033` is todo — Import Linux home directories with per-item destination choice",
             "`INS-036` is todo — Record each migration import as a restorable history event",
             "`INS-038` is todo — Support offline install media and local repository mirrors",
             "`INS-042` is todo — Offer a dual-boot shared data partition at install",
-            "`INS-044` is todo — Spike Wi-Fi credential import from NetworkManager and Windows",
+            "`INS-046` is todo — Let the user pick and switch update channels",
             "`INS-048` is todo — Import Wi-Fi credentials during migration when feasible",
             "`INS-049` is todo — Import Windows user-profile data into native Collections",
-            "`BLD-064` is todo — Migrate CI runners to bare-metal JakeOS",
-            "`BLD-068` is todo — Gate releases on complete SBOMs for every SystemGeneration",
-            "`BLD-070` is todo — Emit SLSA-style build provenance from hermetic CI",
-            "`LAB-020` is todo — Procure assistive-technology hardware including a braille display",
-            "`REL-026` is todo — Declare fleet-management and paid-app non-goals for 1.0",
-            "`REL-030` is todo — Decide whether releases use a transparency log",
             "`REL-031` is todo — Define release infrastructure as code with a status page",
             "`REL-045` is todo — Publish AppStream catalogue metadata for the repository",
-            "`REL-051` is todo — Publish SBOM and signed provenance for every release artifact",
-            "`REL-052` is todo — Write and rehearse supply-chain incident runbooks",
-            "`DOC-025` is todo — Set up the documentation translation pipeline and string freeze",
-            "`DOC-029` is todo — Write the public contribution guide",
-            "`DOC-031` is todo — Write migration guides for users and SDK porters",
-            "`GOV-049` is todo — Decide redistribution licensing for Personality software wrappers",
-            "`GOV-050` is todo — Assess export-control and cryptography distribution obligations",
-            "`GOV-052` is todo — Decide Open Invention Network membership and a patent pledge",
-            "`GOV-053` is todo — Decide redistribution policy for third-party Linux and Windows software",
-            "`GOV-057` is todo — Stand up community channels with moderation and archives",
-            "`GOV-058` is todo — File the EAR encryption-source notice and classification"
+            "`REL-051` is todo — Publish SBOM and signed provenance for every release artifact"
           ]
         }
       ]
@@ -61782,21 +62216,85 @@
           "title": "V4 roll-up complete",
           "satisfied": false,
           "reasons": [
-            "`GOV-077` is todo — Record the V4 exit review",
-            "`STO-078` is todo — Ship the 1.0 cloud storage providers with on-demand hydration",
-            "`VIRT-018` is todo — Boot an existing Windows dual-boot partition as a VM guest",
-            "`VIRT-019` is todo — Snapshot and clone VM disks via the Content-addressed store",
-            "`SEC-073` is todo — Ship a WebAuthn platform authenticator",
-            "`NET-036` is todo — Ship folder sharing to Windows and macOS clients per the SMB-server Decision",
             "`HW-082` is todo — Decide policy for third-party user-space drivers and firmware packages",
-            "`HW-085` is todo — Implement signed third-party driver and firmware Packages with revocation",
+            "`INS-051` is todo — Spike macOS Time Machine and APFS migration for 1.0"
+          ]
+        },
+        {
+          "id": "V4-G21",
+          "title": "Standing lints and continuous checks in force",
+          "satisfied": false,
+          "reasons": [
+            "`SDK-089` is todo — Lint deprecated Layer 3 APIs with a deprecation window",
+            "`SEC-072` is todo — Freeze the ambient-authority conformance suite",
+            "`SEM-040` is todo — Build the Semantic Interface catalog conformance suite"
+          ]
+        },
+        {
+          "id": "V4-G22",
+          "title": "Policy, guideline and reference documents published",
+          "satisfied": false,
+          "reasons": [
+            "`DOC-038` is todo — Write the C SDK guide",
+            "`GOV-072` is todo — Publish downstream and derivative-distribution policy",
+            "`GOV-077` is todo — Record the V4 exit review",
+            "`WIN-079` is todo — Define the W3 Corpus of 300 titles and scenario scripts"
+          ]
+        },
+        {
+          "id": "V4-G23",
+          "title": "Native platform features complete for V4",
+          "satisfied": false,
+          "reasons": [
+            "`ABI-048` is todo — Remove deprecated Layer 1 entry points before the freeze candidate",
+            "`SCH-056` is todo — Tune EnergyEfficient intent and energy policy on every Tier 1 laptop",
             "`SDK-090` is todo — Propose the native rustc target for upstream tier-3 inclusion",
-            "`INS-050` is todo — Restore a system history point onto different hardware",
-            "`INS-051` is todo — Spike macOS Time Machine and APFS migration for 1.0",
-            "`INS-053` is todo — Provide a supported uninstall that restores the previous bootloader",
+            "`SEM-041` is todo — Run Layer 2 evolution tests on catalog Semantic interfaces"
+          ]
+        },
+        {
+          "id": "V4-G24",
+          "title": "Storage and package features complete for V4",
+          "satisfied": false,
+          "reasons": [
+            "`STO-078` is todo — Ship the 1.0 cloud storage providers with on-demand hydration"
+          ]
+        },
+        {
+          "id": "V4-G25",
+          "title": "Security and boot features complete for V4",
+          "satisfied": false,
+          "reasons": [
+            "`SEC-073` is todo — Ship a WebAuthn platform authenticator"
+          ]
+        },
+        {
+          "id": "V4-G26",
+          "title": "Hardware, media and networking features complete for V4",
+          "satisfied": false,
+          "reasons": [
+            "`HW-085` is todo — Implement signed third-party driver and firmware Packages with revocation",
+            "`NET-036` is todo — Ship folder sharing to Windows and macOS clients per the SMB-server Decision"
+          ]
+        },
+        {
+          "id": "V4-G27",
+          "title": "Compatibility features complete for V4",
+          "satisfied": false,
+          "reasons": [
+            "`VIRT-018` is todo — Boot an existing Windows dual-boot partition as a VM guest",
+            "`VIRT-019` is todo — Snapshot and clone VM disks via the Content-addressed store"
+          ]
+        },
+        {
+          "id": "V4-G28",
+          "title": "Delivery, tooling and governance features complete for V4",
+          "satisfied": false,
+          "reasons": [
             "`BLD-072` is todo — Eliminate flaky tests or expire their quarantine",
-            "`REL-058` is todo — Operate a public transparency log for signing actions",
-            "`GOV-072` is todo — Publish downstream and derivative-distribution policy"
+            "`INS-050` is todo — Restore a system history point onto different hardware",
+            "`INS-053` is todo — Provide a supported uninstall that restores the previous bootloader",
+            "`REL-058` is todo — Operate a public transparency log for signing actions"
           ]
         }
       ]
@@ -62026,9 +62524,16 @@
             "`GOV-084` is todo — Record the 1.0 exit review",
             "`SEC-074` is todo — Declare formal certifications out of scope for 1.0",
             "`SEC-075` is todo — Declare multi-seat, guest, kiosk, and enterprise directory out of scope",
-            "`SDK-093` is todo — Restore opted-in application state through os restore",
             "`GOV-078` is todo — Decide OEM partnerships or hardware certification versus later",
             "`GOV-079` is todo — Decide whether to run a vulnerability reward program"
+          ]
+        },
+        {
+          "id": "1.0-G19",
+          "title": "Native platform features complete for 1.0",
+          "satisfied": false,
+          "reasons": [
+            "`SDK-093` is todo — Restore opted-in application state through os restore"
           ]
         }
       ]
@@ -62048,7 +62553,7 @@
     "dropped": 0,
     "weight_total": 6416,
     "weight_done": 1,
-    "gates_total": 138,
+    "gates_total": 187,
     "gates_satisfied": 0
   },
   "milestone_progress": {
@@ -62060,7 +62565,7 @@
       "dropped": 0,
       "weight_total": 136,
       "weight_done": 0,
-      "gates_total": 18,
+      "gates_total": 19,
       "gates_satisfied": 0
     },
     "LATER": {
@@ -62082,7 +62587,7 @@
       "dropped": 0,
       "weight_total": 673,
       "weight_done": 1,
-      "gates_total": 20,
+      "gates_total": 21,
       "gates_satisfied": 0
     },
     "V0.5": {
@@ -62093,7 +62598,7 @@
       "dropped": 0,
       "weight_total": 1161,
       "weight_done": 0,
-      "gates_total": 20,
+      "gates_total": 29,
       "gates_satisfied": 0
     },
     "V1": {
@@ -62104,7 +62609,7 @@
       "dropped": 0,
       "weight_total": 1631,
       "weight_done": 0,
-      "gates_total": 20,
+      "gates_total": 30,
       "gates_satisfied": 0
     },
     "V2": {
@@ -62115,7 +62620,7 @@
       "dropped": 0,
       "weight_total": 1412,
       "weight_done": 0,
-      "gates_total": 20,
+      "gates_total": 30,
       "gates_satisfied": 0
     },
     "V3": {
@@ -62126,7 +62631,7 @@
       "dropped": 0,
       "weight_total": 908,
       "weight_done": 0,
-      "gates_total": 20,
+      "gates_total": 30,
       "gates_satisfied": 0
     },
     "V4": {
@@ -62137,7 +62642,7 @@
       "dropped": 0,
       "weight_total": 429,
       "weight_done": 0,
-      "gates_total": 20,
+      "gates_total": 28,
       "gates_satisfied": 0
     }
   },

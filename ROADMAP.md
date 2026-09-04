@@ -8,18 +8,18 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/20 | 0% (1/217) | 0% | 35 | 181 |
-| V0.5 | Application model | next | 0/20 | 0% (0/436) | 0% | 13 | 423 |
-| V1 | Developer preview | planned | 0/20 | 0% (0/569) | 0% | 4 | 565 |
-| V2 | Desktop preview | planned | 0/20 | 0% (0/474) | 0% | 1 | 473 |
-| V3 | Public alpha | planned | 0/20 | 0% (0/315) | 0% | 0 | 315 |
-| V4 | Beta | planned | 0/20 | 0% (0/154) | 0% | 0 | 154 |
-| 1.0 | Public stable | planned | 0/18 | 0% (0/90) | 0% | 0 | 90 |
+| V0 | Execution model | active | 0/21 | 0% (1/217) | 0% | 35 | 181 |
+| V0.5 | Application model | next | 0/29 | 0% (0/436) | 0% | 13 | 423 |
+| V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 4 | 565 |
+| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 1 | 473 |
+| V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 0 | 315 |
+| V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
+| 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
 | LATER | Deferred work | planned | 0/0 | 0% (0/13) | 0% | 1 | 12 |
 
 ## Totals
 
-Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/138.
+Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 
 ## Workstream × milestone
 
