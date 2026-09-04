@@ -55,3 +55,4 @@
 | B-049 | NTFS and exFAT throughput, SMB client throughput, VM-guest application launch time and GPU fraction, and migration import time per 100 GB with verification. | defined | none |
 | B-050 | Time for a new developer to go from SDK download to a running hello component, and from a fresh clone to a booted QEMU image running the CI test harness. | defined | none |
 | B-051 | Aggregate check that no benchmark in this register regresses beyond the allowed band against the previous milestone's published report on any hardware entry in scope. | defined | none |
+| B-053 | Latency of Capability mint, attenuating derive, transfer over a Channel and revocation, measured per operation on the kernel fast path. | defined | none |

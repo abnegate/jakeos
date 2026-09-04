@@ -181,7 +181,7 @@ Native init (SVC-007). Package-backed launch (CMP-027). L0 corpus pass rate (LNX
 - Benchmarks: B-022
 - Invariants: I-061
 
-B-022 covers generation creation, switch and rollback. PKG owns creation and switch; this harness publishes the boot-menu rollback segment: wall time from confirmed previous-generation selection in the bootloader to the previous generation accepting a serial handshake. Numbers live only in the register and reports.
+B-022 covers generation creation, switch and rollback. PKG owns creation and switch; this harness publishes the boot-menu rollback segment: wall time from confirmed previous-generation selection in the bootloader to the previous generation accepting a serial handshake. Numbers live only in the register and reports. Required by V0.5-G16 (Compositor restart-to-rebound published).
 
 #### Out of scope
 Generation compose and switch timing (PKG-002, PKG-001). Register ownership (BEN). Methodology (Q-001).
@@ -392,7 +392,7 @@ Native init and supervisor (SVC-007). Store object GC (PKG-067). Unlock UI (BOOT
 - Risks: R-018
 - Invariants: I-022
 
-V0.5 must keep the previous kernel selectable at boot; 1.0 requires at least three previous SystemGenerations bootable. Per-generation images on the ESP need retention, garbage collection of entries no longer referenced, and a typed out-of-space error instead of a silent overwrite of the last-known-good slot.
+V0.5 must keep the previous kernel selectable at boot; 1.0 requires at least three previous SystemGenerations bootable. Per-generation images on the ESP need retention, garbage collection of entries no longer referenced, and a typed out-of-space error instead of a silent overwrite of the last-known-good slot. Required by 1.0-G06 (Update and rollback guarantee verified on every Tier 1 machine).
 
 #### Out of scope
 Generation object GC in the store (PKG-052). ESP partition policy (BOOT-029). Atomic bootloader binary updates (BOOT-025).
@@ -483,7 +483,7 @@ The bootloader decision (BOOT-008). Production ESP retention (BOOT-013). Shim (B
 - Benchmarks: B-032
 - Invariants: I-061
 
-Stand up harness `bench:boot-time` (B-032) from firmware handoff to the greeter accepting input, and separately to the first presented frame, on H-002 and H-004. V3 publishes per Tier 1 machine; the harness and method exist from V1 so later gates do not invent a metric.
+Stand up harness `bench:boot-time` (B-032) from firmware handoff to the greeter accepting input, and separately to the first presented frame, on H-002 and H-004. V3 publishes per Tier 1 machine; the harness and method exist from V1 so later gates do not invent a metric. Required by V3-G16 (Install, first-boot and update-apply time published).
 
 #### Out of scope
 Fleet publication (BEN-048). Unlock-to-desktop after greeter (B-033, APP). Pre-boot disk-unlock interval (BOOT-017).
@@ -844,7 +844,7 @@ Key hierarchy and custody (REL-002). Package repository client (PKG-064). Measur
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BOOT-018, LAB-018, PKG-073
+- Depends on: BOOT-018, LAB-018, PKG-073, SVC-033
 - Baseline: §30, §62
 - Benchmarks: B-035
 - Invariants: I-022
@@ -1304,7 +1304,7 @@ Installer copy (INS). Administrator guide chapters owned by DOC. Shim wiring (BO
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BOOT-034, BOOT-044, LAB-022
+- Depends on: BOOT-034, BOOT-044, LAB-022, BOOT-019
 - Baseline: §63
 - Threats: T-008
 - Invariants: I-074

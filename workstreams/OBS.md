@@ -568,6 +568,8 @@ TaskGroup object and cancel propagation (TSK). Hang detection from wait graphs (
 
 INV-1266 extends inspect support to platform primitives, not only kernel objects. Services register providers on the typed inspect Interface so V0.5 can inspect compositor objects and, with ACC, the accessibility tree via `os inspect`. OBS owns registration and schema; services own their records.
 
+<!-- covers: INV-1266 -->
+
 #### Out of scope
 Accessibility tree contents (ACC-003). Supervision-tree fields (SVC-010). Compositor internals (GFX).
 
@@ -767,7 +769,7 @@ Global enable (OBS-011). Access policy (OBS-014). CLI filters (OBS-037, SDK).
 - Threats: T-023
 - Invariants: I-077
 
-Implement the capture format chosen by OBS-029: panic, stack-overflow and OOM-abort exit causes from the supervisor, logical Task stacks, held Capabilities and the flight-recorder window. SDK debugger and INS crash-report client consume this record. Dumps never contain disk keys or unlocked secrets (I-077).
+Implement the capture format chosen by OBS-029: panic, stack-overflow and OOM-abort exit causes from the supervisor, logical Task stacks, held Capabilities and the flight-recorder window. SDK debugger and INS crash-report client consume this record. Dumps never contain disk keys or unlocked secrets (I-077). Required by V3-G04 (Crash reports are symbolicated and opted in).
 
 #### Out of scope
 Exit-cause semantics (CMP-008). Debugger UI (SDK-038). Consent and upload (INS-020). Intake (REL-038). Kernel panic artifacts (OBS-027).
@@ -971,7 +973,7 @@ Journal format (OBS-030). Crash-record schema (OBS-029). Access policy (OBS-024)
 - Depends on: OBS-006, IPC-042, IPC-035
 - Baseline: §12, §24, §66
 
-V1 freezes L2 evolution rules and ships SDK v1 tools that consume inspection data. Inspect and trace schemas become IDL-defined versioned Interfaces with the forward/backward test applied (§12, §66). L1 tracing event ABI surface S-010 stays prototyped until V4.
+V1 freezes L2 evolution rules and ships SDK v1 tools that consume inspection data. Inspect and trace schemas become IDL-defined versioned Interfaces with the forward/backward test applied (§12, §66). L1 tracing event ABI surface S-010 stays prototyped until V4. Required by V4-G02 (Layer 2 interface versions for 1.x are locked).
 
 #### Out of scope
 L2 evolution rules Decision (IPC-042). Version lock (OBS-052). CLI (SDK).
@@ -1148,6 +1150,8 @@ Personality syscall retention and translation (LNX). ptrace (LNX-049). Native AB
 
 Kernel sampling with attribution to Task and Component rather than threads, aggregated by TaskGroup, exportable alongside traces. The profiler UI and flame graphs are SDK; this task is the sample stream and attribution. GPU attribution waits for V2 (SDK-071).
 
+<!-- covers: EXTRA-032 -->
+
 #### Out of scope
 Profiler UI (SDK-046). Flame graphs (SDK-064). Export format Decision (SDK-053). GPU samples (SDK-071).
 
@@ -1200,7 +1204,7 @@ Intent class implementation (SCH). Audio path (AUD). V0 per-Task wakeup-to-run (
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: OBS-015, OBS-009, OBS-004
+- Depends on: OBS-015, OBS-009, OBS-004, OBS-037
 - Baseline: §24, §61, §64
 
 V1-G10: `os trace` exports a session that can be viewed offline. Implements OBS-015 including the schema registry external tools use to decode events. SDK-051 is the CLI verb.
@@ -1384,7 +1388,7 @@ B-019 harness (GFX-060, BEN). VRR output (GFX-088). Commit/queue/scanout schema 
 - Depends on: OBS-005, OBS-018, TSK-020, OBS-032
 - Baseline: §20, §21, §24
 
-V2 exit demands zero P0/P1 on the 40-scenario desktop script; hangs are the hardest class. Use waiting-on Operation data to detect cycles and deadline overruns and emit a failure event with a wait-graph snapshot plus flight-recorder dump.
+V2 exit demands zero P0/P1 on the 40-scenario desktop script; hangs are the hardest class. Use waiting-on Operation data to detect cycles and deadline overruns and emit a failure event with a wait-graph snapshot plus flight-recorder dump. Required by V2-G01 (Desktop shell passes the UX script on all three machines).
 
 #### Out of scope
 Wait-object recording (TSK-020, OBS-005). UX script (APP-048). Supervisor restart (SVC).
@@ -1499,7 +1503,7 @@ Privacy policy (GOV-061). Consent UI (INS). Telemetry intake (REL-042).
 - Risks: R-057
 - Threats: T-023
 
-V3-G13: opt-in telemetry with crash-free session rate measured. OBS defines and records the on-device counters for B-041 and B-042. Consent client is INS; intake and dashboards are REL. Collection follows GOV-055; opt-in only.
+V3-G13: opt-in telemetry with crash-free session rate measured. OBS defines and records the on-device counters for B-041 and B-042. Consent client is INS; intake and dashboards are REL. Collection follows GOV-055; opt-in only. Required by V3-G13 (Opt-in telemetry meets the crash-free target).
 
 #### Out of scope
 Consent (INS). Intake and dashboards (REL-042, REL-055). Policy (GOV-055).

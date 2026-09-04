@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | SVC-001 | Benchmark supervisor death-detection to ready latency for a restarted service | todo | blocked | S | SVC-015, SVC-008, Q-001, BEN-005, BEN-007, GFX-002, SVC-002, SDK-012 |
-| SVC-002 | Run the compositor and one other service under supervision and pass the restart Gate | todo | blocked | M | SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002 |
+| SVC-002 | Run the compositor and one other service under supervision and pass the restart Gate | todo | blocked | M | SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002, SVC-010 |
 | SVC-003 | Decide native init versus retained initramfs/systemd for early boot | todo | blocked | S | BOOT-004 |
 | SVC-004 | Decide how a service Component reports readiness and liveness to the supervisor | todo | blocked | S | SVC-014 |
 | SVC-005 | Decide restart budgets, strategies, backoff and escalation for supervised services | todo | blocked | S | SVC-014 |
@@ -49,8 +49,8 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| SVC-034 | Run the §32 restartable-service matrix on every target machine | todo | blocked | M | SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020 |
-| SVC-035 | Escalate exhausted shell or compositor restart budgets to the safe-mode session | todo | blocked | M | SVC-005, SVC-027 |
+| SVC-034 | Run the §32 restartable-service matrix on every target machine | todo | blocked | M | SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020, SVC-022 |
+| SVC-035 | Escalate exhausted shell or compositor restart budgets to the safe-mode session | todo | blocked | M | SVC-005, SVC-027, SVC-020 |
 | SVC-036 | Build the safe-mode session with settings, log export and `os restore` | todo | blocked | L | SVC-015, SVC-031, SVC-013, SVC-029, PKG-060 |
 | SVC-037 | Add timezone auto-detection via the location Capability and the time settings Interface | todo | blocked | S | SVC-032, SVC-025, SEC-041 |
 

@@ -129,6 +129,8 @@ SKU decision (HW-003). Kernel bring-up (HW-001). UEFI boot of the CI image (BOOT
 
 B-020 cannot be a software timestamp. This spike compares a photodiode against a high-speed camera on H-002, with HID injection and a calibration source, so LAB-001 installs a chosen fixture rather than both. The report is the method; BEN publishes results later.
 
+Required by V0.5-G15 (Input-to-photon latency published): LAB-001 installs the fixture this report chooses.
+
 #### Out of scope
 Fixture installation (LAB-001). B-020 publication (GFX-004, BEN-010). Visible-UI boundary (BEN).
 
@@ -156,6 +158,8 @@ Fixture installation (LAB-001). B-020 publication (GFX-004, BEN-010). Visible-UI
 - Decision: D-0170
 
 GAP-0141 needs an accepted choice of scheduler family and a recovery path that uses firmware boot-order fallback to a known-good SystemGeneration, so V1 nightly hardware jobs are not a manual queue. This Decision sits on the same Rung as the spike and before LAB-010. BLD consumes job results; it does not pick the scheduler.
+
+Required by the LAB scope: "runs a job scheduler that reserves machines, flashes images, returns results to CI and recovers an unbootable board onto a known-good SystemGeneration".
 
 #### Out of scope
 Scheduler deployment (LAB-010). CI tiers that submit jobs (BLD-044, BLD-001). Boot-counter implementation (BOOT-018).
@@ -243,6 +247,8 @@ SKU decision (HW-003). Laptop bring-up (HW-015). Suspend policy (PWR-014). Energ
 - Baseline: §30
 
 Without automation the lab is a manual queue CI cannot depend on. This spike runs reservation, image flash and firmware boot-order fallback on H-002 and H-004 under LAVA, KernelCI and a custom controller so LAB-005 is evidence-based. Recovery lands on a known-good SystemGeneration, not a hand-imaged rescue disk.
+
+Required by the LAB scope: "runs a job scheduler that reserves machines, flashes images, returns results to CI and recovers an unbootable board onto a known-good SystemGeneration".
 
 #### Out of scope
 The scheduler Decision (LAB-005). Production deploy (LAB-010). Boot-counter semantics (BOOT-018). CI job submission (BLD-044).
@@ -366,6 +372,8 @@ Scheduler software (LAB-010). Wi-Fi association (NET-021). Bluetooth host (HW-03
 
 B-020, B-031 and V1 energy and Input-to-photon gates require a mainline Linux baseline on the same Reference machine. LAB images dual-boot or swap disks; BEN publishes the comparison. Windows dual-boot waits for LAB-015.
 
+Required by V1-G17 (Idle power and battery runtime published): B-031 is published beside a mainline Linux distribution on the same machine.
+
 #### Out of scope
 Pinning the upstream kernel version and distro userspace (BEN-006). B-ID publication (BEN). Windows images (LAB-015). End-user dual-boot policy (INS).
 
@@ -458,6 +466,8 @@ Lid and dock power policy (PWR-021). Lid Device signals (HW-051). Hibernate prod
 - Invariants: I-061
 
 V2 B-027, HDR and VRR gaming, and battery comparisons need Windows on the same AMD desktop where dual-boot exists. LAB owns the disk image and boot-order; WIN owns W1 scenarios; INS owns end-user dual-boot policy. BEN-047 pins the comparison identity after this image boots.
+
+Required by V2-G17 (Windows compatibility overhead published): B-027 is published against Windows where dual boot exists.
 
 #### Out of scope
 W1 corpus scenarios (WIN). End-user dual-boot installer policy (INS-008, INS-026). Comparison publication (BEN-047, BEN-044). Guest VM Windows (VIRT).
@@ -552,6 +562,8 @@ HDR output pipeline and tone mapping (GFX-068, GFX-063). ICC application (GFX-07
 
 V2 hardware scope is the AMD desktop, Intel laptop and AMD laptop, plus an experimental NVIDIA desktop with no gate. This task racks H-005, a dock, a second display, and H-006 as experimental, and attaches Input-to-photon and energy fixtures so B-020 at the refresh rates named by the register, B-031 per laptop, and multi-monitor or lid-dock jobs can run. SKUs follow HW target and NVIDIA adrs.
 
+Required by V2-G01 (Desktop shell passes the UX script on all three machines) and every V2 gate scoped to H-005.
+
 #### Out of scope
 AMD laptop bring-up (HW-039). Experimental NVIDIA driver path (HW-052). MST compositor support (GFX-075). Lid policy (PWR).
 
@@ -640,6 +652,8 @@ Braille protocol and screen reader (ACC-027). Bluetooth host (HW-035). HID servi
 - Invariants: I-074
 
 V3 hardware scope is the three V2 targets plus one NVIDIA desktop (gated) and one extra laptop per vendor: H-002, H-004, H-005, H-006, H-007 and H-008, six machines fully tested each release. Lab build-out spans V1 through V3 and sits on the critical path of later gates. NVIDIA SKU follows HW-018; extra laptop SKUs follow HW bring-up tasks after this rack.
+
+Required by V3-G01 (Installer completes on Tier 1 with full-disk encryption) and every V3 gate scoped to Tier 1.
 
 #### Out of scope
 Extra laptop bring-up (HW-062). NVIDIA Tier 1 driver bring-up (HW-070). Installer qualification jobs (LAB-022). HCL publication (REL-048).

@@ -56,7 +56,7 @@
 | OBS-038 | Attribute Linux-Personality processes and syscalls in os trace and os inspect | todo | blocked | L | OBS-037, OBS-006, LNX-042, LNX-030 |
 | OBS-039 | Provide sampling profiles attributed to Task, Component and TaskGroup | todo | blocked | L | OBS-011, OBS-008, TSK-038 |
 | OBS-040 | Expose wakeup-to-run latency histograms per Task and intent class | todo | blocked | M | OBS-009, SCH-042, SCH-026 |
-| OBS-041 | Export os trace sessions in the decided format for offline viewing | todo | blocked | M | OBS-015, OBS-009, OBS-004 |
+| OBS-041 | Export os trace sessions in the decided format for offline viewing | todo | blocked | M | OBS-015, OBS-009, OBS-004, OBS-037 |
 
 ## V2
 

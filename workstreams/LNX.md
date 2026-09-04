@@ -274,6 +274,8 @@ glibc and systemd survey of top desktop apps (LNX-059). Depth and translation me
 
 GAP-0502 requires measured syscall overhead for in-kernel retain, in-kernel translation and a gVisor-style userspace Personality before the depth Decision. Numbers live only in the B-026 method; this report answers which option V1 can ship.
 
+<!-- covers: GAP-0502 -->
+
 #### Out of scope
 The depth Decision (LNX-003). Register ownership (BEN-027). Phase B entry path (LNX-030).
 
@@ -302,6 +304,8 @@ The depth Decision (LNX-003). Register ownership (BEN-027). Phase B entry path (
 - Risks: R-020
 
 The V0.5 Wayland-app-as-native-window gate cannot switch compositor architecture later. This prototype builds nested and in-compositor hosting far enough to compare input, dma-buf import and crash-rebind, and informs both GFX-020 and LNX-004.
+
+<!-- covers: GAP-0504 -->
 
 #### Out of scope
 Hosting Decision (LNX-004). Compositor serving Decision (GFX-020). Production bridge (LNX-006).
@@ -737,6 +741,8 @@ Providing the view (LNX-051). Native Package store (PKG). FHS as native storage 
 
 V1 daily-driving of browser and IDE without ambient home access. This implements the default-bundle Decision and portal upgrades so unmanifested Linux apps start with the decided set and grow it only through portals.
 
+<!-- covers: GAP-0231 -->
+
 #### Out of scope
 The bundle Decision (LNX-013). Portal interfaces (LNX-036). Permissions UI (APP, SEC).
 
@@ -758,7 +764,7 @@ The bundle Decision (LNX-013). Portal interfaces (LNX-036). Permissions UI (APP,
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: LNX-056, BEN-027, Q-001, LNX-030
+- Depends on: LNX-056, BEN-027, Q-001, LNX-030, OBS-038
 - Baseline: §46, §54
 - Benchmarks: B-026
 - Corpora: C-003
@@ -792,7 +798,7 @@ Register definition (BEN-027). L3 and later republish (LNX-063). Native isolatio
 - Threats: T-023, T-027
 - Invariants: I-077
 
-V1 browser and IDE crash capture must work under the Personality. Core dumps and Crashpad minidumps map onto the OBS capture format with Component identity, gated by the debug Capability rather than same-uid attach.
+V1 browser and IDE crash capture must work under the Personality. Core dumps and Crashpad minidumps map onto the OBS capture format with Component identity, gated by the debug Capability rather than same-uid attach. Required by V3-G04 (Crash reports are symbolicated and opted in).
 
 #### Out of scope
 Capture format Decision (OBS-029). Native Component crashes (OBS-026). Crash-report client (INS-020). ptrace equivalent (LNX-049).
@@ -998,6 +1004,8 @@ PipeWire server and AudioStream (AUD-001). Simultaneous native-plus-PipeWire ver
 
 V1 non-gated Wine-on-LNX bring-up from the ladder (R-031). WIN owns the Wine test suite, W1 corpus and hosting Decision; this task is the Linux-personality host a PE binary starts under. Native software sees no Win32.
 
+<!-- covers: EXTRA-069 -->
+
 #### Out of scope
 Wine test suite CI (WIN-017). Wine-on-LNX bring-up owned by WIN (WIN-015). Win32 surface (WIN-053).
 
@@ -1023,7 +1031,7 @@ Wine test suite CI (WIN-017). Wine-on-LNX bring-up owned by WIN (WIN-015). Win32
 - Baseline: §46, §56.3
 - Risks: R-032
 
-Implements the ia32 Decision before syscall pruning so 32-bit Steam and Wine titles remain possible at V1 and V2. H-016 holds the configuration in CI. If the Decision rejects ia32, a follow-up drops this task.
+Implements the ia32 Decision before syscall pruning so 32-bit Steam and Wine titles remain possible at V1 and V2. H-016 holds the configuration in CI. If the Decision rejects ia32, a follow-up drops this task. Required by V2-G18 (L3 corpus meets its threshold): C-010 titles are scored inside that corpus and need the 32-bit path.
 
 #### Out of scope
 The ia32 Decision (LNX-015). 32-bit multilib for Steam (LNX-086). Win32 WoW64 (WIN-055).
@@ -1292,6 +1300,8 @@ Portal implementations (LNX-036). Native Notify (APP-014). AT-SPI bus (LNX-096).
 
 V1 GPU and input for browser and IDE; precursor to Steam `/dev/input` via udev in the V2 sub-corpus. Nodes exist only inside the Personality; native software holds Object<Device>.
 
+<!-- covers: INV-0625 -->
+
 #### Out of scope
 Coexistence Decision (LNX-014). Native Device objects (HW). Steam evdev (LNX-074).
 
@@ -1375,6 +1385,8 @@ Native identity (SEC-020). Session object (SEC-028). systemd user units (LNX-029
 - Invariants: I-016
 
 V1 L2 corpus home and XDG paths for Git, IDE and browser. The POSIX path namespace starts here and is completed at V2 translation. Paths are a Personality view, not native authority.
+
+<!-- covers: INV-0493, INV-1092 -->
 
 #### Out of scope
 Storage view API (STO-047). Path-view Decision (LNX-019). Mount synthesis (LNX-088).
@@ -1489,6 +1501,8 @@ Coexistence Decision (LNX-014). Native Device enumeration (HW-009).
 - Invariants: I-020
 
 V1 unmodified glibc and compiler toolchain in the L2 corpus need a global `/usr/lib` view without making FHS the native storage model.
+
+<!-- covers: INV-0552 -->
 
 #### Out of scope
 Namespace Decision (LNX-024). Native Package store (PKG).
@@ -1623,7 +1637,7 @@ Native change-notification Operation (STO-035). IDE chrome (APP). Fanotify extra
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017
+- Depends on: LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019
 - Baseline: §47, §49, §56.3, §61
 - Corpora: C-003
 - Risks: R-025
@@ -1689,6 +1703,8 @@ Userland origin Decision (LNX-023). `/usr/lib` view (LNX-051). Syscall translati
 - Invariants: I-019
 
 V1 L2 corpus includes Flatpak. bubblewrap, user namespaces and overlayfs come from the sandbox-primitives task. Flatpak is a Personality package source, not a native store.
+
+<!-- covers: GAP-0424, INV-0891 -->
 
 #### Out of scope
 Packaging format Decision (LNX-017). Immutable packaging mechanics (PKG). Flatpak/Snap evaluation beyond V1 (LNX-087).
@@ -1833,6 +1849,8 @@ Bridge implementation (LNX-072). Semantic registry (SEM). Native opt-in of nativ
 - Invariants: I-061
 
 B-026 V2 publish on L3 workloads versus upstream Linux on the three target machines. No superiority claim without the table.
+
+<!-- covers: INV-1032, INV-0866 -->
 
 #### Out of scope
 Register ownership (BEN-027). L4 republish (LNX-092).
@@ -2032,6 +2050,8 @@ Native Power Component (PWR-013). Inhibit Capabilities (PWR-012). Native Session
 
 V2 Steam runtime sub-corpus and L3 games via Steam: gamescope nested compositor inside the Personality, not a native GPU stack rewrite.
 
+<!-- covers: EXTRA-027 -->
+
 #### Out of scope
 HDR Surfaces (GFX-069). Steam corpus scripts (LNX-066). Proton (WIN).
 
@@ -2057,6 +2077,8 @@ HDR Surfaces (GFX-069). Steam corpus scripts (LNX-066). Proton (WIN).
 - Baseline: §36, §46, §62
 
 V2 Steam runtime sub-corpus: pressure-vessel container on Personality namespaces and overlayfs.
+
+<!-- covers: EXTRA-027 -->
 
 #### Out of scope
 Corpus scripts (LNX-066). OCI engine (LNX-039). 32-bit multilib (LNX-086).
@@ -2193,6 +2215,8 @@ HDR output pipeline (GFX-068). Personality HDR Surfaces (GFX-069). Colorimeter (
 
 V2 multi-monitor hot-plug with different scale factors. Linux windows follow native per-display and fractional scaling.
 
+<!-- covers: INV-0886 -->
+
 #### Out of scope
 Compositor hot-plug (GFX-077). Toolkit relayout (UIP-047). V1 scaling (LNX-038).
 
@@ -2218,6 +2242,8 @@ Compositor hot-plug (GFX-077). Toolkit relayout (UIP-047). V1 scaling (LNX-038).
 - Baseline: §47, §49, §62
 
 V2 desktop polish: light/dark, accent and font scale to GTK/Qt via the settings portal so Linux windows match the shell.
+
+<!-- covers: GAP-0281 -->
 
 #### Out of scope
 Native appearance model (UIP-044). Settings appearance panel (APP). Portal core (LNX-036).
@@ -2335,6 +2361,8 @@ Native camera service (MED-020). Consent UI (APP-025). V4L2 as a native API (for
 
 V2 screen-share Capability and L3 conferencing: Linux apps get a granted Surface or a denial, with a persistent indicator. Screen capture is S-034.
 
+<!-- covers: INV-0888 -->
+
 #### Out of scope
 Native screen-capture Capability (GFX, S-034). Consent UI (APP-025). Encode of captured frames (MED).
 
@@ -2415,7 +2443,7 @@ fork as native (forbidden). fork over native primitives (LNX-095). Component map
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081
+- Depends on: LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035
 - Baseline: §47, §49, §62
 - Corpora: C-004, C-010
 - Risks: R-064
@@ -2479,6 +2507,8 @@ Native secrets service (SEC-027). Windows DPAPI (WIN-025). Isolation suite (SEC-
 - Risks: R-032
 
 V2 Steam runtime sub-corpus 32-bit multilib, contingent on the V1 ia32 Decision remaining retain. If that Decision rejected ia32, a follow-up drops this task.
+
+<!-- covers: EXTRA-027 -->
 
 #### Out of scope
 ia32 Decision (LNX-015). ia32 userland (LNX-035). WoW64 (WIN-055).
@@ -2769,6 +2799,8 @@ POSIX process model retain (LNX-083). Native Component create (CMP). pid namespa
 
 V3 Linux apps must be accessible. ACC owns the native reader and AT-SPI bridge; LNX hosts the bus inside the Personality so D-Bus stays in the bridge.
 
+<!-- covers: GAP-0265 -->
+
 #### Out of scope
 AT-SPI tree consumption (ACC-026). Native screen reader (ACC-021). Protocol Decision (ACC-001).
 
@@ -2853,6 +2885,8 @@ Namespace retain (LNX-045). OCI runtime (LNX-039). Native isolation (CMP, SCH).
 
 V3 public documentation: compatibility guide for strangers installing Linux software. DOC owns the book; LNX authors the Linux personality chapters. 1.0 docs consume this.
 
+<!-- covers: INV-1248 -->
+
 #### Out of scope
 Docs site (DOC-028). Windows chapters (WIN-081). Five-minute guide (LNX-054).
 
@@ -2873,7 +2907,7 @@ Docs site (DOC-028). Windows chapters (WIN-081). Five-minute guide (LNX-054).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-097, LNX-096, LNX-093, BLD-017
+- Depends on: LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101
 - Baseline: §49, §56.3, §63
 - Corpora: C-005
 - Invariants: I-096

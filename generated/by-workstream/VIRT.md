@@ -45,5 +45,5 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| VIRT-020 | Verify the VM fallback on Tier 1 without shipping Windows images | todo | blocked | S | VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009 |
+| VIRT-020 | Verify the VM fallback on Tier 1 without shipping Windows images | todo | blocked | S | VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009, VIRT-012 |
 

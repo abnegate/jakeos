@@ -44,7 +44,7 @@
 | BEN-026 | Publish native isolation cost against OCI containers | todo | blocked | S | BEN-020, BEN-005, CMP-035 |
 | BEN-027 | Publish Linux Personality overhead against upstream Linux | todo | blocked | M | BEN-005, BEN-007, BEN-006, LNX-056, LNX-001 |
 | BEN-028 | Publish developer onboarding time | todo | blocked | S | BEN-005, BEN-007, SDK-032, SDK-043, SDK-039 |
-| BEN-029 | Verify V1 absolute targets and prior-Rung regression | todo | blocked | M | BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048 |
+| BEN-029 | Verify V1 absolute targets and prior-Rung regression | todo | blocked | M | BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048, TSK-039 |
 | BEN-030 | Publish native warm startup against the V1 target | todo | blocked | S | BEN-009, BEN-021, BEN-016, CMP-019 |
 | BEN-031 | Publish the public per-commit benchmark dashboard | todo | blocked | M | BEN-005, BEN-032, BEN-004 |
 | BEN-032 | Store benchmark results with change-point detection | todo | blocked | L | BEN-005, BEN-007, BEN-022, BLD-048 |
@@ -57,9 +57,9 @@
 | --- | --- | --- | --- | --- | --- |
 | BEN-035 | Publish boot-to-login and unlock-to-desktop latency | todo | blocked | M | BEN-012, BOOT-016, APP-033, APP-030, SEC-017 |
 | BEN-036 | Publish ComputeDevice dispatch overhead | todo | blocked | S | BEN-005, BEN-007, HET-018, HET-016 |
-| BEN-037 | Publish compositor frame-deadline miss rate | todo | blocked | S | BEN-010, GFX-060, LAB-018 |
+| BEN-037 | Publish compositor frame-deadline miss rate | todo | blocked | S | BEN-010, GFX-060, LAB-018, OBS-046 |
 | BEN-038 | Publish desktop-essentials latency suite | todo | blocked | M | BEN-005, BEN-007, APP-022, TXT-029, APP-014, APP-033, NET-021, MED-013, LAB-018 |
-| BEN-039 | Publish energy use on both V2 laptops | todo | blocked | S | BEN-024, PWR-006, LAB-018, LAB-015 |
+| BEN-039 | Publish energy use on both V2 laptops | todo | blocked | S | BEN-024, PWR-006, LAB-018, LAB-015, GFX-081 |
 | BEN-040 | Publish disk-encryption overhead on NVMe | todo | blocked | S | BEN-005, BEN-007, SEC-017, SEC-005 |
 | BEN-041 | Publish the gaming benchmark suite on the AMD desktop | todo | blocked | M | BEN-044, WIN-006, WIN-009, LAB-015, LAB-018 |
 | BEN-042 | Publish snapshot creation and restore time | todo | blocked | S | BEN-005, BEN-007, STO-025, PKG-068 |

@@ -55,7 +55,7 @@ Tree schema Decision (ACC-002). `os inspect` dump command (ACC-003). Screen read
 - Baseline: §41, §54, §60
 - Benchmarks: B-018
 
-Build the scripted animating-client harness that records toolkit frame time against the display frame interval so V0.5 can require animation at refresh and later rungs can apply B-018 regression clauses. GFX owns compositor commit-to-scanout (GFX-003); this harness is the toolkit-side animating client B-018 already names. Numbers live only in the register and in `reports/benchmarks/B-018/`.
+Build the scripted animating-client harness that records toolkit frame time against the display frame interval so V0.5 can require animation at refresh and later rungs can apply B-018 regression clauses. GFX owns compositor commit-to-scanout (GFX-003); this harness is the toolkit-side animating client B-018 already names. Numbers live only in the register and in `reports/benchmarks/B-018/`. Required by V0.5-G14 (Compositor frame latency published): B-018 needs the animating toolkit client this harness supplies.
 
 #### Out of scope
 Compositor commit-to-scanout harness (GFX-003). Input-to-photon (LAB-001, BEN-010). Deadline misses (GFX-060).
@@ -315,7 +315,7 @@ Animation API (UIP-027). Compositor frame-scheduling Decision (GFX-015). B-018 h
 - Benchmarks: B-020
 - Risks: R-022
 
-Timestamp routing and toolkit stages of the input pipeline with the OBS trace schema so the LAB photodiode result for B-020 can be decomposed into device, route, toolkit and present. This task does not publish B-020; LAB and BEN do. Without these spans the V0.5 input-to-photon gate is a single opaque number.
+Timestamp routing and toolkit stages of the input pipeline with the OBS trace schema so the LAB photodiode result for B-020 can be decomposed into device, route, toolkit and present. This task does not publish B-020; LAB and BEN do. Without these spans the V0.5 input-to-photon gate is a single opaque number. Required by V0.5-G15 (Input-to-photon latency published): B-020 attributes the photodiode result to route, toolkit and present through these spans.
 
 #### Out of scope
 Photodiode rig (LAB-001). B-020 publication (BEN-010, GFX-004). HID timestamps (HW-011).
@@ -465,7 +465,7 @@ L2 evolution-rule freeze (IPC-042). Protocol v1 freeze candidate (UIP-035). IDL 
 - Depends on: UIP-013, UIP-025
 - Baseline: §41, §60
 
-Add privileged shell Surface roles to protocol v0 so a session host can present a minimal launcher without a full desktop shell. APP builds the session host and later panel; UIP provides layer-shell-class roles gated by a shell Capability. Ordinary `Capability<UI>` cannot mint these roles.
+Add privileged shell Surface roles to protocol v0 so a session host can present a minimal launcher without a full desktop shell. APP builds the session host and later panel; UIP provides layer-shell-class roles gated by a shell Capability. Ordinary `Capability<UI>` cannot mint these roles. Required by V0.5-D01 (Cold boot to the four native applications): the session host places its launcher Surface through the shell role.
 
 #### Out of scope
 Session host and four-app launch (APP-007). V2 panel and launcher (APP-043, APP-013). Trusted-UI Surfaces (GFX-040).
@@ -553,7 +553,7 @@ Toolkit architecture Decision (UIP-007). Toolkit core (UIP-020). Protocol transp
 - Baseline: §9, §9.1, §41, §51
 - Threats: T-001, T-012, T-013, T-032
 
-Write the UI protocol threat review that precedes the routing, clipboard and UI-capability designs it constrains. Clickjacking, focus stealing, synthetic input and screen-content leaks are the protocol's own threats; they extend the V0 SEC threat model rather than replacing it. Clipboard sniffing (T-001, T-032) and unauthorised screen contents (T-013) are in scope for the review, not for a compositor rewrite.
+Write the UI protocol threat review that precedes the routing, clipboard and UI-capability designs it constrains. Clickjacking, focus stealing, synthetic input and screen-content leaks are the protocol's own threats; they extend the V0 SEC threat model rather than replacing it. Clipboard sniffing (T-001, T-032) and unauthorised screen contents (T-013) are in scope for the review, not for a compositor rewrite. Required by V0.5-G07 (Clipboard is a capability): the clipboard exfiltration threats it enumerates constrain the clipboard authority Decision whose denial that gate tests.
 
 #### Out of scope
 SEC V0 threat model (SEC-002). Compositor trusted-UI section (GFX-011). Routing Decision (UIP-005).
@@ -670,6 +670,8 @@ RTL mirroring (UIP-048). Adaptive form factors (UIP-043). Widget set (UIP-024).
 - Risks: R-019
 
 Integrate the TXT shaping and editing model into toolkit text display and editing widgets so Editor and Terminal can pass acceptance. TXT owns shaping, the glyph atlas and IME protocol; UIP owns the widgets that consume them. A minimal ad-hoc text path in the toolkit is forbidden (R-019).
+
+<!-- covers: INV-0771 -->
 
 #### Out of scope
 Shaping and rasterisation (TXT-013). Editing model (TXT-012). IME engines (TXT-029). Terminal cell grid (TXT-009).
@@ -846,6 +848,8 @@ Clipboard history UI (APP-024). Wayland data-device (LNX). OLE (WIN-021). Unifie
 
 Expose protocol hooks for decoration, clipboard, drop and scale that personality bridges plug into. LNX owns the Wayland and XWayland bridge; UIP owns the native hooks so every GUI application can score clipboard both directions, correct scaling and native chrome at V1. The hooks consume native types only; they do not import Wayland requests into S-015 (R-020, I-048).
 
+<!-- covers: GAP-0276 -->
+
 #### Out of scope
 Wayland bridge (LNX-006, LNX-040). XWayland (LNX-053). OLE drop (WIN-037).
 
@@ -900,7 +904,7 @@ Shortcut service (UIP-045). Settings binding UI (APP-044). Focus model implement
 - Depends on: UIP-035, UIP-038, UIP-034, DOC-010, DOC-014
 - Baseline: §41, §56.5, §66
 
-Write the UI protocol reference and toolkit SDK guide content that V1 SDK publication and V3 documentation coverage rely on. DOC generates pages from IDL; UIP authors the normative protocol and toolkit prose. Layer 4 evolution is declared by UIP-034, not by this guide.
+Write the UI protocol reference and toolkit SDK guide content that V1 SDK publication and V3 documentation coverage rely on. DOC generates pages from IDL; UIP authors the normative protocol and toolkit prose. Layer 4 evolution is declared by UIP-034, not by this guide. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point): the toolkit SDK guide is part of the reviewed SDK guide set that gate names.
 
 #### Out of scope
 IDL-to-docs generator (DOC-010). Developer guide chassis (DOC-014). Layer 4 semver policy (UIP-034).
@@ -1044,6 +1048,8 @@ L2 version lock (UIP-055). Conformance suite for third parties (UIP-054). Layer 
 
 Add semantic actions (activate, expand, scroll-to) to the accessibility tree in the protocol so AT and the UI test driver can act without synthesising input. V2 screen-reader prototype and SEM's Terminal.run / Editor.open proof need actionable nodes on the tree emitted at V0.5. Action dispatch to widgets is ACC-006; this task is the protocol and toolkit emission of the actions.
 
+<!-- covers: INV-0766 -->
+
 #### Out of scope
 Action dispatch from AT clients (ACC-006). Semantic interface registry (SEM-007). UI test driver (UIP-041). Input synthesis lint (SEM-002).
 
@@ -1125,7 +1131,7 @@ Light/dark, accent, icon, cursor, wallpaper and font scale as typed settings (UI
 - Depends on: UIP-024, UIP-001, ACC-002
 - Baseline: §41, §42
 
-Build keyboard focus traversal, a visible focus ring and access keys across all toolkit widgets. V4 keyboard-only operation of the shell and the V2 screen-reader prototype both need every toolkit widget reachable and activatable by keyboard. ACC owns the AT client and the focus-order contract; UIP owns widget traversal.
+Build keyboard focus traversal, a visible focus ring and access keys across all toolkit widgets. V4 keyboard-only operation of the shell and the V2 screen-reader prototype both need every toolkit widget reachable and activatable by keyboard. ACC owns the AT client and the focus-order contract; UIP owns widget traversal. Required by V4-G10 (Assistive-technology script completes in full): that gate verifies keyboard-only operation of the entire shell.
 
 #### Out of scope
 Focus-order contract (ACC-011). Screen reader (ACC-021). Keyboard-only shell verification (APP-067).
@@ -1181,6 +1187,8 @@ Touchscreen and touchpad gesture handling (UIP-049). Gamepad HID minting (HW-049
 - Baseline: §41, §42
 
 Build a UI test driver that scripts widgets through the accessibility tree and semantic actions rather than pixel automation. V0.5 app scenarios, the V2 40-scenario desktop UX script and the V4 50-task a11y script all need a driver that is not GUI pixel automation. ACC-014 is the AT-oriented sibling; this driver is the toolkit and CI face.
+
+<!-- covers: GAP-0118 -->
 
 #### Out of scope
 ACC tree test driver (ACC-014). Semantic GUI harness plumbing (BLD-027). Pixel goldens (GFX-025).
@@ -1496,6 +1504,8 @@ Forty-scenario content (APP-048). Harness plumbing (BLD-056). Shell panel (APP).
 
 Fuzz UI protocol decoders and compositor-facing endpoints continuously. V3 requires continuous fuzzing; the protocol decoder is the largest untrusted-input surface between applications and the compositor. Harnesses are IDL-generated where IPC-029 supports it.
 
+<!-- covers: GAP-0130 -->
+
 #### Out of scope
 Fuzz infrastructure (BLD-035). IDL mutators (IPC-029). Kernel syscall fuzz (BLD).
 
@@ -1522,6 +1532,8 @@ Fuzz infrastructure (BLD-035). IDL mutators (IPC-029). Kernel syscall fuzz (BLD)
 
 Add high-contrast themes and reduced-motion mode across all toolkit widgets. V4 requires high contrast across shell and native apps; building at V3 leaves a milestone to verify rather than to start. ACC-025 owns the settings; UIP applies tokens so every native app complies without per-app work.
 
+<!-- covers: GAP-0264 -->
+
 #### Out of scope
 Accessibility settings service (ACC-025). Shell chrome (APP). Conformance audit (ACC-034).
 
@@ -1547,7 +1559,7 @@ Accessibility settings service (ACC-025). Shell chrome (APP). Conformance audit 
 - Depends on: UIP-035, UIP-029, UIP-052
 - Baseline: §12, §41, §66
 
-Publish a UI protocol conformance suite for third-party toolkits and bridges. V3's public repository means non-core toolkits talk the protocol; the suite is also the precondition for the V4 L2 version lock. Cases cover window open, input focus, clipboard rights, drop Capability transfer, scale, decorations and old-client/new-service.
+Publish a UI protocol conformance suite for third-party toolkits and bridges. V3's public repository means non-core toolkits talk the protocol; the suite is also the precondition for the V4 L2 version lock. Cases cover window open, input focus, clipboard rights, drop Capability transfer, scale, decorations and old-client/new-service. Required by the UIP scope: "the conformance suite that third-party toolkits and personality bridges must pass".
 
 #### Out of scope
 L2 version lock (UIP-055). Personality bridges (LNX, WIN). SDK language bindings (SDK).

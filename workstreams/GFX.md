@@ -912,6 +912,8 @@ ComputeQueue (GFX-046). Mesa-in-Component (GFX-056).
 
 V0.5 exit: a native application receives keyboard and mouse input. HW owns devices and UIP owns the input protocol; this task is the compositor's focus and hit-test dispatch plus software cursor.
 
+<!-- covers: INV-0770 -->
+
 #### Out of scope
 HID service (HW-011). Input protocol (UIP-012). Hardware cursor plane (GFX-067).
 
@@ -1538,7 +1540,7 @@ Display policy service (GFX-048). Restartability (GFX-083). Mesa-in-Component (G
 - Baseline: §65, §66
 - Invariants: I-040
 
-V1 SDK v1 marks Layer 2 Interfaces as freeze candidates. Nothing Layer 1 freezes before V4. S-024 is recorded as a freeze candidate, not frozen.
+V1 SDK v1 marks Layer 2 Interfaces as freeze candidates. Nothing Layer 1 freezes before V4. S-024 is recorded as a freeze candidate, not frozen. Required by V4-G02 (Layer 2 interface versions for 1.x are locked): the V4 lock of the graphics Interface versions starts from this freeze-candidate record.
 
 #### Out of scope
 Locking versions at V4 (GFX-095). SDK crate API (SDK).
@@ -1565,6 +1567,8 @@ Locking versions at V4 (GFX-095). SDK crate API (SDK).
 - Baseline: §55, §61, §62
 
 V1 hardware scope adds an Intel laptop with internal display plus one external display over USB-C. Extends the driver regression matrix. HDR/VRR are not required to work at V1.
+
+<!-- covers: INV-1222 -->
 
 #### Out of scope
 Kernel i915/xe enablement (HW-022). Fractional scaling (GFX-049). Multi-monitor arrangement (GFX-065).
@@ -1770,6 +1774,8 @@ Kernel amdgpu laptop enablement (HW-039). Multi-monitor policy (GFX-077).
 - Benchmarks: B-019
 
 V2 benchmark gate: deadline misses under a scripted mixed workload. Harness plus published measurement; the target lives in B-019.
+
+<!-- covers: INV-1029 -->
 
 #### Out of scope
 Idle dropped-frame test (GFX-029). BEN methodology (BEN).

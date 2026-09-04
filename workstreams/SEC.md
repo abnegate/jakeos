@@ -188,6 +188,8 @@ Volume implementation (SEC-017). Store-versus-user layering (STO-039). Filesyste
 
 V0.5 Packages declare RequestedCapabilities. The runtime enforces the grant-taxonomy Decision so chooser, prompt and settings-only classes are distinct, and one-time, session, persistent and revocable durations are distinct. Surface S-022 stays prototyped.
 
+<!-- covers: EXTRA-068, GAP-0227 -->
+
 #### Out of scope
 Taxonomy Decision (SEC-007). Persistent store across reboot (CAP-037). Prompt chrome (APP, SEC-044).
 
@@ -281,6 +283,8 @@ CLI rendering (SDK-007). Trace-access policy (OBS-014). Debugger attach (SDK).
 - Invariants: I-021
 
 Shared harness for filesystem, home, device, app-data and later camera and microphone denials on `qemu-x86_64`. §9.1 constraints become lint and test tasks rather than prose.
+
+<!-- covers: INV-0201 -->
 
 #### Out of scope
 Suite contents (SEC-003 and later conformance tasks). Fuzz infrastructure (BLD).
@@ -431,6 +435,8 @@ Authorization service (SEC-015). Identity service (SEC-020). Settings chrome (AP
 
 Pluggable authenticators so V3 fingerprint and FIDO2, and later directory login, land without rewriting identity. The password authenticator is the V1 plugin; the Interface stays open for additional methods.
 
+<!-- covers: GAP-0213 -->
+
 #### Out of scope
 Identity service account store (SEC-020). Fingerprint plugin (SEC-057). FIDO2 plugin (SEC-056). Directory login (SEC-075).
 
@@ -522,7 +528,7 @@ Native TLS consumption (SEC-022, NET-011). Personality mirrors (SEC-024). Enterp
 - Threats: T-008, T-010
 - Invariants: I-073
 
-V1 daily-drive: encryption must exist before a lost laptop is possible. V1 scope allows manual full-disk encryption; installer UI is V3. The mechanism is the one named by SEC-005.
+V1 daily-drive: encryption must exist before a lost laptop is possible. V1 scope allows manual full-disk encryption; installer UI is V3. The mechanism is the one named by SEC-005. Required by V3-G01 (Installer completes on Tier 1 with full-disk encryption).
 
 #### Out of scope
 Installer FDE UX (INS, SEC-055). TPM PCR seal (SEC-052). Store layering Decision (STO-039).
@@ -552,6 +558,8 @@ Installer FDE UX (INS, SEC-055). TPM PCR seal (SEC-052). Store layering Decision
 - Threats: T-008, T-010
 
 BOOT owns the pre-boot unlock UI. SEC owns key-slots, passphrase verify and recovery-key unlock consumed at V1 manual FDE.
+
+<!-- covers: GAP-0197 -->
 
 #### Out of scope
 Text unlock UI (BOOT-026). Recovery-key save UX (SEC-025). TPM unseal (SEC-052).
@@ -674,6 +682,8 @@ Microphone grant enforcement in the audio path (AUD-003). Prompt UI (APP). Camer
 
 Native TLS consumes the typed store. An application without the store Capability cannot use default system CAs. Personality TLS stays in LNX and WIN.
 
+<!-- covers: EXTRA-019 -->
+
 #### Out of scope
 TLS library Decision (NET-005). Personality mirrors (SEC-024). Resolver (NET-019).
 
@@ -700,6 +710,8 @@ TLS library Decision (NET-005). Personality mirrors (SEC-024). Resolver (NET-019
 - Invariants: I-060
 
 Native Packages contain no setuid binaries. CI lint rejects setuid bits on native artifacts so elevation stays in the Authorization service.
+
+<!-- covers: GAP-0220 -->
 
 #### Out of scope
 Authorization service (SEC-015). Personality packaging (LNX, WIN). License lint (GOV, BLD).
@@ -729,6 +741,8 @@ Authorization service (SEC-015). Personality packaging (LNX, WIN). License lint 
 
 The native trust store is mirrored into Linux and Windows personality certificate stores so pinning and enrolment apply once. Personalities consume the native ABI and never extend it.
 
+<!-- covers: EXTRA-019 -->
+
 #### Out of scope
 Native store (SEC-016). Personality TLS stacks (LNX, WIN). Enterprise enrolment (SEC-054).
 
@@ -756,6 +770,8 @@ Native store (SEC-016). Personality TLS stacks (LNX, WIN). Enterprise enrolment 
 - Invariants: I-073, I-077
 
 Recovery-key path starts when volumes exist: generate an offline recovery key the user must save; no cloud escrow by default.
+
+<!-- covers: GAP-0198 -->
 
 #### Out of scope
 Installer confirmation UX (INS-010). TPM seal (SEC-052). Cloud backup (STO).
@@ -786,6 +802,8 @@ Installer confirmation UX (INS-010). TPM seal (SEC-052). Cloud backup (STO).
 - Invariants: I-021
 
 Enumerate and read of another Component's secrets return `Error::Rights` and allocate no handle.
+
+<!-- covers: GAP-0222 -->
 
 #### Out of scope
 Secrets service implementation (SEC-027). SSH agent (SEC-030).
@@ -910,6 +928,8 @@ Glyph atlas implementation (TXT). Mitigation measurement (KRN-029). Kernel harde
 
 V1 self-hosting needs Git over SSH without plaintext keys. Optional TPM- or FIDO2-resident keys come later.
 
+<!-- covers: GAP-0223 -->
+
 #### Out of scope
 FIDO2 authenticators (SEC-056). TPM service (SEC-053). Personality sshd (NET, LNX).
 
@@ -939,7 +959,7 @@ FIDO2 authenticators (SEC-056). TPM service (SEC-053). Personality sshd (NET, LN
 
 Pulled to V1 because V1 ships suspend and resume. Decides RAM eviction, re-unlock on resume, suspend-then-hibernate, and whether hibernation is allowed under lockdown.
 
-<!-- covers: GAP-0201, GAP-0223 -->
+<!-- covers: GAP-0201 -->
 
 #### Out of scope
 Implementation (SEC-048). Hibernation policy for the power service (PWR-007). Suspend cycle harness (PWR-014).
@@ -998,6 +1018,8 @@ Hook implementation (SEC-037). Enclave study (SEC-035). Layer 1 freeze (ABI).
 - Invariants: I-023, I-051
 
 V2 AI demo: grants are scoped and revocable mid-run; the action graph is logged. Implements the AI-principal Decision. No AI work precedes a done semantic-registry task.
+
+<!-- covers: INV-0830 -->
 
 #### Out of scope
 Principal Decision (SEC-034). Broker implementation (SEM-010). Mid-run revocation mechanics (CAP-041). Consent chrome (APP-025).
@@ -1656,7 +1678,7 @@ Directory login (SEC-075). Native store (SEC-016). Personality mirrors (SEC-024)
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SEC-017, SEC-025, INS-027, INS-007
+- Depends on: SEC-017, SEC-025, INS-027, INS-007, SEC-052, SVC-023
 - Baseline: §63
 - Threats: T-008, T-010
 - Invariants: I-073
@@ -2149,7 +2171,7 @@ Inventory generation (KRN-056). Hardening config (KRN-034). B-040 measurement (K
 - Threats: T-001
 - Invariants: I-021
 
-V4 hardening gate: the §9.1 denial suite is complete, runs on every RC, and is part of the evidence pack.
+V4 hardening gate: the §9.1 denial suite is complete, runs on every RC, and is part of the evidence pack. Required by V4-G04 (External security audit High and Critical closed).
 
 #### Out of scope
 Evidence pack publication (SEC-071). New Capability types after freeze (feature freeze is APP/ABI).
@@ -2319,7 +2341,7 @@ V0 chassis (SEC-002). New T-IDs that belong in `registers/threats.md` (add them 
 - Baseline: §8
 - Invariants: I-058
 
-1.0 explicitly does not promise hardware confidentiality. Enablement waits on SEC-035 and stays off the 1.0 critical path. Drop this task if the spike's accepted option is not to enable.
+1.0 explicitly does not promise hardware confidentiality. Enablement waits on SEC-035 and stays off the 1.0 critical path. Drop this task if the spike's accepted option is not to enable. Required by the SEC scope: "hardware-enforcement hooks and enclave research".
 
 #### Out of scope
 Spike (SEC-035). CHERI (CAP). 1.0 gates (none).

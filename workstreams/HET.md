@@ -150,6 +150,8 @@ Placement service (HET-017). User-facing dispatch (HET-016). Wasm host ABI (WASM
 
 The V1 ComputeDevice reservation is callable, not a type-only stub. A sample workload submitted to the CPU ComputeQueue completes when the CPU work signals, proving GPUDispatch exists before the V2 GPU-signal path (§18, §37). Native software never sees a thread-pool or POSIX spawn API as the dispatch surface.
 
+<!-- covers: INV-0693 -->
+
 #### Out of scope
 GPU-signal completion (HET-019). Portable workload format (HET-004). Placement across devices (HET-017).
 
@@ -176,6 +178,8 @@ GPU-signal completion (HET-019). Portable workload format (HET-004). Placement a
 - Invariants: I-034, I-064
 
 Principle 9 requires abstractions to expose locality and cost rather than hiding them. HET emits per-device records (class, locality relative to MemoryObjects, and the cost fields named by HET-001) onto the OBS inspect Interface (§24, §64). SDK owns `os inspect` rendering.
+
+<!-- covers: INV-0333, INV-1300 -->
 
 #### Out of scope
 Inspect command (SDK). Trace format (OBS). Placement service (HET-017). MemoryObject placement attributes (MEM-041).
@@ -295,6 +299,8 @@ Type-id reservation (ABI-032). GPU class (HET-015). NPU class (HET-020). Placeme
 
 GAP-0553 and the V2 GPU ComputeDevice gate need a measured prototype on H-002 before HET-003 is accepted. The spike submits the same workload through Vulkan compute and through a DRM job interface on the reference AMD GPU, and records what leaks to userspace (file descriptors, device nodes, ioctls). It does not build a native GPU driver stack and does not freeze S-028.
 
+<!-- covers: GAP-0553 -->
+
 #### Out of scope
 Backend Decision (HET-003). Production GPU ComputeDevice (HET-015). Native GPU driver stack (forbidden before 1.0). B-048 standing harness (HET-018).
 
@@ -350,6 +356,8 @@ CPU queue implementation (HET-008). GFX Mesa ComputeQueue (GFX-046). GPU-queue p
 
 Operation cancellation stays uniform when GPU work is already submitted. Hardware abort does not always succeed; the caller-visible result follows the committed-work contract from TSK-017 as specialised here (§19). Native software never sees a DRM or Vulkan abort ioctl.
 
+<!-- covers: INV-0374 -->
+
 #### Out of scope
 Operation kind object (TSK-049). Hardware cancel matrix across Wi-Fi and NVMe (TSK-048). RenderQueue cancel (GFX).
 
@@ -371,7 +379,7 @@ Operation kind object (TSK-049). Hardware cancel matrix across Wi-Fi and NVMe (T
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: HET-016, HET-017, HET-014, HET-015
+- Depends on: HET-016, HET-017, HET-014, HET-015, SCH-049
 - Baseline: §22, §37, §62
 
 V2 exit: a sample workload with preference Throughput runs on the GPU and LowLatency on the CPU, and inspect shows the ComputeQueue (§37, §62). HET emits the objects and placement; OBS and SDK render them.
@@ -522,7 +530,7 @@ Preference schema (HET-014). User-facing `compute.dispatch` (HET-016). SCH inten
 - Benchmarks: B-048
 - Invariants: I-061
 
-Harness `bench:compute-dispatch` for B-048. V2 target kind is publish. Later rungs reuse this harness for regression bands. Numbers live in reports; this task does not restate them.
+Harness `bench:compute-dispatch` for B-048. V2 target kind is publish. Later rungs reuse this harness for regression bands. Numbers live in reports; this task does not restate them. Required by 1.0-G13 (Every §54 metric published against Linux, Windows and macOS): HET-028 re-runs this harness for the B-048 row.
 
 #### Out of scope
 Register ownership and cross-OS publication dashboards (BEN-036, BEN-043). GPU profiler UI (SDK-071).
@@ -637,7 +645,7 @@ Reference NPU backend (HET-020). DSP and FPGA backends (HET-030). Vendor driver 
 - Depends on: HET-009, HET-008, HET-019, HET-007
 - Baseline: §7, §37, §56.5, §65
 
-V3 documentation requires a reference page for every Layer 1 entry point. HET authors ComputeDevice, ComputeQueue and GPUDispatch semantics; DOC generates and publishes pages (DOC-023). ABI owns the rest of the Layer 1 reference.
+V3 documentation requires a reference page for every Layer 1 entry point. HET authors ComputeDevice, ComputeQueue and GPUDispatch semantics; DOC generates and publishes pages (DOC-023). ABI owns the rest of the Layer 1 reference. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point): the ComputeDevice, ComputeQueue and GPUDispatch pages are HET's share of that coverage.
 
 #### Out of scope
 Page generation and the docs site (DOC). ABI-wide reference (ABI-046). Layer 2 preference schema guide (HET-027).
@@ -667,6 +675,8 @@ Page generation and the docs site (DOC). ABI-wide reference (ABI-046). Layer 2 p
 
 V3 hardware scope adds gated H-006. ComputeDevice enumeration and dispatch must work on that GPU using the V1 backend Decision, not a native NVIDIA driver rewrite (§56.1, I-045). Driver residency and Secure Boot module load stay with HW.
 
+<!-- covers: INV-0681 -->
+
 #### Out of scope
 NVIDIA kernel-module and Secure Boot Decision (HW-018). Compositor bring-up on H-006 (HW-052). Native NVIDIA driver stack (forbidden before 1.0).
 
@@ -693,7 +703,7 @@ NVIDIA kernel-module and Secure Boot Decision (HW-018). Compositor bring-up on H
 - Baseline: §18, §37, §51
 - Invariants: I-040
 
-V3 continuous fuzzing of the native syscall surface includes GPUDispatch submit and preference blobs so a public alpha does not ship an unfuzzed Layer 1 object. BLD owns the fleet; HET owns the grammar and oracles (rights denial allocates no handle, decode never panics).
+V3 continuous fuzzing of the native syscall surface includes GPUDispatch submit and preference blobs so a public alpha does not ship an unfuzzed Layer 1 object. BLD owns the fleet; HET owns the grammar and oracles (rights denial allocates no handle, decode never panics). Required by V3-G10 (Kernel and IPC fuzzing has no stale open crasher): GPUDispatch is part of the native syscall surface that fuzzing covers.
 
 #### Out of scope
 Fuzz infrastructure and crasher-age gate (BLD-035, BLD-063). Operation-ring grammar (TSK-051).
@@ -866,6 +876,8 @@ Umbrella ABI/MemoryObject/Capability review (ABI-054). CHERI enforcement (CAP). 
 - Invariants: I-024, I-058
 
 V3 ships DSP and FPGA as interface-only classes with backends optional before 1.0. Real backends live here so they can return without being fake 1.0 work. Nothing outside LATER depends on this task.
+
+<!-- covers: INV-0683, INV-0684 -->
 
 #### Out of scope
 Class ids (HET-021). NPU reference backend (HET-020). 1.0 gates.

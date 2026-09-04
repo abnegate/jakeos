@@ -23,7 +23,7 @@
         "INV-0061"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4760,
+      "downstream_weight": 4763,
       "anchored": true
     },
     {
@@ -221,7 +221,7 @@
         "INV-1127"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 1163,
+      "downstream_weight": 1164,
       "anchored": true
     },
     {
@@ -279,7 +279,7 @@
         "GAP-0097"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5347,
+      "downstream_weight": 5349,
       "anchored": true
     },
     {
@@ -337,7 +337,7 @@
         "INV-0015"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4097,
+      "downstream_weight": 4117,
       "anchored": true
     },
     {
@@ -403,7 +403,7 @@
         "INV-0006"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4101,
+      "downstream_weight": 4121,
       "anchored": true
     },
     {
@@ -434,7 +434,7 @@
         "INV-0014"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4100,
+      "downstream_weight": 4120,
       "anchored": true
     },
     {
@@ -498,7 +498,7 @@
         "INV-0934"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4102,
+      "downstream_weight": 4122,
       "anchored": true
     },
     {
@@ -745,7 +745,7 @@
         "GAP-0327"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 573,
+      "downstream_weight": 640,
       "anchored": true
     },
     {
@@ -770,7 +770,7 @@
         "GAP-0018"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 596,
+      "downstream_weight": 663,
       "anchored": true
     },
     {
@@ -1108,7 +1108,7 @@
         "EXTRA-012"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 87,
+      "downstream_weight": 110,
       "anchored": true
     },
     {
@@ -1612,7 +1612,7 @@
         "INV-1154"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2297,
+      "downstream_weight": 2298,
       "anchored": true
     },
     {
@@ -1638,7 +1638,7 @@
         "INV-1154"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2291,
+      "downstream_weight": 2292,
       "anchored": true
     },
     {
@@ -1761,7 +1761,7 @@
         "GAP-0169"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2798,
+      "downstream_weight": 2799,
       "anchored": true
     },
     {
@@ -1788,7 +1788,7 @@
         "GAP-0528"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2802,
+      "downstream_weight": 2803,
       "anchored": true
     },
     {
@@ -1816,7 +1816,7 @@
         "GAP-0529"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2703,
+      "downstream_weight": 2704,
       "anchored": true
     },
     {
@@ -1840,7 +1840,7 @@
         "GAP-0020"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2803,
+      "downstream_weight": 2804,
       "anchored": true
     },
     {
@@ -1864,7 +1864,7 @@
         "GAP-0168"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2802,
+      "downstream_weight": 2803,
       "anchored": true
     },
     {
@@ -1894,7 +1894,7 @@
         "GAP-0529"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2695,
+      "downstream_weight": 2696,
       "anchored": true
     },
     {
@@ -1918,7 +1918,7 @@
       ],
       "covers": [],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 665,
+      "downstream_weight": 759,
       "anchored": true
     },
     {
@@ -1954,7 +1954,7 @@
         "INV-0561"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 481,
+      "downstream_weight": 590,
       "anchored": true
     },
     {
@@ -1979,7 +1979,7 @@
         "GAP-0528"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2805,
+      "downstream_weight": 2806,
       "anchored": true
     },
     {
@@ -2059,7 +2059,7 @@
         "GAP-0175"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 353,
+      "downstream_weight": 462,
       "anchored": true
     },
     {
@@ -2085,7 +2085,7 @@
         "GAP-0177"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 0,
+      "downstream_weight": 5,
       "anchored": true
     },
     {
@@ -2109,7 +2109,7 @@
         "GAP-0175"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 465,
+      "downstream_weight": 574,
       "anchored": true
     },
     {
@@ -2155,7 +2155,7 @@
         "GAP-0178"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 450,
+      "downstream_weight": 453,
       "anchored": true
     },
     {
@@ -2231,7 +2231,7 @@
         "GAP-0176"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 364,
+      "downstream_weight": 473,
       "anchored": true
     },
     {
@@ -2259,7 +2259,7 @@
         "GAP-0197"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 12,
+      "downstream_weight": 19,
       "anchored": true
     },
     {
@@ -2285,7 +2285,7 @@
         "GAP-0172"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 610,
+      "downstream_weight": 611,
       "anchored": true
     },
     {
@@ -2300,12 +2300,14 @@
       "depends_on": [
         "BOOT-018",
         "LAB-018",
-        "PKG-073"
+        "PKG-073",
+        "SVC-033"
       ],
       "blockers": [
         "BOOT-018",
         "LAB-018",
-        "PKG-073"
+        "PKG-073",
+        "SVC-033"
       ],
       "covers": [
         "INV-0562",
@@ -2394,7 +2396,7 @@
         "GAP-0403"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 446,
+      "downstream_weight": 449,
       "anchored": true
     },
     {
@@ -2420,7 +2422,7 @@
         "INV-0569"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 403,
+      "downstream_weight": 406,
       "anchored": true
     },
     {
@@ -2474,7 +2476,7 @@
         "GAP-0191"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 379,
+      "downstream_weight": 382,
       "anchored": true
     },
     {
@@ -2696,12 +2698,14 @@
       "depends_on": [
         "BOOT-034",
         "BOOT-044",
-        "LAB-022"
+        "LAB-022",
+        "BOOT-019"
       ],
       "blockers": [
         "BOOT-034",
         "BOOT-044",
-        "LAB-022"
+        "LAB-022",
+        "BOOT-019"
       ],
       "covers": [
         "GAP-0191",
@@ -2925,7 +2929,7 @@
         "INV-1321"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5162,
+      "downstream_weight": 5164,
       "anchored": true
     },
     {
@@ -2953,7 +2957,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4298,
+      "downstream_weight": 4302,
       "anchored": true
     },
     {
@@ -3007,7 +3011,7 @@
         "INV-0158"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5139,
+      "downstream_weight": 5141,
       "anchored": true
     },
     {
@@ -3045,7 +3049,7 @@
         "INV-1268"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 550,
+      "downstream_weight": 551,
       "anchored": true
     },
     {
@@ -3068,7 +3072,7 @@
         "INV-0944"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4226,
+      "downstream_weight": 4227,
       "anchored": true
     },
     {
@@ -3297,7 +3301,7 @@
         "INV-1279"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 3586,
+      "downstream_weight": 3587,
       "anchored": true
     },
     {
@@ -3338,7 +3342,7 @@
         "INV-1269"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 724,
+      "downstream_weight": 725,
       "anchored": true
     },
     {
@@ -3360,7 +3364,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4393,
+      "downstream_weight": 4397,
       "anchored": true
     },
     {
@@ -3410,7 +3414,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 3587,
+      "downstream_weight": 3588,
       "anchored": true
     },
     {
@@ -3454,7 +3458,7 @@
         "INV-0945"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 335,
+      "downstream_weight": 337,
       "anchored": true
     },
     {
@@ -3483,7 +3487,7 @@
         "GAP-0501"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 253,
+      "downstream_weight": 255,
       "anchored": true
     },
     {
@@ -3534,7 +3538,7 @@
         "INV-0147"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 246,
+      "downstream_weight": 248,
       "anchored": true
     },
     {
@@ -3559,7 +3563,7 @@
         "INV-1268"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 539,
+      "downstream_weight": 540,
       "anchored": true
     },
     {
@@ -3585,7 +3589,7 @@
         "INV-1289"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 246,
+      "downstream_weight": 247,
       "anchored": true
     },
     {
@@ -3607,7 +3611,7 @@
         "GAP-0003"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 247,
+      "downstream_weight": 248,
       "anchored": true
     },
     {
@@ -3635,7 +3639,7 @@
         "INV-1283"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 240,
+      "downstream_weight": 242,
       "anchored": true
     },
     {
@@ -3685,7 +3689,7 @@
         "INV-0701"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 436,
+      "downstream_weight": 438,
       "anchored": true
     },
     {
@@ -3712,7 +3716,7 @@
         "INV-0147"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 168,
+      "downstream_weight": 170,
       "anchored": true
     },
     {
@@ -3794,7 +3798,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 246,
+      "downstream_weight": 248,
       "anchored": true
     },
     {
@@ -3818,7 +3822,7 @@
         "GAP-0545"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 208,
+      "downstream_weight": 210,
       "anchored": true
     },
     {
@@ -3847,7 +3851,7 @@
         "INV-1269"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 243,
+      "downstream_weight": 245,
       "anchored": true
     },
     {
@@ -3873,7 +3877,7 @@
         "GAP-0059"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 207,
+      "downstream_weight": 209,
       "anchored": true
     },
     {
@@ -3926,7 +3930,7 @@
         "INV-0107"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 282,
+      "downstream_weight": 284,
       "anchored": true
     },
     {
@@ -4344,7 +4348,7 @@
         "INV-0184"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3677,
+      "downstream_weight": 3694,
       "anchored": true
     },
     {
@@ -4374,7 +4378,7 @@
         "INV-1158"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2665,
+      "downstream_weight": 2721,
       "anchored": true
     },
     {
@@ -4412,7 +4416,7 @@
         "INV-1325"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 4898,
+      "downstream_weight": 4901,
       "anchored": true
     },
     {
@@ -4442,7 +4446,7 @@
         "INV-1158"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3246,
+      "downstream_weight": 3249,
       "anchored": true
     },
     {
@@ -4466,7 +4470,7 @@
         "INV-0200"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3973,
+      "downstream_weight": 3980,
       "anchored": true
     },
     {
@@ -4529,7 +4533,7 @@
         "GAP-0484"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2673,
+      "downstream_weight": 2729,
       "anchored": true
     },
     {
@@ -4557,7 +4561,7 @@
         "INV-0176"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 4922,
+      "downstream_weight": 4925,
       "anchored": true
     },
     {
@@ -4582,7 +4586,7 @@
         "INV-0176"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3719,
+      "downstream_weight": 3736,
       "anchored": true
     },
     {
@@ -4640,7 +4644,7 @@
         "GAP-0484"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2674,
+      "downstream_weight": 2730,
       "anchored": true
     },
     {
@@ -4855,7 +4859,7 @@
         "GAP-0485"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3182,
+      "downstream_weight": 3183,
       "anchored": true
     },
     {
@@ -4881,7 +4885,7 @@
         "GAP-0485"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3151,
+      "downstream_weight": 3152,
       "anchored": true
     },
     {
@@ -4939,7 +4943,7 @@
         "INV-0042"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1227,
+      "downstream_weight": 1230,
       "anchored": true
     },
     {
@@ -5043,7 +5047,10 @@
       "blockers": [
         "CAP-001"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0183",
+        "INV-0463"
+      ],
       "file": "workstreams/CAP.md",
       "downstream_weight": 237,
       "anchored": true
@@ -5217,7 +5224,7 @@
       ],
       "covers": [],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1421,
+      "downstream_weight": 1494,
       "anchored": true
     },
     {
@@ -5378,7 +5385,9 @@
         "BLD-035",
         "BLD-016"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0961"
+      ],
       "file": "workstreams/CAP.md",
       "downstream_weight": 3,
       "anchored": true
@@ -5800,7 +5809,7 @@
         "INV-0046"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 2880,
+      "downstream_weight": 2881,
       "anchored": true
     },
     {
@@ -5837,7 +5846,7 @@
         "INV-1155"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3825,
+      "downstream_weight": 3845,
       "anchored": true
     },
     {
@@ -5857,7 +5866,7 @@
         "INV-0220"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4694,
+      "downstream_weight": 4697,
       "anchored": true
     },
     {
@@ -5880,7 +5889,7 @@
         "INV-0993"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4826,
+      "downstream_weight": 4829,
       "anchored": true
     },
     {
@@ -5898,7 +5907,7 @@
         "EXTRA-004"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3277,
+      "downstream_weight": 3280,
       "anchored": true
     },
     {
@@ -5917,7 +5926,7 @@
         "INV-0995"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4694,
+      "downstream_weight": 4697,
       "anchored": true
     },
     {
@@ -5942,7 +5951,7 @@
         "INV-0145"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3834,
+      "downstream_weight": 3854,
       "anchored": true
     },
     {
@@ -6077,7 +6086,7 @@
         "INV-1313"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4690,
+      "downstream_weight": 4693,
       "anchored": true
     },
     {
@@ -6095,7 +6104,7 @@
         "INV-0230"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3845,
+      "downstream_weight": 3865,
       "anchored": true
     },
     {
@@ -6117,7 +6126,7 @@
         "GAP-0489"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3837,
+      "downstream_weight": 3857,
       "anchored": true
     },
     {
@@ -6354,7 +6363,10 @@
         "IPC-031",
         "PKG-031"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0224",
+        "INV-0225"
+      ],
       "file": "workstreams/CMP.md",
       "downstream_weight": 1395,
       "anchored": true
@@ -6410,7 +6422,7 @@
         "INV-1015"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 2942,
+      "downstream_weight": 2943,
       "anchored": true
     },
     {
@@ -6430,7 +6442,9 @@
         "CMP-004",
         "CMP-030"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1185"
+      ],
       "file": "workstreams/CMP.md",
       "downstream_weight": 1626,
       "anchored": true
@@ -6648,7 +6662,7 @@
       ],
       "covers": [],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 87,
+      "downstream_weight": 89,
       "anchored": true
     },
     {
@@ -7146,7 +7160,7 @@
         "INV-0038"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 218,
+      "downstream_weight": 221,
       "anchored": true
     },
     {
@@ -7199,7 +7213,7 @@
         "INV-1149"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4115,
+      "downstream_weight": 4118,
       "anchored": true
     },
     {
@@ -7221,7 +7235,7 @@
         "GAP-0496"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4147,
+      "downstream_weight": 4150,
       "anchored": true
     },
     {
@@ -7243,7 +7257,7 @@
         "INV-0345"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4370,
+      "downstream_weight": 4373,
       "anchored": true
     },
     {
@@ -7262,7 +7276,7 @@
         "INV-0039"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 496,
+      "downstream_weight": 586,
       "anchored": true
     },
     {
@@ -7285,7 +7299,7 @@
         "GAP-0494"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4538,
+      "downstream_weight": 4541,
       "anchored": true
     },
     {
@@ -7308,7 +7322,7 @@
         "INV-0721"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4690,
+      "downstream_weight": 4693,
       "anchored": true
     },
     {
@@ -7366,7 +7380,7 @@
         "GAP-0495"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4105,
+      "downstream_weight": 4108,
       "anchored": true
     },
     {
@@ -7397,7 +7411,7 @@
         "INV-0349"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4051,
+      "downstream_weight": 4054,
       "anchored": true
     },
     {
@@ -7424,7 +7438,7 @@
         "INV-0353"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 321,
+      "downstream_weight": 408,
       "anchored": true
     },
     {
@@ -7457,7 +7471,7 @@
         "INV-1317"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4530,
+      "downstream_weight": 4533,
       "anchored": true
     },
     {
@@ -7494,7 +7508,7 @@
         "INV-0376"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4148,
+      "downstream_weight": 4151,
       "anchored": true
     },
     {
@@ -7515,7 +7529,7 @@
         "GAP-0493"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4698,
+      "downstream_weight": 4701,
       "anchored": true
     },
     {
@@ -7538,7 +7552,7 @@
         "INV-0374"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4118,
+      "downstream_weight": 4121,
       "anchored": true
     },
     {
@@ -7571,7 +7585,7 @@
         "INV-0340"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4362,
+      "downstream_weight": 4365,
       "anchored": true
     },
     {
@@ -7646,7 +7660,7 @@
         "INV-1314"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 3557,
+      "downstream_weight": 3558,
       "anchored": true
     },
     {
@@ -7678,7 +7692,7 @@
         "INV-0392"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 2894,
+      "downstream_weight": 2895,
       "anchored": true
     },
     {
@@ -7708,7 +7722,7 @@
         "INV-1157"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4687,
+      "downstream_weight": 4690,
       "anchored": true
     },
     {
@@ -7790,9 +7804,11 @@
         "TSK-030",
         "BEN-005"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0359"
+      ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 17,
+      "downstream_weight": 107,
       "anchored": true
     },
     {
@@ -7816,7 +7832,7 @@
         "INV-0365"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 250,
+      "downstream_weight": 266,
       "anchored": true
     },
     {
@@ -7860,7 +7876,9 @@
         "TSK-006",
         "TSK-012"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0039"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 0,
       "anchored": true
@@ -7888,7 +7906,7 @@
       ],
       "covers": [],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 293,
+      "downstream_weight": 351,
       "anchored": true
     },
     {
@@ -7941,7 +7959,7 @@
         "INV-0351"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 1635,
+      "downstream_weight": 1650,
       "anchored": true
     },
     {
@@ -7991,7 +8009,10 @@
         "SCH-009",
         "SCH-007"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-002",
+        "INV-0368"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 18,
       "anchored": true
@@ -8019,7 +8040,9 @@
         "TSK-032",
         "IPC-026"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1185"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 1395,
       "anchored": true
@@ -8043,7 +8066,9 @@
         "TSK-010",
         "TSK-034"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0389"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 0,
       "anchored": true
@@ -8089,7 +8114,10 @@
         "TSK-020",
         "OBS-005"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0984",
+        "EXTRA-032"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 123,
       "anchored": true
@@ -8119,7 +8147,7 @@
         "INV-0376"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 0,
+      "downstream_weight": 98,
       "anchored": true
     },
     {
@@ -8251,7 +8279,9 @@
         "STO-038",
         "STO-031"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0356"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 26,
       "anchored": true
@@ -8281,7 +8311,7 @@
         "INV-1296"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 87,
+      "downstream_weight": 89,
       "anchored": true
     },
     {
@@ -8329,7 +8359,7 @@
       ],
       "covers": [],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 0,
+      "downstream_weight": 17,
       "anchored": true
     },
     {
@@ -8387,7 +8417,9 @@
         "HET-016",
         "HET-003"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0354"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 15,
       "anchored": true
@@ -8445,7 +8477,9 @@
         "BLD-016",
         "BLD-035"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0127"
+      ],
       "file": "workstreams/TSK.md",
       "downstream_weight": 9,
       "anchored": true
@@ -8549,7 +8583,7 @@
         "INV-0249"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3845,
+      "downstream_weight": 3846,
       "anchored": true
     },
     {
@@ -8594,7 +8628,7 @@
         "GAP-0098"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4078,
+      "downstream_weight": 4079,
       "anchored": true
     },
     {
@@ -8618,7 +8652,7 @@
         "GAP-0007"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4086,
+      "downstream_weight": 4087,
       "anchored": true
     },
     {
@@ -8645,7 +8679,7 @@
         "INV-0247"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4092,
+      "downstream_weight": 4093,
       "anchored": true
     },
     {
@@ -8673,7 +8707,7 @@
         "GAP-0520"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4127,
+      "downstream_weight": 4128,
       "anchored": true
     },
     {
@@ -8725,7 +8759,7 @@
         "EXTRA-001"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1772,
+      "downstream_weight": 1782,
       "anchored": true
     },
     {
@@ -8762,7 +8796,7 @@
         "INV-1324"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4367,
+      "downstream_weight": 4370,
       "anchored": true
     },
     {
@@ -8790,7 +8824,7 @@
         "INV-0259"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 2174,
+      "downstream_weight": 2195,
       "anchored": true
     },
     {
@@ -8827,7 +8861,7 @@
         "GAP-0007"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4070,
+      "downstream_weight": 4071,
       "anchored": true
     },
     {
@@ -8859,7 +8893,7 @@
         "INV-1316"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3874,
+      "downstream_weight": 3875,
       "anchored": true
     },
     {
@@ -8892,7 +8926,7 @@
         "INV-0301"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 25,
+      "downstream_weight": 89,
       "anchored": true
     },
     {
@@ -9001,7 +9035,7 @@
         "INV-1134"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4149,
+      "downstream_weight": 4150,
       "anchored": true
     },
     {
@@ -9025,7 +9059,7 @@
         "GAP-0521"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3848,
+      "downstream_weight": 3849,
       "anchored": true
     },
     {
@@ -9050,7 +9084,7 @@
         "INV-0302"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4128,
+      "downstream_weight": 4129,
       "anchored": true
     },
     {
@@ -9154,7 +9188,7 @@
         "GAP-0008"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3267,
+      "downstream_weight": 3268,
       "anchored": true
     },
     {
@@ -9203,9 +9237,11 @@
         "IPC-010",
         "IPC-009"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0259"
+      ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1636,
+      "downstream_weight": 1651,
       "anchored": true
     },
     {
@@ -9227,7 +9263,9 @@
         "SCH-009",
         "SCH-008"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-002"
+      ],
       "file": "workstreams/IPC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -9358,7 +9396,7 @@
         "INV-0591"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1972,
+      "downstream_weight": 1978,
       "anchored": true
     },
     {
@@ -9385,7 +9423,7 @@
         "INV-0289"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3299,
+      "downstream_weight": 3300,
       "anchored": true
     },
     {
@@ -9450,7 +9488,7 @@
         "INV-1285"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3264,
+      "downstream_weight": 3265,
       "anchored": true
     },
     {
@@ -9581,7 +9619,7 @@
       ],
       "covers": [],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 210,
+      "downstream_weight": 212,
       "anchored": true
     },
     {
@@ -9643,7 +9681,7 @@
         "INV-0262"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 209,
+      "downstream_weight": 211,
       "anchored": true
     },
     {
@@ -9701,7 +9739,7 @@
         "GAP-0129"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4,
+      "downstream_weight": 68,
       "anchored": true
     },
     {
@@ -9773,7 +9811,7 @@
         "INV-0946"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 90,
+      "downstream_weight": 92,
       "anchored": true
     },
     {
@@ -9799,7 +9837,7 @@
         "INV-0946"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 87,
+      "downstream_weight": 89,
       "anchored": true
     },
     {
@@ -9819,7 +9857,7 @@
       ],
       "covers": [],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 213,
+      "downstream_weight": 216,
       "anchored": true
     },
     {
@@ -9865,7 +9903,9 @@
         "IPC-032",
         "SEM-003"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0788"
+      ],
       "file": "workstreams/IPC.md",
       "downstream_weight": 546,
       "anchored": true
@@ -10100,7 +10140,9 @@
         "IPC-055",
         "BLD-035"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0130"
+      ],
       "file": "workstreams/IPC.md",
       "downstream_weight": 1,
       "anchored": true
@@ -10431,7 +10473,7 @@
         "INV-0317"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4681,
+      "downstream_weight": 4684,
       "anchored": true
     },
     {
@@ -10453,7 +10495,7 @@
         "GAP-0498"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2335,
+      "downstream_weight": 2337,
       "anchored": true
     },
     {
@@ -10471,9 +10513,12 @@
       "blockers": [
         "MEM-005"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0427",
+        "INV-0237"
+      ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 451,
+      "downstream_weight": 493,
       "anchored": true
     },
     {
@@ -10499,7 +10544,7 @@
         "INV-1323"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4663,
+      "downstream_weight": 4666,
       "anchored": true
     },
     {
@@ -10544,7 +10589,7 @@
         "INV-0306"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 3198,
+      "downstream_weight": 3200,
       "anchored": true
     },
     {
@@ -10623,7 +10668,7 @@
         "INV-1297"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2293,
+      "downstream_weight": 2295,
       "anchored": true
     },
     {
@@ -10641,7 +10686,7 @@
         "GAP-0497"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4691,
+      "downstream_weight": 4694,
       "anchored": true
     },
     {
@@ -10834,7 +10879,7 @@
         "GAP-0499"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2623,
+      "downstream_weight": 2625,
       "anchored": true
     },
     {
@@ -10950,7 +10995,7 @@
         "INV-0736"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 1946,
+      "downstream_weight": 1947,
       "anchored": true
     },
     {
@@ -10975,7 +11020,7 @@
         "INV-0317"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 820,
+      "downstream_weight": 821,
       "anchored": true
     },
     {
@@ -11050,7 +11095,7 @@
         "INV-0332"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2145,
+      "downstream_weight": 2147,
       "anchored": true
     },
     {
@@ -11097,7 +11142,7 @@
         "GAP-0499"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2624,
+      "downstream_weight": 2626,
       "anchored": true
     },
     {
@@ -11271,7 +11316,7 @@
         "INV-0332"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 670,
+      "downstream_weight": 671,
       "anchored": true
     },
     {
@@ -11295,7 +11340,7 @@
         "INV-0314"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 445,
+      "downstream_weight": 487,
       "anchored": true
     },
     {
@@ -11432,7 +11477,7 @@
       ],
       "covers": [],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 1,
+      "downstream_weight": 49,
       "anchored": true
     },
     {
@@ -11797,7 +11842,7 @@
         "INV-0435"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 4034,
+      "downstream_weight": 4054,
       "anchored": true
     },
     {
@@ -11848,7 +11893,7 @@
         "INV-0124"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1124,
+      "downstream_weight": 1148,
       "anchored": true
     },
     {
@@ -11900,7 +11945,7 @@
         "INV-0426"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1528,
+      "downstream_weight": 1549,
       "anchored": true
     },
     {
@@ -11935,7 +11980,7 @@
         "INV-1319"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 4026,
+      "downstream_weight": 4046,
       "anchored": true
     },
     {
@@ -11958,7 +12003,7 @@
         "INV-0427"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1163,
+      "downstream_weight": 1180,
       "anchored": true
     },
     {
@@ -11980,7 +12025,7 @@
         "EXTRA-002"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 3077,
+      "downstream_weight": 3078,
       "anchored": true
     },
     {
@@ -12009,7 +12054,7 @@
         "INV-1322"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1092,
+      "downstream_weight": 1116,
       "anchored": true
     },
     {
@@ -12060,7 +12105,7 @@
         "INV-0420"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1539,
+      "downstream_weight": 1560,
       "anchored": true
     },
     {
@@ -12170,7 +12215,7 @@
         "INV-0442"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 544,
+      "downstream_weight": 561,
       "anchored": true
     },
     {
@@ -12220,7 +12265,10 @@
         "OBS-007",
         "SCH-010"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0444",
+        "INV-0465"
+      ],
       "file": "workstreams/SCH.md",
       "downstream_weight": 0,
       "anchored": true
@@ -12300,7 +12348,9 @@
         "PKG-011",
         "SVC-011"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0440"
+      ],
       "file": "workstreams/SCH.md",
       "downstream_weight": 11,
       "anchored": true
@@ -12410,7 +12460,7 @@
         "INV-0406"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 488,
+      "downstream_weight": 504,
       "anchored": true
     },
     {
@@ -12435,7 +12485,7 @@
         "INV-0403"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 511,
+      "downstream_weight": 531,
       "anchored": true
     },
     {
@@ -12697,7 +12747,7 @@
         "INV-0416"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 31,
+      "downstream_weight": 32,
       "anchored": true
     },
     {
@@ -12721,7 +12771,7 @@
         "INV-0405"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 67,
+      "downstream_weight": 99,
       "anchored": true
     },
     {
@@ -12801,7 +12851,7 @@
       ],
       "covers": [],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 0,
+      "downstream_weight": 32,
       "anchored": true
     },
     {
@@ -12851,7 +12901,7 @@
         "INV-0404"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 310,
+      "downstream_weight": 330,
       "anchored": true
     },
     {
@@ -12931,7 +12981,7 @@
         "INV-0432"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 28,
+      "downstream_weight": 29,
       "anchored": true
     },
     {
@@ -13039,7 +13089,7 @@
         "INV-0417"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 0,
+      "downstream_weight": 6,
       "anchored": true
     },
     {
@@ -13422,7 +13472,7 @@
         "INV-0472"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 608,
+      "downstream_weight": 611,
       "anchored": true
     },
     {
@@ -13446,7 +13496,7 @@
         "INV-0290"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 131,
+      "downstream_weight": 261,
       "anchored": true
     },
     {
@@ -13478,7 +13528,7 @@
         "INV-0459"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 437,
+      "downstream_weight": 501,
       "anchored": true
     },
     {
@@ -13514,7 +13564,7 @@
         "INV-0458"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 2021,
+      "downstream_weight": 2037,
       "anchored": true
     },
     {
@@ -13554,7 +13604,7 @@
         "INV-0459"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 348,
+      "downstream_weight": 524,
       "anchored": true
     },
     {
@@ -13596,7 +13646,7 @@
         "INV-0366"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 462,
+      "downstream_weight": 465,
       "anchored": true
     },
     {
@@ -13629,7 +13679,7 @@
         "INV-1209"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 123,
+      "downstream_weight": 253,
       "anchored": true
     },
     {
@@ -13648,7 +13698,7 @@
         "INV-1145"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 610,
+      "downstream_weight": 613,
       "anchored": true
     },
     {
@@ -13672,7 +13722,7 @@
         "INV-0471"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 584,
+      "downstream_weight": 587,
       "anchored": true
     },
     {
@@ -13877,9 +13927,11 @@
         "OBS-006",
         "GFX-010"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1266"
+      ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 1610,
+      "downstream_weight": 1626,
       "anchored": true
     },
     {
@@ -14028,7 +14080,7 @@
         "INV-0469"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 110,
+      "downstream_weight": 243,
       "anchored": true
     },
     {
@@ -14329,7 +14381,7 @@
         "INV-1209"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 11,
+      "downstream_weight": 146,
       "anchored": true
     },
     {
@@ -14355,7 +14407,7 @@
       ],
       "covers": [],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 3,
+      "downstream_weight": 134,
       "anchored": true
     },
     {
@@ -14377,7 +14429,9 @@
         "OBS-008",
         "TSK-038"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-032"
+      ],
       "file": "workstreams/OBS.md",
       "downstream_weight": 12,
       "anchored": true
@@ -14421,12 +14475,14 @@
       "depends_on": [
         "OBS-015",
         "OBS-009",
-        "OBS-004"
+        "OBS-004",
+        "OBS-037"
       ],
       "blockers": [
         "OBS-015",
         "OBS-009",
-        "OBS-004"
+        "OBS-004",
+        "OBS-037"
       ],
       "covers": [
         "INV-0473",
@@ -14565,7 +14621,7 @@
       ],
       "covers": [],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 0,
+      "downstream_weight": 30,
       "anchored": true
     },
     {
@@ -14869,7 +14925,8 @@
         "GFX-010",
         "GFX-009",
         "BLD-020",
-        "APP-002"
+        "APP-002",
+        "SVC-010"
       ],
       "blockers": [
         "SVC-009",
@@ -14877,7 +14934,8 @@
         "GFX-010",
         "GFX-009",
         "BLD-020",
-        "APP-002"
+        "APP-002",
+        "SVC-010"
       ],
       "covers": [
         "INV-0592",
@@ -14906,7 +14964,7 @@
         "GAP-0170"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2704,
+      "downstream_weight": 2705,
       "anchored": true
     },
     {
@@ -14928,7 +14986,7 @@
         "EXTRA-071"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3167,
+      "downstream_weight": 3168,
       "anchored": true
     },
     {
@@ -14950,7 +15008,7 @@
         "EXTRA-071"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3142,
+      "downstream_weight": 3143,
       "anchored": true
     },
     {
@@ -14972,7 +15030,7 @@
         "GAP-0278"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 667,
+      "downstream_weight": 694,
       "anchored": true
     },
     {
@@ -15006,7 +15064,7 @@
         "GAP-0171"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2678,
+      "downstream_weight": 2679,
       "anchored": true
     },
     {
@@ -15084,7 +15142,7 @@
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 1,
+      "downstream_weight": 65,
       "anchored": true
     },
     {
@@ -15114,7 +15172,7 @@
         "GAP-0171"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3139,
+      "downstream_weight": 3140,
       "anchored": true
     },
     {
@@ -15138,7 +15196,7 @@
         "INV-1301"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 1953,
+      "downstream_weight": 1959,
       "anchored": true
     },
     {
@@ -15164,7 +15222,7 @@
         "GAP-0278"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 610,
+      "downstream_weight": 637,
       "anchored": true
     },
     {
@@ -15182,7 +15240,7 @@
         "INV-0610"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3169,
+      "downstream_weight": 3170,
       "anchored": true
     },
     {
@@ -15219,7 +15277,7 @@
         "INV-0592"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2662,
+      "downstream_weight": 2663,
       "anchored": true
     },
     {
@@ -15339,9 +15397,11 @@
         "SVC-015",
         "OBS-019"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0607"
+      ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 204,
+      "downstream_weight": 294,
       "anchored": true
     },
     {
@@ -15393,7 +15453,7 @@
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 7,
+      "downstream_weight": 13,
       "anchored": true
     },
     {
@@ -15422,7 +15482,7 @@
         "GAP-0170"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 0,
+      "downstream_weight": 7,
       "anchored": true
     },
     {
@@ -15442,9 +15502,11 @@
         "SVC-013",
         "SVC-015"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0236"
+      ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 184,
+      "downstream_weight": 267,
       "anchored": true
     },
     {
@@ -15466,7 +15528,7 @@
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 191,
+      "downstream_weight": 192,
       "anchored": true
     },
     {
@@ -15492,7 +15554,7 @@
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 180,
+      "downstream_weight": 263,
       "anchored": true
     },
     {
@@ -15620,7 +15682,9 @@
         "SVC-027",
         "OBS-026"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0290"
+      ],
       "file": "workstreams/SVC.md",
       "downstream_weight": 9,
       "anchored": true
@@ -15676,7 +15740,7 @@
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3,
+      "downstream_weight": 26,
       "anchored": true
     },
     {
@@ -15697,7 +15761,8 @@
         "HW-038",
         "HW-030",
         "GFX-083",
-        "BLD-020"
+        "BLD-020",
+        "SVC-022"
       ],
       "blockers": [
         "SVC-015",
@@ -15708,7 +15773,8 @@
         "HW-038",
         "HW-030",
         "GFX-083",
-        "BLD-020"
+        "BLD-020",
+        "SVC-022"
       ],
       "covers": [],
       "file": "workstreams/SVC.md",
@@ -15726,11 +15792,13 @@
       "owner": "none",
       "depends_on": [
         "SVC-005",
-        "SVC-027"
+        "SVC-027",
+        "SVC-020"
       ],
       "blockers": [
         "SVC-005",
-        "SVC-027"
+        "SVC-027",
+        "SVC-020"
       ],
       "covers": [
         "EXTRA-016"
@@ -15981,7 +16049,7 @@
         "INV-0478"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2444,
+      "downstream_weight": 2503,
       "anchored": true
     },
     {
@@ -16162,7 +16230,7 @@
         "INV-0512"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2779,
+      "downstream_weight": 2780,
       "anchored": true
     },
     {
@@ -16213,7 +16281,7 @@
         "INV-0513"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2782,
+      "downstream_weight": 2783,
       "anchored": true
     },
     {
@@ -16269,7 +16337,7 @@
         "INV-0477"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2437,
+      "downstream_weight": 2496,
       "anchored": true
     },
     {
@@ -16293,7 +16361,7 @@
         "INV-0510"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2785,
+      "downstream_weight": 2786,
       "anchored": true
     },
     {
@@ -16341,7 +16409,7 @@
         "INV-0492"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1,
+      "downstream_weight": 1319,
       "anchored": true
     },
     {
@@ -16370,7 +16438,7 @@
         "INV-1116"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2820,
+      "downstream_weight": 2821,
       "anchored": true
     },
     {
@@ -16424,7 +16492,7 @@
         "INV-0848"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1637,
+      "downstream_weight": 1734,
       "anchored": true
     },
     {
@@ -16451,7 +16519,7 @@
         "INV-0480"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1136,
+      "downstream_weight": 1174,
       "anchored": true
     },
     {
@@ -16560,7 +16628,7 @@
         "INV-0137"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2837,
+      "downstream_weight": 2838,
       "anchored": true
     },
     {
@@ -16584,7 +16652,7 @@
         "INV-0492"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 0,
+      "downstream_weight": 1318,
       "anchored": true
     },
     {
@@ -16636,7 +16704,7 @@
         "GAP-0524"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2823,
+      "downstream_weight": 2824,
       "anchored": true
     },
     {
@@ -16656,7 +16724,7 @@
       ],
       "covers": [],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2440,
+      "downstream_weight": 2499,
       "anchored": true
     },
     {
@@ -16738,9 +16806,11 @@
       "blockers": [
         "SEC-002"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-048"
+      ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 3010,
+      "downstream_weight": 3067,
       "anchored": true
     },
     {
@@ -16768,7 +16838,7 @@
         "INV-0356"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 719,
+      "downstream_weight": 828,
       "anchored": true
     },
     {
@@ -16853,7 +16923,7 @@
         "INV-1184"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1541,
+      "downstream_weight": 1641,
       "anchored": true
     },
     {
@@ -16907,7 +16977,7 @@
         "INV-0481"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 755,
+      "downstream_weight": 793,
       "anchored": true
     },
     {
@@ -16983,7 +17053,7 @@
         "GAP-0195"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 651,
+      "downstream_weight": 652,
       "anchored": true
     },
     {
@@ -17061,7 +17131,7 @@
         "GAP-0416"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 694,
+      "downstream_weight": 732,
       "anchored": true
     },
     {
@@ -17185,9 +17255,11 @@
         "STO-036",
         "STO-019"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0493"
+      ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 673,
+      "downstream_weight": 711,
       "anchored": true
     },
     {
@@ -17321,7 +17393,7 @@
         "INV-0503"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 409,
+      "downstream_weight": 412,
       "anchored": true
     },
     {
@@ -17400,7 +17472,7 @@
         "GAP-0428"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 222,
+      "downstream_weight": 285,
       "anchored": true
     },
     {
@@ -17584,7 +17656,7 @@
         "GAP-0429"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 14,
+      "downstream_weight": 86,
       "anchored": true
     },
     {
@@ -18283,7 +18355,7 @@
         "INV-0540"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2895,
+      "downstream_weight": 2896,
       "anchored": true
     },
     {
@@ -18333,7 +18405,7 @@
         "INV-0565"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 1120,
+      "downstream_weight": 1146,
       "anchored": true
     },
     {
@@ -18359,7 +18431,7 @@
         "INV-0564"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2802,
+      "downstream_weight": 2803,
       "anchored": true
     },
     {
@@ -18386,7 +18458,7 @@
         "INV-1298"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3547,
+      "downstream_weight": 3548,
       "anchored": true
     },
     {
@@ -18445,7 +18517,7 @@
         "INV-0233"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3483,
+      "downstream_weight": 3484,
       "anchored": true
     },
     {
@@ -18524,7 +18596,7 @@
         "INV-0516"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2885,
+      "downstream_weight": 2886,
       "anchored": true
     },
     {
@@ -18554,7 +18626,7 @@
         "INV-0560"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 493,
+      "downstream_weight": 602,
       "anchored": true
     },
     {
@@ -18585,7 +18657,7 @@
         "INV-0043"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2771,
+      "downstream_weight": 2772,
       "anchored": true
     },
     {
@@ -18639,7 +18711,7 @@
         "INV-0555"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2779,
+      "downstream_weight": 2780,
       "anchored": true
     },
     {
@@ -18666,7 +18738,7 @@
         "INV-0554"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2804,
+      "downstream_weight": 2805,
       "anchored": true
     },
     {
@@ -18693,7 +18765,7 @@
         "INV-1186"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 540,
+      "downstream_weight": 649,
       "anchored": true
     },
     {
@@ -18718,7 +18790,7 @@
         "INV-0559"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2686,
+      "downstream_weight": 2687,
       "anchored": true
     },
     {
@@ -18740,7 +18812,7 @@
         "INV-0571"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 877,
+      "downstream_weight": 929,
       "anchored": true
     },
     {
@@ -18768,7 +18840,7 @@
         "INV-0576"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 105,
+      "downstream_weight": 222,
       "anchored": true
     },
     {
@@ -18831,7 +18903,7 @@
         "INV-0041"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 669,
+      "downstream_weight": 778,
       "anchored": true
     },
     {
@@ -18912,7 +18984,7 @@
         "INV-0212"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 1238,
+      "downstream_weight": 1241,
       "anchored": true
     },
     {
@@ -18935,7 +19007,7 @@
         "GAP-0323"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3474,
+      "downstream_weight": 3475,
       "anchored": true
     },
     {
@@ -18989,7 +19061,7 @@
         "INV-0530"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3317,
+      "downstream_weight": 3318,
       "anchored": true
     },
     {
@@ -19044,7 +19116,7 @@
         "INV-0243"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 731,
+      "downstream_weight": 840,
       "anchored": true
     },
     {
@@ -19098,7 +19170,7 @@
         "INV-0514"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 467,
+      "downstream_weight": 468,
       "anchored": true
     },
     {
@@ -19240,7 +19312,7 @@
         "GAP-0526"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2901,
+      "downstream_weight": 2902,
       "anchored": true
     },
     {
@@ -19258,7 +19330,7 @@
         "INV-1140"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3554,
+      "downstream_weight": 3555,
       "anchored": true
     },
     {
@@ -19334,7 +19406,7 @@
         "INV-0630"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 522,
+      "downstream_weight": 523,
       "anchored": true
     },
     {
@@ -19360,7 +19432,7 @@
         "INV-0639"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 668,
+      "downstream_weight": 669,
       "anchored": true
     },
     {
@@ -19484,7 +19556,7 @@
         "INV-0639"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 368,
+      "downstream_weight": 369,
       "anchored": true
     },
     {
@@ -19580,7 +19652,9 @@
         "SEC-002",
         "PKG-055"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0165"
+      ],
       "file": "workstreams/PKG.md",
       "downstream_weight": 39,
       "anchored": true
@@ -19612,7 +19686,7 @@
         "INV-0540"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 365,
+      "downstream_weight": 366,
       "anchored": true
     },
     {
@@ -19630,7 +19704,9 @@
       "blockers": [
         "PKG-031"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0280"
+      ],
       "file": "workstreams/PKG.md",
       "downstream_weight": 11,
       "anchored": true
@@ -19842,7 +19918,7 @@
         "INV-1201"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 351,
+      "downstream_weight": 352,
       "anchored": true
     },
     {
@@ -20551,7 +20627,7 @@
         "INV-0724"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2778,
+      "downstream_weight": 2784,
       "anchored": true
     },
     {
@@ -20659,7 +20735,7 @@
         "INV-0335"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1721,
+      "downstream_weight": 1722,
       "anchored": true
     },
     {
@@ -20691,7 +20767,7 @@
         "INV-1178"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1533,
+      "downstream_weight": 1534,
       "anchored": true
     },
     {
@@ -20746,7 +20822,7 @@
         "INV-1178"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1664,
+      "downstream_weight": 1665,
       "anchored": true
     },
     {
@@ -20807,7 +20883,7 @@
         "INV-0732"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1950,
+      "downstream_weight": 1956,
       "anchored": true
     },
     {
@@ -20853,7 +20929,7 @@
         "GAP-0513"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2380,
+      "downstream_weight": 2386,
       "anchored": true
     },
     {
@@ -20875,7 +20951,7 @@
         "INV-0753"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1672,
+      "downstream_weight": 1673,
       "anchored": true
     },
     {
@@ -20897,7 +20973,7 @@
         "GAP-0514"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2204,
+      "downstream_weight": 2205,
       "anchored": true
     },
     {
@@ -20966,7 +21042,7 @@
         "INV-0733"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2276,
+      "downstream_weight": 2277,
       "anchored": true
     },
     {
@@ -20990,7 +21066,7 @@
         "GAP-0515"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2188,
+      "downstream_weight": 2195,
       "anchored": true
     },
     {
@@ -21082,7 +21158,7 @@
         "INV-0730"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2185,
+      "downstream_weight": 2192,
       "anchored": true
     },
     {
@@ -21107,7 +21183,7 @@
         "GAP-0514"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1547,
+      "downstream_weight": 1548,
       "anchored": true
     },
     {
@@ -21272,7 +21348,7 @@
       ],
       "covers": [],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 3,
+      "downstream_weight": 7,
       "anchored": true
     },
     {
@@ -21322,7 +21398,9 @@
         "UIP-012",
         "UIP-005"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0770"
+      ],
       "file": "workstreams/GFX.md",
       "downstream_weight": 1418,
       "anchored": true
@@ -21348,7 +21426,7 @@
         "INV-0753"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2495,
+      "downstream_weight": 2502,
       "anchored": true
     },
     {
@@ -21372,7 +21450,7 @@
         "GAP-0513"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2413,
+      "downstream_weight": 2419,
       "anchored": true
     },
     {
@@ -21398,7 +21476,7 @@
         "INV-0337"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2336,
+      "downstream_weight": 2337,
       "anchored": true
     },
     {
@@ -21422,7 +21500,7 @@
         "INV-1059"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2704,
+      "downstream_weight": 2710,
       "anchored": true
     },
     {
@@ -21450,7 +21528,7 @@
         "INV-1065"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2322,
+      "downstream_weight": 2323,
       "anchored": true
     },
     {
@@ -21502,7 +21580,7 @@
         "INV-0726"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2198,
+      "downstream_weight": 2199,
       "anchored": true
     },
     {
@@ -21582,7 +21660,7 @@
         "GAP-0119"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1672,
+      "downstream_weight": 1673,
       "anchored": true
     },
     {
@@ -21734,7 +21812,7 @@
         "GAP-0016"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 552,
+      "downstream_weight": 619,
       "anchored": true
     },
     {
@@ -21760,7 +21838,7 @@
         "INV-0620"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 179,
+      "downstream_weight": 200,
       "anchored": true
     },
     {
@@ -21890,7 +21968,9 @@
         "HW-015",
         "LAB-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1222"
+      ],
       "file": "workstreams/GFX.md",
       "downstream_weight": 464,
       "anchored": true
@@ -22049,7 +22129,7 @@
       ],
       "covers": [],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 32,
       "anchored": true
     },
     {
@@ -22073,7 +22153,9 @@
         "BEN-007",
         "LAB-018"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1029"
+      ],
       "file": "workstreams/GFX.md",
       "downstream_weight": 33,
       "anchored": true
@@ -22200,7 +22282,7 @@
         "INV-1214"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 146,
+      "downstream_weight": 167,
       "anchored": true
     },
     {
@@ -22516,7 +22598,7 @@
         "INV-1222"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 162,
+      "downstream_weight": 183,
       "anchored": true
     },
     {
@@ -22617,7 +22699,7 @@
         "INV-0750"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 4,
       "anchored": true
     },
     {
@@ -22799,7 +22881,7 @@
         "INV-1216"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 156,
+      "downstream_weight": 168,
       "anchored": true
     },
     {
@@ -23151,7 +23233,7 @@
         "INV-0208"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 896,
+      "downstream_weight": 897,
       "anchored": true
     },
     {
@@ -23177,7 +23259,7 @@
         "INV-0208"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 899,
+      "downstream_weight": 900,
       "anchored": true
     },
     {
@@ -23459,7 +23541,7 @@
         "INV-0783"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 212,
+      "downstream_weight": 214,
       "anchored": true
     },
     {
@@ -23657,7 +23739,9 @@
         "TXT-006",
         "TXT-003"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0771"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 1211,
       "anchored": true
@@ -23828,7 +23912,9 @@
         "UIP-033",
         "UIP-032"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0276"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 338,
       "anchored": true
@@ -24020,7 +24106,9 @@
         "ACC-008",
         "SEM-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0766"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 133,
       "anchored": true
@@ -24142,7 +24230,9 @@
         "UIP-001",
         "BLD-027"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0118"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 23,
       "anchored": true
@@ -24435,7 +24525,9 @@
         "BLD-035",
         "IPC-029"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0130"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 7,
       "anchored": true
@@ -24461,7 +24553,9 @@
         "ACC-025",
         "UIP-044"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0264"
+      ],
       "file": "workstreams/UIP.md",
       "downstream_weight": 20,
       "anchored": true
@@ -24786,7 +24880,9 @@
       "blockers": [
         "SEC-002"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-015"
+      ],
       "file": "workstreams/TXT.md",
       "downstream_weight": 1335,
       "anchored": true
@@ -24948,7 +25044,7 @@
         "GAP-0248"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 148,
+      "downstream_weight": 149,
       "anchored": true
     },
     {
@@ -24966,7 +25062,7 @@
         "GAP-0257"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 194,
+      "downstream_weight": 195,
       "anchored": true
     },
     {
@@ -25008,7 +25104,7 @@
         "GAP-0248"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 145,
+      "downstream_weight": 146,
       "anchored": true
     },
     {
@@ -25037,7 +25133,7 @@
         "GAP-0251"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 4,
+      "downstream_weight": 234,
       "anchored": true
     },
     {
@@ -25067,7 +25163,7 @@
         "GAP-0248"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 137,
+      "downstream_weight": 138,
       "anchored": true
     },
     {
@@ -25244,7 +25340,7 @@
         "GAP-0250"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 3,
+      "downstream_weight": 131,
       "anchored": true
     },
     {
@@ -25449,7 +25545,7 @@
         "GAP-0250"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -26148,7 +26244,9 @@
         "ACC-013",
         "BLD-027"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0118"
+      ],
       "file": "workstreams/ACC.md",
       "downstream_weight": 118,
       "anchored": true
@@ -26176,7 +26274,7 @@
         "INV-0765"
       ],
       "file": "workstreams/ACC.md",
-      "downstream_weight": 132,
+      "downstream_weight": 133,
       "anchored": true
     },
     {
@@ -27048,7 +27146,9 @@
         "PKG-057",
         "OBS-019"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0798"
+      ],
       "file": "workstreams/SEM.md",
       "downstream_weight": 540,
       "anchored": true
@@ -27536,7 +27636,9 @@
         "OBS-019",
         "SDK-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0829"
+      ],
       "file": "workstreams/SEM.md",
       "downstream_weight": 4,
       "anchored": true
@@ -27722,7 +27824,9 @@
         "HET-015",
         "SEM-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0834"
+      ],
       "file": "workstreams/SEM.md",
       "downstream_weight": 35,
       "anchored": true
@@ -27774,7 +27878,9 @@
         "SEM-013",
         "WASM-012"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0844"
+      ],
       "file": "workstreams/SEM.md",
       "downstream_weight": 37,
       "anchored": true
@@ -28087,7 +28193,7 @@
         "INV-0865"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 5208,
+      "downstream_weight": 5210,
       "anchored": true
     },
     {
@@ -28142,7 +28248,7 @@
         "INV-0863"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1143,
+      "downstream_weight": 1144,
       "anchored": true
     },
     {
@@ -28168,7 +28274,7 @@
         "GAP-0504"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 807,
+      "downstream_weight": 808,
       "anchored": true
     },
     {
@@ -28312,9 +28418,11 @@
         "BEN-006",
         "Q-001"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0502"
+      ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1144,
+      "downstream_weight": 1145,
       "anchored": true
     },
     {
@@ -28336,9 +28444,11 @@
         "GFX-010",
         "MEM-025"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0504"
+      ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 808,
+      "downstream_weight": 809,
       "anchored": true
     },
     {
@@ -28418,7 +28528,7 @@
         "INV-0933"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 707,
+      "downstream_weight": 708,
       "anchored": true
     },
     {
@@ -28552,7 +28662,7 @@
         "GAP-0505"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 709,
+      "downstream_weight": 710,
       "anchored": true
     },
     {
@@ -28656,7 +28766,7 @@
         "GAP-0311"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 113,
+      "downstream_weight": 114,
       "anchored": true
     },
     {
@@ -28708,7 +28818,7 @@
         "INV-0552"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 204,
+      "downstream_weight": 251,
       "anchored": true
     },
     {
@@ -28732,9 +28842,11 @@
         "LNX-042",
         "CAP-025"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0231"
+      ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 18,
+      "downstream_weight": 146,
       "anchored": true
     },
     {
@@ -28750,13 +28862,15 @@
         "LNX-056",
         "BEN-027",
         "Q-001",
-        "LNX-030"
+        "LNX-030",
+        "OBS-038"
       ],
       "blockers": [
         "LNX-056",
         "BEN-027",
         "Q-001",
-        "LNX-030"
+        "LNX-030",
+        "OBS-038"
       ],
       "covers": [],
       "file": "workstreams/LNX.md",
@@ -28840,7 +28954,7 @@
         "INV-1083"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 230,
       "anchored": true
     },
     {
@@ -28989,7 +29103,9 @@
         "LNX-015",
         "WIN-008"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-069"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 401,
       "anchored": true
@@ -29289,7 +29405,9 @@
         "HW-019",
         "HW-011"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0625"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 282,
       "anchored": true
@@ -29347,7 +29465,7 @@
         "GAP-0225"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 11,
+      "downstream_weight": 241,
       "anchored": true
     },
     {
@@ -29371,9 +29489,12 @@
         "LNX-052",
         "LNX-025"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0493",
+        "INV-1092"
+      ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 12,
+      "downstream_weight": 140,
       "anchored": true
     },
     {
@@ -29399,7 +29520,7 @@
         "INV-1085"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 3,
+      "downstream_weight": 233,
       "anchored": true
     },
     {
@@ -29475,7 +29596,9 @@
         "LNX-057",
         "PKG-047"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0552"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 194,
       "anchored": true
@@ -29602,7 +29725,11 @@
         "LNX-061",
         "LNX-053",
         "GOV-031",
-        "BLD-017"
+        "BLD-017",
+        "LNX-029",
+        "LNX-046",
+        "LNX-048",
+        "TXT-019"
       ],
       "blockers": [
         "LNX-041",
@@ -29613,7 +29740,11 @@
         "LNX-061",
         "LNX-053",
         "GOV-031",
-        "BLD-017"
+        "BLD-017",
+        "LNX-029",
+        "LNX-046",
+        "LNX-048",
+        "TXT-019"
       ],
       "covers": [
         "INV-1093",
@@ -29651,7 +29782,7 @@
         "INV-1082"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 716,
+      "downstream_weight": 747,
       "anchored": true
     },
     {
@@ -29677,7 +29808,10 @@
         "LNX-045",
         "PKG-047"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0424",
+        "INV-0891"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 233,
       "anchored": true
@@ -29703,7 +29837,7 @@
         "GAP-0506"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 183,
+      "downstream_weight": 266,
       "anchored": true
     },
     {
@@ -29807,7 +29941,10 @@
         "LNX-084",
         "Q-001"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1032",
+        "INV-0866"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 24,
       "anchored": true
@@ -29945,7 +30082,7 @@
         "GAP-0295"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 3,
+      "downstream_weight": 131,
       "anchored": true
     },
     {
@@ -29975,7 +30112,7 @@
         "GAP-0314"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -29999,7 +30136,9 @@
         "LNX-031",
         "GFX-069"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-027"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 131,
       "anchored": true
@@ -30025,7 +30164,9 @@
         "LNX-061",
         "LNX-058"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-027"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 131,
       "anchored": true
@@ -30099,7 +30240,7 @@
       ],
       "covers": [],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -30125,7 +30266,7 @@
       ],
       "covers": [],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -30149,7 +30290,9 @@
         "UIP-047",
         "LNX-038"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0886"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 134,
       "anchored": true
@@ -30173,7 +30316,9 @@
         "LNX-036",
         "SVC-013"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0281"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 134,
       "anchored": true
@@ -30283,7 +30428,9 @@
         "APP-031",
         "SEC-044"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0888"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 128,
       "anchored": true
@@ -30311,7 +30458,7 @@
         "INV-0854"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 8,
+      "downstream_weight": 136,
       "anchored": true
     },
     {
@@ -30337,7 +30484,7 @@
         "INV-0852"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 121,
+      "downstream_weight": 155,
       "anchored": true
     },
     {
@@ -30356,7 +30503,16 @@
         "LNX-070",
         "LNX-086",
         "LNX-079",
-        "LNX-081"
+        "LNX-081",
+        "LNX-068",
+        "LNX-069",
+        "LNX-074",
+        "LNX-075",
+        "LNX-082",
+        "LNX-085",
+        "LNX-088",
+        "LNX-089",
+        "TXT-035"
       ],
       "blockers": [
         "LNX-073",
@@ -30365,7 +30521,16 @@
         "LNX-070",
         "LNX-086",
         "LNX-079",
-        "LNX-081"
+        "LNX-081",
+        "LNX-068",
+        "LNX-069",
+        "LNX-074",
+        "LNX-075",
+        "LNX-082",
+        "LNX-085",
+        "LNX-088",
+        "LNX-089",
+        "TXT-035"
       ],
       "covers": [],
       "file": "workstreams/LNX.md",
@@ -30397,7 +30562,7 @@
         "GAP-0224"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -30421,7 +30586,9 @@
         "LNX-066",
         "LNX-071"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-027"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 128,
       "anchored": true
@@ -30477,7 +30644,7 @@
         "INV-0856"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -30505,7 +30672,7 @@
         "INV-0855"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -30635,7 +30802,7 @@
         "INV-0860"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 93,
       "anchored": true
     },
     {
@@ -30687,7 +30854,9 @@
         "ACC-024",
         "LNX-084"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0265"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 104,
       "anchored": true
@@ -30741,7 +30910,7 @@
         "INV-0862"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 93,
       "anchored": true
     },
     {
@@ -30765,7 +30934,9 @@
         "DOC-021",
         "LNX-028"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1248"
+      ],
       "file": "workstreams/LNX.md",
       "downstream_weight": 27,
       "anchored": true
@@ -30783,13 +30954,19 @@
         "LNX-097",
         "LNX-096",
         "LNX-093",
-        "BLD-017"
+        "BLD-017",
+        "LNX-094",
+        "LNX-098",
+        "LNX-101"
       ],
       "blockers": [
         "LNX-097",
         "LNX-096",
         "LNX-093",
-        "BLD-017"
+        "BLD-017",
+        "LNX-094",
+        "LNX-098",
+        "LNX-101"
       ],
       "covers": [
         "INV-1245"
@@ -30823,7 +31000,7 @@
         "INV-0861"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 0,
+      "downstream_weight": 93,
       "anchored": true
     },
     {
@@ -31359,7 +31536,9 @@
         "PKG-047",
         "PKG-038"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0908"
+      ],
       "file": "workstreams/WIN.md",
       "downstream_weight": 391,
       "anchored": true
@@ -31606,7 +31785,9 @@
         "WIN-011",
         "WIN-040"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0900"
+      ],
       "file": "workstreams/WIN.md",
       "downstream_weight": 145,
       "anchored": true
@@ -31634,7 +31815,7 @@
         "INV-0928"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 0,
+      "downstream_weight": 145,
       "anchored": true
     },
     {
@@ -31918,7 +32099,7 @@
         "INV-0931"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 3,
+      "downstream_weight": 124,
       "anchored": true
     },
     {
@@ -31946,7 +32127,7 @@
         "INV-0898"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 6,
+      "downstream_weight": 151,
       "anchored": true
     },
     {
@@ -32063,7 +32244,9 @@
       "blockers": [
         "WIN-038"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0130"
+      ],
       "file": "workstreams/WIN.md",
       "downstream_weight": 3,
       "anchored": true
@@ -32120,7 +32303,7 @@
         "INV-0905"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 3,
+      "downstream_weight": 148,
       "anchored": true
     },
     {
@@ -32221,7 +32404,7 @@
         "INV-0926"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 0,
+      "downstream_weight": 145,
       "anchored": true
     },
     {
@@ -32374,7 +32557,12 @@
         "WIN-022",
         "WIN-028",
         "WIN-043",
-        "WIN-029"
+        "WIN-029",
+        "WIN-023",
+        "WIN-034",
+        "WIN-041",
+        "WIN-045",
+        "BLD-060"
       ],
       "blockers": [
         "WIN-006",
@@ -32391,7 +32579,12 @@
         "WIN-022",
         "WIN-028",
         "WIN-043",
-        "WIN-029"
+        "WIN-029",
+        "WIN-023",
+        "WIN-034",
+        "WIN-041",
+        "WIN-045",
+        "BLD-060"
       ],
       "covers": [
         "INV-0906",
@@ -32588,7 +32781,7 @@
         "GAP-0027"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 0,
+      "downstream_weight": 13,
       "anchored": true
     },
     {
@@ -32662,7 +32855,7 @@
         "INV-0931"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 0,
+      "downstream_weight": 121,
       "anchored": true
     },
     {
@@ -32686,7 +32879,7 @@
         "GAP-0242"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 1,
+      "downstream_weight": 14,
       "anchored": true
     },
     {
@@ -32732,7 +32925,9 @@
         "WIN-002",
         "WIN-018"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-056"
+      ],
       "file": "workstreams/WIN.md",
       "downstream_weight": 8,
       "anchored": true
@@ -32888,13 +33083,15 @@
         "WIN-070",
         "WIN-072",
         "WIN-006",
-        "WIN-030"
+        "WIN-030",
+        "WIN-061"
       ],
       "blockers": [
         "WIN-070",
         "WIN-072",
         "WIN-006",
-        "WIN-030"
+        "WIN-030",
+        "WIN-061"
       ],
       "covers": [
         "INV-1246"
@@ -33192,13 +33389,15 @@
         "WIN-018",
         "WIN-059",
         "WIN-002",
-        "WIN-080"
+        "WIN-080",
+        "WIN-058"
       ],
       "blockers": [
         "WIN-018",
         "WIN-059",
         "WIN-002",
-        "WIN-080"
+        "WIN-080",
+        "WIN-058"
       ],
       "covers": [],
       "file": "workstreams/WIN.md",
@@ -33583,7 +33782,7 @@
         "EXTRA-054"
       ],
       "file": "workstreams/VIRT.md",
-      "downstream_weight": 0,
+      "downstream_weight": 1,
       "anchored": true
     },
     {
@@ -33701,7 +33900,9 @@
         "VIRT-005",
         "VIRT-008"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0443"
+      ],
       "file": "workstreams/VIRT.md",
       "downstream_weight": 8,
       "anchored": true
@@ -33733,7 +33934,9 @@
         "VIRT-005",
         "VIRT-007"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0446"
+      ],
       "file": "workstreams/VIRT.md",
       "downstream_weight": 1,
       "anchored": true
@@ -33812,7 +34015,8 @@
         "VIRT-007",
         "VIRT-015",
         "VIRT-008",
-        "VIRT-009"
+        "VIRT-009",
+        "VIRT-012"
       ],
       "blockers": [
         "VIRT-017",
@@ -33823,7 +34027,8 @@
         "VIRT-007",
         "VIRT-015",
         "VIRT-008",
-        "VIRT-009"
+        "VIRT-009",
+        "VIRT-012"
       ],
       "covers": [
         "GAP-0448"
@@ -34484,7 +34689,7 @@
       ],
       "covers": [],
       "file": "workstreams/ENV.md",
-      "downstream_weight": 0,
+      "downstream_weight": 1,
       "anchored": true
     },
     {
@@ -34532,7 +34737,9 @@
         "ENV-019",
         "PKG-064"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0664"
+      ],
       "file": "workstreams/ENV.md",
       "downstream_weight": 6,
       "anchored": true
@@ -34556,7 +34763,9 @@
         "ENV-012",
         "STO-035"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0666"
+      ],
       "file": "workstreams/ENV.md",
       "downstream_weight": 0,
       "anchored": true
@@ -34720,7 +34929,9 @@
         "ENV-001",
         "ENV-018"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0668"
+      ],
       "file": "workstreams/ENV.md",
       "downstream_weight": 2,
       "anchored": true
@@ -34794,13 +35005,15 @@
         "BEN-025",
         "ENV-033",
         "ENV-014",
-        "ENV-018"
+        "ENV-018",
+        "ENV-024"
       ],
       "blockers": [
         "BEN-025",
         "ENV-033",
         "ENV-014",
-        "ENV-018"
+        "ENV-018",
+        "ENV-024"
       ],
       "covers": [],
       "file": "workstreams/ENV.md",
@@ -34834,7 +35047,7 @@
         "INV-1300"
       ],
       "file": "workstreams/HET.md",
-      "downstream_weight": 458,
+      "downstream_weight": 460,
       "anchored": true
     },
     {
@@ -34852,7 +35065,7 @@
         "INV-0697"
       ],
       "file": "workstreams/HET.md",
-      "downstream_weight": 461,
+      "downstream_weight": 463,
       "anchored": true
     },
     {
@@ -34926,7 +35139,9 @@
         "HET-007",
         "TSK-018"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0693"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 69,
       "anchored": true
@@ -34950,7 +35165,10 @@
         "HET-001",
         "OBS-006"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0333",
+        "INV-1300"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 69,
       "anchored": true
@@ -35055,7 +35273,9 @@
         "HET-002",
         "HET-001"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0553"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 174,
       "anchored": true
@@ -35107,7 +35327,9 @@
         "TSK-017",
         "TSK-010"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0374"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 12,
       "anchored": true
@@ -35125,13 +35347,15 @@
         "HET-016",
         "HET-017",
         "HET-014",
-        "HET-015"
+        "HET-015",
+        "SCH-049"
       ],
       "blockers": [
         "HET-016",
         "HET-017",
         "HET-014",
-        "HET-015"
+        "HET-015",
+        "SCH-049"
       ],
       "covers": [],
       "file": "workstreams/HET.md",
@@ -35430,7 +35654,9 @@
         "HW-018",
         "HW-070"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0681"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 4,
       "anchored": true
@@ -35630,7 +35856,10 @@
         "HET-016",
         "HET-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0683",
+        "INV-0684"
+      ],
       "file": "workstreams/HET.md",
       "downstream_weight": 0,
       "anchored": true
@@ -35675,7 +35904,7 @@
         "INV-1142"
       ],
       "file": "workstreams/WASM.md",
-      "downstream_weight": 4100,
+      "downstream_weight": 4101,
       "anchored": true
     },
     {
@@ -35753,7 +35982,9 @@
         "PKG-038",
         "CMP-017"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0633"
+      ],
       "file": "workstreams/WASM.md",
       "downstream_weight": 7,
       "anchored": true
@@ -35923,7 +36154,9 @@
         "MEM-005",
         "MEM-007"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0274"
+      ],
       "file": "workstreams/WASM.md",
       "downstream_weight": 0,
       "anchored": true
@@ -36420,7 +36653,7 @@
         "INV-0218"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 3484,
+      "downstream_weight": 3485,
       "anchored": true
     },
     {
@@ -36443,7 +36676,7 @@
         "GAP-0527"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 2845,
+      "downstream_weight": 2846,
       "anchored": true
     },
     {
@@ -36467,9 +36700,12 @@
         "CAP-025",
         "PKG-028"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-068",
+        "GAP-0227"
+      ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 805,
+      "downstream_weight": 806,
       "anchored": true
     },
     {
@@ -36496,7 +36732,7 @@
         "GAP-0227"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 3526,
+      "downstream_weight": 3534,
       "anchored": true
     },
     {
@@ -36540,7 +36776,9 @@
       "blockers": [
         "SEC-001"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0201"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 278,
       "anchored": true
@@ -36567,7 +36805,7 @@
         "INV-1294"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 162,
+      "downstream_weight": 163,
       "anchored": true
     },
     {
@@ -36658,7 +36896,9 @@
       "blockers": [
         "SEC-012"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0213"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 1074,
       "anchored": true
@@ -36712,7 +36952,7 @@
         "EXTRA-019"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 190,
+      "downstream_weight": 273,
       "anchored": true
     },
     {
@@ -36754,7 +36994,9 @@
       "blockers": [
         "SEC-005"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0197"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 259,
       "anchored": true
@@ -36850,9 +37092,11 @@
         "SEC-016",
         "NET-005"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-019"
+      ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 187,
+      "downstream_weight": 270,
       "anchored": true
     },
     {
@@ -36874,7 +37118,9 @@
         "BLD-011",
         "PKG-028"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0220"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -36894,7 +37140,9 @@
       "blockers": [
         "SEC-016"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-019"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -36916,7 +37164,9 @@
         "SEC-017",
         "SEC-018"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0198"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 151,
       "anchored": true
@@ -36936,9 +37186,11 @@
       "blockers": [
         "SEC-027"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0222"
+      ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 69,
+      "downstream_weight": 172,
       "anchored": true
     },
     {
@@ -36964,7 +37216,7 @@
         "GAP-0222"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 386,
+      "downstream_weight": 477,
       "anchored": true
     },
     {
@@ -37012,7 +37264,7 @@
         "EXTRA-015"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 149,
+      "downstream_weight": 150,
       "anchored": true
     },
     {
@@ -37030,7 +37282,9 @@
       "blockers": [
         "SEC-027"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0223"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -37055,8 +37309,7 @@
         "PWR-002"
       ],
       "covers": [
-        "GAP-0201",
-        "GAP-0223"
+        "GAP-0201"
       ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 7,
@@ -37109,7 +37362,9 @@
         "SEC-006",
         "CAP-041"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0830"
+      ],
       "file": "workstreams/SEC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -37528,7 +37783,7 @@
         "GAP-0190"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 395,
+      "downstream_weight": 398,
       "anchored": true
     },
     {
@@ -37582,7 +37837,7 @@
         "GAP-0198"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 6,
+      "downstream_weight": 13,
       "anchored": true
     },
     {
@@ -37606,7 +37861,7 @@
         "GAP-0192"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 391,
+      "downstream_weight": 394,
       "anchored": true
     },
     {
@@ -37644,13 +37899,17 @@
         "SEC-017",
         "SEC-025",
         "INS-027",
-        "INS-007"
+        "INS-007",
+        "SEC-052",
+        "SVC-023"
       ],
       "blockers": [
         "SEC-017",
         "SEC-025",
         "INS-027",
-        "INS-007"
+        "INS-007",
+        "SEC-052",
+        "SVC-023"
       ],
       "covers": [],
       "file": "workstreams/SEC.md",
@@ -38273,7 +38532,7 @@
         "INV-0129"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1138,
+      "downstream_weight": 1212,
       "anchored": true
     },
     {
@@ -38295,9 +38554,11 @@
         "CAP-005",
         "KRN-013"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0538"
+      ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1137,
+      "downstream_weight": 1211,
       "anchored": true
     },
     {
@@ -38322,7 +38583,7 @@
         "INV-1200"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 258,
+      "downstream_weight": 331,
       "anchored": true
     },
     {
@@ -38368,7 +38629,7 @@
       ],
       "covers": [],
       "file": "workstreams/NET.md",
-      "downstream_weight": 188,
+      "downstream_weight": 271,
       "anchored": true
     },
     {
@@ -38397,7 +38658,7 @@
         "INV-0203"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1045,
+      "downstream_weight": 1083,
       "anchored": true
     },
     {
@@ -38419,9 +38680,11 @@
         "NET-002",
         "KRN-001"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0065"
+      ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1136,
+      "downstream_weight": 1210,
       "anchored": true
     },
     {
@@ -38448,7 +38711,7 @@
         "INV-0110"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1085,
+      "downstream_weight": 1160,
       "anchored": true
     },
     {
@@ -38470,7 +38733,7 @@
         "GAP-0291"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 272,
+      "downstream_weight": 345,
       "anchored": true
     },
     {
@@ -38496,7 +38759,7 @@
       ],
       "covers": [],
       "file": "workstreams/NET.md",
-      "downstream_weight": 0,
+      "downstream_weight": 58,
       "anchored": true
     },
     {
@@ -38520,9 +38783,11 @@
         "SEC-016",
         "SEC-022"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-019"
+      ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 184,
+      "downstream_weight": 267,
       "anchored": true
     },
     {
@@ -38552,7 +38817,7 @@
         "GAP-0293"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1035,
+      "downstream_weight": 1073,
       "anchored": true
     },
     {
@@ -38607,7 +38872,7 @@
         "INV-0065"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1072,
+      "downstream_weight": 1147,
       "anchored": true
     },
     {
@@ -38640,7 +38905,7 @@
         "INV-0595"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 264,
+      "downstream_weight": 337,
       "anchored": true
     },
     {
@@ -38745,7 +39010,7 @@
         "INV-1200"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 181,
+      "downstream_weight": 264,
       "anchored": true
     },
     {
@@ -38862,7 +39127,7 @@
       ],
       "covers": [],
       "file": "workstreams/NET.md",
-      "downstream_weight": 0,
+      "downstream_weight": 64,
       "anchored": true
     },
     {
@@ -39522,7 +39787,9 @@
         "MEM-038",
         "IPC-043"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0407"
+      ],
       "file": "workstreams/AUD.md",
       "downstream_weight": 255,
       "anchored": true
@@ -40149,7 +40416,9 @@
       "blockers": [
         "AUD-002"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-038"
+      ],
       "file": "workstreams/AUD.md",
       "downstream_weight": 0,
       "anchored": true
@@ -40563,7 +40832,9 @@
         "GFX-063",
         "GFX-005"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0300"
+      ],
       "file": "workstreams/MED.md",
       "downstream_weight": 5,
       "anchored": true
@@ -40727,7 +40998,9 @@
         "MED-021",
         "MED-024"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0304"
+      ],
       "file": "workstreams/MED.md",
       "downstream_weight": 4,
       "anchored": true
@@ -41265,9 +41538,11 @@
         "LAB-003",
         "BOOT-002"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1154"
+      ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2288,
+      "downstream_weight": 2289,
       "anchored": true
     },
     {
@@ -41313,7 +41588,7 @@
         "INV-1233"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 3354,
+      "downstream_weight": 3360,
       "anchored": true
     },
     {
@@ -41419,7 +41694,7 @@
         "INV-0623"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 455,
+      "downstream_weight": 456,
       "anchored": true
     },
     {
@@ -41489,9 +41764,12 @@
         "HW-004",
         "HW-001"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1326",
+        "INV-0069"
+      ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2186,
+      "downstream_weight": 2187,
       "anchored": true
     },
     {
@@ -41517,7 +41795,7 @@
         "INV-1061"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 1887,
+      "downstream_weight": 1888,
       "anchored": true
     },
     {
@@ -41539,7 +41817,9 @@
         "HW-007",
         "HW-009"
       ],
-      "covers": [],
+      "covers": [
+        "EXTRA-042"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 1683,
       "anchored": true
@@ -41581,7 +41861,10 @@
         "HW-002",
         "ABI-013"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0170",
+        "INV-0623"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 2055,
       "anchored": true
@@ -41607,7 +41890,7 @@
         "INV-0624"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 572,
+      "downstream_weight": 573,
       "anchored": true
     },
     {
@@ -41654,7 +41937,7 @@
         "INV-1054"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 484,
+      "downstream_weight": 506,
       "anchored": true
     },
     {
@@ -41679,7 +41962,7 @@
         "INV-0627"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 454,
+      "downstream_weight": 455,
       "anchored": true
     },
     {
@@ -41704,7 +41987,7 @@
         "GAP-0183"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 549,
+      "downstream_weight": 616,
       "anchored": true
     },
     {
@@ -41776,7 +42059,7 @@
         "INV-1058"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 162,
+      "downstream_weight": 215,
       "anchored": true
     },
     {
@@ -41846,7 +42129,9 @@
         "HW-015",
         "HW-011"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1219"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 131,
       "anchored": true
@@ -41903,7 +42188,7 @@
         "INV-0627"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 439,
+      "downstream_weight": 440,
       "anchored": true
     },
     {
@@ -41927,7 +42212,7 @@
         "GAP-0254"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 0,
+      "downstream_weight": 1,
       "anchored": true
     },
     {
@@ -41987,7 +42272,7 @@
         "INV-0612"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 361,
+      "downstream_weight": 383,
       "anchored": true
     },
     {
@@ -42012,7 +42297,7 @@
         "INV-0598"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 6,
+      "downstream_weight": 7,
       "anchored": true
     },
     {
@@ -42040,7 +42325,7 @@
         "INV-0615"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 190,
+      "downstream_weight": 259,
       "anchored": true
     },
     {
@@ -42056,13 +42341,17 @@
         "HW-015",
         "HW-024",
         "HW-011",
-        "HW-012"
+        "HW-012",
+        "HW-027",
+        "HW-030"
       ],
       "blockers": [
         "HW-015",
         "HW-024",
         "HW-011",
-        "HW-012"
+        "HW-012",
+        "HW-027",
+        "HW-030"
       ],
       "covers": [],
       "file": "workstreams/HW.md",
@@ -42180,7 +42469,7 @@
         "INV-1217"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 63,
+      "downstream_weight": 95,
       "anchored": true
     },
     {
@@ -42255,7 +42544,7 @@
         "INV-1061"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 330,
+      "downstream_weight": 351,
       "anchored": true
     },
     {
@@ -42365,7 +42654,7 @@
         "GAP-0469"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 3,
+      "downstream_weight": 11,
       "anchored": true
     },
     {
@@ -42387,7 +42676,9 @@
         "HW-015",
         "HW-039"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0287"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 11,
       "anchored": true
@@ -42490,7 +42781,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 152,
+      "downstream_weight": 187,
       "anchored": true
     },
     {
@@ -42601,7 +42892,7 @@
         "INV-1233"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 0,
+      "downstream_weight": 8,
       "anchored": true
     },
     {
@@ -42652,7 +42943,7 @@
         "INV-0619"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 22,
+      "downstream_weight": 91,
       "anchored": true
     },
     {
@@ -42704,7 +42995,7 @@
         "GAP-0210"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 173,
+      "downstream_weight": 194,
       "anchored": true
     },
     {
@@ -42752,9 +43043,11 @@
         "HW-039",
         "LAB-018"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1222"
+      ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 170,
+      "downstream_weight": 191,
       "anchored": true
     },
     {
@@ -42806,7 +43099,9 @@
         "HW-050",
         "HW-046"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1113"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 113,
       "anchored": true
@@ -43153,7 +43448,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 3,
+      "downstream_weight": 75,
       "anchored": true
     },
     {
@@ -43177,7 +43472,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 0,
+      "downstream_weight": 72,
       "anchored": true
     },
     {
@@ -43199,7 +43494,9 @@
         "HW-062",
         "HW-070"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0438"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 72,
       "anchored": true
@@ -43223,7 +43520,9 @@
         "HW-055",
         "MED-013"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0303"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 7,
       "anchored": true
@@ -43247,7 +43546,9 @@
         "HW-047",
         "HW-065"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0468"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 7,
       "anchored": true
@@ -43341,7 +43642,9 @@
         "HW-065",
         "HW-086"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0371"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 8,
       "anchored": true
@@ -43412,14 +43715,18 @@
         "HW-080",
         "HW-070",
         "HW-084",
-        "HW-077"
+        "HW-077",
+        "HW-075",
+        "HW-076"
       ],
       "blockers": [
         "HW-081",
         "HW-080",
         "HW-070",
         "HW-084",
-        "HW-077"
+        "HW-077",
+        "HW-075",
+        "HW-076"
       ],
       "covers": [],
       "file": "workstreams/HW.md",
@@ -43459,11 +43766,13 @@
       "owner": "none",
       "depends_on": [
         "HW-089",
-        "HW-083"
+        "HW-083",
+        "HW-053"
       ],
       "blockers": [
         "HW-089",
-        "HW-083"
+        "HW-083",
+        "HW-053"
       ],
       "covers": [],
       "file": "workstreams/HW.md",
@@ -43501,7 +43810,9 @@
       "owner": "none",
       "depends_on": [],
       "blockers": [],
-      "covers": [],
+      "covers": [
+        "EXTRA-038"
+      ],
       "file": "workstreams/HW.md",
       "downstream_weight": 0,
       "anchored": true
@@ -43525,7 +43836,7 @@
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 385,
+      "downstream_weight": 484,
       "anchored": true
     },
     {
@@ -43569,7 +43880,9 @@
         "LAB-006",
         "LAB-007"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0547"
+      ],
       "file": "workstreams/PWR.md",
       "downstream_weight": 20,
       "anchored": true
@@ -43595,7 +43908,7 @@
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 277,
+      "downstream_weight": 376,
       "anchored": true
     },
     {
@@ -43619,7 +43932,7 @@
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 386,
+      "downstream_weight": 485,
       "anchored": true
     },
     {
@@ -43636,14 +43949,16 @@
         "PWR-009",
         "PWR-010",
         "LAB-013",
-        "BEN-018"
+        "BEN-018",
+        "TSK-047"
       ],
       "blockers": [
         "PWR-003",
         "PWR-009",
         "PWR-010",
         "LAB-013",
-        "BEN-018"
+        "BEN-018",
+        "TSK-047"
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
@@ -43669,7 +43984,9 @@
         "SEC-031",
         "STO-014"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0201"
+      ],
       "file": "workstreams/PWR.md",
       "downstream_weight": 6,
       "anchored": true
@@ -43760,7 +44077,7 @@
         "INV-1220"
       ],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 111,
+      "downstream_weight": 228,
       "anchored": true
     },
     {
@@ -43824,7 +44141,7 @@
         "GAP-0285"
       ],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 243,
+      "downstream_weight": 360,
       "anchored": true
     },
     {
@@ -43856,7 +44173,7 @@
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
-      "downstream_weight": 262,
+      "downstream_weight": 379,
       "anchored": true
     },
     {
@@ -43878,7 +44195,8 @@
         "HW-015",
         "GFX-053",
         "BLD-044",
-        "SEC-028"
+        "SEC-028",
+        "MEM-044"
       ],
       "blockers": [
         "PWR-002",
@@ -43890,7 +44208,8 @@
         "HW-015",
         "GFX-053",
         "BLD-044",
-        "SEC-028"
+        "SEC-028",
+        "MEM-044"
       ],
       "covers": [
         "INV-1207",
@@ -43949,7 +44268,9 @@
         "SCH-045",
         "OBS-019"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0312"
+      ],
       "file": "workstreams/PWR.md",
       "downstream_weight": 3,
       "anchored": true
@@ -43999,7 +44320,9 @@
         "HW-042",
         "HW-050"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1219"
+      ],
       "file": "workstreams/PWR.md",
       "downstream_weight": 1,
       "anchored": true
@@ -44504,7 +44827,7 @@
         "INV-1252"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1619,
+      "downstream_weight": 1635,
       "anchored": true
     },
     {
@@ -44537,7 +44860,7 @@
         "INV-1258"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 182,
+      "downstream_weight": 246,
       "anchored": true
     },
     {
@@ -44793,7 +45116,7 @@
         "INV-0976"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 195,
+      "downstream_weight": 198,
       "anchored": true
     },
     {
@@ -44844,7 +45167,7 @@
         "INV-1286"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 245,
+      "downstream_weight": 246,
       "anchored": true
     },
     {
@@ -44902,7 +45225,7 @@
         "INV-0986"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 208,
+      "downstream_weight": 209,
       "anchored": true
     },
     {
@@ -44932,7 +45255,7 @@
         "INV-0219"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 59,
+      "downstream_weight": 61,
       "anchored": true
     },
     {
@@ -45011,7 +45334,7 @@
         "INV-0948"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 90,
+      "downstream_weight": 92,
       "anchored": true
     },
     {
@@ -45089,7 +45412,7 @@
         "GAP-0006"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 246,
+      "downstream_weight": 247,
       "anchored": true
     },
     {
@@ -45115,7 +45438,7 @@
         "EXTRA-045"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 31,
+      "downstream_weight": 34,
       "anchored": true
     },
     {
@@ -45251,7 +45574,7 @@
         "INV-0938"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 84,
+      "downstream_weight": 86,
       "anchored": true
     },
     {
@@ -45273,7 +45596,9 @@
         "SDK-039",
         "IPC-048"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0453"
+      ],
       "file": "workstreams/SDK.md",
       "downstream_weight": 21,
       "anchored": true
@@ -45327,7 +45652,7 @@
         "GAP-0100"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 33,
+      "downstream_weight": 35,
       "anchored": true
     },
     {
@@ -45420,7 +45745,7 @@
         "GAP-0453"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 45,
+      "downstream_weight": 48,
       "anchored": true
     },
     {
@@ -45448,7 +45773,7 @@
         "GAP-0457"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 121,
+      "downstream_weight": 122,
       "anchored": true
     },
     {
@@ -45529,7 +45854,7 @@
         "INV-0979"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 194,
+      "downstream_weight": 197,
       "anchored": true
     },
     {
@@ -45686,7 +46011,7 @@
         "EXTRA-045"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 22,
+      "downstream_weight": 25,
       "anchored": true
     },
     {
@@ -45810,7 +46135,7 @@
         "INV-0980"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 91,
+      "downstream_weight": 93,
       "anchored": true
     },
     {
@@ -45851,7 +46176,8 @@
         "SDK-017",
         "SDK-020",
         "DOC-010",
-        "DOC-014"
+        "DOC-014",
+        "NET-010"
       ],
       "blockers": [
         "SDK-062",
@@ -45860,13 +46186,14 @@
         "SDK-017",
         "SDK-020",
         "DOC-010",
-        "DOC-014"
+        "DOC-014",
+        "NET-010"
       ],
       "covers": [
         "INV-0978"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 53,
+      "downstream_weight": 55,
       "anchored": true
     },
     {
@@ -45955,7 +46282,7 @@
         "INV-1195"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 19,
+      "downstream_weight": 22,
       "anchored": true
     },
     {
@@ -46037,7 +46364,7 @@
         "INV-0978"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 56,
+      "downstream_weight": 58,
       "anchored": true
     },
     {
@@ -46295,7 +46622,9 @@
         "SDK-033",
         "IPC-047"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0945"
+      ],
       "file": "workstreams/SDK.md",
       "downstream_weight": 42,
       "anchored": true
@@ -46540,10 +46869,12 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "SDK-080"
+        "SDK-080",
+        "SDK-083"
       ],
       "blockers": [
-        "SDK-080"
+        "SDK-080",
+        "SDK-083"
       ],
       "covers": [],
       "file": "workstreams/SDK.md",
@@ -46571,7 +46902,7 @@
         "GAP-0106"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 0,
+      "downstream_weight": 3,
       "anchored": true
     },
     {
@@ -46599,7 +46930,7 @@
         "GAP-0106"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 6,
+      "downstream_weight": 9,
       "anchored": true
     },
     {
@@ -46651,7 +46982,9 @@
         "SDK-073",
         "DOC-032"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1248"
+      ],
       "file": "workstreams/SDK.md",
       "downstream_weight": 9,
       "anchored": true
@@ -46982,11 +47315,13 @@
       "owner": "none",
       "depends_on": [
         "UIP-024",
-        "TXT-012"
+        "TXT-012",
+        "STO-024"
       ],
       "blockers": [
         "UIP-024",
-        "TXT-012"
+        "TXT-012",
+        "STO-024"
       ],
       "covers": [
         "INV-1189"
@@ -47163,7 +47498,9 @@
         "UIP-023",
         "SDK-025"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0310"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 1208,
       "anchored": true
@@ -47232,7 +47569,7 @@
         "INV-1197"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 113,
+      "downstream_weight": 114,
       "anchored": true
     },
     {
@@ -47381,7 +47718,7 @@
         "INV-1196"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 110,
+      "downstream_weight": 111,
       "anchored": true
     },
     {
@@ -47403,7 +47740,9 @@
         "APP-013",
         "UIP-016"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0885"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 425,
       "anchored": true
@@ -47427,7 +47766,9 @@
         "GFX-010",
         "UIP-013"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0885"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 35,
       "anchored": true
@@ -47484,7 +47825,7 @@
         "INV-1106"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 117,
+      "downstream_weight": 118,
       "anchored": true
     },
     {
@@ -47508,7 +47849,9 @@
         "CAP-025",
         "LNX-031"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0307"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 16,
       "anchored": true
@@ -48099,7 +48442,7 @@
         "GAP-0279"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 0,
+      "downstream_weight": 32,
       "anchored": true
     },
     {
@@ -48269,7 +48612,9 @@
         "APP-040",
         "APP-033",
         "APP-050",
-        "APP-036"
+        "APP-036",
+        "APP-041",
+        "GFX-059"
       ],
       "blockers": [
         "APP-043",
@@ -48278,7 +48623,9 @@
         "APP-040",
         "APP-033",
         "APP-050",
-        "APP-036"
+        "APP-036",
+        "APP-041",
+        "GFX-059"
       ],
       "covers": [
         "INV-1213"
@@ -48483,7 +48830,9 @@
         "PKG-022",
         "Q-056"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0283"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 6,
       "anchored": true
@@ -48676,7 +49025,9 @@
         "APP-030",
         "CAP-049"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0283"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 29,
       "anchored": true
@@ -48702,7 +49053,9 @@
         "APP-053",
         "APP-002"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0268"
+      ],
       "file": "workstreams/APP.md",
       "downstream_weight": 96,
       "anchored": true
@@ -49139,7 +49492,9 @@
         "INS-008",
         "INS-005"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1236"
+      ],
       "file": "workstreams/INS.md",
       "downstream_weight": 142,
       "anchored": true
@@ -50497,7 +50852,7 @@
         "GAP-0107"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4612,
+      "downstream_weight": 4615,
       "anchored": true
     },
     {
@@ -50516,7 +50871,7 @@
         "GAP-0160"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4731,
+      "downstream_weight": 4734,
       "anchored": true
     },
     {
@@ -50562,7 +50917,7 @@
         "GAP-0114"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 2404,
+      "downstream_weight": 2405,
       "anchored": true
     },
     {
@@ -50714,7 +51069,7 @@
         "GAP-0155"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4198,
+      "downstream_weight": 4202,
       "anchored": true
     },
     {
@@ -50770,7 +51125,7 @@
         "GAP-0089"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4685,
+      "downstream_weight": 4702,
       "anchored": true
     },
     {
@@ -50986,9 +51341,11 @@
         "BLD-012",
         "PKG-015"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0112"
+      ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 489,
+      "downstream_weight": 598,
       "anchored": true
     },
     {
@@ -51141,7 +51498,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 1689,
+      "downstream_weight": 1690,
       "anchored": true
     },
     {
@@ -51163,7 +51520,9 @@
         "BLD-041",
         "BLD-026"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0104"
+      ],
       "file": "workstreams/BLD.md",
       "downstream_weight": 24,
       "anchored": true
@@ -51390,7 +51749,9 @@
         "BLD-026",
         "OBS-028"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0362"
+      ],
       "file": "workstreams/BLD.md",
       "downstream_weight": 56,
       "anchored": true
@@ -51543,9 +51904,11 @@
         "BLD-001",
         "BLD-007"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0372"
+      ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 141,
+      "downstream_weight": 272,
       "anchored": true
     },
     {
@@ -51591,7 +51954,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 320,
+      "downstream_weight": 322,
       "anchored": true
     },
     {
@@ -51613,9 +51976,11 @@
         "BLD-002",
         "BLD-009"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0092"
+      ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 311,
+      "downstream_weight": 313,
       "anchored": true
     },
     {
@@ -51789,7 +52154,9 @@
       "blockers": [
         "BLD-023"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0352"
+      ],
       "file": "workstreams/BLD.md",
       "downstream_weight": 125,
       "anchored": true
@@ -51892,7 +52259,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 74,
+      "downstream_weight": 207,
       "anchored": true
     },
     {
@@ -51938,7 +52305,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 0,
+      "downstream_weight": 145,
       "anchored": true
     },
     {
@@ -51998,11 +52365,13 @@
       "owner": "none",
       "depends_on": [
         "BLD-035",
-        "BLD-042"
+        "BLD-042",
+        "NET-023"
       ],
       "blockers": [
         "BLD-035",
-        "BLD-042"
+        "BLD-042",
+        "NET-023"
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
@@ -52454,7 +52823,7 @@
         "GAP-0372"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 3298,
+      "downstream_weight": 3304,
       "anchored": true
     },
     {
@@ -52478,7 +52847,7 @@
         "EXTRA-052"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 3294,
+      "downstream_weight": 3300,
       "anchored": true
     },
     {
@@ -52518,7 +52887,7 @@
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 293,
+      "downstream_weight": 402,
       "anchored": true
     },
     {
@@ -52586,7 +52955,7 @@
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 294,
+      "downstream_weight": 403,
       "anchored": true
     },
     {
@@ -52638,7 +53007,7 @@
         "GAP-0141"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 285,
+      "downstream_weight": 394,
       "anchored": true
     },
     {
@@ -52837,7 +53206,7 @@
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 539,
+      "downstream_weight": 606,
       "anchored": true
     },
     {
@@ -53168,7 +53537,7 @@
         "INV-1126"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 4203,
+      "downstream_weight": 4207,
       "anchored": true
     },
     {
@@ -53190,7 +53559,7 @@
         "INV-1040"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 3067,
+      "downstream_weight": 3068,
       "anchored": true
     },
     {
@@ -53216,7 +53585,7 @@
         "INV-1034"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 1281,
+      "downstream_weight": 1282,
       "anchored": true
     },
     {
@@ -53236,7 +53605,7 @@
         "GAP-0482"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 4898,
+      "downstream_weight": 4899,
       "anchored": true
     },
     {
@@ -53594,7 +53963,7 @@
         "INV-0507"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 2831,
+      "downstream_weight": 2832,
       "anchored": true
     },
     {
@@ -53874,7 +54243,8 @@
         "BEN-033",
         "BEN-022",
         "BEN-030",
-        "BLD-048"
+        "BLD-048",
+        "TSK-039"
       ],
       "blockers": [
         "BEN-015",
@@ -53882,7 +54252,8 @@
         "BEN-033",
         "BEN-022",
         "BEN-030",
-        "BLD-048"
+        "BLD-048",
+        "TSK-039"
       ],
       "covers": [],
       "file": "workstreams/BEN.md",
@@ -54087,12 +54458,14 @@
       "depends_on": [
         "BEN-010",
         "GFX-060",
-        "LAB-018"
+        "LAB-018",
+        "OBS-046"
       ],
       "blockers": [
         "BEN-010",
         "GFX-060",
-        "LAB-018"
+        "LAB-018",
+        "OBS-046"
       ],
       "covers": [],
       "file": "workstreams/BEN.md",
@@ -54150,13 +54523,15 @@
         "BEN-024",
         "PWR-006",
         "LAB-018",
-        "LAB-015"
+        "LAB-015",
+        "GFX-081"
       ],
       "blockers": [
         "BEN-024",
         "PWR-006",
         "LAB-018",
-        "LAB-015"
+        "LAB-015",
+        "GFX-081"
       ],
       "covers": [],
       "file": "workstreams/BEN.md",
@@ -54788,7 +55163,7 @@
         "GAP-0344"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 872,
+      "downstream_weight": 873,
       "anchored": true
     },
     {
@@ -54810,7 +55185,7 @@
         "GAP-0322"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 836,
+      "downstream_weight": 837,
       "anchored": true
     },
     {
@@ -54835,7 +55210,7 @@
         "INV-0540"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 803,
+      "downstream_weight": 804,
       "anchored": true
     },
     {
@@ -54877,7 +55252,9 @@
         "REL-004",
         "REL-007"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0338"
+      ],
       "file": "workstreams/REL.md",
       "downstream_weight": 172,
       "anchored": true
@@ -54933,7 +55310,7 @@
         "INV-0540"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 296,
+      "downstream_weight": 298,
       "anchored": true
     },
     {
@@ -54959,7 +55336,7 @@
         "GAP-0330"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 362,
+      "downstream_weight": 363,
       "anchored": true
     },
     {
@@ -56070,7 +56447,9 @@
         "GOV-059",
         "BLD-023"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0014"
+      ],
       "file": "workstreams/REL.md",
       "downstream_weight": 99,
       "anchored": true
@@ -56295,7 +56674,9 @@
         "REL-037",
         "REL-017"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0338"
+      ],
       "file": "workstreams/REL.md",
       "downstream_weight": 29,
       "anchored": true
@@ -56615,7 +56996,7 @@
       ],
       "covers": [],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 104,
+      "downstream_weight": 106,
       "anchored": true
     },
     {
@@ -56755,7 +57136,7 @@
         "GAP-0381"
       ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 159,
+      "downstream_weight": 161,
       "anchored": true
     },
     {
@@ -56775,7 +57156,7 @@
       ],
       "covers": [],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 103,
+      "downstream_weight": 105,
       "anchored": true
     },
     {
@@ -56807,7 +57188,7 @@
         "GAP-0380"
       ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 93,
+      "downstream_weight": 95,
       "anchored": true
     },
     {
@@ -56917,7 +57298,7 @@
         "INV-1110"
       ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 83,
+      "downstream_weight": 85,
       "anchored": true
     },
     {
@@ -56937,7 +57318,7 @@
       ],
       "covers": [],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 138,
+      "downstream_weight": 140,
       "anchored": true
     },
     {
@@ -56957,9 +57338,11 @@
         "DOC-015",
         "SDK-043"
       ],
-      "covers": [],
+      "covers": [
+        "INV-0978"
+      ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 59,
+      "downstream_weight": 61,
       "anchored": true
     },
     {
@@ -56983,7 +57366,7 @@
         "GAP-0455"
       ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 86,
+      "downstream_weight": 88,
       "anchored": true
     },
     {
@@ -57087,7 +57470,9 @@
         "LNX-054",
         "WIN-018"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1248"
+      ],
       "file": "workstreams/DOC.md",
       "downstream_weight": 30,
       "anchored": true
@@ -57109,7 +57494,9 @@
         "DOC-008",
         "DOC-015"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1248"
+      ],
       "file": "workstreams/DOC.md",
       "downstream_weight": 20,
       "anchored": true
@@ -57295,7 +57682,9 @@
         "GOV-030",
         "GOV-035"
       ],
-      "covers": [],
+      "covers": [
+        "INV-1248"
+      ],
       "file": "workstreams/DOC.md",
       "downstream_weight": 0,
       "anchored": true
@@ -57369,13 +57758,15 @@
         "DOC-014",
         "PKG-085",
         "SVC-021",
-        "UIP-031"
+        "UIP-031",
+        "SCH-040"
       ],
       "blockers": [
         "DOC-014",
         "PKG-085",
         "SVC-021",
-        "UIP-031"
+        "UIP-031",
+        "SCH-040"
       ],
       "covers": [],
       "file": "workstreams/DOC.md",
@@ -57692,7 +58083,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 4302,
+      "downstream_weight": 4306,
       "anchored": true
     },
     {
@@ -57713,7 +58104,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 4899,
+      "downstream_weight": 4900,
       "anchored": true
     },
     {
@@ -58239,7 +58630,7 @@
         "GAP-0040"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 459,
+      "downstream_weight": 461,
       "anchored": true
     },
     {
@@ -58480,7 +58871,9 @@
         "GOV-005",
         "GOV-001"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0056"
+      ],
       "file": "workstreams/GOV.md",
       "downstream_weight": 6,
       "anchored": true
@@ -58595,7 +58988,7 @@
         "GAP-0041"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 462,
+      "downstream_weight": 464,
       "anchored": true
     },
     {
@@ -59067,7 +59460,10 @@
       "blockers": [
         "GOV-003"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0374",
+        "GAP-0014"
+      ],
       "file": "workstreams/GOV.md",
       "downstream_weight": 106,
       "anchored": true
@@ -59203,7 +59599,10 @@
         "GOV-023",
         "GOV-024"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0355",
+        "GAP-0239"
+      ],
       "file": "workstreams/GOV.md",
       "downstream_weight": 32,
       "anchored": true
@@ -59225,7 +59624,9 @@
         "GOV-024",
         "GOV-023"
       ],
-      "covers": [],
+      "covers": [
+        "GAP-0045"
+      ],
       "file": "workstreams/GOV.md",
       "downstream_weight": 238,
       "anchored": true
@@ -59871,11 +60272,6 @@
             "`CMP-010` is todo — Decide the Phase A Component implementation strategy",
             "`WIN-001` is todo — Accept the Windows Personality scoping Decision",
             "`BOOT-004` is todo — Decide V0 boots Linux init from a retained initramfs with native Components beside it",
-            "`SEC-002` is todo — Publish threat model and threat Register",
-            "`KRN-016` is todo — Enforce Rust-first and rewrite-requires-ADR rules with a kernel-tree CI lint",
-            "`ABI-017` is todo — Write the normative, versioned Native ABI specification v0 defining every entry point",
-            "`ABI-020` is todo — Prototype typed kernel-boundary errors without errno",
-            "`ABI-021` is todo — Prototype Layer 1 version and feature handshake",
             "`GOV-007` is todo — Publish contributing, CODEOWNERS, AI policy and V0 Gate governance",
             "`MEM-009` is todo — Document MemoryObject security semantics for the V0 threat model"
           ]
@@ -59932,7 +60328,9 @@
             "`PKG-042` is todo — Add the two-application conflicting-library test with dedup verified by store size",
             "`STO-008` is todo — Deduplicate identical objects across packages, generations and caches",
             "`PKG-029` is todo — Reserve signature, signer and trust-policy fields in Package and Generation manifests",
-            "`PKG-024` is todo — Add the CI Gate proving store and Generation trees are never mutated in place"
+            "`PKG-024` is todo — Add the CI Gate proving store and Generation trees are never mutated in place",
+            "`MEM-016` is todo — Share identical code pages across applications via content-store MemoryObjects",
+            "`CMP-029` is todo — Share verified code pages across Component instances of one Package"
           ]
         },
         {
@@ -59954,7 +60352,8 @@
             "`STO-007` is todo — Prove files.choose<Image>() works with no Capability to the containing directory",
             "`APP-002` is todo — Build the OS-owned file chooser UI minting UserSelected capabilities",
             "`SDK-017` is todo — Implement files.choose returning a typed UserSelected Capability",
-            "`GFX-040` is todo — Render choosers, prompts and elevation in compositor-protected trusted Surfaces"
+            "`GFX-040` is todo — Render choosers, prompts and elevation in compositor-protected trusted Surfaces",
+            "`OBS-024` is todo — Gate tracing and inspection behind Capabilities with payload redaction"
           ]
         },
         {
@@ -60102,18 +60501,11 @@
             "`PKG-008` is todo — Decide how a SystemGeneration is materialised on disk",
             "`SEC-007` is todo — Decide user-mediated grant taxonomy",
             "`ACC-002` is todo — Decide the accessibility tree model shared by the toolkit and semantic interfaces",
-            "`INS-001` is todo — Build the SystemGeneration image builder",
-            "`INS-002` is todo — Ship scripted install from a built SystemGeneration image",
-            "`LAB-007` is todo — Procure and rack the Intel laptop with remote power and console",
-            "`OBS-023` is todo — Prototype inspect and trace Layer 2 Interface shape",
-            "`STO-027` is todo — Prototype File, Directory and UserSelected Interfaces",
-            "`SDK-031` is todo — Prototype the SDK v1 crate Surface used by daily-driving apps",
             "`GOV-017` is todo — Author the V0.5 Milestone gates mapping the application model",
             "`CAP-016` is todo — Lint native SDK and system Components for ambient authority and descriptor-shaped APIs",
             "`CAP-018` is todo — Benchmark Capability mint, derive, transfer and revocation cost",
             "`CMP-020` is todo — Verify the native isolation path needs no daemon, namespace, overlay or fork",
             "`CMP-023` is todo — Enforce constraints on dynamically created child Components",
-            "`CMP-029` is todo — Share verified code pages across Component instances of one Package",
             "`TSK-025` is todo — Require an explicit Capability for Tasks that outlive their TaskGroup",
             "`TSK-029` is todo — Implement a native Event Object signalled by user space and consumed via Wait",
             "`TSK-036` is todo — Inherit TaskGroup deadlines and outstanding-Operation limits by owned Operations",
@@ -60124,31 +60516,24 @@
             "`MEM-013` is todo — Benchmark CoW snapshot creation and first-write fault cost",
             "`MEM-014` is todo — Benchmark resident-page sharing across the four V0.5 applications",
             "`MEM-015` is todo — Move MemoryObject charging with ownership and never double-charge a borrow",
-            "`MEM-016` is todo — Share identical code pages across applications via content-store MemoryObjects",
             "`MEM-021` is todo — Decide the per-Component page-table and huge-page policy for MemoryObjects",
-            "`MEM-029` is todo — Implement the shared property with multiple concurrent mappers",
-            "`MEM-031` is todo — Measure page-table and huge-page effects on startup and TLB for Package mappings",
             "`MEM-032` is todo — Add an Interface review lint that large payloads move MemoryObjects by default",
             "`SCH-017` is todo — Decide intent and priority inheritance across Channel handoff",
             "`SCH-018` is todo — Export per-ResourceDomain usage and scheduling-delay data for inspection",
             "`SCH-022` is todo — Replace nice, chrt and cpuset tuning with ResourceDomain policy in the SDK",
             "`SCH-024` is todo — Implement intent inheritance across Channel handoff for shared services",
             "`SCH-027` is todo — Add CI lints enforcing native intent, universal accounting and no cgroup steps",
-            "`OBS-012` is todo — Require a Capability to read another Component traces",
             "`OBS-014` is todo — Decide who may trace and inspect which Components",
             "`OBS-016` is todo — Inspect an application's live Component graph via os inspect",
             "`OBS-017` is todo — Add the observability review Gate requiring inspect and trace support per primitive",
             "`OBS-021` is todo — Record MemoryObject transfer history and property-change events",
             "`OBS-022` is todo — Emit ResourceDomain throttling and budget-exhaustion events",
-            "`OBS-024` is todo — Gate tracing and inspection behind Capabilities with payload redaction",
             "`STO-003` is todo — Implement atomic replacement of a file or tree with no partial reads",
             "`STO-004` is todo — Benchmark Capability-scoped storage Object I/O against direct Linux file I/O",
             "`STO-015` is todo — Decide how an application gains authority to create one new file in a user-chosen place",
-            "`STO-024` is todo — Implement the save-as grant so an application creates one file without directory access",
             "`STO-028` is todo — Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix",
             "`STO-033` is todo — Provide the Component-scoped temporary-storage Capability granted at launch",
             "`PKG-027` is todo — Build the Package manifest validator and CI lint",
-            "`PKG-039` is todo — Share already-verified pages of identical objects across launches and applications",
             "`GFX-025` is todo — Build golden-image comparison tolerant of documented rasterisation differences",
             "`GFX-044` is todo — Import a MemoryObject into the GPU driver without copying",
             "`UIP-009` is todo — Document input-stack ownership split between HW and UIP",
@@ -60183,7 +60568,8 @@
             "`BLD-049` is todo — Deliver Linux-host bootstrap and self-hosted full-system builds",
             "`ENV-020` is todo — Provide the self-host environment.yaml for building the OS",
             "`BLD-043` is todo — Run hermetic builds inside native development environments",
-            "`BLD-041` is todo — Eliminate artifact non-determinism and double-build on every merge"
+            "`BLD-041` is todo — Eliminate artifact non-determinism and double-build on every merge",
+            "`PKG-065` is todo — Add the two-builder identical Package identity CI check"
           ]
         },
         {
@@ -60195,7 +60581,10 @@
             "`APP-010` is todo — Integrate Linux Personality Git, browser and IDE into launcher and chooser",
             "`APP-016` is todo — Extend Terminal for daily development with tabs, splits and graphics",
             "`APP-011` is todo — Extend Text Editor for kernel and platform development on the OS",
-            "`GOV-032` is todo — Publish issue triage labels, severity, templates and stale policy"
+            "`GOV-032` is todo — Publish issue triage labels, severity, templates and stale policy",
+            "`INS-003` is todo — Document developer image install, update and rollback",
+            "`MEM-042` is todo — Define reclaim, swap and migration behavior for unpinned MemoryObjects",
+            "`KRN-035` is todo — Set kernel identity: uname strings, version scheme and bug-report routing"
           ]
         },
         {
@@ -60247,7 +60636,8 @@
           "reasons": [
             "`PWR-014` is todo — Implement suspend and resume cycle gates on laptop and desktop",
             "`LAB-009` is todo — Automate suspend and resume cycle testing on V1 Reference machines",
-            "`AUD-012` is todo — Restore playback and capture after suspend and resume"
+            "`AUD-012` is todo — Restore playback and capture after suspend and resume",
+            "`TSK-041` is todo — Preserve Operation deadlines correctly across suspend and resume"
           ]
         },
         {
@@ -60260,7 +60650,8 @@
             "`LNX-061` is todo — Verify seccomp, user namespaces, overlayfs and FUSE",
             "`LNX-049` is todo — Provide a ptrace equivalent gated by a debug Capability",
             "`LNX-055` is todo — Retain inotify for Linux IDE file watching",
-            "`LNX-021` is todo — Decide retention and exposure of seccomp, user namespaces, overlayfs and FUSE"
+            "`LNX-021` is todo — Decide retention and exposure of seccomp, user namespaces, overlayfs and FUSE",
+            "`KRN-033` is todo — Run the GPU driver update process tracking amdgpu, i915, xe and nouveau fixes"
           ]
         },
         {
@@ -60282,7 +60673,8 @@
             "`SDK-038` is todo — Attach a debugger to a Component with async Task stacks",
             "`SDK-051` is todo — Export an os trace session that can be viewed offline",
             "`OBS-041` is todo — Export os trace sessions in the decided format for offline viewing",
-            "`SDK-046` is todo — Implement the native CPU profiler attributed to Task and Component"
+            "`SDK-046` is todo — Implement the native CPU profiler attributed to Task and Component",
+            "`SDK-037` is todo — Ship a Debug Adapter Protocol adapter for native Components"
           ]
         },
         {
@@ -60330,7 +60722,8 @@
             "`IPC-054` is todo — Tune the IPC fast path to the V1 same-core and cross-core round-trip targets",
             "`BEN-029` is todo — Verify V1 absolute targets and prior-Rung regression",
             "`CMP-034` is todo — Implement the Component creation fast path to the Register target",
-            "`CMP-035` is todo — Publish Component creation beside fork+exec, clone and podman run"
+            "`CMP-035` is todo — Publish Component creation beside fork+exec, clone and podman run",
+            "`BEN-026` is todo — Publish native isolation cost against OCI containers"
           ]
         },
         {
@@ -60340,7 +60733,8 @@
           "reasons": [
             "`BEN-025` is todo — Publish os env startup against Docker Compose",
             "`ENV-014` is todo — Implement the development environment cache for warm enter",
-            "`BEN-030` is todo — Publish native warm startup against the V1 target"
+            "`BEN-030` is todo — Publish native warm startup against the V1 target",
+            "`MEM-036` is todo — Apply the huge-page policy to immutable Package and MemoryObject mappings"
           ]
         },
         {
@@ -60374,7 +60768,8 @@
             "`LNX-056` is todo — Define and run the L2 Corpus",
             "`LNX-038` is todo — Integrate Linux GUI apps into the native desktop",
             "`UIP-042` is todo — Automate V1 UI gates: L2 integration scoring and frame-time regression",
-            "`LNX-041` is todo — Keep L0 and L1 Corpus results green"
+            "`LNX-041` is todo — Keep L0 and L1 Corpus results green",
+            "`SCH-043` is todo — Map Linux Personality nice, ionice and sched_setattr onto domain-bounded intents"
           ]
         },
         {
@@ -60394,65 +60789,32 @@
             "`LNX-015` is todo — Decide whether ia32 emulation is retained",
             "`KRN-024` is todo — Decide eBPF's native role and the Linux Personality's bpf() exposure",
             "`KRN-026` is todo — Decide that kernel live-patching is a non-goal in favour of generations plus reboot",
-            "`SEC-029` is todo — Publish the microarchitectural side-Channel statement",
             "`IPC-046` is todo — Freeze Layer 2 Interface-evolution rules for SDK v1",
-            "`SDK-057` is todo — Freeze the SDK v1 crate API candidate",
             "`WIN-016` is todo — Publish the V1 Wine test-suite feasibility report",
-            "`WIN-017` is todo — Run the Wine test suite in CI as a non-gated V1 bring-up signal",
-            "`WIN-009` is todo — Define the W1 Corpus and rating scale",
-            "`WIN-006` is todo — Build the per-title Windows scenario harness",
             "`NET-017` is todo — Provide sshd remote shell via the Linux Personality with listen Capability",
-            "`ENV-021` is todo — Prototype environment.yaml versus Package-manifest profiles",
-            "`MED-010` is todo — Prototype decoder, encoder, Camera and Frame Interfaces",
             "`GOV-037` is todo — Author the V1 Milestone gates including self-hosting and dogfooding",
-            "`KRN-033` is todo — Run the GPU driver update process tracking amdgpu, i915, xe and nouveau fixes",
-            "`KRN-035` is todo — Set kernel identity: uname strings, version scheme and bug-report routing",
             "`BOOT-017` is todo — Build the pre-boot unlock latency harness and publish results",
-            "`BOOT-019` is todo — Include the kernel command line in the signed SystemGeneration and test that edits fail Verification",
             "`BOOT-023` is todo — Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed",
             "`BOOT-024` is todo — Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs",
-            "`BOOT-026` is todo — Build the text pre-boot unlock UI with passphrase, TPM+PIN, recovery key and layouts",
-            "`CMP-038` is todo — Implement the in-address-space Component class if the adr adopts it",
             "`CMP-041` is todo — Document a browser-shaped Component graph as the composition example",
             "`TSK-037` is todo — Publish Operation, deadline and cancellation guidelines for service authors",
-            "`TSK-039` is todo — Benchmark per-Operation deadline overhead at high submission rates and publish",
-            "`TSK-041` is todo — Preserve Operation deadlines correctly across suspend and resume",
-            "`TSK-047` is todo — Add slack and coalescing to Timer Operations for energy efficiency",
             "`IPC-050` is todo — Add an IDL lint enforcing the Interface design guidelines",
             "`IPC-053` is todo — Publish Interface evolution guidelines for SDK authors",
             "`MEM-033` is todo — Benchmark copies and bytes moved in the NIC to Decoder to Renderer to GPU path",
-            "`MEM-036` is todo — Apply the huge-page policy to immutable Package and MemoryObject mappings",
-            "`MEM-042` is todo — Define reclaim, swap and migration behavior for unpinned MemoryObjects",
             "`SCH-031` is todo — Add ResourceDomain GPU budget enforced through graphics and compute queues",
             "`SCH-039` is todo — Map Scheduling intent to GPU priority for RenderQueue and ComputeQueue",
-            "`SCH-040` is todo — Write developer guidelines for choosing Scheduling intent and domain budgets",
-            "`SCH-043` is todo — Map Linux Personality nice, ionice and sched_setattr onto domain-bounded intents",
-            "`OBS-031` is todo — Write the instrumentation guide for semantic events and inspect providers",
-            "`OBS-037` is todo — Make os trace usable for daily performance and correctness debugging",
-            "`OBS-038` is todo — Attribute Linux-Personality processes and syscalls in os trace and os inspect",
-            "`SVC-022` is todo — Host user-space driver Components under supervision with per-device restart",
-            "`SVC-023` is todo — Build the early-boot init stage for verity setup and root-store unlock",
-            "`SVC-033` is todo — Wire kernel watchdog and hung-Task signals into supervisor escalation",
             "`STO-040` is todo — Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing",
             "`STO-045` is todo — Provide on-demand and boot-time integrity Verification of stored objects and generations",
             "`STO-046` is todo — Implement the persistent MemoryObject property backed by durable storage",
-            "`STO-048` is todo — Prove the durability contract with a fault-injected power-cut test on NVMe",
             "`STO-049` is todo — Add `os inspect storage` and trace events for storage Operations and snapshots",
             "`STO-053` is todo — Deduplicate identical content in user data with an idle-intent reflink pass",
-            "`PKG-051` is todo — Implement the pinned-dependency fix propagation chosen by the security-updates adr",
             "`PKG-063` is todo — Support content-addressed precompiled artefacts in Packages",
-            "`PKG-065` is todo — Add the two-builder identical Package identity CI check",
             "`PKG-067` is todo — Implement unreferenced store Object collection safe for running Components",
             "`GFX-050` is todo — Report explicit degraded recovery to users and clients after GPU reset",
             "`GFX-058` is todo — Spike GPU time and memory budgets via DRM scheduler and cgroup GPU controllers",
             "`UIP-030` is todo — Decide global shortcut model: named actions bound in Settings, no key grabs",
-            "`UIP-037` is todo — Implement shortcut and focus model forbidding global interception without Capability",
             "`TXT-014` is todo — Benchmark per-Component text memory and shaping CPU with shared versus private caches",
-            "`TXT-019` is todo — Expose the native font store to the Linux Personality through fontconfig",
             "`TXT-023` is todo — Make the text service restartable with client rebind and cache regeneration",
-            "`LNX-029` is todo — Satisfy systemd assumptions for Linux desktop apps",
-            "`LNX-046` is todo — Provide PAM, NSS and logind from the native Session",
-            "`LNX-048` is todo — Provide procfs semantics inside the Personality",
             "`VIRT-001` is todo — Publish JakeOS guest images for common hypervisors",
             "`ENV-023` is todo — Store environment build outputs as content-addressed objects",
             "`WASM-010` is todo — Fuzz the Wasm host ABI and Capability import table",
@@ -60463,29 +60825,22 @@
             "`SEC-031` is todo — Decide disk-key eviction on suspend",
             "`SEC-032` is todo — Evaluate MPK, CET, and LAM for unsafe isolation",
             "`NET-004` is todo — Publish NetworkConnection throughput and latency against Linux sockets",
-            "`NET-010` is todo — Write the native NetworkConnection programming model for SDK v1",
             "`NET-018` is todo — Investigate NIC-to-MemoryObject DMA on retained drivers via AF_XDP",
             "`HW-020` is todo — Lint-forbid flag-day replacement of any inherited driver class",
             "`HW-025` is todo — Define and test user-space driver degradation when IOMMU is absent",
-            "`HW-027` is todo — Implement XKB-data keyboard layouts, compose, dead keys and switching",
-            "`HW-030` is todo — Restart crashed user-space drivers and re-issue Device Capabilities",
             "`PWR-007` is todo — Decide hibernation policy for 1.0",
-            "`PWR-008` is todo — Declare Layer 2 power Interface freeze candidates",
             "`SDK-032` is todo — Measure timed onboarding from SDK install to a hello-Component",
             "`SDK-035` is todo — Add machine-readable os CLI output and shell completions",
-            "`SDK-037` is todo — Ship a Debug Adapter Protocol adapter for native Components",
             "`SDK-042` is todo — Implement os env list, status, leave, destroy and rebuild",
             "`SDK-045` is todo — Implement os test running the Component harness",
             "`SDK-047` is todo — Integrate remote development into a JakeOS VM or device",
             "`SDK-048` is todo — Enable userspace exploit mitigations in the native runtime",
             "`SDK-050` is todo — Provide a Component test harness with mock capabilities",
             "`SDK-058` is todo — Fuzz SDK handle wrappers for use-after-revoke and double-drop",
-            "`INS-003` is todo — Document developer image install, update and rollback",
             "`BLD-030` is todo — Keep an ARM64 kernel and userspace cross-build compiling in CI",
             "`BLD-031` is todo — Automate CI-validated dependency update proposals",
             "`BLD-036` is todo — Measure kernel and userspace coverage and Gate security-critical paths",
             "`BLD-050` is todo — Spike Component and ResourceDomain isolation for parallel tests",
-            "`BEN-026` is todo — Publish native isolation cost against OCI containers",
             "`BEN-028` is todo — Publish developer onboarding time",
             "`DOC-006` is todo — Add full-text search to the documentation site",
             "`DOC-011` is todo — Publish architecture, Decision and glossary records",
@@ -60511,7 +60866,8 @@
           "reasons": [
             "`APP-048` is todo — Run the 40-scenario desktop UX script on the three target machines",
             "`BLD-056` is todo — Run the 40-scenario desktop UX script in the GUI harness",
-            "`UIP-051` is todo — Automate V2 desktop UX script and appearance consistency on three machines"
+            "`UIP-051` is todo — Automate V2 desktop UX script and appearance consistency on three machines",
+            "`SCH-051` is todo — Throttle Background and Throughput domains first under thermal pressure"
           ]
         },
         {
@@ -60544,7 +60900,8 @@
           "reasons": [
             "`HW-060` is todo — Verify headset, mouse and keyboard pairing cycles on target laptops",
             "`HW-037` is todo — Ship A2DP, HFP, HID, GATT, BLE privacy and file-transfer profiles",
-            "`HW-038` is todo — Restart the Bluetooth service with paired devices reconnecting"
+            "`HW-038` is todo — Restart the Bluetooth service with paired devices reconnecting",
+            "`SVC-034` is todo — Run the §32 restartable-service matrix on every target machine"
           ]
         },
         {
@@ -60554,7 +60911,8 @@
           "reasons": [
             "`PWR-024` is todo — Run the V2 suspend cycle Gate on both laptops",
             "`LAB-014` is todo — Automate lid, dock, hibernate and RTC-wake cycles on laptops",
-            "`PWR-023` is todo — Prove battery estimate accuracy against measured runtime"
+            "`PWR-023` is todo — Prove battery estimate accuracy against measured runtime",
+            "`SEC-048` is todo — Implement suspend key-eviction and hibernate policy"
           ]
         },
         {
@@ -60599,7 +60957,8 @@
             "`SEC-038` is todo — Review and deny optional Capabilities at install",
             "`SEC-047` is todo — Launch Packages in degraded mode when optional grants are denied",
             "`CMP-043` is todo — Launch Components in degraded mode when optional capabilities are denied",
-            "`PKG-075` is todo — Distinguish optional from required RequestedCapabilities and support degraded launch"
+            "`PKG-075` is todo — Distinguish optional from required RequestedCapabilities and support degraded launch",
+            "`WASM-016` is todo — Instantiate downloaded Wasm Components from the store"
           ]
         },
         {
@@ -60621,7 +60980,8 @@
             "`SEC-046` is todo — Verify screen-share denial on the V2 Gate",
             "`GFX-061` is todo — Implement per-Surface and per-Display screen capture capabilities",
             "`GFX-082` is todo — Provide a non-suppressible indicator layer for camera, microphone, capture and location",
-            "`APP-031` is todo — Build persistent in-use indicators for camera, microphone and screen share"
+            "`APP-031` is todo — Build persistent in-use indicators for camera, microphone and screen share",
+            "`APP-038` is todo — Build screenshot and screen-recording UI over screen-capture Capability"
           ]
         },
         {
@@ -60634,7 +60994,8 @@
             "`SEM-021` is todo — Demonstrate Project opened to environment start",
             "`SEM-010` is todo — Implement the AI broker over typed Capabilities",
             "`SEM-009` is todo — Demonstrate Workspace.search to IDE.runTests action graph",
-            "`SEM-029` is todo — Implement the system Semantic Interface registry service"
+            "`SEM-029` is todo — Implement the system Semantic Interface registry service",
+            "`SEC-033` is todo — Scope AI Capability grants to project, file, or time"
           ]
         },
         {
@@ -60678,7 +61039,11 @@
             "`BEN-039` is todo — Publish energy use on both V2 laptops",
             "`BEN-042` is todo — Publish snapshot creation and restore time",
             "`CMP-047` is todo — Extend the warm-startup harness to every shipped native application",
-            "`STO-054` is todo — Benchmark snapshot creation and restore time on the three target machines"
+            "`STO-054` is todo — Benchmark snapshot creation and restore time on the three target machines",
+            "`HW-034` is todo — Publish user-space versus in-kernel driver latency and throughput",
+            "`APP-022` is todo — Publish notification, lock and launcher latencies against desktop baselines",
+            "`CMP-044` is todo — Scale-test 500-Component graphs for creation, memory and teardown",
+            "`CMP-048` is todo — Prove the native Component implementation keeps the ABI unchanged"
           ]
         },
         {
@@ -60724,56 +61089,36 @@
             "`SEM-018` is todo — Decide the Automation rule format",
             "`WIN-002` is todo — Decide the kernel-level anti-cheat policy",
             "`HW-042` is todo — Decide 1.0 sensor support per device class in or out of scope",
-            "`CMP-043` is todo — Launch Components in degraded mode when optional capabilities are denied",
-            "`TXT-032` is todo — Build the SDK localisation pipeline with catalog extraction and packaged resources",
-            "`TXT-033` is todo — Translate the shell and four native applications into three languages",
             "`GOV-045` is todo — Author the V2 Milestone gates mapping the desktop preview",
             "`KRN-043` is todo — Publish the architecture maintenance plan with build-only ARM64 and RISC-V CI",
             "`KRN-044` is todo — Prune the kernel attack Surface for the three target machines",
             "`KRN-046` is todo — Write the hardware enablement process for new devices after divergence",
             "`KRN-047` is todo — Write the Phase D playbook for adapting upstream driver improvements",
             "`KRN-049` is todo — Add kernel config fragments for the Intel and AMD target laptops",
-            "`BOOT-035` is todo — Build the graphical DPI-aware pre-boot unlock UI",
-            "`ABI-044` is todo — Run the conformance suite against wrapper and native implementations during Phase C",
             "`CAP-045` is todo — Study hardware provenance tracking for Capability audit",
-            "`CMP-044` is todo — Scale-test 500-Component graphs for creation, memory and teardown",
-            "`CMP-048` is todo — Prove the native Component implementation keeps the ABI unchanged",
             "`IPC-056` is todo — Decide how Capabilities and handles cross a VM transport boundary",
             "`IPC-058` is todo — Build the virtio VM transport from a native guest Component to a host service",
             "`MEM-045` is todo — Decide encrypted MemoryObject key ownership and hardware encryption",
             "`MEM-047` is todo — Add a discardable property and pressure-driven release of MemoryObjects",
             "`MEM-048` is todo — Implement the encrypted MemoryObject property and key-ownership semantics",
-            "`SCH-049` is todo — Influence NUMA and GPU-local memory placement from domain intent",
             "`SCH-050` is todo — Steer interrupt affinity from LowLatency domain CPU policy",
-            "`SCH-051` is todo — Throttle Background and Throughput domains first under thermal pressure",
-            "`OBS-046` is todo — Derive per-display frame deadline-miss metrics across multi-monitor and VRR",
-            "`SVC-034` is todo — Run the §32 restartable-service matrix on every target machine",
             "`SVC-037` is todo — Add timezone auto-detection via the location Capability and the time settings Interface",
             "`STO-057` is todo — Build disk health: TRIM/discard policy and SMART monitoring with notifications",
             "`STO-058` is todo — Support exFAT and FAT32 removable media with formatting and known limitations",
-            "`STO-062` is todo — Surface removable and MTP volumes as consented Collections with automount and safe eject",
             "`STO-064` is todo — Schedule checksum scrubs and report corruption to the user with recovery actions",
             "`STO-066` is todo — Define and re-evaluate the criteria that would justify a native filesystem or Object store",
             "`STO-068` is todo — Decide how user data maps across native, Linux home and Windows profile views",
             "`STO-069` is todo — Implement Trash and undo-delete on storage snapshots",
-            "`PKG-072` is todo — Track and publish counts of native and Personality Packages in the repository",
-            "`GFX-059` is todo — Bring up the AMD APU internal panel and external displays on the AMD laptop",
             "`GFX-066` is todo — Enforce ResourceDomain GPU time and memory budgets",
             "`GFX-072` is todo — Support render offload selection and mux switching across both personalities",
             "`GFX-076` is todo — Render on one GPU and scan out on another",
             "`GFX-078` is todo — Implement night-light colour temperature mode",
-            "`GFX-081` is todo — Skip idle frames and lower refresh on battery under SCH energy intent",
-            "`GFX-083` is todo — Make shader cache, allocation broker and display policy restartable",
-            "`GFX-084` is todo — Build the OS-owned screen recorder over the capture Capability",
-            "`GFX-086` is todo — Build the OS-owned screenshot tool with region selection and annotation",
-            "`UIP-045` is todo — Implement named-action global shortcuts bound by the user in Settings",
             "`UIP-046` is todo — Provide locale-aware date, number, currency and collation APIs to native apps",
             "`UIP-048` is todo — Implement right-to-left layout mirroring as a toolkit property",
             "`UIP-049` is todo — Ship basic touchscreen and touchpad gestures in toolkit and routing",
             "`TXT-024` is todo — Ship CLDR, tzdata and Unicode data as a Package updating independently of SystemGenerations",
             "`TXT-025` is todo — Render emoji ZWJ sequences and COLRv1 colour glyphs",
             "`TXT-027` is todo — Decide hinting, subpixel positioning and gamma policy across scale factors",
-            "`TXT-035` is todo — Apply the text rendering policy natively and in the Linux Personality with pixel parity tests",
             "`TXT-037` is todo — Run Unicode and text-rendering conformance suites as a CI Gate",
             "`ACC-018` is todo — Benchmark focus-change to speech-onset and tree update latency",
             "`ACC-022` is todo — Make the screen reader an accessibility client of semantic interfaces",
@@ -60781,40 +61126,22 @@
             "`SEM-015` is todo — Publish Automation rule dispatch latency",
             "`SEM-016` is todo — Prove cross-app integration over Semantic interfaces",
             "`LNX-062` is todo — Decide incremental native-Interface adoption",
-            "`LNX-068` is todo — Emulate NetworkManager D-Bus and resolv.conf",
-            "`LNX-069` is todo — Emulate UPower and logind power D-Bus APIs",
             "`LNX-072` is todo — Implement the incremental native-Interface bridge",
-            "`LNX-074` is todo — Expose SDL game-controller evdev to Linux games",
-            "`LNX-075` is todo — Present HDR and VRR to Linux fullscreen applications",
-            "`LNX-082` is todo — Provide signals inside the Linux Personality",
-            "`LNX-085` is todo — Shim org.freedesktop.secrets onto native secrets",
             "`LNX-087` is todo — Evaluate Flatpak and Snap as Personality Package sources",
-            "`LNX-088` is todo — Synthesise POSIX mounts over native storage",
-            "`LNX-089` is todo — Synthesise /proc over native inspectables",
-            "`WIN-023` is todo — Deliver native keyboard, mouse and pointer input to Windows applications",
             "`WIN-025` is todo — Map Credential Manager and DPAPI onto the native secrets service",
             "`WIN-033` is todo — Decide how prefix installers become installed applications",
-            "`WIN-034` is todo — Map NT objects and handles onto native Objects and Capabilities",
             "`WIN-037` is todo — Bridge OLE drag-and-drop onto native Capability-granting drops",
-            "`WIN-041` is todo — Provide Windows process, thread, inheritance and job semantics",
-            "`WIN-045` is todo — Apply native per-display scaling to Windows Personality Surfaces",
-            "`ENV-024` is todo — Attach the native Terminal and Editor to a development environment",
             "`ENV-027` is todo — Rebuild a development environment when environment.yaml changes",
             "`WASM-015` is todo — Host Wasm automation modules over typed Interface",
-            "`WASM-016` is todo — Instantiate downloaded Wasm Components from the store",
             "`WASM-017` is todo — Run portable services as supervised Wasm Components",
             "`WASM-018` is todo — Ship architecture-independent Wasm Component Packages",
-            "`SEC-033` is todo — Scope AI Capability grants to project, file, or time",
             "`SEC-035` is todo — Study secure enclaves as a confidentiality home",
             "`SEC-037` is todo — Add hardware-enforcement hooks in Capability checks",
             "`SEC-040` is todo — Support passphrase change and cryptographic erase",
             "`SEC-041` is todo — Expose coarse and precise location as Capabilities",
-            "`SEC-048` is todo — Implement suspend key-eviction and hibernate policy",
             "`SEC-049` is todo — Provide passphrase-only unlock without a TPM",
             "`SEC-051` is todo — Reseal TPM-bound keys across firmware updates",
-            "`SEC-052` is todo — Seal disk keys to TPM PCRs with a recovery key",
             "`NET-022` is todo — Implement airplane-mode that drops radio Capabilities without tearing profiles",
-            "`NET-023` is todo — Fuzz NetworkConnection Connect, Accept, Send and Receive without panic",
             "`NET-025` is todo — Deliver NIC DMA receive directly into a MemoryObject",
             "`NET-026` is todo — Implement split DNS per Interface and per VPN tunnel",
             "`AUD-016` is todo — Decide which audio device classes run in user space",
@@ -60823,11 +61150,9 @@
             "`MED-011` is todo — Ship a first-party Camera capture application",
             "`MED-012` is todo — Instrument Camera cold start for the B-045 harness",
             "`MED-019` is todo — Restart the media and Camera services with client rebind",
-            "`HW-034` is todo — Publish user-space versus in-kernel driver latency and throughput",
             "`HW-044` is todo — Decide public vendor priorities for purchase guidance",
             "`HW-045` is todo — Enable basic touchscreen and pen digitizer as InputDevice Capabilities",
             "`HW-048` is todo — Enable iGPU plus dGPU mux and render-offload on hybrid laptops",
-            "`HW-053` is todo — Publish the tiered known-good hardware list from the compatibility database",
             "`HW-054` is todo — Implement in-scope sensor classes as user-space Components",
             "`HW-056` is todo — Document the three coexisting driver classes and per-class residency",
             "`HW-058` is todo — Enable multi-finger touchpad gestures on the reference laptops",
@@ -60839,15 +61164,11 @@
             "`SDK-067` is todo — Implement os help serving offline on-device SDK documentation",
             "`SDK-068` is todo — Implement the os profile command over the native profiler",
             "`SDK-071` is todo — Attribute GPU samples to Task and Component",
-            "`APP-022` is todo — Publish notification, lock and launcher latencies against desktop baselines",
             "`APP-024` is todo — Build clipboard history with sensitive-item exclusion",
             "`APP-028` is todo — Build the emoji picker as an input-method protocol client",
             "`APP-034` is todo — Build the media session shell controls bound to media keys",
             "`APP-035` is todo — Build power and battery UX mapped to ResourceDomain energy policy",
-            "`APP-038` is todo — Build screenshot and screen-recording UI over screen-capture Capability",
-            "`APP-041` is todo — Build Settings panels for displays, network, Bluetooth, sound and printers",
             "`APP-042` is todo — Build on-screen display overlays for volume, brightness and lock",
-            "`APP-044` is todo — Build the Settings UI for named global shortcut bindings",
             "`APP-046` is todo — Build the status-tray host according to the tray Decision",
             "`APP-047` is todo — Build the running-application update prompt for Generation switches",
             "`APP-049` is todo — Build the sandboxed native WebView Component",
@@ -60855,7 +61176,6 @@
             "`BLD-053` is todo — Rehearse disaster recovery of the CI and lab pipeline",
             "`BLD-057` is todo — Run a QEMU-hosted JakeOS CI runner as the self-host step",
             "`BLD-059` is todo — Run userspace sanitizer profiles for native Components in nightly CI",
-            "`BLD-060` is todo — Provision GPU-equipped nightly capacity for the W1 Corpus",
             "`LAB-019` is todo — Run Vulkan CTS and compositor tests nightly on lab GPUs",
             "`BEN-036` is todo — Publish ComputeDevice dispatch overhead",
             "`BEN-038` is todo — Publish desktop-essentials latency suite",
@@ -60884,7 +61204,8 @@
             "`INS-032` is todo — Prove installer success rate on every Tier 1 machine",
             "`LAB-022` is todo — Run installer and Secure Boot qualification across the Tier 1 fleet",
             "`SEC-055` is todo — Verify installer full-disk encryption and recovery key",
-            "`INS-028` is todo — Warn from the Hardware Compatibility List before disk writes"
+            "`INS-028` is todo — Warn from the Hardware Compatibility List before disk writes",
+            "`BOOT-026` is todo — Build the text pre-boot unlock UI with passphrase, TPM+PIN, recovery key and layouts"
           ]
         },
         {
@@ -60969,7 +61290,8 @@
           "reasons": [
             "`REL-034` is todo — Exercise the security-response process with public postmortems",
             "`KRN-052` is todo — Exercise kernel CVE response and publish the V3 response-time distribution",
-            "`REL-018` is todo — Publish inherited-CVE time-to-Generation measurements"
+            "`REL-018` is todo — Publish inherited-CVE time-to-Generation measurements",
+            "`PKG-051` is todo — Implement the pinned-dependency fix propagation chosen by the security-updates adr"
           ]
         },
         {
@@ -61020,7 +61342,9 @@
             "`WASM-021` is todo — Document Wasm Component authoring against native Interface",
             "`SEM-036` is todo — Publish the public-alpha automation and Semantic Interface guide",
             "`VIRT-015` is todo — Publish the VM fallback chapter of the compatibility guide",
-            "`AUD-023` is todo — Document native and Personality audio mapping"
+            "`AUD-023` is todo — Document native and Personality audio mapping",
+            "`SCH-040` is todo — Write developer guidelines for choosing Scheduling intent and domain budgets",
+            "`OBS-031` is todo — Write the instrumentation guide for semantic events and inspect providers"
           ]
         },
         {
@@ -61118,23 +61442,16 @@
             "`BOOT-041` is todo — Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder",
             "`CAP-047` is todo — Decide how Capability unforgeability survives machine boundaries",
             "`IPC-063` is todo — Review that Interfaces permit a remote transport with surfaced latency and failure",
-            "`SCH-053` is todo — Apply default ResourceDomain profiles to third-party packages from the public repository",
             "`STO-072` is todo — Decide whether BitLocker volumes are readable via user-space dislocker-style support",
             "`STO-074` is todo — Unlock and mount LUKS, ext4, Btrfs and XFS volumes from other Linux installs",
             "`GFX-089` is todo — Decide whether RDP/VNC clients and a remote-desktop server are in 1.0 scope",
             "`ACC-027` is todo — Add braille display output with BRLTTY-equivalent drivers to the screen reader",
             "`SEM-037` is todo — Fuzz the registry and Automation rule engine",
             "`SEM-038` is todo — Record Automation rule changes as system history events",
-            "`LNX-094` is todo — Implement epoll over native Operations",
-            "`LNX-098` is todo — Implement pid namespaces over Components",
-            "`LNX-101` is todo — Implement signal delivery over native primitives",
             "`WIN-057` is todo — Adopt existing Steam, Wine, Proton and Bottles libraries in place",
             "`WIN-058` is todo — Decide anti-cheat vendor engagement and required legal agreements",
             "`WIN-060` is todo — Bridge Wine IMM32 and TSF onto the native input-method host",
-            "`WIN-061` is todo — Register prefix installers as launcher-visible installed applications",
-            "`WIN-062` is todo — Research measured-boot integrity as an anti-cheat vendor signal",
             "`WIN-066` is todo — Bound Windows services, tasks and autostart to Component lifecycle",
-            "`VIRT-012` is todo — Bridge guest windows, clipboard, drag/drop and notifications",
             "`VIRT-014` is todo — Evaluate booting a physical Windows partition as a VM",
             "`ENV-032` is todo — Publish environment runtimes as third-party Packages",
             "`HET-025` is todo — Integrate dispatch preferences with scheduler intent and frequency",
@@ -61154,14 +61471,10 @@
             "`MED-033` is todo — Restrict patent-encumbered codecs to hardware decode Packages",
             "`HW-063` is todo — Enable fingerprint readers as Device objects for the identity service",
             "`HW-069` is todo — Support MTP and PTP phone-to-desktop transfer for Android and iOS",
-            "`HW-072` is todo — Restart the printing service with queued jobs preserved",
             "`HW-073` is todo — Enable SD and MMC readers as Capability-gated removable storage",
             "`HW-074` is todo — Enable CCID smartcard readers as Device objects for authentication",
-            "`HW-075` is todo — Enable common USB classes on Tier 1 and record them in the driver registry",
-            "`HW-076` is todo — Expose USB mass-storage volumes through Capability-gated storage",
             "`SDK-076` is todo — Integrate os publish with GitHub Actions and GitLab CI",
             "`SDK-079` is todo — Implement os bisect across SystemGenerations",
-            "`SDK-083` is todo — Implement a single command that installs versioned toolchains",
             "`APP-057` is todo — Build the Settings About panel with notices and license texts",
             "`APP-059` is todo — Build the automation-rule editor over Semantic interfaces",
             "`APP-060` is todo — Build the backup and restore UI over snapshot-based user-data backup",
@@ -61249,7 +61562,8 @@
             "`SVC-041` is todo — Lock the service manifest and settings schema versions for 1.x",
             "`TXT-045` is todo — Lock 1.x versions of FontMatcher, TextInput, Locale and SpellCheck interfaces",
             "`UIP-055` is todo — Lock UI protocol L2 version for 1.x and remove deprecated messages",
-            "`WASM-022` is todo — Lock Wasm host Interface versions with a conformance suite"
+            "`WASM-022` is todo — Lock Wasm host Interface versions with a conformance suite",
+            "`PWR-008` is todo — Declare Layer 2 power Interface freeze candidates"
           ]
         },
         {
@@ -61302,7 +61616,9 @@
             "`BEN-049` is todo — Publish crash-free session rate from opt-in telemetry",
             "`BEN-051` is todo — Publish kernel panic rate from opt-in telemetry",
             "`REL-055` is todo — Publish fleet crash-free and panic-rate dashboards",
-            "`OBS-053` is todo — Attribute kernel panics per SystemGeneration and hardware for the beta fleet dashboard"
+            "`OBS-053` is todo — Attribute kernel panics per SystemGeneration and hardware for the beta fleet dashboard",
+            "`SCH-057` is todo — Report scheduling latency and budget-exhaustion incidents from the beta fleet",
+            "`REL-056` is todo — Implement staged rollouts with automatic halt on crash rate"
           ]
         },
         {
@@ -61341,7 +61657,9 @@
             "`NET-037` is todo — Run the Tier 1 Wi-Fi hardware suite on every V4 release candidate",
             "`AUD-027` is todo — Verify audio on every V4 Tier 1 machine",
             "`MED-037` is todo — Add Camera to the Tier 1 hardware test suite every RC",
-            "`GFX-090` is todo — Build the per-machine display test suite for Tier 1 hardware"
+            "`GFX-090` is todo — Build the per-machine display test suite for Tier 1 hardware",
+            "`INS-052` is todo — Support unattended install from a declarative answer file",
+            "`SVC-042` is todo — Ship the supervision conformance suite run on every Tier 1 machine per RC"
           ]
         },
         {
@@ -61406,7 +61724,8 @@
             "`GOV-073` is todo — Track external-contributor and native-Package ecosystem metrics",
             "`GOV-071` is todo — Publish the developer program and third-party onboarding",
             "`DOC-039` is todo — Write developer-program documentation",
-            "`SDK-075` is todo — Run binding conformance tests for every shipped language"
+            "`SDK-075` is todo — Run binding conformance tests for every shipped language",
+            "`PKG-072` is todo — Track and publish counts of native and Personality Packages in the repository"
           ]
         },
         {
@@ -61464,8 +61783,6 @@
           "satisfied": false,
           "reasons": [
             "`GOV-077` is todo — Record the V4 exit review",
-            "`SCH-057` is todo — Report scheduling latency and budget-exhaustion incidents from the beta fleet",
-            "`SVC-042` is todo — Ship the supervision conformance suite run on every Tier 1 machine per RC",
             "`STO-078` is todo — Ship the 1.0 cloud storage providers with on-demand hydration",
             "`VIRT-018` is todo — Boot an existing Windows dual-boot partition as a VM guest",
             "`VIRT-019` is todo — Snapshot and clone VM disks via the Content-addressed store",
@@ -61476,10 +61793,8 @@
             "`SDK-090` is todo — Propose the native rustc target for upstream tier-3 inclusion",
             "`INS-050` is todo — Restore a system history point onto different hardware",
             "`INS-051` is todo — Spike macOS Time Machine and APFS migration for 1.0",
-            "`INS-052` is todo — Support unattended install from a declarative answer file",
             "`INS-053` is todo — Provide a supported uninstall that restores the previous bootloader",
             "`BLD-072` is todo — Eliminate flaky tests or expire their quarantine",
-            "`REL-056` is todo — Implement staged rollouts with automatic halt on crash rate",
             "`REL-058` is todo — Operate a public transparency log for signing actions",
             "`GOV-072` is todo — Publish downstream and derivative-distribution policy"
           ]

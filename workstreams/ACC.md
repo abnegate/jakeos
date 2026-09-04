@@ -308,7 +308,7 @@ Speech Component (ACC-023). Screen reader (ACC-021). AudioStream (AUD). Licence 
 - Depends on: ACC-002, ACC-015, ACC-011, DOC-014, SDK-056
 - Baseline: §41, §42, §52
 
-Publish labelling, role, focus, contrast and reduced-motion guidance so third-party native applications can meet the V3 checklist when SDK v1 ships. Content is owned by ACC and published through DOC's pipeline; the SDK guide links here rather than duplicating the contract.
+Publish labelling, role, focus, contrast and reduced-motion guidance so third-party native applications can meet the V3 checklist when SDK v1 ships. Content is owned by ACC and published through DOC's pipeline; the SDK guide links here rather than duplicating the contract. Required by the ACC scope: "the EN 301 549 / WCAG 2.2 AA checklist".
 
 #### Out of scope
 Docs site generator (DOC-010). Widget lint (ACC-015). V3 checklist (ACC-028). Toolkit emission (UIP).
@@ -334,7 +334,7 @@ Docs site generator (DOC-010). Widget lint (ACC-015). V3 checklist (ACC-028). To
 - Depends on: ACC-005, UIP-039, UIP-001
 - Baseline: §41, §42
 
-Define and implement the focus-order and keyboard-traversal contract that the V2 screen reader tracks and that V4 keyboard-only shell verification consumes. Focus order is derived from the tree; focus-visible indication is mandatory; traversal rules are testable. UIP owns widget-level tab order and the focus ring; ACC owns the tree-derived contract AT clients rely on.
+Define and implement the focus-order and keyboard-traversal contract that the V2 screen reader tracks and that V4 keyboard-only shell verification consumes. Focus order is derived from the tree; focus-visible indication is mandatory; traversal rules are testable. UIP owns widget-level tab order and the focus ring; ACC owns the tree-derived contract AT clients rely on. Required by V4-G10 (Assistive-technology script completes in full): keyboard-only operation of the entire shell.
 
 #### Out of scope
 Widget tab order and focus ring (UIP-039). Screen reader (ACC-021). Keyboard-only shell verification (APP-067). Global shortcuts (UIP-037).
@@ -422,6 +422,8 @@ Role/name/state crate (ACC-005). Action dispatch (ACC-006). Screen reader (ACC-0
 - Baseline: §41, §42
 
 Build a scripted driver that navigates and activates applications through the accessibility tree rather than synthetic input. The V2 task-completion script and the V4 fifty-task script consume it; APP acceptance scenarios can exercise accessibility without a second harness. UIP-041 is the toolkit and CI sibling; this driver is the AT-oriented face.
+
+<!-- covers: GAP-0118 -->
 
 #### Out of scope
 UIP toolkit driver (UIP-041). Semantic GUI harness plumbing (BLD-027). Pixel goldens (GFX-025). Task-completion scripts (ACC-017).
@@ -1121,7 +1123,7 @@ CRA steward Decision (GOV-070). Docs site snapshot (DOC-040). Holding shell qual
 - Depends on: ACC-014, ACC-006, ACC-008, SEM-029, SEM-008
 - Baseline: §41, §42
 
-Parking rung for alternative input modalities not in the 1.0 definition. Voice control and switch access build on semantic actions and the tree test driver rather than synthetic input, so they are cheap once SEM and ACC infrastructure exists. Split when leaving LATER: voice control over semantic verbs, and switch access over tree actions.
+Parking rung for alternative input modalities not in the 1.0 definition. Voice control and switch access build on semantic actions and the tree test driver rather than synthetic input, so they are cheap once SEM and ACC infrastructure exists. Split when leaving LATER: voice control over semantic verbs, and switch access over tree actions. Required by the ACC scope: "the assistive-technology clients that consume it".
 
 #### Out of scope
 On-screen keyboard and tablet mode (UIP-058). Speech dictation as a 1.0 non-goal (APP-068). AI broker (SEM-010). Input accommodations already in 1.0 (ACC-019).

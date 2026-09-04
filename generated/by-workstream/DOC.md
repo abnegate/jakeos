@@ -52,7 +52,7 @@
 | DOC-029 | Write the public contribution guide | todo | blocked | S | DOC-015, GOV-007, GOV-030, GOV-035 |
 | DOC-030 | Write the public install guide | todo | blocked | M | DOC-015, INS-039, INS-027, BOOT-042 |
 | DOC-031 | Write migration guides for users and SDK porters | todo | blocked | M | DOC-017, DOC-022, DOC-014, APP-062 |
-| DOC-032 | Complete and review the SDK guide | todo | blocked | M | DOC-014, PKG-085, SVC-021, UIP-031 |
+| DOC-032 | Complete and review the SDK guide | todo | blocked | M | DOC-014, PKG-085, SVC-021, UIP-031, SCH-040 |
 | DOC-033 | Publish the platform security guide | todo | blocked | M | DOC-015, SEC-002, GOV-061 |
 
 ## V4

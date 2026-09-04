@@ -123,6 +123,8 @@ Channel handle slots (IPC-014). Borrowing lifetimes (MEM-018).
 
 V0 ResourceDomain memory-budget enforcement is meaningless unless MemoryObject pages are charged to the owner's domain. SCH owns the budget object and the typed exhaustion error; MEM installs the charging hook on create, grow, and destroy so a Component cannot exceed the domain memory budget by allocating MemoryObjects (§23).
 
+<!-- covers: INV-0427, INV-0237 -->
+
 #### Out of scope
 Budget policy and CPU share (SCH-008). Charge-follows-owner across a transfer (MEM-015). Kernel-object count limits (SCH-009).
 
@@ -1312,7 +1314,7 @@ Hardware capability mappings (MEM-049). Capability handle encoding (CAP). Freeze
 - Depends on: MEM-038, MEM-028
 - Baseline: §16, §32
 
-V1 suspend/resume with display and audio functional afterwards requires GPU and audio buffers backed by MemoryObjects to survive. MEM adds a post-resume check to the PWR cycle harness: pinned and DMA-compatible objects remain mapped, suitable, and owned.
+V1 suspend/resume with display and audio functional afterwards requires GPU and audio buffers backed by MemoryObjects to survive. MEM adds a post-resume check to the PWR cycle harness: pinned and DMA-compatible objects remain mapped, suitable, and owned. Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 Cycle harness and wake policy (PWR-014). Audio and GPU rebind (AUD, GFX).

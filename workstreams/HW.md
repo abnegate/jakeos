@@ -30,6 +30,8 @@ Lab procurement, racks, radio peers and soak calendars (LAB). Kernel fork, rebas
 
 V0 hardware scope is QEMU plus one designated AMD desktop. LAB racks H-002 and BOOT boots the CI-built image. This task records the SKU, firmware version, IOMMU, TPM 2.0 and Secure Boot enrolment posture required by HW-003, and archives a passing boot log.
 
+<!-- covers: INV-1154 -->
+
 #### Out of scope
 Racking and capture (LAB-003). Kernel boot image (BOOT-002). Compositor GPU path (HW-010).
 
@@ -207,7 +209,7 @@ IOMMU required-or-not (HW-017). Framework implementation (HW-029).
 - Threats: T-001
 - Invariants: I-021
 
-Native applications must not receive ambient HID streams. This Decision names how `Capability<InputDevice>` is minted and attenuated so the V0.5 HID service can grant keyboard and mouse without device nodes.
+Native applications must not receive ambient HID streams. This Decision names how `Capability<InputDevice>` is minted and attenuated so the V0.5 HID service can grant keyboard and mouse without device nodes. Required by V0.5-G02 (Native application window, input and declarative UI).
 
 #### Out of scope
 HID service implementation (HW-011). Focus routing (UIP-005). Ownership split document (UIP-009).
@@ -264,6 +266,8 @@ DeviceOperation kind (TSK-031). User-space DMA (HW-026). HAL to inherited driver
 - Baseline: §2, §7, §69
 
 Native device discovery over retained Linux buses so `Object<Device>` exists for the compositor input path and later drivers. Preserves §2 hardware discovery. Does not replace sysfs for the Linux personality.
+
+<!-- covers: INV-1326, INV-0069 -->
 
 #### Out of scope
 Capability mint and rights (HW-008). Sysfs compatibility (LNX). GPU scanout (GFX).
@@ -322,6 +326,8 @@ Compositor Surfaces (GFX). Mesa mediation (GFX). Laptop APU (HW-039). Native GPU
 
 V0.5 exit: a native application receives keyboard and mouse. This service enables HID devices and mints per-device Capabilities. UIP routes events to the focused Surface. Native software never sees `/dev/input`. The Linux personality keeps evdev.
 
+<!-- covers: EXTRA-042 -->
+
 #### Out of scope
 Focus and hit-test (UIP-012, GFX-031). I2C laptop touchpad (HW-024). Layout data (HW-027).
 
@@ -348,7 +354,7 @@ Focus and hit-test (UIP-012, GFX-031). I2C laptop touchpad (HW-024). Layout data
 - Depends on: HW-011
 - Baseline: §32, §60
 
-V0.5 keyboard and mouse must survive unplug and replug without restarting the compositor. Device-management restart of INV-0598 is V1. This is the input-only hot-plug path the four demo apps need.
+V0.5 keyboard and mouse must survive unplug and replug without restarting the compositor. Device-management restart of INV-0598 is V1. This is the input-only hot-plug path the four demo apps need. Required by the HW scope: "HID input as `Capability<InputDevice>`".
 
 #### Out of scope
 User-space driver rebind (HW-030). Compositor crash rebind (GFX, SVC).
@@ -377,6 +383,8 @@ User-space driver rebind (HW-030). Compositor crash rebind (GFX, SVC).
 - Invariants: I-040
 
 `Object<Device>` is Layer 1, so this spike lands in V0, implementation stays prototyped at V0.5, and freeze waits until V4. The report records handle shape, rights bits and IOMMU placement for the three access options later decided by HW-006.
+
+<!-- covers: INV-0170, INV-0623 -->
 
 #### Out of scope
 Minting production handles (HW-008). Access-mechanism Decision (HW-006). L1 freeze.
@@ -697,6 +705,8 @@ Official versus non-free channel (GOV-022). Vendor NDA (GOV-026). LVFS updates (
 
 V1 daily-driving on H-004 fails without the internal touchpad. HID-over-I2C is the usual laptop path. Pointer events go through HW-011. Gestures wait for HW-058.
 
+<!-- covers: INV-1219 -->
+
 #### Out of scope
 Multi-finger gestures (HW-058). Focus routing (UIP).
 
@@ -929,7 +939,7 @@ Remaining USB classes (HW-075). In-kernel HID fallback when the Decision keeps a
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: HW-015, HW-024, HW-011, HW-012
+- Depends on: HW-015, HW-024, HW-011, HW-012, HW-027, HW-030
 - Baseline: §61
 
 V1 daily-driving gate: core team uses H-004 as primary machine. Scripted HID scenarios (internal keyboard, I2C touchpad, USB mouse) must pass on that SKU before the milestone closes.
@@ -1312,6 +1322,8 @@ SKU list (HW-003). Known-good publication (HW-053).
 
 UIP requires pointer, touch and pen at V0.5 protocol level and ships basic touchscreen at 1.0 while on-screen keyboard stays out. This is USB/I2C touch and Wacom-class pen enablement on target laptops that include them.
 
+<!-- covers: GAP-0287 -->
+
 #### Out of scope
 On-screen keyboard (UIP). Gesture routing (UIP). Machines without the hardware.
 
@@ -1425,7 +1437,7 @@ Render-to-scanout (GFX-076). V4 hybrid SKUs (HW-081).
 - Baseline: §9.1, §49
 - Invariants: I-021
 
-V2 gaming proof-of-concept and W1 integration require gamepad input. HW mints HID gamepad Capabilities. WIN and LNX consume them. No ambient `/dev/input` for native software.
+V2 gaming proof-of-concept and W1 integration require gamepad input. HW mints HID gamepad Capabilities. WIN and LNX consume them. No ambient `/dev/input` for native software. Required by V2-G07 (Gaming proof of concept on W1 Gold titles).
 
 #### Out of scope
 Wine XInput mapping (WIN). evdev for personality (LNX).
@@ -1712,6 +1724,8 @@ Gesture routing (UIP). On-screen keyboard (UIP).
 
 V2 laptop day demo plugs an external display via USB-C. GFX owns MST and hot-plug. HW enables dock USB hubs, NIC, HID and DP-alt-mode Device objects, gated on HW-057.
 
+<!-- covers: INV-1222 -->
+
 #### Out of scope
 MST mode-set (GFX). NIC DHCP (NET). Authorisation prompt (HW-057).
 
@@ -1765,6 +1779,8 @@ Latency publication (HW-033). Peer fixtures (LAB-011).
 
 V2 hardware scope is exactly three named machines. Gate-verifying matrix: internal/external HID, GPU enumeration, USB hot-plug, lid/brightness, firmware probe. PWR, NET, AUD and GFX own their slices. HW owns the combined per-machine report.
 
+<!-- covers: INV-1113 -->
+
 #### Out of scope
 Suspend (PWR). Wi-Fi (NET). Audio (AUD). Scanout (GFX).
 
@@ -1791,7 +1807,7 @@ Suspend (PWR). Wi-Fi (NET). Audio (AUD). Scanout (GFX).
 - Risks: R-056
 - Invariants: I-074
 
-V3 Tier 1 is six machines: three V2 targets plus NVIDIA desktop plus one extra laptop per vendor. HW bring-up of H-007 and H-008 onto the same HID/GPU/USB/firmware matrix.
+V3 Tier 1 is six machines: three V2 targets plus NVIDIA desktop plus one extra laptop per vendor. HW bring-up of H-007 and H-008 onto the same HID/GPU/USB/firmware matrix. Required by V3-G01 (Installer completes on Tier 1 with full-disk encryption).
 
 #### Out of scope
 Racking (LAB-021). NVIDIA desktop (HW-070).
@@ -2222,6 +2238,8 @@ Mount and Collection (STO-062). MTP (HW-069).
 
 V3 scope includes printing on six Tier 1 machines. Scripted IPP Everywhere job from a native app plus discovery of a USB printer. LNX CUPS path is a separate LNX task.
 
+<!-- covers: GAP-0438 -->
+
 #### Out of scope
 CUPS personality (LNX-093). Dialog chrome (APP).
 
@@ -2250,6 +2268,8 @@ CUPS personality (LNX-093). Dialog chrome (APP).
 
 V3 cameras and webcams. HW enables UVC devices as `Object<Device>`. MED mints `Capability<Camera>` and the in-use indicator. Native software never receives ambient V4L2 nodes.
 
+<!-- covers: GAP-0303 -->
+
 #### Out of scope
 Camera service and grants (MED-013). In-use chrome (APP). Object<Camera> (MED).
 
@@ -2276,6 +2296,8 @@ Camera service and grants (MED-013). In-use chrome (APP). Object<Camera> (MED).
 - Invariants: I-095
 
 V3 scope: Wi-Fi and Bluetooth hardware beyond target machines via inherited Linux drivers and the database. NET owns association. HW owns chipset enablement notes and HCL rows for community adapters.
+
+<!-- covers: GAP-0468 -->
 
 #### Out of scope
 Association and DHCP (NET-033). Bluetooth profiles on targets (HW-037).
@@ -2390,6 +2412,8 @@ Implementation (HW-085). Repository hosting (PKG, REL).
 
 V4 scope: Tier 2 process mature with a documented promotion path. Implements HW-043 criteria against community probes plus a lab suite run, without silently claiming Tier 1.
 
+<!-- covers: GAP-0371 -->
+
 #### Out of scope
 Community ingest (HW-065). Suite content (HW-086).
 
@@ -2472,7 +2496,7 @@ Repository (PKG, REL). In-tree classification (HW-016).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: HW-081, HW-080, HW-070, HW-084, HW-077
+- Depends on: HW-081, HW-080, HW-070, HW-084, HW-077, HW-075, HW-076
 - Baseline: §62
 - Risks: R-056
 
@@ -2526,7 +2550,7 @@ Soak execution (LAB-025). HCL publication (HW-088).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: HW-089, HW-083
+- Depends on: HW-089, HW-083, HW-053
 - Baseline: §62, §63
 - Invariants: I-095
 
@@ -2584,6 +2608,8 @@ Feature authorship (PWR, NET, AUD, GFX, MED). Sign-off letter (HW-087).
 - Invariants: I-093
 
 NFC, WWAN and eSIM Device classes are declared LATER so they appear in the 1.0 non-goal list. Casting and MIDI are APP/AUD. This task parks the radio and NFC Device classes only.
+
+<!-- covers: EXTRA-038 -->
 
 #### Out of scope
 Combined non-goal publication (APP-069). MIDI (AUD-030). Casting (APP).

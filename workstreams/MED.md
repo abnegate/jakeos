@@ -433,7 +433,7 @@ Shell indicator rendering (APP-031, GFX-082). UVC Device enablement (HW-078). Pe
 - Corpora: C-004
 - Threats: T-014
 
-L3 corpus video conferencing needs Camera Frames encoded beside AUD echo cancellation. AUD owns the capture and playback graph and mix-monitor reference; MED owns Camera Frames and the encoder Component. A conferencing session Component holds Camera, encoder and AudioStream Capabilities and no filesystem or unrelated Device rights.
+L3 corpus video conferencing needs Camera Frames encoded beside AUD echo cancellation. AUD owns the capture and playback graph and mix-monitor reference; MED owns Camera Frames and the encoder Component. A conferencing session Component holds Camera, encoder and AudioStream Capabilities and no filesystem or unrelated Device rights. Required by V3-D05 (Windows game and Linux IDE on the AMD laptop).
 
 #### Out of scope
 Echo-cancellation filter (AUD-020). Personality conferencing apps (LNX). Screen-share into a call (MED-035).
@@ -464,7 +464,7 @@ Echo-cancellation filter (AUD-020). Personality conferencing apps (LNX). Screen-
 - Threats: T-038
 - Invariants: I-014
 
-Demux is an isolated Component ahead of decode so container parsers cannot escape into the player (T-038). MP4, WebM and Matroska demux Packages follow the codec schema: input bytes, output elementary-stream MemoryObjects, ResourceDomain budget, no network or filesystem. Malformed containers kill only the demux Component.
+Demux is an isolated Component ahead of decode so container parsers cannot escape into the player (T-038). MP4, WebM and Matroska demux Packages follow the codec schema: input bytes, output elementary-stream MemoryObjects, ResourceDomain budget, no network or filesystem. Malformed containers kill only the demux Component. Required by the design critique: container parsers isolated from the player so a malformed container cannot escape (T-038).
 
 #### Out of scope
 Decoder Components (MED-024). Playback clock (MED-021). Fuzz fleet (MED-031).
@@ -495,6 +495,8 @@ Decoder Components (MED-024). Playback clock (MED-021). Fuzz fleet (MED-031).
 - Invariants: I-063, I-084
 
 GAP-0300 zero-copy Frames to the compositor require negotiated pixel format, color range and HDR metadata without copies. V2 HDR and VRR desktop gates consume this metadata; the V4 HDR video path completes it on every HDR-capable Tier 1 machine. Explicit GPU synchronization stays mandatory (I-084).
+
+<!-- covers: GAP-0300 -->
 
 #### Out of scope
 Compositor HDR output (GFX-068). V4 HDR video completion (MED-038). Color pipeline Decision (GFX-063).
@@ -648,7 +650,7 @@ Portal implementation (LNX-080). Prompt UI (SEC-044). Default Capability bundle 
 - Depends on: MED-024, AUD-006, AUD-010, MED-008
 - Baseline: §17, §18
 
-Native media players at V2 need a playback clock that slaved video Frame presentation to AudioStream time. MED owns the clock and Frame timestamps; AUD owns the audio path. Native software never sees POSIX timers as the media clock API.
+Native media players at V2 need a playback clock that slaved video Frame presentation to AudioStream time. MED owns the clock and Frame timestamps; AUD owns the audio path. Native software never sees POSIX timers as the media clock API. Required by the MED scope: "A native playback session binds play, pause, seek and now-playing metadata for the shell."
 
 #### Out of scope
 Audio mixer and resampling (AUD). Shell media controls (APP-034). Hardware decode (MED-017).
@@ -677,6 +679,8 @@ Audio mixer and resampling (AUD). Shell media controls (APP-034). Hardware decod
 - Baseline: §12, §32, §66
 
 APP GAP-0304 owns shell UI and MPRIS; MED owns the playback session object that play, pause, seek and now-playing metadata bind to. The session is a Layer 2 Interface so the shell and a native player share one object. Personality MPRIS mapping stays in LNX.
+
+<!-- covers: GAP-0304 -->
 
 #### Out of scope
 Shell media keys and now-playing UI (APP-034). MPRIS bridge (LNX). Audio focus policy (AUD-015).
@@ -868,7 +872,7 @@ Physical sensors (MED-013). Personality v4l2loopback (LNX). Conferencing encode 
 - Benchmarks: B-046
 - Invariants: I-061, I-063
 
-B-046 V2 publish gate. Measures copies per stage on the §17 storage-or-NIC to decoder to GPU to scanout path by physical-page identity. MED owns the media-path stages; BEN owns the runner and cross-OS tables. No superiority claim without the report (I-061).
+B-046 V2 publish gate. Measures copies per stage on the §17 storage-or-NIC to decoder to GPU to scanout path by physical-page identity. MED owns the media-path stages; BEN owns the runner and cross-OS tables. No superiority claim without the report (I-061). Required by V4-G17 (Prior benchmarks within the V4 regression band).
 
 #### Out of scope
 Register ownership and Linux dma-buf baseline tables (BEN-045). Hardware decode feature (MED-017).

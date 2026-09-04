@@ -8,7 +8,7 @@
 | --- | --- | --- | --- | --- | --- |
 | APP-001 | Publish warm and cold startup for the four native applications | todo | blocked | S | APP-004, APP-003, APP-005, APP-006, Q-029, BEN-005 |
 | APP-002 | Build the OS-owned file chooser UI minting UserSelected capabilities | todo | blocked | M | STO-034, GFX-040, UIP-024, UIP-025, SEC-007, CAP-029, SDK-017 |
-| APP-003 | Build the Demo native Text Editor | todo | blocked | M | UIP-024, TXT-012 |
+| APP-003 | Build the Demo native Text Editor | todo | blocked | M | UIP-024, TXT-012, STO-024 |
 | APP-004 | Build the Demo native Terminal on the system text stack | todo | blocked | M | APP-009, APP-008, UIP-024, UIP-023, TXT-009, UIP-001, SDK-023, SDK-025 |
 | APP-005 | Build the Demo Image Viewer with an isolated decoder Component | todo | blocked | M | APP-002, STO-034, GFX-026, UIP-025, SDK-013 |
 | APP-006 | Build the privileged File Browser that hands out storage capabilities | todo | blocked | M | UIP-024 |
@@ -63,7 +63,7 @@
 | APP-045 | Build the store client with install-time Capability review | todo | blocked | M | REL-012, REL-013, PKG-064, PKG-075, CAP-043, APP-025 |
 | APP-046 | Build the status-tray host according to the tray Decision | todo | blocked | M | APP-054, APP-043, LNX-079, WIN-024 |
 | APP-047 | Build the running-application update prompt for Generation switches | todo | blocked | S | PKG-066, APP-014 |
-| APP-048 | Run the 40-scenario desktop UX script on the three target machines | todo | blocked | M | APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036 |
+| APP-048 | Run the 40-scenario desktop UX script on the three target machines | todo | blocked | M | APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036, APP-041, GFX-059 |
 | APP-049 | Build the sandboxed native WebView Component | todo | blocked | M | APP-019, APP-021, CMP-024, CAP-025, GFX-026 |
 | APP-050 | Build virtual workspaces, overview and window layout | todo | blocked | M | APP-018, APP-043, GFX-019 |
 | APP-051 | Decide the first-party application set native versus bundled at 1.0 | todo | blocked | S | APP-005, APP-006 |

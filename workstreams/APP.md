@@ -86,7 +86,7 @@ UserSelected minting and isolation test (STO-034, STO-007). SDK `files.choose` (
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: UIP-024, TXT-012
+- Depends on: UIP-024, TXT-012, STO-024
 - Baseline: §11, §41, §60
 
 Ship the V0.5 native Text Editor as a Component graph with declarative UI, accessibility metadata and a scripted acceptance scenario (§60). Kernel-scale editing, diagnostics and IDE features wait for V1. The editor maps immutable Package objects at launch and holds no ambient filesystem namespace (I-021, I-039).
@@ -247,6 +247,8 @@ Thin panel (APP-017). Launcher (APP-013). Lock (APP-033). Greeter (APP-030). Com
 
 Write the V0.5 application-graph guide so Terminal, File Browser, Text Editor and Image Viewer are declared as Component graphs with attenuated per-child authority (isolated decoder, chooser, PTY helper) instead of monoliths (§11). The four demo tasks treat this document as the shape they implement.
 
+Required by the APP scope: "First-party applications are Component graphs: isolated decoders, choosers and PTY helpers hold only the authority they need".
+
 #### Out of scope
 Graph instantiation runtime (CMP-024). Capability-set lint (CAP-024). SDK samples (SDK-021).
 
@@ -273,6 +275,8 @@ Graph instantiation runtime (CMP-024). Capability-set lint (CAP-024). SDK sample
 - Invariants: I-006, I-021, I-072
 
 Prototype hosting Linux-personality CLI tools inside a native Terminal window without granting the Terminal ambient filesystem or network authority. The V0.5 demo Terminal consumes the report; LNX-022 decides the V1 policy. Native software still never sees POSIX; the PTY exists only as a bridge into the personality (I-006).
+
+<!-- covers: GAP-0310 -->
 
 #### Out of scope
 Demo Terminal chrome (APP-004). V1 terminal-session authority Decision (LNX-022). POSIX as a native API (LNX).
@@ -363,6 +367,8 @@ IDE strategy (APP-020). Personality IDEs (LNX-032). Semantic `Editor.open` (APP-
 - Threats: T-001
 
 Ship a read-only grant log viewer so V1 daily driving can inspect Capability grants, derivations, revocations and denials without a full permissions Settings surface. V1 scope excludes permissions UI beyond this log; revocation, expiry and timeline wait for APP-029.
+
+Required by V1-G02 (Core team daily-drives the OS): daily driving needs a way to inspect grants and denials while the permissions Settings surface waits for V2.
 
 #### Out of scope
 Grant Settings surface (APP-029). Audit export (CAP-030). Grant taxonomy Decision (SEC-007). Tamper-evident store (OBS-044).
@@ -514,6 +520,8 @@ V0.5 demo Terminal (APP-004). Authority Decision (LNX-022). Semantic `Terminal.r
 
 Ship a running-application list sufficient for V1 daily work. Status indicators, quick settings and Personality taskbar polish wait for the V2 panel. The thin panel uses the privileged shell Surface role from UIP.
 
+<!-- covers: INV-0885 -->
+
 #### Out of scope
 Polished panel and taskbar (APP-043). Window switcher (APP-018). Quick settings (APP-036).
 
@@ -540,6 +548,8 @@ Polished panel and taskbar (APP-043). Window switcher (APP-018). Quick settings 
 - Baseline: §41, §61
 
 Ship a window switcher so V1 L2 integration can include the task switcher and developers can move between Terminal, Editor and personality windows. Virtual workspaces and overview wait for V2.
+
+<!-- covers: INV-0885 -->
 
 #### Out of scope
 Workspaces and overview (APP-050). Panel taskbar (APP-043). Wayland switcher protocols (LNX).
@@ -629,6 +639,8 @@ Native Editor daily features (APP-011). Personality runtimes (LNX-032). Debugger
 - Invariants: I-021, I-029
 
 Prototype in-app web content as a Capability-scoped Component so APP-019 can choose a native WebView versus personality-only web content. The prototype is not a native browser. Engine reuse through the Linux personality is in bounds as a measured option; native software still never sees POSIX APIs.
+
+<!-- covers: GAP-0307 -->
 
 #### Out of scope
 Browser strategy Decision (APP-019). WebView ship (APP-049). Default browser (LNX). Widevine (MED, LNX).
@@ -1446,7 +1458,7 @@ Running-app update mechanics (PKG-066). Updater client (INS-045). Store client (
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036
+- Depends on: APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036, APP-041, GFX-059
 - Baseline: §62
 - Invariants: I-096
 
@@ -1664,6 +1676,8 @@ Tray host (APP-046). Quick settings (APP-036). Personality implementations (LNX,
 
 Measure what EXTRA-044 may index before APP-027 ships. An indexer with ambient home-directory access would violate §9. STO-065 is the store-side counterpart. The report bounds Collections, change-notification and Background intent.
 
+Required by the APP scope: "desktop search"; the report bounds what APP-027 may index.
+
 #### Out of scope
 Search Component (APP-027). Store index (STO-065). Semantic Workspace.search (SEM).
 
@@ -1691,6 +1705,8 @@ Search Component (APP-027). Store index (STO-065). Semantic Workspace.search (SE
 - Risks: R-084
 
 Prototype reopening application windows from system history before APP-039 commits to restore. PKG-069 may park application-state restore as a 1.0 non-goal; this spike supplies window-level evidence so V2 does not promise infeasible restore (R-084, Q-056).
+
+<!-- covers: GAP-0283 -->
 
 #### Out of scope
 Session flows (APP-039). Application-state Decision (PKG-069). Generation restore (INS-014).
@@ -1903,6 +1919,8 @@ Windows import engine (INS-049). Linux home import (INS-033). Undo snapshot (INS
 
 Ship switcher and greeter chrome for a second user so two users have separate sessions, Capability stores and encrypted data, and switching preserves state (§63, T-026). SEC owns session objects; APP owns chrome. Enterprise directory and guest sessions remain 1.0 non-goals (I-092).
 
+<!-- covers: GAP-0283 -->
+
 #### Out of scope
 Multi-user sessions (SEC-060). State preservation (SEC-064). Per-user grant stores (CAP-049). MDM and guest (I-092).
 
@@ -1931,6 +1949,8 @@ Multi-user sessions (SEC-060). State preservation (SEC-064). Per-user grant stor
 - Invariants: I-035
 
 Ship an OS-owned print dialog that grants `Capability<PrintJob>` for a single job the way the file chooser grants file authority. HW owns discovery (IPP/eSCL/USB); LNX owns the CUPS socket; APP owns dialog chrome and print preview via the shared PDF renderer.
+
+<!-- covers: GAP-0268 -->
 
 #### Out of scope
 Print discovery (HW-071). CUPS bridge (LNX-093). PDF renderer Decision (APP-053). Printers Settings list (APP-041).

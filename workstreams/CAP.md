@@ -566,7 +566,7 @@ TaskGroup teardown and orphan detection (TSK-025). Service supervision (SVC). Au
 - Owner: none
 - Depends on: CAP-003, CAP-004, CAP-006, CAP-009, BEN-005, BEN-007
 - Baseline: §7, §53, §54
-- Benchmarks: B-004
+- Benchmarks: B-053
 - Invariants: I-061
 
 Standing harness for mint, derive, transfer and revocation cost so the bounds named by CAP-009 are measured in CI rather than claimed. V0.5 re-runs V0 benchmarks under B-051; this harness is publish-only at V0.5 with no absolute target (§53, §54).
@@ -580,7 +580,7 @@ Choosing the revocation strategy (CAP-009). Component-creation cost (CMP-001, B-
 - [ ] The harness is invoked from the shared BEN runner on every merge that touches `cap/`.
 
 #### Verification
-- Bench: mint, derive, transfer and revocation cost on H-001 and H-002; V0.5 target is publish; B-051 re-runs prior-rung reports on the same hardware.
+- Bench: B-053 mint, derive, transfer and revocation cost on H-001 and H-002; V0.5 target is publish; B-051 re-runs prior-rung reports on the same hardware.
 - Review: BEN lead sign-off that the harness matches the methodology Decision and I-061.
 
 #### Evidence
@@ -936,6 +936,8 @@ Chooser UI (APP-002). Minting UserSelected (STO-034). Save-as flow (STO-015).
 
 V1 ships a grant log viewer and requires `os trace` session export. CAP exports structured grant, derive, revoke and denial events in the inspect and trace schemas so APP and SDK can render them without parsing kernel text.
 
+<!-- covers: INV-0183, INV-0463 -->
+
 #### Out of scope
 Log viewer UI (APP-012). Offline trace format (SDK-051). Tamper-evident store (OBS-044).
 
@@ -963,6 +965,8 @@ Log viewer UI (APP-012). Offline trace format (SDK-051). Tamper-evident store (O
 - Invariants: I-040
 
 V1 names Layer 1 freeze candidates with SDK v1. CAP marks S-003 (and the Capability operations on S-001) as candidates, each citing its spike, ADR and CHERI validation. Nothing is frozen; I-040 forbids an L1 freeze before V4.
+
+Required by V4-G01 (Layer 1 ABI frozen with a conformance suite): S-001 through S-012 freeze with conformance tests, and this task names the CAP candidates and their first conformance tests.
 
 #### Out of scope
 Accepting the freeze (ABI-049). V4 conformance suite (CAP-051). CHERI re-validation of the frozen ABI (CAP-052).
@@ -1117,6 +1121,8 @@ Tooling choice (CAP-028). Rust property tests (CAP-019). CHERI emulator (CAP-038
 - Invariants: I-028
 
 V1 introduces NetworkConnection, AudioStream, Surface and Device object types. §7 requires per-type rights. A lint fails when a new object type lacks a rights declaration, scaling CAP-010 as the object set grows.
+
+Required by the CAP scope: "rights and transfer-rights encoding" for every Object type native software can hold.
 
 #### Out of scope
 Defining those objects (NET, AUD, GFX, HW). Encoding choice (CAP-010). Grant UI (APP).
@@ -1301,6 +1307,8 @@ AI broker implementation (SEM-010). Registry (SEM-029). Action-graph logging sto
 
 Capability-specific fuzz targets (forge, type confusion, derive amplification) land in BLD's continuous fuzzing so they are seasoned before the V3 crasher-age gate and the V4 longer window.
 
+<!-- covers: INV-0961 -->
+
 #### Out of scope
 Fuzz infrastructure (BLD-035). syzkaller port (BLD-016). Closing audit findings (CAP-050).
 
@@ -1415,6 +1423,8 @@ Audit export (CAP-030). CHERI mapping (CAP-033). Tamper-evident log (OBS-044).
 - Invariants: I-056
 
 V3 exit requires reference pages for every Layer 1 entry point; the 1.0 definition requires every Capability right documented. CAP authors the semantics via the object-rights registry; DOC generates pages.
+
+Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 Page generation and site (DOC-023, DOC-010). ABI entry-point list (ABI-046).

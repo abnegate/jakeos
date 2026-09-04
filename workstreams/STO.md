@@ -860,6 +860,8 @@ Supervision policy (SVC). Object registry (ABI). Chooser UI (APP).
 
 SEC's V0 threat model requires storage designs to cite the threats they address before being fixed. This document feeds the V0.5 storage ADRs and the threat register.
 
+<!-- covers: EXTRA-048 -->
+
 #### Out of scope
 System-wide threat model (SEC). Chooser trusted-UI surfaces (GFX, APP).
 
@@ -1340,6 +1342,8 @@ Mapping implementation (MEM). Encryption of MemoryObject (SEC).
 
 The Linux and Windows personalities synthesise POSIX paths and drive letters over native storage. STO supplies a scope-preserving view API so those personalities cannot mint authority the enclosing Component does not hold. Native software never sees those paths.
 
+<!-- covers: INV-0493 -->
+
 #### Out of scope
 POSIX home view (LNX-047). Windows filesystem layer (WIN-028). Mapping Decision (STO-042).
 
@@ -1420,6 +1424,8 @@ Inspect CLI (SDK). Trace transport (OBS).
 - Baseline: §12, §66
 
 V1 freezes L2 evolution rules. Storage interfaces are SDK v1 freeze candidates and need the interface-evolution test the V4 gate later requires.
+
+Required by V4-G02 (Layer 2 interface versions for 1.x are locked): the interface-evolution test passes for every core interface, and STO-082 runs it for storage.
 
 #### Out of scope
 Locking 1.x versions (STO-082). IDL compiler (IPC).

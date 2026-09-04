@@ -326,6 +326,8 @@ ia32 syscall retention (LNX-015). WoW64 runtime (WIN-055). Steam 32-bit multilib
 
 Survey the 15 C-007 productivity applications and list the Win32 APIs, COM/OLE surfaces, installers and runtimes that WIN-053, WIN-022 and WIN-042 must enable.
 
+Required by V2-G19 (W1 corpus meets its threshold): the survey is the input WIN-053, WIN-022 and WIN-042 enable the C-007 productivity titles from.
+
 #### Out of scope
 Win32 enablement (WIN-053). Redistributable Packages (WIN-042). COM runtime (WIN-022).
 
@@ -352,6 +354,8 @@ Win32 enablement (WIN-053). Redistributable Packages (WIN-042). COM runtime (WIN
 - Invariants: I-036, I-069
 
 Produce content-addressed Wine and Proton runtime Packages that CI installs without mutating a shared prefix. PKG owns store layout and later wine-prefix packaging; this task ships the runtime objects V1 bring-up installs.
+
+<!-- covers: INV-0908 -->
 
 #### Out of scope
 Per-application prefix overlays (PKG-080). Wine process host (LNX-034). Bring-up of a PE binary (WIN-015).
@@ -648,6 +652,8 @@ Clipboard policy (UIP-004). Unified type registry (UIP-050). X11 primary selecti
 - Invariants: I-007
 
 Enable Wine COM and OLE inside the per-application prefix for the 15 C-007 productivity titles. COM is not a native API.
+
+<!-- covers: INV-0900 -->
 
 #### Out of scope
 Native COM (forbidden by I-007). OLE drag-and-drop bridge (WIN-037). Redistributables (.NET, VC++) (WIN-042).
@@ -1154,6 +1160,8 @@ Fuzz harness (WIN-039). In-kernel PE (WIN-008). Double-click UX (WIN-027).
 
 Season the userspace PE-parse fuzz target before V3 continuous fuzzing and the V4 personality audit. Malformed images must not panic the loader Component.
 
+<!-- covers: GAP-0130 -->
+
 #### Out of scope
 Loader behaviour for valid W1 binaries (WIN-038). Kernel fuzzing (BLD). Audit close-out (WIN-073).
 
@@ -1361,6 +1369,8 @@ Fractional scaling (GFX-049). Protocol hooks (UIP-029). Linux scaling (LNX-076).
 
 Launch Proton prefixes for C-007 Steam titles as Windows personality Components. The Steam client stays in LNX; titles must not appear as an extra desktop.
 
+Required by V2-G19 (W1 corpus meets its threshold): C-007 Steam titles are scored through this launch path.
+
 #### Out of scope
 Steam client and pressure-vessel (LNX-066, LNX-071). Library adoption from attached volumes (WIN-057). Compat database (WIN-067).
 
@@ -1499,7 +1509,7 @@ VRR output (GFX-088). HDR metadata (WIN-032). Immediate presentation (GFX-074).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029
+- Depends on: WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029, WIN-023, WIN-034, WIN-041, WIN-045, BLD-060
 - Baseline: §48, §56.2, §62
 - Benchmarks: B-027
 - Corpora: C-007
@@ -1866,6 +1876,8 @@ Vendor contracts (WIN-058). Measured-boot implementation (BOOT-034). Anti-cheat 
 
 Map Wine/Windows crashes, including minidump-shaped payloads, onto the native crash format with prefix identity. OBS owns the format; this is the V3 crash-reporting personality half.
 
+Required by V3-G04 (Crash reports are symbolicated and opted in): alpha-fleet crash reports include Windows-personality crashes.
+
 #### Out of scope
 Capture format Decision (OBS-029). Intake pipeline (REL-038). Consent UI (INS-020).
 
@@ -1892,6 +1904,8 @@ Capture format Decision (OBS-029). Intake pipeline (REL-038). Consent UI (INS-02
 - Baseline: §49, §63
 
 Emit a personality-authored reason (anti-cheat, architecture, missing runtime) when a PE binary cannot run, so a failed double-click is not silent. WIN owns the reason; REL owns triage UX; VIRT owns the VM offer.
+
+<!-- covers: EXTRA-056 -->
 
 #### Out of scope
 Triage UX and public database (REL-015, REL-022). VM offer (VIRT-013). Loader (WIN-038).
@@ -1921,6 +1935,8 @@ Triage UX and public database (REL-015, REL-022). VM offer (VIRT-013). Loader (W
 - Invariants: I-007, I-076
 
 Document prefix isolation, PE parsing, GPU/CPU side channels and the §3 firewall for the V4 external audit of personalities. SEC owns the V0 threat model; this is the Windows addendum.
+
+Required by V4-G04 (External security audit High and Critical closed): the audit covers personalities.
 
 #### Out of scope
 System threat model (SEC-002). Audit fix-out (WIN-073). Linux personality addendum (LNX).
@@ -2066,6 +2082,8 @@ W2 thresholds (WIN-071). Passthrough completeness (WIN-072). Linux IDE (LNX). He
 
 Define C-008: 150 titles (110 games without kernel anti-cheat, 40 applications) with scenario scripts.
 
+Required by V3-G19 (W2 corpus meets its threshold): WIN-071 runs the corpus this task defines.
+
 #### Out of scope
 W2 gate run (WIN-071). W1 definition (WIN-009). Public reports (WIN-068).
 
@@ -2087,7 +2105,7 @@ W2 gate run (WIN-071). W1 definition (WIN-009). Public reports (WIN-068).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: WIN-070, WIN-072, WIN-006, WIN-030
+- Depends on: WIN-070, WIN-072, WIN-006, WIN-030, WIN-061
 - Baseline: §48, §63
 - Benchmarks: B-027
 - Corpora: C-008
@@ -2316,6 +2334,8 @@ W3 thresholds (WIN-080). W2 V3 run (WIN-071).
 
 Define C-009: 300 titles (220 games without kernel anti-cheat, 80 applications) with scenario scripts.
 
+Required by V4-G19 (W3 corpus meets its threshold): WIN-080 runs the corpus this task defines.
+
 #### Out of scope
 W3 gate run (WIN-080). W2 definition (WIN-070). Ratings export (WIN-074).
 
@@ -2418,7 +2438,7 @@ W3 rating hold (WIN-085). Accessibility scoring implementation (ACC-033). Shell 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: WIN-018, WIN-059, WIN-002, WIN-080
+- Depends on: WIN-018, WIN-059, WIN-002, WIN-080, WIN-058
 - Baseline: §48, §56.2
 - Invariants: I-071
 

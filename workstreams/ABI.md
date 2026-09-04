@@ -1413,7 +1413,7 @@ SDK crate compatibility (SDK). Wine tests (WIN). Freeze Decision (ABI-049).
 - Baseline: §65, §66
 - Risks: R-054
 
-Remove deprecated Layer 1 entry points before the freeze candidate so the frozen surface does not carry retired operations. Follows ABI-045 and detector results. A Layer 1 change after freeze is a new major version.
+Remove deprecated Layer 1 entry points before the freeze candidate so the frozen surface does not carry retired operations. Follows ABI-045 and detector results. A Layer 1 change after freeze is a new major version. Required by V4-G01 (Layer 1 ABI frozen with a conformance suite).
 
 #### Out of scope
 Layer 2 field deprecation (IPC). Freeze acceptance (ABI-049).

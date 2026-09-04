@@ -667,6 +667,8 @@ Standing B-016 publication (BEN-009). ELF comparison (BEN-017). Tracing substrat
 
 Microsecond IPC and Component-creation numbers cannot be taken from shared or virtualised runners. This report records QEMU versus H-002 noise so V1 blocking gates have a calibrated band and V0 publish-only reports stay labelled by environment.
 
+Required by V1-G14 (Prior benchmarks show no unexplained regression): the B-051 regression band consumes the noise band this report names.
+
 #### Out of scope
 Quiet fleet (BLD-048). Merge-gate policy (BEN-033). Time-series thresholds (BEN-032).
 
@@ -866,7 +868,7 @@ SDK generator and host SDK (SDK). Full-image build time (BEN-023). Docs site (DO
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048
+- Depends on: BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048, TSK-039
 - Baseline: §54
 - Benchmarks: B-001, B-004, B-005, B-016, B-051
 - Invariants: I-061, I-088
@@ -1018,6 +1020,8 @@ CI hook (BLD-033). Quiet fleet (BLD-048). Time-series detection (BEN-032).
 
 V1 self-hosting and SDK v1 mean other prefixes add B-IDs. The guide states how to register a metric, write a harness against the runner, and land a report, including the ban on numbers in prose and the claim lint.
 
+Required by the BEN scope: "the contributor guide for adding a metric".
+
 #### Out of scope
 Register schema (GOV tooling). Runner implementation (BEN-005). Docs site chrome (DOC).
 
@@ -1096,7 +1100,7 @@ ComputeDevice implementation (HET). GPU profiler UI (SDK). Zero-copy media path 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BEN-010, GFX-060, LAB-018
+- Depends on: BEN-010, GFX-060, LAB-018, OBS-046
 - Baseline: §40, §54
 - Benchmarks: B-019
 - Invariants: I-061
@@ -1154,7 +1158,7 @@ Shell implementation (APP). IME engines (TXT). Camera service (MED). Wi-Fi (NET)
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BEN-024, PWR-006, LAB-018, LAB-015
+- Depends on: BEN-024, PWR-006, LAB-018, LAB-015, GFX-081
 - Baseline: §22, §54, §62
 - Benchmarks: B-031
 - Invariants: I-061
@@ -1540,6 +1544,8 @@ Crash-free sessions (B-041). Capture format (OBS). CVE response (REL, KRN).
 - Invariants: I-061
 
 V3 updater gate and later 1.0 update-success guarantee: fraction of update attempts that boot the new SystemGeneration without automatic rollback. INS and REL collect attempts; BEN publishes B-043.
+
+Required by V4-G08 (In-place upgrade from V3 preserves user data) and 1.0-G06 (Update and rollback guarantee verified on every Tier 1 machine): both are satisfied when the B-043 target is met.
 
 #### Out of scope
 Updater client (INS). Rollback time (B-035). Channel publication (REL).

@@ -219,7 +219,7 @@ NetworkConnection implementation (NET-014). Namespace create (ENV-003). Docker s
 - Decision: D-0073
 - Invariants: I-055
 
-V1 composes ResourceDomain, StorageSnapshot, CapabilityNamespace, NetworkNamespace and Components into development isolation (§35). This adr decides whether that composition is a userspace supervisor Component, a Package-profile instantiation with no extra object, or a new Layer 1 kernel object. §65 prefers high-level semantics in userspace and a minimal kernel ABI; a new L1 surface would need a spike and could not freeze before V4 (I-040).
+V1 composes ResourceDomain, StorageSnapshot, CapabilityNamespace, NetworkNamespace and Components into development isolation (§35). This adr decides whether that composition is a userspace supervisor Component, a Package-profile instantiation with no extra object, or a new Layer 1 kernel object. §65 prefers high-level semantics in userspace and a minimal kernel ABI; a new L1 surface would need a spike and could not freeze before V4 (I-040). Required by V1-G04 (Cached os env enter presents a working shell).
 
 #### Out of scope
 Schema of environment.yaml (ENV-008). Service hosting path (ENV-009). Implementation of the chosen object (ENV-013). Layer 1 freeze (ABI).
@@ -370,7 +370,7 @@ History log and `os history` CLI (PKG-022, PKG-059). Event type slots in the log
 - Baseline: §35
 - Invariants: I-043
 
-Object operations for create, rebuild and destroy: snapshot drop, cache drop and Component teardown (§35). SDK-042 owns list, enter, leave, destroy and rebuild CLI verbs; this is the ENV object API those verbs call.
+Object operations for create, rebuild and destroy: snapshot drop, cache drop and Component teardown (§35). SDK-042 owns list, enter, leave, destroy and rebuild CLI verbs; this is the ENV object API those verbs call. Required by V1-G04 (Cached os env enter presents a working shell).
 
 #### Out of scope
 CLI verbs (SDK-041, SDK-042). Rebuild trigger on file change (ENV-027). History emit (ENV-011).
@@ -463,7 +463,7 @@ B-025 harness and publication (BEN-025). Hash-keyed store API (STO-044). Build-o
 - Threats: T-001
 - Invariants: I-021
 
-Postgres and Redis (and later catalogue services) need credentials without ambient authority (§9.1). ENV wires SEC secrets into service Components as Capabilities. Secret files are not written into the project snapshot by default.
+Postgres and Redis (and later catalogue services) need credentials without ambient authority (§9.1). ENV wires SEC secrets into service Components as Capabilities. Secret files are not written into the project snapshot by default. Required by V1-G04 (Cached os env enter presents a working shell).
 
 #### Out of scope
 Secrets service (SEC-027). Isolation suite across applications (SEC-026). Instantiation (ENV-017).
@@ -491,7 +491,7 @@ Secrets service (SEC-027). Isolation suite across applications (SEC-026). Instan
 - Baseline: §24, §35, §64
 - Invariants: I-034
 
-Every primitive ships with inspect data in the same change (§24, §64). ENV owns DevelopmentEnvironment records (domain, snapshot, namespaces, Components, endpoints); SDK owns the `os inspect` CLI.
+Every primitive ships with inspect data in the same change (§24, §64). ENV owns DevelopmentEnvironment records (domain, snapshot, namespaces, Components, endpoints); SDK owns the `os inspect` CLI. Required by V1-G04 (Cached os env enter presents a working shell).
 
 #### Out of scope
 Inspect CLI rendering (SDK-007). Provider registry (OBS-019). Audit log (OBS).
@@ -796,6 +796,8 @@ Schema (ENV-010). Service catalogue names (ENV-026). Docker socket compatibility
 
 Indexed named runtimes and services with lockable versions for environment.yaml, backed by the Package repository. First-party php, postgres and redis are already in the V1 reference stack.
 
+<!-- covers: INV-0664 -->
+
 #### Out of scope
 Repository server and signing (REL). Third-party runtime publication (ENV-032). Resolver (ENV-019).
 
@@ -823,6 +825,8 @@ Repository server and signing (REL). Third-party runtime publication (ENV-032). 
 - Baseline: §18, §31, §35
 
 V2 daily-driving: an environment.yaml edit rebuilds via ENV-012, emits a history event, and leaves the previous snapshot restorable. STO owns file-change Operations; ENV owns the rebuild trigger.
+
+<!-- covers: INV-0666 -->
 
 #### Out of scope
 Change-notification Operation (STO-035). Lifecycle object API (ENV-012). Restore (ENV-028).
@@ -883,7 +887,7 @@ History log (PKG). Settings rollback UI (INS-014). Workspace and window restore 
 - Threats: T-018
 - Invariants: I-023, I-051
 
-V2 exit: example rule project opened then start environment. ENV exports a typed semantic action over the SEM registry. No AI broker here. SEM owns discovery and the rules engine.
+V2 exit: example rule project opened then start environment. ENV exports a typed semantic action over the SEM registry. No AI broker here. SEM owns discovery and the rules engine. Required by V2-G12 (Semantic automation and an AI-assistant demo).
 
 #### Out of scope
 Registry and rules engine (SEM-029, SEM-031). Demo rule wiring (SEM-021). AI broker (SEM-010). Attach API (ENV-024).
@@ -1001,6 +1005,8 @@ Publisher pipeline (REL-021). `os package publish` (PKG-084). Catalogue index (E
 
 V4 feature freeze: a permanent suite that identical yaml plus lock yields identical Component sets, that the §35 nongoals still hold, and that the php-postgres-redis reference still enters. B-025 remains BEN.
 
+<!-- covers: INV-0668 -->
+
 #### Out of scope
 B-025 publication (BEN). Schema version lock (ENV-034). Layer 1 freeze (ABI).
 
@@ -1085,7 +1091,7 @@ Environment-only restore (ENV-028). Editor window restore (APP-039). Application
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BEN-025, ENV-033, ENV-014, ENV-018
+- Depends on: BEN-025, ENV-033, ENV-014, ENV-018, ENV-024
 - Baseline: §35, §54, §61
 - Benchmarks: B-025
 - Invariants: I-061

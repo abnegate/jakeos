@@ -151,6 +151,8 @@ Nightly and testing implementation (REL-005). Stable and LTS operation (REL-057)
 
 V1 scope is a signed remote repository and the first update channels for daily-driving developers. This task implements nightly and testing only; stable waits for V4. A promote copies already-signed objects into the channel head and never mutates a published generation (§30).
 
+<!-- covers: GAP-0338 -->
+
 #### Out of scope
 Stable and LTS (REL-057). Artifact pipeline without rebuild (REL-019). Updater client (INS-045).
 
@@ -1482,6 +1484,8 @@ Probe emission (REL-035, HW-066). Community ingest validation (HW-065). Installe
 
 Workstreams.md gives REL the notices bundle. INS and APP display it; REL ships it beside every signed generation so the About view is not hand-assembled.
 
+<!-- covers: GAP-0014 -->
+
 #### Out of scope
 About UI (INS-037, APP-057). License allowlists (GOV, BLD-023). Corresponding source (REL-046).
 
@@ -1718,6 +1722,8 @@ Telemetry intake (REL-042). Emergency pull mechanism (REL-036). Client apply (IN
 - Invariants: I-022, I-086
 
 V4 REL scope: stable channel infrastructure and LTS branch policy implementation from REL-053 and REL-004. Promotion still does not rebuild.
+
+<!-- covers: GAP-0338 -->
 
 #### Out of scope
 Cadence Decision (REL-053). Staged halt (REL-056). Kernel 1.x branch (KRN-058).

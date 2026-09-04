@@ -823,7 +823,7 @@ Claim through renumber (GOV-012). Diff-aware check (GOV-010).
 - Depends on: GOV-013
 - Baseline: §65, §66
 
-The 1.0 2.0-planning RFC must cite LATER items without depending on them. Ship a `See also` field on Gates and tasks before V3 Gates grow those lists. Nothing outside LATER may depend on a LATER task.
+The 1.0 2.0-planning RFC must cite LATER items without depending on them. Ship a `See also` field on Gates and tasks before V3 Gates grow those lists. Nothing outside LATER may depend on a LATER task. Required by 1.0-G17 (Governance, 1.x branch and 2.0 planning RFC).
 
 #### Out of scope
 2.0 planning RFC (GOV-082). Workstream-header `See also` for prefix splits (GOV-043).
@@ -992,6 +992,8 @@ Legal-entity form (GOV-024). Trademark filing (GOV-036). Repository developer ag
 - Baseline: §65, §66
 
 The process was defined at V0; V1 opens to external developers with SDK v1. Templates and venue must exist before the V3 Gate that counts processed external RFCs.
+
+<!-- covers: GAP-0056 -->
 
 #### Out of scope
 RFC process definition (GOV-005). Exercising five external RFCs (GOV-064). Docs site (DOC).
@@ -1668,6 +1670,8 @@ Export-control Decision (GOV-050). FDE implementation (SEC). Mirror operations (
 
 Workstreams.md GPL boundary. REL publishes corresponding source; GOV states the written-offer policy the installer About view must surface.
 
+<!-- covers: GAP-0374, GAP-0014 -->
+
 #### Out of scope
 Corresponding-source publication (REL-046). About and licenses view (INS-037, APP-057). Notices bundle (REL).
 
@@ -1834,6 +1838,8 @@ Process definition (GOV-005). Templates and venue (GOV-035). 2.0 planning RFC (G
 
 V3 scope names GOV beside REL and KRN for security response. REL owns the process; GOV names who may sign advisories and speak as the entity.
 
+<!-- covers: GAP-0355, GAP-0239 -->
+
 #### Out of scope
 Disclosure policy and advisory format (REL-047). Kernel CVE steps (KRN-031). Advisory feed (REL-044).
 
@@ -1860,6 +1866,8 @@ Disclosure policy and advisory format (REL-047). Kernel CVE steps (KRN-031). Adv
 - Threats: T-029
 
 REL owns ceremony and HSM; GOV names which governance roles hold quorum shares for Secure Boot and repository signing at public alpha.
+
+<!-- covers: GAP-0045 -->
 
 #### Out of scope
 Ceremony, HSM and rotation (REL-032, REL-041). Trust-store layout (REL-010). Succession plan (GOV-060).

@@ -79,11 +79,11 @@ Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/138.
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 |
-| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4899 |
-| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4898 |
-| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4826 |
-| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4731 |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4698 |
+| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4900 |
+| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 |
+| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4829 |
+| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4734 |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 |
 
 ## Critical path
 
@@ -167,9 +167,9 @@ Makespan (size-weight estimates): 78.
 | ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1729 | 5240 |
 | ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1728 | 5237 |
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1732 | 5231 |
-| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1643 | 4922 |
-| GOV-003 | Decide the license firewall and outbound project licenses | 1677 | 4899 |
-| BEN-007 | Decide benchmark methodology and target-kind policy | 1651 | 4898 |
+| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1646 | 4925 |
+| GOV-003 | Decide the license firewall and outbound project licenses | 1678 | 4900 |
+| BEN-007 | Decide benchmark methodology and target-kind policy | 1652 | 4899 |
 
 ## Blocked by
 
@@ -818,6 +818,7 @@ Makespan (size-weight estimates): 78.
 | STO-077 | 4 |
 | SVC-003 | 4 |
 | SVC-008 | 4 |
+| SVC-020 | 4 |
 | SVC-028 | 4 |
 | TSK-007 | 4 |
 | TSK-009 | 4 |
@@ -967,6 +968,7 @@ Makespan (size-weight estimates): 78.
 | LNX-019 | 3 |
 | LNX-039 | 3 |
 | LNX-041 | 3 |
+| LNX-046 | 3 |
 | LNX-058 | 3 |
 | LNX-095 | 3 |
 | LNX-104 | 3 |
@@ -1032,6 +1034,7 @@ Makespan (size-weight estimates): 78.
 | SEC-034 | 3 |
 | SEC-043 | 3 |
 | SEC-050 | 3 |
+| SEC-052 | 3 |
 | SEC-055 | 3 |
 | SEC-064 | 3 |
 | SEM-011 | 3 |
@@ -1048,7 +1051,7 @@ Makespan (size-weight estimates): 78.
 | STO-071 | 3 |
 | STO-074 | 3 |
 | SVC-002 | 3 |
-| SVC-020 | 3 |
+| SVC-022 | 3 |
 | SVC-026 | 3 |
 | SVC-029 | 3 |
 | SVC-035 | 3 |
@@ -1062,6 +1065,7 @@ Makespan (size-weight estimates): 78.
 | TXT-007 | 3 |
 | TXT-008 | 3 |
 | TXT-011 | 3 |
+| TXT-019 | 3 |
 | TXT-026 | 3 |
 | UIP-015 | 3 |
 | UIP-056 | 3 |
@@ -1211,12 +1215,14 @@ Makespan (size-weight estimates): 78.
 | HW-019 | 2 |
 | HW-023 | 2 |
 | HW-028 | 2 |
+| HW-030 | 2 |
 | HW-046 | 2 |
 | HW-049 | 2 |
 | HW-050 | 2 |
 | HW-052 | 2 |
 | HW-057 | 2 |
 | HW-059 | 2 |
+| HW-075 | 2 |
 | HW-078 | 2 |
 | HW-080 | 2 |
 | HW-081 | 2 |
@@ -1256,20 +1262,22 @@ Makespan (size-weight estimates): 78.
 | LNX-034 | 2 |
 | LNX-035 | 2 |
 | LNX-044 | 2 |
-| LNX-046 | 2 |
 | LNX-047 | 2 |
+| LNX-048 | 2 |
 | LNX-049 | 2 |
 | LNX-053 | 2 |
 | LNX-054 | 2 |
 | LNX-059 | 2 |
 | LNX-060 | 2 |
 | LNX-064 | 2 |
+| LNX-068 | 2 |
 | LNX-070 | 2 |
 | LNX-071 | 2 |
 | LNX-073 | 2 |
 | LNX-078 | 2 |
 | LNX-079 | 2 |
 | LNX-080 | 2 |
+| LNX-082 | 2 |
 | LNX-083 | 2 |
 | LNX-096 | 2 |
 | LNX-097 | 2 |
@@ -1293,6 +1301,7 @@ Makespan (size-weight estimates): 78.
 | MEM-027 | 2 |
 | MEM-035 | 2 |
 | MEM-043 | 2 |
+| MEM-044 | 2 |
 | MEM-050 | 2 |
 | NET-001 | 2 |
 | NET-008 | 2 |
@@ -1308,6 +1317,8 @@ Makespan (size-weight estimates): 78.
 | OBS-030 | 2 |
 | OBS-035 | 2 |
 | OBS-036 | 2 |
+| OBS-037 | 2 |
+| OBS-038 | 2 |
 | PKG-010 | 2 |
 | PKG-013 | 2 |
 | PKG-015 | 2 |
@@ -1384,7 +1395,6 @@ Makespan (size-weight estimates): 78.
 | SEC-019 | 2 |
 | SEC-031 | 2 |
 | SEC-032 | 2 |
-| SEC-052 | 2 |
 | SEC-062 | 2 |
 | SEC-069 | 2 |
 | SEC-072 | 2 |
@@ -1407,13 +1417,14 @@ Makespan (size-weight estimates): 78.
 | STO-073 | 2 |
 | STO-076 | 2 |
 | SVC-006 | 2 |
+| SVC-010 | 2 |
 | SVC-014 | 2 |
 | SVC-016 | 2 |
 | SVC-017 | 2 |
 | SVC-018 | 2 |
-| SVC-022 | 2 |
 | SVC-024 | 2 |
 | SVC-032 | 2 |
+| SVC-033 | 2 |
 | TSK-001 | 2 |
 | TSK-002 | 2 |
 | TSK-005 | 2 |
@@ -1431,7 +1442,6 @@ Makespan (size-weight estimates): 78.
 | TXT-004 | 2 |
 | TXT-015 | 2 |
 | TXT-017 | 2 |
-| TXT-019 | 2 |
 | TXT-021 | 2 |
 | TXT-030 | 2 |
 | TXT-039 | 2 |
@@ -1462,6 +1472,8 @@ Makespan (size-weight estimates): 78.
 | WIN-030 | 2 |
 | WIN-031 | 2 |
 | WIN-032 | 2 |
+| WIN-034 | 2 |
+| WIN-041 | 2 |
 | WIN-046 | 2 |
 | WIN-047 | 2 |
 | WIN-049 | 2 |
@@ -1495,6 +1507,7 @@ Makespan (size-weight estimates): 78.
 | APP-026 | 1 |
 | APP-027 | 1 |
 | APP-039 | 1 |
+| APP-041 | 1 |
 | APP-045 | 1 |
 | APP-050 | 1 |
 | APP-054 | 1 |
@@ -1549,6 +1562,7 @@ Makespan (size-weight estimates): 78.
 | BLD-051 | 1 |
 | BLD-056 | 1 |
 | BLD-057 | 1 |
+| BLD-060 | 1 |
 | BLD-068 | 1 |
 | BLD-070 | 1 |
 | BLD-073 | 1 |
@@ -1557,6 +1571,7 @@ Makespan (size-weight estimates): 78.
 | BLD-078 | 1 |
 | BOOT-002 | 1 |
 | BOOT-006 | 1 |
+| BOOT-019 | 1 |
 | BOOT-033 | 1 |
 | BOOT-037 | 1 |
 | BOOT-039 | 1 |
@@ -1597,6 +1612,7 @@ Makespan (size-weight estimates): 78.
 | ENV-006 | 1 |
 | ENV-015 | 1 |
 | ENV-022 | 1 |
+| ENV-024 | 1 |
 | ENV-025 | 1 |
 | ENV-028 | 1 |
 | ENV-029 | 1 |
@@ -1612,6 +1628,7 @@ Makespan (size-weight estimates): 78.
 | GFX-054 | 1 |
 | GFX-055 | 1 |
 | GFX-058 | 1 |
+| GFX-059 | 1 |
 | GFX-070 | 1 |
 | GFX-071 | 1 |
 | GFX-074 | 1 |
@@ -1619,6 +1636,7 @@ Makespan (size-weight estimates): 78.
 | GFX-076 | 1 |
 | GFX-079 | 1 |
 | GFX-080 | 1 |
+| GFX-081 | 1 |
 | GFX-083 | 1 |
 | GFX-084 | 1 |
 | GFX-086 | 1 |
@@ -1655,16 +1673,17 @@ Makespan (size-weight estimates): 78.
 | HET-024 | 1 |
 | HET-026 | 1 |
 | HET-027 | 1 |
-| HW-030 | 1 |
+| HW-027 | 1 |
 | HW-044 | 1 |
 | HW-045 | 1 |
 | HW-048 | 1 |
+| HW-053 | 1 |
 | HW-056 | 1 |
 | HW-058 | 1 |
 | HW-063 | 1 |
 | HW-064 | 1 |
 | HW-072 | 1 |
-| HW-075 | 1 |
+| HW-076 | 1 |
 | HW-077 | 1 |
 | HW-079 | 1 |
 | HW-082 | 1 |
@@ -1727,8 +1746,8 @@ Makespan (size-weight estimates): 78.
 | LNX-026 | 1 |
 | LNX-027 | 1 |
 | LNX-028 | 1 |
+| LNX-029 | 1 |
 | LNX-033 | 1 |
-| LNX-048 | 1 |
 | LNX-050 | 1 |
 | LNX-051 | 1 |
 | LNX-055 | 1 |
@@ -1736,15 +1755,22 @@ Makespan (size-weight estimates): 78.
 | LNX-063 | 1 |
 | LNX-065 | 1 |
 | LNX-067 | 1 |
-| LNX-068 | 1 |
+| LNX-069 | 1 |
+| LNX-074 | 1 |
+| LNX-075 | 1 |
 | LNX-076 | 1 |
 | LNX-077 | 1 |
 | LNX-081 | 1 |
-| LNX-082 | 1 |
+| LNX-085 | 1 |
 | LNX-086 | 1 |
+| LNX-088 | 1 |
+| LNX-089 | 1 |
 | LNX-091 | 1 |
 | LNX-092 | 1 |
 | LNX-093 | 1 |
+| LNX-094 | 1 |
+| LNX-098 | 1 |
+| LNX-101 | 1 |
 | LNX-102 | 1 |
 | LNX-103 | 1 |
 | LNX-105 | 1 |
@@ -1768,15 +1794,16 @@ Makespan (size-weight estimates): 78.
 | MEM-031 | 1 |
 | MEM-040 | 1 |
 | MEM-042 | 1 |
-| MEM-044 | 1 |
 | MEM-045 | 1 |
 | MEM-049 | 1 |
 | MEM-051 | 1 |
 | MEM-053 | 1 |
+| NET-010 | 1 |
 | NET-013 | 1 |
 | NET-017 | 1 |
 | NET-018 | 1 |
 | NET-020 | 1 |
+| NET-023 | 1 |
 | NET-029 | 1 |
 | NET-033 | 1 |
 | NET-037 | 1 |
@@ -1784,12 +1811,11 @@ Makespan (size-weight estimates): 78.
 | OBS-018 | 1 |
 | OBS-020 | 1 |
 | OBS-033 | 1 |
-| OBS-037 | 1 |
-| OBS-038 | 1 |
 | OBS-040 | 1 |
 | OBS-041 | 1 |
 | OBS-042 | 1 |
 | OBS-045 | 1 |
+| OBS-046 | 1 |
 | OBS-047 | 1 |
 | OBS-048 | 1 |
 | OBS-050 | 1 |
@@ -1897,9 +1923,11 @@ Makespan (size-weight estimates): 78.
 | SCH-035 | 1 |
 | SCH-036 | 1 |
 | SCH-039 | 1 |
+| SCH-040 | 1 |
 | SCH-044 | 1 |
 | SCH-046 | 1 |
 | SCH-047 | 1 |
+| SCH-049 | 1 |
 | SCH-055 | 1 |
 | SCH-056 | 1 |
 | SDK-010 | 1 |
@@ -1923,6 +1951,7 @@ Makespan (size-weight estimates): 78.
 | SDK-077 | 1 |
 | SDK-078 | 1 |
 | SDK-081 | 1 |
+| SDK-083 | 1 |
 | SDK-085 | 1 |
 | SDK-087 | 1 |
 | SDK-089 | 1 |
@@ -1959,6 +1988,7 @@ Makespan (size-weight estimates): 78.
 | STO-007 | 1 |
 | STO-015 | 1 |
 | STO-022 | 1 |
+| STO-024 | 1 |
 | STO-026 | 1 |
 | STO-032 | 1 |
 | STO-037 | 1 |
@@ -1969,21 +1999,22 @@ Makespan (size-weight estimates): 78.
 | STO-065 | 1 |
 | STO-079 | 1 |
 | STO-083 | 1 |
-| SVC-010 | 1 |
 | SVC-012 | 1 |
 | SVC-019 | 1 |
 | SVC-021 | 1 |
+| SVC-023 | 1 |
 | SVC-030 | 1 |
 | SVC-031 | 1 |
-| SVC-033 | 1 |
 | SVC-034 | 1 |
 | SVC-036 | 1 |
 | SVC-039 | 1 |
 | TSK-028 | 1 |
 | TSK-035 | 1 |
+| TSK-039 | 1 |
 | TSK-040 | 1 |
 | TSK-045 | 1 |
 | TSK-046 | 1 |
+| TSK-047 | 1 |
 | TSK-048 | 1 |
 | TSK-050 | 1 |
 | TSK-051 | 1 |
@@ -1995,6 +2026,7 @@ Makespan (size-weight estimates): 78.
 | TXT-028 | 1 |
 | TXT-033 | 1 |
 | TXT-034 | 1 |
+| TXT-035 | 1 |
 | TXT-040 | 1 |
 | TXT-042 | 1 |
 | TXT-044 | 1 |
@@ -2011,6 +2043,7 @@ Makespan (size-weight estimates): 78.
 | UIP-054 | 1 |
 | UIP-055 | 1 |
 | VIRT-010 | 1 |
+| VIRT-012 | 1 |
 | VIRT-014 | 1 |
 | VIRT-015 | 1 |
 | VIRT-016 | 1 |
@@ -2021,16 +2054,18 @@ Makespan (size-weight estimates): 78.
 | WIN-014 | 1 |
 | WIN-019 | 1 |
 | WIN-022 | 1 |
+| WIN-023 | 1 |
 | WIN-028 | 1 |
 | WIN-029 | 1 |
 | WIN-033 | 1 |
-| WIN-034 | 1 |
 | WIN-039 | 1 |
-| WIN-041 | 1 |
 | WIN-043 | 1 |
 | WIN-044 | 1 |
+| WIN-045 | 1 |
 | WIN-055 | 1 |
+| WIN-058 | 1 |
 | WIN-059 | 1 |
+| WIN-061 | 1 |
 | WIN-062 | 1 |
 | WIN-063 | 1 |
 | WIN-065 | 1 |

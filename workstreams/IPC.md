@@ -755,6 +755,8 @@ In-process implementation (IPC-030). VM transport (IPC-058). Remote-machine prot
 
 Service restart and client rebind (V0.5 exit) need deterministic close ordering: in-flight messages drained or failed with a typed result, peer-closed observable as an Operation, no lost handles on close (§32).
 
+<!-- covers: INV-0259 -->
+
 #### Out of scope
 Generated rebind (IPC-028). Handle transfer (IPC-014). Supervisor death detection (SVC).
 
@@ -782,6 +784,8 @@ Generated rebind (IPC-028). Handle transfer (IPC-014). Supervisor death detectio
 - Threats: T-016
 
 SCH scope includes kernel-object limits; queued messages must not evade the ResourceDomain memory budget proven in V0, and bounded depth from IPC-009 needs an accounting home before real applications ship in V0.5 (§23).
+
+<!-- covers: EXTRA-002 -->
 
 #### Out of scope
 Budget policy and exhaustion (SCH-016, SCH-008). Backpressure policy (IPC-009).
@@ -1065,7 +1069,7 @@ MemoryObject backing (MEM). Zero-copy API lint (MEM-032). Inline small messages 
 - Baseline: §14, §51
 - Threats: T-025
 
-Typed IPC boundaries are the trust boundaries between Components; validation cost measured in IPC-020 is spent here with hostile-message tests before untrusted Wayland-bridge and package clients appear in V0.5.
+Typed IPC boundaries are the trust boundaries between Components; validation cost measured in IPC-020 is spent here with hostile-message tests before untrusted Wayland-bridge and package clients appear in V0.5. Required by V4-G04 (External security audit High and Critical closed): the audit covers IPC, and receiver-side validation is what keeps hostile-message findings out of the High and Critical classes.
 
 #### Out of scope
 Threat model document (SEC-002). Generated fuzz mutators (IPC-029).
@@ -1176,7 +1180,7 @@ UI protocol IDL (UIP-013). Toolkit (UIP).
 - Risks: R-007
 - Invariants: I-040
 
-L1 ABI surfaces are prototyped through V0, freeze candidates at V1, frozen at V4. IPC names its candidate entry points and what stays behind user-space Interfaces, feeding ABI's freeze process (§65, §66). Nothing L1 is frozen here (I-040).
+L1 ABI surfaces are prototyped through V0, freeze candidates at V1, frozen at V4. IPC names its candidate entry points and what stays behind user-space Interfaces, feeding ABI's freeze process (§65, §66). Nothing L1 is frozen here (I-040). Required by V4-G01 (Layer 1 ABI frozen with a conformance suite): the V4 freeze of S-012 starts from the candidate list this Decision records.
 
 #### Out of scope
 V4 freeze (IPC-064). ABI candidate review process (ABI-034).
@@ -1400,7 +1404,7 @@ Safe C wrappers and packaging (SDK-033, SDK-034). Other languages (IPC-057).
 - Depends on: IPC-012
 - Baseline: §14, §56.5
 
-IDL-to-docs emission must exist at V1 with SDK v1 (DOC owns the generator); the compiler must preserve documentation and deprecation metadata for it.
+IDL-to-docs emission must exist at V1 with SDK v1 (DOC owns the generator); the compiler must preserve documentation and deprecation metadata for it. Required by V1-G12 (Semantic interfaces and a Wasm channel prototype): IDL-to-docs generation reads doc comments and deprecation metadata from this IR.
 
 #### Out of scope
 Docs generator and site (DOC-010). Semantic verb annotations (IPC-051).
@@ -1455,6 +1459,8 @@ Guideline prose (IPC-032). Evolution diff (IPC-052).
 - Baseline: §42, §57
 
 V1 exit requires Semantic interface v0 for Terminal and Editor; SEM owns the catalog but needs IDL attributes for semantic verbs, Object types and automation exposure, kept in dependency order catalog before AI broker (§42, §57).
+
+<!-- covers: INV-0788 -->
 
 #### Out of scope
 Catalog service (SEM-007, SEM-006). AI broker (SEM-010).
@@ -1567,7 +1573,7 @@ Harness (IPC-008). Merge-gate policy (BEN-033). Scheduler multiplexer (TSK-046).
 - Baseline: §14, §66
 - Decision: D-0147
 
-V3 opens the public repository to third-party packages authoring Interfaces; a language version pragma and compatibility policy for the compiler must exist before that.
+V3 opens the public repository to third-party packages authoring Interfaces; a language version pragma and compatibility policy for the compiler must exist before that. Required by V3-G10 (Kernel and IPC fuzzing has no stale open crasher): the IDL front-end fuzz harness in that gate's closure fails closed on the language versions this Decision defines.
 
 #### Out of scope
 Compiler fuzz of third-party files (IPC-060). Interface evolution rules (IPC-042).
@@ -1704,6 +1710,8 @@ Docs generator and site (DOC-023). ABI normative semantics (ABI-046).
 - Baseline: §14, §51
 
 Third-party packages in the V3 public repository submit IDL; the compiler becomes an attack surface in the build pipeline and joins BLD's continuous fuzzing.
+
+<!-- covers: GAP-0130 -->
 
 #### Out of scope
 Channel syscall fuzz (IPC-044). Generated Interface mutators (IPC-029).

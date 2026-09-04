@@ -126,6 +126,8 @@ Compositor remote Surfaces (GFX-092). Guest-tool binaries (VIRT-006, VIRT-009). 
 
 Windows guests the personalities cannot run need UEFI firmware and TPM 2.0 inside the VM, which is guest firmware in the manager, not the host boot path. BLD OVMF/TPM is the CI matrix for hosting JakeOS. The tree and release artifacts still contain no Windows image or license key (I-070).
 
+Required by the VIRT scope: "OVMF and TPM emulation for guests".
+
 #### Out of scope
 Host UEFI and measured boot (BOOT). Host TPM service (SEC-053). CI OVMF matrix for JakeOS-as-host (BLD-012). Windows guest tools (VIRT-009).
 
@@ -340,6 +342,8 @@ Register ownership and NTFS/SMB/migration legs of B-049 (BEN-050). Personality f
 
 V3 experimental gamers need a 3D path before VFIO passthrough. This task implements the virtio-gpu option VIRT-007 names, presenting guest output through GFX-092. Host DRM stays the driver stack; this is not a native GPU rewrite (I-045, I-009).
 
+Required by the VIRT scope: "guest GPU acceleration".
+
 #### Out of scope
 SR-IOV and full passthrough (VIRT-017). Compositor remote-Surface protocol (GFX-092). B-049 publication (VIRT-010).
 
@@ -493,6 +497,8 @@ Compatibility guide chassis (DOC-028). Anti-cheat title list (WIN-018). IDL-to-d
 
 V3 public-alpha strangers cannot be asked to drive VMs from a CLI. This UI creates, starts and stops VMs, picks disks and firmware, and reviews or denies host-access Capability requests through the trusted consent prompt. APP owns shell, store and consent chrome; this UI is the VIRT product surface. The V2 manager may be CLI-only.
 
+<!-- covers: GAP-0443 -->
+
 #### Out of scope
 Consent prompt chrome (APP-025). Grant table (VIRT-005). Store client (APP-045). Shell panel (APP-043).
 
@@ -521,6 +527,8 @@ Consent prompt chrome (APP-025). Grant table (VIRT-005). Store client (APP-045).
 - Invariants: I-009, I-038, I-045
 
 Remaining GAP-0446 path after virtio-gpu: SR-IOV and full passthrough on the V4 multi-GPU and NVIDIA Tier 1 set, which is the 1.0 answer for GPU-bound software the Windows personality cannot run. Host DRM stays the driver stack (I-045). IOMMU protection is mandatory (I-038). Size L because the work crosses VIRT, GFX and HW.
+
+<!-- covers: GAP-0446 -->
 
 #### Out of scope
 IOMMU policy (HW-017). NVIDIA host bring-up (HW-070). virtio-gpu path (VIRT-011). Host-access grant table (VIRT-005).
@@ -605,7 +613,7 @@ Store substrate and snapshot Operations (STO-025, STO-009). SystemGeneration rol
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009
+- Depends on: VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009, VIRT-012
 - Baseline: §49, §56.2, §57
 - Invariants: I-070, I-071
 

@@ -66,5 +66,5 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | ENV-035 | Restore workspaces of open projects and environments | todo | blocked | M | APP-039, APP-056, ENV-028, PKG-069 |
-| ENV-036 | Verify cached environment enter on every Tier 1 machine | todo | blocked | S | BEN-025, ENV-033, ENV-014, ENV-018 |
+| ENV-036 | Verify cached environment enter on every Tier 1 machine | todo | blocked | S | BEN-025, ENV-033, ENV-014, ENV-018, ENV-024 |
 

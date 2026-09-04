@@ -88,7 +88,7 @@
 | BOOT-025 | Make bootloader and ESP updates atomic with tested rollback of the bootloader itself | todo | BOOT-007, BOOT-008, BOOT-013 | V1 |
 | BOOT-026 | Build the text pre-boot unlock UI with passphrase, TPM+PIN, recovery key and layouts | todo | BOOT-012, SEC-005, SEC-017, SEC-018 | V1 |
 | BOOT-027 | Verify the release-key signature of every SystemGeneration manifest before offering it | todo | BOOT-007, PKG-029, REL-002 | V1 |
-| BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | BOOT-018, LAB-018, PKG-073 | V2 |
+| BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | BOOT-018, LAB-018, PKG-073, SVC-033 | V2 |
 | BOOT-029 | Decide ESP policy: reuse the existing OEM ESP or create a dedicated ESP for Generation entries | todo | BOOT-008, BOOT-013 | V2 |
 | BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | BOOT-020, PKG-019, SEC-002, Q-024 | V2 |
 | BOOT-031 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | todo | BOOT-008, BOOT-010, BOOT-011, BOOT-022 | V2 |
@@ -103,7 +103,7 @@
 | BOOT-040 | Decide the anti-rollback policy for SystemGenerations older than a security watermark | todo | BOOT-018, BOOT-027, SEC-002 | V3 |
 | BOOT-041 | Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder | todo | BOOT-039, BOOT-029, BOOT-031, INS-026 | V3 |
 | BOOT-042 | Document the Secure Boot key or shim path, developer mode and recovery for public alpha users | todo | BOOT-031, BOOT-022, BOOT-033, BOOT-036 | V3 |
-| BOOT-043 | Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine | todo | BOOT-034, BOOT-044, LAB-022 | V3 |
+| BOOT-043 | Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine | todo | BOOT-034, BOOT-044, LAB-022, BOOT-019 | V3 |
 | BOOT-044 | Integrate shim and MOK enrollment into the signed boot chain per the Secure Boot strategy | todo | BOOT-031, BOOT-022, BOOT-036, KRN-038, REL-040 | V3 |
 | BOOT-045 | Record SystemGeneration identity in the TPM event log | todo | BOOT-034, BOOT-031 | V3 |
 | BOOT-046 | Close all High and Critical external-audit findings against the bootloader chain | todo | BOOT-034, BOOT-044, SEC-070 | V4 |
@@ -528,7 +528,7 @@
 | OBS-038 | Attribute Linux-Personality processes and syscalls in os trace and os inspect | todo | OBS-037, OBS-006, LNX-042, LNX-030 | V1 |
 | OBS-039 | Provide sampling profiles attributed to Task, Component and TaskGroup | todo | OBS-011, OBS-008, TSK-038 | V1 |
 | OBS-040 | Expose wakeup-to-run latency histograms per Task and intent class | todo | OBS-009, SCH-042, SCH-026 | V1 |
-| OBS-041 | Export os trace sessions in the decided format for offline viewing | todo | OBS-015, OBS-009, OBS-004 | V1 |
+| OBS-041 | Export os trace sessions in the decided format for offline viewing | todo | OBS-015, OBS-009, OBS-004, OBS-037 | V1 |
 | OBS-042 | Log and inspect AI assistant action graphs and their Capability grants | todo | SEM-029, SEM-010, OBS-044, OBS-006 | V2 |
 | OBS-043 | Expose audit log queries via os inspect for Settings and the Permissions UI | todo | OBS-044, OBS-006 | V2 |
 | OBS-044 | Build the tamper-evident size-bounded security audit log | todo | OBS-002, SEC-020, SEC-015, BOOT-034 | V2 |
@@ -545,7 +545,7 @@
 | OBS-055 | Publish the 30-day soak leak and hang report for the release candidate | todo | OBS-036, OBS-047, LAB-025 | 1.0 |
 | OBS-056 | Publish the 1.x stability statement for inspection and trace interfaces | todo | OBS-052, IPC-070 | 1.0 |
 | SVC-001 | Benchmark supervisor death-detection to ready latency for a restarted service | todo | SVC-015, SVC-008, Q-001, BEN-005, BEN-007, GFX-002, SVC-002, SDK-012 | V0.5 |
-| SVC-002 | Run the compositor and one other service under supervision and pass the restart Gate | todo | SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002 | V0.5 |
+| SVC-002 | Run the compositor and one other service under supervision and pass the restart Gate | todo | SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002, SVC-010 | V0.5 |
 | SVC-003 | Decide native init versus retained initramfs/systemd for early boot | todo | BOOT-004 | V0.5 |
 | SVC-004 | Decide how a service Component reports readiness and liveness to the supervisor | todo | SVC-014 | V0.5 |
 | SVC-005 | Decide restart budgets, strategies, backoff and escalation for supervised services | todo | SVC-014 | V0.5 |
@@ -576,8 +576,8 @@
 | SVC-031 | Build the structured log collection service for system and session services | todo | SVC-015, SVC-027, OBS-026 | V1 |
 | SVC-032 | Build the time service: NTP/NTS sync, RTC synchronisation, clock-step events | todo | SVC-018, SVC-016, SVC-015, BOOT-021 | V1 |
 | SVC-033 | Wire kernel watchdog and hung-Task signals into supervisor escalation | todo | SVC-007, SVC-015, KRN-041, BOOT-018 | V1 |
-| SVC-034 | Run the §32 restartable-service matrix on every target machine | todo | SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020 | V2 |
-| SVC-035 | Escalate exhausted shell or compositor restart budgets to the safe-mode session | todo | SVC-005, SVC-027 | V2 |
+| SVC-034 | Run the §32 restartable-service matrix on every target machine | todo | SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020, SVC-022 | V2 |
+| SVC-035 | Escalate exhausted shell or compositor restart budgets to the safe-mode session | todo | SVC-005, SVC-027, SVC-020 | V2 |
 | SVC-036 | Build the safe-mode session with settings, log export and `os restore` | todo | SVC-015, SVC-031, SVC-013, SVC-029, PKG-060 | V2 |
 | SVC-037 | Add timezone auto-detection via the location Capability and the time settings Interface | todo | SVC-032, SVC-025, SEC-041 | V2 |
 | SVC-038 | Benchmark the init-to-session service startup timeline on Tier 1 machines | todo | SVC-007, SVC-027, SVC-008, Q-001 | V3 |
@@ -1063,7 +1063,7 @@
 | LNX-023 | Decide source-built versus redistributed Linux userland | todo | LNX-011, LNX-008, GOV-031 | V1 |
 | LNX-024 | Decide glibc /usr/lib interoperation with Packages | todo | LNX-023, PKG-047, Q-022 | V1 |
 | LNX-025 | Apply the default Capability bundle to Linux apps | todo | LNX-013, LNX-036, LNX-042, CAP-025 | V1 |
-| LNX-026 | Publish Linux compatibility overhead on L2 workloads | todo | LNX-056, BEN-027, Q-001, LNX-030 | V1 |
+| LNX-026 | Publish Linux compatibility overhead on L2 workloads | todo | LNX-056, BEN-027, Q-001, LNX-030, OBS-038 | V1 |
 | LNX-027 | Capture Linux core dumps and Crashpad minidumps | todo | LNX-049, OBS-029, OBS-026, LNX-042 | V1 |
 | LNX-028 | Define freedesktop, Mesa and systemd engagement policy | todo | LNX-011, LNX-023 | V1 |
 | LNX-029 | Satisfy systemd assumptions for Linux desktop apps | todo | LNX-059, SVC-026, LNX-043, LNX-046, LNX-057 | V1 |
@@ -1093,7 +1093,7 @@
 | LNX-053 | Provide X11 via Xwayland inside the Personality | todo | LNX-004, LNX-006, LNX-020 | V1 |
 | LNX-054 | Publish a five-minute Linux application launch guide | todo | LNX-011, LNX-038, LNX-017 | V1 |
 | LNX-055 | Retain inotify for Linux IDE file watching | todo | LNX-047, STO-035, LNX-005 | V1 |
-| LNX-056 | Define and run the L2 Corpus | todo | LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017 | V1 |
+| LNX-056 | Define and run the L2 Corpus | todo | LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019 | V1 |
 | LNX-057 | Run unmodified glibc and musl in the Personality | todo | LNX-030, LNX-023, LNX-001 | V1 |
 | LNX-058 | Ship Flatpak runtimes inside the Linux Personality | todo | LNX-017, LNX-061, LNX-036, LNX-045, PKG-047 | V1 |
 | LNX-059 | Survey glibc and systemd needs of top desktop apps | todo | LNX-008, LNX-057 | V1 |
@@ -1121,7 +1121,7 @@
 | LNX-081 | Bridge ScreenCast portal to native screen-share | todo | LNX-036, APP-025, APP-031, SEC-044 | V2 |
 | LNX-082 | Provide signals inside the Linux Personality | todo | LNX-083, LNX-042, TSK-043 | V2 |
 | LNX-083 | Provide the POSIX process model in the Personality | todo | LNX-042, CMP-036, LNX-090 | V2 |
-| LNX-084 | Define and run the L3 Corpus | todo | LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081 | V2 |
+| LNX-084 | Define and run the L3 Corpus | todo | LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035 | V2 |
 | LNX-085 | Shim org.freedesktop.secrets onto native secrets | todo | SEC-027, SEC-026, LNX-043, LNX-025 | V2 |
 | LNX-086 | Ship 32-bit multilib for the Steam runtime | todo | LNX-015, LNX-035, LNX-066, LNX-071 | V2 |
 | LNX-087 | Evaluate Flatpak and Snap as Personality Package sources | todo | LNX-058, LNX-036, LNX-017 | V2 |
@@ -1137,7 +1137,7 @@
 | LNX-097 | Keep L0 through L3 Gold Corpus entries green | todo | LNX-073, LNX-084, LNX-095 | V3 |
 | LNX-098 | Implement pid namespaces over Components | todo | LNX-045, LNX-095, LNX-042, LNX-039 | V3 |
 | LNX-099 | Publish the Linux compatibility guide | todo | LNX-100, LNX-054, DOC-021, LNX-028 | V3 |
-| LNX-100 | Define and run the L4 Corpus | todo | LNX-097, LNX-096, LNX-093, BLD-017 | V3 |
+| LNX-100 | Define and run the L4 Corpus | todo | LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101 | V3 |
 | LNX-101 | Implement signal delivery over native primitives | todo | LNX-082, LNX-090, TSK-013, LNX-095 | V3 |
 | LNX-102 | Publish Linux compatibility overhead on L5 workloads | todo | LNX-092, LNX-107, Q-001 | V4 |
 | LNX-103 | Close High findings from the Personality audit | todo | SEC-070, LNX-005, LNX-067 | V4 |
@@ -1198,7 +1198,7 @@
 | WIN-048 | Verify the V2 double-click .exe Demo on a target machine | todo | WIN-027, WIN-020, WIN-024, WIN-051 | V2 |
 | WIN-049 | Integrate VKD3D-Proton for Direct3D 12 translation | todo | WIN-026, GFX-057 | V2 |
 | WIN-050 | Schedule Windows Personality frames onto compositor VRR | todo | WIN-031, GFX-088 | V2 |
-| WIN-051 | Run the W1 Corpus to the V2 Gold and Silver thresholds | todo | WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029 | V2 |
+| WIN-051 | Run the W1 Corpus to the V2 Gold and Silver thresholds | todo | WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029, WIN-023, WIN-034, WIN-041, WIN-045, BLD-060 | V2 |
 | WIN-052 | Map WASAPI and XAudio2 onto native low-latency audio Objects | todo | WIN-054, AUD-022 | V2 |
 | WIN-053 | Expose the Win32 API Surface required by the W1 Corpus | todo | WIN-054, WIN-011, WIN-038 | V2 |
 | WIN-054 | Integrate Wine and Proton as the Windows Personality core | todo | WIN-036, WIN-015, WIN-004, GOV-047 | V2 |
@@ -1218,7 +1218,7 @@
 | WIN-068 | Publish per-title W2 reports with the public rating scale | todo | WIN-071, REL-015 | V3 |
 | WIN-069 | Verify V3 W2 thresholds and the Windows game-on-laptop Demo | todo | WIN-071, WIN-072 | V3 |
 | WIN-070 | Define the W2 Corpus of 150 titles and scenario scripts | todo | WIN-051 | V3 |
-| WIN-071 | Run the W2 Corpus to the V3 Gold and Silver thresholds | todo | WIN-070, WIN-072, WIN-006, WIN-030 | V3 |
+| WIN-071 | Run the W2 Corpus to the V3 Gold and Silver thresholds | todo | WIN-070, WIN-072, WIN-006, WIN-030, WIN-061 | V3 |
 | WIN-072 | Extend input, audio, HDR and VRR passthrough across the W2 Corpus | todo | WIN-032, WIN-050, WIN-056, WIN-052, WIN-070 | V3 |
 | WIN-073 | Close High and Critical Windows Personality findings from the audit | todo | WIN-065, WIN-040, WIN-039, SEC-067 | V4 |
 | WIN-074 | Export Corpus ratings in machine-readable form for third parties | todo | WIN-080, REL-015 | V4 |
@@ -1230,7 +1230,7 @@
 | WIN-080 | Run the W3 Corpus to the V4 Gold and Silver thresholds | todo | WIN-079, WIN-071, WIN-006 | V4 |
 | WIN-081 | Write the Windows Personality chapters of the compatibility guide | todo | WIN-085, WIN-083, DOC-028 | 1.0 |
 | WIN-082 | Hold launcher, clipboard, audio, chooser and input integration | todo | WIN-085, WIN-024, WIN-021, WIN-020, WIN-052, WIN-047, ACC-033 | 1.0 |
-| WIN-083 | Publish the unsupported-title statement for anti-cheat and DRM | todo | WIN-018, WIN-059, WIN-002, WIN-080 | 1.0 |
+| WIN-083 | Publish the unsupported-title statement for anti-cheat and DRM | todo | WIN-018, WIN-059, WIN-002, WIN-080, WIN-058 | 1.0 |
 | WIN-084 | Verify 1.0 W3 thresholds and the working-day Windows game Demo | todo | WIN-085, WIN-082, WIN-081 | 1.0 |
 | WIN-085 | Hold W3 Gold and Silver thresholds with zero V4 Gold regressions | todo | WIN-080, WIN-078, BEN-044 | 1.0 |
 | VIRT-001 | Publish JakeOS guest images for common hypervisors | todo | BLD-024, INS-004, INS-001, KRN-036, REL-005, REL-007 | V1 |
@@ -1252,7 +1252,7 @@
 | VIRT-017 | Implement SR-IOV and GPU passthrough for VM guests | todo | HW-017, HW-026, HW-070, VIRT-010, VIRT-011, VIRT-005, VIRT-007 | V4 |
 | VIRT-018 | Boot an existing Windows dual-boot partition as a VM guest | todo | INS-026, STO-060, VIRT-004, VIRT-014, VIRT-008, VIRT-009 | V4 |
 | VIRT-019 | Snapshot and clone VM disks via the Content-addressed store | todo | STO-009, STO-011, STO-025, VIRT-008 | V4 |
-| VIRT-020 | Verify the VM fallback on Tier 1 without shipping Windows images | todo | VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009 | 1.0 |
+| VIRT-020 | Verify the VM fallback on Tier 1 without shipping Windows images | todo | VIRT-017, VIRT-011, VIRT-005, VIRT-006, VIRT-013, VIRT-007, VIRT-015, VIRT-008, VIRT-009, VIRT-012 | 1.0 |
 | ENV-001 | Forbid OCI, Docker and VM dependencies in native software | todo | BLD-011 | V0.5 |
 | ENV-002 | Create a CapabilityNamespace for each development environment | todo | CAP-023, ENV-007, ENV-010 | V1 |
 | ENV-003 | Create a NetworkNamespace for each development environment | todo | ENV-002, ENV-006, ENV-010, NET-012, NET-016, SCH-033 | V1 |
@@ -1287,7 +1287,7 @@
 | ENV-033 | Build the environment.yaml conformance suite | todo | ENV-010, ENV-013, ENV-001, ENV-018 | V4 |
 | ENV-034 | Lock the environment.yaml schema for the 1.x line | todo | ENV-008, ENV-010, ENV-033, IPC-062, ENV-021 | V4 |
 | ENV-035 | Restore workspaces of open projects and environments | todo | APP-039, APP-056, ENV-028, PKG-069 | 1.0 |
-| ENV-036 | Verify cached environment enter on every Tier 1 machine | todo | BEN-025, ENV-033, ENV-014, ENV-018 | 1.0 |
+| ENV-036 | Verify cached environment enter on every Tier 1 machine | todo | BEN-025, ENV-033, ENV-014, ENV-018, ENV-024 | 1.0 |
 | HET-001 | Decide ComputeDevice enumeration ABI and open-ended class taxonomy | todo | HET-002, ABI-011 | V0 |
 | HET-003 | Decide GPU ComputeDevice backend among Vulkan, DRM, or deferral | todo | HET-010, HET-002, HET-001 | V1 |
 | HET-004 | Decide portable workload representation for heterogeneous dispatch | todo | HET-002, HET-001, HET-010 | V1 |
@@ -1299,7 +1299,7 @@
 | HET-010 | Prototype Vulkan compute versus DRM job submission on AMD | todo | HET-002, HET-001 | V1 |
 | HET-011 | Decide how ComputeDevice relates to ComputeQueue | todo | HET-001, HET-002, Q-033 | V1 |
 | HET-012 | Define GPUDispatch cancellation after work is submitted to the GPU | todo | HET-019, TSK-003, TSK-017, TSK-010 | V2 |
-| HET-013 | Route Throughput to GPU and LowLatency to CPU in the V2 Demo | todo | HET-016, HET-017, HET-014, HET-015 | V2 |
+| HET-013 | Route Throughput to GPU and LowLatency to CPU in the V2 Demo | todo | HET-016, HET-017, HET-014, HET-015, SCH-049 | V2 |
 | HET-014 | Encode ComputeDevice dispatch preferences for workload placement | todo | HET-001, HET-009, MEM-034, MEM-041, IPC-042 | V2 |
 | HET-015 | Expose the GPU as a ComputeDevice on the chosen backend | todo | HET-003, HET-010, HET-009, HET-008, HET-007, MEM-046, GFX-046 | V2 |
 | HET-016 | Implement compute.dispatch as an asynchronous Operation | todo | HET-004, HET-014, HET-017, HET-019, HET-005, TSK-018 | V2 |
@@ -1393,7 +1393,7 @@
 | SEC-052 | Seal disk keys to TPM PCRs with a recovery key | todo | SEC-053, SEC-025, SEC-017, BOOT-034 | V2 |
 | SEC-053 | Expose TPM only through a Capability-gated service | todo | SEC-050, CAP-005 | V2 |
 | SEC-054 | Enrol enterprise CAs into the trust store | todo | SEC-016, SEC-015 | V3 |
-| SEC-055 | Verify installer full-disk encryption and recovery key | todo | SEC-017, SEC-025, INS-027, INS-007 | V3 |
+| SEC-055 | Verify installer full-disk encryption and recovery key | todo | SEC-017, SEC-025, INS-027, INS-007, SEC-052, SVC-023 | V3 |
 | SEC-056 | Support FIDO2 keys for disk unlock and login | todo | SEC-014, SEC-018, SEC-020 | V3 |
 | SEC-057 | Add fingerprint login through pluggable authenticators | todo | SEC-014, SEC-020, HW-063 | V3 |
 | SEC-058 | Verify measured-boot Generation attestation | todo | BOOT-034, SEC-053, BOOT-043 | V3 |
@@ -1558,7 +1558,7 @@
 | HW-029 | Build the user-space driver framework over Capability<Device> | todo | HW-006, HW-017, HW-008, HW-026, HW-016 | V1 |
 | HW-030 | Restart crashed user-space drivers and re-issue Device Capabilities | todo | HW-029, HW-031 | V1 |
 | HW-031 | Ship selected USB HID classes as user-space drivers | todo | HW-029, HW-014, HW-011, HW-016 | V1 |
-| HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | HW-015, HW-024, HW-011, HW-012 | V1 |
+| HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | HW-015, HW-024, HW-011, HW-012, HW-027, HW-030 | V1 |
 | HW-033 | Publish Bluetooth pairing time and audio latency on target machines | todo | HW-037, HW-036, BEN-007, LAB-011, BEN-005, AUD-017, HW-035, LAB-018 | V2 |
 | HW-034 | Publish user-space versus in-kernel driver latency and throughput | todo | HW-035, HW-031, BEN-007 | V2 |
 | HW-035 | Run the Bluetooth host as a restartable user-space Component | todo | HW-040, HW-028, HW-029 | V2 |
@@ -1611,16 +1611,16 @@
 | HW-083 | Automate Tier 2 to Tier 1 promotion from probe data and suite results | todo | HW-043, HW-065, HW-086 | V4 |
 | HW-084 | Ship eSCL/WSD and SANE scanning with Capability<Scanner> via a system dialog | todo | HW-041, HW-071, NET-024 | V4 |
 | HW-085 | Implement signed third-party driver and firmware Packages with revocation | todo | HW-082, HW-029, HW-047 | V4 |
-| HW-086 | Run the full hardware suite on every Tier 1 machine each release candidate | todo | HW-081, HW-080, HW-070, HW-084, HW-077 | V4 |
+| HW-086 | Run the full hardware suite on every Tier 1 machine each release candidate | todo | HW-081, HW-080, HW-070, HW-084, HW-077, HW-075, HW-076 | V4 |
 | HW-087 | Sign off hardware soak: no P0 driver or firmware regression on Tier 1 | todo | HW-089, LAB-025 | 1.0 |
-| HW-088 | Publish the 1.0 Hardware Compatibility List and per-machine lab results | todo | HW-089, HW-083 | 1.0 |
+| HW-088 | Publish the 1.0 Hardware Compatibility List and per-machine lab results | todo | HW-089, HW-083, HW-053 | 1.0 |
 | HW-089 | Verify every listed Tier 1 feature on the 1.0 release candidate | todo | HW-086 | 1.0 |
 | PWR-001 | Decide the Layer 2 power service model over retained ACPI | todo | PWR-005, KRN-001 | V0.5 |
 | PWR-002 | Decide the suspend state for V1 reference machines | todo | PWR-004, PWR-001 | V0.5 |
 | PWR-003 | Prototype the energy measurement method against Linux on the Intel laptop | todo | BEN-018, LAB-006, LAB-007 | V0.5 |
 | PWR-004 | Probe suspend, battery, thermal and frequency paths on reference machines | todo | LAB-007, LAB-003, HW-004 | V0.5 |
 | PWR-005 | Prototype Layer 2 Power, Battery and inhibit Interface shapes | todo | IPC-012, IPC-035, CAP-003 | V0.5 |
-| PWR-006 | Publish idle power draw and battery runtime on the Intel laptop | todo | PWR-003, PWR-009, PWR-010, LAB-013, BEN-018 | V1 |
+| PWR-006 | Publish idle power draw and battery runtime on the Intel laptop | todo | PWR-003, PWR-009, PWR-010, LAB-013, BEN-018, TSK-047 | V1 |
 | PWR-007 | Decide hibernation policy for 1.0 | todo | PWR-002, SEC-031, STO-014 | V1 |
 | PWR-008 | Declare Layer 2 power Interface freeze candidates | todo | PWR-005, PWR-001, PWR-013, PWR-010, PWR-011, PWR-012, ABI-034, IPC-035 | V1 |
 | PWR-009 | Enable platform idle and frequency power management on reference machines | todo | PWR-004, PWR-002, SCH-038, HW-015 | V1 |
@@ -1628,7 +1628,7 @@
 | PWR-011 | Implement display power management tied to idle, lock and lid | todo | PWR-013, PWR-012, SEC-028, GFX-008, GFX-045, GFX-053 | V1 |
 | PWR-012 | Implement InhibitIdle and InhibitSuspend Capabilities | todo | PWR-001, PWR-005, PWR-013, CAP-036, CAP-003, SEC-028 | V1 |
 | PWR-013 | Implement the Power Component with suspend and shutdown Operations | todo | PWR-001, PWR-005, SVC-015, SVC-011, SVC-007, IPC-035, CAP-003 | V1 |
-| PWR-014 | Implement suspend and resume cycle gates on laptop and desktop | todo | PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028 | V1 |
+| PWR-014 | Implement suspend and resume cycle gates on laptop and desktop | todo | PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028, MEM-044 | V1 |
 | PWR-015 | Expose battery, thermal, inhibit and suspend state through inspect | todo | PWR-013, PWR-010, PWR-012, OBS-019, SDK-007 | V1 |
 | PWR-016 | Attribute energy use to ResourceDomain for Settings | todo | PWR-009, PWR-010, SCH-045, OBS-019 | V2 |
 | PWR-017 | Publish suspend and resume latency on both laptops | todo | PWR-024, BEN-005, BEN-007, LAB-014 | V2 |
@@ -1699,7 +1699,7 @@
 | SDK-053 | Decide profiler export format and Task attribution | todo | SDK-061, OBS-015 | V1 |
 | SDK-054 | Decide the Layer 3 SDK semver and deprecation policy | todo | SDK-018, ABI-039, ABI-037 | V1 |
 | SDK-055 | Decide the SDK v1 crate API freeze candidate | todo | SDK-031, SDK-054 | V1 |
-| SDK-056 | Write the V1 SDK guide for the published Rust crate | todo | SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014 | V1 |
+| SDK-056 | Write the V1 SDK guide for the published Rust crate | todo | SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014, NET-010 | V1 |
 | SDK-057 | Freeze the SDK v1 crate API candidate | todo | SDK-031, SDK-055, SDK-059, SDK-036 | V1 |
 | SDK-058 | Fuzz SDK handle wrappers for use-after-revoke and double-drop | todo | SDK-009, CAP-004, TSK-010, BLD-042 | V1 |
 | SDK-059 | Publish SDK v1 with semver policy and compatibility suite | todo | SDK-054, SDK-036, SDK-039, SDK-033, SDK-049, SDK-056, SDK-043, REL-007 | V1 |
@@ -1725,7 +1725,7 @@
 | SDK-079 | Implement os bisect across SystemGenerations | todo | SDK-019, SDK-044, PKG-019, BLD-006 | V3 |
 | SDK-080 | Implement os publish to build, sign and submit Packages | todo | SDK-020, REL-021, REL-025, GOV-054 | V3 |
 | SDK-081 | Provide the Swift SDK binding | todo | SDK-072, SDK-033, IPC-057 | V3 |
-| SDK-082 | Prove a third-party native Package can be published from the SDK | todo | SDK-080 | V3 |
+| SDK-082 | Prove a third-party native Package can be published from the SDK | todo | SDK-080, SDK-083 | V3 |
 | SDK-083 | Implement a single command that installs versioned toolchains | todo | SDK-084, SDK-006 | V3 |
 | SDK-084 | Package versioned developer toolchains as immutable Packages | todo | SDK-059, PKG-038, BLD-046, BLD-047 | V3 |
 | SDK-085 | Provide the TypeScript SDK binding via Wasm components | todo | SDK-072, WASM-012, WASM-013, IPC-057 | V3 |
@@ -1742,7 +1742,7 @@
 | SDK-096 | Complete SDK guides for Rust and C on the 1.0 release | todo | SDK-092, SDK-095, DOC-040 | 1.0 |
 | APP-001 | Publish warm and cold startup for the four native applications | todo | APP-004, APP-003, APP-005, APP-006, Q-029, BEN-005 | V0.5 |
 | APP-002 | Build the OS-owned file chooser UI minting UserSelected capabilities | todo | STO-034, GFX-040, UIP-024, UIP-025, SEC-007, CAP-029, SDK-017 | V0.5 |
-| APP-003 | Build the Demo native Text Editor | todo | UIP-024, TXT-012 | V0.5 |
+| APP-003 | Build the Demo native Text Editor | todo | UIP-024, TXT-012, STO-024 | V0.5 |
 | APP-004 | Build the Demo native Terminal on the system text stack | todo | APP-009, APP-008, UIP-024, UIP-023, TXT-009, UIP-001, SDK-023, SDK-025 | V0.5 |
 | APP-005 | Build the Demo Image Viewer with an isolated decoder Component | todo | APP-002, STO-034, GFX-026, UIP-025, SDK-013 | V0.5 |
 | APP-006 | Build the privileged File Browser that hands out storage capabilities | todo | UIP-024 | V0.5 |
@@ -1787,7 +1787,7 @@
 | APP-045 | Build the store client with install-time Capability review | todo | REL-012, REL-013, PKG-064, PKG-075, CAP-043, APP-025 | V2 |
 | APP-046 | Build the status-tray host according to the tray Decision | todo | APP-054, APP-043, LNX-079, WIN-024 | V2 |
 | APP-047 | Build the running-application update prompt for Generation switches | todo | PKG-066, APP-014 | V2 |
-| APP-048 | Run the 40-scenario desktop UX script on the three target machines | todo | APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036 | V2 |
+| APP-048 | Run the 40-scenario desktop UX script on the three target machines | todo | APP-043, APP-032, APP-014, APP-040, APP-033, APP-050, APP-036, APP-041, GFX-059 | V2 |
 | APP-049 | Build the sandboxed native WebView Component | todo | APP-019, APP-021, CMP-024, CAP-025, GFX-026 | V2 |
 | APP-050 | Build virtual workspaces, overview and window layout | todo | APP-018, APP-043, GFX-019 | V2 |
 | APP-051 | Decide the first-party application set native versus bundled at 1.0 | todo | APP-005, APP-006 | V2 |
@@ -1926,7 +1926,7 @@
 | BLD-060 | Provision GPU-equipped nightly capacity for the W1 Corpus | todo | BLD-058, WIN-009, BLD-017 | V2 |
 | BLD-061 | Produce nightly images for the alpha Channel | todo | BLD-024, REL-005 | V3 |
 | BLD-062 | Build an embargoed private path for security-release compilation | todo | BLD-034, BLD-065 | V3 |
-| BLD-063 | Gate V3 on no known open Native ABI fuzzer crasher | todo | BLD-035, BLD-042 | V3 |
+| BLD-063 | Gate V3 on no known open Native ABI fuzzer crasher | todo | BLD-035, BLD-042, NET-023 | V3 |
 | BLD-064 | Migrate CI runners to bare-metal JakeOS | todo | BLD-057, INS-004, LAB-021, BLD-034 | V3 |
 | BLD-065 | Build release artifacts once and promote them across channels | todo | BLD-041, BLD-024 | V3 |
 | BLD-066 | Publish public CI and benchmark dashboards | todo | BLD-052, BEN-031 | V3 |
@@ -1995,7 +1995,7 @@
 | BEN-026 | Publish native isolation cost against OCI containers | todo | BEN-020, BEN-005, CMP-035 | V1 |
 | BEN-027 | Publish Linux Personality overhead against upstream Linux | todo | BEN-005, BEN-007, BEN-006, LNX-056, LNX-001 | V1 |
 | BEN-028 | Publish developer onboarding time | todo | BEN-005, BEN-007, SDK-032, SDK-043, SDK-039 | V1 |
-| BEN-029 | Verify V1 absolute targets and prior-Rung regression | todo | BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048 | V1 |
+| BEN-029 | Verify V1 absolute targets and prior-Rung regression | todo | BEN-015, BEN-007, BEN-033, BEN-022, BEN-030, BLD-048, TSK-039 | V1 |
 | BEN-030 | Publish native warm startup against the V1 target | todo | BEN-009, BEN-021, BEN-016, CMP-019 | V1 |
 | BEN-031 | Publish the public per-commit benchmark dashboard | todo | BEN-005, BEN-032, BEN-004 | V1 |
 | BEN-032 | Store benchmark results with change-point detection | todo | BEN-005, BEN-007, BEN-022, BLD-048 | V1 |
@@ -2003,9 +2003,9 @@
 | BEN-034 | Write the contributor guide for adding a benchmark | todo | BEN-005, BEN-007, BEN-004 | V1 |
 | BEN-035 | Publish boot-to-login and unlock-to-desktop latency | todo | BEN-012, BOOT-016, APP-033, APP-030, SEC-017 | V2 |
 | BEN-036 | Publish ComputeDevice dispatch overhead | todo | BEN-005, BEN-007, HET-018, HET-016 | V2 |
-| BEN-037 | Publish compositor frame-deadline miss rate | todo | BEN-010, GFX-060, LAB-018 | V2 |
+| BEN-037 | Publish compositor frame-deadline miss rate | todo | BEN-010, GFX-060, LAB-018, OBS-046 | V2 |
 | BEN-038 | Publish desktop-essentials latency suite | todo | BEN-005, BEN-007, APP-022, TXT-029, APP-014, APP-033, NET-021, MED-013, LAB-018 | V2 |
-| BEN-039 | Publish energy use on both V2 laptops | todo | BEN-024, PWR-006, LAB-018, LAB-015 | V2 |
+| BEN-039 | Publish energy use on both V2 laptops | todo | BEN-024, PWR-006, LAB-018, LAB-015, GFX-081 | V2 |
 | BEN-040 | Publish disk-encryption overhead on NVMe | todo | BEN-005, BEN-007, SEC-017, SEC-005 | V2 |
 | BEN-041 | Publish the gaming benchmark suite on the AMD desktop | todo | BEN-044, WIN-006, WIN-009, LAB-015, LAB-018 | V2 |
 | BEN-042 | Publish snapshot creation and restore time | todo | BEN-005, BEN-007, STO-025, PKG-068 | V2 |
@@ -2127,7 +2127,7 @@
 | DOC-029 | Write the public contribution guide | todo | DOC-015, GOV-007, GOV-030, GOV-035 | V3 |
 | DOC-030 | Write the public install guide | todo | DOC-015, INS-039, INS-027, BOOT-042 | V3 |
 | DOC-031 | Write migration guides for users and SDK porters | todo | DOC-017, DOC-022, DOC-014, APP-062 | V3 |
-| DOC-032 | Complete and review the SDK guide | todo | DOC-014, PKG-085, SVC-021, UIP-031 | V3 |
+| DOC-032 | Complete and review the SDK guide | todo | DOC-014, PKG-085, SVC-021, UIP-031, SCH-040 | V3 |
 | DOC-033 | Publish the platform security guide | todo | DOC-015, SEC-002, GOV-061 | V3 |
 | DOC-034 | Add broken-link and outdated-example checks to docs CI | todo | DOC-024, DOC-015, SDK-092 | V4 |
 | DOC-035 | Complete remaining user, admin, SDK, compatibility and ABI docs | todo | DOC-027, DOC-032, DOC-038, DOC-028, DOC-033, DOC-023, DOC-022, DOC-030, ABI-050 | V4 |
@@ -2865,6 +2865,7 @@
 | STO-077 | 4 |
 | SVC-003 | 4 |
 | SVC-008 | 4 |
+| SVC-020 | 4 |
 | SVC-028 | 4 |
 | TSK-007 | 4 |
 | TSK-009 | 4 |
@@ -3014,6 +3015,7 @@
 | LNX-019 | 3 |
 | LNX-039 | 3 |
 | LNX-041 | 3 |
+| LNX-046 | 3 |
 | LNX-058 | 3 |
 | LNX-095 | 3 |
 | LNX-104 | 3 |
@@ -3079,6 +3081,7 @@
 | SEC-034 | 3 |
 | SEC-043 | 3 |
 | SEC-050 | 3 |
+| SEC-052 | 3 |
 | SEC-055 | 3 |
 | SEC-064 | 3 |
 | SEM-011 | 3 |
@@ -3095,7 +3098,7 @@
 | STO-071 | 3 |
 | STO-074 | 3 |
 | SVC-002 | 3 |
-| SVC-020 | 3 |
+| SVC-022 | 3 |
 | SVC-026 | 3 |
 | SVC-029 | 3 |
 | SVC-035 | 3 |
@@ -3109,6 +3112,7 @@
 | TXT-007 | 3 |
 | TXT-008 | 3 |
 | TXT-011 | 3 |
+| TXT-019 | 3 |
 | TXT-026 | 3 |
 | UIP-015 | 3 |
 | UIP-056 | 3 |
@@ -3258,12 +3262,14 @@
 | HW-019 | 2 |
 | HW-023 | 2 |
 | HW-028 | 2 |
+| HW-030 | 2 |
 | HW-046 | 2 |
 | HW-049 | 2 |
 | HW-050 | 2 |
 | HW-052 | 2 |
 | HW-057 | 2 |
 | HW-059 | 2 |
+| HW-075 | 2 |
 | HW-078 | 2 |
 | HW-080 | 2 |
 | HW-081 | 2 |
@@ -3303,20 +3309,22 @@
 | LNX-034 | 2 |
 | LNX-035 | 2 |
 | LNX-044 | 2 |
-| LNX-046 | 2 |
 | LNX-047 | 2 |
+| LNX-048 | 2 |
 | LNX-049 | 2 |
 | LNX-053 | 2 |
 | LNX-054 | 2 |
 | LNX-059 | 2 |
 | LNX-060 | 2 |
 | LNX-064 | 2 |
+| LNX-068 | 2 |
 | LNX-070 | 2 |
 | LNX-071 | 2 |
 | LNX-073 | 2 |
 | LNX-078 | 2 |
 | LNX-079 | 2 |
 | LNX-080 | 2 |
+| LNX-082 | 2 |
 | LNX-083 | 2 |
 | LNX-096 | 2 |
 | LNX-097 | 2 |
@@ -3340,6 +3348,7 @@
 | MEM-027 | 2 |
 | MEM-035 | 2 |
 | MEM-043 | 2 |
+| MEM-044 | 2 |
 | MEM-050 | 2 |
 | NET-001 | 2 |
 | NET-008 | 2 |
@@ -3355,6 +3364,8 @@
 | OBS-030 | 2 |
 | OBS-035 | 2 |
 | OBS-036 | 2 |
+| OBS-037 | 2 |
+| OBS-038 | 2 |
 | PKG-010 | 2 |
 | PKG-013 | 2 |
 | PKG-015 | 2 |
@@ -3431,7 +3442,6 @@
 | SEC-019 | 2 |
 | SEC-031 | 2 |
 | SEC-032 | 2 |
-| SEC-052 | 2 |
 | SEC-062 | 2 |
 | SEC-069 | 2 |
 | SEC-072 | 2 |
@@ -3454,13 +3464,14 @@
 | STO-073 | 2 |
 | STO-076 | 2 |
 | SVC-006 | 2 |
+| SVC-010 | 2 |
 | SVC-014 | 2 |
 | SVC-016 | 2 |
 | SVC-017 | 2 |
 | SVC-018 | 2 |
-| SVC-022 | 2 |
 | SVC-024 | 2 |
 | SVC-032 | 2 |
+| SVC-033 | 2 |
 | TSK-001 | 2 |
 | TSK-002 | 2 |
 | TSK-005 | 2 |
@@ -3478,7 +3489,6 @@
 | TXT-004 | 2 |
 | TXT-015 | 2 |
 | TXT-017 | 2 |
-| TXT-019 | 2 |
 | TXT-021 | 2 |
 | TXT-030 | 2 |
 | TXT-039 | 2 |
@@ -3509,6 +3519,8 @@
 | WIN-030 | 2 |
 | WIN-031 | 2 |
 | WIN-032 | 2 |
+| WIN-034 | 2 |
+| WIN-041 | 2 |
 | WIN-046 | 2 |
 | WIN-047 | 2 |
 | WIN-049 | 2 |
@@ -3542,6 +3554,7 @@
 | APP-026 | 1 |
 | APP-027 | 1 |
 | APP-039 | 1 |
+| APP-041 | 1 |
 | APP-045 | 1 |
 | APP-050 | 1 |
 | APP-054 | 1 |
@@ -3596,6 +3609,7 @@
 | BLD-051 | 1 |
 | BLD-056 | 1 |
 | BLD-057 | 1 |
+| BLD-060 | 1 |
 | BLD-068 | 1 |
 | BLD-070 | 1 |
 | BLD-073 | 1 |
@@ -3604,6 +3618,7 @@
 | BLD-078 | 1 |
 | BOOT-002 | 1 |
 | BOOT-006 | 1 |
+| BOOT-019 | 1 |
 | BOOT-033 | 1 |
 | BOOT-037 | 1 |
 | BOOT-039 | 1 |
@@ -3644,6 +3659,7 @@
 | ENV-006 | 1 |
 | ENV-015 | 1 |
 | ENV-022 | 1 |
+| ENV-024 | 1 |
 | ENV-025 | 1 |
 | ENV-028 | 1 |
 | ENV-029 | 1 |
@@ -3659,6 +3675,7 @@
 | GFX-054 | 1 |
 | GFX-055 | 1 |
 | GFX-058 | 1 |
+| GFX-059 | 1 |
 | GFX-070 | 1 |
 | GFX-071 | 1 |
 | GFX-074 | 1 |
@@ -3666,6 +3683,7 @@
 | GFX-076 | 1 |
 | GFX-079 | 1 |
 | GFX-080 | 1 |
+| GFX-081 | 1 |
 | GFX-083 | 1 |
 | GFX-084 | 1 |
 | GFX-086 | 1 |
@@ -3702,16 +3720,17 @@
 | HET-024 | 1 |
 | HET-026 | 1 |
 | HET-027 | 1 |
-| HW-030 | 1 |
+| HW-027 | 1 |
 | HW-044 | 1 |
 | HW-045 | 1 |
 | HW-048 | 1 |
+| HW-053 | 1 |
 | HW-056 | 1 |
 | HW-058 | 1 |
 | HW-063 | 1 |
 | HW-064 | 1 |
 | HW-072 | 1 |
-| HW-075 | 1 |
+| HW-076 | 1 |
 | HW-077 | 1 |
 | HW-079 | 1 |
 | HW-082 | 1 |
@@ -3774,8 +3793,8 @@
 | LNX-026 | 1 |
 | LNX-027 | 1 |
 | LNX-028 | 1 |
+| LNX-029 | 1 |
 | LNX-033 | 1 |
-| LNX-048 | 1 |
 | LNX-050 | 1 |
 | LNX-051 | 1 |
 | LNX-055 | 1 |
@@ -3783,15 +3802,22 @@
 | LNX-063 | 1 |
 | LNX-065 | 1 |
 | LNX-067 | 1 |
-| LNX-068 | 1 |
+| LNX-069 | 1 |
+| LNX-074 | 1 |
+| LNX-075 | 1 |
 | LNX-076 | 1 |
 | LNX-077 | 1 |
 | LNX-081 | 1 |
-| LNX-082 | 1 |
+| LNX-085 | 1 |
 | LNX-086 | 1 |
+| LNX-088 | 1 |
+| LNX-089 | 1 |
 | LNX-091 | 1 |
 | LNX-092 | 1 |
 | LNX-093 | 1 |
+| LNX-094 | 1 |
+| LNX-098 | 1 |
+| LNX-101 | 1 |
 | LNX-102 | 1 |
 | LNX-103 | 1 |
 | LNX-105 | 1 |
@@ -3815,15 +3841,16 @@
 | MEM-031 | 1 |
 | MEM-040 | 1 |
 | MEM-042 | 1 |
-| MEM-044 | 1 |
 | MEM-045 | 1 |
 | MEM-049 | 1 |
 | MEM-051 | 1 |
 | MEM-053 | 1 |
+| NET-010 | 1 |
 | NET-013 | 1 |
 | NET-017 | 1 |
 | NET-018 | 1 |
 | NET-020 | 1 |
+| NET-023 | 1 |
 | NET-029 | 1 |
 | NET-033 | 1 |
 | NET-037 | 1 |
@@ -3831,12 +3858,11 @@
 | OBS-018 | 1 |
 | OBS-020 | 1 |
 | OBS-033 | 1 |
-| OBS-037 | 1 |
-| OBS-038 | 1 |
 | OBS-040 | 1 |
 | OBS-041 | 1 |
 | OBS-042 | 1 |
 | OBS-045 | 1 |
+| OBS-046 | 1 |
 | OBS-047 | 1 |
 | OBS-048 | 1 |
 | OBS-050 | 1 |
@@ -3944,9 +3970,11 @@
 | SCH-035 | 1 |
 | SCH-036 | 1 |
 | SCH-039 | 1 |
+| SCH-040 | 1 |
 | SCH-044 | 1 |
 | SCH-046 | 1 |
 | SCH-047 | 1 |
+| SCH-049 | 1 |
 | SCH-055 | 1 |
 | SCH-056 | 1 |
 | SDK-010 | 1 |
@@ -3970,6 +3998,7 @@
 | SDK-077 | 1 |
 | SDK-078 | 1 |
 | SDK-081 | 1 |
+| SDK-083 | 1 |
 | SDK-085 | 1 |
 | SDK-087 | 1 |
 | SDK-089 | 1 |
@@ -4006,6 +4035,7 @@
 | STO-007 | 1 |
 | STO-015 | 1 |
 | STO-022 | 1 |
+| STO-024 | 1 |
 | STO-026 | 1 |
 | STO-032 | 1 |
 | STO-037 | 1 |
@@ -4016,21 +4046,22 @@
 | STO-065 | 1 |
 | STO-079 | 1 |
 | STO-083 | 1 |
-| SVC-010 | 1 |
 | SVC-012 | 1 |
 | SVC-019 | 1 |
 | SVC-021 | 1 |
+| SVC-023 | 1 |
 | SVC-030 | 1 |
 | SVC-031 | 1 |
-| SVC-033 | 1 |
 | SVC-034 | 1 |
 | SVC-036 | 1 |
 | SVC-039 | 1 |
 | TSK-028 | 1 |
 | TSK-035 | 1 |
+| TSK-039 | 1 |
 | TSK-040 | 1 |
 | TSK-045 | 1 |
 | TSK-046 | 1 |
+| TSK-047 | 1 |
 | TSK-048 | 1 |
 | TSK-050 | 1 |
 | TSK-051 | 1 |
@@ -4042,6 +4073,7 @@
 | TXT-028 | 1 |
 | TXT-033 | 1 |
 | TXT-034 | 1 |
+| TXT-035 | 1 |
 | TXT-040 | 1 |
 | TXT-042 | 1 |
 | TXT-044 | 1 |
@@ -4058,6 +4090,7 @@
 | UIP-054 | 1 |
 | UIP-055 | 1 |
 | VIRT-010 | 1 |
+| VIRT-012 | 1 |
 | VIRT-014 | 1 |
 | VIRT-015 | 1 |
 | VIRT-016 | 1 |
@@ -4068,16 +4101,18 @@
 | WIN-014 | 1 |
 | WIN-019 | 1 |
 | WIN-022 | 1 |
+| WIN-023 | 1 |
 | WIN-028 | 1 |
 | WIN-029 | 1 |
 | WIN-033 | 1 |
-| WIN-034 | 1 |
 | WIN-039 | 1 |
-| WIN-041 | 1 |
 | WIN-043 | 1 |
 | WIN-044 | 1 |
+| WIN-045 | 1 |
 | WIN-055 | 1 |
+| WIN-058 | 1 |
 | WIN-059 | 1 |
+| WIN-061 | 1 |
 | WIN-062 | 1 |
 | WIN-063 | 1 |
 | WIN-065 | 1 |

@@ -763,6 +763,8 @@ Dynamic-child constraints (CMP-023). Capability lint over graphs (CAP). IDL endp
 
 §10 lists Inputs<T> and Outputs<T> as Component contents. The V0.5 four apps need declared typed endpoints wired by the launch path rather than discovered ad hoc. IPC generates the endpoint types; CMP binds them at launch. S-019 is prototyped.
 
+<!-- covers: INV-0224, INV-0225 -->
+
 #### Out of scope
 IDL codegen for endpoint bundles (IPC). Graph wiring of many children (CMP-024). Package schema (PKG).
 
@@ -850,6 +852,8 @@ Native init (SVC). Package install (PKG). Warm-start metadata cache (CMP-040). O
 - Invariants: I-037
 
 V0.5 compositor crash recovery rebinds all windows. §32 needs a stable Component slot identity with an instance generation counter on `Object<Component>`. SVC owns supervision; CMP owns the identity and exit-cause surface it consumes.
+
+<!-- covers: INV-1185 -->
 
 #### Out of scope
 Supervisor restart policy (SVC). Client disconnect/rebind stubs (IPC, SDK). Compositor surface rebind (GFX).
@@ -1113,7 +1117,7 @@ Personality thread mapping (TSK-043). LNX mapping implementation (LNX-042). Wind
 - Depends on: CMP-024, CMP-008, CMP-022
 - Baseline: §11, §52
 
-V1 exit publishes SDK v1. Developers need guidance on when to split an application into Components, graph patterns from §11, Capability attenuation per child, and panic/exit-cause handling.
+V1 exit publishes SDK v1. Developers need guidance on when to split an application into Components, graph patterns from §11, Capability attenuation per child, and panic/exit-cause handling. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 SDK crate guide (SDK). Generated L1 reference pages (DOC). Browser-shaped sample graph (CMP-041).
@@ -1472,7 +1476,7 @@ ABI conformance content (ABI). Fast-path work (CMP-034).
 - Baseline: §51, §65
 - Invariants: I-040
 
-V3 scope introduces continuous fuzzing (BLD infrastructure). CMP supplies the fuzz targets for its ABI surface so the 1.0 clean-window criterion is measurable.
+V3 scope introduces continuous fuzzing (BLD infrastructure). CMP supplies the fuzz targets for its ABI surface so the 1.0 clean-window criterion is measurable. Required by V3-G10 (Kernel and IPC fuzzing has no stale open crasher).
 
 #### Out of scope
 Fuzzing fleet (BLD). L1 freeze (CMP-052).
@@ -1499,7 +1503,7 @@ Fuzzing fleet (BLD). L1 freeze (CMP-052).
 - Depends on: CMP-033
 - Baseline: §7, §10, §11, §66
 
-V3 exit requires 100 percent L1 reference pages. DOC generates signatures from the IDL; CMP writes the lifecycle, exit-cause, graph and isolation semantics prose.
+V3 exit requires 100 percent L1 reference pages. DOC generates signatures from the IDL; CMP writes the lifecycle, exit-cause, graph and isolation semantics prose. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 IDL-to-docs generator (DOC). ABI entry-point catalogue (ABI).

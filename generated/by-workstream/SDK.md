@@ -71,7 +71,7 @@
 | SDK-053 | Decide profiler export format and Task attribution | todo | blocked | S | SDK-061, OBS-015 |
 | SDK-054 | Decide the Layer 3 SDK semver and deprecation policy | todo | blocked | S | SDK-018, ABI-039, ABI-037 |
 | SDK-055 | Decide the SDK v1 crate API freeze candidate | todo | blocked | S | SDK-031, SDK-054 |
-| SDK-056 | Write the V1 SDK guide for the published Rust crate | todo | blocked | M | SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014 |
+| SDK-056 | Write the V1 SDK guide for the published Rust crate | todo | blocked | M | SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014, NET-010 |
 | SDK-057 | Freeze the SDK v1 crate API candidate | todo | blocked | S | SDK-031, SDK-055, SDK-059, SDK-036 |
 | SDK-058 | Fuzz SDK handle wrappers for use-after-revoke and double-drop | todo | blocked | M | SDK-009, CAP-004, TSK-010, BLD-042 |
 | SDK-059 | Publish SDK v1 with semver policy and compatibility suite | todo | blocked | M | SDK-054, SDK-036, SDK-039, SDK-033, SDK-049, SDK-056, SDK-043, REL-007 |
@@ -107,7 +107,7 @@
 | SDK-079 | Implement os bisect across SystemGenerations | todo | blocked | M | SDK-019, SDK-044, PKG-019, BLD-006 |
 | SDK-080 | Implement os publish to build, sign and submit Packages | todo | blocked | M | SDK-020, REL-021, REL-025, GOV-054 |
 | SDK-081 | Provide the Swift SDK binding | todo | blocked | M | SDK-072, SDK-033, IPC-057 |
-| SDK-082 | Prove a third-party native Package can be published from the SDK | todo | blocked | S | SDK-080 |
+| SDK-082 | Prove a third-party native Package can be published from the SDK | todo | blocked | S | SDK-080, SDK-083 |
 | SDK-083 | Implement a single command that installs versioned toolchains | todo | blocked | M | SDK-084, SDK-006 |
 | SDK-084 | Package versioned developer toolchains as immutable Packages | todo | blocked | M | SDK-059, PKG-038, BLD-046, BLD-047 |
 | SDK-085 | Provide the TypeScript SDK binding via Wasm components | todo | blocked | M | SDK-072, WASM-012, WASM-013, IPC-057 |

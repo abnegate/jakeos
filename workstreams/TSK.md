@@ -796,6 +796,8 @@ Capability type and rights word (CAP-017). Service supervision (SVC). Automation
 
 Turns the V0 spike's one-off wake-up measurement into a permanent harness: no-op, Timer and Wait Operations, same-core and cross-core, single and batched, so V0.5 and V1 regression gates rest on B-009 rather than a claim. The V0.5 target kind is regression versus V0.
 
+<!-- covers: INV-0359 -->
+
 #### Out of scope
 IPC round trip (B-004). Deadline-enforcement overhead as a distinct series (TSK-039). Methodology (BEN-007).
 
@@ -883,6 +885,8 @@ Rebind implementation (TSK-035). Capability transfer over Channels (IPC). Memory
 
 Realises decide-native-notification: a kernel Event object that user space signals and that Wait Operations consume. It is the native replacement for futex, eventfd and signal wake-ups that the toolkit, compositor and Wayland bridge need for cross-Task synchronisation without ambient signals.
 
+<!-- covers: INV-0039 -->
+
 #### Out of scope
 Channel messages (IPC). Personality futex and eventfd (LNX). Wait kind itself (TSK-012).
 
@@ -908,7 +912,7 @@ Channel messages (IPC). Personality futex and eventfd (LNX). Wait kind itself (T
 - Depends on: TSK-007, TSK-018, TSK-011, TSK-012
 - Baseline: §18, §58
 
-decide-operation-transport fixes how batches are expressed. This task implements batch submit and io_uring-style links (Read then Send, Timer-bounded chains) that the compositor frame loop and File Browser need at V0.5. A failed link stops the chain with a typed result.
+decide-operation-transport fixes how batches are expressed. This task implements batch submit and io_uring-style links (Read then Send, Timer-bounded chains) that the compositor frame loop and File Browser need at V0.5. A failed link stops the chain with a typed result. Required by V0.5-G01 (Native compositor presents on the reference GPU): the compositor frame loop submits its per-frame Operations as linked batches.
 
 #### Out of scope
 Transport decision (TSK-007). IPC batched send/receive at V1 (IPC-043).
@@ -1027,6 +1031,8 @@ Intent classes (SCH). Channel backpressure policy (IPC). Frame scheduling (GFX, 
 
 §19 lists resource accounting as an Operation property. In-flight Operations and ring slots count against SCH kernel-object limits so a runaway Component cannot exhaust kernel memory once multiple applications run at V0.5. Exhaustion returns a typed error.
 
+<!-- covers: EXTRA-002, INV-0368 -->
+
 #### Out of scope
 ResourceDomain object and limits (SCH). Channel queue charging (IPC-027). MemoryObject charging (MEM).
 
@@ -1055,6 +1061,8 @@ ResourceDomain object and limits (SCH). Channel queue charging (IPC-027). Memory
 
 V0.5 exit: killing the compositor rebinds all windows with no application exit. Outstanding Send, Receive and DeviceOperation work against the dead instance must fail typed (`Disconnected`) and be resubmittable against the rebound endpoint, coordinated with SVC supervision and IPC rebind.
 
+<!-- covers: INV-1185 -->
+
 #### Out of scope
 Supervisor restart policy (SVC). Client rebind codegen (IPC-028, SDK-012). Surface rebind (GFX).
 
@@ -1081,6 +1089,8 @@ Supervisor restart policy (SVC). Client rebind codegen (IPC-028, SDK-012). Surfa
 - Baseline: §21, §19
 
 Operations submitted inside a TaskGroup take the minimum of their own deadline and the group's deadline, and share the group's outstanding-Operation budget, so cancelling or timing out a group tears down in-flight work deterministically. Hardens the V0 cancellation demo for real applications.
+
+<!-- covers: INV-0389 -->
 
 #### Out of scope
 Background-execution exception (TSK-025). Domain-wide kernel-object limits (SCH).
@@ -1133,6 +1143,8 @@ IDL authoring guidelines (IPC-032). Runtime binding contracts (TSK-045). Layer 1
 - Baseline: §20, §64
 
 V1 exit: a debugger breaks inside an async Task and shows the logical Task stack; a profiler attributes samples to Task and Component. The runtime records parent and await relationships that OBS and SDK tools read. TSK owns the kernel and runtime metadata; SDK owns the debugger and profiler CLIs.
+
+<!-- covers: INV-0984, EXTRA-032 -->
 
 #### Out of scope
 Debugger attach (SDK-038). Profiler sampling (SDK-046). Inspect command rendering (OBS, SDK).
@@ -1190,7 +1202,7 @@ Timer slack (TSK-047). Linux personality overhead (B-026, BEN-027).
 - Baseline: §18, §19, §51
 - Threats: T-003, T-016
 
-The V0 threat model names shared rings as an attack surface. Before external developers submit Operations at V1, the kernel validates user-writable entries once, bounds outstanding work, and rejects forged completions. TOCTOU between validate and execute is closed.
+The V0 threat model names shared rings as an attack surface. Before external developers submit Operations at V1, the kernel validates user-writable entries once, bounds outstanding work, and rejects forged completions. TOCTOU between validate and execute is closed. Required by V3-G10 (Kernel and IPC fuzzing has no stale open crasher): the forged-completion and exhaustion oracles of TSK-051 assume this hardening.
 
 #### Out of scope
 Threat-model document (SEC-002). Handle-table generation (ABI). Capability rights encoding (CAP).
@@ -1252,7 +1264,7 @@ Suspend/resume implementation (PWR-014). Clock-semantics decision (SVC-016). Sla
 - Risks: R-007, R-028
 - Invariants: I-040
 
-L1 freeze candidates are named at V1 with SDK v1 and frozen at V4 (I-040). This decision names the submission entry, completion record layout, result encoding, deadline representation and kind set that enter the ABI snapshot check. It does not freeze S-005 or S-008.
+L1 freeze candidates are named at V1 with SDK v1 and frozen at V4 (I-040). This decision names the submission entry, completion record layout, result encoding, deadline representation and kind set that enter the ABI snapshot check. It does not freeze S-005 or S-008. Required by V4-G01 (Layer 1 ABI frozen with a conformance suite): the V4 freeze snapshots only the surfaces named as candidates at V1.
 
 #### Out of scope
 The V4 freeze (ABI-049). Conformance suite (TSK-052). Channel freeze candidates (IPC).
@@ -1310,6 +1322,8 @@ Component mapping of personality processes (CMP-036). Wine hosting (WIN-013). Li
 
 §18 lists StorageTransaction. STO's durability contract lands at V1 with system history and `os env` snapshots. TSK owns the async Operation kind plumbing (submit, complete, cancel, deadline) over that contract. STO owns commit and abort semantics and the power-cut test.
 
+<!-- covers: INV-0356 -->
+
 #### Out of scope
 Durability contract (STO-038). Multi-object transactions (STO-051). Power-cut test (STO-048).
 
@@ -1364,7 +1378,7 @@ C binding implementation (SDK-033). Native runtime (SDK-004). Service-author gui
 - Baseline: §20, §54
 - Benchmarks: B-003, B-004, B-005, B-009
 
-V1 sets absolute IPC targets (B-004, B-005) and must not regress V0 Task handoff (B-003) or Operation completion (B-009). Completion affinity, wake batching and idle-Task memory footprint are the TSK levers. Numbers live only in the registers.
+V1 sets absolute IPC targets (B-004, B-005) and must not regress V0 Task handoff (B-003) or Operation completion (B-009). Completion affinity, wake batching and idle-Task memory footprint are the TSK levers. Numbers live only in the registers. Required by V1-G15 (IPC round trip meets the V1 absolute target): the B-004 and B-005 runs depend on completion affinity and wake batching.
 
 #### Out of scope
 IPC fast-path internals (IPC-054). Idle-component memory (CMP, B-008). Hidden-blocking model (TSK-009).
@@ -1451,6 +1465,8 @@ GPUDispatch kind (TSK-049). GPU abort semantics (HET-012). NetworkConnection obj
 
 §18 lists GPUDispatch. The V2 ComputeDevice demo dispatches to CPU and GPU. TSK owns the Operation kind, completion and committed-work cancellation; HET owns ComputeDevice semantics and the GPU-signal path. Native software never sees a Vulkan or DRM queue ABI.
 
+<!-- covers: INV-0354 -->
+
 #### Out of scope
 ComputeDevice object (HET). Vulkan/DRM backend (HET-003). RenderQueue (GFX). Hardware cancel matrix (TSK-048).
 
@@ -1478,7 +1494,7 @@ ComputeDevice object (HET). Vulkan/DRM backend (HET-003). RenderQueue (GFX). Har
 - Depends on: TSK-042, TSK-024, TSK-031, TSK-032, TSK-044, TSK-049
 - Baseline: §18, §19, §56.5, §65
 
-V3 exit requires Layer 1 reference documentation for every entry point. DOC generates pages from IDL; TSK authors Operation semantics, result codes, deadline representation and cancellation observability text for every kind.
+V3 exit requires Layer 1 reference documentation for every entry point. DOC generates pages from IDL; TSK authors Operation semantics, result codes, deadline representation and cancellation observability text for every kind. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point): Operation kinds, results and completion records are Layer 1 entry points.
 
 #### Out of scope
 IDL-to-docs pipeline (DOC). ABI specification (ABI-046). Channel pages (IPC).
@@ -1507,6 +1523,8 @@ IDL-to-docs pipeline (DOC). ABI specification (ABI-046). Channel pages (IPC).
 - Risks: R-051
 
 V3 exit: continuous syscall and IPC fuzzing. TSK supplies the grammar and oracle for submit, batch, link, cancel and deadline paths on BLD's fuzzing infrastructure. Oracles include: a cancelled Operation never delivers a successful result; forged completions are rejected; outstanding-work limits return typed exhaustion.
+
+<!-- covers: GAP-0127 -->
 
 #### Out of scope
 Fuzz infrastructure (BLD). Channel fuzz targets (IPC-044). MemoryObject oracles (MEM).

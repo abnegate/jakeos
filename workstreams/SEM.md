@@ -88,7 +88,7 @@ Accessibility tree as an AT client (ACC). Toolkit input routing (UIP). Personali
 - Baseline: §14, §42, §60
 - Explores: S-023
 
-Prototype a single Editor method as a typed Semantic interface over Channel, invoked by a native caller with no GUI input, before V1 discovery permissioning is decided. V0.5 allows interfaces the four apps need; this spike is the measured Editor-method evidence that S-023 and SEM-004 require. Record IDL annotation needs and that the call does not synthesize input.
+Prototype a single Editor method as a typed Semantic interface over Channel, invoked by a native caller with no GUI input, before V1 discovery permissioning is decided. V0.5 allows interfaces the four apps need; this spike is the measured Editor-method evidence that S-023 and SEM-004 require. Record IDL annotation needs and that the call does not synthesize input. Required by V1-G12 (Semantic interfaces and a Wasm channel prototype).
 
 #### Out of scope
 Discovery and caller permissioning (SEM-004). Session-local registry (SEM-007). Terminal.run (SEM-008). IDL compiler (IPC-012).
@@ -147,7 +147,7 @@ Session-local registry implementation (SEM-007). Cross-app grants (SEM-026). Con
 - Depends on: SEM-004, SEM-002, IPC-032
 - Baseline: §12, §42, §52
 
-Publish verb and object rules, the no-input-synthesis rule, and Capability-passing idioms for IDL authors of Semantic interfaces. Complements IPC interface-design guidelines with the §42 contract so SDK v1 authors do not invent GUI-scraping Interfaces.
+Publish verb and object rules, the no-input-synthesis rule, and Capability-passing idioms for IDL authors of Semantic interfaces. Complements IPC interface-design guidelines with the §42 contract so SDK v1 authors do not invent GUI-scraping Interfaces. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 IDL language and evolution rules (IPC). Docs site generation (DOC-010). Public-alpha user guide (SEM-036).
@@ -206,6 +206,8 @@ IDL annotation syntax (IPC-051). Session-local registry (SEM-007). App-side Term
 - Invariants: I-021, I-051
 
 Ship a session-local registry so a caller in the same session can look up Terminal.run and Editor.open without the V2 system-wide service. Lookup is the S-023 prototype ACC-008 and PKG-057 consume. A Component without a grant from SEM-004 receives `Error::Rights` and no handle.
+
+<!-- covers: INV-0798 -->
 
 #### Out of scope
 System-wide live registry (SEM-029). One-tree-or-two Decision (ACC-008). Manifest schema (PKG-057). AI broker (SEM-010).
@@ -718,7 +720,7 @@ Toolkit widget actions (UIP). Shell chrome (APP). Accessibility actions (ACC). A
 - Depends on: SEM-006, SEM-029
 - Baseline: §11, §45
 
-Ship Extractor.extract(file) and Notes.create(meeting) as fixture Components so V2 example rules do not invent a mail or archive product. Fixtures are ordinary Components with explicit Capability sets, registered in the system registry.
+Ship Extractor.extract(file) and Notes.create(meeting) as fixture Components so V2 example rules do not invent a mail or archive product. Fixtures are ordinary Components with explicit Capability sets, registered in the system registry. Required by V2-G12 (Semantic automation and an AI-assistant demo).
 
 #### Out of scope
 Archive manager product (APP-051). Notes or mail client (APP). Rule engine (SEM-031).
@@ -746,6 +748,8 @@ Archive manager product (APP-051). Notes or mail client (APP). Rule engine (SEM-
 - Invariants: I-034
 
 Register `os inspect` providers for the Semantic interface registry, Automation rules and live action graphs so the V2 AI demo's graph is inspectable. OBS owns the inspect interface and audit storage; SEM emits the records.
+
+<!-- covers: INV-0829 -->
 
 #### Out of scope
 Inspect CLI rendering (SDK-007). Durable audit log (OBS-044). AI action audit schema (OBS-042).
@@ -961,6 +965,8 @@ Rule format Decision (SEM-018). Wasm module host (WASM-015). Rule editor UI (APP
 
 Prototype a local ComputeDevice or NPU path versus a remote-service path for assistant model execution and record that the OS supplies Capability plumbing, not a model runtime. Must precede SEM-017. Do not bundle weights as a privileged system service.
 
+<!-- covers: INV-0834 -->
+
 #### Out of scope
 Model-execution Decision (SEM-017). NPU class definition (HET-020). Assistant host (SEM-012).
 
@@ -1017,6 +1023,8 @@ Assistant host (SEM-012). AI broker (SEM-010). Environment objects (ENV).
 - Invariants: I-046
 
 Prototype declarative rules, a scripting language and Wasm automation modules on Terminal.run and Editor.open before SEM-018. V2 exit requires that adr. Wasm is one format option, not the Native ABI. WASM-015 remains the host if that option wins.
+
+<!-- covers: INV-0844 -->
 
 #### Out of scope
 Rule format Decision (SEM-018). Production Wasm automation host (WASM-015). Rule engine (SEM-031).
@@ -1180,7 +1188,7 @@ Session objects (SEC-060). Component isolation tests (CMP-051). Greeter chrome (
 - Depends on: SEM-022, SEM-008, SEM-027, SEM-035, SEM-024, SEM-026, SEM-023
 - Baseline: §42, §65, §66
 
-Build the conformance suite proving catalog methods, Capability passing and grant denial so binaries built against the freeze candidate keep running on later beta builds. Layer 2 versions lock in SEM-042; this suite is the proof.
+Build the conformance suite proving catalog methods, Capability passing and grant denial so binaries built against the freeze candidate keep running on later beta builds. Layer 2 versions lock in SEM-042; this suite is the proof. Required by V4-G02 (Layer 2 interface versions for 1.x are locked).
 
 #### Out of scope
 Version lock (SEM-042). Layer 2 evolution tests (SEM-041). Layer 1 freeze (ABI).
@@ -1206,7 +1214,7 @@ Version lock (SEM-042). Layer 2 evolution tests (SEM-041). Layer 1 freeze (ABI).
 - Depends on: SEM-022, SEM-008, IPC-042
 - Baseline: §12, §42, §66
 
-Old-client/new-service and new-client/old-service pass for Editor and Terminal catalog Interfaces, retained as permanent CI. IPC owns evolution rules; SEM retains the Editor and Terminal tests V4-G02 requires for this catalog.
+Old-client/new-service and new-client/old-service pass for Editor and Terminal catalog Interfaces, retained as permanent CI. IPC owns evolution rules; SEM retains the Editor and Terminal tests V4-G02 requires for this catalog. Required by V4-G02 (Layer 2 interface versions for 1.x are locked).
 
 #### Out of scope
 Evolution-rule freeze (IPC-042). Full catalog conformance (SEM-040).

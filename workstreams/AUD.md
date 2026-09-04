@@ -216,6 +216,8 @@ LowLatency callback path (AUD-007). Mixer gain (AUD-009). Personality bridges (A
 
 V1 requires a native low-latency path distinct from the compatibility server. Bind AudioStream callbacks to LowLatency intent (§22) over pinned MemoryObjects and batched Channel Operations. SCH owns the scheduler class; this task is the audio graph that path measures. Needed before the B-028 harness can run.
 
+<!-- covers: INV-0407 -->
+
 #### Out of scope
 Intent class implementation (SCH-026, SCH-042). Pinning and reclaim (MEM-038). Channel batching (IPC-043). Callback jitter publication (SCH-028). Round-trip harness (AUD-004).
 
@@ -335,7 +337,7 @@ Retained-mechanism inventory (KRN-017). Laptop SKU bring-up (HW-015). PipeWire c
 - Depends on: AUD-009, AUD-006
 - Baseline: none
 
-V1 native-plus-PipeWire simultaneous playback cannot hold a single hardware format without resampling and channel mapping in the mixer. This is required plumbing for the V1 functional audio gate, not a new codec framework.
+V1 native-plus-PipeWire simultaneous playback cannot hold a single hardware format without resampling and channel mapping in the mixer. This is required plumbing for the V1 functional audio gate, not a new codec framework. Required by V1-G06 (Native audio and PipeWire compatibility coexist).
 
 #### Out of scope
 Codec Packages and media decode (MED). Mixer gain and mix-monitor (AUD-009). Bluetooth codec selection (AUD-021). Patent policy (GOV-020).
@@ -453,7 +455,7 @@ L2 corpus definition and pass-rate (LNX-056). PipeWire client socket (LNX-033). 
 - Depends on: AUD-009, AUD-007, SCH-048
 - Baseline: none
 
-V2 desktop preview and L3 conferencing need interruption policy on the mixer: duck, pause and exclusive LowLatency for games and calls. APP media-session UI consumes this; AUD enforces it on AudioStream.
+V2 desktop preview and L3 conferencing need interruption policy on the mixer: duck, pause and exclusive LowLatency for games and calls. APP media-session UI consumes this; AUD enforces it on AudioStream. Required by the AUD scope: "ducking and exclusive focus".
 
 #### Out of scope
 Media-session shell controls (APP-034). Playback-session object (MED-022). Elevated-intent Capability UI (SCH-048). Echo-cancellation (AUD-020).
@@ -514,7 +516,7 @@ The measured prototype (AUD-019). Shipping the USB path (AUD-018). Driver framew
 - Benchmarks: B-029
 - Risks: R-039
 
-V2 publishes Bluetooth audio latency on the native path. Pairing cycles stay with HW-033. This harness records loopback latency per negotiated codec on the Intel and AMD laptops and publishes beside BlueZ plus PipeWire on Linux. No superiority claim without the report.
+V2 publishes Bluetooth audio latency on the native path. Pairing cycles stay with HW-033. This harness records loopback latency per negotiated codec on the Intel and AMD laptops and publishes beside BlueZ plus PipeWire on Linux. No superiority claim without the report. Required by V2-G16 (Prior benchmarks show no unexplained regression): B-029 is published in that session.
 
 #### Out of scope
 Pairing and reconnect cycle counts (HW-033, HW-036). Register ownership (HW-033). Host stack (HW-035).
@@ -904,6 +906,8 @@ L5 and W3 pass-rates (LNX-110, WIN-082). Scenario script authorship (LNX, WIN). 
 - Invariants: I-093
 
 MIDI and pro-audio are explicit 1.0 non-goals so they appear on the published non-goal list. APP-069 covers the combined declaration; this parks the AUD-owned remainder (MIDI ports, Jack and pro-audio graphs) on LATER.
+
+<!-- covers: EXTRA-038 -->
 
 #### Out of scope
 Combined non-goal publication (APP-069). Native AudioStream mixer (in-rung AUD tasks). Codec Packages (MED).

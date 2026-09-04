@@ -66,7 +66,7 @@
 | WIN-048 | Verify the V2 double-click .exe Demo on a target machine | todo | blocked | S | WIN-027, WIN-020, WIN-024, WIN-051 |
 | WIN-049 | Integrate VKD3D-Proton for Direct3D 12 translation | todo | blocked | M | WIN-026, GFX-057 |
 | WIN-050 | Schedule Windows Personality frames onto compositor VRR | todo | blocked | M | WIN-031, GFX-088 |
-| WIN-051 | Run the W1 Corpus to the V2 Gold and Silver thresholds | todo | blocked | L | WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029 |
+| WIN-051 | Run the W1 Corpus to the V2 Gold and Silver thresholds | todo | blocked | L | WIN-006, WIN-053, WIN-027, WIN-021, WIN-020, WIN-047, WIN-052, WIN-056, WIN-024, WIN-030, WIN-055, WIN-022, WIN-028, WIN-043, WIN-029, WIN-023, WIN-034, WIN-041, WIN-045, BLD-060 |
 | WIN-052 | Map WASAPI and XAudio2 onto native low-latency audio Objects | todo | blocked | M | WIN-054, AUD-022 |
 | WIN-053 | Expose the Win32 API Surface required by the W1 Corpus | todo | blocked | L | WIN-054, WIN-011, WIN-038 |
 | WIN-054 | Integrate Wine and Proton as the Windows Personality core | todo | blocked | L | WIN-036, WIN-015, WIN-004, GOV-047 |
@@ -91,7 +91,7 @@
 | WIN-068 | Publish per-title W2 reports with the public rating scale | todo | blocked | M | WIN-071, REL-015 |
 | WIN-069 | Verify V3 W2 thresholds and the Windows game-on-laptop Demo | todo | blocked | S | WIN-071, WIN-072 |
 | WIN-070 | Define the W2 Corpus of 150 titles and scenario scripts | todo | blocked | M | WIN-051 |
-| WIN-071 | Run the W2 Corpus to the V3 Gold and Silver thresholds | todo | blocked | L | WIN-070, WIN-072, WIN-006, WIN-030 |
+| WIN-071 | Run the W2 Corpus to the V3 Gold and Silver thresholds | todo | blocked | L | WIN-070, WIN-072, WIN-006, WIN-030, WIN-061 |
 | WIN-072 | Extend input, audio, HDR and VRR passthrough across the W2 Corpus | todo | blocked | M | WIN-032, WIN-050, WIN-056, WIN-052, WIN-070 |
 
 ## V4
@@ -113,7 +113,7 @@
 | --- | --- | --- | --- | --- | --- |
 | WIN-081 | Write the Windows Personality chapters of the compatibility guide | todo | blocked | M | WIN-085, WIN-083, DOC-028 |
 | WIN-082 | Hold launcher, clipboard, audio, chooser and input integration | todo | blocked | S | WIN-085, WIN-024, WIN-021, WIN-020, WIN-052, WIN-047, ACC-033 |
-| WIN-083 | Publish the unsupported-title statement for anti-cheat and DRM | todo | blocked | S | WIN-018, WIN-059, WIN-002, WIN-080 |
+| WIN-083 | Publish the unsupported-title statement for anti-cheat and DRM | todo | blocked | S | WIN-018, WIN-059, WIN-002, WIN-080, WIN-058 |
 | WIN-084 | Verify 1.0 W3 thresholds and the working-day Windows game Demo | todo | blocked | S | WIN-085, WIN-082, WIN-081 |
 | WIN-085 | Hold W3 Gold and Silver thresholds with zero V4 Gold regressions | todo | blocked | M | WIN-080, WIN-078, BEN-044 |
 

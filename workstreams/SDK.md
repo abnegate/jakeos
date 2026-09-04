@@ -292,6 +292,8 @@ Runtime executor (SDK-004). C binding (SDK-033). `std` facade (SDK-049).
 
 V0 tiny-runtime gate needs a recorded choice among a custom executor over Operation completions, a Tokio subset with an Operation reactor, and an embassy-style executor before the runtime is built. CMP owns the kernel and runtime split; this Decision owns only the userspace executor.
 
+Required by V0-G20 (V0 decisions, Rust policy, threat model and roll-up): every V0 architecture decision has an accepted decision listing at least two options.
+
 #### Out of scope
 Kernel Task mapping (TSK-009). Runtime implementation (SDK-004).
 
@@ -981,6 +983,8 @@ Generated C header (ABI-023). IDL C codegen (IPC-048). Host header packages (SDK
 
 C bindings are unusable from the host SDK without packaged headers and IDL-generated stubs on Linux, macOS and Windows toolchains. macOS and Windows hosts use the containerised Linux environment (I-090) plus these headers for cross-compilation.
 
+<!-- covers: GAP-0453 -->
+
 #### Out of scope
 C wrapper implementation (SDK-033). Host SDK distribution (SDK-039).
 
@@ -1603,7 +1607,7 @@ Semver and deprecation windows (SDK-054). Freeze execution (SDK-057). `std` Laye
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014
+- Depends on: SDK-062, SDK-054, SDK-023, SDK-017, SDK-020, DOC-010, DOC-014, NET-010
 - Baseline: §52, §56.5, §61
 
 V1 published-SDK gate and DOC IDL-to-docs at V1 need a crate guide covering Context, Operations, Packages and the chooser. SDK authors the crate guide; DOC publishes the site.
@@ -1993,6 +1997,8 @@ Generation restore (SDK-044). PKG package-set restore (PKG-077). Settings rollba
 
 Language bindings must not drift: one integration corpus compiled as Rust, C and C++ against the compatibility suite.
 
+Required by V4-G15 (External native packages and contributors): SDK bindings for C and one additional language exist, and SDK-075 proves them conformant.
+
 #### Out of scope
 Conformance at V3 (SDK-075). C++ binding (SDK-063).
 
@@ -2048,6 +2054,8 @@ CPU profiler (SDK-046). GPUDispatch (HET-019). RenderQueue (GFX).
 
 Swift, Kotlin, C# and TypeScript at V3 need a recorded mapping onto the C ABI and IDL before those bindings start. Options are C-only, per-language codegen, or both.
 
+<!-- covers: INV-0945 -->
+
 #### Out of scope
 V3 bindings (SDK-081 and siblings). IDL backends (IPC-057).
 
@@ -2072,6 +2080,8 @@ V3 bindings (SDK-081 and siblings). IDL backends (IPC-057).
 - Baseline: §50, §52
 
 C++ at V2 needs a binding guide so the V4 extra-language ecosystem gate is not the first C++ documentation.
+
+Required by the SDK scope: "the SDK samples and guides".
 
 #### Out of scope
 C++ binding (SDK-063). V3 multi-language guide (SDK-086). Site (DOC).
@@ -2314,7 +2324,7 @@ Non-Rust mapping Decision (SDK-072). IDL Swift backend (IPC).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SDK-080
+- Depends on: SDK-080, SDK-083
 - Baseline: §52, §56.5, §63
 
 V3 demo and repository drill: an external developer publishes from the SDK and a user installs with Capability review.
@@ -2431,6 +2441,8 @@ Wasm host (WASM-012). Capability mapping (WASM-013). Native machine-code path (S
 
 V3 documentation gate includes the SDK guide. Public alpha strangers need Rust, C and the first extra language documented. DOC publishes; SDK authors.
 
+<!-- covers: INV-1248 -->
+
 #### Out of scope
 V3 site editorial (DOC-032). C++ guide source (SDK-073).
 
@@ -2508,6 +2520,8 @@ Bindings (SDK-063 and V3 languages). Publish path (SDK-080).
 - Baseline: §52, §66
 
 Layer 3 semver needs mechanical deprecation detection before 1.0 so SDK v1 APIs that will not survive 1.x are flagged in beta.
+
+Required by the SDK scope: "Layer 3 crate layout and semver".
 
 #### Out of scope
 Semver policy (SDK-054). ABI deprecated-entry detector (ABI-043).

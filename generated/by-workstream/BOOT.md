@@ -48,7 +48,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | blocked | M | BOOT-018, LAB-018, PKG-073 |
+| BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | blocked | M | BOOT-018, LAB-018, PKG-073, SVC-033 |
 | BOOT-029 | Decide ESP policy: reuse the existing OEM ESP or create a dedicated ESP for Generation entries | todo | blocked | S | BOOT-008, BOOT-013 |
 | BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | blocked | S | BOOT-020, PKG-019, SEC-002, Q-024 |
 | BOOT-031 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | todo | blocked | M | BOOT-008, BOOT-010, BOOT-011, BOOT-022 |
@@ -68,7 +68,7 @@
 | BOOT-040 | Decide the anti-rollback policy for SystemGenerations older than a security watermark | todo | blocked | S | BOOT-018, BOOT-027, SEC-002 |
 | BOOT-041 | Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder | todo | blocked | L | BOOT-039, BOOT-029, BOOT-031, INS-026 |
 | BOOT-042 | Document the Secure Boot key or shim path, developer mode and recovery for public alpha users | todo | blocked | S | BOOT-031, BOOT-022, BOOT-033, BOOT-036 |
-| BOOT-043 | Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine | todo | blocked | M | BOOT-034, BOOT-044, LAB-022 |
+| BOOT-043 | Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine | todo | blocked | M | BOOT-034, BOOT-044, LAB-022, BOOT-019 |
 | BOOT-044 | Integrate shim and MOK enrollment into the signed boot chain per the Secure Boot strategy | todo | blocked | L | BOOT-031, BOOT-022, BOOT-036, KRN-038, REL-040 |
 | BOOT-045 | Record SystemGeneration identity in the TPM event log | todo | blocked | M | BOOT-034, BOOT-031 |
 

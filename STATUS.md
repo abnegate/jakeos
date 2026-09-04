@@ -154,7 +154,6 @@ none
 - critical-path task ABI-014 has Owner none on the active rung
 - critical-path task ABI-015 has Owner none on the active rung
 - critical-path task ABI-016 has Owner none on the active rung
-- critical-path task ABI-017 has Owner none on the active rung
 - critical-path task ABI-018 has Owner none on the active rung
 - critical-path task ABI-019 has Owner none on the active rung
 - critical-path task ABI-020 has Owner none on the active rung

@@ -56,7 +56,7 @@ Compositor surface rebind timing (GFX-009). Register ownership and cross-OS publ
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002
+- Depends on: SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002, SVC-010
 - Baseline: §32, §60
 - Risks: R-023
 - Invariants: I-037
@@ -309,7 +309,7 @@ Generated client proxies (IPC-028, SDK-012). Component slot identity (CMP-028). 
 - Depends on: SVC-015, OBS-019, SDK-007
 - Baseline: §24, §32, §64
 
-V0.5 fault injection and the compositor-restart gate need a controlled kill, restart and status path. OBS owns the inspect transport; SVC supplies supervision-tree data (state, restart counts, budget remaining) as an inspect provider and a Capability-gated `os service` control Interface.
+V0.5 fault injection and the compositor-restart gate need a controlled kill, restart and status path. OBS owns the inspect transport; SVC supplies supervision-tree data (state, restart counts, budget remaining) as an inspect provider and a Capability-gated `os service` control Interface. Required by V0.5-G03 (Compositor crash recovery rebinds every window).
 
 #### Out of scope
 `os` CLI binary (SDK-007). Inspect transport (OBS-019). Fault-injection framework (BLD-020).
@@ -618,6 +618,8 @@ Manifest handler declarations (PKG-056). Picker UI (APP-026). Linux xdg-open and
 
 Where hardware or driver constraints prevent seamless recovery, degraded recovery is still explicit (§32). The supervisor publishes typed events (service lost, degraded, recovered) into the OBS audit and log path and to subscribed shells. This is a prerequisite for V2 shell indicators and safe-mode escalation.
 
+<!-- covers: INV-0607 -->
+
 #### Out of scope
 Shell indicators (APP-031). Safe-mode session (SVC-036). Crash-capture format (OBS-026).
 
@@ -644,7 +646,7 @@ Shell indicators (APP-031). Safe-mode session (SVC-036). Crash-capture format (O
 - Depends on: SVC-011, SVC-009, SVC-005
 - Baseline: §32
 
-V1 SDK v1 and IDL guidelines need the service-side counterpart: how to declare a manifest, signal readiness, design disconnect, rebind, retry and restore-state per §32, and choose a restart policy. DOC publishes; SVC authors.
+V1 SDK v1 and IDL guidelines need the service-side counterpart: how to declare a manifest, signal readiness, design disconnect, rebind, retry and restore-state per §32, and choose a restart policy. DOC publishes; SVC authors. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 Site generator (DOC-010). Client-side IDL guidelines (IPC-032). SDK crate layout (SDK).
@@ -734,6 +736,8 @@ Unlock UI (BOOT-026). FDE installer default (INS-007, SEC). Generation verity at
 
 V1 networking and V2 mDNS need a typed hostname, pretty-name and machine-id object. Stable hardware identifiers are not ambient (I-078): machine-id is Capability-gated. The Linux personality `/etc/hostname` view is LNX.
 
+<!-- covers: GAP-0236 -->
+
 #### Out of scope
 mDNS (NET-024). Personality `/etc/hostname` (LNX). DHCP client (NET-015).
 
@@ -760,7 +764,7 @@ mDNS (NET-024). Personality `/etc/hostname` (LNX). DHCP client (NET-015).
 - Depends on: SVC-013, TXT-016
 - Baseline: none
 
-TXT decides locale data (ICU/CLDR) at V1; V2 gates a localization framework. This service holds the system-wide typed locale, keyboard-layout and timezone settings and their change notifications. Personality projections such as `LANG` and `/etc/localtime` stay in LNX. Keyboard layout data is HW-027.
+TXT decides locale data (ICU/CLDR) at V1; V2 gates a localization framework. This service holds the system-wide typed locale, keyboard-layout and timezone settings and their change notifications. Personality projections such as `LANG` and `/etc/localtime` stay in LNX. Keyboard layout data is HW-027. Required by V4-G11 (Localization and CJK input methods).
 
 #### Out of scope
 Locale data source (TXT-016). Typed Locale object in the SDK (TXT-031). XKB layout tables (HW-027). Personality environment variables (LNX).
@@ -790,7 +794,7 @@ Locale data source (TXT-016). Typed Locale object in the SDK (TXT-031). XKB layo
 - Risks: R-072
 - Invariants: I-006, I-037
 
-V1 ships the Linux personality as a product with D-Bus, PipeWire, XWayland and portals. LNX decides the systemd-emulation level; SVC provides the adapter that runs a personality process as a supervised service with readiness, restart budgets and degraded events so I-037 holds for them too. Native software still never sees POSIX.
+V1 ships the Linux personality as a product with D-Bus, PipeWire, XWayland and portals. LNX decides the systemd-emulation level; SVC provides the adapter that runs a personality process as a supervised service with readiness, restart budgets and degraded events so I-037 holds for them too. Native software still never sees POSIX. Required by V1-G06 (Native audio and PipeWire compatibility coexist).
 
 #### Out of scope
 systemd surface inside the personality (LNX-029). PipeWire server (AUD-001). D-Bus and portals (LNX).
@@ -818,7 +822,7 @@ systemd surface inside the personality (LNX-029). PipeWire server (AUD-001). D-B
 - Depends on: SVC-015, SEC-028, SEC-020
 - Baseline: §32, §9
 
-V1 introduces single-user login and session lock. Session-scoped services (shell, panel, agents) must die with the session and restart independently of system services. This task separates system and session supervision scopes; V2 APP session management consumes the session tree.
+V1 introduces single-user login and session lock. Session-scoped services (shell, panel, agents) must die with the session and restart independently of system services. This task separates system and session supervision scopes; V2 APP session management consumes the session tree. Required by V3-G11 (Multi-user sessions isolate capability stores).
 
 #### Out of scope
 Session object, lock and identity (SEC-028). Greeter and lock UI (APP). Multi-user switching (SVC-039).
@@ -907,7 +911,7 @@ Generation restore (PKG-060). History log durability (PKG-022). Application-stat
 - Depends on: SVC-007, SVC-015, PWR-013, PWR-012, BOOT-020, PKG-020
 - Baseline: §30, §32
 
-V1 exit requires reboot into a new generation and `os restore`. Init stops services in reverse dependency order with bounded timeouts, honors InhibitSuspend and InhibitIdle Capabilities, flushes storage and hands off to the BOOT generation switch. APP session inhibitors at V2 extend this path; they are not required here.
+V1 exit requires reboot into a new generation and `os restore`. Init stops services in reverse dependency order with bounded timeouts, honors InhibitSuspend and InhibitIdle Capabilities, flushes storage and hands off to the BOOT generation switch. APP session inhibitors at V2 extend this path; they are not required here. Required by V1-G11 (os restore returns to a previous generation).
 
 #### Out of scope
 Power Component Operations (PWR-013). Boot-success definition (BOOT-020). Logout UI and V2 inhibitors (APP-039).
@@ -937,6 +941,8 @@ Power Component Operations (PWR-013). Boot-success definition (BOOT-020). Logout
 - Invariants: I-077
 
 Collects structured log records from supervised services with per-service retention and Capability-gated read, in the OBS crash-capture and trace format. Required by V1 daily-driving debugging and by the V2 safe-mode session's log export.
+
+<!-- covers: GAP-0290 -->
 
 #### Out of scope
 Crash-capture format (OBS-026). Crash-report client (INS-020). Safe-mode export UI (APP-037).
@@ -1019,7 +1025,7 @@ Kernel detectors (KRN-041). Boot counter and last-known-good (BOOT-018). Crash-c
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020
+- Depends on: SVC-015, SVC-020, SVC-002, AUD-005, NET-015, HW-038, HW-030, GFX-083, BLD-020, SVC-022
 - Baseline: §32
 - Invariants: I-037
 
@@ -1048,7 +1054,7 @@ Per-service rebind implementations (AUD, NET, HW, GFX). Printing (HW-072). Chaos
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-005, SVC-027
+- Depends on: SVC-005, SVC-027, SVC-020
 - Baseline: §32
 - Invariants: I-037
 

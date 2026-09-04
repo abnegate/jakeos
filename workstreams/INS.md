@@ -142,7 +142,7 @@ Host-side USB writing for strangers (INS-035). Channel promotion of identical ar
 - Depends on: HW-001, HW-015, INS-004, INS-002, LAB-007, LAB-003
 - Baseline: §61, §62
 
-Run the scripted image path on H-002 and H-004 so V1 daily-driving is not QEMU-only. The Intel laptop and AMD desktop are the V1 hardware scope; the AMD laptop waits for V2.
+Run the scripted image path on H-002 and H-004 so V1 daily-driving is not QEMU-only. The Intel laptop and AMD desktop are the V1 hardware scope; the AMD laptop waits for V2. Required by V1-G02 (Core team daily-drives the OS): daily-driving needs the OS installed on H-002 and H-004, not only under QEMU.
 
 #### Out of scope
 Guided disk selection for preview (INS-011). Lab fixtures (LAB). SKU selection (HW-003).
@@ -327,6 +327,8 @@ Identity service and key-slots (SEC). Greeter chrome after first boot (APP-030).
 
 Provide a guided script (not a public graphical installer) that walks disk selection on H-002, H-004 and H-005 using the V2 disk-policy adr, then hands off to first-boot. V2 remains image-based install.
 
+<!-- covers: INV-1236 -->
+
 #### Out of scope
 Graphical installer (INS-027). First-boot account flow (INS-010). Dual-boot shrink of BitLocker volumes (INS-026).
 
@@ -353,7 +355,7 @@ Graphical installer (INS-027). First-boot account flow (INS-010). Dual-boot shri
 - Baseline: §9, §51, §63
 - Threats: T-008, T-022, T-023, T-028, T-035
 
-Extend the V0 system threat model with install-media tampering, dual-boot ESP attacks, update rollback abuse and crash-report leaks before the V3 installer and crash client ship. SEC owns the register; this document is the INS addendum.
+Extend the V0 system threat model with install-media tampering, dual-boot ESP attacks, update rollback abuse and crash-report leaks before the V3 installer and crash client ship. SEC owns the register; this document is the INS addendum. Required by V3-G04 (Crash reports are symbolicated and opted in): the documented privacy review and the no-disk-keys rule rest on this threat model.
 
 #### Out of scope
 System-wide threat register (SEC-002). Package supply-chain section (PKG-054). Crash-client implementation (INS-020).
@@ -1158,7 +1160,7 @@ Mirror topology and CDN (REL-024). Public repository (REL-050). Unattended answe
 - Depends on: BOOT-042, INS-026, INS-027, INS-041
 - Baseline: §63
 
-Author the install guide, recovery guide and dual-boot/BitLocker warnings from actual INS behaviour so DOC can publish them. The V3 documentation gate and usability study depend on this source.
+Author the install guide, recovery guide and dual-boot/BitLocker warnings from actual INS behaviour so DOC can publish them. The V3 documentation gate and usability study depend on this source. Required by V3-G02 (A stranger installs from public documentation).
 
 #### Out of scope
 Docs site (DOC-030, DOC-026). Secure Boot enrolment steps owned by BOOT (BOOT-042).
@@ -1363,7 +1365,7 @@ Delta fetch (INS-025). Channel picker UI (INS-046). Atomic commit unit test (PKG
 - Depends on: APP-040, INS-045, REL-004, REL-005
 - Baseline: §63
 
-Let the user pick and switch update channels (alpha, testing). REL owns promotion criteria; INS owns the Settings control that selects the channel and shows soak state. Stable waits for V4 REL infrastructure.
+Let the user pick and switch update channels (alpha, testing). REL owns promotion criteria; INS owns the Settings control that selects the channel and shows soak state. Stable waits for V4 REL infrastructure. Required by V3-G03 (Updater, automatic rollback and recovery): the alpha releases it counts are delivered through the channel selected here.
 
 #### Out of scope
 Promotion criteria (REL-004). Staged rollouts (REL-056). Updater apply path (INS-045).

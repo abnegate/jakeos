@@ -14,44 +14,44 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 | none |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 | none |
-| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4899 | none |
-| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4898 | none |
-| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4826 | none |
-| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4731 | none |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4698 | none |
-| CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | V0 | M | 4694 | none |
-| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4694 | none |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4691 | none |
-| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4149 | none |
-| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4148 | none |
-| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4100 | none |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 3845 | none |
-| ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3587 | none |
-| PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3554 | none |
+| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4900 | none |
+| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 | none |
+| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4829 | none |
+| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4734 | none |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 | none |
+| CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | V0 | M | 4697 | none |
+| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4697 | none |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 | none |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 | none |
+| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 | none |
+| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4101 | none |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 3865 | none |
+| ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3588 | none |
+| PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3555 | none |
 | BOOT-003 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | V0 | S | 3526 | none |
-| HW-003 | Decide the V1 through V2 Reference machine list and security criteria | V0 | M | 3354 | none |
-| LAB-002 | Decide lab site and the remote power, console and capture stack | V0 | S | 3298 | none |
-| CMP-008 | Decide Component panic, abort and typed exit-cause semantics | V0 | M | 3277 | none |
-| SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3169 | none |
-| PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2901 | none |
+| HW-003 | Decide the V1 through V2 Reference machine list and security criteria | V0 | M | 3360 | none |
+| LAB-002 | Decide lab site and the remote power, console and capture stack | V0 | S | 3304 | none |
+| CMP-008 | Decide Component panic, abort and typed exit-cause semantics | V0 | M | 3280 | none |
+| SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3170 | none |
+| PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2902 | none |
 | HW-002 | Decide pragmatic driver residency over microkernel purity | V0 | S | 2311 | none |
 | GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2007 | none |
+| SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1635 | none |
 | CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1629 | none |
-| SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1619 | none |
 | LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1589 | none |
 | CMP-031 | Study Genode composition, session routing and resource budgets | V0.5 | S | 1402 | none |
 | CMP-032 | Measure hardware address-space cost against SFI-style in-address-space isolation | V0.5 | M | 1368 | none |
 | TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | V0.5 | M | 1342 | none |
 | TXT-009 | Build the monospace grid text fast path for the Terminal | V0.5 | M | 1208 | none |
-| REL-001 | Decide release, SystemGeneration and Channel versioning | V0.5 | S | 872 | none |
-| OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 610 | none |
+| REL-001 | Decide release, SystemGeneration and Channel versioning | V0.5 | S | 873 | none |
+| OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 613 | none |
+| TSK-006 | Decide native expression of termination, cancellation and async notification without signals | V0 | S | 586 | none |
 | WIN-001 | Accept the Windows Personality scoping Decision | V0 | S | 555 | none |
-| TSK-006 | Decide native expression of termination, cancellation and async notification without signals | V0 | S | 496 | none |
-| HET-002 | Survey heterogeneous dispatch models before the ComputeDevice API | V0 | M | 461 | none |
+| HET-002 | Survey heterogeneous dispatch models before the ComputeDevice API | V0 | M | 463 | none |
 | MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | V1 | M | 365 | none |
 | CAP-026 | Survey KeyKOS, EROS, CapROS, Capsicum, Barrelfish and Theseus Capability patterns | V0.5 | M | 325 | none |
 | ENV-021 | Prototype environment.yaml versus Package-manifest profiles | V1 | S | 245 | none |
-| TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | V1 | S | 194 | none |
+| TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | V1 | S | 195 | none |
 | HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | V2 | S | 158 | none |
 | TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |

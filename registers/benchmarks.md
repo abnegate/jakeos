@@ -415,6 +415,15 @@ No superiority claim is made from this metric at any milestone.
 - Targets: V0.5 regression 10% vs V0; V1 regression 10% vs V0.5; V2 regression 10% vs V1; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
 - Status: defined
 
+### B-053 · Capability operation cost
+- Metric: Latency of Capability mint, attenuating derive, transfer over a Channel and revocation, measured per operation on the kernel fast path.
+- Method: p50 and p99 over 10 runs of 1,000,000 operations per kind, warm, frequency pinned, on every hardware entry in the milestone's scope; revocation measured at derivation depth 1 and 8.
+- Harness: bench:capability-ops
+- Baselines: Linux dup/close and SCM_RIGHTS fd passing, seL4 capability invoke figures as published
+- Targets: V0.5 publish; V1 publish; V2 regression 10% vs V1; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
+- Status: defined
+Publish-only until the capability encoding is frozen at V4; the harness exists so CAP-009's revocation bounds are measured rather than claimed.
+
 <!-- roadmap:generated:begin results -->
 | ID | Title | Status |
 | --- | --- | --- |
@@ -469,4 +478,5 @@ No superiority claim is made from this metric at any milestone.
 | B-049 | Interoperability paths | defined |
 | B-050 | Developer onboarding time | defined |
 | B-051 | All tracked benchmarks regression check | defined |
+| B-053 | Capability operation cost | defined |
 <!-- roadmap:generated:end -->

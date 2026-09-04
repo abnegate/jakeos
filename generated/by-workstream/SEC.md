@@ -80,7 +80,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | SEC-054 | Enrol enterprise CAs into the trust store | todo | blocked | S | SEC-016, SEC-015 |
-| SEC-055 | Verify installer full-disk encryption and recovery key | todo | blocked | S | SEC-017, SEC-025, INS-027, INS-007 |
+| SEC-055 | Verify installer full-disk encryption and recovery key | todo | blocked | S | SEC-017, SEC-025, INS-027, INS-007, SEC-052, SVC-023 |
 | SEC-056 | Support FIDO2 keys for disk unlock and login | todo | blocked | M | SEC-014, SEC-018, SEC-020 |
 | SEC-057 | Add fingerprint login through pluggable authenticators | todo | blocked | M | SEC-014, SEC-020, HW-063 |
 | SEC-058 | Verify measured-boot Generation attestation | todo | blocked | S | BOOT-034, SEC-053, BOOT-043 |

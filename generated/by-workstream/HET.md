@@ -28,7 +28,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | HET-012 | Define GPUDispatch cancellation after work is submitted to the GPU | todo | blocked | S | HET-019, TSK-003, TSK-017, TSK-010 |
-| HET-013 | Route Throughput to GPU and LowLatency to CPU in the V2 Demo | todo | blocked | S | HET-016, HET-017, HET-014, HET-015 |
+| HET-013 | Route Throughput to GPU and LowLatency to CPU in the V2 Demo | todo | blocked | S | HET-016, HET-017, HET-014, HET-015, SCH-049 |
 | HET-014 | Encode ComputeDevice dispatch preferences for workload placement | todo | blocked | M | HET-001, HET-009, MEM-034, MEM-041, IPC-042 |
 | HET-015 | Expose the GPU as a ComputeDevice on the chosen backend | todo | blocked | L | HET-003, HET-010, HET-009, HET-008, HET-007, MEM-046, GFX-046 |
 | HET-016 | Implement compute.dispatch as an asynchronous Operation | todo | blocked | M | HET-004, HET-014, HET-017, HET-019, HET-005, TSK-018 |

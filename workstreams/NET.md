@@ -62,6 +62,8 @@ Retained-subsystem kselftests (KRN-014). Native `Object<NetworkConnection>` (NET
 
 `Object<NetworkConnection>` is a §7 kernel object, so this V0 spike prototypes wrapping retained TCP/IP versus passing bytes through a userspace broker (and a hybrid kernel data path with userspace policy) and measures throughput and latency of each option. The report is the evidence for NET-008. The surface stays prototyped; this spike does not freeze it. Native software in the prototypes never sees a POSIX socket (I-005).
 
+<!-- covers: GAP-0538 -->
+
 #### Out of scope
 The placement Decision (NET-008). Standing throughput harness (NET-004). Capability granularity (NET-006).
 
@@ -153,7 +155,7 @@ Register ownership and cross-OS publication (BEN). Placement Decision (NET-008).
 - Threats: T-019
 - Invariants: I-005, I-049
 
-Native TLS consumes the SEC CA trust store with per-application pinning so signed-repository fetch and native HTTPS do not go through POSIX sockets. This Decision picks the library and how it holds the store Capability. Personality TLS stays in LNX and WIN.
+Native TLS consumes the SEC CA trust store with per-application pinning so signed-repository fetch and native HTTPS do not go through POSIX sockets. This Decision picks the library and how it holds the store Capability. Personality TLS stays in LNX and WIN. Required by V1-G05 (Wi-Fi connects, roams and survives suspend): the DNS-over-TLS resolver path NET-020 exercises needs a chosen native TLS library.
 
 #### Out of scope
 CA trust-store object (SEC-016). TLS implementation (NET-011). Personality certificate stores (SEC-024).
@@ -213,6 +215,8 @@ Broker implementation (NET-012). ResourceDomain bandwidth field (SCH-033). eBPF 
 - Invariants: I-005, I-009, I-010, I-049
 
 BASELINE.md has no networking section. This first NET adr records the open scope: preserve Linux TCP/IP, nftables and inherited drivers with native NetworkConnection plus SVC-hosted management; reject a rewritten userspace TCP stack and reject POSIX sockets as the native API (§57). Every later V1 NET build depends on this Decision. The V0 cap forbids placing this adr in V0.
+
+<!-- covers: INV-0065 -->
 
 #### Out of scope
 Data-path versus broker placement (NET-008). Capability granularity (NET-006). Supplicant choice (NET-009).
@@ -331,6 +335,8 @@ SDK crate publication (SDK-056). Docs site generation (DOC-014). Personality soc
 
 Implement the accepted TLS library on NetworkConnection so signed-repository fetch and native HTTPS consume SEC's CA trust store with per-application pinning. A Component without the store Capability cannot use default system CAs. Personality certificate stores stay in LNX and WIN.
 
+<!-- covers: EXTRA-019 -->
+
 #### Out of scope
 CA store object (SEC-016). Personality mirroring (SEC-024). Resolver DoT/DoH configuration (NET-019).
 
@@ -391,7 +397,7 @@ ResourceDomain network-policy field (SCH-033). nftables rewrite (forbidden by NE
 - Baseline: §24, §64
 - Invariants: I-034
 
-V1 daily-driving and the capability-denial demo need `os inspect` to show links, routes, NetworkConnection objects and held network Capabilities. OBS owns the inspect command; NET owns this data.
+V1 daily-driving and the capability-denial demo need `os inspect` to show links, routes, NetworkConnection objects and held network Capabilities. OBS owns the inspect command; NET owns this data. Required by V1-G05 (Wi-Fi connects, roams and survives suspend): NET-020 reads the Capability denial and link state from this inspect data.
 
 #### Out of scope
 Inspect CLI rendering (SDK-007). Kernel inspect interface (OBS-006). Power and service inspect (PWR, SVC).
@@ -483,7 +489,7 @@ Shell picker UI (APP-041). Supplicant Decision (NET-009). Address assignment (NE
 - Threats: T-001
 - Invariants: I-019, I-021
 
-V1 `os env` creates a NetworkNamespace isolating service ports without ambient network authority. NET provides the primitive; ENV-003 consumes it. Retained kernel namespaces underneath, not a rewritten stack. Native software never configures namespace filesystems as a semantic step.
+V1 `os env` creates a NetworkNamespace isolating service ports without ambient network authority. NET provides the primitive; ENV-003 consumes it. Retained kernel namespaces underneath, not a rewritten stack. Native software never configures namespace filesystems as a semantic step. Required by V1-G04 (Cached os env enter presents a working shell): declared services are reachable without ambient network authority only through the NetworkNamespace primitive ENV-003 consumes.
 
 #### Out of scope
 environment.yaml consumption (ENV-003, ENV-006). Personality netns (LNX-045). ResourceDomain network policy (SCH-033).
@@ -1009,7 +1015,7 @@ Settings panel (APP-041). Personality NM/proxy APIs (LNX-068, WIN). Resolver imp
 - Baseline: §55, §62
 - Invariants: I-054, I-095
 
-V3 scope: Wi-Fi hardware breadth beyond target machines via inherited Linux drivers and the compatibility database. NET supplies connect, scan and DHCP scenarios the REL probe and HCL publish; HW owns chipset listing. Universal PC compatibility is not promised (I-095).
+V3 scope: Wi-Fi hardware breadth beyond target machines via inherited Linux drivers and the compatibility database. NET supplies connect, scan and DHCP scenarios the REL probe and HCL publish; HW owns chipset listing. Universal PC compatibility is not promised (I-095). Required by 1.0-G07 (Installer with FDE and Secure Boot on every Tier 1 machine): the Tier 2 community HCL rows that gate publishes carry the Wi-Fi verdicts these scenarios produce.
 
 #### Out of scope
 Chipset enablement notes (HW-079). Probe binary and HCL publication (REL-035, REL-048). Tier 1 suite (NET-037).

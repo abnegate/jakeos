@@ -656,6 +656,8 @@ Per-commit dashboard (BLD-052). V4 empty-quarantine program (BLD-072).
 
 V0.5 exit requires that selecting the previous generation at boot restores kernel, compositor and Packages (§30, §60). The V0 harness covered reboot and kexec only. This extends it with firmware-driven boot-menu selection on H-001 and H-002.
 
+<!-- covers: GAP-0112 -->
+
 #### Out of scope
 Boot menu presentation (BOOT-014). Generation compose and rollback test content (PKG-016, PKG-015).
 
@@ -831,6 +833,8 @@ Decision (BLD-018). Pixel goldens (GFX-025). Tree test driver content (ACC-014).
 
 V0.5 hardware scope includes QEMU/KVM with virtio-gpu for compositor CI (H-003). This extends the V0 q35 matrix so GFX jobs have a GPU-less path and a virtio-gpu path without requiring H-002 for every UI change.
 
+Required by V0.5-G01 (Native compositor presents on the reference GPU): H-003 covers the same path in CI.
+
 #### Out of scope
 Compositor virtio-gpu implementation (GFX-041). Golden-image comparison (GFX-025). Physical GPU jobs (BLD-007).
 
@@ -857,6 +861,8 @@ Compositor virtio-gpu implementation (GFX-041). Golden-image comparison (GFX-025
 - Risks: R-060
 
 Implements BLD-039 in debug and release profiles and in the double-build job so the V1 image is the policy, not a local override. Where the Decision refuses PGO, CI profiles do not enable it.
+
+<!-- covers: GAP-0104 -->
 
 #### Out of scope
 Decision and spike (BLD-039, BLD-051). Independent rebuilders (BLD-074).
@@ -1124,6 +1130,8 @@ Suite content (SDK-036). ABI conformance cases (ABI, BLD-015). Host SDK packages
 
 V1 daily-driving and crash reports need symbols for immutable stripped binaries. OBS packages debuginfo; BLD publishes the symbols-preserved profile by content hash so a stripped SystemGeneration can be symbolicated. Debuginfod hosting is REL/OBS operation.
 
+<!-- covers: GAP-0362 -->
+
 #### Out of scope
 Debuginfod server operation (OBS, REL). Capture format (OBS). Crash-report client (INS).
 
@@ -1296,6 +1304,8 @@ DevelopmentEnvironment object (ENV-013). `os env` CLI (SDK-041). Full self-host 
 
 V1 Intel-laptop gates (Wi-Fi, suspend cycles, GPU-accelerated Linux apps) put the lab on the critical path. LAB owns LAVA-like scheduling; BLD submits jobs and consumes results so nightly and selected post-merge checks include H-002 and H-004.
 
+<!-- covers: GAP-0372 -->
+
 #### Out of scope
 Scheduler implementation (LAB-010). Machine racking (LAB). Suspend fixtures (LAB-009). Quiet perf fleet (BLD-045).
 
@@ -1355,6 +1365,8 @@ Quiet configuration (BLD-048). Blocking hook (BLD-033). BEN harnesses (BEN). Lab
 
 V1 self-host and SDK v1 need a pinned userspace rustc distinct from the kernel Rust-for-Linux pin, with a next-candidate canary that does not block kernel builds (§50, §61).
 
+Required by V1-G01 (Self-hosted image builds bit-for-bit): a bit-for-bit image needs a pinned userspace toolchain.
+
 #### Out of scope
 Kernel pin (BLD-013, KRN-004). Sysroot contents (BLD-047). Layer 3 std crate (SDK).
 
@@ -1382,6 +1394,8 @@ Kernel pin (BLD-013, KRN-004). Sysroot contents (BLD-047). Layer 3 std crate (SD
 - Invariants: I-089
 
 V1 bit-for-bit self-host and later independent rebuilders need a content-addressed sysroot, not an ambient distro toolchain, while still carrying only upstream rustc and LLVM (§27, I-089).
+
+<!-- covers: GAP-0092 -->
 
 #### Out of scope
 Userspace rustc version (BLD-046). Store substrate (STO). Independent rebuilders (BLD-074).
@@ -1594,6 +1608,8 @@ Infrastructure definitions (BLD-034). Lab scheduler internals (LAB). Funding (GO
 
 The V2 generator needs SPDX versus CycloneDX versus both decided before store and repository SBOMs and before V3 attestations. REL publishes; this Decision only picks the format BLD emits from the content-addressed graph.
 
+<!-- covers: GAP-0352 -->
+
 #### Out of scope
 Generator (BLD-055). Publication and signing (REL-051). License allowlist (GOV).
 
@@ -1708,6 +1724,8 @@ Bare-metal JakeOS runners (BLD-064). Installer product (INS). Nested-virt KVM pr
 
 V2 hardware scope is exactly three named machines: H-002, H-004 and H-005 (§62). This extends lab CI so nightly and qualification jobs cover the AMD desktop, Intel laptop and AMD laptop. NVIDIA remains experimental and non-gating.
 
+Required by V2-G01 (Desktop shell passes the UX script on all three machines) and every V2 gate scoped to H-002, H-004 and H-005.
+
 #### Out of scope
 Racking (LAB-018). NVIDIA bring-up (HW, GFX). Six-machine nightly (BLD-069).
 
@@ -1789,6 +1807,8 @@ W1 scenarios and ratings (WIN-051, WIN-009). GPU CTS nightly (LAB-019). Quiet pe
 
 V3 exit: the updater delivers consecutive alpha releases (§63). BLD produces the nightly SystemGeneration images REL promotes without rebuilding.
 
+Required by V3-G03 (Updater, automatic rollback and recovery): the updater delivers consecutive alpha releases built here.
+
 #### Out of scope
 Channel operation and signing (REL-005, REL-019). Updater client (INS). Promote-without-rebuild mechanics (BLD-065).
 
@@ -1840,7 +1860,7 @@ Advisory text and disclosure process (REL). Signing keys (REL-041). Public dashb
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BLD-035, BLD-042
+- Depends on: BLD-035, BLD-042, NET-023
 - Baseline: §51, §63
 
 V3 exit: kernel and IPC fuzzing run continuously in CI with no known open crasher older than the window named by the V3 gate. This task turns BLD-035 inventory into a release-qualification failure. Workstreams own closing their crashers.
@@ -2016,6 +2036,8 @@ SBOM generation (BLD-055). Signed publication (REL-051). Format Decision (BLD-05
 - Risks: R-037
 
 V3 hardware scope: six Tier 1 machines fully tested each release, including NVIDIA (H-002, H-004, H-005, H-006, H-007, H-008). BLD schedules the nightly matrix LAB hosts.
+
+Required by V3-G01 (Installer completes on Tier 1 with full-disk encryption): automated runs on every Tier 1 machine need this nightly matrix.
 
 #### Out of scope
 Racking (LAB-021). NVIDIA driver stance (HW, GFX). Ten-machine nightly (BLD-078).

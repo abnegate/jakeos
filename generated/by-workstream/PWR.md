@@ -16,7 +16,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| PWR-006 | Publish idle power draw and battery runtime on the Intel laptop | todo | blocked | M | PWR-003, PWR-009, PWR-010, LAB-013, BEN-018 |
+| PWR-006 | Publish idle power draw and battery runtime on the Intel laptop | todo | blocked | M | PWR-003, PWR-009, PWR-010, LAB-013, BEN-018, TSK-047 |
 | PWR-007 | Decide hibernation policy for 1.0 | todo | blocked | S | PWR-002, SEC-031, STO-014 |
 | PWR-008 | Declare Layer 2 power Interface freeze candidates | todo | blocked | S | PWR-005, PWR-001, PWR-013, PWR-010, PWR-011, PWR-012, ABI-034, IPC-035 |
 | PWR-009 | Enable platform idle and frequency power management on reference machines | todo | blocked | M | PWR-004, PWR-002, SCH-038, HW-015 |
@@ -24,7 +24,7 @@
 | PWR-011 | Implement display power management tied to idle, lock and lid | todo | blocked | M | PWR-013, PWR-012, SEC-028, GFX-008, GFX-045, GFX-053 |
 | PWR-012 | Implement InhibitIdle and InhibitSuspend Capabilities | todo | blocked | M | PWR-001, PWR-005, PWR-013, CAP-036, CAP-003, SEC-028 |
 | PWR-013 | Implement the Power Component with suspend and shutdown Operations | todo | blocked | M | PWR-001, PWR-005, SVC-015, SVC-011, SVC-007, IPC-035, CAP-003 |
-| PWR-014 | Implement suspend and resume cycle gates on laptop and desktop | todo | blocked | L | PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028 |
+| PWR-014 | Implement suspend and resume cycle gates on laptop and desktop | todo | blocked | L | PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028, MEM-044 |
 | PWR-015 | Expose battery, thermal, inhibit and suspend state through inspect | todo | blocked | S | PWR-013, PWR-010, PWR-012, OBS-019, SDK-007 |
 
 ## V2

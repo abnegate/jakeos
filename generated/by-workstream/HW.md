@@ -47,7 +47,7 @@
 | HW-029 | Build the user-space driver framework over Capability<Device> | todo | blocked | L | HW-006, HW-017, HW-008, HW-026, HW-016 |
 | HW-030 | Restart crashed user-space drivers and re-issue Device Capabilities | todo | blocked | M | HW-029, HW-031 |
 | HW-031 | Ship selected USB HID classes as user-space drivers | todo | blocked | M | HW-029, HW-014, HW-011, HW-016 |
-| HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | blocked | S | HW-015, HW-024, HW-011, HW-012 |
+| HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | blocked | S | HW-015, HW-024, HW-011, HW-012, HW-027, HW-030 |
 
 ## V2
 
@@ -116,14 +116,14 @@
 | HW-083 | Automate Tier 2 to Tier 1 promotion from probe data and suite results | todo | blocked | M | HW-043, HW-065, HW-086 |
 | HW-084 | Ship eSCL/WSD and SANE scanning with Capability<Scanner> via a system dialog | todo | blocked | L | HW-041, HW-071, NET-024 |
 | HW-085 | Implement signed third-party driver and firmware Packages with revocation | todo | blocked | M | HW-082, HW-029, HW-047 |
-| HW-086 | Run the full hardware suite on every Tier 1 machine each release candidate | todo | blocked | L | HW-081, HW-080, HW-070, HW-084, HW-077 |
+| HW-086 | Run the full hardware suite on every Tier 1 machine each release candidate | todo | blocked | L | HW-081, HW-080, HW-070, HW-084, HW-077, HW-075, HW-076 |
 
 ## 1.0
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | HW-087 | Sign off hardware soak: no P0 driver or firmware regression on Tier 1 | todo | blocked | S | HW-089, LAB-025 |
-| HW-088 | Publish the 1.0 Hardware Compatibility List and per-machine lab results | todo | blocked | M | HW-089, HW-083 |
+| HW-088 | Publish the 1.0 Hardware Compatibility List and per-machine lab results | todo | blocked | M | HW-089, HW-083, HW-053 |
 | HW-089 | Verify every listed Tier 1 feature on the 1.0 release candidate | todo | blocked | M | HW-086 |
 
 ## LATER

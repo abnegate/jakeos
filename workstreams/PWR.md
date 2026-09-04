@@ -31,7 +31,7 @@ Scheduling intent mapping, ResourceDomain budgets and thermal-intent consumption
 - Decision: D-0232
 - Invariants: I-009, I-010, I-054, I-055, I-040
 
-§61 names power management as a V1 requirement without a Power Component, an inhibit model, or a statement of whether ACPI is a kernel Object. This Decision is the baseline-gap scope for PWR: where suspend, shutdown, Battery, display power and inhibit live relative to retained Linux ACPI, and which of those operations are Layer 2 Interfaces versus Layer 1. ACPI is a mature mechanism (§2); the native programming model is not logind.
+§61 names power management as a V1 requirement without a Power Component, an inhibit model, or a statement of whether ACPI is a kernel Object. This Decision is the baseline-gap scope for PWR: where suspend, shutdown, Battery, display power and inhibit live relative to retained Linux ACPI, and which of those operations are Layer 2 Interfaces versus Layer 1. ACPI is a mature mechanism (§2); the native programming model is not logind. Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 Suspend state s2idle versus S3 (PWR-002). Hibernation product policy (PWR-007). UPower and logind D-Bus (LNX-069). Service supervisor (SVC-015).
@@ -60,7 +60,7 @@ Suspend state s2idle versus S3 (PWR-002). Hibernation product policy (PWR-007). 
 - Decision: D-0233
 - Risks: R-027
 
-V1-G07 requires automated suspend and resume on H-004 and H-002. The platform offers s2idle and S3; mixing them without a Decision makes the cycle harness and wake-source policy untestable. Hibernation is a later Decision. This records one default suspend state for V1 reference machines and the rule for a per-machine fallback.
+V1-G07 requires automated suspend and resume on H-004 and H-002. The platform offers s2idle and S3; mixing them without a Decision makes the cycle harness and wake-source policy untestable. Hibernation is a later Decision. This records one default suspend state for V1 reference machines and the rule for a per-machine fallback. Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 Hibernation product policy (PWR-007). Disk-key eviction on suspend (SEC-031). Cycle harness (PWR-014).
@@ -90,6 +90,8 @@ Hibernation product policy (PWR-007). Disk-key eviction on suspend (SEC-031). Cy
 
 V1-G17 publishes B-031 on H-004. BEN owns the register method; this spike places the meters, names idle and mixed workloads, and records comparison-image rules on the Intel laptop so the V1 energy gate is not the first time the path runs. Software counters are not evidence.
 
+<!-- covers: GAP-0547 -->
+
 #### Out of scope
 Meter procurement (LAB-006). Register ownership and V1 publication (BEN-024, PWR-006). Drain-cycle CI jobs (LAB-013).
 
@@ -117,7 +119,7 @@ Meter procurement (LAB-006). Register ownership and V1 publication (BEN-024, PWR
 - Risks: R-022, R-027
 - Invariants: I-054
 
-V1 Intel-laptop suspend and battery gates are a cliff unless the platform paths are known at V0.5. This spike probes s2idle versus S3, cpufreq drivers, battery and thermal platform nodes, and lid or power-button events on H-004 and H-002 without making any of those a V0.5 gate. ACPI remains a retained mechanism (I-054).
+V1 Intel-laptop suspend and battery gates are a cliff unless the platform paths are known at V0.5. This spike probes s2idle versus S3, cpufreq drivers, battery and thermal platform nodes, and lid or power-button events on H-004 and H-002 without making any of those a V0.5 gate. ACPI remains a retained mechanism (I-054). Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 SKU bring-up for daily-driving (HW-015). Suspend-state Decision (PWR-002). Cycle harness (PWR-014).
@@ -146,7 +148,7 @@ SKU bring-up for daily-driving (HW-015). Suspend-state Decision (PWR-002). Cycle
 - Baseline: §12, §32, §65, §66
 - Invariants: I-040, I-055
 
-Freeze discipline requires a prototype before the service-model Decision. This spike builds Power, Battery, DisplayPower, InhibitIdle and InhibitSuspend as typed Interfaces over Channels so V1 implementation is not a paper API. Nothing Layer 1 is frozen (I-040). High-level power policy stays out of the kernel ABI (I-055).
+Freeze discipline requires a prototype before the service-model Decision. This spike builds Power, Battery, DisplayPower, InhibitIdle and InhibitSuspend as typed Interfaces over Channels so V1 implementation is not a paper API. Nothing Layer 1 is frozen (I-040). High-level power policy stays out of the kernel ABI (I-055). Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 The service-model Decision (PWR-001). Freeze-candidate declaration (PWR-008). Production Power Component (PWR-013).
@@ -171,7 +173,7 @@ The service-model Decision (PWR-001). Freeze-candidate declaration (PWR-008). Pr
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: PWR-003, PWR-009, PWR-010, LAB-013, BEN-018
+- Depends on: PWR-003, PWR-009, PWR-010, LAB-013, BEN-018, TSK-047
 - Baseline: §54, §61
 - Benchmarks: B-031
 - Risks: R-022, R-027
@@ -206,6 +208,8 @@ Register definition (BEN). Meter hardware (LAB-006). Mixed-workload publication 
 - Threats: T-009, T-010
 
 V2 lists hibernate as optional. Shipping a hibernation image without a Decision leaves T-010 (leftover image) and T-009 (suspended keys) unaddressed. This Decision chooses whether 1.0 has no hibernate, suspend-then-hibernate after idle, or full hibernate with an encrypted image. SEC owns disk-key eviction and lockdown; STO owns swap layout; this Decision is the power-product choice those workstreams constrain.
+
+<!-- covers: GAP-0201 -->
 
 #### Out of scope
 Disk-key eviction and lockdown (SEC-031). Swap and image layout (STO-014). V2 delivery (PWR-020).
@@ -383,7 +387,7 @@ Shell inhibitor list UI (APP-039). UPower and logind inhibitors (LNX-069). Displ
 - Baseline: §32, §61
 - Invariants: I-037, I-006
 
-§61 requires power management as a native service. This is the accepted Layer 2 Power Component: suspend, resume, shutdown and reboot as Operations, restartable under SVC, invoked by init rather than by logind. Native software never sees logind, systemd or POSIX reboot APIs (I-006).
+§61 requires power management as a native service. This is the accepted Layer 2 Power Component: suspend, resume, shutdown and reboot as Operations, restartable under SVC, invoked by init rather than by logind. Native software never sees logind, systemd or POSIX reboot APIs (I-006). Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 Shutdown ordering and generation switch (SVC-030). Cycle soak (PWR-014). Hibernate image (PWR-020). UPower (LNX-069).
@@ -408,7 +412,7 @@ Shutdown ordering and generation switch (SVC-030). Cycle soak (PWR-014). Hiberna
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028
+- Depends on: PWR-002, PWR-013, PWR-011, PWR-015, LAB-009, LAB-011, HW-015, GFX-053, BLD-044, SEC-028, MEM-044
 - Baseline: §61
 - Risks: R-027
 - Threats: T-009
@@ -445,7 +449,7 @@ Wi-Fi reconnect implementation (NET-021). Audio stream restore (AUD-012). Memory
 - Baseline: §24, §61, §64
 - Invariants: I-034
 
-V1 daily-driving and the suspend and battery gates are unverifiable without inspectable power state. PWR supplies Battery, inhibitors, suspend state, wake sources, governor and platform thermal readings to the OBS provider path. SDK owns the `os inspect` command.
+V1 daily-driving and the suspend and battery gates are unverifiable without inspectable power state. PWR supplies Battery, inhibitors, suspend state, wake sources, governor and platform thermal readings to the OBS provider path. SDK owns the `os inspect` command. Required by V1-G07 (Suspend and resume succeed on laptop and desktop).
 
 #### Out of scope
 `os inspect` CLI (SDK-007). Inspect transport (OBS-019). Thermal trip policy (PWR-022).
@@ -473,6 +477,8 @@ V1 daily-driving and the suspend and battery gates are unverifiable without insp
 - Baseline: §23, §62
 
 APP power Settings needs per-application energy attribution that only ResourceDomain accounting can give (§23). PWR maps RAPL or powercap samples onto domains so Settings can list them. SCH owns budgets; this task is the meter.
+
+<!-- covers: GAP-0312 -->
 
 #### Out of scope
 Settings UX (APP-035). Domain energy policy (SCH-045). B-031 whole-machine publication (PWR-006).
@@ -528,6 +534,8 @@ Cycle functional gate (PWR-024). Register definition (BEN). Windows image pin (B
 - Baseline: §62
 
 V2 laptop scope includes brightness. HW-042 decides whether ambient-light auto-brightness is in for the device class; this task implements the brightness Interface and, when that Decision includes ALS, the optional ALS path. APP owns the slider and OSD. Function keys are HW.
+
+<!-- covers: INV-1219 -->
 
 #### Out of scope
 Function keys and keyboard backlight (HW-050). Slider and OSD (APP-042, APP-035). Sensor-class Decision (HW-042).
@@ -755,7 +763,7 @@ Suspend functional re-run (PWR-026). Register ownership (BEN).
 - Baseline: §62, §63
 - Risks: R-027
 
-V3 hardware scope adds H-006, H-007 and H-008. Energy republish is not evidence if suspend, battery and thermal were never proven on the new machines. This re-runs the suspend harness, Battery reporting, thermal policy and lid or dock paths on every V3 Tier 1 machine.
+V3 hardware scope adds H-006, H-007 and H-008. Energy republish is not evidence if suspend, battery and thermal were never proven on the new machines. This re-runs the suspend harness, Battery reporting, thermal policy and lid or dock paths on every V3 Tier 1 machine. Required by V3-G17 (Linux compatibility overhead published on L4).
 
 #### Out of scope
 HCL publication (REL-048). Energy numbers (PWR-025). NVIDIA driver (HW).

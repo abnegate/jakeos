@@ -398,7 +398,7 @@ The mapping decision (SCH-004). Audio server (AUD). Compositor (GFX).
 - Baseline: §22, §54
 - Benchmarks: B-010
 
-Stand up `bench:sched-wakeup`: wakeup-to-run p50/p99/p99.9 per intent class against a Background and Throughput flood, beside Linux nice and SCHED_FIFO on the same machine. V0.5 frame-time gates depend on Interactive and Deadline behaviour. Later rungs re-run this harness under B-051.
+Stand up `bench:sched-wakeup`: wakeup-to-run p50/p99/p99.9 per intent class against a Background and Throughput flood, beside Linux nice and SCHED_FIFO on the same machine. V0.5 frame-time gates depend on Interactive and Deadline behaviour. Later rungs re-run this harness under B-051. Required by V0.5-G17 (Prior benchmarks show no unexplained regression): B-010 is a tracked benchmark with a V0.5 regression target, and this harness produces its V0.5 report.
 
 #### Out of scope
 Audio callback jitter (SCH-028). Compositor frame latency (GFX, B-018).
@@ -548,6 +548,8 @@ Implementation (SCH-024). Operation priority model (TSK-027).
 
 Export typed per-domain CPU, memory, object-count and wakeup-delay data over a Channel for OBS `os inspect`/`os trace` and the later shell resource view. V0 shipped counters and tracepoints; V0.5 is the structured export.
 
+<!-- covers: INV-0444, INV-0465 -->
+
 #### Out of scope
 OBS CLI and trace UI (OBS). Shell resource panel (APP).
 
@@ -633,7 +635,9 @@ Profile schema (SCH-021). Per-Task override already in SCH-010.
 - Depends on: SCH-020, SCH-006, SCH-008, PKG-011, SVC-011
 - Baseline: §23, §28, §32, §66
 
-Define a versioned Layer 2 schema so a Package or service declares domain budget, intent and latency policy. Supervisor restarts (compositor crash-rebind) recreate identical domains from the profile. Not frozen; evolution follows S-014.
+Define a versioned Layer 2 schema so a Package or service declares domain budget, intent and latency policy. Supervisor restarts (compositor crash-rebind) recreate identical domains from the profile. Not frozen; evolution follows S-014. Required by V0.5-G03 (Compositor crash recovery rebinds every window).
+
+<!-- covers: INV-0440 -->
 
 #### Out of scope
 Package manifest identity (PKG). Service restart (SVC). Layer 1 freeze (ABI).
@@ -904,7 +908,7 @@ Build-time of the image (B-039, BLD). Editor features (APP).
 - Risks: R-007, R-054
 - Invariants: I-040, I-055
 
-Decide which domain and intent operations sit in Layer 1 versus the Layer 2 policy-profile schema, recorded against S-009. L1 surfaces are prototyped through V0, freeze candidates at V1, frozen at V4 (I-040). High-level profiles stay in userspace (I-055). This adr names candidates; it does not freeze.
+Decide which domain and intent operations sit in Layer 1 versus the Layer 2 policy-profile schema, recorded against S-009. L1 surfaces are prototyped through V0, freeze candidates at V1, frozen at V4 (I-040). High-level profiles stay in userspace (I-055). This adr names candidates; it does not freeze. Required by V4-G01 (Layer 1 ABI frozen with a conformance suite): the S-009 freeze and its conformance suite (SCH-058) start from the candidate list this decision records.
 
 #### Out of scope
 The V4 freeze (ABI-049). Conformance suite (SCH-058).
@@ -1313,7 +1317,7 @@ Syscall implementation (LNX). Native SDK policy (SCH-022).
 - Baseline: §22, §54, §62
 - Benchmarks: B-019
 
-Run build, indexing, sync and a game concurrently and publish per-intent latency and deadline-miss rates on H-002, H-004 and H-005 beside Linux. This is the SCH half of the V2 compositor deadline-miss gate (B-019).
+Run build, indexing, sync and a game concurrently and publish per-intent latency and deadline-miss rates on H-002, H-004 and H-005 beside Linux. This is the SCH half of the V2 compositor deadline-miss gate (B-019). Required by V2-G16 (Prior benchmarks show no unexplained regression): B-019 is published in that session and this harness is its scheduler half.
 
 #### Out of scope
 Compositor miss counting (GFX-060). Gaming FPS (B-027, WIN).
@@ -1634,7 +1638,7 @@ Fuzz infrastructure (BLD). Operation fuzz (TSK).
 - Depends on: SCH-001, SCH-013, SCH-028, SCH-029, SCH-044, BEN-053
 - Baseline: §54, §62, §63
 
-Re-run the SCH harnesses on every V3 Tier 1 topology (H-002, H-004, H-005, H-006, H-007, H-008). B-051 carries the regression band versus V2. Public numbers for B-010, B-011, B-019 and B-031 live in the register, not in this task's prose.
+Re-run the SCH harnesses on every V3 Tier 1 topology (H-002, H-004, H-005, H-006, H-007, H-008). B-051 carries the regression band versus V2. Public numbers for B-010, B-011, B-019 and B-031 live in the register, not in this task's prose. Required by V3-G15 (Prior benchmarks re-run across Tier 1): the B-010, B-011 and B-019 rows of that re-run come from these harnesses.
 
 #### Out of scope
 Harness implementation (earlier SCH bench tasks). Dashboards (BEN, BLD).
@@ -1661,7 +1665,7 @@ Harness implementation (earlier SCH bench tasks). Dashboards (BEN, BLD).
 - Depends on: SCH-045, SCH-037, SCH-038, PWR-027
 - Baseline: §22, §23, §54, §62
 
-V4 publishes idle and mixed-workload battery runtime for every Tier 1 laptop beside mainline Linux (B-031). Tune per-machine EPP and core-selection tables and record results without superiority claims.
+V4 publishes idle and mixed-workload battery runtime for every Tier 1 laptop beside mainline Linux (B-031). Tune per-machine EPP and core-selection tables and record results without superiority claims. Required by V4-G17 (Prior benchmarks within the V4 regression band): B-031 for every Tier 1 laptop is one of the metrics published there.
 
 #### Out of scope
 Power meters and method (PWR, LAB, BEN). Charge-threshold UX (APP).
@@ -1798,7 +1802,7 @@ The global ABI statement (ABI). Layer 3 semver (SDK).
 - Baseline: §6, §22, §65
 - Risks: R-034
 
-Parking rung: custom user-supplied scheduling policies scoped to a domain depend on KRN's eBPF role adr and add divergence risk (R-034). Deferred until intent classes are frozen and demand is shown. Native software still expresses intent, not BPF programs, unless this task returns with an accepted follow-up Decision.
+Parking rung: custom user-supplied scheduling policies scoped to a domain depend on KRN's eBPF role adr and add divergence risk (R-034). Deferred until intent classes are frozen and demand is shown. Native software still expresses intent, not BPF programs, unless this task returns with an accepted follow-up Decision. Required by the design critique: "Decide eBPF's native role (tracing substrate, sched_ext, network policy)".
 
 #### Out of scope
 eBPF tracing substrate (OBS, KRN). Frozen intent classes (this task must not unfreeze S-009).

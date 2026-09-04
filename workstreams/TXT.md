@@ -244,6 +244,8 @@ Store substrate (STO). `os package` CLI (PKG-034). FontMatcher (TXT-006).
 
 A shared glyph atlas is a font-parsing attack surface and a cross-domain channel (T-030, T-015). V0.5 applications parse fonts from Packages and user-installed objects, so trust boundaries, who parses untrusted bytes, and what I-083 requires of a minted atlas must be written before placement and atlas decisions. The V1 side-channel statement (SEC-029) is later; this document names the TXT surface that statement must cover.
 
+<!-- covers: EXTRA-015 -->
+
 #### Out of scope
 SEC V0 threat register (SEC-002). V1 side-channel position statement (SEC-029). Atlas implementation (TXT-020).
 

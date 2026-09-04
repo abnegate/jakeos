@@ -49,7 +49,7 @@ rebuild CI. GOV owns licensing policy. ENV owns environment.yaml resolution.
 Measure wall time to roll back to the previous SystemGeneration, including
 boot-menu selection of generation N after N+1 was the default, on the V0.5
 hardware scope. Results publish under B-022; this task owns the rollback
-segment of that metric.
+segment of that metric. Required by V0.5-G16 (Compositor restart-to-rebound published).
 
 #### Out of scope
 BOOT-006 owns the reboot-into-previous-generation
@@ -79,7 +79,7 @@ segment. Generation switch time is PKG-002.
 
 Measure wall time to compose SystemGeneration N+1 from an updated Package
 set and to switch the next-boot default to it, plus store growth per
-generation, on the V0.5 hardware scope. Results publish under B-022.
+generation, on the V0.5 hardware scope. Results publish under B-022. Required by V0.5-G16 (Compositor restart-to-rebound published).
 
 #### Out of scope
 Rollback time (PKG-001). INS image-builder time.
@@ -1192,7 +1192,7 @@ V1 two-builder CI (PKG-065).
 
 Assemble the 20-Package benchmark corpus from native applications and
 shared dependencies so V0.5 install-time and dedup-ratio gates measure a
-fixed set. The corpus is a PKG artefact, not a compatibility corpus C-ID.
+fixed set. The corpus is a PKG artefact, not a compatibility corpus C-ID. Required by V0.5-G16 (Compositor restart-to-rebound published).
 
 #### Out of scope
 B-021 harnesses (PKG-003,
@@ -1772,6 +1772,8 @@ the system threat model. SEC owns the system document; this task is the
 supply-chain section covering malicious Packages, build-worker compromise
 and update-channel compromise.
 
+<!-- covers: GAP-0165 -->
+
 #### Out of scope
 SEC-002. INS-012.
 
@@ -1833,6 +1835,8 @@ Declare handled content types and URL schemes in the Package manifest.
 This is the manifest side of the default-application registry
 (SVC-019). V1 daily-driving needs file and link
 opening to route through Capabilities.
+
+<!-- covers: GAP-0280 -->
 
 #### Out of scope
 SVC-019. APP File Browser and launcher.
@@ -1983,7 +1987,7 @@ Package-set restore (PKG-077). Configuration restore
 
 Write the Package format and manifest reference for SDK v1. DOC generates
 IDL docs; this format reference is PKG-authored so developers can package
-applications.
+applications. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 DOC IDL generation. SDK crate API (S-031). Public packaging guide
@@ -2382,7 +2386,7 @@ rollback UX.
 
 Expose a typed SystemGeneration management interface so Settings and the
 INS rollback UX can list, switch and restore generations without parsing
-CLI output. V2 exit: restore a previous generation from the settings UI.
+CLI output. V2 exit: restore a previous generation from the settings UI. Required by V2-G08 (Snapshots, rollback UI and automatic rollback).
 
 #### Out of scope
 INS-014. APP Settings chrome. `os restore` CLI.
@@ -2658,7 +2662,7 @@ INS-056. BOOT fallback.
 
 Implement delta object transfer for repository updates: store-level chunk
 or object diff fetch used by the INS updater. V3 scope includes delta
-updates.
+updates. Required by V3-G16 (Install, first-boot and update-apply time published).
 
 #### Out of scope
 INS-025 client orchestration. REL delta encoding
@@ -2716,7 +2720,7 @@ REL-021. SDK-080. Signing keys.
 
 Write the public packaging guide for native and personality applications.
 V3 exit: strangers package and publish unaided. DOC publishes the site;
-PKG authors the packaging content.
+PKG authors the packaging content. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 DOC site. SDK hello-component guide. GOV-054.
@@ -2804,7 +2808,7 @@ REL-036. REL-033.
 Build `os store verify` and repair so a recovery environment can restore a
 system whose current generation is corrupted. INS owns the recovery
 environment; PKG owns walking generation hashes and replacing bad objects
-from the repository or from a sibling generation.
+from the repository or from a sibling generation. Required by V3-G03 (Updater, automatic rollback and recovery).
 
 #### Out of scope
 INS-041. STO-061.

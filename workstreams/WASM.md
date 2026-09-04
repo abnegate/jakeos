@@ -119,7 +119,7 @@ Runtime Decision (WASM-007). Host implementation (WASM-012). B-047 harness (WASM
 - Baseline: §13, §28, §34
 - Risks: R-017
 
-Names the Wasm Component-kind artefact (module, WIT world, requested Capability) so the V0.5 Package format reserves kind fields before the first immutable install (§28, §34). PKG owns the manifest schema; this document is the Wasm layout PKG stores.
+Names the Wasm Component-kind artefact (module, WIT world, requested Capability) so the V0.5 Package format reserves kind fields before the first immutable install (§28, §34). PKG owns the manifest schema; this document is the Wasm layout PKG stores. Required by V1-G12 (Semantic interfaces and a Wasm channel prototype).
 
 #### Out of scope
 Manifest schema implementation (PKG-031). AOT compilation (WASM-005). Precompiled-artefact store objects (PKG-063).
@@ -146,6 +146,8 @@ Manifest schema implementation (PKG-031). AOT compilation (WASM-005). Precompile
 - Invariants: I-039
 
 Produces content-addressed AOT images from Wasm Component Packages so V1 plugin instantiation can map verified-once pages (§34). PKG stores the objects (PKG-063); WASM compiles them.
+
+<!-- covers: INV-0633 -->
 
 #### Out of scope
 Store schema and dedup (PKG-063). Bit-for-bit independent rebuilders (WASM-023). Shader artefacts (GFX).
@@ -174,7 +176,7 @@ Store schema and dedup (PKG-063). Bit-for-bit independent rebuilders (WASM-023).
 - Benchmarks: B-047
 - Invariants: I-061
 
-V1 publish-only run of B-047 (`bench:wasm-component`) so the Wasm-on-Channel prototype is measured. Targets live in the register. No superiority claim.
+V1 publish-only run of B-047 (`bench:wasm-component`) so the Wasm-on-Channel prototype is measured. Targets live in the register. No superiority claim. Required by the WASM scope: "publishes B-047".
 
 #### Out of scope
 Methodology and dashboards (BEN). Machine-code creation and Channel baselines (B-001, B-004). 1.0 cross-OS republication (WASM-024).
@@ -234,7 +236,7 @@ WASI import set (WASM-008). Host implementation (WASM-012). License allowlist te
 - Threats: T-001
 - Invariants: I-021, I-046
 
-Lists which WASI worlds bind to Capability (clocks, random, UserSelected, NetworkConnection) and which ambient Preview1 imports are forbidden, so WASM-013 has a closed import table (§9.1, §13). Native software never sees POSIX preopens. This Decision lists ABI surface S-029.
+Lists which WASI worlds bind to Capability (clocks, random, UserSelected, NetworkConnection) and which ambient Preview1 imports are forbidden, so WASM-013 has a closed import table (§9.1, §13). Native software never sees POSIX preopens. This Decision lists ABI surface S-029. Required by V1-G12 (Semantic interfaces and a Wasm channel prototype).
 
 #### Out of scope
 Channel mapping implementation (WASM-013). NetworkConnection object (NET-014). UserSelected minting (STO). IDL versus WIT mapping (IPC-022).
@@ -323,6 +325,8 @@ Fuzz fleet, dedup and bisection (BLD-035). Native ABI syzkaller (BLD-016). WASI 
 - Baseline: §13, §16, §17
 
 Large Channel payloads move as MemoryObject resources rather than copies through linear memory, so Wasm Components participate in the object ecosystem (§13, §16). MEM owns MemoryObject; WASM maps the guest resource.
+
+<!-- covers: INV-0274 -->
 
 #### Out of scope
 MemoryObject kernel object and transfer enforcement (MEM). Inline small-message threshold (IPC-007). DMA and GPU properties (MEM).
@@ -416,7 +420,7 @@ IDL versus WIT Decision (IPC-022). Import-set Decision (WASM-008). MemoryObject 
 - Risks: R-005
 - Invariants: I-041
 
-V1 freezes Layer 2 evolution rules. Wasm Components honor the same forward and backward Channel compatibility tests as machine-code endpoints so WIT is not a second versioning story (§12, §66). IPC owns the rules; WASM exercises them on the host.
+V1 freezes Layer 2 evolution rules. Wasm Components honor the same forward and backward Channel compatibility tests as machine-code endpoints so WIT is not a second versioning story (§12, §66). IPC owns the rules; WASM exercises them on the host. Required by V4-G02 (Layer 2 interface versions for 1.x are locked).
 
 #### Out of scope
 Evolution-rule freeze (IPC-042). Diff tool (IPC-052). V4 host version lock (WASM-022).
@@ -592,7 +596,7 @@ Native debugger attach Capability and async Task stacks (SDK-038). TypeScript la
 - Baseline: §13
 - Risks: R-051
 
-V3 public repository and third-party Packages. A documented WASI/WIT subset with a runnable suite so external Wasm Components instantiate under the host import Decision.
+V3 public repository and third-party Packages. A documented WASI/WIT subset with a runnable suite so external Wasm Components instantiate under the host import Decision. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point).
 
 #### Out of scope
 Public repository operation (REL-050). Author guide prose (WASM-021). Host version lock (WASM-022).

@@ -59,7 +59,7 @@ Research-programme process and ADR citation index (GOV-005, GOV-015). Individual
 - Baseline: §12, §52, §56.5
 - Risks: R-052
 
-V1 must ship IDL-to-docs with SDK v1 or V3 Layer 1 reference pages are handwritten (R-052). This spike takes the V0 IDL compiler output and a page template, and records IR shape, missing-comment behavior and which toolchain candidates are ruled out so the V1 generator is not invented on the freeze-candidate path.
+V1 must ship IDL-to-docs with SDK v1 or V3 Layer 1 reference pages are handwritten (R-052). This spike takes the V0 IDL compiler output and a page template, and records IR shape, missing-comment behavior and which toolchain candidates are ruled out so the V1 generator is not invented on the freeze-candidate path. Required by V1-G12 (Semantic interfaces and a Wasm channel prototype): the IDL-to-docs generator that gate names is built on this spike's IR findings.
 
 #### Out of scope
 V1 generator (DOC-010). Toolchain Decision (DOC-009). Doc-comment IR in the compiler (IPC-049). Normative ABI prose (ABI-017).
@@ -266,7 +266,7 @@ Toolchain, search and snapshots (DOC-009). License (GOV-021). Charter and archit
 - Decision: D-0071
 - Risks: R-052
 
-The V1 IDL-to-docs site needs a recorded generator, site builder, full-text search and per-release snapshot scheme before those builds start. Information architecture is the taxonomy adr. The spike report is an input so the generator is not chosen by fashion (R-052).
+The V1 IDL-to-docs site needs a recorded generator, site builder, full-text search and per-release snapshot scheme before those builds start. Information architecture is the taxonomy adr. The spike report is an input so the generator is not chosen by fashion (R-052). Required by V1-G12 (Semantic interfaces and a Wasm channel prototype): the IDL-to-docs generator that gate names runs on the toolchain this Decision picks.
 
 #### Out of scope
 Taxonomy and class owners (DOC-008). Site implementation (DOC-007). Generator implementation (DOC-010). Hosting (REL).
@@ -355,7 +355,7 @@ BASELINE.md, PRINCIPLES.md and the §69 diagram (GOV-006). Decision file format 
 - Baseline: §56.5, §61
 - Risks: R-052
 
-Generated pages must not drift: CI builds them and fails on generator errors. GOV GAP-0164 remains roadmap and ADR parse CI at V0; this is the product-docs pipeline that keeps R-052 from silently accumulating.
+Generated pages must not drift: CI builds them and fails on generator errors. GOV GAP-0164 remains roadmap and ADR parse CI at V0; this is the product-docs pipeline that keeps R-052 from silently accumulating. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point): the documentation build in CI that gate requires is this job, which DOC-024 extends with the coverage gate.
 
 #### Out of scope
 Roadmap and ADR parse CI (GOV-013). Coverage gate for every Layer 1 symbol (DOC-024). Broken-link and example compilation (DOC-034). Merge queue (BLD-001).
@@ -443,7 +443,7 @@ Crate-level SDK guide (SDK-056). Reference tutorial sample (SDK-062). Component 
 - Baseline: §54, §57
 - Invariants: I-050, I-061
 
-The V1 site and later translation need one voice, glossary casing and the no-unmeasured-claim rule (I-061, I-050) before third-party contributions. Later docs CI enforces the mechanical subset.
+The V1 site and later translation need one voice, glossary casing and the no-unmeasured-claim rule (I-061, I-050) before third-party contributions. Later docs CI enforces the mechanical subset. Required by V3-G12 (Layer 1 ABI reference pages exist for every entry point): the guide review that gate requires is conducted against this style guide.
 
 #### Out of scope
 Claim-to-benchmark lint implementation (BEN-004, GOV-019). Translation pipeline (DOC-025). Taxonomy Decision (DOC-008).
@@ -471,6 +471,8 @@ Claim-to-benchmark lint implementation (BEN-004, GOV-019). Translation pipeline 
 - Baseline: §10, §52, §61
 
 V1 onboarding is clone-to-running Component: `os new`, the published SDK, and the window / chooser / decode / render sample. SDK owns the sample and generator; DOC publishes the tutorial used by daily-driving.
+
+<!-- covers: INV-0978 -->
 
 #### Out of scope
 `os new` scaffolding (SDK-043). Sample source (SDK-062). Host SDK (SDK-039). Developer image install (INS-003).
@@ -621,6 +623,8 @@ V2 desktop preview is the earliest rung that needs on-device help with no networ
 
 V2 gates W1 and L3. Taxonomy names compatibility notes as the first public mapping of what runs where, feeding the V3 compatibility guide. LNX and WIN own ratings; DOC publishes the notes under GOV mark rules.
 
+<!-- covers: INV-1248 -->
+
 #### Out of scope
 Corpus ratings (LNX-084, WIN-051). Trademark wording (GOV-044). V3 compatibility guide (DOC-028). Five-minute Linux launch guide authorship (LNX-054). Anti-cheat blocked-title list authorship (WIN-018).
 
@@ -647,6 +651,8 @@ Corpus ratings (LNX-084, WIN-051). Trademark wording (GOV-044). V3 compatibility
 - Baseline: §9, §25, §30, §62
 
 V2 desktop-preview scope needs a user guide covering launch, Capability grants, rollback, lock, snapshots UI and the store client. The V3 unaided-install study expands the install-adjacent chapters; this task is the desktop book those chapters extend.
+
+<!-- covers: INV-1248 -->
 
 #### Out of scope
 Install guide (DOC-030). Permissions and shell chrome (APP). Store client behavior (APP, REL). Rollback mechanism (PKG, INS-014). Administrator guide (DOC-027).
@@ -789,7 +795,7 @@ Study execution and participant protocol (INS-029). Installer (INS-027). Guide a
 - Depends on: DOC-008, DOC-015, BOOT-042, INS-039
 - Baseline: §9, §30, §31, §32, §63
 
-Public alpha adds FDE, Secure Boot, multi-user, updater and recovery, so V3 is the earliest gate that needs an administrator guide. STO authors storage chapters later; this book publishes the operational procedures those chapters slot into.
+Public alpha adds FDE, Secure Boot, multi-user, updater and recovery, so V3 is the earliest gate that needs an administrator guide. STO authors storage chapters later; this book publishes the operational procedures those chapters slot into. Required by V4-G14 (Documentation complete for 1.0): the administrator reference that gate requires is this guide.
 
 #### Out of scope
 Storage chapter authorship (STO-084). Secure Boot key path authorship (BOOT-042). Recovery procedures authorship (INS-039). Install guide (DOC-030). Multi-user session objects (SEC, APP-063).
@@ -847,6 +853,8 @@ Linux chapters authorship (LNX-099). Windows per-title reports (WIN-068). Tradem
 - Baseline: §63, §67
 
 V3 public documentation includes a contribution guide. GOV-007 is the V0 repo CONTRIBUTING process; this is the product-facing contributor guide on the docs site (docs, translations, RFCs, first-party Packages).
+
+<!-- covers: INV-1248 -->
 
 #### Out of scope
 Repo CONTRIBUTING, CODEOWNERS and AI policy (GOV-007). Code of Conduct (GOV-030). RFC venue (GOV-035). Developer program (DOC-039, GOV-071). Translation tooling (DOC-025).
@@ -928,7 +936,7 @@ Import engines (INS-049, INS-033). Migration assistant UI (APP-062). Concept map
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: DOC-014, PKG-085, SVC-021, UIP-031
+- Depends on: DOC-014, PKG-085, SVC-021, UIP-031, SCH-040
 - Baseline: §35, §52, §63, §66
 
 V3-G12 requires the SDK guide published and reviewed. This promotes the V1 developer guide to the public-alpha SDK guide, folding in packaging, `os env`, supervised services and the UI protocol chapters those prefixes author.
@@ -1098,7 +1106,7 @@ Binding implementation (SDK-063 and later language tasks). C guide (DOC-038). La
 - Depends on: DOC-032, SDK-033, SDK-034
 - Baseline: §50, §52, §66
 
-V4-G14 and 1.0-G11 require SDK guides for Rust and C. C bindings ship at V1; the complete C guide is the V4 documentation gate. SDK owns wrappers and headers; DOC publishes the book.
+Required by V4-G14 (Documentation complete for 1.0): SDK guides for Rust and C, re-checked at 1.0-G11. C bindings ship at V1; the complete C guide is the V4 documentation gate. SDK owns wrappers and headers; DOC publishes the book.
 
 #### Out of scope
 C binding and headers (SDK-033, SDK-034). Rust guide (DOC-032). Crate reference completion (SDK-092).
