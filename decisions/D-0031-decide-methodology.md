@@ -1,5 +1,5 @@
 # D-0031 · Decide benchmark methodology and target-kind policy
-- Status: proposed
+- Status: accepted
 - Task: BEN-007
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Early discipline; targets set before hardware and methodology are 
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Targets live only in registers/benchmarks.md as a target kind per milestone: publish (measure and publish, no threshold), absolute (a stated threshold) or regression (a bound against the latest report for an earlier milestone on the same hardware). Every V0 target is publish. Milestone gates cite B-IDs and never restate numbers. No prose anywhere in the project states a performance number without a B-ID.
 
 ## Consequences
-None until Status is accepted.
+- The register is the only place a number lives; the validator already warns on hand-typed numbers in prose.
+- V0 closes on published measurements, never on hitting a figure; the first absolute targets appear at V1.
+- Regression targets compare committed reports on the same H-ID, so every gate run must commit its report.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (numeric V0 exits) rejected: it would have the project promise figures before any hardware or harness exists, exactly the unmeasured claim §57 forbids.
+- Option C (restate numbers in milestone files) rejected: two copies of every target drift.
 
 ## Follow-ups
 none

@@ -5,7 +5,7 @@
 - Baseline gap: No dedicated boot or firmware section; UEFI, bootloader, generation selection, measured boot and the boot counter are implied by §5.1 and §30 but unspecified.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 49 live, 0 done, 0 in-progress, 49 todo, 0 dropped. Ready: 1. Blocked: 48. Weighted: 0%.
+Tasks: 49 live, 1 done, 0 in-progress, 48 todo, 0 dropped. Ready: 1. Blocked: 47. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -80,14 +80,15 @@ QEMU/OVMF CI boot (BOOT-001). SKU selection (HW-003). Rack and console (LAB-003)
 ### BOOT-003 · Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: none
 - Decision: D-0049
 - Threats: T-008
 - Invariants: I-079
+- Verified by: @jakebarnby
 
 BASELINE.md has no boot or firmware section. This workstream owns the UEFI path, bootloader, ESP, generation selection, measured boot, boot counting and early-boot integrity that §5.1 and §30 imply but do not specify. This first adr records whether x86-64 boot through 1.0 is UEFI-only, so later bootloader, installer and lab work never grow a BIOS matrix.
 
@@ -97,16 +98,16 @@ BASELINE.md has no boot or firmware section. This workstream owns the UEFI path,
 Bootloader family (BOOT-008). Secure Boot distribution (BOOT-031). ARM64 or RISC-V boot (I-001, I-011, I-012).
 
 #### Acceptance criteria
-- [ ] The decision file evaluates at least UEFI-only through 1.0, UEFI plus CSM, and UEFI now with a BIOS revisit at V3.
-- [ ] The accepted option states whether a BIOS or CSM image, test job or installer path may exist before 1.0.
-- [ ] I-079 is cited as the standing rule the accepted option either enforces or explicitly rejects.
-- [ ] A Review line names the reviewer who accepts the decision on the pull request.
+- [x] The decision file evaluates at least UEFI-only through 1.0, UEFI plus CSM, and UEFI now with a BIOS revisit at V3.
+- [x] The accepted option states whether a BIOS or CSM image, test job or installer path may exist before 1.0.
+- [x] I-079 is cited as the standing rule the accepted option either enforces or explicitly rejects.
+- [x] A Review line names the reviewer who accepts the decision on the pull request.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request, confirming at least two options and I-079 treatment.
 
 #### Evidence
-- none
+- decision:D-0049
 
 ### BOOT-004 · Decide V0 boots Linux init from a retained initramfs with native Components beside it
 - Type: adr

@@ -4,7 +4,7 @@
 - Baseline: §10, §34, §53, §54, §59
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 63 live, 0 done, 0 in-progress, 63 todo, 0 dropped. Ready: 1. Blocked: 62. Weighted: 0%.
+Tasks: 63 live, 1 done, 0 in-progress, 62 todo, 0 dropped. Ready: 3. Blocked: 59. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -209,14 +209,15 @@ Windows images (BEN-047). macOS class (BEN-046). Container runtime images (BEN-0
 ### BEN-007 · Decide benchmark methodology and target-kind policy
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §54, §59
 - Decision: D-0031
 - Risks: R-009
 - Invariants: I-061, I-088
+- Verified by: @jakebarnby
 
 V0 gates stay publish-only. Numeric targets live only in `registers/benchmarks.md` with kinds `publish`, `absolute`, and `regression` versus a prior milestone. Milestone files cite B-IDs and never restate numbers. This Decision answers Q-001 (hardware list, warm and cold definitions, percentiles, iteration counts, CPU frequency pinning, mitigation settings) and rejects a numeric V0 IPC exit.
 
@@ -226,16 +227,16 @@ V0 gates stay publish-only. Numeric targets live only in `registers/benchmarks.m
 Runner implementation (BEN-005). Merge-gate policy (BEN-033). Visible-UI boundary (BEN-016). Energy method (BEN-018).
 
 #### Acceptance criteria
-- [ ] Option A (register target kinds `publish`, `absolute`, and `regression` versus prior milestone; V0 publish-only; numbers only in the register), option B (milestone files restate numeric exits beside B-IDs), and option C (numeric V0 exits including a same-core IPC absolute) are evaluated.
-- [ ] The accepted option records hardware list, warm and cold definitions, percentiles, iteration counts, frequency pinning, and mitigation settings, and answers Q-001.
-- [ ] The accepted option forbids restating register numbers in milestone or task prose.
-- [ ] A Review line names who accepts the Decision.
+- [x] Option A (register target kinds `publish`, `absolute`, and `regression` versus prior milestone; V0 publish-only; numbers only in the register), option B (milestone files restate numeric exits beside B-IDs), and option C (numeric V0 exits including a same-core IPC absolute) are evaluated.
+- [x] The accepted option records hardware list, warm and cold definitions, percentiles, iteration counts, frequency pinning, and mitigation settings, and answers Q-001.
+- [x] The accepted option forbids restating register numbers in milestone or task prose.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: BEN and GOV leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0031
 
 ### BEN-008 · Measure native IPC against Unix socket, pipe and D-Bus
 - Type: spike

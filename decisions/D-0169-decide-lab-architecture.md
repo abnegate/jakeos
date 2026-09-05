@@ -1,5 +1,5 @@
 # D-0169 · Decide lab site and the remote power, console and capture stack
-- Status: proposed
+- Status: accepted
 - Task: LAB-002
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Practical for both classes; two operating procedures.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B, adapted: the lab is an office or home lab, not a colocation. Machines are power-cycled through a network-controlled PDU, consoles are reached over USB debug or serial adapters (Redfish or IPMI where a board offers it), displays are captured with HDMI capture devices, and the input-to-photon rig sits on the same bench. Laptops stay physically reachable for lid, dock and battery tests.
 
 ## Consequences
-None until Status is accepted.
+- LAB procures the PDU, console adapters, capture cards and a scheduler that hands machines to CI runners (BLD-003).
+- Power and network reliability are the project owner's responsibility; a failed soak run caused by the site is recorded as such, not as a hardware regression.
+- Growth to ten Tier 1 machines at V4 may exceed a home bench; a colocation decision is revisited then.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (colocation) rejected: laptops, lids, docks and photodiode rigs are impractical to operate remotely, and the V1 and V2 gates are laptop-heavy.
+- Option C (hybrid) rejected: two sites from day one for a one-person team.
 
 ## Follow-ups
-none
+Revisit before V4 when the Tier 1 fleet reaches ten machines.

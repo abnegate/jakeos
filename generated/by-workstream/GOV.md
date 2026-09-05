@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GOV-001 | Decide code hosting forge and repository layout | done | done | S | GOV-004 |
-| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | todo | ready | M | GOV-003 |
+| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | done | done | M | GOV-003 |
 | GOV-003 | Decide the license firewall and outbound project licenses | done | done | M | none |
 | GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | done | done | S | none |
 | GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | blocked | L | GOV-004, GOV-006 |

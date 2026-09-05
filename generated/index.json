@@ -5,10 +5,10 @@
       "title": "Decide kernel-core vs user-space service boundary and the criteria for moving one",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-002"
       ],
@@ -299,7 +299,6 @@
       ],
       "blockers": [
         "KRN-010",
-        "KRN-001",
         "KRN-017",
         "KRN-015",
         "KRN-016"
@@ -656,7 +655,6 @@
       ],
       "blockers": [
         "KRN-017",
-        "KRN-001",
         "Q-048"
       ],
       "covers": [
@@ -752,8 +750,7 @@
       ],
       "blockers": [
         "KRN-034",
-        "Q-001",
-        "BEN-007"
+        "Q-001"
       ],
       "covers": [
         "GAP-0185"
@@ -929,8 +926,7 @@
       "blockers": [
         "KRN-017",
         "KRN-011",
-        "BLD-012",
-        "BLD-003"
+        "BLD-012"
       ],
       "covers": [
         "GAP-0158",
@@ -1561,7 +1557,6 @@
         "KRN-011"
       ],
       "blockers": [
-        "BOOT-003",
         "BOOT-004",
         "BLD-006",
         "BLD-009",
@@ -1592,7 +1587,6 @@
       ],
       "blockers": [
         "BOOT-001",
-        "HW-003",
         "LAB-003"
       ],
       "covers": [
@@ -1607,10 +1601,10 @@
       "title": "Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -1627,15 +1621,13 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "BOOT-003"
       ],
-      "blockers": [
-        "BOOT-003"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-046",
         "INV-0120"
@@ -1741,7 +1733,6 @@
       ],
       "blockers": [
         "BOOT-010",
-        "BOOT-003",
         "BOOT-015"
       ],
       "covers": [
@@ -1817,7 +1808,6 @@
         "BOOT-015"
       ],
       "blockers": [
-        "BOOT-003",
         "BOOT-015"
       ],
       "covers": [
@@ -1931,7 +1921,6 @@
         "BOOT-004"
       ],
       "blockers": [
-        "BOOT-003",
         "BOOT-004"
       ],
       "covers": [
@@ -2108,7 +2097,6 @@
         "BOOT-027"
       ],
       "blockers": [
-        "BOOT-003",
         "BOOT-027"
       ],
       "covers": [
@@ -2157,7 +2145,6 @@
         "SEC-002"
       ],
       "blockers": [
-        "BOOT-003",
         "CAP-007",
         "SEC-002"
       ],
@@ -4697,8 +4684,7 @@
         "CAP-004",
         "CAP-006",
         "CAP-009",
-        "BEN-005",
-        "BEN-007"
+        "BEN-005"
       ],
       "covers": [],
       "file": "workstreams/CAP.md",
@@ -5671,7 +5657,6 @@
       "blockers": [
         "CMP-005",
         "BEN-005",
-        "BEN-007",
         "Q-001"
       ],
       "covers": [
@@ -5700,7 +5685,6 @@
       "blockers": [
         "CMP-005",
         "BEN-005",
-        "BEN-007",
         "Q-001"
       ],
       "covers": [
@@ -5755,7 +5739,6 @@
         "SCH-009"
       ],
       "blockers": [
-        "CMP-008",
         "CMP-014",
         "CMP-005",
         "TSK-022",
@@ -5790,7 +5773,6 @@
       "blockers": [
         "CMP-010",
         "CMP-014",
-        "CMP-009",
         "CAP-005",
         "SCH-007",
         "TSK-023"
@@ -5855,10 +5837,10 @@
       "title": "Decide Component panic, abort and typed exit-cause semantics",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -5873,10 +5855,10 @@
       "title": "Decide the native Component spawn primitive that replaces fork and exec",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -5934,7 +5916,6 @@
       "blockers": [
         "CMP-005",
         "CMP-004",
-        "CMP-008",
         "CAP-006",
         "IPC-010",
         "IPC-011",
@@ -5996,7 +5977,6 @@
         "ABI-018"
       ],
       "blockers": [
-        "CMP-009",
         "ABI-018"
       ],
       "covers": [
@@ -6029,7 +6009,6 @@
         "ABI-013"
       ],
       "blockers": [
-        "CMP-009",
         "ABI-005",
         "ABI-013"
       ],
@@ -6127,7 +6106,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-016",
         "Q-001",
         "Q-029"
@@ -6157,7 +6135,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-016",
         "Q-001",
         "Q-029"
@@ -6365,7 +6342,6 @@
       ],
       "blockers": [
         "CMP-005",
-        "CMP-009",
         "SCH-007"
       ],
       "covers": [
@@ -6504,8 +6480,6 @@
         "CMP-014",
         "CMP-004",
         "CMP-003",
-        "CMP-009",
-        "CMP-008",
         "ABI-034"
       ],
       "covers": [
@@ -6607,7 +6581,6 @@
       ],
       "blockers": [
         "CMP-024",
-        "CMP-008",
         "CMP-022"
       ],
       "covers": [],
@@ -6994,8 +6967,6 @@
       "blockers": [
         "CMP-033",
         "CMP-049",
-        "CMP-009",
-        "CMP-008",
         "CMP-010",
         "CMP-016",
         "ABI-049",
@@ -7129,7 +7100,6 @@
       ],
       "blockers": [
         "TSK-020",
-        "BEN-007",
         "BEN-005"
       ],
       "covers": [],
@@ -8677,7 +8647,6 @@
       "blockers": [
         "IPC-016",
         "IPC-015",
-        "BEN-007",
         "BEN-005"
       ],
       "covers": [
@@ -8733,7 +8702,6 @@
         "ABI-005",
         "CAP-005",
         "TSK-013",
-        "KRN-001",
         "CMP-014"
       ],
       "covers": [
@@ -8766,7 +8734,6 @@
       "blockers": [
         "IPC-010",
         "TSK-010",
-        "CMP-008",
         "ABI-009"
       ],
       "covers": [
@@ -8953,8 +8920,7 @@
       "blockers": [
         "ABI-002",
         "TSK-021",
-        "BLD-012",
-        "BEN-007"
+        "BLD-012"
       ],
       "covers": [
         "INV-0294",
@@ -9025,8 +8991,7 @@
         "BEN-007"
       ],
       "blockers": [
-        "IPC-018",
-        "BEN-007"
+        "IPC-018"
       ],
       "covers": [
         "GAP-0520",
@@ -11761,7 +11726,6 @@
         "SCH-008",
         "SCH-009",
         "SCH-007",
-        "BEN-007",
         "BEN-005"
       ],
       "covers": [
@@ -12044,8 +12008,7 @@
         "BEN-007"
       ],
       "blockers": [
-        "KRN-013",
-        "BEN-007"
+        "KRN-013"
       ],
       "covers": [
         "GAP-0530",
@@ -14049,7 +14012,6 @@
       "blockers": [
         "OBS-029",
         "CMP-004",
-        "CMP-008",
         "OBS-032",
         "TSK-038"
       ],
@@ -14121,8 +14083,7 @@
         "CMP-008"
       ],
       "blockers": [
-        "OBS-006",
-        "CMP-008"
+        "OBS-006"
       ],
       "covers": [],
       "file": "workstreams/OBS.md",
@@ -14845,7 +14806,6 @@
         "SVC-008",
         "Q-001",
         "BEN-005",
-        "BEN-007",
         "GFX-002",
         "SVC-002",
         "SDK-012"
@@ -15215,7 +15175,6 @@
         "SVC-011",
         "SVC-007",
         "CMP-004",
-        "CMP-008",
         "CMP-027",
         "CAP-023"
       ],
@@ -16073,7 +16032,6 @@
         "STO-020",
         "STO-029",
         "STO-019",
-        "BEN-007",
         "BEN-014"
       ],
       "covers": [],
@@ -16724,7 +16682,6 @@
         "STO-012",
         "STO-016",
         "SVC-015",
-        "KRN-001",
         "IPC-012",
         "STO-001"
       ],
@@ -17385,8 +17342,7 @@
       "blockers": [
         "STO-070",
         "STO-025",
-        "BEN-042",
-        "BEN-007"
+        "BEN-042"
       ],
       "covers": [
         "INV-0496",
@@ -18266,8 +18222,7 @@
         "PKG-042",
         "STO-008",
         "STO-009",
-        "PKG-003",
-        "BEN-007"
+        "PKG-003"
       ],
       "covers": [
         "INV-0547",
@@ -20558,8 +20513,7 @@
         "HW-003"
       ],
       "blockers": [
-        "KRN-017",
-        "HW-003"
+        "KRN-017"
       ],
       "covers": [
         "INV-0128",
@@ -20590,7 +20544,6 @@
       ],
       "blockers": [
         "GFX-007",
-        "BEN-007",
         "LAB-003"
       ],
       "covers": [],
@@ -20616,7 +20569,6 @@
       "blockers": [
         "GFX-024",
         "GFX-006",
-        "BEN-007",
         "LAB-003"
       ],
       "covers": [],
@@ -20644,8 +20596,7 @@
         "GFX-031",
         "GFX-006",
         "LAB-001",
-        "UIP-011",
-        "BEN-007"
+        "UIP-011"
       ],
       "covers": [],
       "file": "workstreams/GFX.md",
@@ -21003,8 +20954,7 @@
         "HW-003"
       ],
       "blockers": [
-        "GFX-035",
-        "HW-003"
+        "GFX-035"
       ],
       "covers": [
         "GAP-0515"
@@ -21437,8 +21387,7 @@
         "HW-003"
       ],
       "blockers": [
-        "GFX-001",
-        "HW-003"
+        "GFX-001"
       ],
       "covers": [
         "INV-1059"
@@ -22094,7 +22043,6 @@
       "blockers": [
         "GFX-006",
         "GFX-024",
-        "BEN-007",
         "LAB-018"
       ],
       "covers": [
@@ -35453,7 +35401,6 @@
         "HET-016",
         "HET-013",
         "BEN-005",
-        "BEN-007",
         "OBS-045"
       ],
       "covers": [],
@@ -35946,8 +35893,7 @@
       "blockers": [
         "WASM-012",
         "WASM-013",
-        "BEN-005",
-        "BEN-007"
+        "BEN-005"
       ],
       "covers": [],
       "file": "workstreams/WASM.md",
@@ -38539,7 +38485,6 @@
       ],
       "blockers": [
         "NET-014",
-        "BEN-007",
         "BEN-005"
       ],
       "covers": [],
@@ -38614,8 +38559,7 @@
       ],
       "blockers": [
         "NET-001",
-        "NET-002",
-        "KRN-001"
+        "NET-002"
       ],
       "covers": [
         "INV-0065"
@@ -39629,8 +39573,7 @@
         "AUD-010",
         "LAB-011",
         "OBS-040",
-        "BEN-005",
-        "BEN-007"
+        "BEN-005"
       ],
       "covers": [],
       "file": "workstreams/AUD.md",
@@ -41471,7 +41414,6 @@
         "BOOT-002"
       ],
       "blockers": [
-        "HW-003",
         "LAB-003",
         "BOOT-002"
       ],
@@ -41509,10 +41451,10 @@
       "title": "Decide the V1 through V2 Reference machine list and security criteria",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -41844,7 +41786,6 @@
         "LAB-007"
       ],
       "blockers": [
-        "HW-003",
         "LAB-007"
       ],
       "covers": [],
@@ -41891,7 +41832,6 @@
         "HW-006"
       ],
       "blockers": [
-        "HW-003",
         "HW-006"
       ],
       "covers": [
@@ -41916,7 +41856,6 @@
         "GFX-047"
       ],
       "blockers": [
-        "HW-003",
         "GFX-047"
       ],
       "covers": [
@@ -42038,7 +41977,6 @@
         "GOV-022"
       ],
       "blockers": [
-        "HW-003",
         "HW-015",
         "GOV-022"
       ],
@@ -42317,7 +42255,6 @@
       "blockers": [
         "HW-037",
         "HW-036",
-        "BEN-007",
         "LAB-011",
         "BEN-005",
         "AUD-017",
@@ -42345,8 +42282,7 @@
       ],
       "blockers": [
         "HW-035",
-        "HW-031",
-        "BEN-007"
+        "HW-031"
       ],
       "covers": [
         "INV-1057"
@@ -42473,7 +42409,6 @@
         "HW-010"
       ],
       "blockers": [
-        "HW-003",
         "LAB-018",
         "HW-010"
       ],
@@ -42532,15 +42467,13 @@
       "type": "adr",
       "milestone": "V2",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "HW-003"
       ],
-      "blockers": [
-        "HW-003"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-037"
       ],
@@ -42554,15 +42487,13 @@
       "type": "adr",
       "milestone": "V2",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "HW-003"
       ],
-      "blockers": [
-        "HW-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0371"
       ],
@@ -42584,7 +42515,6 @@
         "HW-018"
       ],
       "blockers": [
-        "HW-003",
         "HW-018"
       ],
       "covers": [
@@ -43058,7 +42988,6 @@
         "HW-061"
       ],
       "blockers": [
-        "HW-003",
         "LAB-021",
         "HW-061"
       ],
@@ -43504,7 +43433,6 @@
         "LAB-023"
       ],
       "blockers": [
-        "HW-003",
         "LAB-023"
       ],
       "covers": [],
@@ -43527,7 +43455,6 @@
         "HW-062"
       ],
       "blockers": [
-        "HW-003",
         "LAB-023",
         "HW-062"
       ],
@@ -43768,8 +43695,7 @@
         "KRN-001"
       ],
       "blockers": [
-        "PWR-005",
-        "KRN-001"
+        "PWR-005"
       ],
       "covers": [],
       "file": "workstreams/PWR.md",
@@ -44230,7 +44156,6 @@
       "blockers": [
         "PWR-024",
         "BEN-005",
-        "BEN-007",
         "LAB-014"
       ],
       "covers": [],
@@ -50730,7 +50655,6 @@
         "BLD-011"
       ],
       "blockers": [
-        "BLD-003",
         "BLD-012",
         "BLD-011"
       ],
@@ -50747,10 +50671,10 @@
       "title": "Decide the top-level build orchestrator for kernel and userspace",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "BLD-005",
         "BLD-004"
@@ -50768,10 +50692,10 @@
       "title": "Decide the CI platform with self-hosted KVM runners",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "BLD-005",
         "GOV-001"
@@ -50911,7 +50835,6 @@
         "BLD-013"
       ],
       "blockers": [
-        "BLD-002",
         "BLD-013"
       ],
       "covers": [
@@ -50945,7 +50868,6 @@
         "BLD-012",
         "BLD-006",
         "BEN-005",
-        "BEN-007",
         "BLD-001"
       ],
       "covers": [
@@ -50975,8 +50897,6 @@
         "BEN-004"
       ],
       "blockers": [
-        "BLD-003",
-        "GOV-002",
         "ABI-003",
         "ABI-018",
         "BEN-004"
@@ -51010,7 +50930,6 @@
         "KRN-017"
       ],
       "blockers": [
-        "BLD-003",
         "BLD-009",
         "KRN-017"
       ],
@@ -51337,9 +51256,7 @@
         "BLD-003"
       ],
       "blockers": [
-        "BLD-002",
-        "BLD-009",
-        "BLD-003"
+        "BLD-009"
       ],
       "covers": [
         "GAP-0101"
@@ -51515,8 +51432,7 @@
       ],
       "blockers": [
         "BLD-009",
-        "BLD-043",
-        "BEN-007"
+        "BLD-043"
       ],
       "covers": [
         "GAP-0102"
@@ -51567,7 +51483,6 @@
         "BLD-001"
       ],
       "blockers": [
-        "BLD-003",
         "BLD-001"
       ],
       "covers": [
@@ -51844,8 +51759,7 @@
         "BLD-003"
       ],
       "blockers": [
-        "BLD-034",
-        "BLD-003"
+        "BLD-034"
       ],
       "covers": [
         "GAP-0135"
@@ -51891,7 +51805,6 @@
       ],
       "blockers": [
         "BLD-046",
-        "BLD-002",
         "BLD-009"
       ],
       "covers": [
@@ -51917,8 +51830,7 @@
       ],
       "blockers": [
         "BLD-045",
-        "BEN-022",
-        "BEN-007"
+        "BEN-022"
       ],
       "covers": [
         "GAP-0135"
@@ -52731,10 +52643,10 @@
       "title": "Decide lab site and the remote power, console and capture stack",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -52750,17 +52662,14 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "LAB-002",
         "HW-003"
       ],
-      "blockers": [
-        "LAB-002",
-        "HW-003"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-052"
       ],
@@ -52814,15 +52723,13 @@
       "type": "build",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "LAB-002"
       ],
-      "blockers": [
-        "LAB-002"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-050"
       ],
@@ -52845,9 +52752,7 @@
         "HW-003"
       ],
       "blockers": [
-        "LAB-002",
-        "LAB-003",
-        "HW-003"
+        "LAB-003"
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
@@ -52943,7 +52848,6 @@
         "LAB-003"
       ],
       "blockers": [
-        "LAB-002",
         "LAB-007",
         "LAB-003"
       ],
@@ -53118,7 +53022,6 @@
       ],
       "blockers": [
         "HW-018",
-        "HW-003",
         "LAB-011",
         "LAB-007"
       ],
@@ -53317,7 +53220,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-006",
         "CMP-001",
         "CMP-002",
@@ -53365,7 +53267,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-006",
         "CMP-011",
         "MEM-010",
@@ -53408,7 +53309,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-006",
         "BEN-008",
         "IPC-008",
@@ -53438,15 +53338,13 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "BEN-007"
       ],
-      "blockers": [
-        "BEN-007"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0062",
         "INV-0987",
@@ -53464,15 +53362,13 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "L",
       "owner": "none",
       "depends_on": [
         "BEN-007"
       ],
-      "blockers": [
-        "BEN-007"
-      ],
+      "blockers": [],
       "covers": [
         "INV-1040"
       ],
@@ -53495,7 +53391,6 @@
         "LAB-003"
       ],
       "blockers": [
-        "BEN-007",
         "KRN-010",
         "LAB-003"
       ],
@@ -53511,10 +53406,10 @@
       "title": "Decide benchmark methodology and target-kind policy",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -53543,7 +53438,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "IPC-016",
         "IPC-015"
       ],
@@ -53577,7 +53471,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-016",
         "CMP-019",
         "CMP-018",
@@ -53619,7 +53512,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "GFX-003",
         "GFX-004",
         "GFX-006",
@@ -53655,7 +53547,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "PKG-002",
         "PKG-001",
         "PKG-016",
@@ -53682,8 +53573,7 @@
         "BEN-007"
       ],
       "blockers": [
-        "BEN-005",
-        "BEN-007"
+        "BEN-005"
       ],
       "covers": [
         "GAP-0159"
@@ -53709,7 +53599,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "TSK-021",
         "TSK-019"
       ],
@@ -53737,7 +53626,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "STO-020",
         "STO-029"
       ],
@@ -53767,7 +53655,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-001",
         "BEN-003",
         "BEN-002",
@@ -53784,15 +53671,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "BEN-007"
       ],
-      "blockers": [
-        "BEN-007"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0640"
       ],
@@ -53817,7 +53702,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-016",
         "CMP-027"
       ],
@@ -53844,7 +53728,6 @@
         "PWR-004"
       ],
       "blockers": [
-        "BEN-007",
         "LAB-006",
         "LAB-007",
         "PWR-004"
@@ -53873,7 +53756,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "STO-023"
       ],
       "covers": [
@@ -53900,7 +53782,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "CMP-005",
         "SCH-007"
       ],
@@ -53930,7 +53811,6 @@
         "OBS-011"
       ],
       "blockers": [
-        "BEN-007",
         "BEN-016",
         "BEN-017",
         "CMP-027",
@@ -53961,7 +53841,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-003",
         "BEN-001",
         "LAB-003"
@@ -53988,7 +53867,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BLD-032",
         "ENV-020"
       ],
@@ -54046,7 +53924,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "ENV-014",
         "ENV-018",
         "SDK-041",
@@ -54104,7 +53981,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-006",
         "LNX-056",
         "LNX-001"
@@ -54135,7 +54011,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "SDK-032",
         "SDK-043",
         "SDK-039"
@@ -54165,7 +54040,6 @@
       ],
       "blockers": [
         "BEN-015",
-        "BEN-007",
         "BEN-033",
         "BEN-022",
         "BEN-030",
@@ -54248,7 +54122,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-022",
         "BLD-048"
       ],
@@ -54273,7 +54146,6 @@
         "BEN-022"
       ],
       "blockers": [
-        "BEN-007",
         "BEN-022"
       ],
       "covers": [
@@ -54299,7 +54171,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "BEN-004"
       ],
       "covers": [],
@@ -54354,7 +54225,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "HET-018",
         "HET-016"
       ],
@@ -54411,7 +54281,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "APP-022",
         "TXT-029",
         "APP-014",
@@ -54472,7 +54341,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "SEC-017",
         "SEC-005"
       ],
@@ -54530,7 +54398,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "STO-025",
         "PKG-068"
       ],
@@ -54610,7 +54477,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "MED-028",
         "MED-017",
         "MEM-010"
@@ -54636,7 +54502,6 @@
         "BEN-006"
       ],
       "blockers": [
-        "BEN-007",
         "BEN-006"
       ],
       "covers": [
@@ -54661,7 +54526,6 @@
         "LAB-018"
       ],
       "blockers": [
-        "BEN-007",
         "LAB-015",
         "LAB-018"
       ],
@@ -54737,7 +54601,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-007",
         "VIRT-011",
         "LAB-021"
       ],
@@ -55053,7 +54916,6 @@
         "BLD-041"
       ],
       "blockers": [
-        "BEN-007",
         "BEN-034",
         "BEN-060",
         "GOV-040",
@@ -55325,7 +55187,6 @@
         "HW-047"
       ],
       "blockers": [
-        "HW-003",
         "HW-043",
         "HW-047"
       ],
@@ -55514,8 +55375,7 @@
       "blockers": [
         "REL-006",
         "KRN-052",
-        "REL-044",
-        "BEN-007"
+        "REL-044"
       ],
       "covers": [
         "GAP-0054"
@@ -57982,10 +57842,10 @@
       "title": "Decide contributor licensing, copyright holder and DCO or CLA",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-003"
       ],
@@ -58112,7 +57972,6 @@
         "GOV-005"
       ],
       "blockers": [
-        "GOV-002",
         "GOV-005"
       ],
       "covers": [
@@ -59078,7 +58937,6 @@
         "HW-042"
       ],
       "blockers": [
-        "HW-003",
         "WIN-036",
         "GFX-063",
         "HW-040",
@@ -59411,8 +59269,7 @@
       ],
       "blockers": [
         "GOV-056",
-        "GOV-023",
-        "GOV-002"
+        "GOV-023"
       ],
       "covers": [],
       "file": "workstreams/GOV.md",
@@ -62417,7 +62274,6 @@
           ],
           "satisfied": false,
           "reasons": [
-            "`HW-003` is todo — Decide the V1 through V2 Reference machine list and security criteria",
             "`WIN-036` is todo — Decide how Wine and Proton map onto native Objects",
             "`GFX-063` is todo — Decide the HDR and colour management pipeline",
             "`HW-040` is todo — Decide Bluetooth host placement and required profiles",
@@ -64701,12 +64557,12 @@
   ],
   "totals": {
     "total": 2268,
-    "done": 17,
-    "todo": 2251,
+    "done": 27,
+    "todo": 2241,
     "in_progress": 0,
     "dropped": 0,
     "weight_total": 6416,
-    "weight_done": 27,
+    "weight_done": 47,
     "gates_total": 187,
     "gates_satisfied": 0
   },
@@ -64735,12 +64591,12 @@
     },
     "V0": {
       "total": 217,
-      "done": 13,
-      "todo": 204,
+      "done": 23,
+      "todo": 194,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 673,
-      "weight_done": 17,
+      "weight_done": 37,
       "gates_total": 21,
       "gates_satisfied": 0
     },
@@ -64847,34 +64703,34 @@
     },
     "BEN": {
       "total": 63,
-      "done": 0,
-      "todo": 63,
+      "done": 1,
+      "todo": 62,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 146,
-      "weight_done": 0,
+      "weight_done": 3,
       "gates_total": 0,
       "gates_satisfied": 0
     },
     "BLD": {
       "total": 80,
-      "done": 2,
-      "todo": 78,
+      "done": 4,
+      "todo": 76,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 239,
-      "weight_done": 2,
+      "weight_done": 6,
       "gates_total": 0,
       "gates_satisfied": 0
     },
     "BOOT": {
       "total": 49,
-      "done": 0,
-      "todo": 49,
+      "done": 1,
+      "todo": 48,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 153,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64891,12 +64747,12 @@
     },
     "CMP": {
       "total": 55,
-      "done": 2,
-      "todo": 53,
+      "done": 4,
+      "todo": 51,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 176,
-      "weight_done": 4,
+      "weight_done": 8,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64935,12 +64791,12 @@
     },
     "GOV": {
       "total": 84,
-      "done": 7,
-      "todo": 77,
+      "done": 8,
+      "todo": 76,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 139,
-      "weight_done": 15,
+      "weight_done": 18,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64957,12 +64813,12 @@
     },
     "HW": {
       "total": 90,
-      "done": 0,
-      "todo": 90,
+      "done": 1,
+      "todo": 89,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 304,
-      "weight_done": 0,
+      "weight_done": 3,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64990,23 +64846,23 @@
     },
     "KRN": {
       "total": 59,
-      "done": 6,
-      "todo": 53,
+      "done": 7,
+      "todo": 52,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 127,
-      "weight_done": 6,
+      "weight_done": 7,
       "gates_total": 0,
       "gates_satisfied": 0
     },
     "LAB": {
       "total": 25,
-      "done": 0,
-      "todo": 25,
+      "done": 1,
+      "todo": 24,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 74,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },

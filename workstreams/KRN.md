@@ -4,7 +4,7 @@
 - Baseline: §2, §5, §6, §55, §56.4
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 59 live, 6 done, 0 in-progress, 53 todo, 0 dropped. Ready: 4. Blocked: 49. Weighted: 5%.
+Tasks: 59 live, 7 done, 0 in-progress, 52 todo, 0 dropped. Ready: 3. Blocked: 49. Weighted: 6%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -20,13 +20,14 @@ Boot and firmware (BOOT). Native ABI, handles and Object registry (ABI). Capabil
 ### KRN-001 · Decide kernel-core vs user-space service boundary and the criteria for moving one
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002
 - Baseline: §4, §33, §57
 - Decision: D-0157
 - Invariants: I-008
+- Verified by: @jakebarnby
 
 §4 places Memory, IPC, Capabilities and the scheduler in the kernel core and UI, storage and network in user space. This Decision records that split for V0 and the measured-cost criteria for moving a service across the boundary, so residency is decided by cost rather than microkernel ideology (§1, §57).
 
@@ -36,15 +37,15 @@ Boot and firmware (BOOT). Native ABI, handles and Object registry (ABI). Capabil
 ResourceDomain substrate (SCH-003). User-space driver hosting (SVC). Native ABI object residency (ABI-013).
 
 #### Acceptance criteria
-- [ ] Options evaluated include the §4 split as written, moving storage or network into the kernel core, and moving IPC or the scheduler into user space, each with measured-cost criteria for a later move.
-- [ ] The accepted option lists kernel-core objects for V0 and the metric that must be published before a later Decision may move one.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include the §4 split as written, moving storage or network into the kernel core, and moving IPC or the scheduler into user space, each with measured-cost criteria for a later move.
+- [x] The accepted option lists kernel-core objects for V0 and the metric that must be published before a later Decision may move one.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0157
 
 ### KRN-002 · Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor
 - Type: adr

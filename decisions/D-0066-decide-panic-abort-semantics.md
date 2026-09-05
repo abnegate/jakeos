@@ -1,5 +1,5 @@
 # D-0066 · Decide Component panic, abort and typed exit-cause semantics
-- Status: proposed
+- Status: accepted
 - Task: CMP-008
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Flexibility; two behaviours for supervisors to reason about.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. A panic, stack overflow, out-of-memory abort or capability violation in native code terminates the whole Component. The kernel reports a typed exit cause on the supervisor's Channel; nothing unwinds across the ABI and no destructor runs after the fault. Recovery is the supervisor's restart and rebind policy (§32, SVC).
 
 ## Consequences
-None until Status is accepted.
+- The native runtime sets panic=abort; the SDK exposes typed exit causes to supervisors.
+- Resource release on fault is the kernel's job (ResourceDomain teardown), never the faulting code's.
+- Tests for every exit cause live in CMP (the leak test and isolation negative tests).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (unwind to the Component boundary) rejected: a larger runtime, destructors that panic, and a fault path that runs code inside a possibly compromised Component.
+- Option C (per-Component policy) rejected: two fault behaviours for every supervisor, debugger and tracer to handle.
 
 ## Follow-ups
 none

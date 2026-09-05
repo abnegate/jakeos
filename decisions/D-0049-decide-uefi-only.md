@@ -1,5 +1,5 @@
 # D-0049 · Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0
-- Status: proposed
+- Status: accepted
 - Task: BOOT-003
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Deferred cost; the matrix question lingers.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. x86-64 boot is UEFI-only through 1.0. Secure Boot, measured boot, the generation-selecting boot manager and recovery boot are designed for UEFI once. Machines without UEFI firmware are unsupported and the installer refuses them.
 
 ## Consequences
-None until Status is accepted.
+- No CSM or legacy bootloader code paths exist in BOOT or INS.
+- The hardware register requires UEFI with Secure Boot enrolment capability for every Tier 1 entry (HW-003).
+- Revisiting this Decision needs a target machine that lacks UEFI, which the hardware policy excludes.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (UEFI plus CSM) rejected: two boot paths to secure and test for hardware nobody in scope owns.
+- Option C (UEFI now, BIOS revisit at V3) rejected: it schedules a decision the hardware policy already answers.
 
 ## Follow-ups
 none

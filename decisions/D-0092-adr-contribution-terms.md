@@ -1,5 +1,5 @@
 # D-0092 · Decide contributor licensing, copyright holder and DCO or CLA
-- Status: proposed
+- Status: accepted
 - Task: GOV-002
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: The entity can relicense freely; assignment deters contributors an
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. Kernel contributions use the Developer Certificate of Origin (Signed-off-by), matching Linux. Contributions to the MIT userspace repositories additionally require a non-assignment contributor licence agreement granting the project a perpetual licence to the contribution under the project licences and any future OSI-approved licence, while the contributor keeps copyright.
 
 ## Consequences
-None until Status is accepted.
+- The CLA is a one-time signature recorded by a bot on the platform repository; the kernel repository only checks Signed-off-by.
+- Relicensing the platform layers later is possible without hunting every contributor; the kernel remains GPLv2-only forever, which the DCO suits.
+- GOV publishes both texts and the bot configuration before the first external pull request.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (DCO-only everywhere) rejected: it would leave the MIT layers unable to adopt a future licence without unanimous consent.
+- Option C (assignment CLA everywhere) rejected: copyright assignment on a GPLv2 kernel fork is unusual and deters the driver contributors upstream-first depends on.
 
 ## Follow-ups
 none

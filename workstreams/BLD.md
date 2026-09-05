@@ -4,7 +4,7 @@
 - Baseline: §50, §51, §54, §55
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 80 live, 2 done, 0 in-progress, 78 todo, 0 dropped. Ready: 2. Blocked: 76. Weighted: 1%.
+Tasks: 80 live, 4 done, 0 in-progress, 76 todo, 0 dropped. Ready: 0. Blocked: 76. Weighted: 3%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -52,12 +52,13 @@ Runner platform choice (BLD-003). Harness implementation (BLD-012). Release-qual
 ### BLD-002 · Decide the top-level build orchestrator for kernel and userspace
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: BLD-005, BLD-004
 - Baseline: §27, §50
 - Decision: D-0033
+- Verified by: @jakebarnby
 
 The orchestrator for a mixed C plus Rust kernel and a Rust-first userspace decides whether hermeticity, remote caching and bit-for-bit identity are properties of the graph or bolt-ons (§27, §50). This Decision is required before the one-command Linux-host build. It does not choose the CI platform or the repository topology.
 
@@ -67,25 +68,26 @@ The orchestrator for a mixed C plus Rust kernel and a Rust-first userspace decid
 Repository topology (BLD-005). CI platform (BLD-003). Remote cache deployment (BLD-025).
 
 #### Acceptance criteria
-- [ ] Options evaluated include Kbuild driven by Cargo workspaces, Bazel or Buck2, and a derivation-based builder aligned with the content-addressed store.
-- [ ] The accepted option states how hermetic inputs, remote cache keys and bit-for-bit artifact identity are properties of the graph.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include Kbuild driven by Cargo workspaces, Bazel or Buck2, and a derivation-based builder aligned with the content-addressed store.
+- [x] The accepted option states how hermetic inputs, remote cache keys and bit-for-bit artifact identity are properties of the graph.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: BLD toolchain owner and kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0033
 
 ### BLD-003 · Decide the CI platform with self-hosted KVM runners
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: BLD-005, GOV-001
 - Baseline: §55, §59
 - Decision: D-0034
+- Verified by: @jakebarnby
 
 Boot, graphics, performance and hardware jobs need nested virtualization or lab devices that hosted CI cannot provide (§55). This Decision selects the platform and requires self-hosted KVM runners for those jobs, with hosted runners allowed only for lint and unit tests. It precedes CI tiers and the QEMU harness.
 
@@ -95,15 +97,15 @@ Boot, graphics, performance and hardware jobs need nested virtualization or lab 
 CI tier layout and merge queue (BLD-001). Lab scheduler (LAB-005). Forge hosting (GOV-001).
 
 #### Acceptance criteria
-- [ ] Options evaluated include self-hosted KVM runners with hosted lint and unit only, all jobs self-hosted, and hosted runners with nested virtualization for boot jobs.
-- [ ] The accepted option names where boot, graphics, performance and hardware jobs run, and forbids hosted runners for those classes.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include self-hosted KVM runners with hosted lint and unit only, all jobs self-hosted, and hosted runners with nested virtualization for boot jobs.
+- [x] The accepted option names where boot, graphics, performance and hardware jobs run, and forbids hosted runners for those classes.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: BLD CI owner and LAB lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0034
 
 ### BLD-004 · Decide LLVM/Clang as the sole C compiler and reject a custom compiler
 - Type: adr

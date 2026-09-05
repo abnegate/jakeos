@@ -1,5 +1,5 @@
 # D-0034 · Decide the CI platform with self-hosted KVM runners
-- Status: proposed
+- Status: accepted
 - Task: BLD-003
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: No infrastructure to run; nested virtualization is slow and unavai
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Lint, unit tests and the roadmap validator run on GitHub-hosted runners; kernel boots, QEMU/KVM integration, hardware boots and every benchmark run on self-hosted runners in the lab (LAB-002). Benchmark runners are a quiet, dedicated subset that never runs unrelated jobs.
 
 ## Consequences
-None until Status is accepted.
+- Every required check that needs KVM or real hardware is labelled for the self-hosted pool; the roadmap validate check stays hosted.
+- Lab machines register as runners with the same labels recorded in registers/hardware.md.
+- Runner availability is a LAB responsibility and a steering signal when it blocks gates.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (hosted runners with nested virtualisation) rejected: too slow for boot matrices and useless for performance numbers or real hardware.
+- Option C (all jobs self-hosted) rejected: owning uptime for lint and unit jobs buys nothing.
 
 ## Follow-ups
 none

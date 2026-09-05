@@ -9,10 +9,10 @@
 | BEN-001 | Publish V0 Component, Task and ResourceDomain cost benchmarks | todo | blocked | M | BEN-005, BEN-007, BEN-006, CMP-001, CMP-002, TSK-002, TSK-020, TSK-018, SCH-001, SCH-010, LAB-003 |
 | BEN-002 | Publish V0 Demo pipeline latency, copies and memory | todo | blocked | M | BEN-005, BEN-007, BEN-006, CMP-011, MEM-010, MEM-012, IPC-016, LAB-003 |
 | BEN-003 | Publish V0 IPC, MemoryObject and syscall-overhead benchmarks | todo | blocked | M | BEN-005, BEN-007, BEN-006, BEN-008, IPC-008, IPC-016, MEM-010, OBS-001, LNX-001, LAB-003 |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | todo | blocked | S | BEN-007 |
-| BEN-005 | Build the shared benchmark runner and CI publication | todo | blocked | L | BEN-007 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | todo | ready | S | BEN-007 |
+| BEN-005 | Build the shared benchmark runner and CI publication | todo | ready | L | BEN-007 |
 | BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | blocked | M | BEN-007, KRN-010, LAB-003 |
-| BEN-007 | Decide benchmark methodology and target-kind policy | todo | ready | M | none |
+| BEN-007 | Decide benchmark methodology and target-kind policy | done | done | M | none |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | blocked | M | BEN-005, BEN-007, IPC-016, IPC-015 |
 
 ## V0.5
@@ -26,7 +26,7 @@
 | BEN-013 | Publish Task baselines against Tokio, Go and BEAM | todo | blocked | M | BEN-005, BEN-007, TSK-021, TSK-019 |
 | BEN-014 | Publish storage-Object access against Linux file I/O | todo | blocked | S | BEN-005, BEN-007, STO-020, STO-029 |
 | BEN-015 | Verify no V0 benchmark regression at V0.5 | todo | blocked | S | BEN-005, BEN-007, BEN-001, BEN-003, BEN-002, BEN-013 |
-| BEN-016 | Decide the visible-UI measurement boundary | todo | blocked | S | BEN-007 |
+| BEN-016 | Decide the visible-UI measurement boundary | todo | ready | S | BEN-007 |
 | BEN-017 | Measure native startup against traditional ELF load | todo | blocked | M | BEN-005, BEN-007, BEN-016, CMP-027 |
 | BEN-018 | Define energy measurement methodology with external meters | todo | blocked | M | BEN-007, LAB-006, LAB-007, PWR-004 |
 | BEN-019 | Measure filesystem candidates for snapshot and clone cost | todo | blocked | M | BEN-005, BEN-007, STO-023, GOV-003 |

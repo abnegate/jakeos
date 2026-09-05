@@ -5,7 +5,7 @@
 - Baseline gap: The baseline names Reference machines, Input-to-photon latency and energy tracking but specifies no physical lab, racks, remote power, consoles, capture, scheduler or procurement.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 25 live, 0 done, 0 in-progress, 25 todo, 0 dropped. Ready: 1. Blocked: 24. Weighted: 0%.
+Tasks: 25 live, 1 done, 0 in-progress, 24 todo, 0 dropped. Ready: 2. Blocked: 22. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -56,14 +56,15 @@ Sensor choice (LAB-004). Harness and B-020 publication (GFX-004, BEN-010). Toolk
 ### LAB-002 · Decide lab site and the remote power, console and capture stack
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: none
 - Decision: D-0169
 - Risks: R-081
 - Invariants: I-001
+- Verified by: @jakebarnby
 
 BASELINE.md has no lab section. CONVENTIONS requires this first adr to define that open scope: where machines live, how power is switched, how consoles and display capture reach operators and CI, and that LAB owns racks and rigs while HW owns SKUs. The Decision must land before H-002 is procured. Job-scheduler family is LAB-005.
 
@@ -73,16 +74,16 @@ BASELINE.md has no lab section. CONVENTIONS requires this first adr to define th
 Scheduler family and unbootable recovery (LAB-005). SKU list (HW-003). Quiet perf-CI fleet (BLD-048).
 
 #### Acceptance criteria
-- [ ] Options evaluated include (A) colocation with PDU plus serial or USB-debug consoles and capture cards, (B) an office lab with Redfish or IPMI on each machine, and (C) a hybrid of colocated desktops and office laptops.
-- [ ] The accepted option names power control, console transport, display capture and network reachability for H-002, and states that 1.0 lab machines are x86-64 only (I-001).
-- [ ] The accepted option records that native software never receives PDU, Redfish or capture-card handles, and that HW-003 still owns SKU selection.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include (A) colocation with PDU plus serial or USB-debug consoles and capture cards, (B) an office lab with Redfish or IPMI on each machine, and (C) a hybrid of colocated desktops and office laptops.
+- [x] The accepted option names power control, console transport, display capture and network reachability for H-002, and states that 1.0 lab machines are x86-64 only (I-001).
+- [x] The accepted option records that native software never receives PDU, Redfish or capture-card handles, and that HW-003 still owns SKU selection.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: LAB and HW leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0169
 
 ### LAB-003 · Procure and rack the reference AMD desktop with power and capture
 - Type: build

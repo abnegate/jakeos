@@ -4,7 +4,7 @@
 - Baseline: §10, §11, §34
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 55 live, 2 done, 0 in-progress, 53 todo, 0 dropped. Ready: 6. Blocked: 47. Weighted: 2%.
+Tasks: 55 live, 4 done, 0 in-progress, 51 todo, 0 dropped. Ready: 4. Blocked: 47. Weighted: 5%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -240,14 +240,15 @@ OCI runtime inside the Linux personality (LNX). Namespace subsumption tests (CMP
 ### CMP-008 · Decide Component panic, abort and typed exit-cause semantics
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §10, §32
 - Decision: D-0066
 - Risks: R-075
 - Invariants: I-037
+- Verified by: @jakebarnby
 
 A Rust panic aborts only its Component. Stack overflow and OOM are typed exit causes reported to the supervisor. No unwinding crosses the Native ABI. Options are abort-only, unwind-to-component-boundary, and per-component policy. V0-D03 requires this decision.
 
@@ -257,27 +258,28 @@ A Rust panic aborts only its Component. Stack overflow and OOM are typed exit ca
 Exit-cause implementation (CMP-004). Supervisor restart policy (SVC). Crash capture format (OBS).
 
 #### Acceptance criteria
-- [ ] At least two options are evaluated, including abort-only and unwind-to-component-boundary.
-- [ ] The accepted option states that a panic does not unwind across the Native ABI.
-- [ ] The accepted option names typed exit causes for panic, stack overflow and OOM.
-- [ ] A Review line names who accepts the decision.
+- [x] At least two options are evaluated, including abort-only and unwind-to-component-boundary.
+- [x] The accepted option states that a panic does not unwind across the Native ABI.
+- [x] The accepted option names typed exit causes for panic, stack overflow and OOM.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: ABI lead and CMP lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0066
 
 ### CMP-009 · Decide the native Component spawn primitive that replaces fork and exec
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §2, §10, §53
 - Decision: D-0068
 - Invariants: I-014, I-019
+- Verified by: @jakebarnby
 
 fork has no native equivalent. This decision chooses among spawn-from-immutable-code-object, template-clone, and builder-object-then-start, and records that Unix process startup is never the native creation mechanism.
 
@@ -287,16 +289,16 @@ fork has no native equivalent. This decision chooses among spawn-from-immutable-
 Wrapper implementation (CMP-005). Personality fork (LNX).
 
 #### Acceptance criteria
-- [ ] At least two options are evaluated, including spawn-from-immutable-code-object and template-clone.
-- [ ] The accepted option is a native spawn shape that is not fork, exec, posix_spawn or clone.
-- [ ] The Native ABI surface for spawn is named for S-007 prototyping.
-- [ ] A Review line names who accepts the decision.
+- [x] At least two options are evaluated, including spawn-from-immutable-code-object and template-clone.
+- [x] The accepted option is a native spawn shape that is not fork, exec, posix_spawn or clone.
+- [x] The Native ABI surface for spawn is named for S-007 prototyping.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: ABI lead and CMP lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0068
 
 ### CMP-010 · Decide the Phase A Component implementation strategy
 - Type: adr

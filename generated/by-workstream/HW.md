@@ -8,7 +8,7 @@
 | --- | --- | --- | --- | --- | --- |
 | HW-001 | Bring up the V0 AMD desktop Reference machine to a booting kernel | todo | blocked | M | HW-003, LAB-003, BOOT-002 |
 | HW-002 | Decide pragmatic driver residency over microkernel purity | todo | ready | S | none |
-| HW-003 | Decide the V1 through V2 Reference machine list and security criteria | todo | ready | M | none |
+| HW-003 | Decide the V1 through V2 Reference machine list and security criteria | done | done | M | none |
 | HW-004 | Inventory retained Linux buses, firmware load and input in the fork | todo | blocked | S | HW-002, KRN-017 |
 | HW-005 | Gate retained PCIe, USB, ACPI and input regressions on the AMD desktop | todo | blocked | M | HW-004, HW-001, KRN-014 |
 
@@ -62,8 +62,8 @@
 | HW-039 | Bring up the AMD laptop Reference machine including amdgpu | todo | blocked | L | HW-003, LAB-018, HW-010 |
 | HW-040 | Decide Bluetooth host placement and required profiles | todo | blocked | M | HW-028, HW-016 |
 | HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | todo | ready | S | none |
-| HW-042 | Decide 1.0 sensor support per device class in or out of scope | todo | blocked | S | HW-003 |
-| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | todo | blocked | S | HW-003 |
+| HW-042 | Decide 1.0 sensor support per device class in or out of scope | todo | ready | S | HW-003 |
+| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | todo | ready | S | HW-003 |
 | HW-044 | Decide public vendor priorities for purchase guidance | todo | blocked | S | HW-003, HW-018 |
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | blocked | M | HW-011, HW-015, HW-039 |
 | HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | blocked | L | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 |

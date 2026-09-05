@@ -1,5 +1,5 @@
 # D-0033 · Decide the top-level build orchestrator for kernel and userspace
-- Status: proposed
+- Status: accepted
 - Task: BLD-002
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Build outputs are store objects directly; developer ergonomics and
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The kernel repository builds with Kbuild (Clang, pinned toolchain); the platform repository is a Cargo workspace. A thin orchestrator (scripts in the platform repository) composes kernel, runtime and packages into bootable images and system generations. No new build language is introduced before the content-addressed store exists.
 
 ## Consequences
-None until Status is accepted.
+- Reproducibility comes from pinned toolchains and content-addressed outputs (PKG), not from the build tool.
+- The orchestrator is the natural place to adopt derivation-style builds later; that becomes a decision when PKG lands the store.
+- Cross-language LTO between kernel C and Rust is available through the shared LLVM (D-0036).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (derivation-based builder) rejected for now: the strongest reproducibility story, but a steep investment before V0 has anything to build; revisit when the content-addressed store exists.
+- Option C (Bazel or Buck2) rejected: wrapping Kbuild and Rust-for-Linux in a hermetic build system is a project of its own.
 
 ## Follow-ups
-none
+Revisit the derivation-based builder when PKG ships the content-addressed store.

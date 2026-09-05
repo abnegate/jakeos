@@ -14,25 +14,19 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 | none |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 | none |
-| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 | none |
-| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | V0 | S | 4763 | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 | none |
-| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4697 | none |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 | none |
-| BLD-003 | Decide the CI platform with self-hosted KVM runners | V0 | S | 4615 | none |
-| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | V0 | M | 4306 | none |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 | none |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 | none |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 | none |
 | WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4101 | none |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 3865 | none |
 | ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3588 | none |
 | PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3555 | none |
-| BOOT-003 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | V0 | S | 3526 | none |
-| HW-003 | Decide the V1 through V2 Reference machine list and security criteria | V0 | M | 3360 | none |
-| LAB-002 | Decide lab site and the remote power, console and capture stack | V0 | S | 3304 | none |
-| CMP-008 | Decide Component panic, abort and typed exit-cause semantics | V0 | M | 3280 | none |
-| BLD-002 | Decide the top-level build orchestrator for kernel and userspace | V0 | M | 3174 | none |
+| BOOT-004 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | V0 | S | 3522 | none |
+| LAB-003 | Procure and rack the reference AMD desktop with power and capture | V0 | M | 3300 | none |
 | SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3170 | none |
+| BEN-005 | Build the shared benchmark runner and CI publication | V0 | L | 3068 | none |
 | PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2902 | none |
 | HW-002 | Decide pragmatic driver residency over microkernel purity | V0 | S | 2311 | none |
 | GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2007 | none |
@@ -46,6 +40,7 @@
 | TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | V0.5 | M | 1342 | none |
 | TXT-009 | Build the monospace grid text fast path for the Terminal | V0.5 | M | 1208 | none |
 | KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | V0 | M | 1164 | none |
+| BEN-016 | Decide the visible-UI measurement boundary | V0.5 | S | 890 | none |
 | REL-001 | Decide release, SystemGeneration and Channel versioning | V0.5 | S | 873 | none |
 | OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 613 | none |
 | TSK-006 | Decide native expression of termination, cancellation and async notification without signals | V0 | S | 586 | none |
@@ -58,10 +53,13 @@
 | GOV-022 | Decide firmware blob redistribution for official versus non-free | V1 | M | 214 | none |
 | TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | V1 | S | 195 | none |
 | HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | V2 | S | 158 | none |
+| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | V2 | S | 153 | none |
+| HW-042 | Decide 1.0 sensor support per device class in or out of scope | V2 | S | 137 | none |
 | GOV-021 | Decide the documentation license and translation terms | V1 | S | 113 | none |
 | GOV-059 | Publish the GPL corresponding-source written-offer policy | V3 | S | 106 | none |
 | TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
+| LAB-006 | Procure external power meters for the energy-measurement path | V0.5 | S | 26 | none |
 | MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | V0 | S | 22 | none |
 | GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |

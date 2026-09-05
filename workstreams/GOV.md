@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 7 done, 0 in-progress, 77 todo, 0 dropped. Ready: 11. Blocked: 66. Weighted: 11%.
+Tasks: 84 live, 8 done, 0 in-progress, 76 todo, 0 dropped. Ready: 10. Blocked: 66. Weighted: 13%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -51,13 +51,14 @@ Monorepo versus pinned-manifest multi-repo for kernel and userspace (BLD-005). C
 ### GOV-002 · Decide contributor licensing, copyright holder and DCO or CLA
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-003
 - Baseline: §50, §57
 - Decision: D-0092
 - Risks: R-082
+- Verified by: @jakebarnby
 
 Provenance cannot be reconstructed after the first external commit. This Decision records DCO Signed-off-by on kernel commits, DCO versus a non-assignment CLA for userspace, whether contributors retain copyright or assign it, and whether a relicensing clause exists, so BLD can enforce headers and sign-off from V0.
 
@@ -67,16 +68,16 @@ Provenance cannot be reconstructed after the first external commit. This Decisio
 Outbound Layer licenses (GOV-003). Kernel-side GPLv2-compatible choice (KRN-003). Signed-off-by CI (BLD-011). AI-assisted contribution rules (GOV-007).
 
 #### Acceptance criteria
-- [ ] Options evaluated include DCO-only on all trees, DCO on the kernel and a non-assignment CLA on userspace, and assignment CLA on all trees.
-- [ ] The accepted option states who holds copyright and whether a relicensing clause exists.
-- [ ] Kernel commits are required to carry Signed-off-by under the accepted option.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include DCO-only on all trees, DCO on the kernel and a non-assignment CLA on userspace, and assignment CLA on all trees.
+- [x] The accepted option states who holds copyright and whether a relicensing clause exists.
+- [x] Kernel commits are required to carry Signed-off-by under the accepted option.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0092
 
 ### GOV-003 · Decide the license firewall and outbound project licenses
 - Type: adr

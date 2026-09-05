@@ -1,5 +1,5 @@
 # D-0157 · Decide kernel-core vs user-space service boundary and the criteria for moving one
-- Status: proposed
+- Status: accepted
 - Task: KRN-001
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Microkernel purity; measured cost that §57 says must justify it.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The §4 split stands for V0 and beyond: the kernel core owns memory, IPC, capabilities and the scheduler; UI, storage services and network services are user-space Components hosted by SVC. Moving any subsystem across the boundary requires a decision that cites a measured cost per HW-002 criteria (latency, DMA safety, interrupt performance, inherited-driver constraints), never ideology.
 
 ## Consequences
-None until Status is accepted.
+- Native storage and network Objects are minted by user-space services over inherited kernel mechanisms; the kernel exposes block, network and DRM mechanisms, not policy.
+- Service restart and rebind (§32) are first-class requirements for everything outside the core.
+- Any proposal to move a subsystem is an adr task with a benchmark report attached.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (storage or network into the core) rejected: it would freeze Linux in-kernel stacks as native semantics before their user-space shape is designed.
+- Option C (IPC or scheduler in user space) rejected: microkernel purity is a stated non-goal (§33, §57) and the isolation and IPC cost targets depend on kernel-resident handoff.
 
 ## Follow-ups
 none

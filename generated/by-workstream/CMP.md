@@ -13,8 +13,8 @@
 | CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | blocked | L | CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023 |
 | CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | done | done | M | none |
 | CMP-007 | Decide Component plus ResourceDomain as the native isolation model | done | done | S | none |
-| CMP-008 | Decide Component panic, abort and typed exit-cause semantics | todo | ready | M | none |
-| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | todo | ready | S | none |
+| CMP-008 | Decide Component panic, abort and typed exit-cause semantics | done | done | M | none |
+| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | done | done | S | none |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | blocked | M | CMP-015, CMP-016 |
 | CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | blocked | M | CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002 |
 | CMP-012 | Prove Component isolation with negative tests and the isolation Demo | todo | blocked | M | CMP-005, CMP-007, CMP-013, CAP-001, SEC-001 |

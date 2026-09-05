@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | todo | ready | S | KRN-002 |
+| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | done | done | S | KRN-002 |
 | KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | done | done | S | none |
 | KRN-003 | Decide the licence for new native kernel code | done | done | S | KRN-002 |
 | KRN-004 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | done | done | S | KRN-002, KRN-005, Q-051 |

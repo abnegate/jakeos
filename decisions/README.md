@@ -56,10 +56,10 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0028 | Decide native AudioStream service versus PipeWire-as-native | proposed | AUD-002 | S-025 |
 | D-0029 | Decide which audio device classes run in user space | proposed | AUD-016 | none |
 | D-0030 | Decide the blocking performance merge-Gate policy | proposed | BEN-033 | none |
-| D-0031 | Decide benchmark methodology and target-kind policy | proposed | BEN-007 | none |
+| D-0031 | Decide benchmark methodology and target-kind policy | accepted | BEN-007 | none |
 | D-0032 | Decide the visible-UI measurement boundary | proposed | BEN-016 | none |
-| D-0033 | Decide the top-level build orchestrator for kernel and userspace | proposed | BLD-002 | none |
-| D-0034 | Decide the CI platform with self-hosted KVM runners | proposed | BLD-003 | none |
+| D-0033 | Decide the top-level build orchestrator for kernel and userspace | accepted | BLD-002 | none |
+| D-0034 | Decide the CI platform with self-hosted KVM runners | accepted | BLD-003 | none |
 | D-0035 | Decide linker, LTO scope and PGO policy for kernel and userspace | proposed | BLD-039 | none |
 | D-0036 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | accepted | BLD-004 | none |
 | D-0037 | Decide repository topology before a second repository exists | accepted | BLD-005 | none |
@@ -74,7 +74,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0046 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | proposed | BOOT-030 | none |
 | D-0047 | Decide whether GPLv3 components may appear in the boot chain and how Installation Information is met | proposed | BOOT-010 | none |
 | D-0048 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | proposed | BOOT-031 | none |
-| D-0049 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | proposed | BOOT-003 | none |
+| D-0049 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | accepted | BOOT-003 | none |
 | D-0050 | Decide whether each SystemGeneration boots as one signed UKI or separately verified parts | proposed | BOOT-011 | none |
 | D-0051 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | proposed | BOOT-004 | none |
 | D-0052 | Decide Capability persistence across Component restart and reboot | proposed | CAP-020 | none |
@@ -91,9 +91,9 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0063 | Decide static manifest graphs versus dynamic child instantiation | proposed | CMP-022 | S-019 |
 | D-0064 | Decide Component plus ResourceDomain as the native isolation model | accepted | CMP-007 | none |
 | D-0065 | Decide the order and equivalence tests for replacing the Component wrapper | proposed | CMP-042 | none |
-| D-0066 | Decide Component panic, abort and typed exit-cause semantics | proposed | CMP-008 | none |
+| D-0066 | Decide Component panic, abort and typed exit-cause semantics | accepted | CMP-008 | none |
 | D-0067 | Decide how Personality processes map onto Components | proposed | CMP-036 | none |
-| D-0068 | Decide the native Component spawn primitive that replaces fork and exec | proposed | CMP-009 | none |
+| D-0068 | Decide the native Component spawn primitive that replaces fork and exec | accepted | CMP-009 | none |
 | D-0069 | Decide the Phase A Component implementation strategy | proposed | CMP-010 | none |
 | D-0070 | Decide the documentation taxonomy and ownership | proposed | DOC-008 | none |
 | D-0071 | Decide the documentation toolchain, search and snapshots | proposed | DOC-009 | none |
@@ -117,7 +117,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0089 | Decide code hosting forge and repository layout | accepted | GOV-001 | none |
 | D-0090 | Decide codec and proprietary-font shipping and patent policy | proposed | GOV-020 | none |
 | D-0091 | Decide redistribution licensing for Personality software wrappers | proposed | GOV-049 | none |
-| D-0092 | Decide contributor licensing, copyright holder and DCO or CLA | proposed | GOV-002 | none |
+| D-0092 | Decide contributor licensing, copyright holder and DCO or CLA | accepted | GOV-002 | none |
 | D-0093 | Decide open-source-steward versus manufacturer status under CRA | proposed | GOV-070 | none |
 | D-0094 | Decide the license for published benchmark and HCL datasets | proposed | GOV-040 | none |
 | D-0095 | Decide the documentation license and translation terms | proposed | GOV-021 | none |
@@ -154,7 +154,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0126 | Decide driverless-first native printing with PDF spool and CUPS in LNX | proposed | HW-041 | none |
 | D-0127 | Decide 1.0 sensor support per device class in or out of scope | proposed | HW-042 | none |
 | D-0128 | Decide Hardware Compatibility List tiers and promotion criteria | proposed | HW-043 | none |
-| D-0129 | Decide the V1 through V2 Reference machine list and security criteria | proposed | HW-003 | none |
+| D-0129 | Decide the V1 through V2 Reference machine list and security criteria | accepted | HW-003 | none |
 | D-0130 | Decide policy for third-party user-space drivers and firmware packages | proposed | HW-082 | none |
 | D-0131 | Decide public vendor priorities for purchase guidance | proposed | HW-044 | none |
 | D-0132 | Decide desktop-usable boot-success health criteria | proposed | INS-006 | none |
@@ -182,7 +182,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0154 | Decide the typed-message wire format and inline-payload threshold | proposed | IPC-007 | none |
 | D-0155 | Decide which kernel evolution phase is required at 1.0 | proposed | KRN-050 | none |
 | D-0156 | Decide eBPF's native role and the Linux Personality's bpf() exposure | proposed | KRN-024 | none |
-| D-0157 | Decide kernel-core vs user-space service boundary and the criteria for moving one | proposed | KRN-001 | none |
+| D-0157 | Decide kernel-core vs user-space service boundary and the criteria for moving one | accepted | KRN-001 | none |
 | D-0158 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | accepted | KRN-002 | none |
 | D-0159 | Decide how KVM is exposed natively as Capability<VirtualMachine> | proposed | KRN-025 | none |
 | D-0160 | Decide that kernel live-patching is a non-goal in favour of generations plus reboot | proposed | KRN-026 | none |
@@ -194,7 +194,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0166 | Decide the upstream Linux tree and LTS series the fork is cut from | accepted | KRN-005 | none |
 | D-0167 | Decide the upstream-first policy for the hardware layer and Rust abstractions | accepted | KRN-006 | none |
 | D-0168 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | accepted | KRN-007 | none |
-| D-0169 | Decide lab site and the remote power, console and capture stack | proposed | LAB-002 | none |
+| D-0169 | Decide lab site and the remote power, console and capture stack | accepted | LAB-002 | none |
 | D-0170 | Decide lab job-scheduler family and unbootable-machine recovery | proposed | LAB-005 | none |
 | D-0171 | Decide the Linux Personality container engine Surface | proposed | LNX-012 | none |
 | D-0172 | Decide the default Capability bundle for Linux apps | proposed | LNX-013 | none |

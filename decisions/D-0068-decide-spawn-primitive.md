@@ -1,5 +1,5 @@
 # D-0068 · Decide the native Component spawn primitive that replaces fork and exec
-- Status: proposed
+- Status: accepted
 - Task: CMP-009
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Rich, typed configuration; two-phase creation to get right.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option C. Components are created through a builder Object: user space obtains a ComponentBuilder, attaches the immutable code object, the initial Capability set, the ResourceDomain, Channel endpoints for Inputs and Outputs and the supervising endpoint, then issues one start Operation. Nothing is inherited implicitly; there is no fork window and no exec-time environment.
 
 ## Consequences
-None until Status is accepted.
+- The builder is a Layer 1 surface (ABI) and its fields are the Component manifest in kernel form (PKG manifest maps onto it).
+- Warm start (§34) is achieved by pre-built builders and pre-mapped code objects, not by cloning running state.
+- fork and exec exist only inside the Linux personality (LNX).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (one-shot spawn from a code object) rejected: incremental attachment of channels and capabilities before start is the common case and a single call makes it unwieldy.
+- Option B (template clone) rejected: cloning running state inherits authority and memory the capability model would then have to scrub; it is fork by another name.
 
 ## Follow-ups
 none

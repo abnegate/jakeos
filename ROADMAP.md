@@ -8,10 +8,10 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 6% (13/217) | 3% | 36 | 168 |
-| V0.5 | Application model | next | 0/29 | 1% (4/436) | 1% | 16 | 416 |
+| V0 | Execution model | active | 0/21 | 11% (23/217) | 5% | 30 | 164 |
+| V0.5 | Application model | next | 0/29 | 1% (4/436) | 1% | 18 | 414 |
 | V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 8 | 561 |
-| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 2 | 472 |
+| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 4 | 470 |
 | V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 1 | 314 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
 | 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
@@ -19,17 +19,17 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 17 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
+Tasks 27 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 
 ## Workstream × milestone
 
 | Workstream | V0 | V0.5 | V1 | V2 | V3 | V4 | 1.0 | LATER |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 6/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
-| BOOT | 0/5 | 0/10 | 0/12 | 0/10 | 0/8 | 0/3 | 0/1 | 0/0 |
+| KRN | 7/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
+| BOOT | 1/5 | 0/10 | 0/12 | 0/10 | 0/8 | 0/3 | 0/1 | 0/0 |
 | ABI | 0/22 | 0/9 | 0/11 | 0/3 | 0/1 | 0/5 | 0/3 | 0/0 |
 | CAP | 0/15 | 0/14 | 0/11 | 0/5 | 0/4 | 0/3 | 0/1 | 0/0 |
-| CMP | 2/16 | 0/16 | 0/9 | 0/7 | 0/3 | 0/2 | 0/2 | 0/0 |
+| CMP | 4/16 | 0/16 | 0/9 | 0/7 | 0/3 | 0/2 | 0/2 | 0/0 |
 | TSK | 0/24 | 0/12 | 0/11 | 0/2 | 0/2 | 0/1 | 0/1 | 0/0 |
 | IPC | 0/21 | 0/19 | 0/14 | 0/4 | 0/5 | 0/5 | 0/2 | 0/1 |
 | MEM | 0/12 | 0/20 | 0/12 | 0/5 | 0/3 | 0/2 | 0/1 | 0/1 |
@@ -53,17 +53,17 @@ Tasks 17 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 | NET | 0/0 | 0/2 | 0/19 | 0/7 | 0/6 | 0/3 | 0/2 | 0/1 |
 | AUD | 0/0 | 0/0 | 0/14 | 0/8 | 0/3 | 0/2 | 0/2 | 0/1 |
 | MED | 0/0 | 0/0 | 0/10 | 0/18 | 0/8 | 0/4 | 0/2 | 0/0 |
-| HW | 0/5 | 0/9 | 0/18 | 0/29 | 0/18 | 0/7 | 0/3 | 0/1 |
+| HW | 1/5 | 0/9 | 0/18 | 0/29 | 0/18 | 0/7 | 0/3 | 0/1 |
 | PWR | 0/0 | 0/5 | 0/10 | 0/9 | 0/2 | 0/2 | 0/2 | 0/0 |
 | SDK | 0/11 | 0/20 | 0/31 | 0/12 | 0/12 | 0/6 | 0/4 | 0/0 |
 | APP | 0/0 | 0/9 | 0/12 | 0/35 | 0/8 | 0/2 | 0/2 | 0/1 |
 | INS | 0/0 | 0/2 | 0/3 | 0/9 | 0/35 | 0/5 | 0/2 | 0/0 |
-| BLD | 2/13 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
-| LAB | 0/4 | 0/4 | 0/5 | 0/6 | 0/3 | 0/2 | 0/1 | 0/0 |
-| BEN | 0/8 | 0/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
+| BLD | 4/13 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
+| LAB | 1/4 | 0/4 | 0/5 | 0/6 | 0/3 | 0/2 | 0/1 | 0/0 |
+| BEN | 1/8 | 0/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 0/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
 | DOC | 0/0 | 0/5 | 0/12 | 0/5 | 0/11 | 0/6 | 0/3 | 0/0 |
-| GOV | 3/8 | 4/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
+| GOV | 4/8 | 4/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
 
 ## Ready head
 
@@ -79,11 +79,11 @@ Tasks 17 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 |
-| BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 |
-| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | V0 | S | 4763 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 |
-| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4697 |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 |
+| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 |
 
 ## Critical path
 
@@ -160,22 +160,21 @@ Makespan (size-weight estimates): 78.
 | ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1728 | 5237 |
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1732 | 5231 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1646 | 4925 |
-| BEN-007 | Decide benchmark methodology and target-kind policy | 1652 | 4899 |
-| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | 1592 | 4763 |
-| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | 1566 | 4697 |
 | TSK-008 | Decide whether every Task has kernel-visible identity | 1564 | 4693 |
 | MEM-002 | Decide the MemoryObject kernel implementation basis | 1573 | 4684 |
-| BLD-003 | Decide the CI platform with self-hosted KVM runners | 1521 | 4615 |
 | TSK-007 | Decide Operation submission/completion transport and batching expression | 1523 | 4541 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1477 | 4373 |
-| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | 1451 | 4306 |
 | ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1432 | 4227 |
+| TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1413 | 4150 |
+| IPC-007 | Decide the typed-message wire format and inline-payload threshold | 1403 | 4128 |
+| TSK-003 | Decide Task cancellation model and resource cleanup | 1407 | 4118 |
+| IPC-006 | Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new | 1396 | 4093 |
+| IPC-005 | Decide that IDL compiler output is owned by its user with no copyleft obligation | 1390 | 4087 |
 
 ## Blocked by
 
 | Blocker | Tasks |
 | --- | --- |
-| BEN-007 | 69 |
 | BEN-005 | 63 |
 | SEC-002 | 51 |
 | CAP-005 | 40 |
@@ -191,7 +190,6 @@ Makespan (size-weight estimates): 78.
 | SEM-029 | 24 |
 | OBS-006 | 23 |
 | Q-001 | 23 |
-| HW-003 | 21 |
 | KRN-017 | 21 |
 | PKG-016 | 21 |
 | WIN-040 | 21 |
@@ -344,7 +342,6 @@ Makespan (size-weight estimates): 78.
 | BLD-034 | 9 |
 | BOOT-031 | 9 |
 | CAP-036 | 9 |
-| CMP-008 | 9 |
 | ENV-012 | 9 |
 | ENV-013 | 9 |
 | GFX-008 | 9 |
@@ -407,10 +404,8 @@ Makespan (size-weight estimates): 78.
 | AUD-003 | 7 |
 | AUD-007 | 7 |
 | BEN-016 | 7 |
-| BLD-003 | 7 |
 | BLD-013 | 7 |
 | BLD-016 | 7 |
-| BOOT-003 | 7 |
 | BOOT-027 | 7 |
 | CAP-006 | 7 |
 | CAP-008 | 7 |
@@ -484,7 +479,6 @@ Makespan (size-weight estimates): 78.
 | CAP-012 | 6 |
 | CMP-001 | 6 |
 | CMP-004 | 6 |
-| CMP-009 | 6 |
 | CMP-021 | 6 |
 | CMP-036 | 6 |
 | ENV-007 | 6 |
@@ -505,7 +499,6 @@ Makespan (size-weight estimates): 78.
 | IPC-011 | 6 |
 | IPC-017 | 6 |
 | IPC-032 | 6 |
-| KRN-001 | 6 |
 | KRN-009 | 6 |
 | LAB-014 | 6 |
 | LNX-006 | 6 |
@@ -760,7 +753,6 @@ Makespan (size-weight estimates): 78.
 | IPC-052 | 4 |
 | KRN-030 | 4 |
 | KRN-032 | 4 |
-| LAB-002 | 4 |
 | LAB-009 | 4 |
 | LAB-025 | 4 |
 | LNX-008 | 4 |
@@ -859,7 +851,6 @@ Makespan (size-weight estimates): 78.
 | BEN-020 | 3 |
 | BEN-029 | 3 |
 | BEN-046 | 3 |
-| BLD-002 | 3 |
 | BLD-048 | 3 |
 | BLD-049 | 3 |
 | BLD-058 | 3 |
@@ -907,7 +898,6 @@ Makespan (size-weight estimates): 78.
 | GFX-069 | 3 |
 | GFX-085 | 3 |
 | GFX-088 | 3 |
-| GOV-002 | 3 |
 | GOV-021 | 3 |
 | GOV-030 | 3 |
 | GOV-031 | 3 |

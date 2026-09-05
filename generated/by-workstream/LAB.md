@@ -7,8 +7,8 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | LAB-001 | Build the Input-to-photon photodiode rig on the reference desktop | todo | blocked | M | LAB-003, LAB-004 |
-| LAB-002 | Decide lab site and the remote power, console and capture stack | todo | ready | S | none |
-| LAB-003 | Procure and rack the reference AMD desktop with power and capture | todo | blocked | M | LAB-002, HW-003 |
+| LAB-002 | Decide lab site and the remote power, console and capture stack | done | done | S | none |
+| LAB-003 | Procure and rack the reference AMD desktop with power and capture | todo | ready | M | LAB-002, HW-003 |
 | LAB-004 | Prototype photodiode versus camera Input-to-photon measurement | todo | blocked | S | LAB-003 |
 
 ## V0.5
@@ -16,7 +16,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | LAB-005 | Decide lab job-scheduler family and unbootable-machine recovery | todo | blocked | S | LAB-008 |
-| LAB-006 | Procure external power meters for the energy-measurement path | todo | blocked | S | LAB-002 |
+| LAB-006 | Procure external power meters for the energy-measurement path | todo | ready | S | LAB-002 |
 | LAB-007 | Procure and rack the Intel laptop with remote power and console | todo | blocked | M | LAB-002, LAB-003, HW-003 |
 | LAB-008 | Prototype lab reservation, image flash and unbootable recovery | todo | blocked | M | LAB-007, LAB-003 |
 

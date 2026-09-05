@@ -4,7 +4,7 @@
 - Baseline: §7, §9.1, §17, §32, §33, §55, §56.1, §57, §62, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 90 live, 0 done, 0 in-progress, 90 todo, 0 dropped. Ready: 4. Blocked: 86. Weighted: 0%.
+Tasks: 90 live, 1 done, 0 in-progress, 89 todo, 0 dropped. Ready: 5. Blocked: 84. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -80,14 +80,15 @@ Per-class keep, move or rewrite criteria (HW-016). Access mechanism (HW-006).
 ### HW-003 · Decide the V1 through V2 Reference machine list and security criteria
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §62
 - Decision: D-0129
 - Risks: R-067, R-022
 - Invariants: I-001, I-074, I-095
+- Verified by: @jakebarnby
 
 GPU, driver, energy and latency spikes need a fixed reference set before they run. This Decision names the AMD desktop, Intel laptop and AMD laptop SKUs for V1 through V2, records x86-64-only shipping, and treats Secure Boot key enrolment, TPM 2.0 and IOMMU as selection criteria. It does not promise universal PC compatibility.
 
@@ -97,16 +98,16 @@ GPU, driver, energy and latency spikes need a fixed reference set before they ru
 Lab site and racking (LAB-002, LAB-003). Public vendor purchase ranking (HW-044). NVIDIA SKU (HW-018).
 
 #### Acceptance criteria
-- [ ] Options evaluated include naming three SKUs now with IOMMU, TPM 2.0 and Secure Boot enrolment required, naming families without SKUs, and an unconstrained PC list.
-- [ ] The accepted option lists one AMD desktop, one Intel laptop and one AMD laptop and states that 1.0 ships x86-64 only.
-- [ ] The accepted option records IOMMU, TPM 2.0 and Secure Boot custom-key enrolment as selection criteria and that unlisted hardware is unsupported.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include naming three SKUs now with IOMMU, TPM 2.0 and Secure Boot enrolment required, naming families without SKUs, and an unconstrained PC list.
+- [x] The accepted option lists one AMD desktop, one Intel laptop and one AMD laptop and states that 1.0 ships x86-64 only.
+- [x] The accepted option records IOMMU, TPM 2.0 and Secure Boot custom-key enrolment as selection criteria and that unlisted hardware is unsupported.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: HW, LAB and SEC leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0129
 
 ### HW-004 · Inventory retained Linux buses, firmware load and input in the fork
 - Type: docs
