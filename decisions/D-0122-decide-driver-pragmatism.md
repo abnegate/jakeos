@@ -1,5 +1,5 @@
 # D-0122 · Decide pragmatic driver residency over microkernel purity
-- Status: proposed
+- Status: accepted
 - Task: HW-002
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Evidence-driven and safe for hardware support; ongoing classificat
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option C. Driver residency is decided per device class by measured cost, never by principle. Inherited Linux drivers stay in the kernel by default. A class moves to a user-space driver Component (SVC hosting) only after a spike shows the latency, DMA-safety and interrupt cost are acceptable for that class; Bluetooth, audio, sensors and printing are the first candidates (§33).
 
 ## Consequences
-None until Status is accepted.
+- Every residency move is an adr task citing a spike report and a benchmark report.
+- SVC provides the user-space driver hosting framework and device-access Capabilities; HW decides per class.
+- GPU, NVMe, network and USB host controllers remain in-kernel through 1.0 unless a spike says otherwise.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (all drivers in user space) rejected: microkernel purity is a stated non-goal (§33, §57) and would stall the hardware layer for years.
+- Option B (all drivers in-kernel) rejected: it gives up the failure isolation §32 wants for the classes that crash most.
 
 ## Follow-ups
 none

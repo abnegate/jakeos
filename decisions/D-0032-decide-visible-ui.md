@@ -1,5 +1,5 @@
 # D-0032 · Decide the visible-UI measurement boundary
-- Status: proposed
+- Status: accepted
 - Task: BEN-016
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: True end-to-end; needs lab hardware and is not comparable across s
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The application-startup clock (B-016) stops at the compositor's first scanout of a frame from the new application that is not the placeholder colour, timestamped by the compositor and attributed to the Component. This is measurable on QEMU in CI; input-to-photon (B-019) remains a separate metric measured with the lab rig.
 
 ## Consequences
-None until Status is accepted.
+- The compositor emits a first-real-frame trace event per Component (GFX, OBS).
+- Startup reports in CI cite this event; hardware reports may add the photodiode figure alongside.
+- The placeholder colour and the non-blank test are specified in the harness definition.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (first photodiode edge) rejected: it ties every startup measurement to the lab rig.
+- Option C (first client commit) rejected: it stops before anything is visible and flatters the number.
 
 ## Follow-ups
 none

@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | HW-001 | Bring up the V0 AMD desktop Reference machine to a booting kernel | todo | blocked | M | HW-003, LAB-003, BOOT-002 |
-| HW-002 | Decide pragmatic driver residency over microkernel purity | todo | ready | S | none |
+| HW-002 | Decide pragmatic driver residency over microkernel purity | done | done | S | none |
 | HW-003 | Decide the V1 through V2 Reference machine list and security criteria | done | done | M | none |
 | HW-004 | Inventory retained Linux buses, firmware load and input in the fork | todo | blocked | S | HW-002, KRN-017 |
 | HW-005 | Gate retained PCIe, USB, ACPI and input regressions on the AMD desktop | todo | blocked | M | HW-004, HW-001, KRN-014 |

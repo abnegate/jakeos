@@ -9,7 +9,7 @@
 | BOOT-001 | Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image | todo | blocked | M | BOOT-003, BOOT-004, BLD-006, BLD-009, BLD-012, KRN-010, KRN-011 |
 | BOOT-002 | Boot the forked kernel on the reference AMD desktop from the tagged CI image | todo | blocked | M | BOOT-001, HW-003, LAB-003 |
 | BOOT-003 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | done | done | S | none |
-| BOOT-004 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | todo | ready | S | BOOT-003 |
+| BOOT-004 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | done | done | S | BOOT-003 |
 | BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | blocked | M | BOOT-001, BOOT-004, CMP-003, CMP-014 |
 
 ## V0.5
@@ -25,7 +25,7 @@
 | BOOT-012 | Attach the content store read-only in early boot and hand off to native init | todo | blocked | L | BOOT-007, BOOT-009, PKG-016, PKG-014, SVC-003 |
 | BOOT-013 | Maintain ESP space so at least three previous SystemGeneration kernels stay bootable | todo | blocked | M | BOOT-007, BOOT-008, PKG-016 |
 | BOOT-014 | Show previous SystemGenerations in the boot menu with automated boot-menu selection test | todo | blocked | L | BOOT-007, BOOT-012, BOOT-013, BLD-022, PKG-018, PKG-020, PKG-021, SVC-007 |
-| BOOT-015 | Explore systemd-boot+UKI and a Rust UEFI stub booting a SystemGeneration from the store | todo | blocked | M | BOOT-003, BOOT-004 |
+| BOOT-015 | Explore systemd-boot+UKI and a Rust UEFI stub booting a SystemGeneration from the store | todo | ready | M | BOOT-003, BOOT-004 |
 
 ## V1
 

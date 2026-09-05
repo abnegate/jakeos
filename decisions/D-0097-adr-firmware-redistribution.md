@@ -1,5 +1,5 @@
 # D-0097 · Decide firmware blob redistribution for official versus non-free
-- Status: proposed
+- Status: accepted
 - Task: GOV-022
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: No redistribution; first boot needs network, which Wi-Fi blobs def
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The official image ships firmware blobs whose licences permit redistribution (the redistributable subset of linux-firmware), so reference hardware works out of the box. Firmware that may not be redistributed is never shipped; hardware that requires it is excluded from Tier 1 by HW-003 criteria.
 
 ## Consequences
-None until Status is accepted.
+- The notices bundle (REL) lists every shipped firmware file and its licence.
+- The hardware register records the firmware each Tier 1 machine needs; a non-redistributable requirement disqualifies a candidate.
+- The installer never downloads firmware from third parties.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (separate non-free repository) rejected: reference laptops would lack Wi-Fi after install until the user finds the second repository.
+- Option C (download on demand) rejected: it needs a network on machines whose network firmware is the thing missing.
 
 ## Follow-ups
 none

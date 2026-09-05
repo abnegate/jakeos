@@ -5,25 +5,25 @@
 | Workstream | Total | Done | In progress | Todo | Dropped | Ready | Blocked | Weighted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | KRN | 59 | 7 | 0 | 52 | 0 | 3 | 49 | 6% |
-| BOOT | 49 | 1 | 0 | 48 | 0 | 1 | 47 | 1% |
-| ABI | 54 | 0 | 0 | 54 | 0 | 5 | 49 | 0% |
+| BOOT | 49 | 2 | 0 | 47 | 0 | 1 | 46 | 1% |
+| ABI | 54 | 1 | 0 | 53 | 0 | 4 | 49 | 1% |
 | CAP | 53 | 0 | 0 | 53 | 0 | 5 | 48 | 0% |
 | CMP | 55 | 4 | 0 | 51 | 0 | 4 | 47 | 5% |
-| TSK | 53 | 0 | 0 | 53 | 0 | 4 | 49 | 0% |
+| TSK | 53 | 1 | 0 | 52 | 0 | 3 | 49 | 1% |
 | IPC | 71 | 0 | 0 | 71 | 0 | 1 | 70 | 0% |
-| MEM | 56 | 0 | 0 | 56 | 0 | 2 | 54 | 0% |
+| MEM | 56 | 1 | 0 | 55 | 0 | 1 | 54 | 1% |
 | SCH | 61 | 0 | 0 | 61 | 0 | 0 | 61 | 0% |
 | OBS | 56 | 0 | 0 | 56 | 0 | 1 | 55 | 0% |
-| SVC | 43 | 0 | 0 | 43 | 0 | 1 | 42 | 0% |
+| SVC | 43 | 0 | 0 | 43 | 0 | 2 | 41 | 0% |
 | STO | 84 | 0 | 0 | 84 | 0 | 0 | 84 | 0% |
 | PKG | 91 | 0 | 0 | 91 | 0 | 2 | 89 | 0% |
 | GFX | 98 | 0 | 0 | 98 | 0 | 0 | 98 | 0% |
 | UIP | 58 | 0 | 0 | 58 | 0 | 0 | 58 | 0% |
-| TXT | 47 | 0 | 0 | 47 | 0 | 4 | 43 | 0% |
+| TXT | 47 | 0 | 0 | 47 | 0 | 5 | 42 | 0% |
 | ACC | 37 | 0 | 0 | 37 | 0 | 0 | 37 | 0% |
 | SEM | 44 | 0 | 0 | 44 | 0 | 0 | 44 | 0% |
 | LNX | 111 | 0 | 0 | 111 | 0 | 1 | 110 | 0% |
-| WIN | 85 | 0 | 0 | 85 | 0 | 1 | 84 | 0% |
+| WIN | 85 | 1 | 0 | 84 | 0 | 2 | 82 | 0% |
 | VIRT | 20 | 0 | 0 | 20 | 0 | 0 | 20 | 0% |
 | ENV | 36 | 0 | 0 | 36 | 0 | 1 | 35 | 0% |
 | HET | 30 | 0 | 0 | 30 | 0 | 1 | 29 | 0% |
@@ -32,17 +32,17 @@
 | NET | 40 | 0 | 0 | 40 | 0 | 0 | 40 | 0% |
 | AUD | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
 | MED | 42 | 0 | 0 | 42 | 0 | 1 | 41 | 0% |
-| HW | 90 | 1 | 0 | 89 | 0 | 5 | 84 | 1% |
+| HW | 90 | 2 | 0 | 88 | 0 | 4 | 84 | 1% |
 | PWR | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
 | SDK | 96 | 0 | 0 | 96 | 0 | 1 | 95 | 0% |
 | APP | 69 | 0 | 0 | 69 | 0 | 0 | 69 | 0% |
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
 | BLD | 80 | 4 | 0 | 76 | 0 | 0 | 76 | 3% |
 | LAB | 25 | 1 | 0 | 24 | 0 | 2 | 22 | 1% |
-| BEN | 63 | 1 | 0 | 62 | 0 | 3 | 59 | 2% |
-| REL | 67 | 0 | 0 | 67 | 0 | 1 | 66 | 0% |
+| BEN | 63 | 2 | 0 | 61 | 0 | 2 | 59 | 3% |
+| REL | 67 | 1 | 0 | 66 | 0 | 2 | 64 | 1% |
 | DOC | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
-| GOV | 84 | 8 | 0 | 76 | 0 | 10 | 66 | 13% |
+| GOV | 84 | 10 | 0 | 74 | 0 | 9 | 65 | 16% |
 
 ## Unanchored
 
@@ -174,7 +174,6 @@ none
 - critical-path task BLD-013 has Owner none on the active rung
 - critical-path task BOOT-001 has Owner none on the active rung
 - critical-path task BOOT-002 has Owner none on the active rung
-- critical-path task BOOT-004 has Owner none on the active rung
 - critical-path task BOOT-005 has Owner none on the active rung
 - critical-path task CAP-002 has Owner none on the active rung
 - critical-path task CAP-003 has Owner none on the active rung
@@ -204,7 +203,6 @@ none
 - critical-path task GOV-007 has Owner none on the active rung
 - critical-path task GOV-008 has Owner none on the active rung
 - critical-path task HW-001 has Owner none on the active rung
-- critical-path task HW-002 has Owner none on the active rung
 - critical-path task HW-004 has Owner none on the active rung
 - critical-path task HW-005 has Owner none on the active rung
 - critical-path task IPC-001 has Owner none on the active rung
@@ -244,7 +242,6 @@ none
 - critical-path task LAB-004 has Owner none on the active rung
 - critical-path task LNX-001 has Owner none on the active rung
 - critical-path task LNX-002 has Owner none on the active rung
-- critical-path task MEM-001 has Owner none on the active rung
 - critical-path task MEM-002 has Owner none on the active rung
 - critical-path task MEM-003 has Owner none on the active rung
 - critical-path task MEM-005 has Owner none on the active rung
@@ -293,7 +290,6 @@ none
 - critical-path task TSK-003 has Owner none on the active rung
 - critical-path task TSK-004 has Owner none on the active rung
 - critical-path task TSK-005 has Owner none on the active rung
-- critical-path task TSK-006 has Owner none on the active rung
 - critical-path task TSK-007 has Owner none on the active rung
 - critical-path task TSK-008 has Owner none on the active rung
 - critical-path task TSK-009 has Owner none on the active rung
@@ -313,4 +309,3 @@ none
 - critical-path task TSK-023 has Owner none on the active rung
 - critical-path task TSK-024 has Owner none on the active rung
 - critical-path task WASM-002 has Owner none on the active rung
-- critical-path task WIN-001 has Owner none on the active rung

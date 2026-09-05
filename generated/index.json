@@ -1557,7 +1557,6 @@
         "KRN-011"
       ],
       "blockers": [
-        "BOOT-004",
         "BLD-006",
         "BLD-009",
         "BLD-012",
@@ -1620,10 +1619,10 @@
       "title": "Decide V0 boots Linux init from a retained initramfs with native Components beside it",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "BOOT-003"
       ],
@@ -1653,7 +1652,6 @@
       ],
       "blockers": [
         "BOOT-001",
-        "BOOT-004",
         "CMP-003",
         "CMP-014"
       ],
@@ -1913,16 +1911,14 @@
       "type": "spike",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "BOOT-003",
         "BOOT-004"
       ],
-      "blockers": [
-        "BOOT-004"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0167",
         "GAP-0528"
@@ -3544,10 +3540,10 @@
       "title": "Decide whether ABI headers carry a syscall-note-style exception for native programs",
       "type": "adr",
       "milestone": "V0.5",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-003"
       ],
@@ -6106,7 +6102,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-016",
         "Q-001",
         "Q-029"
       ],
@@ -6135,7 +6130,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-016",
         "Q-001",
         "Q-029"
       ],
@@ -7070,7 +7064,6 @@
         "TSK-018"
       ],
       "blockers": [
-        "TSK-006",
         "TSK-018"
       ],
       "covers": [
@@ -7185,10 +7178,10 @@
       "title": "Decide native expression of termination, cancellation and async notification without signals",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -7350,8 +7343,7 @@
       ],
       "blockers": [
         "TSK-018",
-        "TSK-004",
-        "TSK-006"
+        "TSK-004"
       ],
       "covers": [
         "INV-0352",
@@ -7793,7 +7785,6 @@
         "TSK-012"
       ],
       "blockers": [
-        "TSK-006",
         "TSK-012"
       ],
       "covers": [
@@ -10353,10 +10344,10 @@
       "title": "Decide the MemoryObject sharing coherence model across CPUs and devices",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -10545,7 +10536,6 @@
       ],
       "blockers": [
         "MEM-003",
-        "MEM-001",
         "MEM-008",
         "MEM-006"
       ],
@@ -11025,8 +11015,7 @@
         "MEM-001"
       ],
       "blockers": [
-        "MEM-007",
-        "MEM-001"
+        "MEM-007"
       ],
       "covers": [
         "INV-0308",
@@ -14858,15 +14847,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "BOOT-004"
       ],
-      "blockers": [
-        "BOOT-004"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0170"
       ],
@@ -24601,7 +24588,6 @@
       "blockers": [
         "TXT-013",
         "TXT-006",
-        "BEN-016",
         "BEN-009"
       ],
       "covers": [],
@@ -24615,15 +24601,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-009"
       ],
-      "blockers": [
-        "GOV-009"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0247",
         "GAP-0030"
@@ -31148,10 +31132,10 @@
       "title": "Accept the Windows Personality scoping Decision",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -31197,15 +31181,13 @@
       "type": "spike",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "WIN-001"
       ],
-      "blockers": [
-        "WIN-001"
-      ],
+      "blockers": [],
       "covers": [
         "INV-1072",
         "GAP-0509"
@@ -31242,16 +31224,14 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "WIN-001",
         "GOV-003"
       ],
-      "blockers": [
-        "WIN-001"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0025"
       ],
@@ -31320,7 +31300,6 @@
         "Q-050"
       ],
       "blockers": [
-        "WIN-001",
         "Q-050"
       ],
       "covers": [
@@ -31345,7 +31324,6 @@
         "WIN-010"
       ],
       "blockers": [
-        "WIN-001",
         "WIN-002",
         "WIN-010"
       ],
@@ -31371,7 +31349,6 @@
         "Q-040"
       ],
       "blockers": [
-        "WIN-001",
         "LNX-015",
         "Q-040"
       ],
@@ -31590,8 +31567,7 @@
         "WIN-001"
       ],
       "blockers": [
-        "STO-047",
-        "WIN-001"
+        "STO-047"
       ],
       "covers": [
         "GAP-0432"
@@ -33389,8 +33365,7 @@
       ],
       "blockers": [
         "KRN-025",
-        "WIN-002",
-        "WIN-001"
+        "WIN-002"
       ],
       "covers": [
         "GAP-0443",
@@ -41429,10 +41404,10 @@
       "title": "Decide pragmatic driver residency over microkernel purity",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -41484,7 +41459,6 @@
         "KRN-017"
       ],
       "blockers": [
-        "HW-002",
         "KRN-017"
       ],
       "covers": [
@@ -41737,7 +41711,6 @@
         "ABI-013"
       ],
       "blockers": [
-        "HW-002",
         "ABI-013"
       ],
       "covers": [
@@ -41762,7 +41735,6 @@
         "HW-001"
       ],
       "blockers": [
-        "HW-002",
         "HW-001"
       ],
       "covers": [
@@ -41807,7 +41779,6 @@
         "HW-014"
       ],
       "blockers": [
-        "HW-002",
         "HW-014"
       ],
       "covers": [
@@ -41906,7 +41877,6 @@
         "HW-016"
       ],
       "blockers": [
-        "HW-002",
         "HW-016"
       ],
       "covers": [
@@ -41977,8 +41947,7 @@
         "GOV-022"
       ],
       "blockers": [
-        "HW-015",
-        "GOV-022"
+        "HW-015"
       ],
       "covers": [
         "GAP-0015"
@@ -45265,7 +45234,6 @@
         "IPC-005"
       ],
       "blockers": [
-        "ABI-029",
         "IPC-005"
       ],
       "covers": [
@@ -48591,8 +48559,7 @@
       ],
       "blockers": [
         "APP-006",
-        "LNX-017",
-        "WIN-001"
+        "LNX-017"
       ],
       "covers": [
         "INV-0930"
@@ -49069,7 +49036,6 @@
         "PKG-008",
         "PKG-016",
         "PKG-029",
-        "REL-001",
         "STO-014",
         "STO-021"
       ],
@@ -53471,7 +53437,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-016",
         "CMP-019",
         "CMP-018",
         "APP-001",
@@ -53670,10 +53635,10 @@
       "title": "Decide the visible-UI measurement boundary",
       "type": "adr",
       "milestone": "V0.5",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "BEN-007"
       ],
@@ -53702,7 +53667,6 @@
       ],
       "blockers": [
         "BEN-005",
-        "BEN-016",
         "CMP-027"
       ],
       "covers": [
@@ -53811,7 +53775,6 @@
         "OBS-011"
       ],
       "blockers": [
-        "BEN-016",
         "BEN-017",
         "CMP-027",
         "OBS-011"
@@ -54069,7 +54032,6 @@
       "blockers": [
         "BEN-009",
         "BEN-021",
-        "BEN-016",
         "CMP-019"
       ],
       "covers": [
@@ -54931,10 +54893,10 @@
       "title": "Decide release, SystemGeneration and Channel versioning",
       "type": "adr",
       "milestone": "V0.5",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -54951,15 +54913,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "REL-001"
       ],
-      "blockers": [
-        "REL-001"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0322"
       ],
@@ -54998,15 +54958,13 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "REL-001"
       ],
-      "blockers": [
-        "REL-001"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0338"
       ],
@@ -55266,7 +55224,6 @@
         "BEN-004"
       ],
       "blockers": [
-        "REL-001",
         "PKG-022",
         "BEN-004"
       ],
@@ -55641,8 +55598,7 @@
       ],
       "blockers": [
         "REL-012",
-        "REL-016",
-        "GOV-022"
+        "REL-016"
       ],
       "covers": [
         "GAP-0076"
@@ -56333,7 +56289,6 @@
       ],
       "blockers": [
         "REL-004",
-        "REL-001",
         "GOV-075"
       ],
       "covers": [
@@ -58011,9 +57966,7 @@
         "CAP-010",
         "IPC-006",
         "IPC-003",
-        "CMP-010",
-        "WIN-001",
-        "BOOT-004"
+        "CMP-010"
       ],
       "covers": [],
       "file": "workstreams/GOV.md",
@@ -58025,10 +57978,10 @@
       "title": "Decide font shipping versus metric-compatible substitutes",
       "type": "adr",
       "milestone": "V0.5",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-003"
       ],
@@ -58280,16 +58233,14 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-003",
         "GOV-009"
       ],
-      "blockers": [
-        "GOV-009"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0029",
         "GAP-0301",
@@ -58325,10 +58276,10 @@
       "title": "Decide firmware blob redistribution for official versus non-free",
       "type": "adr",
       "milestone": "V1",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-003"
       ],
@@ -60369,8 +60320,6 @@
             "`IPC-006` is todo — Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new",
             "`IPC-003` is todo — Select the small-message fast-path technique from measured prototypes",
             "`CMP-010` is todo — Decide the Phase A Component implementation strategy",
-            "`WIN-001` is todo — Accept the Windows Personality scoping Decision",
-            "`BOOT-004` is todo — Decide V0 boots Linux init from a retained initramfs with native Components beside it",
             "`GOV-007` is todo — Publish contributing, CODEOWNERS, AI policy and V0 Gate governance",
             "`ABI-020` is todo — Prototype typed kernel-boundary errors without errno",
             "`ABI-021` is todo — Prototype Layer 1 version and feature handshake",
@@ -64557,12 +64506,12 @@
   ],
   "totals": {
     "total": 2268,
-    "done": 27,
-    "todo": 2241,
+    "done": 37,
+    "todo": 2231,
     "in_progress": 0,
     "dropped": 0,
     "weight_total": 6416,
-    "weight_done": 47,
+    "weight_done": 59,
     "gates_total": 187,
     "gates_satisfied": 0
   },
@@ -64591,34 +64540,34 @@
     },
     "V0": {
       "total": 217,
-      "done": 23,
-      "todo": 194,
+      "done": 28,
+      "todo": 189,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 673,
-      "weight_done": 37,
+      "weight_done": 42,
       "gates_total": 21,
       "gates_satisfied": 0
     },
     "V0.5": {
       "total": 436,
-      "done": 4,
-      "todo": 432,
+      "done": 8,
+      "todo": 428,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 1161,
-      "weight_done": 10,
+      "weight_done": 14,
       "gates_total": 29,
       "gates_satisfied": 0
     },
     "V1": {
       "total": 569,
-      "done": 0,
-      "todo": 569,
+      "done": 1,
+      "todo": 568,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 1631,
-      "weight_done": 0,
+      "weight_done": 3,
       "gates_total": 30,
       "gates_satisfied": 0
     },
@@ -64659,12 +64608,12 @@
   "workstream_progress": {
     "ABI": {
       "total": 54,
-      "done": 0,
-      "todo": 54,
+      "done": 1,
+      "todo": 53,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 151,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64703,12 +64652,12 @@
     },
     "BEN": {
       "total": 63,
-      "done": 1,
-      "todo": 62,
+      "done": 2,
+      "todo": 61,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 146,
-      "weight_done": 3,
+      "weight_done": 4,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64725,12 +64674,12 @@
     },
     "BOOT": {
       "total": 49,
-      "done": 1,
-      "todo": 48,
+      "done": 2,
+      "todo": 47,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 153,
-      "weight_done": 1,
+      "weight_done": 2,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64791,12 +64740,12 @@
     },
     "GOV": {
       "total": 84,
-      "done": 8,
-      "todo": 76,
+      "done": 10,
+      "todo": 74,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 139,
-      "weight_done": 18,
+      "weight_done": 22,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64813,12 +64762,12 @@
     },
     "HW": {
       "total": 90,
-      "done": 1,
-      "todo": 89,
+      "done": 2,
+      "todo": 88,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 304,
-      "weight_done": 3,
+      "weight_done": 4,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64890,12 +64839,12 @@
     },
     "MEM": {
       "total": 56,
-      "done": 0,
-      "todo": 56,
+      "done": 1,
+      "todo": 55,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 177,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64945,12 +64894,12 @@
     },
     "REL": {
       "total": 67,
-      "done": 0,
-      "todo": 67,
+      "done": 1,
+      "todo": 66,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 180,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -65022,12 +64971,12 @@
     },
     "TSK": {
       "total": 53,
-      "done": 0,
-      "todo": 53,
+      "done": 1,
+      "todo": 52,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 178,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -65077,12 +65026,12 @@
     },
     "WIN": {
       "total": 85,
-      "done": 0,
-      "todo": 85,
+      "done": 1,
+      "todo": 84,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 249,
-      "weight_done": 0,
+      "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0
     }

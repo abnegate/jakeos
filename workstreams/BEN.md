@@ -4,7 +4,7 @@
 - Baseline: §10, §34, §53, §54, §59
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 63 live, 1 done, 0 in-progress, 62 todo, 0 dropped. Ready: 3. Blocked: 59. Weighted: 2%.
+Tasks: 63 live, 2 done, 0 in-progress, 61 todo, 0 dropped. Ready: 2. Blocked: 59. Weighted: 3%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -481,13 +481,14 @@ New V0.5 metrics (sibling BEN tasks). Merge-gate policy (BEN-033). Quiet fleet (
 ### BEN-016 · Decide the visible-UI measurement boundary
 - Type: adr
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: BEN-007
 - Baseline: §34, §54
 - Decision: D-0032
 - Invariants: I-042
+- Verified by: @jakebarnby
 
 V0.5 startup gates are incomparable unless visible UI is fixed. B-016 cites Q-029; this Decision answers Q-029 so warm and cold startup numbers are comparable across applications and systems.
 
@@ -497,15 +498,15 @@ V0.5 startup gates are incomparable unless visible UI is fixed. B-016 cites Q-02
 Startup harnesses (CMP, APP, BEN-009). Photodiode rig (LAB). Launch-path profile (BEN-021).
 
 #### Acceptance criteria
-- [ ] Option A (first compositor presentation of a non-blank frame), option B (first client commit), and option C (first photodiode edge) are evaluated against comparability across apps and against B-020.
-- [ ] The accepted option is the measurement boundary recorded on B-016 and answers Q-029.
-- [ ] A Review line names who accepts the Decision.
+- [x] Option A (first compositor presentation of a non-blank frame), option B (first client commit), and option C (first photodiode edge) are evaluated against comparability across apps and against B-020.
+- [x] The accepted option is the measurement boundary recorded on B-016 and answers Q-029.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GFX, APP, and BEN leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0032
 
 ### BEN-017 · Measure native startup against traditional ELF load
 - Type: spike

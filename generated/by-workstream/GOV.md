@@ -19,7 +19,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | ready | S | GOV-003 |
+| GOV-009 | Decide font shipping versus metric-compatible substitutes | done | done | S | GOV-003 |
 | GOV-010 | Implement roadmap check --base, impact summary and covers audit | done | done | M | GOV-013 |
 | GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | done | done | S | GOV-013 |
 | GOV-012 | Implement roadmap mutation commands from claim through renumber | done | done | M | GOV-013 |
@@ -35,9 +35,9 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-020 | Decide codec and proprietary-font shipping and patent policy | todo | blocked | M | GOV-003, GOV-009 |
+| GOV-020 | Decide codec and proprietary-font shipping and patent policy | todo | ready | M | GOV-003, GOV-009 |
 | GOV-021 | Decide the documentation license and translation terms | todo | ready | S | GOV-003 |
-| GOV-022 | Decide firmware blob redistribution for official versus non-free | todo | ready | M | GOV-003 |
+| GOV-022 | Decide firmware blob redistribution for official versus non-free | done | done | M | GOV-003 |
 | GOV-023 | Adopt the governance charter for decisions and maintainers | todo | blocked | M | GOV-007, GOV-024 |
 | GOV-024 | Decide legal-entity form able to hold marks and signing keys | todo | blocked | M | GOV-039 |
 | GOV-025 | Decide the 1.0 portability commitment as x86-64 only shipping | todo | blocked | S | GOV-006 |

@@ -1,5 +1,5 @@
 # D-0098 · Decide font shipping versus metric-compatible substitutes
-- Status: proposed
+- Status: accepted
 - Task: GOV-009
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: No policy needed; a broken first image.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. The system ships fonts under OSI-approved licences (OFL and similar) and a documented substitution map from common proprietary font names to metric-compatible open fonts, so documents and applications from Linux and Windows render without layout shifts. No proprietary font is ever shipped.
 
 ## Consequences
-None until Status is accepted.
+- TXT owns the font store, the substitution map and its exposure to fontconfig and Wine (TXT-fontconfig bridge).
+- GOV records each shipped font family and licence in the notices bundle.
+- Users may add their own fonts; the map applies only when a requested family is absent.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (OSI fonts only) rejected: documents created elsewhere would reflow, undermining the compatibility promise (§49).
+- Option C (ship no fonts) rejected: the V0.5 applications could not render text out of the box.
 
 ## Follow-ups
 none

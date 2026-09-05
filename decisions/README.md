@@ -33,7 +33,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0005 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | proposed | ABI-008 | S-002 |
 | D-0006 | Decide the Operation result error model: typed enum per kind or uniform error Object | proposed | ABI-009 | S-004 |
 | D-0007 | Decide Capability handle representation: dense index, sparse id or sealed value | proposed | ABI-010 | none |
-| D-0008 | Decide whether ABI headers carry a syscall-note-style exception for native programs | proposed | ABI-029 | none |
+| D-0008 | Decide whether ABI headers carry a syscall-note-style exception for native programs | accepted | ABI-029 | none |
 | D-0009 | Decide the Layer 1 freeze: accept the freeze ADR over the reviewed candidate set | proposed | ABI-049 | none |
 | D-0010 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | proposed | ABI-011 | none |
 | D-0011 | Decide whether Layer 2 Interface stability applies at V1 or only at 1.0 | proposed | ABI-037 | none |
@@ -57,7 +57,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0029 | Decide which audio device classes run in user space | proposed | AUD-016 | none |
 | D-0030 | Decide the blocking performance merge-Gate policy | proposed | BEN-033 | none |
 | D-0031 | Decide benchmark methodology and target-kind policy | accepted | BEN-007 | none |
-| D-0032 | Decide the visible-UI measurement boundary | proposed | BEN-016 | none |
+| D-0032 | Decide the visible-UI measurement boundary | accepted | BEN-016 | none |
 | D-0033 | Decide the top-level build orchestrator for kernel and userspace | accepted | BLD-002 | none |
 | D-0034 | Decide the CI platform with self-hosted KVM runners | accepted | BLD-003 | none |
 | D-0035 | Decide linker, LTO scope and PGO policy for kernel and userspace | proposed | BLD-039 | none |
@@ -76,7 +76,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0048 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | proposed | BOOT-031 | none |
 | D-0049 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | accepted | BOOT-003 | none |
 | D-0050 | Decide whether each SystemGeneration boots as one signed UKI or separately verified parts | proposed | BOOT-011 | none |
-| D-0051 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | proposed | BOOT-004 | none |
+| D-0051 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | accepted | BOOT-004 | none |
 | D-0052 | Decide Capability persistence across Component restart and reboot | proposed | CAP-020 | none |
 | D-0053 | Decide how Capability unforgeability survives machine boundaries | proposed | CAP-047 | none |
 | D-0054 | Decide explicit grant sources replacing ambient permissions | proposed | CAP-007 | none |
@@ -122,8 +122,8 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0094 | Decide the license for published benchmark and HCL datasets | proposed | GOV-040 | none |
 | D-0095 | Decide the documentation license and translation terms | proposed | GOV-021 | none |
 | D-0096 | Assess export-control and cryptography distribution obligations | proposed | GOV-050 | none |
-| D-0097 | Decide firmware blob redistribution for official versus non-free | proposed | GOV-022 | none |
-| D-0098 | Decide font shipping versus metric-compatible substitutes | proposed | GOV-009 | none |
+| D-0097 | Decide firmware blob redistribution for official versus non-free | accepted | GOV-022 | none |
+| D-0098 | Decide font shipping versus metric-compatible substitutes | accepted | GOV-009 | none |
 | D-0099 | Decide the funding model and publish infrastructure-cost finances | proposed | GOV-041 | none |
 | D-0100 | Adopt the governance charter for decisions and maintainers | proposed | GOV-023 | none |
 | D-0101 | Decide legal-entity form able to hold marks and signing keys | proposed | GOV-024 | none |
@@ -147,7 +147,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0119 | Decide Bluetooth host placement and required profiles | proposed | HW-040 | none |
 | D-0120 | Decide user-space driver access: VFIO, UIO or native Device DMA | proposed | HW-006 | none |
 | D-0121 | Decide criteria classifying each driver as inherited, native or rewritten | proposed | HW-016 | none |
-| D-0122 | Decide pragmatic driver residency over microkernel purity | proposed | HW-002 | none |
+| D-0122 | Decide pragmatic driver residency over microkernel purity | accepted | HW-002 | none |
 | D-0123 | Decide Capability<InputDevice> rights with no ambient device nodes | proposed | HW-007 | none |
 | D-0124 | Decide whether IOMMU is required for user-space drivers and DMA | proposed | HW-017 | none |
 | D-0125 | Decide NVIDIA support and Secure Boot handling of proprietary modules | proposed | HW-018 | none |
@@ -217,7 +217,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0189 | Decide Widevine L3 Personality path and native CDM non-goals | proposed | MED-023 | none |
 | D-0190 | Decide the MemoryObject backing-provider abstraction for future memory media | proposed | MEM-017 | S-006 |
 | D-0191 | Decide how borrowing lifetimes are enforced across Component boundaries | proposed | MEM-018 | none |
-| D-0192 | Decide the MemoryObject sharing coherence model across CPUs and devices | proposed | MEM-001 | none |
+| D-0192 | Decide the MemoryObject sharing coherence model across CPUs and devices | accepted | MEM-001 | none |
 | D-0193 | Decide whether dma-buf backs DMA- and GPU-compatible MemoryObjects | proposed | MEM-019 | none |
 | D-0194 | Decide encrypted MemoryObject key ownership and hardware encryption | proposed | MEM-045 | none |
 | D-0195 | Decide mapping of Capability<File> into a MemoryObject | proposed | MEM-020 | none |
@@ -265,7 +265,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0237 | Decide publisher identity and Package naming | proposed | REL-025 | none |
 | D-0238 | Declare fleet-management and paid-app non-goals for 1.0 | proposed | REL-026 | none |
 | D-0239 | Define release-readiness gates and freeze policy | proposed | REL-027 | none |
-| D-0240 | Decide release, SystemGeneration and Channel versioning | proposed | REL-001 | none |
+| D-0240 | Decide release, SystemGeneration and Channel versioning | accepted | REL-001 | none |
 | D-0241 | Define repository curation and free versus non-free channels | proposed | REL-028 | none |
 | D-0242 | Decide repository retention of past generations | proposed | REL-029 | none |
 | D-0243 | Decide the repository model and source trust display | proposed | REL-012 | none |
@@ -334,7 +334,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0306 | Decide deadline and timestamp representation in the Operation ABI | proposed | TSK-004 | none |
 | D-0307 | Decide whether Operations may complete inline at submit and how the ABI signals it | proposed | TSK-005 | none |
 | D-0308 | Decide which Operation ABI surfaces become Layer 1 freeze candidates | proposed | TSK-042 | none |
-| D-0309 | Decide native expression of termination, cancellation and async notification without signals | proposed | TSK-006 | none |
+| D-0309 | Decide native expression of termination, cancellation and async notification without signals | accepted | TSK-006 | none |
 | D-0310 | Decide how Operation priority relates to ResourceDomain Scheduling intent | proposed | TSK-027 | none |
 | D-0311 | Decide Operation submission/completion transport and batching expression | proposed | TSK-007 | none |
 | D-0312 | Decide Operation Ownership transfer semantics across Tasks and TaskGroups | proposed | TSK-028 | none |
@@ -367,7 +367,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0339 | Decide how prefix installers become installed applications | proposed | WIN-033 | none |
 | D-0340 | Decide NT Object-manager, async I/O, descriptor and section fidelity | proposed | WIN-035 | none |
 | D-0341 | Decide how Wine and Proton map onto native Objects | proposed | WIN-036 | none |
-| D-0342 | Accept the Windows Personality scoping Decision | proposed | WIN-001 | none |
+| D-0342 | Accept the Windows Personality scoping Decision | accepted | WIN-001 | none |
 | D-0343 | Decide that Win32 emulation stays in userspace | proposed | WIN-008 | none |
 | D-0344 | Decide 32-bit Win32 support and WoW64 requirements | proposed | WIN-010 | none |
 | D-0345 | Decide whether Wine hosts on the Linux Personality or the Native ABI | proposed | WIN-013 | none |

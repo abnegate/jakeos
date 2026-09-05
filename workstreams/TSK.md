@@ -4,7 +4,7 @@
 - Baseline: §18, §19, §20, §21
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 53 live, 0 done, 0 in-progress, 53 todo, 0 dropped. Ready: 4. Blocked: 49. Weighted: 0%.
+Tasks: 53 live, 1 done, 0 in-progress, 52 todo, 0 dropped. Ready: 3. Blocked: 49. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -169,13 +169,14 @@ Submit and completion implementation (TSK-018). Transport choice (TSK-007).
 ### TSK-006 · Decide native expression of termination, cancellation and async notification without signals
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §18, §19, §21
 - Decision: D-0309
 - Invariants: I-018
+- Verified by: @jakebarnby
 
 Signals have no native equivalent (§1, §18). This decision names Operation completion, typed Channel messages and Wait-able objects as the notification model native software uses for termination, cancellation and asynchronous wake-ups, and records the rejected signal-like options so later lints can forbid them.
 
@@ -185,16 +186,16 @@ Signals have no native equivalent (§1, §18). This decision names Operation com
 Event object implementation (TSK-029). Channel messages (IPC). Personality signal delivery (LNX).
 
 #### Acceptance criteria
-- [ ] Options evaluated include Operation completion plus Wait-able objects, typed Channel messages as the sole wake-up, and a retained signal-like native event (recorded as rejected if chosen against).
-- [ ] The decision states how Task termination and Operation cancellation are observed without signals.
-- [ ] The decision lists the signal-like options it rejects and why.
-- [ ] ABI lead sign-off is recorded on the pull request.
+- [x] Options evaluated include Operation completion plus Wait-able objects, typed Channel messages as the sole wake-up, and a retained signal-like native event (recorded as rejected if chosen against).
+- [x] The decision states how Task termination and Operation cancellation are observed without signals.
+- [x] The decision lists the signal-like options it rejects and why.
+- [x] ABI lead sign-off is recorded on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0309
 
 ### TSK-007 · Decide Operation submission/completion transport and batching expression
 - Type: adr

@@ -4,7 +4,7 @@
 - Baseline: §27, §28, §30, §31, §49, §54, §56.4, §62, §63
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 67 live, 0 done, 0 in-progress, 67 todo, 0 dropped. Ready: 1. Blocked: 66. Weighted: 0%.
+Tasks: 67 live, 1 done, 0 in-progress, 66 todo, 0 dropped. Ready: 2. Blocked: 64. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -20,14 +20,15 @@ Package format, store layout, repository client, generation compose and client-s
 ### REL-001 · Decide release, SystemGeneration and Channel versioning
 - Type: adr
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §28, §30, §66
 - Decision: D-0240
 - Risks: R-017
 - Invariants: I-080
+- Verified by: @jakebarnby
 
 Packages, SystemGenerations and public release names need one vocabulary before the first immutable install (§28, §30). Layer evolution rules stay with ABI and SDK (§66); this Decision only names how a generation number, a channel and a public release relate, so V0.5 manifests can reserve identity fields without a later format break (I-080).
 
@@ -37,15 +38,15 @@ Packages, SystemGenerations and public release names need one vocabulary before 
 Layer 1 and Layer 2 evolution rules (ABI). SDK crate semver (SDK). Channel promotion criteria (REL-004).
 
 #### Acceptance criteria
-- [ ] Options evaluated include (A) generation counters plus channel names for OS artifacts and semver for Layer 2 and Layer 3 interfaces, (B) semver for every artifact including generations, and (C) calendar-free public names plus opaque generation IDs.
-- [ ] The accepted option states how a SystemGeneration number relates to a public release name and to a channel.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include (A) generation counters plus channel names for OS artifacts and semver for Layer 2 and Layer 3 interfaces, (B) semver for every artifact including generations, and (C) calendar-free public names plus opaque generation IDs.
+- [x] The accepted option states how a SystemGeneration number relates to a public release name and to a channel.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: REL and PKG leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0240
 
 ### REL-002 · Decide the signing key hierarchy and custody model
 - Type: adr

@@ -4,7 +4,7 @@
 - Baseline: §16, §17, §38
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 56 live, 0 done, 0 in-progress, 56 todo, 0 dropped. Ready: 2. Blocked: 54. Weighted: 0%.
+Tasks: 56 live, 1 done, 0 in-progress, 55 todo, 0 dropped. Ready: 1. Blocked: 54. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -22,13 +22,14 @@ Handle encoding, syscall entry, and the error taxonomy (ABI). Capability rights 
 ### MEM-001 · Decide the MemoryObject sharing coherence model across CPUs and devices
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §16, §17, §38
 - Decision: D-0192
 - Invariants: I-024
+- Verified by: @jakebarnby
 
 Shared mappings need a written coherence contract before the shared property lands. The native platform does not assume coherent memory between all devices (§38); CPU-only coherence with explicit device sync, or a per-mapping coherence attribute, are the options the V0 shared-mapper tests then implement.
 
@@ -38,15 +39,15 @@ Shared mappings need a written coherence contract before the shared property lan
 GPU-compatible allocation (MEM-024). Device-local backing (MEM-046). Explicit GPU synchronization protocol (GFX).
 
 #### Acceptance criteria
-- [ ] Option A (CPU-coherent mappings plus explicit device sync Operations) and Option B (per-mapping coherence attribute) are evaluated against non-coherent devices.
-- [ ] The accepted option states what a second mapper may observe after a write by the first mapper, on CPU and on a non-coherent device.
-- [ ] Review sign-off is recorded on the pull request.
+- [x] Option A (CPU-coherent mappings plus explicit device sync Operations) and Option B (per-mapping coherence attribute) are evaluated against non-coherent devices.
+- [x] The accepted option states what a second mapper may observe after a write by the first mapper, on CPU and on a non-coherent device.
+- [x] Review sign-off is recorded on the pull request.
 
 #### Verification
 - Review: ABI lead and MEM reviewer sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0192
 
 ### MEM-002 · Decide the MemoryObject kernel implementation basis
 - Type: adr

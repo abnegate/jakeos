@@ -4,7 +4,7 @@
 - Baseline: §7, §9.1, §17, §32, §33, §55, §56.1, §57, §62, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 90 live, 1 done, 0 in-progress, 89 todo, 0 dropped. Ready: 5. Blocked: 84. Weighted: 1%.
+Tasks: 90 live, 2 done, 0 in-progress, 88 todo, 0 dropped. Ready: 4. Blocked: 84. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -51,13 +51,14 @@ Racking and capture (LAB-003). Kernel boot image (BOOT-002). Compositor GPU path
 ### HW-002 · Decide pragmatic driver residency over microkernel purity
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §33, §55, §57
 - Decision: D-0122
 - Invariants: I-008, I-054, I-097
+- Verified by: @jakebarnby
 
 §33 and §55 forbid microkernel purity and flag-day driver replacement. Hardware support wins when it conflicts with native work (§57). This Decision records that residency is incremental per class and measured, so later classification and framework tasks have a written non-goal rather than prose.
 
@@ -67,15 +68,15 @@ Racking and capture (LAB-003). Kernel boot image (BOOT-002). Compositor GPU path
 Per-class keep, move or rewrite criteria (HW-016). Access mechanism (HW-006).
 
 #### Acceptance criteria
-- [ ] Options evaluated include all drivers in user space, all drivers in-kernel, and pragmatic residency by measured cost per class.
-- [ ] The accepted option states that no driver class is replaced on a flag day and that hardware support wins until a later Decision names a class to move.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include all drivers in user space, all drivers in-kernel, and pragmatic residency by measured cost per class.
+- [x] The accepted option states that no driver class is replaced on a flag day and that hardware support wins until a later Decision names a class to move.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture and HW leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0122
 
 ### HW-003 · Decide the V1 through V2 Reference machine list and security criteria
 - Type: adr

@@ -5,7 +5,7 @@
 - Baseline gap: No dedicated boot or firmware section; UEFI, bootloader, generation selection, measured boot and the boot counter are implied by §5.1 and §30 but unspecified.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 49 live, 1 done, 0 in-progress, 48 todo, 0 dropped. Ready: 1. Blocked: 47. Weighted: 1%.
+Tasks: 49 live, 2 done, 0 in-progress, 47 todo, 0 dropped. Ready: 1. Blocked: 46. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -112,14 +112,15 @@ Bootloader family (BOOT-008). Secure Boot distribution (BOOT-031). ARM64 or RISC
 ### BOOT-004 · Decide V0 boots Linux init from a retained initramfs with native Components beside it
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: BOOT-003
 - Baseline: §5.1, §59
 - Decision: D-0051
 - Risks: R-010
 - Invariants: I-094
+- Verified by: @jakebarnby
 
 V0 exit text that demands a native init conflicts with §5.1 Phase A, which preserves boot. This adr fixes V0 as retained Linux boot and initramfs handoff, with native Components started beside Linux init, and defers native init to V0.5 (SVC).
 
@@ -129,16 +130,16 @@ V0 exit text that demands a native init conflicts with §5.1 Phase A, which pres
 Native init implementation (SVC-007). Early-userspace design at V0.5 (SVC-003). Component object model (CMP).
 
 #### Acceptance criteria
-- [ ] The decision file evaluates at least retained initramfs plus Linux init, native init at V0, and a hybrid stub init.
-- [ ] The accepted option states whether V0 CI images include a Linux init in the retained initramfs and where native Components are launched from.
-- [ ] Native init is named as SVC work at V0.5, not as a V0 BOOT deliverable.
-- [ ] A Review line names the reviewer who accepts the decision on the pull request.
+- [x] The decision file evaluates at least retained initramfs plus Linux init, native init at V0, and a hybrid stub init.
+- [x] The accepted option states whether V0 CI images include a Linux init in the retained initramfs and where native Components are launched from.
+- [x] Native init is named as SVC work at V0.5, not as a V0 BOOT deliverable.
+- [x] A Review line names the reviewer who accepts the decision on the pull request.
 
 #### Verification
 - Review: KRN and SVC lead sign-off recorded on the pull request, confirming Phase A preservation.
 
 #### Evidence
-- none
+- decision:D-0051
 
 ### BOOT-005 · Retain the Linux initramfs handoff and launch native Components beside Linux init
 - Type: build

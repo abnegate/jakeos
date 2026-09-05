@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 8 done, 0 in-progress, 76 todo, 0 dropped. Ready: 10. Blocked: 66. Weighted: 13%.
+Tasks: 84 live, 10 done, 0 in-progress, 74 todo, 0 dropped. Ready: 9. Blocked: 65. Weighted: 16%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -262,13 +262,14 @@ Per-Gate verification (the Gate `Verified by` tasks). Generated roll-up (GOV roa
 ### GOV-009 · Decide font shipping versus metric-compatible substitutes
 - Type: adr
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-003
 - Baseline: §41, §49
 - Decision: D-0098
 - Invariants: I-068, I-070
+- Verified by: @jakebarnby
 
 V0.5 ships the first immutable image with fonts. This Decision allows only redistributable fonts in that image. Proprietary fonts and metric substitutes for migrated documents stay with the V1 codec Decision. TXT selects families and inventories terms after this policy exists.
 
@@ -278,15 +279,15 @@ V0.5 ships the first immutable image with fonts. This Decision allows only redis
 Default family set and script coverage (TXT-002). Per-font license inventory (TXT-005). Proprietary fonts and metric substitutes for migrated documents (GOV-020). Userspace allowlist (GOV-016).
 
 #### Acceptance criteria
-- [ ] Options evaluated include shipping only OSI-approved font licenses in the default image, shipping those plus documented metric-compatible substitutes, and shipping no fonts (applications bundle their own).
-- [ ] The accepted option forbids Microsoft core fonts in the default image (I-070).
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include shipping only OSI-approved font licenses in the default image, shipping those plus documented metric-compatible substitutes, and shipping no fonts (applications bundle their own).
+- [x] The accepted option forbids Microsoft core fonts in the default image (I-070).
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer and TXT lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0098
 
 ### GOV-010 · Implement roadmap check --base, impact summary and covers audit
 - Type: build
@@ -628,12 +629,13 @@ Docs site and toolchain (DOC). Translation pipeline (DOC-025). Benchmark and HCL
 ### GOV-022 · Decide firmware blob redistribution for official versus non-free
 - Type: adr
 - Milestone: V1
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-003
 - Baseline: §33, §55, §62
 - Decision: D-0097
+- Verified by: @jakebarnby
 
 V1 Intel-laptop Wi-Fi and GPU images cannot ship blobs without redistribution rights. This Decision chooses official image versus non-free repository versus download-on-demand. HW audits per blob; REL hosts any non-free repository.
 
@@ -643,15 +645,15 @@ V1 Intel-laptop Wi-Fi and GPU images cannot ship blobs without redistribution ri
 Per-blob audit (HW-023). Firmware update service (HW-046). Non-free repository mechanics (REL). Userspace allowlist (GOV-016).
 
 #### Acceptance criteria
-- [ ] Options evaluated include shipping redistributable blobs in the official image with the rest excluded, a separate non-free repository, and download-on-demand at first boot.
-- [ ] The accepted option states what may appear in official images versus a non-free channel versus excluded.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include shipping redistributable blobs in the official image with the rest excluded, a separate non-free repository, and download-on-demand at first boot.
+- [x] The accepted option states what may appear in official images versus a non-free channel versus excluded.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer and HW lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0097
 
 ### GOV-023 · Adopt the governance charter for decisions and maintainers
 - Type: adr

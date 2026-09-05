@@ -11,7 +11,7 @@
 | TSK-003 | Decide Task cancellation model and resource cleanup | todo | blocked | M | TSK-017, Q-011, Q-012 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | todo | blocked | S | TSK-015 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | todo | blocked | S | TSK-014 |
-| TSK-006 | Decide native expression of termination, cancellation and async notification without signals | todo | ready | S | none |
+| TSK-006 | Decide native expression of termination, cancellation and async notification without signals | done | done | S | none |
 | TSK-007 | Decide Operation submission/completion transport and batching expression | todo | blocked | S | TSK-014 |
 | TSK-008 | Decide whether every Task has kernel-visible identity | todo | blocked | S | TSK-016 |
 | TSK-009 | Decide Task mapping onto kernel execution contexts | todo | blocked | M | TSK-016 |

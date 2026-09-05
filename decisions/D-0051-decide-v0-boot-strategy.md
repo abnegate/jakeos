@@ -1,5 +1,5 @@
 # D-0051 · Decide V0 boots Linux init from a retained initramfs with native Components beside it
-- Status: proposed
+- Status: accepted
 - Task: BOOT-004
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Middle ground; a third init to throw away.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. V0 boots the fork exactly as Linux boots: firmware, the retained bootloader, the kernel and the retained initramfs hand off to Linux init. The native runtime is started by init as a sibling process tree and hosts the V0 Components beside Linux user space. A native init replaces Linux init at V0.5 (SVC), when supervision semantics exist.
 
 ## Consequences
-None until Status is accepted.
+- Nothing in BOOT is on the V0 critical path beyond booting a CI-built image on H-001 and H-002.
+- The V0 demo runs with Linux init alive; the L0 corpus therefore exercises an unmodified boot path.
+- SVC owns the V0.5 native init and its readiness reporting; BOOT owns the generation-selecting boot manager from V0.5.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (native init at V0) rejected: it puts init, supervision and early user space on the critical path of a milestone whose purpose is the execution model.
+- Option C (hybrid stub init) rejected: two inits to debug from the first boot for no gate benefit.
 
 ## Follow-ups
 none

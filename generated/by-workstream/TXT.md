@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | TXT-001 | Benchmark text stack initialisation and first-glyph time inside application startup | todo | blocked | S | TXT-013, TXT-006, BEN-016, BEN-009 |
-| TXT-002 | Decide the default system font set and publish its script coverage matrix | todo | blocked | M | GOV-009 |
+| TXT-002 | Decide the default system font set and publish its script coverage matrix | todo | ready | M | GOV-009 |
 | TXT-003 | Decide the shaping and rasterisation libraries for the native text stack | todo | blocked | S | TXT-011 |
 | TXT-004 | Decide whether shaping runs in-Component or in a shared text service Component | todo | blocked | S | TXT-008, TXT-011 |
 | TXT-005 | Audit and record licences of every shipped font with redistribution terms | todo | blocked | S | TXT-002, GOV-016 |

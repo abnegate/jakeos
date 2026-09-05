@@ -1,5 +1,5 @@
 # D-0342 · Accept the Windows Personality scoping Decision
-- Status: proposed
+- Status: accepted
 - Task: WIN-001
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Control; infeasible.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The Windows personality starts from Wine and Proton running on the Linux personality, with native bindings replacing Linux dependencies over time. A user double-clicks an .exe and gets a normal window: no visible VM, no separate desktop, no compatibility wizard (§49). Gaming is a major objective (§48). Kernel-level anti-cheat and vendor DRM playback are excluded from 1.0 and stated publicly as unsupported.
 
 ## Consequences
-None until Status is accepted.
+- V1 carries Wine bring-up and the Wine test suite as non-gated work; V2 is the first gated Windows milestone (W1 corpus).
+- The VIRT workstream provides the fallback for software that cannot run under the personality.
+- WIN never exposes Win32 or NT concepts to native software (§3).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (defer past 1.0) rejected: Windows software, and games in particular, are existential for adoption (§56.5).
+- Option C (clean-room Win32) rejected: it discards decades of Wine work for no architectural gain (§48).
 
 ## Follow-ups
 none

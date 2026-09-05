@@ -4,7 +4,7 @@
 - Baseline: §7, §8, §12, §65, §66
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 54 live, 0 done, 0 in-progress, 54 todo, 0 dropped. Ready: 5. Blocked: 49. Weighted: 0%.
+Tasks: 54 live, 1 done, 0 in-progress, 53 todo, 0 dropped. Ready: 4. Blocked: 49. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -858,12 +858,13 @@ SDK crate semver labels (ABI-036). Layer 2 evolution-rule freeze (IPC). Publishi
 ### ABI-029 · Decide whether ABI headers carry a syscall-note-style exception for native programs
 - Type: adr
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-003
 - Baseline: §65
 - Decision: D-0008
+- Verified by: @jakebarnby
 
 Decide whether Native ABI headers and the syscall surface carry a Linux-syscall-note-style exception so native userspace programs are never derivative works of the kernel. Options are a syscall-note-style exception on Layer 1 headers, headers under the SDK license only with no kernel exception, and dual-licensed headers. GOV-003 is the input; SDK-027 is accepted in the same rung.
 
@@ -873,15 +874,15 @@ Decide whether Native ABI headers and the syscall surface carry a Linux-syscall-
 Outbound kernel license (GOV). SDK crate license (SDK). Generated header emission (ABI-023).
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates syscall-note-style exception, SDK-license-only headers, and dual-licensed headers as named options.
-- [ ] The accepted option states whether a proprietary native application linking only the generated header is a derivative work of the kernel.
-- [ ] Review records ABI lead and GOV lead sign-off on the pull request.
+- [x] The Decision record evaluates syscall-note-style exception, SDK-license-only headers, and dual-licensed headers as named options.
+- [x] The accepted option states whether a proprietary native application linking only the generated header is a derivative work of the kernel.
+- [x] Review records ABI lead and GOV lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and GOV lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0008
 
 ### ABI-030 · Publish Layer 1 change control: mandatory RFC, compatibility review, per-Milestone policy
 - Type: docs

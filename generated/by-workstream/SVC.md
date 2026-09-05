@@ -8,7 +8,7 @@
 | --- | --- | --- | --- | --- | --- |
 | SVC-001 | Benchmark supervisor death-detection to ready latency for a restarted service | todo | blocked | S | SVC-015, SVC-008, Q-001, BEN-005, BEN-007, GFX-002, SVC-002, SDK-012 |
 | SVC-002 | Run the compositor and one other service under supervision and pass the restart Gate | todo | blocked | M | SVC-009, SVC-015, GFX-010, GFX-009, BLD-020, APP-002, SVC-010 |
-| SVC-003 | Decide native init versus retained initramfs/systemd for early boot | todo | blocked | S | BOOT-004 |
+| SVC-003 | Decide native init versus retained initramfs/systemd for early boot | todo | ready | S | BOOT-004 |
 | SVC-004 | Decide how a service Component reports readiness and liveness to the supervisor | todo | blocked | S | SVC-014 |
 | SVC-005 | Decide restart budgets, strategies, backoff and escalation for supervised services | todo | blocked | S | SVC-014 |
 | SVC-006 | Decide the settings storage model: typed schema-versioned objects with history events | todo | blocked | S | PKG-009 |

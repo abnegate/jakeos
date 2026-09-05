@@ -4,7 +4,7 @@
 - Baseline: §3, §4, §9.1, §25, §48, §49, §56.2, §57, §62, §63, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 85 live, 0 done, 0 in-progress, 85 todo, 0 dropped. Ready: 1. Blocked: 84. Weighted: 0%.
+Tasks: 85 live, 1 done, 0 in-progress, 84 todo, 0 dropped. Ready: 2. Blocked: 82. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -18,14 +18,15 @@ Linux personality, Steam client, ia32 kernel retention and POSIX views (LNX). KV
 ### WIN-001 · Accept the Windows Personality scoping Decision
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §3, §48, §49, §56.2, §57
 - Decision: D-0342
 - Risks: R-014
 - Invariants: I-007, I-025, I-096
+- Verified by: @jakebarnby
 
 Accept the only V0 Windows deliverable: the personality is a compatibility subsystem that starts from Wine and Proton, not a Windows clone, and native software never sees Win32 (§3, §48). The Decision forbids presenting compatibility software inside an obvious VM, on a separate desktop, or behind a wizard for ordinary titles (§49), and records Windows gaming as a major staffed objective (§56.2).
 
@@ -35,15 +36,15 @@ Accept the only V0 Windows deliverable: the personality is a compatibility subsy
 Wine bring-up (WIN-015). VM fallback product (VIRT-002). Native ABI firewall lint (ABI-003).
 
 #### Acceptance criteria
-- [ ] The Decision file evaluates at least: (A) Wine/Proton as the starting point, not a clone, with no obvious VM, no separate desktop, no ordinary-case wizard, and gaming staffed as a major objective; (B) defer the Windows personality past 1.0; (C) a clean-room Win32 implementation without Wine.
-- [ ] The accepted option keeps Win32 inside the personality (I-007) and treats compatibility as a product (I-096).
-- [ ] Review sign-off is recorded on the pull request.
+- [x] The Decision file evaluates at least: (A) Wine/Proton as the starting point, not a clone, with no obvious VM, no separate desktop, no ordinary-case wizard, and gaming staffed as a major objective; (B) defer the Windows personality past 1.0; (C) a clean-room Win32 implementation without Wine.
+- [x] The accepted option keeps Win32 inside the personality (I-007) and treats compatibility as a product (I-096).
+- [x] Review sign-off is recorded on the pull request.
 
 #### Verification
 - Review: WIN and GOV reviewers sign off on the pull request that accepts the Decision.
 
 #### Evidence
-- none
+- decision:D-0342
 
 ### WIN-002 · Decide the kernel-level anti-cheat policy
 - Type: adr

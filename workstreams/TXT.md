@@ -5,7 +5,7 @@
 - Baseline gap: §41 names text, shaping, editing and localization as native UI requirements but specifies no font service, IME protocol, glyph atlas, locale data or localization pipeline.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 47 live, 0 done, 0 in-progress, 47 todo, 0 dropped. Ready: 4. Blocked: 43. Weighted: 0%.
+Tasks: 47 live, 0 done, 0 in-progress, 47 todo, 0 dropped. Ready: 5. Blocked: 42. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope

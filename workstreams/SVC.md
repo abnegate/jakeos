@@ -5,7 +5,7 @@
 - Baseline gap: §32 and §33 require restartable services and user-space drivers but do not own init, supervision trees, settings storage, time, locale or hostname.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 43 live, 0 done, 0 in-progress, 43 todo, 0 dropped. Ready: 1. Blocked: 42. Weighted: 0%.
+Tasks: 43 live, 0 done, 0 in-progress, 43 todo, 0 dropped. Ready: 2. Blocked: 41. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope

@@ -6,15 +6,15 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| REL-001 | Decide release, SystemGeneration and Channel versioning | todo | ready | S | none |
-| REL-002 | Decide the signing key hierarchy and custody model | todo | blocked | S | REL-001 |
+| REL-001 | Decide release, SystemGeneration and Channel versioning | done | done | S | none |
+| REL-002 | Decide the signing key hierarchy and custody model | todo | ready | S | REL-001 |
 
 ## V1
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | REL-003 | Decide Package and SystemGeneration signing scheme | todo | blocked | S | REL-002, PKG-029 |
-| REL-004 | Define update channels and promotion criteria | todo | blocked | S | REL-001 |
+| REL-004 | Define update channels and promotion criteria | todo | ready | S | REL-001 |
 | REL-005 | Implement nightly and testing update channels | todo | blocked | M | REL-004, REL-007 |
 | REL-006 | Automate CVE ingestion against the forked kernel tree | todo | blocked | M | KRN-030, KRN-031, PKG-046 |
 | REL-007 | Operate a signed developer repository that rejects tampering | todo | blocked | L | REL-003, REL-008, PKG-064, PKG-029 |

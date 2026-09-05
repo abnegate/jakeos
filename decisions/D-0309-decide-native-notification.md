@@ -1,5 +1,5 @@
 # D-0309 · Decide native expression of termination, cancellation and async notification without signals
-- Status: proposed
+- Status: accepted
 - Task: TSK-006
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Familiar; rejected as a POSIX shape.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Termination, cancellation and asynchronous notification are all expressed as Operation completions and waitable Objects. Cancelling a TaskGroup completes every outstanding Operation with a typed Cancelled result; an Event Object is waited on like any other Operation; timers, device events and supervisor notices arrive as completions. Running code is never interrupted asynchronously.
 
 ## Consequences
-None until Status is accepted.
+- No signal-like handler exists in the native ABI; the Linux personality synthesises signals for its guests.
+- Every blocking wait in the SDK is an Operation, so cancellation is uniform and deterministic (§21).
+- The Operation kind set (ABI-014) includes Wait on Event and Timer from V0.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (Channel messages as the sole wake-up) rejected: cancellation of an already blocked Operation would have to be indirect, and every concern needs its own channel.
+- Option C (signal-like native event) rejected: it reintroduces the asynchronous interruption semantics §1 removes.
 
 ## Follow-ups
 none

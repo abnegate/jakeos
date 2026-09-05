@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | todo | ready | S | none |
+| MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | done | done | S | none |
 | MEM-002 | Decide the MemoryObject kernel implementation basis | todo | blocked | S | MEM-011 |
 | MEM-003 | Decide whether Ownership transfer is kernel-enforced or advisory | todo | blocked | S | MEM-011 |
 | MEM-004 | Charge MemoryObject pages to the owning ResourceDomain memory budget | todo | blocked | S | MEM-005 |

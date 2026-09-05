@@ -26,7 +26,7 @@
 | BEN-013 | Publish Task baselines against Tokio, Go and BEAM | todo | blocked | M | BEN-005, BEN-007, TSK-021, TSK-019 |
 | BEN-014 | Publish storage-Object access against Linux file I/O | todo | blocked | S | BEN-005, BEN-007, STO-020, STO-029 |
 | BEN-015 | Verify no V0 benchmark regression at V0.5 | todo | blocked | S | BEN-005, BEN-007, BEN-001, BEN-003, BEN-002, BEN-013 |
-| BEN-016 | Decide the visible-UI measurement boundary | todo | ready | S | BEN-007 |
+| BEN-016 | Decide the visible-UI measurement boundary | done | done | S | BEN-007 |
 | BEN-017 | Measure native startup against traditional ELF load | todo | blocked | M | BEN-005, BEN-007, BEN-016, CMP-027 |
 | BEN-018 | Define energy measurement methodology with external meters | todo | blocked | M | BEN-007, LAB-006, LAB-007, PWR-004 |
 | BEN-019 | Measure filesystem candidates for snapshot and clone cost | todo | blocked | M | BEN-005, BEN-007, STO-023, GOV-003 |

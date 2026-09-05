@@ -6,16 +6,16 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| WIN-001 | Accept the Windows Personality scoping Decision | todo | ready | S | none |
+| WIN-001 | Accept the Windows Personality scoping Decision | done | done | S | none |
 
 ## V1
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | WIN-002 | Decide the kernel-level anti-cheat policy | todo | blocked | S | WIN-003, Q-043 |
-| WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | todo | blocked | M | WIN-001 |
+| WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | todo | ready | M | WIN-001 |
 | WIN-004 | Lint the tree against the Windows Personality clean-room policy | todo | blocked | S | WIN-005 |
-| WIN-005 | Decide a clean-room policy for the Windows Personality | todo | blocked | S | WIN-001, GOV-003 |
+| WIN-005 | Decide a clean-room policy for the Windows Personality | todo | ready | S | WIN-001, GOV-003 |
 | WIN-006 | Build the per-title Windows scenario harness | todo | blocked | M | WIN-009 |
 | WIN-007 | Publish an upstream-first policy for Wine, Proton, DXVK and VKD3D | todo | blocked | S | WIN-005, PKG-010 |
 | WIN-008 | Decide that Win32 emulation stays in userspace | todo | blocked | S | WIN-001, GOV-003, Q-050 |
