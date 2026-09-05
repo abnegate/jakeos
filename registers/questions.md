@@ -304,8 +304,8 @@ Whether NT-object or PE-loading emulation in the GPLv2 kernel conflicts with LGP
 
 ### Q-051 · How does the fork track upstream's minimum Rust version
 - Workstream: KRN
-- Status: open
-- Answered by: none
+- Status: answered
+- Answered by: KRN-004
 When upstream Linux raises its minimum Rust version or stabilises features the fork's Rust code depends on, whether to track upstream's minimum or pin independently.
 
 ### Q-052 · May a generation switch apply without reboot
@@ -391,7 +391,7 @@ Checkpointing, application-cooperative state interfaces, or not at all, and whet
 | Q-048 | How is KVM exposed natively | open |
 | Q-049 | Which jurisdiction should the legal entity be in | open |
 | Q-050 | Does in-kernel PE loading conflict with Wine licensing | open |
-| Q-051 | How does the fork track upstream's minimum Rust version | open |
+| Q-051 | How does the fork track upstream's minimum Rust version | answered |
 | Q-052 | May a generation switch apply without reboot | open |
 | Q-053 | What is the funding plan for infrastructure through 1.0 | open |
 | Q-054 | Can Wi-Fi credentials be imported during migration | open |

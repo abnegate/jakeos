@@ -1,5 +1,5 @@
 # D-0166 · Decide the upstream Linux tree and LTS series the fork is cut from
-- Status: proposed
+- Status: accepted
 - Task: KRN-005
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Middle ground; a short support life forces an early rebase.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The fork is cut from the most recent mainline release tag, v7.2 at the time of this Decision. Release candidates are never bases. Each subsequent mainline release tag (v7.3, v7.4, and so on) is merged as it is released (see D-0168), so the fork always sits on the newest Rust-for-Linux APIs and drivers.
 
 ## Consequences
-None until Status is accepted.
+- The fork carries no LTS backport burden; security fixes arrive with each mainline merge and, between releases, from the matching stable branch (7.2.y) merged as point releases.
+- Every mainline merge may raise the minimum Rust version; KRN-004 bounds how far the pinned toolchain may lag.
+- The divergence policy (KRN divergence ledger) measures merge cost per release; if two consecutive merges exceed the budget recorded there, this Decision is revisited in favour of an LTS series.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (named LTS series) rejected: the native model needs the newest Rust-for-Linux abstractions, and an LTS base would freeze them for years while the fork is still shaped by upstream.
+- Option C (non-LTS stable branch) rejected: same short support window as mainline with none of the freshness.
 
 ## Follow-ups
-none
+KRN-007 (accepted). Revisit when two consecutive mainline merges exceed the divergence budget.

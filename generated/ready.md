@@ -4,8 +4,8 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
-| KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | V0 | S | 5620 | none |
-| GOV-001 | Decide code hosting forge and repository layout | V0 | S | 5567 | none |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 | none |
+| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | V0 | M | 5499 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 | none |
 | SEC-002 | Publish threat model and threat Register | V0 | M | 5360 | none |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 | none |
@@ -14,14 +14,13 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 | none |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 | none |
-| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4900 | none |
 | BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 | none |
-| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4829 | none |
-| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4734 | none |
+| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | V0 | S | 4763 | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 | none |
-| CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | V0 | M | 4697 | none |
 | CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4697 | none |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 | none |
+| BLD-003 | Decide the CI platform with self-hosted KVM runners | V0 | S | 4615 | none |
+| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | V0 | M | 4306 | none |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 | none |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 | none |
 | WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4101 | none |
@@ -32,17 +31,21 @@
 | HW-003 | Decide the V1 through V2 Reference machine list and security criteria | V0 | M | 3360 | none |
 | LAB-002 | Decide lab site and the remote power, console and capture stack | V0 | S | 3304 | none |
 | CMP-008 | Decide Component panic, abort and typed exit-cause semantics | V0 | M | 3280 | none |
+| BLD-002 | Decide the top-level build orchestrator for kernel and userspace | V0 | M | 3174 | none |
 | SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3170 | none |
 | PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2902 | none |
 | HW-002 | Decide pragmatic driver residency over microkernel purity | V0 | S | 2311 | none |
 | GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2007 | none |
+| GOV-016 | Publish the userspace dependency license allowlist | V0.5 | S | 1670 | none |
 | SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1635 | none |
 | CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1629 | none |
 | LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1589 | none |
+| GOV-009 | Decide font shipping versus metric-compatible substitutes | V0.5 | S | 1487 | none |
 | CMP-031 | Study Genode composition, session routing and resource budgets | V0.5 | S | 1402 | none |
 | CMP-032 | Measure hardware address-space cost against SFI-style in-address-space isolation | V0.5 | M | 1368 | none |
 | TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | V0.5 | M | 1342 | none |
 | TXT-009 | Build the monospace grid text fast path for the Terminal | V0.5 | M | 1208 | none |
+| KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | V0 | M | 1164 | none |
 | REL-001 | Decide release, SystemGeneration and Channel versioning | V0.5 | S | 873 | none |
 | OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 613 | none |
 | TSK-006 | Decide native expression of termination, cancellation and async notification without signals | V0 | S | 586 | none |
@@ -50,13 +53,18 @@
 | HET-002 | Survey heterogeneous dispatch models before the ComputeDevice API | V0 | M | 463 | none |
 | MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | V1 | M | 365 | none |
 | CAP-026 | Survey KeyKOS, EROS, CapROS, Capsicum, Barrelfish and Theseus Capability patterns | V0.5 | M | 325 | none |
+| ABI-029 | Decide whether ABI headers carry a syscall-note-style exception for native programs | V0.5 | S | 248 | none |
 | ENV-021 | Prototype environment.yaml versus Package-manifest profiles | V1 | S | 245 | none |
+| GOV-022 | Decide firmware blob redistribution for official versus non-free | V1 | M | 214 | none |
 | TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | V1 | S | 195 | none |
 | HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | V2 | S | 158 | none |
+| GOV-021 | Decide the documentation license and translation terms | V1 | S | 113 | none |
+| GOV-059 | Publish the GPL corresponding-source written-offer policy | V3 | S | 106 | none |
 | TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
 | MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | V0 | S | 22 | none |
 | GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
+| GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |
 | GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
 | GOV-043 | Decide the Workstream-split procedure at the size warning | V2 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

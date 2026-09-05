@@ -1,5 +1,5 @@
 # D-0089 · Decide code hosting forge and repository layout
-- Status: proposed
+- Status: accepted
 - Task: GOV-001
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Planning corpus stays independent; Evidence aliases must resolve a
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. Code is hosted on GitHub under the abnegate account: the roadmap at github.com/abnegate/jakeos, the kernel fork at github.com/abnegate/jakeos-kernel with full upstream history, and the userspace monorepo at github.com/abnegate/jakeos-platform (see D-0037). Repositories are public. GitHub Actions run every required check and GitHub Pages publishes the roadmap dashboard.
 
 ## Consequences
-None until Status is accepted.
+- registers/repos.md aliases resolve to github.com/abnegate/*; evidence lines use those aliases.
+- Branch protection requires the validate check on main; pull requests are the only path to main for non-owners.
+- Moving to a self-hosted forge later is a new GOV Decision and a repository migration, not a rewrite.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (self-hosted forge) rejected for now: operating a forge, CI runners and Pages equivalents is a standing cost with no benefit before external contributors exist.
+- Option C (hybrid) rejected: two hosts doubles account, CI and permission surfaces for a one-person team.
 
 ## Follow-ups
-none
+BLD-005 (accepted). Create github.com/abnegate/jakeos-kernel and github.com/abnegate/jakeos-platform when their first tasks start.

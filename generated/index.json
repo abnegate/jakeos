@@ -6,15 +6,13 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "KRN-002"
       ],
-      "blockers": [
-        "KRN-002"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0117",
         "INV-0111",
@@ -31,10 +29,10 @@
       "title": "Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -51,16 +49,14 @@
       "title": "Decide the licence for new native kernel code",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-002"
       ],
-      "blockers": [
-        "KRN-002"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0001"
       ],
@@ -73,20 +69,16 @@
       "title": "Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-002",
         "KRN-005",
         "Q-051"
       ],
-      "blockers": [
-        "KRN-002",
-        "KRN-005",
-        "Q-051"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0052",
         "GAP-0162"
@@ -100,16 +92,14 @@
       "title": "Decide the upstream Linux tree and LTS series the fork is cut from",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-002"
       ],
-      "blockers": [
-        "KRN-002"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0118",
         "GAP-0534",
@@ -125,16 +115,14 @@
       "title": "Decide the upstream-first policy for the hardware layer and Rust abstractions",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-002"
       ],
-      "blockers": [
-        "KRN-002"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0048",
         "GAP-0052"
@@ -148,16 +136,14 @@
       "title": "Decide upstream tracking: rebase vs merge and cadence per divergence phase",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "KRN-005"
       ],
-      "blockers": [
-        "KRN-005"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0348",
         "GAP-0050",
@@ -184,8 +170,7 @@
       ],
       "blockers": [
         "KRN-010",
-        "KRN-009",
-        "KRN-006"
+        "KRN-009"
       ],
       "covers": [
         "GAP-0049",
@@ -201,7 +186,7 @@
       "type": "docs",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
@@ -209,11 +194,7 @@
         "KRN-007",
         "KRN-006"
       ],
-      "blockers": [
-        "KRN-002",
-        "KRN-007",
-        "KRN-006"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0156",
         "INV-1100",
@@ -230,7 +211,7 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
@@ -242,15 +223,7 @@
         "KRN-004",
         "BLD-005"
       ],
-      "blockers": [
-        "KRN-002",
-        "KRN-005",
-        "KRN-007",
-        "KRN-006",
-        "KRN-003",
-        "KRN-004",
-        "BLD-005"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0119"
       ],
@@ -389,9 +362,7 @@
         "KRN-003"
       ],
       "blockers": [
-        "KRN-002",
-        "KRN-018",
-        "KRN-003"
+        "KRN-018"
       ],
       "covers": [
         "INV-0947",
@@ -443,15 +414,13 @@
       "type": "spike",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "KRN-002"
       ],
-      "blockers": [
-        "KRN-002"
-      ],
+      "blockers": [],
       "covers": [
         "INV-1131",
         "INV-0015",
@@ -489,7 +458,6 @@
         "BLD-013"
       ],
       "blockers": [
-        "KRN-004",
         "KRN-010",
         "BLD-013"
       ],
@@ -558,7 +526,6 @@
       "blockers": [
         "KRN-023",
         "KRN-014",
-        "KRN-007",
         "LNX-002"
       ],
       "covers": [
@@ -586,9 +553,7 @@
       ],
       "blockers": [
         "KRN-020",
-        "KRN-022",
-        "KRN-005",
-        "KRN-007"
+        "KRN-022"
       ],
       "covers": [
         "GAP-0534"
@@ -639,7 +604,6 @@
       ],
       "blockers": [
         "KRN-010",
-        "KRN-007",
         "KRN-011",
         "BLD-012"
       ],
@@ -762,7 +726,6 @@
         "KRN-017"
       ],
       "blockers": [
-        "KRN-003",
         "KRN-017"
       ],
       "covers": [
@@ -939,8 +902,7 @@
         "KRN-002"
       ],
       "blockers": [
-        "KRN-010",
-        "KRN-002"
+        "KRN-010"
       ],
       "covers": [
         "GAP-0051"
@@ -1468,7 +1430,6 @@
         "GOV-075"
       ],
       "blockers": [
-        "KRN-005",
         "KRN-050",
         "REL-053",
         "GOV-075"
@@ -1833,8 +1794,7 @@
         "GOV-003"
       ],
       "blockers": [
-        "BOOT-015",
-        "GOV-003"
+        "BOOT-015"
       ],
       "covers": [
         "GAP-0020"
@@ -3598,15 +3558,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0003"
       ],
@@ -5854,10 +5812,10 @@
       "title": "Decide what replaces PID, parent/child, exit status and process groups",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -5874,10 +5832,10 @@
       "title": "Decide Component plus ResourceDomain as the native isolation model",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -6008,7 +5966,6 @@
       ],
       "blockers": [
         "CMP-005",
-        "CMP-007",
         "CMP-013",
         "CAP-001",
         "SEC-001"
@@ -6039,9 +5996,7 @@
         "ABI-018"
       ],
       "blockers": [
-        "CMP-007",
         "CMP-009",
-        "CMP-006",
         "ABI-018"
       ],
       "covers": [
@@ -6074,9 +6029,7 @@
         "ABI-013"
       ],
       "blockers": [
-        "CMP-006",
         "CMP-009",
-        "CMP-007",
         "ABI-005",
         "ABI-013"
       ],
@@ -6231,7 +6184,6 @@
       ],
       "blockers": [
         "CMP-027",
-        "CMP-007",
         "CMP-013",
         "BEN-020"
       ],
@@ -6386,7 +6338,6 @@
         "SCH-023"
       ],
       "blockers": [
-        "CMP-007",
         "CMP-027",
         "SCH-023"
       ],
@@ -6630,7 +6581,6 @@
         "Q-010"
       ],
       "blockers": [
-        "CMP-006",
         "LNX-060",
         "Q-010"
       ],
@@ -8645,8 +8595,7 @@
         "GOV-003"
       ],
       "blockers": [
-        "IPC-006",
-        "GOV-003"
+        "IPC-006"
       ],
       "covers": [
         "GAP-0007"
@@ -9181,7 +9130,6 @@
         "IPC-006"
       ],
       "blockers": [
-        "GOV-003",
         "IPC-006"
       ],
       "covers": [
@@ -11968,8 +11916,7 @@
         "SCH-002",
         "CAP-005",
         "ABI-005",
-        "KRN-013",
-        "CMP-007"
+        "KRN-013"
       ],
       "covers": [
         "INV-0053",
@@ -16428,7 +16375,6 @@
       ],
       "blockers": [
         "STO-026",
-        "GOV-003",
         "SEC-005"
       ],
       "covers": [
@@ -16695,7 +16641,6 @@
         "STO-030"
       ],
       "blockers": [
-        "GOV-003",
         "BEN-019",
         "STO-023",
         "STO-030"
@@ -18479,7 +18424,6 @@
       "blockers": [
         "PKG-009",
         "PKG-012",
-        "GOV-003",
         "SDK-026"
       ],
       "covers": [
@@ -26111,8 +26055,7 @@
       ],
       "blockers": [
         "ACC-012",
-        "GOV-016",
-        "GOV-003"
+        "GOV-016"
       ],
       "covers": [
         "GAP-0263"
@@ -28167,7 +28110,6 @@
         "KRN-017"
       ],
       "blockers": [
-        "KRN-002",
         "KRN-010",
         "KRN-011",
         "KRN-017"
@@ -31360,8 +31302,7 @@
         "GOV-003"
       ],
       "blockers": [
-        "WIN-001",
-        "GOV-003"
+        "WIN-001"
       ],
       "covers": [
         "GAP-0025"
@@ -31432,7 +31373,6 @@
       ],
       "blockers": [
         "WIN-001",
-        "GOV-003",
         "Q-050"
       ],
       "covers": [
@@ -35923,8 +35863,7 @@
       ],
       "blockers": [
         "WASM-001",
-        "WASM-002",
-        "GOV-003"
+        "WASM-002"
       ],
       "covers": [
         "GAP-0523"
@@ -36031,8 +35970,7 @@
       ],
       "blockers": [
         "WASM-003",
-        "WASM-001",
-        "GOV-003"
+        "WASM-001"
       ],
       "covers": [
         "INV-0275",
@@ -36198,7 +36136,6 @@
         "CMP-027",
         "SCH-007",
         "PKG-031",
-        "GOV-003",
         "BLD-023",
         "ABI-003",
         "OBS-005",
@@ -44737,7 +44674,6 @@
       ],
       "blockers": [
         "ABI-003",
-        "BLD-004",
         "BLD-009"
       ],
       "covers": [
@@ -45404,7 +45340,6 @@
         "IPC-005"
       ],
       "blockers": [
-        "GOV-003",
         "ABI-029",
         "IPC-005"
       ],
@@ -50813,17 +50748,14 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "BLD-005",
         "BLD-004"
       ],
-      "blockers": [
-        "BLD-005",
-        "BLD-004"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0087"
       ],
@@ -50837,17 +50769,14 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "BLD-005",
         "GOV-001"
       ],
-      "blockers": [
-        "BLD-005",
-        "GOV-001"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0107"
       ],
@@ -50860,10 +50789,10 @@
       "title": "Decide LLVM/Clang as the sole C compiler and reject a custom compiler",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -50879,16 +50808,14 @@
       "title": "Decide repository topology before a second repository exists",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "blocked",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-001"
       ],
-      "blockers": [
-        "GOV-001"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0086"
       ],
@@ -50985,8 +50912,6 @@
       ],
       "blockers": [
         "BLD-002",
-        "BLD-004",
-        "BLD-005",
         "BLD-013"
       ],
       "covers": [
@@ -51051,8 +50976,6 @@
       ],
       "blockers": [
         "BLD-003",
-        "BLD-004",
-        "GOV-003",
         "GOV-002",
         "ABI-003",
         "ABI-018",
@@ -51115,8 +51038,6 @@
         "KRN-010"
       ],
       "blockers": [
-        "BLD-004",
-        "KRN-004",
         "KRN-010"
       ],
       "covers": [
@@ -51364,8 +51285,7 @@
       ],
       "blockers": [
         "BLD-011",
-        "GOV-016",
-        "GOV-003"
+        "GOV-016"
       ],
       "covers": [
         "GAP-0155",
@@ -51444,8 +51364,7 @@
       ],
       "blockers": [
         "BLD-013",
-        "BLD-012",
-        "BLD-004"
+        "BLD-012"
       ],
       "covers": [
         "GAP-0103"
@@ -51949,8 +51868,7 @@
         "BLD-004"
       ],
       "blockers": [
-        "BLD-013",
-        "BLD-004"
+        "BLD-013"
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
@@ -53956,8 +53874,7 @@
       "blockers": [
         "BEN-005",
         "BEN-007",
-        "STO-023",
-        "GOV-003"
+        "STO-023"
       ],
       "covers": [
         "INV-0507"
@@ -56353,8 +56270,7 @@
       ],
       "blockers": [
         "REL-019",
-        "GOV-059",
-        "GOV-003"
+        "GOV-059"
       ],
       "covers": [
         "GAP-0013",
@@ -56443,7 +56359,6 @@
       ],
       "blockers": [
         "REL-019",
-        "GOV-003",
         "GOV-059",
         "BLD-023"
       ],
@@ -58047,10 +57962,10 @@
       "title": "Decide code hosting forge and repository layout",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "S",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [
         "GOV-004"
       ],
@@ -58068,15 +57983,13 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0036",
         "GAP-0039",
@@ -58091,10 +58004,10 @@
       "title": "Decide the license firewall and outbound project licenses",
       "type": "adr",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -58200,7 +58113,6 @@
       ],
       "blockers": [
         "GOV-002",
-        "GOV-001",
         "GOV-005"
       ],
       "covers": [
@@ -58255,15 +58167,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0030"
       ],
@@ -58353,15 +58263,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-001"
       ],
-      "blockers": [
-        "GOV-001"
-      ],
+      "blockers": [],
       "covers": [],
       "file": "workstreams/GOV.md",
       "downstream_weight": 0,
@@ -58393,15 +58301,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0012"
       ],
@@ -58523,7 +58429,6 @@
         "GOV-009"
       ],
       "blockers": [
-        "GOV-003",
         "GOV-009"
       ],
       "covers": [
@@ -58541,15 +58446,13 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0073",
         "GAP-0081"
@@ -58564,15 +58467,13 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0373"
       ],
@@ -58763,7 +58664,6 @@
         "GOV-016"
       ],
       "blockers": [
-        "GOV-003",
         "GOV-016"
       ],
       "covers": [
@@ -58787,8 +58687,7 @@
         "GOV-001"
       ],
       "blockers": [
-        "GOV-007",
-        "GOV-001"
+        "GOV-007"
       ],
       "covers": [
         "GAP-0072",
@@ -58856,8 +58755,7 @@
         "GOV-001"
       ],
       "blockers": [
-        "GOV-005",
-        "GOV-001"
+        "GOV-005"
       ],
       "covers": [
         "GAP-0056"
@@ -59150,7 +59048,6 @@
         "PKG-010"
       ],
       "blockers": [
-        "GOV-003",
         "WIN-005",
         "PKG-010"
       ],
@@ -59209,7 +59106,6 @@
         "PKG-047"
       ],
       "blockers": [
-        "GOV-003",
         "PKG-047"
       ],
       "covers": [
@@ -59437,15 +59333,13 @@
       "type": "docs",
       "milestone": "V3",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "GOV-003"
       ],
-      "blockers": [
-        "GOV-003"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0374",
         "GAP-0014"
@@ -59517,7 +59411,6 @@
       ],
       "blockers": [
         "GOV-056",
-        "GOV-003",
         "GOV-023",
         "GOV-002"
       ],
@@ -64808,12 +64701,12 @@
   ],
   "totals": {
     "total": 2268,
-    "done": 5,
-    "todo": 2263,
+    "done": 17,
+    "todo": 2251,
     "in_progress": 0,
     "dropped": 0,
     "weight_total": 6416,
-    "weight_done": 11,
+    "weight_done": 27,
     "gates_total": 187,
     "gates_satisfied": 0
   },
@@ -64842,12 +64735,12 @@
     },
     "V0": {
       "total": 217,
-      "done": 1,
-      "todo": 216,
+      "done": 13,
+      "todo": 204,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 673,
-      "weight_done": 1,
+      "weight_done": 17,
       "gates_total": 21,
       "gates_satisfied": 0
     },
@@ -64965,12 +64858,12 @@
     },
     "BLD": {
       "total": 80,
-      "done": 0,
-      "todo": 80,
+      "done": 2,
+      "todo": 78,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 239,
-      "weight_done": 0,
+      "weight_done": 2,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -64998,12 +64891,12 @@
     },
     "CMP": {
       "total": 55,
-      "done": 0,
-      "todo": 55,
+      "done": 2,
+      "todo": 53,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 176,
-      "weight_done": 0,
+      "weight_done": 4,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -65042,12 +64935,12 @@
     },
     "GOV": {
       "total": 84,
-      "done": 5,
-      "todo": 79,
+      "done": 7,
+      "todo": 77,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 139,
-      "weight_done": 11,
+      "weight_done": 15,
       "gates_total": 0,
       "gates_satisfied": 0
     },
@@ -65097,12 +64990,12 @@
     },
     "KRN": {
       "total": 59,
-      "done": 0,
-      "todo": 59,
+      "done": 6,
+      "todo": 53,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 127,
-      "weight_done": 0,
+      "weight_done": 6,
       "gates_total": 0,
       "gates_satisfied": 0
     },

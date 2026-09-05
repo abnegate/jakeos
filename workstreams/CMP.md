@@ -4,7 +4,7 @@
 - Baseline: §10, §11, §34
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 55 live, 0 done, 0 in-progress, 55 todo, 0 dropped. Ready: 8. Blocked: 47. Weighted: 0%.
+Tasks: 55 live, 2 done, 0 in-progress, 53 todo, 0 dropped. Ready: 6. Blocked: 47. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -178,13 +178,14 @@ Native AddressSpace object (CMP-045). Native membership without namespaces (CMP-
 ### CMP-006 · Decide what replaces PID, parent/child, exit status and process groups
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §2, §10
 - Decision: D-0062
 - Invariants: I-014
+- Verified by: @jakebarnby
 
 Component replaces process as the unit of isolation. This decision fixes the native replacements for process identity, lineage, exit status and grouping that every V0 build task assumes. Options are `Object<Component>` handles only, handle plus kernel-visible lineage, and opaque identity with supervisor-held lineage.
 
@@ -194,27 +195,28 @@ Component replaces process as the unit of isolation. This decision fixes the nat
 Personality process mapping (CMP-036). Task identity (TSK).
 
 #### Acceptance criteria
-- [ ] At least two options are evaluated, including handles-only and handle plus kernel-visible lineage.
-- [ ] The accepted option names the native replacement for PID, parent/child, exit status and process groups.
-- [ ] Native software has no PID, process-group or parent/child API as a result of the accepted option.
-- [ ] A Review line names who accepts the decision.
+- [x] At least two options are evaluated, including handles-only and handle plus kernel-visible lineage.
+- [x] The accepted option names the native replacement for PID, parent/child, exit status and process groups.
+- [x] Native software has no PID, process-group or parent/child API as a result of the accepted option.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: ABI lead and CMP lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0062
 
 ### CMP-007 · Decide Component plus ResourceDomain as the native isolation model
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §23, §36, §53
 - Decision: D-0064
 - Invariants: I-019
+- Verified by: @jakebarnby
 
 Records that container-based isolation is replaced by Component plus ResourceDomain and that OCI containers live in the Linux personality. The §53 non-goals (no daemon, no namespace step, no overlay mount, no image layers) become the standing rules this decision adopts and CMP-013 enforces.
 
@@ -224,16 +226,16 @@ Records that container-based isolation is replaced by Component plus ResourceDom
 OCI runtime inside the Linux personality (LNX). Namespace subsumption tests (CMP-026). ResourceDomain object (SCH).
 
 #### Acceptance criteria
-- [ ] At least two options are evaluated, including Component plus ResourceDomain as the only native isolation model and retaining a native container runtime.
-- [ ] The accepted option states that native isolation has no runtime daemon, namespace setup step, overlay mount, image layers or fork/exec creation mechanism.
-- [ ] OCI containers are recorded as Linux-personality compatibility, not a native primitive.
-- [ ] A Review line names who accepts the decision.
+- [x] At least two options are evaluated, including Component plus ResourceDomain as the only native isolation model and retaining a native container runtime.
+- [x] The accepted option states that native isolation has no runtime daemon, namespace setup step, overlay mount, image layers or fork/exec creation mechanism.
+- [x] OCI containers are recorded as Linux-personality compatibility, not a native primitive.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: ABI lead and CMP lead sign-off recorded on the pull request.
 
 #### Evidence
-- none
+- decision:D-0064
 
 ### CMP-008 · Decide Component panic, abort and typed exit-cause semantics
 - Type: adr

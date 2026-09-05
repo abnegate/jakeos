@@ -6,9 +6,9 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-001 | Decide code hosting forge and repository layout | todo | ready | S | GOV-004 |
-| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | todo | blocked | M | GOV-003 |
-| GOV-003 | Decide the license firewall and outbound project licenses | todo | ready | M | none |
+| GOV-001 | Decide code hosting forge and repository layout | done | done | S | GOV-004 |
+| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | todo | ready | M | GOV-003 |
+| GOV-003 | Decide the license firewall and outbound project licenses | done | done | M | none |
 | GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | done | done | S | none |
 | GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | blocked | L | GOV-004, GOV-006 |
 | GOV-006 | Publish charter, vision, architecture map and layer stability policy | todo | ready | M | GOV-004 |
@@ -19,14 +19,14 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | blocked | S | GOV-003 |
+| GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | ready | S | GOV-003 |
 | GOV-010 | Implement roadmap check --base, impact summary and covers audit | done | done | M | GOV-013 |
 | GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | done | done | S | GOV-013 |
 | GOV-012 | Implement roadmap mutation commands from claim through renumber | done | done | M | GOV-013 |
 | GOV-013 | Complete roadmap registers, ADR CI and Task parseability | done | done | M | GOV-004 |
-| GOV-014 | Populate the repository-alias Register from the hosting Decision | todo | blocked | S | GOV-001 |
+| GOV-014 | Populate the repository-alias Register from the hosting Decision | todo | ready | S | GOV-001 |
 | GOV-015 | Publish the research-programme index that every ADR must cite | todo | blocked | S | GOV-005 |
-| GOV-016 | Publish the userspace dependency license allowlist | todo | blocked | S | GOV-003 |
+| GOV-016 | Publish the userspace dependency license allowlist | todo | ready | S | GOV-003 |
 | GOV-017 | Author the V0.5 Milestone gates mapping the application model | todo | blocked | S | GOV-007 |
 | GOV-018 | Record the V0.5 exit review | todo | blocked | S | STO-016, PKG-011, PKG-005, STO-013, UIP-006, GFX-015, PKG-008, SEC-007, ACC-002 |
 | GOV-019 | Encode standing invariants and non-goals as linted Register rules | todo | blocked | S | GOV-013, GOV-005 |
@@ -36,8 +36,8 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GOV-020 | Decide codec and proprietary-font shipping and patent policy | todo | blocked | M | GOV-003, GOV-009 |
-| GOV-021 | Decide the documentation license and translation terms | todo | blocked | S | GOV-003 |
-| GOV-022 | Decide firmware blob redistribution for official versus non-free | todo | blocked | M | GOV-003 |
+| GOV-021 | Decide the documentation license and translation terms | todo | ready | S | GOV-003 |
+| GOV-022 | Decide firmware blob redistribution for official versus non-free | todo | ready | M | GOV-003 |
 | GOV-023 | Adopt the governance charter for decisions and maintainers | todo | blocked | M | GOV-007, GOV-024 |
 | GOV-024 | Decide legal-entity form able to hold marks and signing keys | todo | blocked | M | GOV-039 |
 | GOV-025 | Decide the 1.0 portability commitment as x86-64 only shipping | todo | blocked | S | GOV-006 |
@@ -84,7 +84,7 @@
 | GOV-056 | Decide trademark usage, derivative branding and compatible-with claims | todo | blocked | M | GOV-036, GOV-051, GOV-044 |
 | GOV-057 | Stand up community channels with moderation and archives | todo | blocked | M | GOV-030, GOV-032, GOV-034 |
 | GOV-058 | File the EAR encryption-source notice and classification | todo | blocked | S | GOV-050 |
-| GOV-059 | Publish the GPL corresponding-source written-offer policy | todo | blocked | S | GOV-003 |
+| GOV-059 | Publish the GPL corresponding-source written-offer policy | todo | ready | S | GOV-003 |
 | GOV-060 | Adopt maintainer succession, key escrow and bus-factor plan | todo | blocked | S | GOV-023, GOV-066 |
 | GOV-061 | Publish the privacy policy for crash reports, HCL submissions and telemetry | todo | blocked | S | GOV-055 |
 | GOV-062 | Publish the public governance, license and trademark bundle | todo | blocked | S | GOV-056, GOV-003, GOV-023, GOV-002 |

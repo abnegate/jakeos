@@ -1,5 +1,5 @@
 # D-0167 · Decide the upstream-first policy for the hardware layer and Rust abstractions
-- Status: proposed
+- Status: accepted
 - Task: KRN-006
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Fastest local progress; growing divergence and rebase pain.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Upstream-first for driver fixes, hardware enablement and generic Rust-for-Linux abstractions: patches go to the Linux mailing lists before or together with landing in the fork, and the fork carries them as a clearly tagged upstream-candidate series until they merge. Native-model code (the native ABI, Components, Capabilities, Channels, Operations, MemoryObjects, ResourceDomains) is fork-only by design.
 
 ## Consequences
-None until Status is accepted.
+- The divergence ledger classifies every patch as upstream-candidate, fork-only or temporary; unclassified patches fail the KRN CI gate.
+- Upstream review latency is accepted as the cost of keeping the driver layer mergeable.
+- Generic Rust abstractions the native model needs are shaped so they can plausibly be accepted upstream even when the native model itself cannot.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (alongside) rejected: without a rule, upstream submission slips indefinitely and every driver fix becomes permanent merge debt.
+- Option C (fork-only, contribute later) rejected: it maximises the divergence surface exactly where §55 says hardware support must not be destabilised.
 
 ## Follow-ups
 none

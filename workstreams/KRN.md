@@ -4,7 +4,7 @@
 - Baseline: §2, §5, §6, §55, §56.4
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 59 live, 0 done, 0 in-progress, 59 todo, 0 dropped. Ready: 1. Blocked: 58. Weighted: 0%.
+Tasks: 59 live, 6 done, 0 in-progress, 53 todo, 0 dropped. Ready: 4. Blocked: 49. Weighted: 5%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -49,13 +49,14 @@ ResourceDomain substrate (SCH-003). User-space driver hosting (SVC). Native ABI 
 ### KRN-002 · Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §5, §57
 - Decision: D-0158
 - Invariants: I-008, I-010
+- Verified by: @jakebarnby
 
 V0 requires an accepted Decision for the kernel strategy. This records the hardware-maturity versus native-model rationale of §1 and §5: inherit Linux's mature hardware foundation without inheriting Linux as the native programming model. Microkernel-for-purity and Linux-as-hypervisor are named options so those non-goals are enforced by a Decision rather than by prose.
 
@@ -65,26 +66,27 @@ V0 requires an accepted Decision for the kernel strategy. This records the hardw
 Upstream tree and LTS series (KRN-005). Service-boundary criteria (KRN-001). Personality translation phase (LNX-003).
 
 #### Acceptance criteria
-- [ ] Options evaluated include a radical fork of Linux, a new microkernel with Linux drivers in a virtual machine, and Linux-as-hypervisor with the native model in a guest.
-- [ ] The accepted option states what hardware foundation is inherited and that native software does not see POSIX, Linux syscalls or Win32.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include a radical fork of Linux, a new microkernel with Linux drivers in a virtual machine, and Linux-as-hypervisor with the native model in a guest.
+- [x] The accepted option states what hardware foundation is inherited and that native software does not see POSIX, Linux syscalls or Win32.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0158
 
 ### KRN-003 · Decide the licence for new native kernel code
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002
 - Baseline: §5.1, §50
 - Decision: D-0162
 - Invariants: I-067
+- Verified by: @jakebarnby
 
 New code linked into a GPLv2 kernel must be GPLv2-compatible, and the choice decides whether kernel-side abstractions can ever be shared with permissive user space. This Decision must precede the first native commit. Outbound userspace licenses remain GOV-003; the two Decisions coordinate and neither depends on the other.
 
@@ -94,27 +96,28 @@ New code linked into a GPLv2 kernel must be GPLv2-compatible, and the choice dec
 Userspace license firewall and Layer 2 through 4 outbound terms (GOV-003). MODULE_LICENSE for inherited modules (KRN-028). IDL generated-code exception (IPC-005).
 
 #### Acceptance criteria
-- [ ] Options evaluated include GPLv2-only, GPLv2-or-later, and dual GPLv2/MIT for reusable abstractions.
-- [ ] The accepted option states whether a kernel-side abstraction may be copied into a permissive userspace crate.
-- [ ] Apache-2.0-only and CDDL kernel dependencies remain forbidden (I-067).
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include GPLv2-only, GPLv2-or-later, and dual GPLv2/MIT for reusable abstractions.
+- [x] The accepted option states whether a kernel-side abstraction may be copied into a permissive userspace crate.
+- [x] Apache-2.0-only and CDDL kernel dependencies remain forbidden (I-067).
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer and kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0162
 
 ### KRN-004 · Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002, KRN-005, Q-051
 - Baseline: §50
 - Decision: D-0165
 - Risks: R-002
+- Verified by: @jakebarnby
 
 The fork repository and CI need a Rust toolchain on day one. This Decision answers Q-051 early: whether the fork tracks upstream Linux's minimum Rust version, pins independently, or pins with a bounded lag, and what happens when upstream stabilizes features the fork's Rust code depends on.
 
@@ -124,26 +127,27 @@ The fork repository and CI need a Rust toolchain on day one. This Decision answe
 Kbuild integration and bindgen (BLD-013). Userspace rustc pin (BLD-046). Rewrite-versus-retain criteria (KRN-015).
 
 #### Acceptance criteria
-- [ ] Options evaluated include tracking upstream's minimum, pinning independently, and pinning with a bounded lag behind upstream.
-- [ ] The accepted option states the action when upstream raises its minimum or stabilizes a feature the fork already uses.
-- [ ] Q-051 is marked answered by this task.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include tracking upstream's minimum, pinning independently, and pinning with a bounded lag behind upstream.
+- [x] The accepted option states the action when upstream raises its minimum or stabilizes a feature the fork already uses.
+- [x] Q-051 is marked answered by this task.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead and BLD toolchain owner sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0165
 
 ### KRN-005 · Decide the upstream Linux tree and LTS series the fork is cut from
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002
 - Baseline: §5.1, §6
 - Decision: D-0166
+- Verified by: @jakebarnby
 
 Nothing in KRN can start before the base is chosen. This Decision selects mainline versus LTS and the specific series the fork is cut from, with a review hook fed by KRN-021. Tracking cadence is a separate Decision.
 
@@ -153,25 +157,26 @@ Nothing in KRN can start before the base is chosen. This Decision selects mainli
 Rebase versus merge and per-phase cadence (KRN-007). Phase D entry (KRN-042). 1.x LTS window (KRN-055).
 
 #### Acceptance criteria
-- [ ] Options evaluated include a named current mainline tag, a named LTS series, and a named stable branch that is not LTS.
-- [ ] The accepted option names the tree, the series, and the condition that reopens this Decision after KRN-021.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include a named current mainline tag, a named LTS series, and a named stable branch that is not LTS.
+- [x] The accepted option names the tree, the series, and the condition that reopens this Decision after KRN-021.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0166
 
 ### KRN-006 · Decide the upstream-first policy for the hardware layer and Rust abstractions
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002
 - Baseline: §5.1, §6, §55
 - Decision: D-0167
+- Verified by: @jakebarnby
 
 Driver and subsystem fixes, and reusable Rust-for-Linux abstractions, either go to upstream Linux before or alongside the fork, or they accumulate as fork-only patches. This Decision bounds the divergence surface from the first patch and is the policy the divergence ledger classifies against.
 
@@ -181,26 +186,27 @@ Driver and subsystem fixes, and reusable Rust-for-Linux abstractions, either go 
 Per-patch classification tooling (KRN-008). Toolchain pin (KRN-004). GPU tracking cadence (KRN-033).
 
 #### Acceptance criteria
-- [ ] Options evaluated include upstream-first (fixes land upstream before or with the fork), alongside (same-week dual posting), and fork-only with later contribution.
-- [ ] The accepted option applies to both C hardware-layer patches and reusable Rust abstractions.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include upstream-first (fixes land upstream before or with the fork), alongside (same-week dual posting), and fork-only with later contribution.
+- [x] The accepted option applies to both C hardware-layer patches and reusable Rust abstractions.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0167
 
 ### KRN-007 · Decide upstream tracking: rebase vs merge and cadence per divergence phase
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-005
 - Baseline: §6, §56.4
 - Decision: D-0168
 - Risks: R-029
+- Verified by: @jakebarnby
 
 Separate from the base-version Decision: this fixes periodic rebase versus merge, the cadence for phases A through C, and how stable-branch backports are automated. The merge bot, delta report and V1 rebase gate implement this policy.
 
@@ -210,15 +216,15 @@ Separate from the base-version Decision: this fixes periodic rebase versus merge
 Which tree is cut (KRN-005). When full merges stop (KRN-042). Divergence policy document (KRN-009).
 
 #### Acceptance criteria
-- [ ] Options evaluated include periodic rebase onto the chosen series, merge of each upstream tag, and rebase for LTS plus merge for mainline.
-- [ ] The accepted option states cadence for phases A through C and how stable-branch backports are automated.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include periodic rebase onto the chosen series, merge of each upstream tag, and rebase for LTS plus merge for mainline.
+- [x] The accepted option states cadence for phases A through C and how stable-branch backports are automated.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0168
 
 ### KRN-008 · Build the divergence ledger classifying every fork patch with a CI Gate
 - Type: build

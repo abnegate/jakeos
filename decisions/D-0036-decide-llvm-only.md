@@ -1,5 +1,5 @@
 # D-0036 · Decide LLVM/Clang as the sole C compiler and reject a custom compiler
-- Status: proposed
+- Status: accepted
 - Task: BLD-004
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Full control over codegen; violates I-089 and is a permanent maint
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. LLVM/Clang is the sole C compiler for the kernel fork and all native code; GCC-only kernel configurations are dropped from the supported matrix. Rust and C share one LLVM version per release so cross-language LTO and a single CI matrix are possible.
 
 ## Consequences
-None until Status is accepted.
+- The kernel CI matrix is Clang-only (BLD); GCC breakage is not tracked.
+- Kernel configs that require GCC plugins or GCC-only extensions are disabled or patched in the fork.
+- Toolchain pinning (KRN-004) pins LLVM and Rust together.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (GCC plus Clang matrix) rejected: doubles kernel CI cost and blocks cross-language LTO for no user-visible benefit on the chosen target hardware.
+- Option C (project-maintained compiler) rejected: no kernel feature on the roadmap needs compiler changes; the maintenance cost would be permanent.
 
 ## Follow-ups
-none
+KRN-004 (accepted).

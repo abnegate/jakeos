@@ -1,5 +1,5 @@
 # D-0062 · Decide what replaces PID, parent/child, exit status and process groups
-- Status: proposed
+- Status: accepted
 - Task: CMP-006
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Kernel stays minimal; lineage is only as reliable as the superviso
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Object<Component> handles are the only native identity. There are no PIDs, no kernel parent/child tree, no exit status integers and no process groups in the native ABI. Lineage, exit causes and supervision live in the supervising Component (SVC), which receives typed exit causes (CMP panic and abort semantics) over its Channel.
 
 ## Consequences
-None until Status is accepted.
+- os inspect names Components by handle and by the supervisor-assigned name, never by a number.
+- The Linux personality synthesises PIDs and process trees for its guests (LNX) without kernel help.
+- Debuggers attach through a debug Capability on the Component handle (CAP).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (kernel-visible lineage) rejected: it reintroduces a process tree the native model does not need and every tool would come to depend on.
+- Option C (opaque identity with supervisor-held lineage) rejected as a distinction without a difference: handles are already opaque, and the supervisor already holds lineage under Option A.
 
 ## Follow-ups
 none

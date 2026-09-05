@@ -1,5 +1,5 @@
 # D-0037 · Decide repository topology before a second repository exists
-- Status: proposed
+- Status: accepted
 - Task: BLD-005
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Upstream merges stay isolated; two identities to pin for bisection
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option C. Two code repositories plus this roadmap: github.com/abnegate/jakeos-kernel holds the Linux fork with full upstream history; github.com/abnegate/jakeos-platform is a monorepo for everything above the kernel ABI (runtime, IDL compiler, SDK, compositor, shell, applications, personalities, installer, benchmark harnesses, documentation). The roadmap stays standalone at github.com/abnegate/jakeos. The registers/repos.md aliases kernel, platform and roadmap are the evidence targets; the earlier per-component aliases resolve to paths inside jakeos-platform.
 
 ## Consequences
-None until Status is accepted.
+- One CI pipeline and one licence (MIT) for the platform; one pipeline and GPLv2 for the kernel.
+- Cross-repo changes (an ABI change with its SDK binding) are two pull requests linked by the Roadmap: trailer; the roadmap task is done only when both land.
+- Kernel clones are large; CI uses shallow clones and the platform repository never vendors kernel sources.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (single monorepo including the kernel) rejected: kernel history and upstream merges would dominate every clone and CI run of userspace work.
+- Option B (pinned-manifest multi-repo) rejected: for a small team, a manifest across a dozen repositories is coordination overhead with no isolation benefit that the two-repo split does not already provide.
 
 ## Follow-ups
-none
+Rewrite registers/repos.md aliases to kernel, platform and roadmap with per-component paths (GOV).

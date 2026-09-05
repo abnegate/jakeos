@@ -1,5 +1,5 @@
 # D-0064 · Decide Component plus ResourceDomain as the native isolation model
-- Status: proposed
+- Status: accepted
 - Task: CMP-007
 - Surfaces: none
 - Layer: none
@@ -25,13 +25,15 @@ Consequences: Familiar developer tooling; duplicates isolation and contradicts �
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Component plus ResourceDomain is the only native isolation model. There is no native container runtime; OCI containers are a Linux-personality compatibility feature (§36). Native development environments (§35) compose ResourceDomains, storage snapshots and capability namespaces directly.
 
 ## Consequences
-None until Status is accepted.
+- ENV builds on ResourceDomain and CapabilityNamespace primitives, never on a container engine.
+- LNX owns OCI support entirely; no native API exposes container concepts.
+- Component creation cost is therefore the isolation cost the project is judged on (B-001).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (retain a native container runtime) rejected: it contradicts §36 and would give developers a second, more familiar isolation path that pulls the ecosystem back toward Linux semantics.
 
 ## Follow-ups
 none

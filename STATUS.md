@@ -4,11 +4,11 @@
 
 | Workstream | Total | Done | In progress | Todo | Dropped | Ready | Blocked | Weighted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 59 | 0 | 0 | 59 | 0 | 1 | 58 | 0% |
+| KRN | 59 | 6 | 0 | 53 | 0 | 4 | 49 | 5% |
 | BOOT | 49 | 0 | 0 | 49 | 0 | 1 | 48 | 0% |
-| ABI | 54 | 0 | 0 | 54 | 0 | 4 | 50 | 0% |
+| ABI | 54 | 0 | 0 | 54 | 0 | 5 | 49 | 0% |
 | CAP | 53 | 0 | 0 | 53 | 0 | 5 | 48 | 0% |
-| CMP | 55 | 0 | 0 | 55 | 0 | 8 | 47 | 0% |
+| CMP | 55 | 2 | 0 | 53 | 0 | 6 | 47 | 2% |
 | TSK | 53 | 0 | 0 | 53 | 0 | 4 | 49 | 0% |
 | IPC | 71 | 0 | 0 | 71 | 0 | 1 | 70 | 0% |
 | MEM | 56 | 0 | 0 | 56 | 0 | 2 | 54 | 0% |
@@ -37,12 +37,12 @@
 | SDK | 96 | 0 | 0 | 96 | 0 | 1 | 95 | 0% |
 | APP | 69 | 0 | 0 | 69 | 0 | 0 | 69 | 0% |
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
-| BLD | 80 | 0 | 0 | 80 | 0 | 1 | 79 | 0% |
+| BLD | 80 | 2 | 0 | 78 | 0 | 2 | 76 | 1% |
 | LAB | 25 | 0 | 0 | 25 | 0 | 1 | 24 | 0% |
 | BEN | 63 | 0 | 0 | 63 | 0 | 1 | 62 | 0% |
 | REL | 67 | 0 | 0 | 67 | 0 | 1 | 66 | 0% |
 | DOC | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
-| GOV | 84 | 5 | 0 | 79 | 0 | 6 | 73 | 8% |
+| GOV | 84 | 7 | 0 | 77 | 0 | 11 | 66 | 11% |
 
 ## Unanchored
 
@@ -129,7 +129,6 @@ none
 - Q-048 blocks KRN-025
 - Q-049 blocks GOV-039
 - Q-050 blocks WIN-008
-- Q-051 blocks KRN-004
 - Q-052 blocks PKG-070
 - Q-053 blocks GOV-041
 - Q-054 blocks INS-044
@@ -170,8 +169,6 @@ none
 - critical-path task BLD-001 has Owner none on the active rung
 - critical-path task BLD-002 has Owner none on the active rung
 - critical-path task BLD-003 has Owner none on the active rung
-- critical-path task BLD-004 has Owner none on the active rung
-- critical-path task BLD-005 has Owner none on the active rung
 - critical-path task BLD-006 has Owner none on the active rung
 - critical-path task BLD-009 has Owner none on the active rung
 - critical-path task BLD-010 has Owner none on the active rung
@@ -201,8 +198,6 @@ none
 - critical-path task CMP-003 has Owner none on the active rung
 - critical-path task CMP-004 has Owner none on the active rung
 - critical-path task CMP-005 has Owner none on the active rung
-- critical-path task CMP-006 has Owner none on the active rung
-- critical-path task CMP-007 has Owner none on the active rung
 - critical-path task CMP-008 has Owner none on the active rung
 - critical-path task CMP-009 has Owner none on the active rung
 - critical-path task CMP-010 has Owner none on the active rung
@@ -210,9 +205,7 @@ none
 - critical-path task CMP-014 has Owner none on the active rung
 - critical-path task CMP-015 has Owner none on the active rung
 - critical-path task CMP-016 has Owner none on the active rung
-- critical-path task GOV-001 has Owner none on the active rung
 - critical-path task GOV-002 has Owner none on the active rung
-- critical-path task GOV-003 has Owner none on the active rung
 - critical-path task GOV-005 has Owner none on the active rung
 - critical-path task GOV-006 has Owner none on the active rung
 - critical-path task GOV-007 has Owner none on the active rung
@@ -244,12 +237,6 @@ none
 - critical-path task IPC-020 has Owner none on the active rung
 - critical-path task IPC-021 has Owner none on the active rung
 - critical-path task KRN-001 has Owner none on the active rung
-- critical-path task KRN-002 has Owner none on the active rung
-- critical-path task KRN-003 has Owner none on the active rung
-- critical-path task KRN-004 has Owner none on the active rung
-- critical-path task KRN-005 has Owner none on the active rung
-- critical-path task KRN-006 has Owner none on the active rung
-- critical-path task KRN-007 has Owner none on the active rung
 - critical-path task KRN-008 has Owner none on the active rung
 - critical-path task KRN-009 has Owner none on the active rung
 - critical-path task KRN-010 has Owner none on the active rung

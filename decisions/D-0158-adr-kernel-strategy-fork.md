@@ -1,5 +1,5 @@
 # D-0158 · Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor
-- Status: proposed
+- Status: accepted
 - Task: KRN-002
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Strong isolation; two kernels on every boot and hardware behind a 
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. JakeOS is a radical fork of the Linux kernel. Linux supplies boot, memory management, scheduling internals, networking, storage, drivers and KVM; the native model (Components, Tasks, Capabilities, Channels, Operations, MemoryObjects, ResourceDomains) is added in-tree behind the native ABI, first as wrappers over Linux internals (phase A to C) and later as native implementations (phase D to E) per §6.
 
 ## Consequences
-None until Status is accepted.
+- Every KRN, ABI, CMP, TSK, IPC, MEM and SCH task stands as written; the V0 ladder and its hardware scope are unchanged.
+- The fork is a permanent maintenance obligation (§56.4): CVE intake, driver adaptation and upstream tracking are first-class workstream duties (KRN-005, KRN-006, KRN-007).
+- The firewall of §3 becomes a validator and lint concern: no native ABI entry point may exist because Linux has an equivalent (ABI-003).
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (new microkernel, Linux drivers in a VM) rejected: it discards the mature mechanisms §2 tells us to preserve, adds a second kernel to maintain, and puts every device behind a VM boundary before the native model has proven itself.
+- Option C (Linux as hypervisor) rejected: two schedulers and two memory managers on every boot make the cheap-isolation and zero-copy goals of §10 and §17 structurally unreachable.
 
 ## Follow-ups
-none
+KRN-003, KRN-005, KRN-006, KRN-007 (all accepted with this Decision).

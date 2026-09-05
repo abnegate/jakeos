@@ -39,7 +39,7 @@
 | ABI-026 | Exercise Layer 1 evolution: add an Operation, keep the v0 binary running, retain the test | todo | blocked | M | ABI-004, ABI-024 |
 | ABI-027 | Add CI golden ABI snapshot diff that fails unless the change links an accepted ADR | todo | blocked | M | ABI-017, ABI-006 |
 | ABI-028 | Classify public symbols into stability layers and enforce policy in CI | todo | blocked | M | ABI-011, ABI-018, ABI-027 |
-| ABI-029 | Decide whether ABI headers carry a syscall-note-style exception for native programs | todo | blocked | S | GOV-003 |
+| ABI-029 | Decide whether ABI headers carry a syscall-note-style exception for native programs | todo | ready | S | GOV-003 |
 | ABI-030 | Publish Layer 1 change control: mandatory RFC, compatibility review, per-Milestone policy | todo | blocked | M | ABI-006, ABI-027, GOV-005 |
 | ABI-031 | Study NT Object manager, handles, access masks and I/O request packets | todo | blocked | M | ABI-022 |
 

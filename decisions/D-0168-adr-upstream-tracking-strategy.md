@@ -1,5 +1,5 @@
 # D-0168 · Decide upstream tracking: rebase vs merge and cadence per divergence phase
-- Status: proposed
+- Status: accepted
 - Task: KRN-007
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Best of both; two workflows for the merge bot.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. The fork merges each upstream mainline release tag (and the matching stable point releases between them) into its main branch as merge commits. History is never rewritten. Fork-only patches are kept mergeable by living in their own directories and behind clearly named hooks in shared files, so conflicts are confined and recorded in the divergence ledger. From phase D onward, merges may be replaced by selective adaptation per D-0166 revisit conditions.
 
 ## Consequences
-None until Status is accepted.
+- Fork history is preserved; git log shows exactly when each upstream release entered the tree.
+- Sending patches upstream uses the upstream-candidate series from the divergence ledger, re-based for submission only, never on main.
+- Merge conflicts are a tracked KRN metric; each merge produces a ledger entry with conflict count and resolution time.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (periodic rebase) rejected by the maintainer as unacceptable history rewriting of a public repository that other repositories pin by commit.
+- Option C (rebase for LTS, merge for mainline) rejected: with a mainline base (D-0166) there is only one track.
 
 ## Follow-ups
 none

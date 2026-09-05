@@ -4,7 +4,7 @@
 - Baseline: §50, §51, §54, §55
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 80 live, 0 done, 0 in-progress, 80 todo, 0 dropped. Ready: 1. Blocked: 79. Weighted: 0%.
+Tasks: 80 live, 2 done, 0 in-progress, 78 todo, 0 dropped. Ready: 2. Blocked: 76. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -108,13 +108,14 @@ CI tier layout and merge queue (BLD-001). Lab scheduler (LAB-005). Forge hosting
 ### BLD-004 · Decide LLVM/Clang as the sole C compiler and reject a custom compiler
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §50, §51
 - Decision: D-0036
 - Invariants: I-082, I-089
+- Verified by: @jakebarnby
 
 Rust-in-kernel needs bindgen against libclang, and mixing GCC-built C with rustc-built Rust doubles the sanitizer and ABI matrix (§50, §51). This Decision standardises on LLVM/Clang as the sole C compiler, records GCC kernel builds as unsupported, and rejects a custom compiler or forked LLVM in favour of upstream-bound patches.
 
@@ -124,25 +125,26 @@ Rust-in-kernel needs bindgen against libclang, and mixing GCC-built C with rustc
 Kernel rustc pin (BLD-013, KRN-004). Linker, LTO and PGO (BLD-039).
 
 #### Acceptance criteria
-- [ ] Options evaluated include LLVM/Clang as the sole C compiler, a dual GCC plus Clang matrix, and a project-maintained compiler or forked LLVM.
-- [ ] The accepted option states that GCC kernel builds are unsupported and that rustc and LLVM carry only minimal upstream-bound patches (I-089).
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include LLVM/Clang as the sole C compiler, a dual GCC plus Clang matrix, and a project-maintained compiler or forked LLVM.
+- [x] The accepted option states that GCC kernel builds are unsupported and that rustc and LLVM carry only minimal upstream-bound patches (I-089).
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: BLD toolchain owner and kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0036
 
 ### BLD-005 · Decide repository topology before a second repository exists
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-001
 - Baseline: §50, §56.4
 - Decision: D-0037
+- Verified by: @jakebarnby
 
 Every CI, bisection and promotion design depends on whether one commit identifies the whole system (§56.4). This Decision records monorepo versus pinned-manifest multi-repo versus a separate kernel tree before any second repository exists. GOV-001 chooses the forge; this Decision chooses the topology on that forge.
 
@@ -152,16 +154,16 @@ Every CI, bisection and promotion design depends on whether one commit identifie
 Forge hosting (GOV-001). Kernel fork bootstrap (KRN-010). Build orchestrator (BLD-002).
 
 #### Acceptance criteria
-- [ ] Options evaluated include a single monorepo containing kernel fork, native userspace, SDK and tooling; a pinned-manifest multi-repo; and a separate kernel repository with a userspace monorepo.
-- [ ] The accepted option states whether one commit identifies the whole system and how bisection and promotion refer to that identity.
-- [ ] The Decision is accepted before a second project repository is created.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include a single monorepo containing kernel fork, native userspace, SDK and tooling; a pinned-manifest multi-repo; and a separate kernel repository with a userspace monorepo.
+- [x] The accepted option states whether one commit identifies the whole system and how bisection and promotion refer to that identity.
+- [x] The Decision is accepted before a second project repository is created.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: BLD CI owner and GOV maintainer sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0037
 
 ### BLD-006 · Build a guest-side test agent that reports structured results
 - Type: build

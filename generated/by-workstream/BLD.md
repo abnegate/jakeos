@@ -7,10 +7,10 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | BLD-001 | Structure CI into tiers and enforce a merge queue | todo | blocked | M | BLD-003, BLD-012, BLD-011 |
-| BLD-002 | Decide the top-level build orchestrator for kernel and userspace | todo | blocked | M | BLD-005, BLD-004 |
-| BLD-003 | Decide the CI platform with self-hosted KVM runners | todo | blocked | S | BLD-005, GOV-001 |
-| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | todo | ready | S | none |
-| BLD-005 | Decide repository topology before a second repository exists | todo | blocked | S | GOV-001 |
+| BLD-002 | Decide the top-level build orchestrator for kernel and userspace | todo | ready | M | BLD-005, BLD-004 |
+| BLD-003 | Decide the CI platform with self-hosted KVM runners | todo | ready | S | BLD-005, GOV-001 |
+| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | done | done | S | none |
+| BLD-005 | Decide repository topology before a second repository exists | done | done | S | GOV-001 |
 | BLD-006 | Build a guest-side test agent that reports structured results | todo | blocked | M | BLD-012, BLD-009 |
 | BLD-007 | Run the hardware regression matrix on QEMU and the Reference machine | todo | blocked | M | BLD-012, KRN-014, LAB-003 |
 | BLD-008 | Document and CI-exercise the kernel debug workflow | todo | blocked | S | BLD-012 |

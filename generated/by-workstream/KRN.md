@@ -6,23 +6,23 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | todo | blocked | S | KRN-002 |
-| KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | todo | ready | S | none |
-| KRN-003 | Decide the licence for new native kernel code | todo | blocked | S | KRN-002 |
-| KRN-004 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | todo | blocked | S | KRN-002, KRN-005, Q-051 |
-| KRN-005 | Decide the upstream Linux tree and LTS series the fork is cut from | todo | blocked | S | KRN-002 |
-| KRN-006 | Decide the upstream-first policy for the hardware layer and Rust abstractions | todo | blocked | S | KRN-002 |
-| KRN-007 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | todo | blocked | S | KRN-005 |
+| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | todo | ready | S | KRN-002 |
+| KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | done | done | S | none |
+| KRN-003 | Decide the licence for new native kernel code | done | done | S | KRN-002 |
+| KRN-004 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | done | done | S | KRN-002, KRN-005, Q-051 |
+| KRN-005 | Decide the upstream Linux tree and LTS series the fork is cut from | done | done | S | KRN-002 |
+| KRN-006 | Decide the upstream-first policy for the hardware layer and Rust abstractions | done | done | S | KRN-002 |
+| KRN-007 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | done | done | S | KRN-005 |
 | KRN-008 | Build the divergence ledger classifying every fork patch with a CI Gate | todo | blocked | M | KRN-010, KRN-009, KRN-006 |
-| KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | todo | blocked | M | KRN-002, KRN-007, KRN-006 |
-| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | todo | blocked | M | KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005 |
+| KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | todo | ready | M | KRN-002, KRN-007, KRN-006 |
+| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | todo | ready | M | KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005 |
 | KRN-011 | Maintain a base defconfig plus per-target fragments with a build-and-boot check | todo | blocked | M | KRN-010, KRN-017 |
 | KRN-012 | Wire KUnit and Rust kernel unit tests for native primitives into pre-merge CI | todo | blocked | M | KRN-013, BLD-013, BLD-012 |
 | KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | blocked | M | KRN-010, KRN-001, KRN-017, KRN-015, KRN-016 |
 | KRN-014 | Define the retained-subsystem regression matrix as a merge-blocking Gate | todo | blocked | M | KRN-017, KRN-011, BLD-012 |
 | KRN-015 | Write the rewrite-versus-retain policy for replacing inherited C with Rust | todo | blocked | S | KRN-002, KRN-018, KRN-003 |
 | KRN-016 | Enforce Rust-first and rewrite-requires-ADR rules with a kernel-tree CI lint | todo | blocked | S | KRN-015, KRN-010, BLD-013, BLD-011 |
-| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | todo | blocked | M | KRN-002 |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | todo | ready | M | KRN-002 |
 | KRN-018 | Spike Rust-in-kernel viability and decide the C-versus-Rust boundary | todo | blocked | M | KRN-004, KRN-010, BLD-013 |
 | KRN-019 | Verify V0 kernel gates: reproducible boot from a tagged commit and L0 parity | todo | blocked | S | KRN-013, KRN-014, KRN-011, KRN-016, KRN-008, KRN-012, BOOT-001, LNX-002, HW-001 |
 

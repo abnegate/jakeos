@@ -61,8 +61,8 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0033 | Decide the top-level build orchestrator for kernel and userspace | proposed | BLD-002 | none |
 | D-0034 | Decide the CI platform with self-hosted KVM runners | proposed | BLD-003 | none |
 | D-0035 | Decide linker, LTO scope and PGO policy for kernel and userspace | proposed | BLD-039 | none |
-| D-0036 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | proposed | BLD-004 | none |
-| D-0037 | Decide repository topology before a second repository exists | proposed | BLD-005 | none |
+| D-0036 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | accepted | BLD-004 | none |
+| D-0037 | Decide repository topology before a second repository exists | accepted | BLD-005 | none |
 | D-0038 | Decide SBOM format for Packages and SystemGenerations | proposed | BLD-054 | none |
 | D-0039 | Decide a semantic-Interface GUI test harness over pixel scripting | proposed | BLD-018 | none |
 | D-0040 | Decide the anti-rollback policy for SystemGenerations older than a security watermark | proposed | BOOT-040 | none |
@@ -87,9 +87,9 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0059 | Decide rights and transfer-rights encoding including Admin authority | proposed | CAP-010 | S-003 |
 | D-0060 | Decide how a Component obtains its initial and later Capabilities | proposed | CAP-022 | none |
 | D-0061 | Decide whether every Component owns a hardware address space | proposed | CMP-021 | S-007 |
-| D-0062 | Decide what replaces PID, parent/child, exit status and process groups | proposed | CMP-006 | none |
+| D-0062 | Decide what replaces PID, parent/child, exit status and process groups | accepted | CMP-006 | none |
 | D-0063 | Decide static manifest graphs versus dynamic child instantiation | proposed | CMP-022 | S-019 |
-| D-0064 | Decide Component plus ResourceDomain as the native isolation model | proposed | CMP-007 | none |
+| D-0064 | Decide Component plus ResourceDomain as the native isolation model | accepted | CMP-007 | none |
 | D-0065 | Decide the order and equivalence tests for replacing the Component wrapper | proposed | CMP-042 | none |
 | D-0066 | Decide Component panic, abort and typed exit-cause semantics | proposed | CMP-008 | none |
 | D-0067 | Decide how Personality processes map onto Components | proposed | CMP-036 | none |
@@ -114,7 +114,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0086 | Decide compositor rendering backend policy: Vulkan-only or Vulkan plus GL | proposed | GFX-018 | none |
 | D-0087 | Decide which compositor state survives restart and where it is checkpointed | proposed | GFX-019 | none |
 | D-0088 | Decide whether Wayland is served by the compositor or by a bridge Component | proposed | GFX-020 | none |
-| D-0089 | Decide code hosting forge and repository layout | proposed | GOV-001 | none |
+| D-0089 | Decide code hosting forge and repository layout | accepted | GOV-001 | none |
 | D-0090 | Decide codec and proprietary-font shipping and patent policy | proposed | GOV-020 | none |
 | D-0091 | Decide redistribution licensing for Personality software wrappers | proposed | GOV-049 | none |
 | D-0092 | Decide contributor licensing, copyright holder and DCO or CLA | proposed | GOV-002 | none |
@@ -127,7 +127,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0099 | Decide the funding model and publish infrastructure-cost finances | proposed | GOV-041 | none |
 | D-0100 | Adopt the governance charter for decisions and maintainers | proposed | GOV-023 | none |
 | D-0101 | Decide legal-entity form able to hold marks and signing keys | proposed | GOV-024 | none |
-| D-0102 | Decide the license firewall and outbound project licenses | proposed | GOV-003 | none |
+| D-0102 | Decide the license firewall and outbound project licenses | accepted | GOV-003 | none |
 | D-0103 | Decide whether Linux appears in product naming | proposed | GOV-051 | none |
 | D-0104 | Decide OEM partnerships or hardware certification versus later | proposed | GOV-078 | none |
 | D-0105 | Decide Open Invention Network membership and a patent pledge | proposed | GOV-052 | none |
@@ -183,17 +183,17 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0155 | Decide which kernel evolution phase is required at 1.0 | proposed | KRN-050 | none |
 | D-0156 | Decide eBPF's native role and the Linux Personality's bpf() exposure | proposed | KRN-024 | none |
 | D-0157 | Decide kernel-core vs user-space service boundary and the criteria for moving one | proposed | KRN-001 | none |
-| D-0158 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | proposed | KRN-002 | none |
+| D-0158 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | accepted | KRN-002 | none |
 | D-0159 | Decide how KVM is exposed natively as Capability<VirtualMachine> | proposed | KRN-025 | none |
 | D-0160 | Decide that kernel live-patching is a non-goal in favour of generations plus reboot | proposed | KRN-026 | none |
 | D-0161 | Decide module signing under Secure Boot for out-of-tree, GPU and local modules | proposed | KRN-027 | none |
-| D-0162 | Decide the licence for new native kernel code | proposed | KRN-003 | none |
+| D-0162 | Decide the licence for new native kernel code | accepted | KRN-003 | none |
 | D-0163 | Decide out-of-tree module policy: GPL-only native exports and taint semantics | proposed | KRN-028 | none |
 | D-0164 | Decide Phase D entry: when full upstream merges stop being mandatory | proposed | KRN-042 | none |
-| D-0165 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | proposed | KRN-004 | none |
-| D-0166 | Decide the upstream Linux tree and LTS series the fork is cut from | proposed | KRN-005 | none |
-| D-0167 | Decide the upstream-first policy for the hardware layer and Rust abstractions | proposed | KRN-006 | none |
-| D-0168 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | proposed | KRN-007 | none |
+| D-0165 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | accepted | KRN-004 | none |
+| D-0166 | Decide the upstream Linux tree and LTS series the fork is cut from | accepted | KRN-005 | none |
+| D-0167 | Decide the upstream-first policy for the hardware layer and Rust abstractions | accepted | KRN-006 | none |
+| D-0168 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | accepted | KRN-007 | none |
 | D-0169 | Decide lab site and the remote power, console and capture stack | proposed | LAB-002 | none |
 | D-0170 | Decide lab job-scheduler family and unbootable-machine recovery | proposed | LAB-005 | none |
 | D-0171 | Decide the Linux Personality container engine Surface | proposed | LNX-012 | none |

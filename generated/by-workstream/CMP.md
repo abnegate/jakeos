@@ -11,8 +11,8 @@
 | CMP-003 | Map immutable executable objects as Component Code | todo | blocked | M | CMP-014, CMP-005, MEM-006, MEM-008 |
 | CMP-004 | Implement Component exit causes, teardown and the 100k leak test | todo | blocked | M | CMP-008, CMP-014, CMP-005, TSK-022, SCH-009 |
 | CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | blocked | L | CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023 |
-| CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | todo | ready | M | none |
-| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | todo | ready | S | none |
+| CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | done | done | M | none |
+| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | done | done | S | none |
 | CMP-008 | Decide Component panic, abort and typed exit-cause semantics | todo | ready | M | none |
 | CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | todo | ready | S | none |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | blocked | M | CMP-015, CMP-016 |

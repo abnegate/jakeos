@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 5 done, 0 in-progress, 79 todo, 0 dropped. Ready: 6. Blocked: 73. Weighted: 8%.
+Tasks: 84 live, 7 done, 0 in-progress, 77 todo, 0 dropped. Ready: 11. Blocked: 66. Weighted: 11%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -22,12 +22,13 @@ Kernel outbound license for new in-tree code (KRN). SPDX headers, cargo-deny, SB
 ### GOV-001 · Decide code hosting forge and repository layout
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-004
 - Baseline: §50, §65
 - Decision: D-0089
+- Verified by: @jakebarnby
 
 Every V0 CI and review path needs a recorded home for git: which forge hosts the trees, whether the Markdown roadmap is a standalone repository, and how Evidence aliases will resolve. Kernel versus userspace topology remains BLD; this Decision is hosting and layout of the planning corpus and product trees.
 
@@ -37,15 +38,15 @@ Every V0 CI and review path needs a recorded home for git: which forge hosts the
 Monorepo versus pinned-manifest multi-repo for kernel and userspace (BLD-005). CI platform (BLD-003). Repository-alias URLs (GOV-014).
 
 #### Acceptance criteria
-- [ ] Options evaluated include a self-hosted forge, a public hosted forge, and a hybrid with the roadmap standalone.
-- [ ] The accepted option names where the Markdown roadmap lives and whether product trees share that forge.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include a self-hosted forge, a public hosted forge, and a hybrid with the roadmap standalone.
+- [x] The accepted option names where the Markdown roadmap lives and whether product trees share that forge.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0089
 
 ### GOV-002 · Decide contributor licensing, copyright holder and DCO or CLA
 - Type: adr
@@ -80,13 +81,14 @@ Outbound Layer licenses (GOV-003). Kernel-side GPLv2-compatible choice (KRN-003)
 ### GOV-003 · Decide the license firewall and outbound project licenses
 - Type: adr
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §1, §66, §67
 - Decision: D-0102
 - Invariants: I-067
+- Verified by: @jakebarnby
 
 Copyleft leak into platform Interfaces and missing userspace headers cannot be fixed later. This Decision maps Layer 1 kernel code to GPLv2, picks the permissive class for Layers 2 through 4 including native userspace services, licenses the roadmap and Decision corpus, and states outbound terms for native kernel code beside inherited GPLv2. It coordinates with KRN-003; neither depends on the other.
 
@@ -96,16 +98,16 @@ Copyleft leak into platform Interfaces and missing userspace headers cannot be f
 New in-tree kernel license choice (KRN-003). SDK crate license (SDK-027). IDL generated-code exception (IPC-005). Userspace allowlist text (GOV-016). SPDX and cargo-deny CI (BLD-023, BLD-011).
 
 #### Acceptance criteria
-- [ ] Options evaluated include Layer 1 GPLv2 with Layers 2 through 4 MIT, the same split with Apache-2.0, the same split with MPL-2.0, and dual MIT/Apache-2.0 userspace, each stating whether an explicit patent grant is required.
-- [ ] The accepted option names the license of the roadmap and Decision files.
-- [ ] The accepted option states outbound terms for native kernel code beside inherited GPLv2 without restating KRN-003.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include Layer 1 GPLv2 with Layers 2 through 4 MIT, the same split with Apache-2.0, the same split with MPL-2.0, and dual MIT/Apache-2.0 userspace, each stating whether an explicit patent grant is required.
+- [x] The accepted option names the license of the roadmap and Decision files.
+- [x] The accepted option states outbound terms for native kernel code beside inherited GPLv2 without restating KRN-003.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer and kernel architecture lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0102
 
 ### GOV-004 · Decide the Markdown-plus-Rust-CLI roadmap process
 - Type: adr

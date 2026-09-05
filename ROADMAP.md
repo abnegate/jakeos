@@ -8,28 +8,28 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 0% (1/217) | 0% | 35 | 181 |
-| V0.5 | Application model | next | 0/29 | 1% (4/436) | 1% | 12 | 420 |
-| V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 6 | 563 |
+| V0 | Execution model | active | 0/21 | 6% (13/217) | 3% | 36 | 168 |
+| V0.5 | Application model | next | 0/29 | 1% (4/436) | 1% | 16 | 416 |
+| V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 8 | 561 |
 | V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 2 | 472 |
-| V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 0 | 315 |
+| V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 1 | 314 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
 | 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
 | LATER | Deferred work | planned | 0/0 | 0% (0/13) | 0% | 1 | 12 |
 
 ## Totals
 
-Tasks 5 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
+Tasks 17 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 
 ## Workstream × milestone
 
 | Workstream | V0 | V0.5 | V1 | V2 | V3 | V4 | 1.0 | LATER |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 0/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
+| KRN | 6/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
 | BOOT | 0/5 | 0/10 | 0/12 | 0/10 | 0/8 | 0/3 | 0/1 | 0/0 |
 | ABI | 0/22 | 0/9 | 0/11 | 0/3 | 0/1 | 0/5 | 0/3 | 0/0 |
 | CAP | 0/15 | 0/14 | 0/11 | 0/5 | 0/4 | 0/3 | 0/1 | 0/0 |
-| CMP | 0/16 | 0/16 | 0/9 | 0/7 | 0/3 | 0/2 | 0/2 | 0/0 |
+| CMP | 2/16 | 0/16 | 0/9 | 0/7 | 0/3 | 0/2 | 0/2 | 0/0 |
 | TSK | 0/24 | 0/12 | 0/11 | 0/2 | 0/2 | 0/1 | 0/1 | 0/0 |
 | IPC | 0/21 | 0/19 | 0/14 | 0/4 | 0/5 | 0/5 | 0/2 | 0/1 |
 | MEM | 0/12 | 0/20 | 0/12 | 0/5 | 0/3 | 0/2 | 0/1 | 0/1 |
@@ -58,19 +58,19 @@ Tasks 5 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 | SDK | 0/11 | 0/20 | 0/31 | 0/12 | 0/12 | 0/6 | 0/4 | 0/0 |
 | APP | 0/0 | 0/9 | 0/12 | 0/35 | 0/8 | 0/2 | 0/2 | 0/1 |
 | INS | 0/0 | 0/2 | 0/3 | 0/9 | 0/35 | 0/5 | 0/2 | 0/0 |
-| BLD | 0/13 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
+| BLD | 2/13 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
 | LAB | 0/4 | 0/4 | 0/5 | 0/6 | 0/3 | 0/2 | 0/1 | 0/0 |
 | BEN | 0/8 | 0/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 0/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
 | DOC | 0/0 | 0/5 | 0/12 | 0/5 | 0/11 | 0/6 | 0/3 | 0/0 |
-| GOV | 1/8 | 4/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
+| GOV | 3/8 | 4/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
 
 ## Ready head
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | V0 | S | 5620 |
-| GOV-001 | Decide code hosting forge and repository layout | V0 | S | 5567 |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 |
+| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | V0 | M | 5499 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 |
 | SEC-002 | Publish threat model and threat Register | V0 | M | 5360 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 |
@@ -79,11 +79,11 @@ Tasks 5 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 |
-| GOV-003 | Decide the license firewall and outbound project licenses | V0 | M | 4900 |
 | BEN-007 | Decide benchmark methodology and target-kind policy | V0 | M | 4899 |
-| CMP-007 | Decide Component plus ResourceDomain as the native isolation model | V0 | S | 4829 |
-| BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | V0 | S | 4734 |
+| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | V0 | S | 4763 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 |
+| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | V0 | S | 4697 |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 |
 
 ## Critical path
 
@@ -150,14 +150,6 @@ Makespan (size-weight estimates): 78.
 
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
-| KRN-002 | Decide kernel strategy: Linux fork vs new microkernel vs Linux-as-hypervisor | 1888 | 5620 |
-| GOV-001 | Decide code hosting forge and repository layout | 1873 | 5567 |
-| KRN-003 | Decide the licence for new native kernel code | 1842 | 5524 |
-| BLD-005 | Decide repository topology before a second repository exists | 1840 | 5516 |
-| KRN-005 | Decide the upstream Linux tree and LTS series the fork is cut from | 1836 | 5508 |
-| KRN-006 | Decide the upstream-first policy for the hardware layer and Rust abstractions | 1834 | 5506 |
-| KRN-007 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | 1834 | 5506 |
-| KRN-004 | Decide kernel Rust toolchain pinning relative to the Rust-for-Linux minimum | 1832 | 5502 |
 | ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1786 | 5376 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1736 | 5253 |
 | ABI-010 | Decide Capability handle representation: dense index, sparse id or sealed value | 1730 | 5243 |
@@ -168,8 +160,16 @@ Makespan (size-weight estimates): 78.
 | ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1728 | 5237 |
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1732 | 5231 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1646 | 4925 |
-| GOV-003 | Decide the license firewall and outbound project licenses | 1678 | 4900 |
 | BEN-007 | Decide benchmark methodology and target-kind policy | 1652 | 4899 |
+| KRN-001 | Decide kernel-core vs user-space service boundary and the criteria for moving one | 1592 | 4763 |
+| CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | 1566 | 4697 |
+| TSK-008 | Decide whether every Task has kernel-visible identity | 1564 | 4693 |
+| MEM-002 | Decide the MemoryObject kernel implementation basis | 1573 | 4684 |
+| BLD-003 | Decide the CI platform with self-hosted KVM runners | 1521 | 4615 |
+| TSK-007 | Decide Operation submission/completion transport and batching expression | 1523 | 4541 |
+| TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1477 | 4373 |
+| GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | 1451 | 4306 |
+| ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1432 | 4227 |
 
 ## Blocked by
 
@@ -182,7 +182,6 @@ Makespan (size-weight estimates): 78.
 | SVC-015 | 33 |
 | IPC-012 | 32 |
 | SCH-007 | 32 |
-| GOV-003 | 30 |
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |
@@ -282,7 +281,6 @@ Makespan (size-weight estimates): 78.
 | HET-009 | 11 |
 | HW-008 | 11 |
 | HW-009 | 11 |
-| KRN-002 | 11 |
 | LAB-011 | 11 |
 | LNX-036 | 11 |
 | MED-008 | 11 |
@@ -410,7 +408,6 @@ Makespan (size-weight estimates): 78.
 | AUD-007 | 7 |
 | BEN-016 | 7 |
 | BLD-003 | 7 |
-| BLD-004 | 7 |
 | BLD-013 | 7 |
 | BLD-016 | 7 |
 | BOOT-003 | 7 |
@@ -487,7 +484,6 @@ Makespan (size-weight estimates): 78.
 | CAP-012 | 6 |
 | CMP-001 | 6 |
 | CMP-004 | 6 |
-| CMP-007 | 6 |
 | CMP-009 | 6 |
 | CMP-021 | 6 |
 | CMP-036 | 6 |
@@ -498,7 +494,6 @@ Makespan (size-weight estimates): 78.
 | GFX-056 | 6 |
 | GFX-063 | 6 |
 | GFX-077 | 6 |
-| GOV-001 | 6 |
 | GOV-075 | 6 |
 | GOV-083 | 6 |
 | HET-002 | 6 |
@@ -608,8 +603,6 @@ Makespan (size-weight estimates): 78.
 | IPC-014 | 5 |
 | IPC-057 | 5 |
 | IPC-068 | 5 |
-| KRN-005 | 5 |
-| KRN-007 | 5 |
 | KRN-008 | 5 |
 | KRN-031 | 5 |
 | LAB-013 | 5 |
@@ -705,7 +698,6 @@ Makespan (size-weight estimates): 78.
 | BEN-031 | 4 |
 | BEN-049 | 4 |
 | BEN-053 | 4 |
-| BLD-005 | 4 |
 | BLD-020 | 4 |
 | BLD-023 | 4 |
 | BLD-024 | 4 |
@@ -888,7 +880,6 @@ Makespan (size-weight estimates): 78.
 | CAP-034 | 3 |
 | CAP-038 | 3 |
 | CMP-003 | 3 |
-| CMP-006 | 3 |
 | CMP-012 | 3 |
 | CMP-015 | 3 |
 | CMP-028 | 3 |
@@ -948,9 +939,6 @@ Makespan (size-weight estimates): 78.
 | IPC-048 | 3 |
 | IPC-049 | 3 |
 | IPC-056 | 3 |
-| KRN-003 | 3 |
-| KRN-004 | 3 |
-| KRN-006 | 3 |
 | KRN-016 | 3 |
 | KRN-022 | 3 |
 | KRN-023 | 3 |
@@ -1889,7 +1877,6 @@ Makespan (size-weight estimates): 78.
 | Q-048 | 1 |
 | Q-049 | 1 |
 | Q-050 | 1 |
-| Q-051 | 1 |
 | Q-052 | 1 |
 | Q-053 | 1 |
 | Q-054 | 1 |
