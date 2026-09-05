@@ -75,7 +75,7 @@ Rules:
 
 - **Prefix equals file.** A task `KRN-014` lives in `workstreams/KRN.md`. Prefixes are the 39 workstreams listed in `fields.json` → `workstreams`. Prefixes never contain digits.
 - **Allocation is monotonic per family.** `next = max(numbers present, including dropped) + 1`. Numbers are zero-padded to at least three digits (four for decisions) and sorted numerically, never lexically.
-- **Never reused, never deleted, never moved.** An ID present on `main` must remain in the same file with the same number forever. Tasks are retired only by `Status: dropped`. The diff-aware check (`check --base`) enforces this once it ships; until then it is a review duty.
+- **Never reused, never deleted, never moved.** An ID present on `main` must remain in the same file with the same number forever. Tasks are retired only by `Status: dropped`. The diff-aware check (`roadmap check --base <ref>`) enforces this on every pull request.
 - **Splitting** drops the original with `Superseded by:` naming the fresh IDs and repoints every dependent in the same change. The parent never keeps its ID with narrowed scope. No suffixes.
 - **Draft IDs** exist only on branches. `PREFIX-@slug` is accepted wherever a task ID is accepted, including `Depends on` across new tasks. `roadmap assign-ids --index tools/coverage/slugs.tsv` converts every draft to a real number in one deterministic pass (sorted by milestone rank, then slug). The validator rejects any draft ID on `main`. Slugs are unique across the repository; `tools/coverage/slugs.tsv` is the shared namespace during generation.
 - **Parallel authors** allocating the same number conflict at the file tail; the later change renumbers its own new IDs. Renumbering is permitted only for IDs that have never reached `main`.
@@ -563,27 +563,27 @@ Trailers:
 ## 17. Pull request policy
 
 - Everything reaches `main` through a pull request. Nothing is pushed directly.
-- Required checks: `roadmap fmt --check`, `roadmap check`, `roadmap gen --check` (a `check --base origin/main` diff-aware pass once it ships).
+- Required checks (`.github/workflows/roadmap.yml`): the crate's tests and lints, `roadmap fmt --check`, `roadmap check --strict`, `roadmap check --strict --base origin/<base branch>`, `roadmap gen --check` and `roadmap coverage`. The `pages` workflow publishes `generated/dashboard.html` on every push to `main`.
 - **Metadata-only fast lane**: a pull request that touches only `Status`, `Owner`, `Verified by`, Evidence lines, checkbox states and generated output merges on green checks without human review.
 - Pull requests touching acceptance criteria, `Depends on`, `Milestone`, Description, scope prose, gates or registers need approval from the owning workstream's Lead (or a GOV maintainer while `Lead: none`).
 - The pre-commit hook (`.githooks/pre-commit`, enabled with `git config core.hooksPath .githooks`) runs `fmt`, `gen`, `check` so pull requests arrive formatted and regenerated.
 
 ## 18. Contributor procedures
 
-Commands marked "manual until shipped" are planned GOV tasks; until they exist, perform the equivalent edit by hand and let `roadmap check` validate the result.
+Every mutation command validates the repository after editing and reverts itself on any error, so the tree is either green or untouched. The equivalent hand edit is always allowed; `roadmap check` validates it the same way.
 
 | Procedure | How |
 |---|---|
 | Pick work | `roadmap ready` (or `generated/ready.md`), then `roadmap show <ID>`. If the block is unclear, do not start; open a pull request that improves it |
-| Claim | Set `Owner: @handle` (agents `@agent/<name>`) and `Status: in-progress`. `roadmap claim <ID> @handle` is manual until shipped |
-| Unclaim | Set `Status: todo`, optionally `Owner: none`. `roadmap unclaim --all` exists for bulk resets |
-| Update status | Only through the transitions in section 7. Never edit generated output |
+| Claim | `roadmap claim <ID> @handle` (agents `@agent/<name>`): sets `Owner` and `Status: in-progress`; XL tasks must be split first |
+| Unclaim | `roadmap unclaim <ID>`: `Status: todo`, `Owner: none`. `roadmap unclaim --all` resets in bulk |
+| Update status | Only through the transitions in section 7: `roadmap done <ID> --evidence … [--verified-by @handle]` marks done with evidence and the verifier policy applied. Never edit generated output |
 | Add a task | `roadmap new task <PREFIX> "<Title>" --milestone <TOKEN> --size <S>` allocates the ID and inserts a stub. Fill Description, at least one criterion and one Verification line before pushing. Cite `Baseline:` or write `none` deliberately. Add the task to the workstream that owns the deliverable |
-| Split | Drop the original with `Dropped because: superseded: split into …` and `Superseded by:` naming the new tasks; repoint dependents in the same change. Never suffixes, never reuse |
-| Retire | Set `Status: dropped` with `Dropped because:`. Never delete a block |
-| Move between milestones | Edit the `Milestone` field only; the commit message states why; check monotonicity of dependents and dependencies |
+| Split | `roadmap split <ID> --into "<Title>" --into "<Title>"`: children inherit milestone, type, dependencies and baseline; the parent is dropped as superseded and dependents are repointed in the same change. Never suffixes, never reuse |
+| Retire | `roadmap drop <ID> --because "<enum reason> …" [--superseded-by <IDs>]`. Never delete a block; done tasks cannot be dropped |
+| Move between milestones | `roadmap move <ID> --milestone <TOKEN>`; the commit message states why; monotonicity is validated |
 | Re-scope | Free for `todo` and `in-progress`. For `done`, add a new task |
-| Record an impediment | Never write "blocked" in prose. Add the blocking task to `Depends on`, or add a Q entry to `registers/questions.md` and depend on it. `roadmap block <ID> "reason"` does both in one step once shipped |
+| Record an impediment | Never write "blocked" in prose. Add the blocking task to `Depends on`, or `roadmap block <ID> "reason"`, which mints the Q entry and the dependency in one step |
 | Attach evidence | Only the grammar in 4.3: registered repository commits and pull requests, report files, decisions, review URLs |
 | Make a decision | Open the adr task first, then create `decisions/D-NNNN-<slug>.md` from the template with `Status: proposed`. Discuss in the pull request. Accept by ticking criteria, setting the file status and marking the task done in one change |
 | Freeze a surface | Confirm a done spike `Explores` it and an accepted decision lists it (L1: with a benchmark report), then list it in `Freezes:` on the freezing task |

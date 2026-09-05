@@ -8,6 +8,7 @@ pub mod fmt;
 pub mod generate;
 pub mod graph;
 pub mod model;
+pub mod mutate;
 pub mod parser;
 pub mod repo;
 pub mod schema;

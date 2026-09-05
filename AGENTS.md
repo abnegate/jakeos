@@ -20,7 +20,7 @@ Do not load whole workstream files or `generated/` views unless the task is abou
 - **Never allocate an ID by hand.** Use `roadmap new task`. On a branch during generation, use only draft IDs (`PREFIX-@slug`) listed in `tools/coverage/slugs.tsv`.
 - **Never mark a task done and never set `Verified by`.** Tick acceptance boxes and append Evidence lines as work lands; a human sets `Status: done` and `Verified by`. `Verified by` is never an `@agent/` identity.
 - **Never invent register IDs.** Every B, R, Q, S, C, T, I and H you cite must already exist in `registers/`. To add one, add the register entry in the same change with a proper title and fields.
-- **Never write "blocked" in prose.** If Verification cannot run in your environment (no hardware, no credentials, no network), record it: `roadmap block <ID> "reason"` mints a Q entry and adds it to `Depends on`. Until that command ships, add the Q entry to `registers/questions.md` by hand and add its ID to `Depends on`.
+- **Never write "blocked" in prose.** If Verification cannot run in your environment (no hardware, no credentials, no network), record it: `roadmap block <ID> "reason"` mints a Q entry and adds it to `Depends on`.
 - **Leave `Owner: none` when authoring roadmap content.** Writing or editing tasks is not doing the work they describe. Set `Owner: @agent/<name>` only when you claim a task to execute it, and unclaim when you stop.
 - **Edit only what you own.** When executing a task, edit that task's block plus generated output. When authoring a workstream file during generation, edit only that file.
 - **Never edit a done task's** acceptance criteria, Milestone, Type or Size.
@@ -52,9 +52,17 @@ Run from the repository root. `roadmap` means `cargo run -q --manifest-path tool
 | `roadmap progress` | Counts per milestone and workstream |
 | `roadmap export --json` | Full export |
 | `roadmap new task <PREFIX> "<Title>" --milestone <TOKEN> --size <S> [--type <T>] [--depends <IDs>]` | Allocate an ID and insert a stub |
-| `roadmap unclaim --all` | Reset every Owner to `none` and every in-progress task to todo |
+| `roadmap check --base <ref>` | Everything above plus the diff-aware rules: no ID deleted, renumbered or moved since `<ref>`; done tasks frozen; no done → dropped; reopening unticks a box. CI runs it against the base branch of every pull request |
+| `roadmap claim <ID> @handle` | todo → in-progress with an owner. Rejects XL tasks and anything not todo |
+| `roadmap unclaim <ID>` | in-progress → todo, Owner `none`. `--all [--owner PATTERN]` resets in bulk |
+| `roadmap block <ID> "reason"` | Mints the next Q entry in `registers/questions.md` and adds it to `Depends on` |
+| `roadmap done <ID> --evidence <entry>… [--verified-by @handle] [--tick]` | Marks done. Requires evidence in the 4.3 grammar and every box ticked (`--tick` ticks them when every criterion holds). Enforces the verifier policy and rejects `@agent/` verifiers. Reverts the edit if the validator finds any error |
+| `roadmap drop <ID> --because "<reason>" [--superseded-by <IDs>]` | Retires a live task; the reason starts with `duplicate`, `descoped`, `superseded`, `infeasible` or `merged`; dependents are repointed to the superseders. Never drops a done task |
+| `roadmap split <ID> --into "<Title>" --into "<Title>" [--size S]` | Allocates children inheriting milestone, type, dependencies and baseline; drops the parent as superseded; repoints dependents |
+| `roadmap move <ID> --milestone <TOKEN>` | Changes the rung; monotonicity is validated and the edit reverted on error |
+| `roadmap renumber <OLD> <NEW> [--base origin/main]` | Renames an ID that has never reached the base branch, across every file |
 
-Planned (GOV tasks; do the equivalent edit by hand until they exist): `claim`, `unclaim <ID>`, `block`, `done`, `drop`, `split`, `move`, `renumber`, `check --base <ref>`, `stale`, `slipped`, `history`.
+Every mutation runs the validator afterwards and reverts itself if any error appears, so a mutation either leaves the repository green or leaves it untouched. Still planned: `stale`, `slipped`, `history` (git-derived views).
 
 Before returning any change: `roadmap fmt && roadmap gen && roadmap check` must exit 0 (with `--allow-drafts --index` on generation branches). Fix every error yourself; do not report a red check as finished work.
 

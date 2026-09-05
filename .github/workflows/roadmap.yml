@@ -1,0 +1,41 @@
+name: roadmap
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tools/roadmap
+      - name: Build and test the validator
+        working-directory: tools/roadmap
+        run: |
+          cargo fmt --check
+          cargo clippy --all-targets -- -D warnings
+          cargo test
+          cargo build --release
+      - name: Format check
+        run: tools/roadmap/target/release/roadmap fmt --check
+      - name: Validate
+        run: tools/roadmap/target/release/roadmap check --strict
+      - name: Validate transitions against the base branch
+        if: github.event_name == 'pull_request'
+        run: tools/roadmap/target/release/roadmap check --strict --base origin/${{ github.base_ref }}
+      - name: Generated output is current
+        run: tools/roadmap/target/release/roadmap gen --check
+      - name: Coverage
+        run: tools/roadmap/target/release/roadmap coverage

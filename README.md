@@ -1,5 +1,7 @@
 # JakeOS roadmap
 
+[![roadmap](https://github.com/abnegate/jakeos/actions/workflows/roadmap.yml/badge.svg)](https://github.com/abnegate/jakeos/actions/workflows/roadmap.yml) [![pages](https://github.com/abnegate/jakeos/actions/workflows/pages.yml/badge.svg)](https://github.com/abnegate/jakeos/actions/workflows/pages.yml)
+
 JakeOS is a post-Unix desktop operating system: a radical fork of the Linux kernel that keeps Linux's hardware maturity and exposes a new native model (capabilities, cheap isolated components, typed channels, asynchronous operations, memory objects with ownership transfer, resource domains, immutable packages and system generations, semantic interfaces), with Linux and Windows compatibility personalities. Rust first, x86-64 first.
 
 This repository is the roadmap. It breaks the path from an empty kernel fork to a 1.0 public stable release into about two thousand tasks across 39 workstreams and a seven-rung milestone ladder, and it is validated by a small Rust tool so that it stays truthful for years.
@@ -11,7 +13,7 @@ It is: the source of truth for every task, decision, gate, benchmark definition,
 It is not: source code for the operating system (those live in the repositories listed in `registers/repos.md`), an issue tracker for bugs, a place for measured results outside the `reports/` skeletons, or a document with dates in it.
 
 
-**Dashboard.** `generated/dashboard.html` is a self-contained page produced by `roadmap gen`: ladder progress, workstream heatmap, gates with their verifying tasks, ready queue, blockers, decision leverage, critical path and a searchable task explorer with a detail drawer. Open it directly in a browser (`open generated/dashboard.html`); it embeds the same data as `generated/index.json`, so it is exactly as current as the last `roadmap gen`.
+**Dashboard.** `generated/dashboard.html` is a self-contained page produced by `roadmap gen`: ladder progress, workstream heatmap, gates with their verifying tasks, ready queue, blockers, decision leverage, critical path and a searchable task explorer with a detail drawer. The published copy is at https://abnegate.github.io/jakeos/ after every push to `main`. Open it locally with `open generated/dashboard.html`; it embeds the same data as `generated/index.json`, so it is exactly as current as the last `roadmap gen`.
 
 ## Sixty-second reading guide
 

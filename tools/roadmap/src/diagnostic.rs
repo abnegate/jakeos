@@ -205,6 +205,13 @@ pub mod code {
 
     pub const CALENDAR_DATE: &str = "E-100";
 
+    pub const BASE_ID_REMOVED: &str = "E-110";
+    pub const BASE_ID_MOVED: &str = "E-111";
+    pub const BASE_DONE_MUTATED: &str = "E-112";
+    pub const BASE_DONE_TO_DROPPED: &str = "E-113";
+    pub const BASE_REOPENED_WITHOUT_UNTICK: &str = "E-114";
+    pub const BASE_ILLEGAL_TRANSITION: &str = "E-115";
+
     pub const TICKED_NOT_DONE: &str = "W-001";
     pub const UNANCHORED: &str = "W-002";
     pub const GATE_ONLY_EXAMPLES: &str = "W-003";

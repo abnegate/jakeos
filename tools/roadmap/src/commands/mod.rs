@@ -35,6 +35,8 @@ pub enum Command {
         allow_drafts: bool,
         #[arg(long)]
         index: Option<PathBuf>,
+        #[arg(long)]
+        base: Option<String>,
     },
     Fmt {
         #[arg(long)]
@@ -98,10 +100,53 @@ pub enum Command {
         kind: NewKind,
     },
     Unclaim {
+        id: Option<String>,
         #[arg(long)]
         all: bool,
         #[arg(long)]
         owner: Option<String>,
+    },
+    Claim {
+        id: String,
+        owner: String,
+    },
+    Block {
+        id: String,
+        reason: String,
+    },
+    Done {
+        id: String,
+        #[arg(long = "evidence", required = true)]
+        evidence: Vec<String>,
+        #[arg(long)]
+        verified_by: Option<String>,
+        #[arg(long)]
+        tick: bool,
+    },
+    Drop {
+        id: String,
+        #[arg(long)]
+        because: String,
+        #[arg(long = "superseded-by", value_delimiter = ',')]
+        superseded_by: Vec<String>,
+    },
+    Split {
+        id: String,
+        #[arg(long = "into", required = true)]
+        into: Vec<String>,
+        #[arg(long)]
+        size: Option<String>,
+    },
+    Move {
+        id: String,
+        #[arg(long)]
+        milestone: String,
+    },
+    Renumber {
+        old: String,
+        new: String,
+        #[arg(long, default_value = "origin/main")]
+        base: String,
     },
 }
 
@@ -118,6 +163,8 @@ pub enum NewKind {
         r#type: String,
         #[arg(long)]
         depends: Option<String>,
+        #[arg(long, default_value = "none")]
+        baseline: String,
     },
 }
 
@@ -134,7 +181,8 @@ pub fn dispatch(cli: Cli) -> Result<i32> {
             json,
             allow_drafts,
             index,
-        } => cmd_check(root, strict, json, allow_drafts, index),
+            base,
+        } => cmd_check(root, strict, json, allow_drafts, index, base.as_deref()),
         Command::Fmt { check } => cmd_fmt(root, check),
         Command::Generate { check } => cmd_generate(root, check),
         Command::AssignIds { index, dry_run } => cmd_assign(root, index, dry_run),
@@ -159,7 +207,28 @@ pub fn dispatch(cli: Cli) -> Result<i32> {
         Command::Progress { json } => cmd_progress(root, json),
         Command::Export { json } => cmd_export(root, json),
         Command::New { kind } => cmd_new(root, kind),
-        Command::Unclaim { all, owner } => cmd_unclaim(root, all, owner.as_deref()),
+        Command::Unclaim { id, all, owner } => match id {
+            Some(id) => crate::mutate::unclaim(root, &id),
+            None => cmd_unclaim(root, all, owner.as_deref()),
+        },
+        Command::Claim { id, owner } => crate::mutate::claim(root, &id, &owner),
+        Command::Block { id, reason } => crate::mutate::block(root, &id, &reason),
+        Command::Done {
+            id,
+            evidence,
+            verified_by,
+            tick,
+        } => crate::mutate::done(root, &id, &evidence, verified_by.as_deref(), tick),
+        Command::Drop {
+            id,
+            because,
+            superseded_by,
+        } => crate::mutate::drop(root, &id, &because, &superseded_by),
+        Command::Split { id, into, size } => {
+            crate::mutate::split(root, &id, &into, size.as_deref())
+        }
+        Command::Move { id, milestone } => crate::mutate::move_task(root, &id, &milestone),
+        Command::Renumber { old, new, base } => crate::mutate::renumber(root, &old, &new, &base),
     }
 }
 
@@ -185,10 +254,14 @@ fn cmd_check(
     json: bool,
     allow_drafts: bool,
     index: Option<PathBuf>,
+    base: Option<&str>,
 ) -> Result<i32> {
     let (repo, derived) = load(root, allow_drafts, index)?;
     let mut diagnostics = validate::run(&repo, &derived);
     diagnostics.extend(generate::stale_diagnostics(&repo, &derived));
+    if let Some(base_ref) = base {
+        validate::base::validate(&repo, base_ref, &mut diagnostics)?;
+    }
     let entries = diagnostics.sorted(strict);
     print_diagnostics(&entries, json)?;
     if count_errors(&entries) > 0 {
@@ -359,6 +432,7 @@ fn cmd_new(root: PathBuf, kind: NewKind) -> Result<i32> {
         size,
         r#type,
         depends,
+        baseline,
     } = kind;
     let (repo, _) = load(root.clone(), true, None)?;
     if !repo.schema.is_workstream(&prefix) {
@@ -391,8 +465,7 @@ fn cmd_new(root: PathBuf, kind: NewKind) -> Result<i32> {
         .as_deref()
         .map(assign::parse_depends)
         .unwrap_or_default();
-    let baseline = "none";
-    let stub = formatter::stub_task(&id, &title, &milestone, &size, &r#type, &depends, baseline);
+    let stub = formatter::stub_task(&id, &title, &milestone, &size, &r#type, &depends, &baseline);
     let relative = format!("workstreams/{prefix}.md");
     let path = root.join(&relative);
     if path.is_file() {
