@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 1 done, 0 in-progress, 83 todo, 0 dropped. Ready: 4. Blocked: 79. Weighted: 1%.
+Tasks: 84 live, 5 done, 0 in-progress, 79 todo, 0 dropped. Ready: 6. Blocked: 73. Weighted: 8%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -288,12 +288,13 @@ Default family set and script coverage (TXT-002). Per-font license inventory (TX
 ### GOV-010 · Implement roadmap check --base, impact summary and covers audit
 - Type: build
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-013
 - Baseline: §65
 - Risks: R-067
+- Verified by: @jakebarnby
 
 Parallel Workstreams need a diff-aware check against a base ref, `impact --summary`, and covers-orphan reporting before V1 contributor traffic. IDs must never be deleted, renumbered or moved once on the base; the check enforces that.
 
@@ -301,26 +302,27 @@ Parallel Workstreams need a diff-aware check against a base ref, `impact --summa
 Mutation commands (GOV-012). Fan-in warning (GOV-011). Coverage input authoring (`tools/coverage/`).
 
 #### Acceptance criteria
-- [ ] `roadmap check --base <ref>` fails a fixture that deletes, renumbers or moves an ID present on that ref, with a file:line diagnostic.
-- [ ] `roadmap impact <ID> --summary` prints the count of transitively unblocked tasks grouped by prefix.
-- [ ] `roadmap coverage` reports every `tools/coverage/*.jsonl` item covered by no non-dropped task and every task that covers nothing and is cited by no Gate.
+- [x] `roadmap check --base <ref>` fails a fixture that deletes, renumbers or moves an ID present on that ref, with a file:line diagnostic.
+- [x] `roadmap impact <ID> --summary` prints the count of transitively unblocked tasks grouped by prefix.
+- [x] `roadmap coverage` reports every `tools/coverage/*.jsonl` item covered by no non-dropped task and every task that covers nothing and is cited by no Gate.
 
 #### Verification
 - Unit: `tools/roadmap` fixtures for deleted, renumbered and moved IDs against a base ref.
 - Review: GOV maintainer confirms `--base`, `impact --summary` and `coverage` are documented in AGENTS.md.
 
 #### Evidence
-- none
+- roadmap@590e1b5
 
 ### GOV-011 · Warn when a hub Task's fan-in exceeds the configured threshold
 - Type: build
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-013
 - Baseline: §65
 - Risks: R-067
+- Verified by: @jakebarnby
 
 ABI-shape, IDL, threat-model and hardware ADRs will be depended on by hundreds of tasks. The validator must warn at `fan_in_warning` so hubs can be split rather than becoming semantic events on every edit.
 
@@ -328,25 +330,26 @@ ABI-shape, IDL, threat-model and hardware ADRs will be depended on by hundreds o
 Workstream-split procedure (GOV-043). Diff-aware check (GOV-010).
 
 #### Acceptance criteria
-- [ ] `roadmap check` emits a warning when dependents of a task exceed `roadmap.toml` `fan_in_warning`.
-- [ ] The warning names the hub task ID and the dependent count.
-- [ ] A fixture below the threshold emits no warning.
+- [x] `roadmap check` emits a warning when dependents of a task exceed `roadmap.toml` `fan_in_warning`.
+- [x] The warning names the hub task ID and the dependent count.
+- [x] A fixture below the threshold emits no warning.
 
 #### Verification
 - Unit: `tools/roadmap` fixtures above and below `fan_in_warning`.
 - Review: GOV maintainer confirms the threshold is the configured policy value, not a hand-typed number in prose.
 
 #### Evidence
-- none
+- roadmap@590e1b5
 
 ### GOV-012 · Implement roadmap mutation commands from claim through renumber
 - Type: build
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-013
 - Baseline: §65
+- Verified by: @jakebarnby
 
 AGENTS.md and CONVENTIONS list `claim`, `unclaim`, `block`, `done`, `drop`, `split`, `move` and `renumber` as still done by hand. Ship them before V1 external contributors edit tasks, so Status transitions stay inside section 7 of CONVENTIONS.
 
@@ -354,27 +357,28 @@ AGENTS.md and CONVENTIONS list `claim`, `unclaim`, `block`, `done`, `drop`, `spl
 `stale`, `slipped` and `history` (GOV-028). Diff-aware check (GOV-010). Independent verification flag (GOV-027).
 
 #### Acceptance criteria
-- [ ] `roadmap claim`, `unclaim`, `block`, `done`, `drop`, `split`, `move` and `renumber` exist and reject transitions forbidden by CONVENTIONS section 7.
-- [ ] `roadmap block <ID> "reason"` mints a Q entry in `registers/questions.md` and adds it to `Depends on`.
-- [ ] `roadmap split` drops the parent with `Dropped because: superseded` and `Superseded by:` naming the new IDs, and repoints dependents in the same change.
-- [ ] Agents cannot set `Verified by`; the command rejects `@agent/` identities on that field.
+- [x] `roadmap claim`, `unclaim`, `block`, `done`, `drop`, `split`, `move` and `renumber` exist and reject transitions forbidden by CONVENTIONS section 7.
+- [x] `roadmap block <ID> "reason"` mints a Q entry in `registers/questions.md` and adds it to `Depends on`.
+- [x] `roadmap split` drops the parent with `Dropped because: superseded` and `Superseded by:` naming the new IDs, and repoints dependents in the same change.
+- [x] Agents cannot set `Verified by`; the command rejects `@agent/` identities on that field.
 
 #### Verification
 - Unit: `tools/roadmap` tests per mutation command, including forbidden transitions.
 - Review: GOV maintainer confirms AGENTS.md command table matches the shipped binary.
 
 #### Evidence
-- none
+- roadmap@590e1b5
 
 ### GOV-013 · Complete roadmap registers, ADR CI and Task parseability
 - Type: build
 - Milestone: V0.5
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-004
 - Baseline: §54, §65, §66
 - Invariants: I-087, I-088
+- Verified by: @jakebarnby
 
 Workstreams.md gives this repository's tooling to GOV. Finish corpus-register schema and validation (entries stay LNX and WIN), wire the invariants register with Enforced-by links, and fail CI on broken ADR or task ID links or unparseable templates. IDL-to-docs generation remains DOC and SDK.
 
@@ -384,16 +388,17 @@ Workstreams.md gives this repository's tooling to GOV. Finish corpus-register sc
 Corpus scenario content (LNX, WIN). IDL-to-docs generator (DOC-010). Mutation commands (GOV-012). Standing-invariant lint text (GOV-019).
 
 #### Acceptance criteria
-- [ ] `roadmap check --allow-drafts --index tools/coverage/slugs.tsv` exits 0 on this repository and fails a fixture whose ADR or task ID link is dangling.
-- [ ] A task that cites a C-ID or I-ID absent from `registers/` fails check with a file:line diagnostic.
-- [ ] CI runs `roadmap fmt --check`, `roadmap gen --check` and `roadmap check` on every pull request to this repository.
+- [x] `roadmap check --allow-drafts --index tools/coverage/slugs.tsv` exits 0 on this repository and fails a fixture whose ADR or task ID link is dangling.
+- [x] A task that cites a C-ID or I-ID absent from `registers/` fails check with a file:line diagnostic.
+- [x] CI runs `roadmap fmt --check`, `roadmap gen --check` and `roadmap check` on every pull request to this repository.
 
 #### Verification
 - Unit: `tools/roadmap` tests covering register reference and unparseable-template fixtures.
 - Review: GOV maintainer confirms the CI workflow file exists and the three commands are required checks.
 
 #### Evidence
-- none
+- roadmap@590e1b5
+- https://github.com/abnegate/jakeos/actions/workflows/roadmap.yml
 
 ### GOV-014 · Populate the repository-alias Register from the hosting Decision
 - Type: docs

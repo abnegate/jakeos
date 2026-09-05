@@ -56,5 +56,7 @@
 | TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
 | MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | V0 | S | 22 | none |
-| GOV-013 | Complete roadmap registers, ADR CI and Task parseability | V0.5 | M | 14 | none |
+| GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
+| GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
+| GOV-043 | Decide the Workstream-split procedure at the size warning | V2 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

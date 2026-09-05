@@ -20,10 +20,10 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | blocked | S | GOV-003 |
-| GOV-010 | Implement roadmap check --base, impact summary and covers audit | todo | blocked | M | GOV-013 |
-| GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | todo | blocked | S | GOV-013 |
-| GOV-012 | Implement roadmap mutation commands from claim through renumber | todo | blocked | M | GOV-013 |
-| GOV-013 | Complete roadmap registers, ADR CI and Task parseability | todo | ready | M | GOV-004 |
+| GOV-010 | Implement roadmap check --base, impact summary and covers audit | done | done | M | GOV-013 |
+| GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | done | done | S | GOV-013 |
+| GOV-012 | Implement roadmap mutation commands from claim through renumber | done | done | M | GOV-013 |
+| GOV-013 | Complete roadmap registers, ADR CI and Task parseability | done | done | M | GOV-004 |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | todo | blocked | S | GOV-001 |
 | GOV-015 | Publish the research-programme index that every ADR must cite | todo | blocked | S | GOV-005 |
 | GOV-016 | Publish the userspace dependency license allowlist | todo | blocked | S | GOV-003 |
@@ -43,8 +43,8 @@
 | GOV-025 | Decide the 1.0 portability commitment as x86-64 only shipping | todo | blocked | S | GOV-006 |
 | GOV-026 | Decide vendor NDA policy for hardware documentation | todo | blocked | S | GOV-007 |
 | GOV-027 | Enable independent Verification for every done V1 and later Task | todo | blocked | S | GOV-013, GOV-007 |
-| GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | todo | blocked | S | GOV-012 |
-| GOV-029 | Add See also citations so gates can name LATER tasks | todo | blocked | S | GOV-013 |
+| GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | todo | ready | S | GOV-012 |
+| GOV-029 | Add See also citations so gates can name LATER tasks | todo | ready | S | GOV-013 |
 | GOV-030 | Adopt a Code of Conduct with named enforcement body | todo | blocked | S | GOV-023 |
 | GOV-031 | Assemble a legally reviewed redistributable compatibility Corpus | todo | blocked | M | GOV-003, GOV-016 |
 | GOV-032 | Publish issue triage labels, severity, templates and stale policy | todo | blocked | S | GOV-007, GOV-001 |
@@ -63,7 +63,7 @@
 | GOV-040 | Decide the license for published benchmark and HCL datasets | todo | blocked | S | GOV-021 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | blocked | M | GOV-024, Q-053 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | blocked | S | GOV-035, SEM-007 |
-| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | blocked | S | GOV-004, GOV-011 |
+| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | ready | S | GOV-004, GOV-011 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | blocked | S | GOV-036 |
 | GOV-045 | Author the V2 Milestone gates mapping the desktop preview | todo | blocked | S | GOV-037 |
 | GOV-046 | Publish vendor NDA policy for hardware documentation | todo | blocked | S | GOV-026 |

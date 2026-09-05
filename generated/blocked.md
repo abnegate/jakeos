@@ -2143,15 +2143,12 @@
 | GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | GOV-002, GOV-001, GOV-005 | V0 |
 | GOV-008 | Record the V0 exit review | todo | CAP-008, ABI-010, CAP-010, IPC-006, IPC-003, CMP-010, WIN-001, BOOT-004 | V0 |
 | GOV-009 | Decide font shipping versus metric-compatible substitutes | todo | GOV-003 | V0.5 |
-| GOV-010 | Implement roadmap check --base, impact summary and covers audit | todo | GOV-013 | V0.5 |
-| GOV-011 | Warn when a hub Task's fan-in exceeds the configured threshold | todo | GOV-013 | V0.5 |
-| GOV-012 | Implement roadmap mutation commands from claim through renumber | todo | GOV-013 | V0.5 |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | todo | GOV-001 | V0.5 |
 | GOV-015 | Publish the research-programme index that every ADR must cite | todo | GOV-005 | V0.5 |
 | GOV-016 | Publish the userspace dependency license allowlist | todo | GOV-003 | V0.5 |
 | GOV-017 | Author the V0.5 Milestone gates mapping the application model | todo | GOV-007 | V0.5 |
 | GOV-018 | Record the V0.5 exit review | todo | STO-016, PKG-011, PKG-005, STO-013, UIP-006, GFX-015, PKG-008, SEC-007, ACC-002 | V0.5 |
-| GOV-019 | Encode standing invariants and non-goals as linted Register rules | todo | GOV-013, GOV-005 | V0.5 |
+| GOV-019 | Encode standing invariants and non-goals as linted Register rules | todo | GOV-005 | V0.5 |
 | GOV-020 | Decide codec and proprietary-font shipping and patent policy | todo | GOV-003, GOV-009 | V1 |
 | GOV-021 | Decide the documentation license and translation terms | todo | GOV-003 | V1 |
 | GOV-022 | Decide firmware blob redistribution for official versus non-free | todo | GOV-003 | V1 |
@@ -2159,9 +2156,7 @@
 | GOV-024 | Decide legal-entity form able to hold marks and signing keys | todo | GOV-039 | V1 |
 | GOV-025 | Decide the 1.0 portability commitment as x86-64 only shipping | todo | GOV-006 | V1 |
 | GOV-026 | Decide vendor NDA policy for hardware documentation | todo | GOV-007 | V1 |
-| GOV-027 | Enable independent Verification for every done V1 and later Task | todo | GOV-013, GOV-007 | V1 |
-| GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | todo | GOV-012 | V1 |
-| GOV-029 | Add See also citations so gates can name LATER tasks | todo | GOV-013 | V1 |
+| GOV-027 | Enable independent Verification for every done V1 and later Task | todo | GOV-007 | V1 |
 | GOV-030 | Adopt a Code of Conduct with named enforcement body | todo | GOV-023 | V1 |
 | GOV-031 | Assemble a legally reviewed redistributable compatibility Corpus | todo | GOV-003, GOV-016 | V1 |
 | GOV-032 | Publish issue triage labels, severity, templates and stale policy | todo | GOV-007, GOV-001 | V1 |
@@ -2175,7 +2170,6 @@
 | GOV-040 | Decide the license for published benchmark and HCL datasets | todo | GOV-021 | V2 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | GOV-024, Q-053 | V2 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | GOV-035, SEM-007 | V2 |
-| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | GOV-011 | V2 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | GOV-036 | V2 |
 | GOV-045 | Author the V2 Milestone gates mapping the desktop preview | todo | GOV-037 | V2 |
 | GOV-046 | Publish vendor NDA policy for hardware documentation | todo | GOV-026 | V2 |
@@ -2546,7 +2540,6 @@
 | GFX-063 | 6 |
 | GFX-077 | 6 |
 | GOV-001 | 6 |
-| GOV-013 | 6 |
 | GOV-075 | 6 |
 | GOV-083 | 6 |
 | HET-002 | 6 |
@@ -3690,8 +3683,6 @@
 | GFX-087 | 1 |
 | GFX-089 | 1 |
 | GFX-090 | 1 |
-| GOV-011 | 1 |
-| GOV-012 | 1 |
 | GOV-017 | 1 |
 | GOV-019 | 1 |
 | GOV-025 | 1 |

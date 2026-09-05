@@ -9,9 +9,9 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | V0 | Execution model | active | 0/21 | 0% (1/217) | 0% | 35 | 181 |
-| V0.5 | Application model | next | 0/29 | 0% (0/436) | 0% | 13 | 423 |
-| V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 4 | 565 |
-| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 1 | 473 |
+| V0.5 | Application model | next | 0/29 | 1% (4/436) | 1% | 12 | 420 |
+| V1 | Developer preview | planned | 0/30 | 0% (0/569) | 0% | 6 | 563 |
+| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 2 | 472 |
 | V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 0 | 315 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
 | 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
@@ -19,7 +19,7 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
+Tasks 5 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 
 ## Workstream × milestone
 
@@ -63,7 +63,7 @@ Tasks 1 done / 2268 live (0 dropped). Weighted 0%. Gates 0/187.
 | BEN | 0/8 | 0/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 0/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
 | DOC | 0/0 | 0/5 | 0/12 | 0/5 | 0/11 | 0/6 | 0/3 | 0/0 |
-| GOV | 1/8 | 0/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
+| GOV | 1/8 | 4/11 | 0/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
 
 ## Ready head
 
@@ -499,7 +499,6 @@ Makespan (size-weight estimates): 78.
 | GFX-063 | 6 |
 | GFX-077 | 6 |
 | GOV-001 | 6 |
-| GOV-013 | 6 |
 | GOV-075 | 6 |
 | GOV-083 | 6 |
 | HET-002 | 6 |
@@ -1643,8 +1642,6 @@ Makespan (size-weight estimates): 78.
 | GFX-087 | 1 |
 | GFX-089 | 1 |
 | GFX-090 | 1 |
-| GOV-011 | 1 |
-| GOV-012 | 1 |
 | GOV-017 | 1 |
 | GOV-019 | 1 |
 | GOV-025 | 1 |
