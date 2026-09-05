@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 10 done, 0 in-progress, 74 todo, 0 dropped. Ready: 9. Blocked: 65. Weighted: 16%.
+Tasks: 84 live, 12 done, 0 in-progress, 72 todo, 0 dropped. Ready: 8. Blocked: 64. Weighted: 17%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -601,12 +601,13 @@ Codec Package schema and decoder Components (MED). Font family inventory (TXT-00
 ### GOV-021 · Decide the documentation license and translation terms
 - Type: adr
 - Milestone: V1
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-003
 - Baseline: §56.5, §66
 - Decision: D-0095
+- Verified by: @jakebarnby
 
 CC-BY-SA versus CC-BY versus CC0, and translation-contribution terms, before the V1 docs site and V3 translations. DOC consumes the Decision. Dataset license is a later Decision.
 
@@ -616,15 +617,15 @@ CC-BY-SA versus CC-BY versus CC0, and translation-contribution terms, before the
 Docs site and toolchain (DOC). Translation pipeline (DOC-025). Benchmark and HCL dataset license (GOV-040). Roadmap file license (GOV-003).
 
 #### Acceptance criteria
-- [ ] Options evaluated include CC-BY-SA, CC-BY and CC0 for documentation, each with translation-contribution terms.
-- [ ] The accepted option states whether translations are independent works or must use the same license.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include CC-BY-SA, CC-BY and CC0 for documentation, each with translation-contribution terms.
+- [x] The accepted option states whether translations are independent works or must use the same license.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV licensing reviewer and DOC lead sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0095
 
 ### GOV-022 · Decide firmware blob redistribution for official versus non-free
 - Type: adr
@@ -1224,12 +1225,13 @@ Registry service (SEM-029). Automation rules (SEM-013). AI broker (SEM-010). IDL
 ### GOV-043 · Decide the Workstream-split procedure at the size warning
 - Type: adr
 - Milestone: V2
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: GOV-004, GOV-011
 - Baseline: §65
 - Decision: D-0114
+- Verified by: @jakebarnby
 
 Files over `workstream_lines_warning` are remedied by a GOV adr. Critique expects an APP shell/apps split around V2. Records prefix permanence, `See also`, and that old IDs never move.
 
@@ -1237,15 +1239,15 @@ Files over `workstream_lines_warning` are remedied by a GOV adr. Critique expect
 Performing any specific split (owning prefix). Header `See also` implementation already in the schema. Fan-in warning (GOV-011).
 
 #### Acceptance criteria
-- [ ] Options evaluated include splitting a file when it exceeds the line warning, splitting by sub-scope on a named condition, and never splitting (new tasks stay in the original file).
-- [ ] The accepted option states that existing IDs keep their prefix and file, new tasks take the new prefix, and a `See also:` header records the relation.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include splitting a file when it exceeds the line warning, splitting by sub-scope on a named condition, and never splitting (new tasks stay in the original file).
+- [x] The accepted option states that existing IDs keep their prefix and file, new tasks take the new prefix, and a `See also:` header records the relation.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0114
 
 ### GOV-044 · Define rules for third-party marks in compatibility claims
 - Type: docs

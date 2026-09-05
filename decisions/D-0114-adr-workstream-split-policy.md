@@ -1,5 +1,5 @@
 # D-0114 · Decide the Workstream-split procedure at the size warning
-- Status: proposed
+- Status: accepted
 - Task: GOV-043
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: No churn in IDs or files; unwieldy files that are hard to review.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. A workstream is split only by a GOV decision when it has two clearly separable sub-scopes with distinct leads or gates. File length triggers a warning, never a split. When a split happens, existing tasks keep their prefix and file; only new tasks take the new prefix, and both files carry a See also line.
 
 ## Consequences
-None until Status is accepted.
+- The size warning in roadmap.toml stays a steering signal.
+- APP (shell versus applications) is the first candidate when it gains a second lead.
+- Generated per-workstream views remain the remedy for reading large files.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (split at the line warning) rejected: a mechanical trigger splits coherent scopes at arbitrary points.
+- Option C (never split) rejected: it forbids the one legitimate case, a workstream that has grown two owners.
 
 ## Follow-ups
 none

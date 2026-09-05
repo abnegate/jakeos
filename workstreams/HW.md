@@ -4,7 +4,7 @@
 - Baseline: §7, §9.1, §17, §32, §33, §55, §56.1, §57, §62, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 90 live, 2 done, 0 in-progress, 88 todo, 0 dropped. Ready: 4. Blocked: 84. Weighted: 1%.
+Tasks: 90 live, 5 done, 0 in-progress, 85 todo, 0 dropped. Ready: 1. Blocked: 84. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -1201,12 +1201,13 @@ Profile implementation (HW-037). Audio codecs (AUD).
 ### HW-041 · Decide driverless-first native printing with PDF spool and CUPS in LNX
 - Type: adr
 - Milestone: V2
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §33
 - Decision: D-0126
+- Verified by: @jakebarnby
 
 Must precede the V3 print service. Options: IPP Everywhere/driverless native service with PDF spool, CUPS as the native service, or CUPS only inside the Linux personality for legacy drivers. A print job is a typed Operation. APP owns dialog chrome.
 
@@ -1216,25 +1217,26 @@ Must precede the V3 print service. Options: IPP Everywhere/driverless native ser
 PDF renderer (APP-053). Print service (HW-071). CUPS socket (LNX-093).
 
 #### Acceptance criteria
-- [ ] Options evaluated include IPP Everywhere/driverless native service with PDF spool, CUPS as the native service, and CUPS only inside the Linux personality for legacy drivers.
-- [ ] The accepted option states that a print job is a typed Operation and that apps do not receive ambient printer enumeration.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include IPP Everywhere/driverless native service with PDF spool, CUPS as the native service, and CUPS only inside the Linux personality for legacy drivers.
+- [x] The accepted option states that a print job is a typed Operation and that apps do not receive ambient printer enumeration.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: HW and APP leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0126
 
 ### HW-042 · Decide 1.0 sensor support per device class in or out of scope
 - Type: adr
 - Milestone: V2
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: HW-003
 - Baseline: §62
 - Decision: D-0127
+- Verified by: @jakebarnby
 
 Ambient-light auto-brightness, lid and tablet-mode switches, and accelerometer rotation are declared in or out per device class. Options: all three in, lid-only, or lid plus ALS. Convertible UI remains a UIP non-goal.
 
@@ -1244,26 +1246,27 @@ Ambient-light auto-brightness, lid and tablet-mode switches, and accelerometer r
 Sensor Components (HW-054). Brightness policy (PWR-018). Convertible shell (UIP).
 
 #### Acceptance criteria
-- [ ] Options evaluated include all three classes in for 1.0, lid-only, and lid plus ALS.
-- [ ] The accepted option names each class in or out per desktop and laptop device class.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include all three classes in for 1.0, lid-only, and lid plus ALS.
+- [x] The accepted option names each class in or out per desktop and laptop device class.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: HW and PWR leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0127
 
 ### HW-043 · Decide Hardware Compatibility List tiers and promotion criteria
 - Type: adr
 - Milestone: V2
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: HW-003
 - Baseline: §62
 - Decision: D-0128
 - Invariants: I-095
+- Verified by: @jakebarnby
 
 Public vocabulary for tested-in-lab, community-reported and unsupported, plus promotion rules into Tier 1. Options: two tiers, three tiers, or lab-only until 1.0. Feeds HW-053 and the V3 installer verdict.
 
@@ -1273,15 +1276,15 @@ Public vocabulary for tested-in-lab, community-reported and unsupported, plus pr
 REL published unit (REL-011). Schema fields (HW-047). Promotion automation (HW-083).
 
 #### Acceptance criteria
-- [ ] Options evaluated include two tiers, three tiers, and lab-only until 1.0.
-- [ ] The accepted option defines promotion into Tier 1 and states that unlisted hardware is unsupported.
-- [ ] A Review line names who accepts the Decision.
+- [x] Options evaluated include two tiers, three tiers, and lab-only until 1.0.
+- [x] The accepted option defines promotion into Tier 1 and states that unlisted hardware is unsupported.
+- [x] A Review line names who accepts the Decision.
 
 #### Verification
 - Review: HW and REL leads sign off on the pull request that accepts the Decision file.
 
 #### Evidence
-- none
+- decision:D-0128
 
 ### HW-044 · Decide public vendor priorities for purchase guidance
 - Type: adr

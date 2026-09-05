@@ -5,7 +5,7 @@
 - Baseline gap: §41 names text, shaping, editing and localization as native UI requirements but specifies no font service, IME protocol, glyph atlas, locale data or localization pipeline.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 47 live, 0 done, 0 in-progress, 47 todo, 0 dropped. Ready: 5. Blocked: 42. Weighted: 0%.
+Tasks: 47 live, 2 done, 0 in-progress, 45 todo, 0 dropped. Ready: 3. Blocked: 42. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -481,13 +481,14 @@ Parser sandbox (TXT-018). Service implementation (TXT-020).
 ### TXT-016 · Decide the locale data source between ICU/CLDR and an ICU4X port
 - Type: adr
 - Milestone: V1
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §41, §67
 - Decision: D-0319
 - Invariants: I-009
+- Verified by: @jakebarnby
 
 Formatting, collation, plural rules and time zones need a CLDR-backed implementation before the V2 Locale object, localization pipeline and CLDR/tzdata Package. This adr decides ICU/CLDR versus an ICU4X port, applying Principle 15.
 
@@ -497,25 +498,26 @@ Formatting, collation, plural rules and time zones need a CLDR-backed implementa
 Locale object (TXT-031). Data Package updates (TXT-024). System locale settings (SVC-025).
 
 #### Acceptance criteria
-- [ ] Option A (ICU with CLDR) and Option B (ICU4X port) are evaluated for data freshness, binary size, sandboxability and Principle 15.
-- [ ] The accepted option names the crate or library, the data-load path, and that tzdata/CLDR can update without a new SystemGeneration.
-- [ ] A Review line names who accepts the decision.
+- [x] Option A (ICU with CLDR) and Option B (ICU4X port) are evaluated for data freshness, binary size, sandboxability and Principle 15.
+- [x] The accepted option names the crate or library, the data-load path, and that tzdata/CLDR can update without a new SystemGeneration.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: TXT and SDK leads sign off on the pull request that accepts the decision file.
 
 #### Evidence
-- none
+- decision:D-0319
 
 ### TXT-017 · Decide the message catalog format between Fluent and gettext
 - Type: adr
 - Milestone: V1
-- Status: todo
+- Status: done
 - Size: S
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §41, §52, §66
 - Decision: D-0320
+- Verified by: @jakebarnby
 
 First-party applications accumulate string sites from V0.5. Deciding the catalog format and the SDK string API beside SDK v1 prevents rewriting every UI string site before the V2 localization framework.
 
@@ -525,15 +527,15 @@ First-party applications accumulate string sites from V0.5. Deciding the catalog
 Pipeline implementation (TXT-032). Translation platform (TXT-036). SDK crate publication (SDK-059).
 
 #### Acceptance criteria
-- [ ] Option A (Fluent) and Option B (gettext) are evaluated for plurals, gender, bi-directional isolation, extraction tooling and SDK ergonomics.
-- [ ] The accepted option names the on-disk catalog format, the SDK lookup API, and that catalogs ship as Package resources.
-- [ ] A Review line names who accepts the decision.
+- [x] Option A (Fluent) and Option B (gettext) are evaluated for plurals, gender, bi-directional isolation, extraction tooling and SDK ergonomics.
+- [x] The accepted option names the on-disk catalog format, the SDK lookup API, and that catalogs ship as Package resources.
+- [x] A Review line names who accepts the decision.
 
 #### Verification
 - Review: TXT and SDK leads sign off on the pull request that accepts the decision file.
 
 #### Evidence
-- none
+- decision:D-0320
 
 ### TXT-018 · Parse untrusted fonts in an isolated Component before atlas admission
 - Type: build

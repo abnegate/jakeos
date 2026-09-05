@@ -1,5 +1,5 @@
 # D-0320 · Decide the message catalog format between Fluent and gettext
-- Status: proposed
+- Status: accepted
 - Task: TXT-017
 - Surfaces: none
 - Layer: none
@@ -25,13 +25,15 @@ Consequences: Ubiquitous; weak plurals.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Message catalogs use Fluent. Plurals, genders and grammatical variants are expressed by translators in the catalog, not in code; the Rust implementation is used by the SDK and the shell.
 
 ## Consequences
-None until Status is accepted.
+- The localisation pipeline (TXT) exports Fluent files per language and measures coverage with B-052.
+- gettext catalogs are supported only inside the Linux personality for guests.
+- Translation tooling is chosen from tools that understand Fluent.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (gettext) rejected: plural and variant logic would live in application code, and its universal tooling is a smaller advantage than translator-side grammar handling.
 
 ## Follow-ups
 none

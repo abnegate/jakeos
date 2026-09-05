@@ -554,7 +554,7 @@
 | SVC-022 | Host user-space driver Components under supervision with per-device restart | todo | SVC-015, SVC-020, HW-029, HW-006, HW-017 | V1 |
 | SVC-023 | Build the early-boot init stage for verity setup and root-store unlock | todo | SVC-003, SVC-007, BOOT-026, BOOT-009 | V1 |
 | SVC-024 | Build the hostname and machine-identity settings service | todo | SVC-013, SVC-015 | V1 |
-| SVC-025 | Build the system locale, keyboard-layout and timezone settings service | todo | SVC-013, TXT-016 | V1 |
+| SVC-025 | Build the system locale, keyboard-layout and timezone settings service | todo | SVC-013 | V1 |
 | SVC-026 | Supervise Linux-Personality daemons as services with the same restart semantics | todo | SVC-015, SVC-008, SVC-020, LNX-059 | V1 |
 | SVC-027 | Build per-user session supervision trees under the system supervisor | todo | SVC-015, SEC-028, SEC-020 | V1 |
 | SVC-028 | Provide the per-application settings Interface and client crate for the SDK | todo | SVC-013 | V1 |
@@ -889,7 +889,7 @@
 | UIP-043 | Support adaptive layouts for desktop, laptop and external display in toolkit | todo | UIP-022, UIP-033 | V2 |
 | UIP-044 | Expose light/dark, accent, icon, cursor, wallpaper and font scale as typed settings | todo | UIP-038, SVC-028, SVC-013 | V2 |
 | UIP-045 | Implement named-action global shortcuts bound by the user in Settings | todo | UIP-037, UIP-030, SVC-013 | V2 |
-| UIP-046 | Provide locale-aware date, number, currency and collation APIs to native apps | todo | TXT-031, TXT-016, SVC-025 | V2 |
+| UIP-046 | Provide locale-aware date, number, currency and collation APIs to native apps | todo | TXT-031, SVC-025 | V2 |
 | UIP-047 | Handle per-display scale and refresh changes and hot-plug without window loss | todo | UIP-033, UIP-043, GFX-065 | V2 |
 | UIP-048 | Implement right-to-left layout mirroring as a toolkit property | todo | UIP-022, UIP-046, TXT-038 | V2 |
 | UIP-049 | Ship basic touchscreen and touchpad gestures in toolkit and routing | todo | UIP-040, HW-058, HW-045 | V2 |
@@ -920,15 +920,15 @@
 | TXT-021 | Route Capability<TextInputFocus> to the IME Component for the focused field only | todo | TXT-022, UIP-012, CAP-003 | V1 |
 | TXT-022 | Implement the native input-method protocol in the toolkit text fields | todo | TXT-010, TXT-012, TXT-013 | V1 |
 | TXT-023 | Make the text service restartable with client rebind and cache regeneration | todo | TXT-020, SVC-009 | V1 |
-| TXT-024 | Ship CLDR, tzdata and Unicode data as a Package updating independently of SystemGenerations | todo | TXT-016, TXT-031, PKG-038 | V2 |
+| TXT-024 | Ship CLDR, tzdata and Unicode data as a Package updating independently of SystemGenerations | todo | TXT-031, PKG-038 | V2 |
 | TXT-025 | Render emoji ZWJ sequences and COLRv1 colour glyphs | todo | TXT-002, TXT-020, TXT-039 | V2 |
 | TXT-026 | Decide hosting existing IME engines versus native engines and the 1.0 language list | todo | TXT-022, TXT-021 | V2 |
 | TXT-027 | Decide hinting, subpixel positioning and gamma policy across scale factors | todo | TXT-013, TXT-019 | V2 |
 | TXT-028 | Ship the first hosted IME engine for Chinese pinyin input | todo | TXT-029 | V2 |
 | TXT-029 | Build the sandboxed IME host Component with candidate window presentation | todo | TXT-026, TXT-021, SVC-015 | V2 |
 | TXT-030 | Bridge text-input-v3 and input-method-v2 in the Wayland bridge to the native IME | todo | TXT-029, LNX-006 | V2 |
-| TXT-031 | Build the typed Locale Object with per-application override and formatting APIs | todo | TXT-016, SVC-025 | V2 |
-| TXT-032 | Build the SDK localisation pipeline with catalog extraction and packaged resources | todo | TXT-017, TXT-031, TXT-038, PKG-030 | V2 |
+| TXT-031 | Build the typed Locale Object with per-application override and formatting APIs | todo | SVC-025 | V2 |
+| TXT-032 | Build the SDK localisation pipeline with catalog extraction and packaged resources | todo | TXT-031, TXT-038, PKG-030 | V2 |
 | TXT-033 | Translate the shell and four native applications into three languages | todo | TXT-032, TXT-038, TXT-036 | V2 |
 | TXT-034 | Build the spell-checking and hyphenation service with dictionary Packages | todo | TXT-007, TXT-022, PKG-038 | V2 |
 | TXT-035 | Apply the text rendering policy natively and in the Linux Personality with pixel parity tests | todo | TXT-027, TXT-019 | V2 |
@@ -1116,7 +1116,7 @@
 | LNX-090 | Translate Linux syscalls onto native primitives | todo | LNX-003, LNX-030, LNX-042, ABI-041 | V2 |
 | LNX-091 | Accept community Linux compatibility reports | todo | LNX-100, LNX-099 | V3 |
 | LNX-092 | Publish Linux compatibility overhead on L4 workloads | todo | LNX-063, LNX-100, Q-001 | V3 |
-| LNX-093 | Expose the native print service as a CUPS-compatible IPP socket | todo | HW-071, HW-041, APP-064, LNX-005 | V3 |
+| LNX-093 | Expose the native print service as a CUPS-compatible IPP socket | todo | HW-071, APP-064, LNX-005 | V3 |
 | LNX-094 | Implement epoll over native Operations | todo | LNX-090, TSK-011, TSK-012, LNX-078 | V3 |
 | LNX-095 | Implement fork as Personality behaviour | todo | LNX-090, LNX-083, LNX-078, CMP-046 | V3 |
 | LNX-096 | Host AT-SPI2 for native screen-reader bridging | todo | LNX-043, ACC-001, ACC-024, LNX-084 | V3 |
@@ -1554,14 +1554,14 @@
 | HW-044 | Decide public vendor priorities for purchase guidance | todo | HW-018 | V2 |
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | HW-011, HW-015, HW-039 | V2 |
 | HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 | V2 |
-| HW-047 | Define the Hardware Compatibility List schema and probe record format | todo | HW-043, HW-021 | V2 |
+| HW-047 | Define the Hardware Compatibility List schema and probe record format | todo | HW-021 | V2 |
 | HW-048 | Enable iGPU plus dGPU mux and render-offload on hybrid laptops | todo | HW-009, HW-039 | V2 |
 | HW-049 | Enumerate gamepads as Capability<InputDevice> for native and personalities | todo | HW-011, HW-031 | V2 |
 | HW-050 | Expose laptop function keys, keyboard backlight and brightness | todo | HW-015, HW-039, HW-011 | V2 |
-| HW-051 | Deliver lid and tablet-mode switch events as typed Device signals | todo | HW-042, HW-015, HW-039, LAB-014 | V2 |
+| HW-051 | Deliver lid and tablet-mode switch events as typed Device signals | todo | HW-015, HW-039, LAB-014 | V2 |
 | HW-052 | Bring up an experimental NVIDIA desktop on the decided driver path | todo | HW-018, LAB-018, KRN-038 | V2 |
-| HW-053 | Publish the tiered known-good hardware list from the compatibility database | todo | HW-043, HW-044, HW-047, HW-061 | V2 |
-| HW-054 | Implement in-scope sensor classes as user-space Components | todo | HW-042, HW-029, HW-051 | V2 |
+| HW-053 | Publish the tiered known-good hardware list from the compatibility database | todo | HW-044, HW-047, HW-061 | V2 |
+| HW-054 | Implement in-scope sensor classes as user-space Components | todo | HW-029, HW-051 | V2 |
 | HW-055 | Evaluate remaining peripheral classes for user-space driver residency | todo | HW-016, HW-031 | V2 |
 | HW-056 | Document the three coexisting driver classes and per-class residency | todo | HW-016, HW-021, HW-061 | V2 |
 | HW-057 | Require IOMMU and authorize Thunderbolt, USB4 and USB devices before DMA | todo | HW-017, HW-026, HW-039 | V2 |
@@ -1578,7 +1578,7 @@
 | HW-068 | Make Hardware Compatibility List submissions opt-in, redacted and reviewable | todo | HW-047, GOV-061 | V3 |
 | HW-069 | Support MTP and PTP phone-to-desktop transfer for Android and iOS | todo | HW-055, HW-008, STO-062 | V3 |
 | HW-070 | Bring up the Tier 1 NVIDIA desktop on the decided driver and Secure Boot path | todo | HW-052, HW-018, LAB-021, KRN-038, GFX-064, GFX-027 | V3 |
-| HW-071 | Ship driverless print discovery and Capability<PrintJob> for a single job | todo | HW-041, NET-024, HW-029 | V3 |
+| HW-071 | Ship driverless print discovery and Capability<PrintJob> for a single job | todo | NET-024, HW-029 | V3 |
 | HW-072 | Restart the printing service with queued jobs preserved | todo | HW-071 | V3 |
 | HW-073 | Enable SD and MMC readers as Capability-gated removable storage | todo | HW-009, STO-062 | V3 |
 | HW-074 | Enable CCID smartcard readers as Device objects for authentication | todo | HW-008, SEC-014 | V3 |
@@ -1590,8 +1590,8 @@
 | HW-080 | Bring up the Tier 1 Intel desktop Reference machine | todo | LAB-023 | V4 |
 | HW-081 | Bring up second-Generation AMD and Intel laptops and a second AMD GPU | todo | LAB-023, HW-062 | V4 |
 | HW-082 | Decide policy for third-party user-space drivers and firmware packages | todo | HW-056, HW-047 | V4 |
-| HW-083 | Automate Tier 2 to Tier 1 promotion from probe data and suite results | todo | HW-043, HW-065, HW-086 | V4 |
-| HW-084 | Ship eSCL/WSD and SANE scanning with Capability<Scanner> via a system dialog | todo | HW-041, HW-071, NET-024 | V4 |
+| HW-083 | Automate Tier 2 to Tier 1 promotion from probe data and suite results | todo | HW-065, HW-086 | V4 |
+| HW-084 | Ship eSCL/WSD and SANE scanning with Capability<Scanner> via a system dialog | todo | HW-071, NET-024 | V4 |
 | HW-085 | Implement signed third-party driver and firmware Packages with revocation | todo | HW-082, HW-029, HW-047 | V4 |
 | HW-086 | Run the full hardware suite on every Tier 1 machine each release candidate | todo | HW-081, HW-080, HW-070, HW-084, HW-077, HW-075, HW-076 | V4 |
 | HW-087 | Sign off hardware soak: no P0 driver or firmware regression on Tier 1 | todo | HW-089, LAB-025 | 1.0 |
@@ -1614,7 +1614,7 @@
 | PWR-015 | Expose battery, thermal, inhibit and suspend state through inspect | todo | PWR-013, PWR-010, PWR-012, OBS-019, SDK-007 | V1 |
 | PWR-016 | Attribute energy use to ResourceDomain for Settings | todo | PWR-009, PWR-010, SCH-045, OBS-019 | V2 |
 | PWR-017 | Publish suspend and resume latency on both laptops | todo | PWR-024, BEN-005, LAB-014 | V2 |
-| PWR-018 | Implement display brightness policy including ambient-light option | todo | PWR-011, HW-042, HW-050 | V2 |
+| PWR-018 | Implement display brightness policy including ambient-light option | todo | PWR-011, HW-050 | V2 |
 | PWR-019 | Implement charge thresholds and power profiles | todo | PWR-010, PWR-009, PWR-011, SCH-045 | V2 |
 | PWR-020 | Deliver the accepted hibernation policy on V2 laptops | todo | PWR-007, PWR-014, SEC-048, LAB-014, HW-039, STO-014 | V2 |
 | PWR-021 | Implement lid, dock and external-display power behavior | todo | PWR-011, PWR-014, HW-051, LAB-014, HW-039, LAB-018 | V2 |
@@ -2011,7 +2011,7 @@
 | REL-008 | Specify the repository wire protocol and metadata format | todo | REL-003, PKG-005, PKG-014 | V1 |
 | REL-009 | Measure delta versus full SystemGeneration update sizes | todo | PKG-014, PKG-005, REL-008 | V1 |
 | REL-010 | Deliver a rotatable trust store inside SystemGenerations | todo | REL-002, REL-003, PKG-016, PKG-029 | V2 |
-| REL-011 | Define hardware support tiers as the HCL unit | todo | HW-043, HW-047 | V2 |
+| REL-011 | Define hardware support tiers as the HCL unit | todo | HW-047 | V2 |
 | REL-012 | Decide the repository model and source trust display | todo | REL-003, REL-004 | V2 |
 | REL-013 | Expose a repository search and metadata API | todo | REL-012, REL-008, REL-007, BLD-055 | V2 |
 | REL-014 | Generate release notes from tasks and Generation diffs | todo | PKG-022, BEN-004 | V2 |
@@ -2074,7 +2074,7 @@
 | DOC-004 | Write the Redox Rust-in-kernel and schemes study | todo | DOC-001 | V0.5 |
 | DOC-005 | Write the XNU Mach ports, launchd and entitlements study | todo | DOC-001 | V0.5 |
 | DOC-006 | Add full-text search to the documentation site | todo | DOC-009, DOC-007, DOC-010 | V1 |
-| DOC-007 | Build the versioned documentation site with per-release snapshots | todo | DOC-008, DOC-009, GOV-021 | V1 |
+| DOC-007 | Build the versioned documentation site with per-release snapshots | todo | DOC-008, DOC-009 | V1 |
 | DOC-008 | Decide the documentation taxonomy and ownership | todo | GOV-006 | V1 |
 | DOC-009 | Decide the documentation toolchain, search and snapshots | todo | DOC-002 | V1 |
 | DOC-010 | Generate API reference pages from the IDL and SDK | todo | DOC-008, DOC-009, DOC-002, IPC-049, ABI-023, ABI-038 | V1 |
@@ -2092,7 +2092,7 @@
 | DOC-022 | Write the desktop user guide | todo | DOC-008, DOC-015 | V2 |
 | DOC-023 | Generate complete Layer 1 reference pages for every entry point | todo | DOC-010, ABI-046, CAP-046, CMP-050 | V3 |
 | DOC-024 | Gate documentation coverage and the docs build in CI | todo | DOC-012, DOC-023, BLD-001 | V3 |
-| DOC-025 | Set up the documentation translation pipeline and string freeze | todo | DOC-015, DOC-007, GOV-021, TXT-036, TXT-017 | V3 |
+| DOC-025 | Set up the documentation translation pipeline and string freeze | todo | DOC-015, DOC-007, TXT-036 | V3 |
 | DOC-026 | Verify public docs suffice for unaided install | todo | DOC-030, DOC-022, INS-029, INS-039 | V3 |
 | DOC-027 | Write the administrator guide | todo | DOC-008, DOC-015, BOOT-042, INS-039 | V3 |
 | DOC-028 | Write the compatibility guide | todo | DOC-021, LNX-099, WIN-068, GOV-044 | V3 |
@@ -2132,14 +2132,13 @@
 | GOV-037 | Author the V1 Milestone gates including self-hosting and dogfooding | todo | GOV-017 | V1 |
 | GOV-038 | Record the V1 exit review | todo | SDK-054, SDK-055, NET-006, AUD-002, REL-003, LNX-018, WASM-007, SDK-028, LNX-015, KRN-024, KRN-026, IPC-042, LNX-021 | V1 |
 | GOV-039 | Compare legal-entity jurisdictions for export, GDPR and tax | todo | Q-049 | V1 |
-| GOV-040 | Decide the license for published benchmark and HCL datasets | todo | GOV-021 | V2 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | GOV-024, Q-053 | V2 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | GOV-035, SEM-007 | V2 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | GOV-036 | V2 |
 | GOV-045 | Author the V2 Milestone gates mapping the desktop preview | todo | GOV-037 | V2 |
 | GOV-046 | Publish vendor NDA policy for hardware documentation | todo | GOV-026 | V2 |
 | GOV-047 | Complete the Wine, DXVK and VKD3D-Proton license review | todo | WIN-005, PKG-010 | V2 |
-| GOV-048 | Record the V2 exit review | todo | WIN-036, GFX-063, HW-040, SEC-043, SEM-018, WIN-002, HW-042 | V2 |
+| GOV-048 | Record the V2 exit review | todo | WIN-036, GFX-063, HW-040, SEC-043, SEM-018, WIN-002 | V2 |
 | GOV-049 | Decide redistribution licensing for Personality software wrappers | todo | PKG-047 | V3 |
 | GOV-050 | Assess export-control and cryptography distribution obligations | todo | GOV-024 | V3 |
 | GOV-051 | Decide whether Linux appears in product naming | todo | GOV-036 | V3 |
@@ -2736,8 +2735,6 @@
 | HW-026 | 4 |
 | HW-036 | 4 |
 | HW-040 | 4 |
-| HW-042 | 4 |
-| HW-043 | 4 |
 | HW-055 | 4 |
 | HW-066 | 4 |
 | HW-089 | 4 |
@@ -2809,7 +2806,6 @@
 | TSK-017 | 4 |
 | TSK-024 | 4 |
 | TXT-002 | 4 |
-| TXT-016 | 4 |
 | UIP-004 | 4 |
 | UIP-005 | 4 |
 | UIP-007 | 4 |
@@ -2898,7 +2894,6 @@
 | GFX-069 | 3 |
 | GFX-085 | 3 |
 | GFX-088 | 3 |
-| GOV-021 | 3 |
 | GOV-030 | 3 |
 | GOV-031 | 3 |
 | GOV-036 | 3 |
@@ -2912,7 +2907,6 @@
 | HW-022 | 3 |
 | HW-024 | 3 |
 | HW-038 | 3 |
-| HW-041 | 3 |
 | HW-051 | 3 |
 | HW-061 | 3 |
 | HW-065 | 3 |
@@ -3414,7 +3408,6 @@
 | TSK-049 | 2 |
 | TXT-004 | 2 |
 | TXT-015 | 2 |
-| TXT-017 | 2 |
 | TXT-021 | 2 |
 | TXT-030 | 2 |
 | TXT-039 | 2 |

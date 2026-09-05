@@ -61,9 +61,9 @@
 | HW-038 | Restart the Bluetooth service with paired devices reconnecting | todo | blocked | M | HW-035, HW-037 |
 | HW-039 | Bring up the AMD laptop Reference machine including amdgpu | todo | blocked | L | HW-003, LAB-018, HW-010 |
 | HW-040 | Decide Bluetooth host placement and required profiles | todo | blocked | M | HW-028, HW-016 |
-| HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | todo | ready | S | none |
-| HW-042 | Decide 1.0 sensor support per device class in or out of scope | todo | ready | S | HW-003 |
-| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | todo | ready | S | HW-003 |
+| HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | done | done | S | none |
+| HW-042 | Decide 1.0 sensor support per device class in or out of scope | done | done | S | HW-003 |
+| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | done | done | S | HW-003 |
 | HW-044 | Decide public vendor priorities for purchase guidance | todo | blocked | S | HW-003, HW-018 |
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | blocked | M | HW-011, HW-015, HW-039 |
 | HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | blocked | L | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 |

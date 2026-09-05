@@ -10,8 +10,8 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | V0 | Execution model | active | 0/21 | 13% (28/217) | 6% | 25 | 164 |
 | V0.5 | Application model | next | 0/29 | 2% (8/436) | 1% | 18 | 410 |
-| V1 | Developer preview | planned | 0/30 | 0% (1/569) | 0% | 11 | 557 |
-| V2 | Desktop preview | planned | 0/30 | 0% (0/474) | 0% | 4 | 470 |
+| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 8 | 557 |
+| V2 | Desktop preview | planned | 0/30 | 1% (4/474) | 0% | 1 | 469 |
 | V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 1 | 314 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
 | 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
@@ -19,7 +19,7 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 37 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
+Tasks 44 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 
 ## Workstream × milestone
 
@@ -40,7 +40,7 @@ Tasks 37 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | PKG | 0/0 | 0/45 | 0/22 | 0/13 | 0/8 | 0/2 | 0/1 | 0/0 |
 | GFX | 0/1 | 0/43 | 0/14 | 0/30 | 0/4 | 0/3 | 0/2 | 0/1 |
 | UIP | 0/0 | 0/26 | 0/16 | 0/9 | 0/3 | 0/2 | 0/1 | 0/1 |
-| TXT | 0/0 | 0/13 | 0/10 | 0/17 | 0/3 | 0/3 | 0/1 | 0/0 |
+| TXT | 0/0 | 0/13 | 2/10 | 0/17 | 0/3 | 0/3 | 0/1 | 0/0 |
 | ACC | 0/0 | 0/5 | 0/10 | 0/10 | 0/5 | 0/5 | 0/1 | 0/1 |
 | SEM | 0/0 | 0/3 | 0/5 | 0/27 | 0/4 | 0/3 | 0/2 | 0/0 |
 | LNX | 0/2 | 0/9 | 0/50 | 0/29 | 0/11 | 0/6 | 0/4 | 0/0 |
@@ -53,7 +53,7 @@ Tasks 37 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | NET | 0/0 | 0/2 | 0/19 | 0/7 | 0/6 | 0/3 | 0/2 | 0/1 |
 | AUD | 0/0 | 0/0 | 0/14 | 0/8 | 0/3 | 0/2 | 0/2 | 0/1 |
 | MED | 0/0 | 0/0 | 0/10 | 0/18 | 0/8 | 0/4 | 0/2 | 0/0 |
-| HW | 2/5 | 0/9 | 0/18 | 0/29 | 0/18 | 0/7 | 0/3 | 0/1 |
+| HW | 2/5 | 0/9 | 0/18 | 3/29 | 0/18 | 0/7 | 0/3 | 0/1 |
 | PWR | 0/0 | 0/5 | 0/10 | 0/9 | 0/2 | 0/2 | 0/2 | 0/0 |
 | SDK | 0/11 | 0/20 | 0/31 | 0/12 | 0/12 | 0/6 | 0/4 | 0/0 |
 | APP | 0/0 | 0/9 | 0/12 | 0/35 | 0/8 | 0/2 | 0/2 | 0/1 |
@@ -63,7 +63,7 @@ Tasks 37 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | BEN | 1/8 | 1/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 1/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
 | DOC | 0/0 | 0/5 | 0/12 | 0/5 | 0/11 | 0/6 | 0/3 | 0/0 |
-| GOV | 4/8 | 5/11 | 1/20 | 0/9 | 0/21 | 0/8 | 0/7 | 0/0 |
+| GOV | 4/8 | 5/11 | 2/20 | 1/9 | 0/21 | 0/8 | 0/7 | 0/0 |
 
 ## Ready head
 
@@ -731,8 +731,6 @@ Makespan (size-weight estimates): 78.
 | HW-026 | 4 |
 | HW-036 | 4 |
 | HW-040 | 4 |
-| HW-042 | 4 |
-| HW-043 | 4 |
 | HW-055 | 4 |
 | HW-066 | 4 |
 | HW-089 | 4 |
@@ -804,7 +802,6 @@ Makespan (size-weight estimates): 78.
 | TSK-017 | 4 |
 | TSK-024 | 4 |
 | TXT-002 | 4 |
-| TXT-016 | 4 |
 | UIP-004 | 4 |
 | UIP-005 | 4 |
 | UIP-007 | 4 |
@@ -893,7 +890,6 @@ Makespan (size-weight estimates): 78.
 | GFX-069 | 3 |
 | GFX-085 | 3 |
 | GFX-088 | 3 |
-| GOV-021 | 3 |
 | GOV-030 | 3 |
 | GOV-031 | 3 |
 | GOV-036 | 3 |
@@ -907,7 +903,6 @@ Makespan (size-weight estimates): 78.
 | HW-022 | 3 |
 | HW-024 | 3 |
 | HW-038 | 3 |
-| HW-041 | 3 |
 | HW-051 | 3 |
 | HW-061 | 3 |
 | HW-065 | 3 |
@@ -1409,7 +1404,6 @@ Makespan (size-weight estimates): 78.
 | TSK-049 | 2 |
 | TXT-004 | 2 |
 | TXT-015 | 2 |
-| TXT-017 | 2 |
 | TXT-021 | 2 |
 | TXT-030 | 2 |
 | TXT-039 | 2 |

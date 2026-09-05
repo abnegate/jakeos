@@ -1,5 +1,5 @@
 # D-0126 · Decide driverless-first native printing with PDF spool and CUPS in LNX
-- Status: proposed
+- Status: accepted
 - Task: HW-041
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Legacy coverage without polluting native; two print paths for user
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. Native printing is driverless-first: an OS-owned print service speaks IPP Everywhere and AirPrint-class protocols, the print dialog is OS-owned and mints Capability<PrintJob>, and the spool format is PDF. Printers that need proprietary drivers are served by CUPS inside the Linux personality, which appears in the same dialog as a discovered printer.
 
 ## Consequences
-None until Status is accepted.
+- HW owns discovery (mDNS, IPP), APP owns the dialog, LNX owns the CUPS bridge, WIN routes the Wine spooler to the same service.
+- No CUPS filter chain runs natively.
+- Scanning follows the same shape with eSCL as the driverless protocol.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (CUPS as the native service) rejected: it imports a large POSIX daemon and its filter chain into the native platform.
+- Option C (no native printing) rejected: native applications could not print without the personality running.
 
 ## Follow-ups
 none

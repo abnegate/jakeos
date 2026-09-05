@@ -50,17 +50,11 @@
 | WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | V1 | M | 302 | none |
 | REL-004 | Define update channels and promotion criteria | V1 | S | 264 | none |
 | ENV-021 | Prototype environment.yaml versus Package-manifest profiles | V1 | S | 245 | none |
-| TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | V1 | S | 195 | none |
-| HW-041 | Decide driverless-first native printing with PDF spool and CUPS in LNX | V2 | S | 158 | none |
-| HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | V2 | S | 153 | none |
-| HW-042 | Decide 1.0 sensor support per device class in or out of scope | V2 | S | 137 | none |
-| GOV-021 | Decide the documentation license and translation terms | V1 | S | 113 | none |
 | GOV-059 | Publish the GPL corresponding-source written-offer policy | V3 | S | 106 | none |
-| TXT-017 | Decide the message catalog format between Fluent and gettext | V1 | S | 53 | none |
+| GOV-040 | Decide the license for published benchmark and HCL datasets | V2 | S | 97 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
 | LAB-006 | Procure external power meters for the energy-measurement path | V0.5 | S | 26 | none |
 | GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |
 | GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
-| GOV-043 | Decide the Workstream-split procedure at the size warning | V2 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

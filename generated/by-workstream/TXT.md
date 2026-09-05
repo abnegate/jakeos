@@ -26,8 +26,8 @@
 | --- | --- | --- | --- | --- | --- |
 | TXT-014 | Benchmark per-Component text memory and shaping CPU with shared versus private caches | todo | blocked | S | TXT-020 |
 | TXT-015 | Decide the cross-Component glyph atlas and shaped-text cache sharing model | todo | blocked | S | TXT-008, TXT-004, SEC-029 |
-| TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | todo | ready | S | none |
-| TXT-017 | Decide the message catalog format between Fluent and gettext | todo | ready | S | none |
+| TXT-016 | Decide the locale data source between ICU/CLDR and an ICU4X port | done | done | S | none |
+| TXT-017 | Decide the message catalog format between Fluent and gettext | done | done | S | none |
 | TXT-018 | Parse untrusted fonts in an isolated Component before atlas admission | todo | blocked | M | TXT-008, TXT-015 |
 | TXT-019 | Expose the native font store to the Linux Personality through fontconfig | todo | blocked | M | TXT-006, TXT-007, LNX-052, LNX-024 |
 | TXT-020 | Build the text service minting read-only glyph atlas and shaped-run MemoryObjects | todo | blocked | L | TXT-015, TXT-018, TXT-013, MEM-024, SVC-015 |

@@ -1,5 +1,5 @@
 # D-0319 · Decide the locale data source between ICU/CLDR and an ICU4X port
-- Status: proposed
+- Status: accepted
 - Task: TXT-016
 - Surfaces: none
 - Layer: none
@@ -25,13 +25,15 @@ Consequences: Modular Rust; maturity.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. Locale data (number, date and list formatting, collation, calendars, plural rules) comes from ICU4X, the Rust-native implementation of CLDR data. Each text Component links only the data it needs.
 
 ## Consequences
-None until Status is accepted.
+- The SDK exposes ICU4X types directly; no C++ ICU library ships in the native platform.
+- The Linux personality keeps its own ICU for guests; the two never share state.
+- Features ICU4X lacks are tracked as TXT tasks with upstream contributions preferred.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (ICU with CLDR in C++) rejected: a large foreign-object-model dependency inside every text-rendering Component, against the Rust-first SDK.
 
 ## Follow-ups
 none

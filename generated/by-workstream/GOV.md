@@ -36,7 +36,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GOV-020 | Decide codec and proprietary-font shipping and patent policy | todo | ready | M | GOV-003, GOV-009 |
-| GOV-021 | Decide the documentation license and translation terms | todo | ready | S | GOV-003 |
+| GOV-021 | Decide the documentation license and translation terms | done | done | S | GOV-003 |
 | GOV-022 | Decide firmware blob redistribution for official versus non-free | done | done | M | GOV-003 |
 | GOV-023 | Adopt the governance charter for decisions and maintainers | todo | blocked | M | GOV-007, GOV-024 |
 | GOV-024 | Decide legal-entity form able to hold marks and signing keys | todo | blocked | M | GOV-039 |
@@ -60,10 +60,10 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-040 | Decide the license for published benchmark and HCL datasets | todo | blocked | S | GOV-021 |
+| GOV-040 | Decide the license for published benchmark and HCL datasets | todo | ready | S | GOV-021 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | blocked | M | GOV-024, Q-053 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | blocked | S | GOV-035, SEM-007 |
-| GOV-043 | Decide the Workstream-split procedure at the size warning | todo | ready | S | GOV-004, GOV-011 |
+| GOV-043 | Decide the Workstream-split procedure at the size warning | done | done | S | GOV-004, GOV-011 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | blocked | S | GOV-036 |
 | GOV-045 | Author the V2 Milestone gates mapping the desktop preview | todo | blocked | S | GOV-037 |
 | GOV-046 | Publish vendor NDA policy for hardware documentation | todo | blocked | S | GOV-026 |

@@ -1,5 +1,5 @@
 # D-0095 · Decide the documentation license and translation terms
-- Status: proposed
+- Status: accepted
 - Task: GOV-021
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: No friction for any reuse; no attribution and no way to require tr
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option B. Documentation is licensed CC-BY 4.0. It may be quoted, translated, embedded in books, courses and commercial products with attribution.
 
 ## Consequences
-None until Status is accepted.
+- The docs repository and every generated reference page carry the licence.
+- Contributions to documentation fall under the same CLA as the platform repository (D-0092 terms).
+- Baseline and decision records inside the roadmap repository carry the same licence.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option A (CC-BY-SA) rejected: share-alike discourages commercial documentation reuse the ecosystem benefits from.
+- Option C (CC0) rejected: attribution is the one thing the project wants back.
 
 ## Follow-ups
 none

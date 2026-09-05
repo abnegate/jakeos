@@ -120,7 +120,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0092 | Decide contributor licensing, copyright holder and DCO or CLA | accepted | GOV-002 | none |
 | D-0093 | Decide open-source-steward versus manufacturer status under CRA | proposed | GOV-070 | none |
 | D-0094 | Decide the license for published benchmark and HCL datasets | proposed | GOV-040 | none |
-| D-0095 | Decide the documentation license and translation terms | proposed | GOV-021 | none |
+| D-0095 | Decide the documentation license and translation terms | accepted | GOV-021 | none |
 | D-0096 | Assess export-control and cryptography distribution obligations | proposed | GOV-050 | none |
 | D-0097 | Decide firmware blob redistribution for official versus non-free | accepted | GOV-022 | none |
 | D-0098 | Decide font shipping versus metric-compatible substitutes | accepted | GOV-009 | none |
@@ -139,7 +139,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0111 | Decide trademark usage, derivative branding and compatible-with claims | proposed | GOV-056 | none |
 | D-0112 | Decide vendor NDA policy for hardware documentation | proposed | GOV-026 | none |
 | D-0113 | Decide whether to run a vulnerability reward program | proposed | GOV-079 | none |
-| D-0114 | Decide the Workstream-split procedure at the size warning | proposed | GOV-043 | none |
+| D-0114 | Decide the Workstream-split procedure at the size warning | accepted | GOV-043 | none |
 | D-0115 | Decide GPU ComputeDevice backend among Vulkan, DRM, or deferral | proposed | HET-003 | none |
 | D-0116 | Decide portable workload representation for heterogeneous dispatch | proposed | HET-004 | none |
 | D-0117 | Decide ComputeDevice enumeration ABI and open-ended class taxonomy | proposed | HET-001 | S-028 |
@@ -151,9 +151,9 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0123 | Decide Capability<InputDevice> rights with no ambient device nodes | proposed | HW-007 | none |
 | D-0124 | Decide whether IOMMU is required for user-space drivers and DMA | proposed | HW-017 | none |
 | D-0125 | Decide NVIDIA support and Secure Boot handling of proprietary modules | proposed | HW-018 | none |
-| D-0126 | Decide driverless-first native printing with PDF spool and CUPS in LNX | proposed | HW-041 | none |
-| D-0127 | Decide 1.0 sensor support per device class in or out of scope | proposed | HW-042 | none |
-| D-0128 | Decide Hardware Compatibility List tiers and promotion criteria | proposed | HW-043 | none |
+| D-0126 | Decide driverless-first native printing with PDF spool and CUPS in LNX | accepted | HW-041 | none |
+| D-0127 | Decide 1.0 sensor support per device class in or out of scope | accepted | HW-042 | none |
+| D-0128 | Decide Hardware Compatibility List tiers and promotion criteria | accepted | HW-043 | none |
 | D-0129 | Decide the V1 through V2 Reference machine list and security criteria | accepted | HW-003 | none |
 | D-0130 | Decide policy for third-party user-space drivers and firmware packages | proposed | HW-082 | none |
 | D-0131 | Decide public vendor priorities for purchase guidance | proposed | HW-044 | none |
@@ -344,8 +344,8 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0316 | Decide the default system font set and publish its script coverage matrix | proposed | TXT-002 | none |
 | D-0317 | Decide the cross-Component glyph atlas and shaped-text cache sharing model | proposed | TXT-015 | none |
 | D-0318 | Decide hosting existing IME engines versus native engines and the 1.0 language list | proposed | TXT-026 | S-016 |
-| D-0319 | Decide the locale data source between ICU/CLDR and an ICU4X port | proposed | TXT-016 | none |
-| D-0320 | Decide the message catalog format between Fluent and gettext | proposed | TXT-017 | none |
+| D-0319 | Decide the locale data source between ICU/CLDR and an ICU4X port | accepted | TXT-016 | none |
+| D-0320 | Decide the message catalog format between Fluent and gettext | accepted | TXT-017 | none |
 | D-0321 | Decide the shaping and rasterisation libraries for the native text stack | proposed | TXT-003 | none |
 | D-0322 | Decide hinting, subpixel positioning and gamma policy across scale factors | proposed | TXT-027 | none |
 | D-0323 | Decide whether shaping runs in-Component or in a shared text service Component | proposed | TXT-004 | none |

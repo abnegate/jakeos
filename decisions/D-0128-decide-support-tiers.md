@@ -1,5 +1,5 @@
 # D-0128 · Decide Hardware Compatibility List tiers and promotion criteria
-- Status: proposed
+- Status: accepted
 - Task: HW-043
 - Surfaces: none
 - Layer: none
@@ -30,13 +30,16 @@ Consequences: Every listing is verified; a very short list.
 Evidence: none
 
 ## Decision
-Proposed. Not yet accepted.
+Option A. The Hardware Compatibility List has two tiers. Tier 1 machines live in the lab and pass the full hardware suite on every release; Tier 2 machines are community-reported with probe data and a documented verification process. A machine is promoted to Tier 1 only when a physical unit joins the lab and passes the suite; anything unlisted is unsupported.
 
 ## Consequences
-None until Status is accepted.
+- registers/hardware.md carries the Tier field; the published HCL (REL) is generated from it plus the community database.
+- The installer warns on Tier 2 and unlisted machines and refuses known-blocking hardware.
+- Promotion and demotion are recorded as history events.
 
 ## Rejected options and why
-None until Status is accepted.
+- Option B (three tiers) rejected: a middle tier of partially tested machines is hard to explain and easy to game.
+- Option C (lab-only until 1.0) rejected: the V3 compatibility-database gate needs community entries to exist.
 
 ## Follow-ups
 none
