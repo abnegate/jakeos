@@ -15,7 +15,7 @@
 | KRN-007 | Decide upstream tracking: rebase vs merge and cadence per divergence phase | done | done | S | KRN-005 |
 | KRN-008 | Build the divergence ledger classifying every fork patch with a CI Gate | todo | blocked | M | KRN-010, KRN-009, KRN-006 |
 | KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | todo | ready | M | KRN-002, KRN-007, KRN-006 |
-| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | todo | ready | M | KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005 |
+| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | done | done | M | KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005 |
 | KRN-011 | Maintain a base defconfig plus per-target fragments with a build-and-boot check | todo | blocked | M | KRN-010, KRN-017 |
 | KRN-012 | Wire KUnit and Rust kernel unit tests for native primitives into pre-merge CI | todo | blocked | M | KRN-013, BLD-013, BLD-012 |
 | KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | blocked | M | KRN-010, KRN-001, KRN-017, KRN-015, KRN-016 |
@@ -50,7 +50,7 @@
 | KRN-032 | Build tooling to pull upstream driver changes into the fork per subsystem | todo | blocked | M | KRN-014, KRN-017, KRN-023 |
 | KRN-033 | Run the GPU driver update process tracking amdgpu, i915, xe and nouveau fixes | todo | blocked | S | KRN-032, KRN-014 |
 | KRN-034 | Define and CI-enforce the kernel hardening configuration baseline | todo | blocked | M | KRN-011, KRN-028 |
-| KRN-035 | Set kernel identity: uname strings, version scheme and bug-report routing | todo | blocked | S | KRN-010, KRN-002 |
+| KRN-035 | Set kernel identity: uname strings, version scheme and bug-report routing | todo | ready | S | KRN-010, KRN-002 |
 | KRN-036 | Test KVM and nested virtualisation in CI including the harness inside a guest | todo | blocked | M | KRN-017, KRN-011, BLD-012, BLD-003 |
 | KRN-037 | Expose retained KVM to native software as a Capability-mediated VirtualMachine | todo | blocked | L | KRN-025, KRN-013, KRN-036, CAP-005, ABI-005, MEM-003 |
 | KRN-038 | Enforce signature Verification for modules and driver firmware under Secure Boot | todo | blocked | M | KRN-027, KRN-034 |

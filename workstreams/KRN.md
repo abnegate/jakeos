@@ -4,7 +4,7 @@
 - Baseline: §2, §5, §6, §55, §56.4
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 59 live, 7 done, 0 in-progress, 52 todo, 0 dropped. Ready: 3. Blocked: 49. Weighted: 6%.
+Tasks: 59 live, 8 done, 0 in-progress, 51 todo, 0 dropped. Ready: 3. Blocked: 48. Weighted: 8%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -288,12 +288,13 @@ Applying the Phase D triggers to live bot data (KRN-042). 1.0 phase requirement 
 ### KRN-010 · Create the kernel fork repository with upstream remote and rebase workflow
 - Type: build
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005
 - Baseline: §5.1
 - Risks: R-002
+- Verified by: @jakebarnby
 
 Establishes the kernel tree (its own repository or the path decided by BLD-005), the upstream remote for the chosen series, patch-series tracking, and a documented rebase workflow that every later KRN task builds on. Boot from a tagged commit is a V0 exit criterion owned with BOOT and BLD.
 
@@ -303,16 +304,17 @@ Establishes the kernel tree (its own repository or the path decided by BLD-005),
 QEMU boot harness (BLD-012). OVMF boot of the image (BOOT-001). Native subsystem layout (KRN-013).
 
 #### Acceptance criteria
-- [ ] The kernel alias in `registers/repos.md` resolves to a tree with an upstream remote on the series named by KRN-005.
-- [ ] A documented rebase workflow exists in the tree and is exercised once on a no-op range without rewriting published tags.
-- [ ] A tagged commit builds with the BLD-013 pin.
+- [x] The kernel alias in `registers/repos.md` resolves to a tree with an upstream remote on the series named by KRN-005.
+- [x] A documented rebase workflow exists in the tree and is exercised once on a no-op range without rewriting published tags.
+- [x] A tagged commit builds with the BLD-013 pin.
 
 #### Verification
 - Integration: CI clones the tree, fetches upstream, and builds the tag on `qemu-x86_64`.
 - Review: kernel architecture lead sign-off on the bootstrap README.
 
 #### Evidence
-- none
+- kernel@1e549edb57f3
+- https://github.com/abnegate/jakeos-kernel/actions/runs/33958979664
 
 ### KRN-011 · Maintain a base defconfig plus per-target fragments with a build-and-boot check
 - Type: build

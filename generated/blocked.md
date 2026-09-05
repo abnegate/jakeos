@@ -4,19 +4,19 @@
 
 | ID | Title | Status | Blockers | Milestone |
 | --- | --- | --- | --- | --- |
-| KRN-008 | Build the divergence ledger classifying every fork patch with a CI Gate | todo | KRN-010, KRN-009 | V0 |
-| KRN-011 | Maintain a base defconfig plus per-target fragments with a build-and-boot check | todo | KRN-010, KRN-017 | V0 |
+| KRN-008 | Build the divergence ledger classifying every fork patch with a CI Gate | todo | KRN-009 | V0 |
+| KRN-011 | Maintain a base defconfig plus per-target fragments with a build-and-boot check | todo | KRN-017 | V0 |
 | KRN-012 | Wire KUnit and Rust kernel unit tests for native primitives into pre-merge CI | todo | KRN-013, BLD-013, BLD-012 | V0 |
-| KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | KRN-010, KRN-017, KRN-015, KRN-016 | V0 |
+| KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | KRN-017, KRN-015, KRN-016 | V0 |
 | KRN-014 | Define the retained-subsystem regression matrix as a merge-blocking Gate | todo | KRN-017, KRN-011, BLD-012 | V0 |
 | KRN-015 | Write the rewrite-versus-retain policy for replacing inherited C with Rust | todo | KRN-018 | V0 |
-| KRN-016 | Enforce Rust-first and rewrite-requires-ADR rules with a kernel-tree CI lint | todo | KRN-015, KRN-010, BLD-013, BLD-011 | V0 |
-| KRN-018 | Spike Rust-in-kernel viability and decide the C-versus-Rust boundary | todo | KRN-010, BLD-013 | V0 |
+| KRN-016 | Enforce Rust-first and rewrite-requires-ADR rules with a kernel-tree CI lint | todo | KRN-015, BLD-013, BLD-011 | V0 |
+| KRN-018 | Spike Rust-in-kernel viability and decide the C-versus-Rust boundary | todo | BLD-013 | V0 |
 | KRN-019 | Verify V0 kernel gates: reproducible boot from a tagged commit and L0 parity | todo | KRN-013, KRN-014, KRN-011, KRN-016, KRN-008, KRN-012, BOOT-001, LNX-002, HW-001 | V0 |
 | KRN-020 | Merge the first upstream stable release into the fork with boot matrix green | todo | KRN-023, KRN-014, LNX-002 | V0.5 |
 | KRN-021 | Publish the six-month rebase cost report and revisit the tracking ADRs | todo | KRN-020, KRN-022 | V0.5 |
 | KRN-022 | Generate the upstream delta report: patch delta, conflict hot-spots, unmerged fixes | todo | KRN-008, KRN-023 | V0.5 |
-| KRN-023 | Build the upstream-tracking bot that trial-merges stable and mainline tags | todo | KRN-010, KRN-011, BLD-012 | V0.5 |
+| KRN-023 | Build the upstream-tracking bot that trial-merges stable and mainline tags | todo | KRN-011, BLD-012 | V0.5 |
 | KRN-024 | Decide eBPF's native role and the Linux Personality's bpf() exposure | todo | KRN-017, OBS-003, LNX-003 | V1 |
 | KRN-025 | Decide how KVM is exposed natively as Capability<VirtualMachine> | todo | KRN-017, Q-048 | V1 |
 | KRN-026 | Decide that kernel live-patching is a non-goal in favour of generations plus reboot | todo | KRN-009, PKG-009 | V1 |
@@ -28,7 +28,6 @@
 | KRN-032 | Build tooling to pull upstream driver changes into the fork per subsystem | todo | KRN-014, KRN-017, KRN-023 | V1 |
 | KRN-033 | Run the GPU driver update process tracking amdgpu, i915, xe and nouveau fixes | todo | KRN-032, KRN-014 | V1 |
 | KRN-034 | Define and CI-enforce the kernel hardening configuration baseline | todo | KRN-011, KRN-028 | V1 |
-| KRN-035 | Set kernel identity: uname strings, version scheme and bug-report routing | todo | KRN-010 | V1 |
 | KRN-036 | Test KVM and nested virtualisation in CI including the harness inside a guest | todo | KRN-017, KRN-011, BLD-012 | V1 |
 | KRN-037 | Expose retained KVM to native software as a Capability-mediated VirtualMachine | todo | KRN-025, KRN-013, KRN-036, CAP-005, ABI-005, MEM-003 | V1 |
 | KRN-038 | Enforce signature Verification for modules and driver firmware under Secure Boot | todo | KRN-027, KRN-034 | V1 |
@@ -53,7 +52,7 @@
 | KRN-057 | Publish the 90-day kernel CVE SLA compliance report for 1.0 | todo | KRN-052, KRN-008, REL-060 | 1.0 |
 | KRN-058 | Create the 1.x kernel maintenance branch with backport rules | todo | KRN-055, KRN-030 | 1.0 |
 | KRN-059 | Assess Phase E readiness and open the 2.0 kernel divergence RFC | todo | KRN-050, KRN-013, KRN-040, KRN-042 | 1.0 |
-| BOOT-001 | Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image | todo | BLD-006, BLD-009, BLD-012, KRN-010, KRN-011 | V0 |
+| BOOT-001 | Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image | todo | BLD-006, BLD-009, BLD-012, KRN-011 | V0 |
 | BOOT-002 | Boot the forked kernel on the reference AMD desktop from the tagged CI image | todo | BOOT-001, LAB-003 | V0 |
 | BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | BOOT-001, CMP-003, CMP-014 | V0 |
 | BOOT-006 | Build the harness measuring reboot-into-previous-Generation time and publish results | todo | BOOT-014, Q-001 | V0.5 |
@@ -598,7 +597,7 @@
 | STO-025 | Expose subtree and system-volume snapshot Operations | todo | STO-011, STO-016 | V0.5 |
 | STO-026 | Measure btrfs, bcachefs and XFS-reflink on snapshots, clones, checksums, dedup and crash safety | todo | BEN-019, STO-023, STO-030 | V0.5 |
 | STO-027 | Prototype File, Directory and UserSelected Interfaces | todo | STO-001 | V0.5 |
-| STO-028 | Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix | todo | STO-023, KRN-014, KRN-010 | V0.5 |
+| STO-028 | Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix | todo | STO-023, KRN-014 | V0.5 |
 | STO-029 | Build the user-space storage service mediating Capability-scoped access to the substrate | todo | STO-012, STO-016, SVC-015, IPC-012, STO-001 | V0.5 |
 | STO-031 | Add the StorageTransaction Operation kind with commit and abort completion | todo | STO-029, TSK-013, ABI-014, STO-020 | V0.5 |
 | STO-032 | Add a filesystem-diff test that Package install writes nothing outside the store | todo | STO-009, STO-021, PKG-025 | V0.5 |
@@ -1019,7 +1018,7 @@
 | SEM-042 | Lock Semantic Interface catalog versions for 1.x | todo | SEM-040, SEM-041 | V4 |
 | SEM-043 | Publish the 1.x supported Semantic Interface catalog | todo | SEM-042, DOC-028, DOC-040 | 1.0 |
 | SEM-044 | Demonstrate 1.0 AI-assisted automation with visible Capability grants | todo | SEM-009, SEM-025, PKG-059, SDK-069, SEM-029 | 1.0 |
-| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | KRN-010, KRN-011, KRN-017 | V0 |
+| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | KRN-011, KRN-017 | V0 |
 | LNX-002 | Run the L0 Corpus with zero regressions | todo | LNX-001, BLD-012, KRN-014, BEN-006 | V0 |
 | LNX-003 | Decide Linux Personality depth and translation phase | todo | LNX-009, LNX-011, KRN-009 | V0.5 |
 | LNX-004 | Decide Wayland hosting and X11 via Xwayland | todo | LNX-010, GFX-020, LNX-011 | V0.5 |
@@ -1847,7 +1846,6 @@
 | BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | BLD-012, BLD-006, BEN-005, BLD-001 | V0 |
 | BLD-011 | Enforce license, provenance, unsafe and static-analysis merge gates | todo | ABI-003, ABI-018, BEN-004 | V0 |
 | BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | BLD-009, KRN-017 | V0 |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | KRN-010 | V0 |
 | BLD-014 | Run accessibility-tree dump tests for the four V0.5 apps in CI | todo | BLD-027, ACC-003, UIP-001 | V0.5 |
 | BLD-015 | Run the ABI conformance and cross-version suite in CI | todo | ABI-024, BLD-001, BLD-006 | V0.5 |
 | BLD-016 | Adapt syzkaller to the Native ABI with a Capability-aware executor | todo | BLD-006, IPC-012, IPC-029, ABI-023 | V0.5 |
@@ -1940,7 +1938,7 @@
 | BEN-001 | Publish V0 Component, Task and ResourceDomain cost benchmarks | todo | BEN-005, BEN-006, CMP-001, CMP-002, TSK-002, TSK-020, TSK-018, SCH-001, SCH-010, LAB-003 | V0 |
 | BEN-002 | Publish V0 Demo pipeline latency, copies and memory | todo | BEN-005, BEN-006, CMP-011, MEM-010, MEM-012, IPC-016, LAB-003 | V0 |
 | BEN-003 | Publish V0 IPC, MemoryObject and syscall-overhead benchmarks | todo | BEN-005, BEN-006, BEN-008, IPC-008, IPC-016, MEM-010, OBS-001, LNX-001, LAB-003 | V0 |
-| BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | KRN-010, LAB-003 | V0 |
+| BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | LAB-003 | V0 |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | BEN-005, IPC-016, IPC-015 | V0 |
 | BEN-009 | Publish native application startup and input-to-photon | todo | BEN-005, CMP-019, CMP-018, APP-001, APP-004, APP-003, APP-005, LAB-001 | V0.5 |
 | BEN-010 | Publish compositor frame and Input-to-photon latency | todo | BEN-005, GFX-003, GFX-004, GFX-006, LAB-001, LAB-004, LAB-003 | V0.5 |
@@ -2253,7 +2251,6 @@
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
-| KRN-010 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |
 | PKG-005 | 12 |

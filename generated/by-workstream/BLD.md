@@ -18,7 +18,7 @@
 | BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | blocked | M | BLD-012, BLD-006, BEN-005, BEN-007, BLD-001 |
 | BLD-011 | Enforce license, provenance, unsafe and static-analysis merge gates | todo | blocked | M | BLD-003, BLD-004, GOV-003, GOV-002, ABI-003, ABI-018, BEN-004 |
 | BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | blocked | L | BLD-003, BLD-009, KRN-017 |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | blocked | L | BLD-004, KRN-004, KRN-010 |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | ready | L | BLD-004, KRN-004, KRN-010 |
 
 ## V0.5
 

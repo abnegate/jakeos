@@ -8,9 +8,9 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 13% (29/217) | 7% | 25 | 163 |
+| V0 | Execution model | active | 0/21 | 14% (30/217) | 7% | 25 | 162 |
 | V0.5 | Application model | next | 0/29 | 2% (8/436) | 1% | 24 | 404 |
-| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 9 | 556 |
+| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 10 | 555 |
 | V2 | Desktop preview | planned | 0/30 | 1% (4/474) | 0% | 1 | 469 |
 | V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 1 | 314 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
@@ -19,13 +19,13 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 45 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
+Tasks 46 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 
 ## Workstream × milestone
 
 | Workstream | V0 | V0.5 | V1 | V2 | V3 | V4 | 1.0 | LATER |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 7/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
+| KRN | 8/19 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
 | BOOT | 2/5 | 0/10 | 0/12 | 0/10 | 0/8 | 0/3 | 0/1 | 0/0 |
 | ABI | 0/22 | 1/9 | 0/11 | 0/3 | 0/1 | 0/5 | 0/3 | 0/0 |
 | CAP | 0/15 | 0/14 | 0/11 | 0/5 | 0/4 | 0/3 | 0/1 | 0/0 |
@@ -70,7 +70,6 @@ Tasks 45 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 |
-| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | V0 | M | 5499 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5258 |
@@ -78,6 +77,7 @@ Tasks 45 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 4702 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 |
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 |
@@ -257,7 +257,6 @@ Makespan (size-weight estimates): 78.
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
-| KRN-010 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |
 | PKG-005 | 12 |

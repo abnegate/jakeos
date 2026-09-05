@@ -5,7 +5,6 @@
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 | none |
-| KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | V0 | M | 5499 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 | none |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 | none |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5258 | none |
@@ -13,6 +12,7 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 | none |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 | none |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 4702 | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 | none |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 | none |
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 | none |
@@ -65,3 +65,4 @@
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |
 | GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |
+| KRN-035 | Set kernel identity: uname strings, version scheme and bug-report routing | V1 | S | 0 | none |

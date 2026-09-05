@@ -4,7 +4,7 @@
 
 | Workstream | Total | Done | In progress | Todo | Dropped | Ready | Blocked | Weighted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 59 | 7 | 0 | 52 | 0 | 3 | 49 | 6% |
+| KRN | 59 | 8 | 0 | 51 | 0 | 3 | 48 | 8% |
 | BOOT | 49 | 2 | 0 | 47 | 0 | 2 | 45 | 1% |
 | ABI | 54 | 1 | 0 | 53 | 0 | 4 | 49 | 1% |
 | CAP | 53 | 0 | 0 | 53 | 0 | 6 | 47 | 0% |
@@ -37,7 +37,7 @@
 | SDK | 96 | 0 | 0 | 96 | 0 | 1 | 95 | 0% |
 | APP | 69 | 0 | 0 | 69 | 0 | 0 | 69 | 0% |
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
-| BLD | 80 | 4 | 0 | 76 | 0 | 0 | 76 | 3% |
+| BLD | 80 | 4 | 0 | 76 | 0 | 1 | 75 | 3% |
 | LAB | 25 | 1 | 0 | 24 | 0 | 2 | 22 | 1% |
 | BEN | 63 | 2 | 0 | 61 | 0 | 2 | 59 | 3% |
 | REL | 67 | 1 | 0 | 66 | 0 | 2 | 64 | 1% |
@@ -228,7 +228,6 @@ none
 - critical-path task IPC-021 has Owner none on the active rung
 - critical-path task KRN-008 has Owner none on the active rung
 - critical-path task KRN-009 has Owner none on the active rung
-- critical-path task KRN-010 has Owner none on the active rung
 - critical-path task KRN-011 has Owner none on the active rung
 - critical-path task KRN-012 has Owner none on the active rung
 - critical-path task KRN-013 has Owner none on the active rung
