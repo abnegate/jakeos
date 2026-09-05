@@ -4,7 +4,7 @@
 - Baseline: §8, §9, §9.1, §11, §40, §43, §44, §51, §63, §64, §67
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 79 live, 0 done, 0 in-progress, 79 todo, 0 dropped. Ready: 1. Blocked: 78. Weighted: 0%.
+Tasks: 79 live, 1 done, 0 in-progress, 78 todo, 0 dropped. Ready: 2. Blocked: 76. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -51,12 +51,13 @@ Memory and object isolation (CMP-012). Filesystem and device denials (SEC-003). 
 ### SEC-002 · Publish threat model and threat Register
 - Type: docs
 - Milestone: V0
-- Status: todo
+- Status: done
 - Size: M
-- Owner: none
+- Owner: @agent/claude
 - Depends on: none
 - Baseline: §9, §9.1, §11, §51
 - Risks: R-008, R-067
+- Verified by: @jakebarnby
 
 Every CAP, SEC and BOOT Decision cites the threats it addresses before designs freeze. This document names adversaries, assets, trust boundaries, safety layers and per-Component blast radius, and it is the narrative that `registers/threats.md` enumerates as T-IDs.
 
@@ -66,17 +67,17 @@ Every CAP, SEC and BOOT Decision cites the threats it addresses before designs f
 Compositor section (GFX-011). Font and atlas section (TXT). Installer and updater section (INS-012). Minting new T-IDs outside `registers/threats.md`.
 
 #### Acceptance criteria
-- [ ] The document names at least: malicious native app, compromised Component, compromised compatibility app, local unprivileged user, evil-maid device off, evil-maid device suspended, malicious DMA peripheral, network attacker and supply-chain attacker.
-- [ ] The document maps each named adversary to one or more existing T-IDs and states the blast radius of an ImageDecoder compromise (§11).
-- [ ] The document requires every CAP, SEC and BOOT adr task to cite T-IDs in its `Threats:` field.
-- [ ] Review records ABI, CAP and BOOT lead sign-off on the pull request.
+- [x] The document names at least: malicious native app, compromised Component, compromised compatibility app, local unprivileged user, evil-maid device off, evil-maid device suspended, malicious DMA peripheral, network attacker and supply-chain attacker.
+- [x] The document maps each named adversary to one or more existing T-IDs and states the blast radius of an ImageDecoder compromise (§11).
+- [x] The document requires every CAP, SEC and BOOT adr task to cite T-IDs in its `Threats:` field.
+- [x] Review records ABI, CAP and BOOT lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI, CAP, BOOT and SEC leads sign off on the pull request.
 - Manual: `registers/threats.md` is the exclusive T-ID source; the document introduces no unregistered threat names.
 
 #### Evidence
-- none
+- roadmap@12c85ef
 
 ### SEC-003 · Test no ambient filesystem, home, device, or app data
 - Type: build

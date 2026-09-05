@@ -21,7 +21,7 @@
 | GFX-008 | Drive a single fixed-refresh display through atomic DRM/KMS from the compositor | todo | blocked | L | GFX-022, GFX-013, GFX-041, HW-010 |
 | GFX-009 | Implement disconnect, rebind and restore-state for compositor clients | todo | blocked | L | GFX-039, GFX-010, GFX-019, SDK-012, SVC-009, IPC-028 |
 | GFX-010 | Run the compositor as a privileged Component holding Display and DRM master | todo | blocked | M | GFX-022, GFX-012, CAP-023, SVC-012 |
-| GFX-011 | Write the compositor and trusted-UI section of the threat model | todo | blocked | S | SEC-002 |
+| GFX-011 | Write the compositor and trusted-UI section of the threat model | todo | ready | S | SEC-002 |
 | GFX-012 | Decide compositor architecture: monolithic or split display/scene/input | todo | blocked | S | GFX-033 |
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | blocked | S | GFX-032 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | blocked | S | GFX-036 |

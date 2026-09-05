@@ -4,7 +4,7 @@
 - Baseline: §9.1, §16, §17, §23, §32, §33, §39, §40, §47, §54, §55, §56.1, §57, §60, §61, §62
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 0. Blocked: 98. Weighted: 0%.
+Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 1. Blocked: 97. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope

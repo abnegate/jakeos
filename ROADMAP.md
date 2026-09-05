@@ -8,9 +8,9 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 13% (28/217) | 6% | 25 | 164 |
-| V0.5 | Application model | next | 0/29 | 2% (8/436) | 1% | 18 | 410 |
-| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 8 | 557 |
+| V0 | Execution model | active | 0/21 | 13% (29/217) | 7% | 25 | 163 |
+| V0.5 | Application model | next | 0/29 | 2% (8/436) | 1% | 24 | 404 |
+| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 9 | 556 |
 | V2 | Desktop preview | planned | 0/30 | 1% (4/474) | 0% | 1 | 469 |
 | V3 | Public alpha | planned | 0/30 | 0% (0/315) | 0% | 1 | 314 |
 | V4 | Beta | planned | 0/28 | 0% (0/154) | 0% | 0 | 154 |
@@ -19,7 +19,7 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 ## Totals
 
-Tasks 44 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
+Tasks 45 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 
 ## Workstream × milestone
 
@@ -49,7 +49,7 @@ Tasks 44 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | ENV | 0/0 | 0/1 | 0/22 | 0/6 | 0/3 | 0/2 | 0/2 | 0/0 |
 | HET | 0/2 | 0/0 | 0/9 | 0/8 | 0/6 | 0/2 | 0/2 | 0/1 |
 | WASM | 0/2 | 0/2 | 0/10 | 0/4 | 0/3 | 0/2 | 0/1 | 0/0 |
-| SEC | 0/2 | 0/10 | 0/20 | 0/21 | 0/13 | 0/7 | 0/4 | 0/2 |
+| SEC | 1/2 | 0/10 | 0/20 | 0/21 | 0/13 | 0/7 | 0/4 | 0/2 |
 | NET | 0/0 | 0/2 | 0/19 | 0/7 | 0/6 | 0/3 | 0/2 | 0/1 |
 | AUD | 0/0 | 0/0 | 0/14 | 0/8 | 0/3 | 0/2 | 0/2 | 0/1 |
 | MED | 0/0 | 0/0 | 0/10 | 0/18 | 0/8 | 0/4 | 0/2 | 0/0 |
@@ -72,7 +72,6 @@ Tasks 44 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 |
 | KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | V0 | M | 5499 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 |
-| SEC-002 | Publish threat model and threat Register | V0 | M | 5360 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5258 |
 | CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5258 |
@@ -84,6 +83,7 @@ Tasks 44 done / 2268 live (0 dropped). Weighted 1%. Gates 0/187.
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 |
+| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4101 |
 
 ## Critical path
 
@@ -176,7 +176,6 @@ Makespan (size-weight estimates): 78.
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 63 |
-| SEC-002 | 51 |
 | CAP-005 | 40 |
 | SVC-015 | 33 |
 | IPC-012 | 32 |

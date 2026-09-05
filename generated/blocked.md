@@ -70,16 +70,15 @@
 | BOOT-018 | Implement boot counting, bad-Generation marking and unattended fallback to last known-good | todo | BOOT-020, BOOT-025, BOOT-014, SVC-007 | V1 |
 | BOOT-019 | Include the kernel command line in the signed SystemGeneration and test that edits fail Verification | todo | BOOT-011, BOOT-022, BOOT-027 | V1 |
 | BOOT-020 | Decide what 'boot succeeded' means and which Component may clear the boot counter | todo | BOOT-014, SVC-007 | V1 |
-| BOOT-021 | Decide the trusted time source policy before network time is available | todo | SEC-002 | V1 |
 | BOOT-022 | Ship documented developer mode: own Secure Boot keys, self-built kernels, visible indicator | todo | BOOT-027 | V1 |
 | BOOT-023 | Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed | todo | BOOT-021, BOOT-025 | V1 |
-| BOOT-024 | Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs | todo | CAP-007, SEC-002 | V1 |
+| BOOT-024 | Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs | todo | CAP-007 | V1 |
 | BOOT-025 | Make bootloader and ESP updates atomic with tested rollback of the bootloader itself | todo | BOOT-007, BOOT-008, BOOT-013 | V1 |
 | BOOT-026 | Build the text pre-boot unlock UI with passphrase, TPM+PIN, recovery key and layouts | todo | BOOT-012, SEC-005, SEC-017, SEC-018 | V1 |
 | BOOT-027 | Verify the release-key signature of every SystemGeneration manifest before offering it | todo | BOOT-007, PKG-029, REL-002 | V1 |
 | BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | BOOT-018, LAB-018, PKG-073, SVC-033 | V2 |
 | BOOT-029 | Decide ESP policy: reuse the existing OEM ESP or create a dedicated ESP for Generation entries | todo | BOOT-008, BOOT-013 | V2 |
-| BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | BOOT-020, PKG-019, SEC-002, Q-024 | V2 |
+| BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | BOOT-020, PKG-019, Q-024 | V2 |
 | BOOT-031 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | todo | BOOT-008, BOOT-010, BOOT-011, BOOT-022 | V2 |
 | BOOT-032 | Verify SystemGeneration images at boot against their content hashes via the boot-entry root | todo | BOOT-007, BOOT-027, STO-052 | V2 |
 | BOOT-033 | Design and build the integrity-failure experience with a guaranteed recovery path | todo | BOOT-032, INS-013 | V2 |
@@ -89,7 +88,7 @@
 | BOOT-037 | Stage UEFI capsule updates on the ESP within a Generation transition with PCR re-seal hooks | todo | BOOT-029, BOOT-030, BOOT-034 | V2 |
 | BOOT-038 | Enforce the security-fix watermark in the bootloader per the anti-rollback Decision | todo | BOOT-040, BOOT-027 | V3 |
 | BOOT-039 | Expose SystemGenerations to foreign bootloaders via BLS entries and an os-release descriptor | todo | BOOT-007, BOOT-008, BOOT-029 | V3 |
-| BOOT-040 | Decide the anti-rollback policy for SystemGenerations older than a security watermark | todo | BOOT-018, BOOT-027, SEC-002 | V3 |
+| BOOT-040 | Decide the anti-rollback policy for SystemGenerations older than a security watermark | todo | BOOT-018, BOOT-027 | V3 |
 | BOOT-041 | Load Windows Boot Manager and foreign Linux loaders and self-heal BootOrder | todo | BOOT-039, BOOT-029, BOOT-031, INS-026 | V3 |
 | BOOT-042 | Document the Secure Boot key or shim path, developer mode and recovery for public alpha users | todo | BOOT-031, BOOT-022, BOOT-033, BOOT-036 | V3 |
 | BOOT-043 | Verify Secure Boot and measured-boot event-log recording on every Tier 1 machine | todo | BOOT-034, BOOT-044, LAB-022, BOOT-019 | V3 |
@@ -154,10 +153,9 @@
 | CAP-004 | Implement Capability revocation invalidating all derived Capabilities | todo | CAP-009, CAP-003, CAP-005, TSK-010 | V0 |
 | CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009 | V0 |
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | CAP-005, CAP-003, CAP-011, CMP-005 | V0 |
-| CAP-007 | Decide explicit grant sources replacing ambient permissions | todo | SEC-002 | V0 |
-| CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | CAP-013, CAP-012, CAP-015, SEC-002 | V0 |
-| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | CAP-014, CAP-015, TSK-003, SEC-002, Q-004 | V0 |
-| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | todo | CAP-013, CAP-012, SEC-002 | V0 |
+| CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | CAP-013, CAP-012, CAP-015 | V0 |
+| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | CAP-014, CAP-015, TSK-003, Q-004 | V0 |
+| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | todo | CAP-013, CAP-012 | V0 |
 | CAP-011 | Implement rights and transfer-rights checks on every Capability Operation | todo | CAP-010, CAP-005 | V0 |
 | CAP-014 | Prototype and measure revocation strategies at one million derived Capabilities | todo | CAP-015 | V0 |
 | CAP-016 | Lint native SDK and system Components for ambient authority and descriptor-shaped APIs | todo | CAP-007, CAP-005 | V0.5 |
@@ -166,7 +164,7 @@
 | CAP-019 | Write property-based tests for Capability unforgeability, typing and attenuation | todo | CAP-003, CAP-004, CAP-005, CAP-028 | V0.5 |
 | CAP-020 | Decide Capability persistence across Component restart and reboot | todo | CAP-026, CAP-007, SEC-007, Q-016 | V0.5 |
 | CAP-021 | Decide the ABI invariants required for hardware-assisted Capability enforcement | todo | CAP-027, CAP-012, CAP-008, CAP-010 | V0.5 |
-| CAP-022 | Decide how a Component obtains its initial and later Capabilities | todo | CAP-007, SEC-002 | V0.5 |
+| CAP-022 | Decide how a Component obtains its initial and later Capabilities | todo | CAP-007 | V0.5 |
 | CAP-023 | Implement the Capability discovery namespace decided in the service discovery ADR | todo | CAP-022, CAP-005, CAP-006 | V0.5 |
 | CAP-024 | Lint Component graph descriptions for explicit per-Component Capability sets | todo | CAP-007, CMP-022 | V0.5 |
 | CAP-025 | Attach only the granted Capability set to a launched Component | todo | CAP-007, CAP-005, CAP-003, SEC-007, PKG-028, CMP-027 | V0.5 |
@@ -226,7 +224,7 @@
 | CMP-036 | Decide how Personality processes map onto Components | todo | LNX-060, Q-010 | V1 |
 | CMP-037 | Write the Component design guidelines for SDK v1 | todo | CMP-024, CMP-022 | V1 |
 | CMP-038 | Implement the in-address-space Component class if the adr adopts it | todo | CMP-021, CMP-014, WASM-012 | V1 |
-| CMP-039 | Publish the Component isolation boundary assurance report | todo | CMP-012, SEC-002 | V1 |
+| CMP-039 | Publish the Component isolation boundary assurance report | todo | CMP-012 | V1 |
 | CMP-040 | Cache Component launch metadata across launches | todo | CMP-027, CMP-019, PKG-044 | V1 |
 | CMP-041 | Document a browser-shaped Component graph as the composition example | todo | CMP-024, CMP-037 | V1 |
 | CMP-042 | Decide the order and equivalence tests for replacing the Component wrapper | todo | CMP-010, CMP-034 | V2 |
@@ -278,7 +276,7 @@
 | TSK-037 | Publish Operation, deadline and cancellation guidelines for service authors | todo | TSK-024, TSK-003, IPC-032 | V1 |
 | TSK-038 | Maintain logical async Task stacks and await chains for debugger and profiler | todo | TSK-020, OBS-005 | V1 |
 | TSK-039 | Benchmark per-Operation deadline overhead at high submission rates and publish | todo | TSK-015, TSK-010, TSK-026, BEN-005 | V1 |
-| TSK-040 | Harden shared submission/completion memory against forgery, TOCTOU and exhaustion | todo | TSK-018, TSK-034, SEC-002 | V1 |
+| TSK-040 | Harden shared submission/completion memory against forgery, TOCTOU and exhaustion | todo | TSK-018, TSK-034 | V1 |
 | TSK-041 | Preserve Operation deadlines correctly across suspend and resume | todo | TSK-004, TSK-012, SVC-016, PWR-014 | V1 |
 | TSK-042 | Decide which Operation ABI surfaces become Layer 1 freeze candidates | todo | TSK-024, TSK-007, TSK-004, TSK-005, TSK-003, ABI-011 | V1 |
 | TSK-043 | Decide how Personality threads map onto native Tasks | todo | TSK-009, TSK-019, CMP-036 | V1 |
@@ -327,7 +325,7 @@
 | IPC-034 | Add CI lints for IPC non-goals, transport-agnostic stubs and generator determinism | todo | IPC-012, IPC-004, ABI-003 | V0.5 |
 | IPC-035 | Register Layer 2 core platform Interfaces with strong versions and a CI version check | todo | IPC-033, IPC-024, IPC-012 | V0.5 |
 | IPC-036 | Lower large and variable-size payload types to MemoryObject transfer in codegen | todo | IPC-007, IPC-012, IPC-014, MEM-010 | V0.5 |
-| IPC-037 | Harden receiver-side wire validation for bounds, handle counts and type tags | todo | IPC-007, IPC-014, SEC-002 | V0.5 |
+| IPC-037 | Harden receiver-side wire validation for bounds, handle counts and type tags | todo | IPC-007, IPC-014 | V0.5 |
 | IPC-038 | Support optional methods and forward/backward schema evolution in the IDL | todo | IPC-002, IPC-012, IPC-021 | V0.5 |
 | IPC-039 | Support stream (multi-value) results with flow control in the IDL and runtime | todo | IPC-009, IPC-013, IPC-012 | V0.5 |
 | IPC-040 | Add the permanent UI protocol v0 to v0.1 Interface-versioning regression test | todo | IPC-038, IPC-033, UIP-015 | V0.5 |
@@ -489,7 +487,7 @@
 | OBS-011 | Implement the structured semantic trace ring with runtime global enable | todo | OBS-003 | V0 |
 | OBS-012 | Require a Capability to read another Component traces | todo | OBS-014, OBS-006, OBS-011 | V0.5 |
 | OBS-013 | Trace compositor frame timing, queueing and presentation events | todo | OBS-008, GFX-010, GFX-024 | V0.5 |
-| OBS-014 | Decide who may trace and inspect which Components | todo | SEC-002, OBS-006, OBS-011 | V0.5 |
+| OBS-014 | Decide who may trace and inspect which Components | todo | OBS-006, OBS-011 | V0.5 |
 | OBS-015 | Decide the trace event schema and export format | todo | OBS-003, OBS-023 | V0.5 |
 | OBS-016 | Inspect an application's live Component graph via os inspect | todo | OBS-006, OBS-005, CMP-024 | V0.5 |
 | OBS-017 | Add the observability review Gate requiring inspect and trace support per primitive | todo | OBS-006, OBS-005, OBS-007, OBS-008 | V0.5 |
@@ -602,7 +600,6 @@
 | STO-027 | Prototype File, Directory and UserSelected Interfaces | todo | STO-001 | V0.5 |
 | STO-028 | Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix | todo | STO-023, KRN-014, KRN-010 | V0.5 |
 | STO-029 | Build the user-space storage service mediating Capability-scoped access to the substrate | todo | STO-012, STO-016, SVC-015, IPC-012, STO-001 | V0.5 |
-| STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | todo | SEC-002 | V0.5 |
 | STO-031 | Add the StorageTransaction Operation kind with commit and abort completion | todo | STO-029, TSK-013, ABI-014, STO-020 | V0.5 |
 | STO-032 | Add a filesystem-diff test that Package install writes nothing outside the store | todo | STO-009, STO-021, PKG-025 | V0.5 |
 | STO-033 | Provide the Component-scoped temporary-storage Capability granted at launch | todo | STO-019, CAP-025 | V0.5 |
@@ -708,7 +705,7 @@
 | PKG-051 | Implement the pinned-dependency fix propagation chosen by the security-updates adr | todo | PKG-046, PKG-064, PKG-032 | V1 |
 | PKG-052 | Implement SystemGeneration garbage collection with user-controlled retention | todo | PKG-016, PKG-020 | V1 |
 | PKG-053 | Record driver update and environment events in history | todo | PKG-022, PKG-023, ENV-011 | V1 |
-| PKG-054 | Write the install and update path threat model citing the threat Register | todo | SEC-002, PKG-055 | V1 |
+| PKG-054 | Write the install and update path threat model citing the threat Register | todo | PKG-055 | V1 |
 | PKG-055 | Verify Package signatures against trust roots before activation and reject tampering | todo | PKG-050, PKG-044, PKG-029, REL-003 | V1 |
 | PKG-056 | Declare handled content types and URL schemes in the Package manifest | todo | PKG-031 | V1 |
 | PKG-057 | Declare exposed semantic interfaces in the manifest Interfaces section | todo | PKG-031 | V1 |
@@ -756,7 +753,6 @@
 | GFX-008 | Drive a single fixed-refresh display through atomic DRM/KMS from the compositor | todo | GFX-022, GFX-013, GFX-041, HW-010 | V0.5 |
 | GFX-009 | Implement disconnect, rebind and restore-state for compositor clients | todo | GFX-039, GFX-010, GFX-019, SDK-012, SVC-009, IPC-028 | V0.5 |
 | GFX-010 | Run the compositor as a privileged Component holding Display and DRM master | todo | GFX-022, GFX-012, CAP-023, SVC-012 | V0.5 |
-| GFX-011 | Write the compositor and trusted-UI section of the threat model | todo | SEC-002 | V0.5 |
 | GFX-012 | Decide compositor architecture: monolithic or split display/scene/input | todo | GFX-033 | V0.5 |
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | GFX-032 | V0.5 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | GFX-036 | V0.5 |
@@ -862,7 +858,6 @@
 | UIP-016 | Add privileged shell Surface roles to protocol v0 for panel and launcher | todo | UIP-013, UIP-025 | V0.5 |
 | UIP-017 | Prototype UI protocol as scene graph, client buffers and hybrid; measure | todo | IPC-010, IPC-012, MEM-005, MEM-010 | V0.5 |
 | UIP-018 | Study Flutter, SwiftUI, Compose, Slint and Xilem declarative models | todo | DOC-001 | V0.5 |
-| UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | todo | SEC-002 | V0.5 |
 | UIP-020 | Build toolkit core: declarative element tree with retained render tree | todo | UIP-007, UIP-013, UIP-018 | V0.5 |
 | UIP-021 | Build GPU renderer drawing toolkit render tree into MemoryObject Buffers | todo | UIP-020, GFX-005, MEM-024, GFX-017, MEM-019 | V0.5 |
 | UIP-022 | Build responsive layout engine with constraints and reflow on resize | todo | UIP-020 | V0.5 |
@@ -908,7 +903,6 @@
 | TXT-005 | Audit and record licences of every shipped font with redistribution terms | todo | TXT-002, GOV-016 | V0.5 |
 | TXT-006 | Build the typed FontMatcher Interface with family, weight, script fallback chains | todo | TXT-007, TXT-003, IPC-035 | V0.5 |
 | TXT-007 | Ship fonts as immutable content-addressed Packages with per-user installation | todo | TXT-002, TXT-005 | V0.5 |
-| TXT-008 | Write the font parsing and text service threat model | todo | SEC-002 | V0.5 |
 | TXT-010 | Register the input-method protocol shape as a Layer 2 Surface in UI protocol v0 | todo | UIP-013, IPC-038 | V0.5 |
 | TXT-012 | Build the toolkit text editing model with cursor, selection and surrounding text | todo | TXT-010 | V0.5 |
 | TXT-013 | Integrate shaping and rasterisation into the toolkit retained text layout | todo | TXT-003, TXT-004, TXT-006, TXT-012 | V0.5 |
@@ -944,13 +938,13 @@
 | TXT-045 | Lock 1.x versions of FontMatcher, TextInput, Locale and SpellCheck interfaces | todo | TXT-006, TXT-010, TXT-031, TXT-034, TXT-022, IPC-062, TXT-002, TXT-011, TXT-026 | V4 |
 | TXT-046 | Reach ten languages at the V4-G11 string-coverage threshold with a CI coverage Gate | todo | TXT-041, TXT-036 | V4 |
 | TXT-047 | Re-verify the localisation and IME gates on the 1.0 release build | todo | TXT-046, TXT-044, TXT-045 | 1.0 |
-| ACC-001 | Decide the assistive-technology protocol: AT-SPI compatible, native, or both | todo | ACC-004, SEC-002 | V0.5 |
+| ACC-001 | Decide the assistive-technology protocol: AT-SPI compatible, native, or both | todo | ACC-004 | V0.5 |
 | ACC-002 | Decide the accessibility tree model shared by the toolkit and semantic interfaces | todo | ACC-004, UIP-007 | V0.5 |
 | ACC-003 | Add os inspect accessibility tree dump and the four-app tree dump test | todo | ACC-005, UIP-001, OBS-019, SDK-007, APP-004, APP-006, APP-003, APP-005 | V0.5 |
 | ACC-004 | Evaluate AccessKit as accessibility tree schema and bridge against a native schema | todo | UIP-024, UIP-007, GOV-016 | V0.5 |
 | ACC-005 | Build the accessibility tree crate and derive it from the declarative UI tree | todo | ACC-002, UIP-020, IPC-012 | V0.5 |
 | ACC-006 | Route accessibility actions from AT clients to widgets through the tree | todo | ACC-008, ACC-013, UIP-036 | V1 |
-| ACC-007 | Decide assistive-technology access as Capability<AccessibilityTree> with redaction | todo | ACC-001, ACC-002, SEC-002, SEC-007, CAP-007 | V1 |
+| ACC-007 | Decide assistive-technology access as Capability<AccessibilityTree> with redaction | todo | ACC-001, ACC-002, SEC-007, CAP-007 | V1 |
 | ACC-008 | Decide whether semantic actions and accessibility actions share one tree | todo | ACC-002, SEM-007, SEM-005, Q-035 | V1 |
 | ACC-009 | Decide the text-to-speech engine for the native screen reader | todo | ACC-012, GOV-016 | V1 |
 | ACC-010 | Publish accessibility guidelines for native application developers | todo | ACC-002, ACC-015, ACC-011, DOC-014, SDK-056 | V1 |
@@ -1029,23 +1023,23 @@
 | LNX-002 | Run the L0 Corpus with zero regressions | todo | LNX-001, BLD-012, KRN-014, BEN-006 | V0 |
 | LNX-003 | Decide Linux Personality depth and translation phase | todo | LNX-009, LNX-011, KRN-009 | V0.5 |
 | LNX-004 | Decide Wayland hosting and X11 via Xwayland | todo | LNX-010, GFX-020, LNX-011 | V0.5 |
-| LNX-005 | Bound POSIX authority by Component capabilities | todo | LNX-001, LNX-011, CAP-005, CAP-007, CMP-005, SEC-002 | V0.5 |
+| LNX-005 | Bound POSIX authority by Component capabilities | todo | LNX-001, LNX-011, CAP-005, CAP-007, CMP-005 | V0.5 |
 | LNX-006 | Bridge Wayland apps as native compositor windows | todo | LNX-004, LNX-005, GFX-010, GFX-008, MEM-025, UIP-003, ABI-025, HW-011 | V0.5 |
 | LNX-007 | Define and run the L1 Corpus | todo | LNX-002, LNX-006, BLD-017 | V0.5 |
 | LNX-008 | Inventory Linux environment gaps by application class | todo | LNX-001, LNX-011 | V0.5 |
 | LNX-009 | Measure Linux Personality implementation depth options | todo | LNX-001, LNX-011, BEN-006, Q-001 | V0.5 |
 | LNX-010 | Prototype nested versus in-compositor Wayland hosting | todo | LNX-001, GFX-010, MEM-025 | V0.5 |
 | LNX-012 | Decide the Linux Personality container engine Surface | todo | LNX-045, LNX-017, Q-032 | V1 |
-| LNX-013 | Decide the default Capability bundle for Linux apps | todo | LNX-005, LNX-018, CAP-007, SEC-006, SEC-002, Q-039 | V1 |
+| LNX-013 | Decide the default Capability bundle for Linux apps | todo | LNX-005, LNX-018, CAP-007, SEC-006, Q-039 | V1 |
 | LNX-014 | Decide /dev, sysfs and udev coexistence with native drivers | todo | LNX-008, HW-009, Q-028 | V1 |
 | LNX-015 | Decide whether ia32 emulation is retained | todo | LNX-001, KRN-017, KRN-011 | V1 |
 | LNX-016 | Decide how native applications opt into a Personality | todo | LNX-003, ABI-025, CAP-007, Q-002 | V1 |
 | LNX-017 | Decide first-class Linux packaging formats | todo | LNX-023, PKG-047, LNX-008 | V1 |
-| LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | LNX-004, STO-034, UIP-003, SEC-002 | V1 |
+| LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | LNX-004, STO-034, UIP-003 | V1 |
 | LNX-019 | Decide the POSIX path view of native storage | todo | STO-047, STO-042, LNX-013, Q-018 | V1 |
-| LNX-020 | Decide X11 primary selection stays inside the bridge | todo | LNX-004, UIP-003, SEC-002 | V1 |
+| LNX-020 | Decide X11 primary selection stays inside the bridge | todo | LNX-004, UIP-003 | V1 |
 | LNX-021 | Decide retention and exposure of seccomp, user namespaces, overlayfs and FUSE | todo | LNX-001, KRN-017 | V1 |
-| LNX-022 | Decide terminal-session authority for Linux programs | todo | LNX-013, LNX-016, APP-004, SEC-002 | V1 |
+| LNX-022 | Decide terminal-session authority for Linux programs | todo | LNX-013, LNX-016, APP-004 | V1 |
 | LNX-023 | Decide source-built versus redistributed Linux userland | todo | LNX-011, LNX-008, GOV-031 | V1 |
 | LNX-024 | Decide glibc /usr/lib interoperation with Packages | todo | LNX-023, PKG-047, Q-022 | V1 |
 | LNX-025 | Apply the default Capability bundle to Linux apps | todo | LNX-013, LNX-036, LNX-042, CAP-025 | V1 |
@@ -1072,7 +1066,7 @@
 | LNX-046 | Provide PAM, NSS and logind from the native Session | todo | SEC-020, SEC-028, LNX-043, SVC-027 | V1 |
 | LNX-047 | Present native storage as POSIX home and XDG paths | todo | LNX-019, STO-047, LNX-052, LNX-025 | V1 |
 | LNX-048 | Provide procfs semantics inside the Personality | todo | LNX-042, LNX-005, LNX-030 | V1 |
-| LNX-049 | Provide a ptrace equivalent gated by a debug Capability | todo | CAP-032, SDK-038, LNX-042, SEC-002 | V1 |
+| LNX-049 | Provide a ptrace equivalent gated by a debug Capability | todo | CAP-032, SDK-038, LNX-042 | V1 |
 | LNX-050 | Provide sysfs semantics inside the Personality | todo | LNX-014, LNX-030, HW-009 | V1 |
 | LNX-051 | Provide a glibc /usr/lib view over Package contents | todo | LNX-024, LNX-057, PKG-047 | V1 |
 | LNX-052 | Provide XDG and FHS conventions in the Personality | todo | LNX-019, LNX-023, STO-047 | V1 |
@@ -1196,7 +1190,7 @@
 | WIN-062 | Research measured-boot integrity as an anti-cheat vendor signal | todo | WIN-002, BOOT-034 | V3 |
 | WIN-063 | Capture Windows application crashes as native crash records | todo | WIN-040, OBS-029, OBS-026 | V3 |
 | WIN-064 | Emit typed failure reasons when a PE binary cannot run | todo | WIN-038, WIN-002, WIN-018 | V3 |
-| WIN-065 | Write the Windows Personality threat addendum for the external audit | todo | SEC-002, WIN-040, WIN-038 | V3 |
+| WIN-065 | Write the Windows Personality threat addendum for the external audit | todo | WIN-040, WIN-038 | V3 |
 | WIN-066 | Bound Windows services, tasks and autostart to Component lifecycle | todo | WIN-040, WIN-041 | V3 |
 | WIN-067 | Ship a Proton-style per-application compatibility database | todo | WIN-070, WIN-044 | V3 |
 | WIN-068 | Publish per-title W2 reports with the public rating scale | todo | WIN-071, REL-015 | V3 |
@@ -1242,7 +1236,7 @@
 | ENV-003 | Create a NetworkNamespace for each development environment | todo | ENV-002, ENV-006, ENV-010, NET-012, NET-016, SCH-033 | V1 |
 | ENV-004 | Map environment resources onto a ResourceDomain | todo | ENV-007, ENV-010, SCH-014, SCH-006, SCH-019, SCH-032, SCH-007, SCH-008, SCH-034 | V1 |
 | ENV-005 | Create a StorageSnapshot for each development environment | todo | ENV-007, ENV-010, STO-011, STO-043 | V1 |
-| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | ENV-007, NET-006, SEC-002, Q-031 | V1 |
+| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | ENV-007, NET-006, Q-031 | V1 |
 | ENV-007 | Decide whether DevelopmentEnvironment is kernel or userspace | todo | CMP-005, SCH-007 | V1 |
 | ENV-008 | Decide environment.yaml schema versus Package manifest profile | todo | PKG-006, PKG-011, Q-030, ENV-021 | V1 |
 | ENV-009 | Decide how environment services are hosted and packaged | todo | ENV-022, PKG-047 | V1 |
@@ -1326,19 +1320,17 @@
 | WASM-024 | Publish Wasm instantiation metrics against Linux Wasmtime | todo | WASM-006, BEN-060 | 1.0 |
 | SEC-001 | Deny ambient process enumeration in native Components | todo | CAP-005, CAP-001, CMP-005 | V0 |
 | SEC-003 | Test no ambient filesystem, home, device, or app data | todo | SEC-009, SEC-006, CAP-025 | V0.5 |
-| SEC-004 | Decide authority sources and precedence | todo | CAP-007, SEC-002 | V0.5 |
-| SEC-005 | Decide disk encryption layer and store interaction | todo | SEC-002 | V0.5 |
+| SEC-004 | Decide authority sources and precedence | todo | CAP-007 | V0.5 |
 | SEC-006 | Implement the grant taxonomy in the permission runtime | todo | SEC-007, SEC-004, CAP-025, PKG-028 | V0.5 |
-| SEC-007 | Decide user-mediated grant taxonomy | todo | CAP-007, SEC-002, Q-013 | V0.5 |
+| SEC-007 | Decide user-mediated grant taxonomy | todo | CAP-007, Q-013 | V0.5 |
 | SEC-008 | Implement scoped Inspect Capability | todo | CAP-005, CAP-007, OBS-006 | V0.5 |
 | SEC-009 | Build the ambient-authority denial test harness | todo | SEC-001 | V0.5 |
-| SEC-010 | Record defence-in-depth and authority-design rules | todo | SEC-002 | V0.5 |
 | SEC-011 | Require an explicit screen-share Capability | todo | GFX-010, SEC-007, CAP-005 | V0.5 |
-| SEC-012 | Decide user identity versus Capability roots | todo | SEC-002, CAP-007 | V0.5 |
+| SEC-012 | Decide user identity versus Capability roots | todo | CAP-007 | V0.5 |
 | SEC-013 | Define administrator versus standard user | todo | SEC-012 | V1 |
 | SEC-014 | Define pluggable authenticator interfaces | todo | SEC-012 | V1 |
 | SEC-015 | Build a re-authentication Authorization service | todo | SEC-020, SEC-013, SEC-028, CAP-003 | V1 |
-| SEC-016 | Provide a typed CA trust store with pinning | todo | SEC-002, CAP-005 | V1 |
+| SEC-016 | Provide a typed CA trust store with pinning | todo | CAP-005 | V1 |
 | SEC-017 | Provide encrypted volumes for developer machines | todo | SEC-005, SEC-018, STO-016 | V1 |
 | SEC-018 | Expose a pre-boot disk-unlock key-slot API | todo | SEC-005 | V1 |
 | SEC-019 | Hide stable hardware identifiers without a Capability | todo | SEC-009, CAP-005 | V1 |
@@ -1351,13 +1343,13 @@
 | SEC-026 | Prove no application can read another app's secrets | todo | SEC-027 | V1 |
 | SEC-027 | Build a per-application secrets service | todo | SEC-020, SEC-028, CAP-005 | V1 |
 | SEC-028 | Implement Session linking identity, seat, and root | todo | SEC-020, SEC-012 | V1 |
-| SEC-029 | Publish the microarchitectural side-Channel statement | todo | SEC-002, SEC-010 | V1 |
+| SEC-029 | Publish the microarchitectural side-Channel statement | todo | SEC-010 | V1 |
 | SEC-030 | Back SSH agent and Git credentials with secrets | todo | SEC-027 | V1 |
-| SEC-031 | Decide disk-key eviction on suspend | todo | SEC-017, SEC-002, PWR-002 | V1 |
+| SEC-031 | Decide disk-key eviction on suspend | todo | SEC-017, PWR-002 | V1 |
 | SEC-032 | Evaluate MPK, CET, and LAM for unsafe isolation | todo | SEC-010, KRN-034 | V1 |
 | SEC-033 | Scope AI Capability grants to project, file, or time | todo | SEC-034, SEM-010, SEM-029, SEC-006, CAP-041 | V2 |
 | SEC-034 | Decide whether an AI assistant is a distinct principal | todo | SEM-029, SEM-001, SEC-012, SEC-007, Q-037 | V2 |
-| SEC-035 | Study secure enclaves as a confidentiality home | todo | SEC-032, SEC-002 | V2 |
+| SEC-035 | Study secure enclaves as a confidentiality home | todo | SEC-032 | V2 |
 | SEC-036 | Prove grant revocation takes effect immediately | todo | SEC-045, CAP-044, CAP-004 | V2 |
 | SEC-037 | Add hardware-enforcement hooks in Capability checks | todo | SEC-032, CAP-005, CAP-010 | V2 |
 | SEC-038 | Review and deny optional Capabilities at install | todo | SEC-006, SEC-004, PKG-075 | V2 |
@@ -1365,14 +1357,14 @@
 | SEC-040 | Support passphrase change and cryptographic erase | todo | SEC-018, SEC-017 | V2 |
 | SEC-041 | Expose coarse and precise location as Capabilities | todo | SEC-006, SEC-044 | V2 |
 | SEC-042 | Decide 1.0 multi-user and per-user encryption scope | todo | SEC-012, SEC-005 | V2 |
-| SEC-043 | Decide permission prompt policy against fatigue | todo | SEC-007, SEC-002 | V2 |
+| SEC-043 | Decide permission prompt policy against fatigue | todo | SEC-007 | V2 |
 | SEC-044 | Implement trusted permission prompts | todo | SEC-043, GFX-040, SEC-006 | V2 |
 | SEC-045 | Ship permissions UI to view and revoke grants | todo | SEC-006, APP-012, CAP-037, OBS-043 | V2 |
 | SEC-046 | Verify screen-share denial on the V2 Gate | todo | SEC-011, GFX-061, APP-031 | V2 |
 | SEC-047 | Launch Packages in degraded mode when optional grants are denied | todo | SEC-038, PKG-075 | V2 |
 | SEC-048 | Implement suspend key-eviction and hibernate policy | todo | SEC-031, SEC-017, PWR-014, PWR-007 | V2 |
 | SEC-049 | Provide passphrase-only unlock without a TPM | todo | SEC-050, SEC-018 | V2 |
-| SEC-050 | Decide TPM 2.0 as requirement versus optional | todo | SEC-002, SEC-005 | V2 |
+| SEC-050 | Decide TPM 2.0 as requirement versus optional | todo | SEC-005 | V2 |
 | SEC-051 | Reseal TPM-bound keys across firmware updates | todo | SEC-052, BOOT-034, HW-046 | V2 |
 | SEC-052 | Seal disk keys to TPM PCRs with a recovery key | todo | SEC-053, SEC-025, SEC-017, BOOT-034 | V2 |
 | SEC-053 | Expose TPM only through a Capability-gated service | todo | SEC-050, CAP-005 | V2 |
@@ -1392,22 +1384,22 @@
 | SEC-067 | Close High and Critical audit findings | todo | SEC-070 | V4 |
 | SEC-068 | Triage Medium audit findings with public tracking | todo | SEC-070 | V4 |
 | SEC-069 | Re-verify High and Critical fixes with the auditor | todo | SEC-067 | V4 |
-| SEC-070 | Commission an independent security audit | todo | SEC-072, SEC-002, GOV-024 | V4 |
+| SEC-070 | Commission an independent security audit | todo | SEC-072, GOV-024 | V4 |
 | SEC-071 | Publish kernel-hardening and unsafe-isolation Evidence | todo | KRN-034, KRN-056, SEC-010, KRN-029 | V4 |
 | SEC-072 | Freeze the ambient-authority conformance suite | todo | SEC-039, SEC-003, SEC-019, SEC-026 | V4 |
 | SEC-073 | Ship a WebAuthn platform authenticator | todo | SEC-066, SEC-014, SEC-053 | V4 |
-| SEC-074 | Declare formal certifications out of scope for 1.0 | todo | SEC-002, SEC-070 | 1.0 |
+| SEC-074 | Declare formal certifications out of scope for 1.0 | todo | SEC-070 | 1.0 |
 | SEC-075 | Declare multi-seat, guest, kiosk, and enterprise directory out of scope | todo | SEC-014, SEC-012 | 1.0 |
 | SEC-076 | Verify 1.0 security-posture claims against the threat model | todo | SEC-077, SEC-069, SEC-072, SEC-055, SEC-071, BLD-041, BLD-073 | 1.0 |
-| SEC-077 | Refresh the public threat model for 1.0 | todo | SEC-002, SEC-069, SEC-070 | 1.0 |
+| SEC-077 | Refresh the public threat model for 1.0 | todo | SEC-069, SEC-070 | 1.0 |
 | SEC-078 | Enable secure-enclave Components if the Spike recommends | todo | SEC-035, SEC-037 | LATER |
-| SEC-079 | Decide remote-Interface Capability, identity, and encryption rules | todo | SEC-002, CAP-047 | LATER |
+| SEC-079 | Decide remote-Interface Capability, identity, and encryption rules | todo | CAP-047 | LATER |
 | NET-001 | Inventory retained TCP/IP, nftables and network drivers under native objects | todo | KRN-017 | V0.5 |
 | NET-002 | Prototype NetworkConnection wrap versus userspace broker with measurements | todo | ABI-005, CAP-005, KRN-013 | V0.5 |
 | NET-003 | Implement DHCPv4 and IPv6 SLAAC/DHCPv6 with privacy extensions | todo | NET-015, NET-012 | V1 |
 | NET-004 | Publish NetworkConnection throughput and latency against Linux sockets | todo | NET-014, BEN-005 | V1 |
-| NET-005 | Decide the native TLS library and how it consumes the CA trust store | todo | NET-007, SEC-002 | V1 |
-| NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | NET-007, NET-008, CAP-010, SEC-002 | V1 |
+| NET-005 | Decide the native TLS library and how it consumes the CA trust store | todo | NET-007 | V1 |
+| NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | NET-007, NET-008, CAP-010 | V1 |
 | NET-007 | Decide NET baseline-gap scope: preserved stack versus native objects | todo | NET-001, NET-002 | V1 |
 | NET-008 | Decide whether NetworkConnection wraps the kernel TCP/IP stack | todo | NET-007, NET-002, ABI-013 | V1 |
 | NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | NET-007 | V1 |
@@ -1673,7 +1665,7 @@
 | SDK-045 | Implement os test running the Component harness | todo | SDK-050, SDK-006 | V1 |
 | SDK-046 | Implement the native CPU profiler attributed to Task and Component | todo | SDK-053, SDK-061, OBS-039, TSK-038 | V1 |
 | SDK-047 | Integrate remote development into a JakeOS VM or device | todo | SDK-039, SDK-040, SDK-037, SDK-041 | V1 |
-| SDK-048 | Enable userspace exploit mitigations in the native runtime | todo | SDK-004, SEC-002 | V1 |
+| SDK-048 | Enable userspace exploit mitigations in the native runtime | todo | SDK-004 | V1 |
 | SDK-049 | Implement the Layer 3 Rust std compatibility crate | todo | SDK-028, SDK-009, SDK-003, ABI-006 | V1 |
 | SDK-050 | Provide a Component test harness with mock capabilities | todo | SDK-009, SDK-001, CAP-003, IPC-030 | V1 |
 | SDK-051 | Export an os trace session that can be viewed offline | todo | SDK-022, OBS-041 | V1 |
@@ -1797,12 +1789,12 @@
 | INS-004 | Publish QEMU and USB developer install media | todo | BOOT-027, INS-001, INS-002, PKG-055, REL-007 | V1 |
 | INS-005 | Run scripted install on the Intel laptop and AMD desktop | todo | HW-001, HW-015, INS-004, INS-002, LAB-007, LAB-003 | V1 |
 | INS-006 | Decide desktop-usable boot-success health criteria | todo | BOOT-020, SVC-007, SVC-004 | V2 |
-| INS-007 | Decide installer encryption default with opt-out | todo | SEC-005, SEC-002, STO-039 | V2 |
+| INS-007 | Decide installer encryption default with opt-out | todo | SEC-005, STO-039 | V2 |
 | INS-008 | Decide installer disk layout, wipe and dual-boot policy | todo | BOOT-029, INS-007, STO-014 | V2 |
-| INS-009 | Decide client update orchestration, metered links and deferral | todo | PKG-070, REL-004, SEC-002 | V2 |
+| INS-009 | Decide client update orchestration, metered links and deferral | todo | PKG-070, REL-004 | V2 |
 | INS-010 | Build first-boot account, encryption and privacy setup | todo | APP-030, INS-007, INS-011, SEC-013, SEC-020, SEC-025, SVC-025 | V2 |
 | INS-011 | Provide guided scripted image install for preview machines | todo | INS-007, INS-008, INS-005 | V2 |
-| INS-012 | Write the installer and updater threat model | todo | PKG-054, SEC-002 | V2 |
+| INS-012 | Write the installer and updater threat model | todo | PKG-054 | V2 |
 | INS-013 | Ship a signed recovery SystemGeneration on the ESP | todo | BOOT-029, BOOT-027, INS-008, PKG-016, REL-003 | V2 |
 | INS-014 | Expose SystemGeneration restore in Settings and boot UX | todo | APP-040, BOOT-028, BOOT-014, INS-006, PKG-073, PKG-074, PKG-060, SDK-069 | V2 |
 | INS-015 | Publish delta update size and automatic rollback time | todo | BOOT-028, INS-025, INS-045, Q-001, BEN-005, PKG-083 | V3 |
@@ -2047,7 +2039,7 @@
 | REL-044 | Publish machine-readable security advisories and a feed | todo | REL-047, REL-006, PKG-081, BLD-062 | V3 |
 | REL-045 | Publish AppStream catalogue metadata for the repository | todo | REL-013, REL-050 | V3 |
 | REL-046 | Publish corresponding source beside every binary Generation | todo | REL-019, GOV-059 | V3 |
-| REL-047 | Publish vulnerability disclosure policy and signed advisory format | todo | KRN-031, GOV-065, SEC-002 | V3 |
+| REL-047 | Publish vulnerability disclosure policy and signed advisory format | todo | KRN-031, GOV-065 | V3 |
 | REL-048 | Publish the hardware compatibility database with community reports | todo | REL-035, REL-011, HW-065, HW-047, GOV-040, GOV-061 | V3 |
 | REL-049 | Publish the third-party notices bundle for every Generation | todo | REL-019, GOV-059, BLD-023 | V3 |
 | REL-050 | Publish a public Package repository with integrity Verification | todo | REL-024, REL-037, REL-021, REL-041, GOV-063 | V3 |
@@ -2100,7 +2092,7 @@
 | DOC-030 | Write the public install guide | todo | DOC-015, INS-039, INS-027, BOOT-042 | V3 |
 | DOC-031 | Write migration guides for users and SDK porters | todo | DOC-017, DOC-022, DOC-014, APP-062 | V3 |
 | DOC-032 | Complete and review the SDK guide | todo | DOC-014, PKG-085, SVC-021, UIP-031, SCH-040 | V3 |
-| DOC-033 | Publish the platform security guide | todo | DOC-015, SEC-002, GOV-061 | V3 |
+| DOC-033 | Publish the platform security guide | todo | DOC-015, GOV-061 | V3 |
 | DOC-034 | Add broken-link and outdated-example checks to docs CI | todo | DOC-024, DOC-015, SDK-092 | V4 |
 | DOC-035 | Complete remaining user, admin, SDK, compatibility and ABI docs | todo | DOC-027, DOC-032, DOC-038, DOC-028, DOC-033, DOC-023, DOC-022, DOC-030, ABI-050 | V4 |
 | DOC-036 | Record documentation review sign-off for beta | todo | DOC-035, DOC-034 | V4 |
@@ -2180,7 +2172,6 @@
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 63 |
-| SEC-002 | 51 |
 | CAP-005 | 40 |
 | SVC-015 | 33 |
 | IPC-012 | 32 |

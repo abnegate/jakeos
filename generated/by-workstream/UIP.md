@@ -24,7 +24,7 @@
 | UIP-016 | Add privileged shell Surface roles to protocol v0 for panel and launcher | todo | blocked | M | UIP-013, UIP-025 |
 | UIP-017 | Prototype UI protocol as scene graph, client buffers and hybrid; measure | todo | blocked | L | IPC-010, IPC-012, MEM-005, MEM-010 |
 | UIP-018 | Study Flutter, SwiftUI, Compose, Slint and Xilem declarative models | todo | blocked | M | DOC-001 |
-| UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | todo | blocked | S | SEC-002 |
+| UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | todo | ready | S | SEC-002 |
 | UIP-020 | Build toolkit core: declarative element tree with retained render tree | todo | blocked | L | UIP-007, UIP-013, UIP-018 |
 | UIP-021 | Build GPU renderer drawing toolkit render tree into MemoryObject Buffers | todo | blocked | L | UIP-020, GFX-005, MEM-024, GFX-017, MEM-019 |
 | UIP-022 | Build responsive layout engine with constraints and reflow on resize | todo | blocked | M | UIP-020 |

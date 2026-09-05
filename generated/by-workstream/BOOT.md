@@ -36,7 +36,7 @@
 | BOOT-018 | Implement boot counting, bad-Generation marking and unattended fallback to last known-good | todo | blocked | L | BOOT-020, BOOT-025, BOOT-014, SVC-007 |
 | BOOT-019 | Include the kernel command line in the signed SystemGeneration and test that edits fail Verification | todo | blocked | S | BOOT-011, BOOT-022, BOOT-027 |
 | BOOT-020 | Decide what 'boot succeeded' means and which Component may clear the boot counter | todo | blocked | S | BOOT-014, SVC-007 |
-| BOOT-021 | Decide the trusted time source policy before network time is available | todo | blocked | S | SEC-002 |
+| BOOT-021 | Decide the trusted time source policy before network time is available | todo | ready | S | SEC-002 |
 | BOOT-022 | Ship documented developer mode: own Secure Boot keys, self-built kernels, visible indicator | todo | blocked | L | BOOT-003, BOOT-027 |
 | BOOT-023 | Initialize the kernel RNG at boot from TPM, CPU RNG and a bootloader-persisted seed | todo | blocked | M | BOOT-021, BOOT-025 |
 | BOOT-024 | Guard UEFI variable and firmware-settings access behind a Capability with no ambient efivarfs | todo | blocked | M | BOOT-003, CAP-007, SEC-002 |

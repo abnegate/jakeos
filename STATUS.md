@@ -5,9 +5,9 @@
 | Workstream | Total | Done | In progress | Todo | Dropped | Ready | Blocked | Weighted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | KRN | 59 | 7 | 0 | 52 | 0 | 3 | 49 | 6% |
-| BOOT | 49 | 2 | 0 | 47 | 0 | 1 | 46 | 1% |
+| BOOT | 49 | 2 | 0 | 47 | 0 | 2 | 45 | 1% |
 | ABI | 54 | 1 | 0 | 53 | 0 | 4 | 49 | 1% |
-| CAP | 53 | 0 | 0 | 53 | 0 | 5 | 48 | 0% |
+| CAP | 53 | 0 | 0 | 53 | 0 | 6 | 47 | 0% |
 | CMP | 55 | 4 | 0 | 51 | 0 | 4 | 47 | 5% |
 | TSK | 53 | 1 | 0 | 52 | 0 | 3 | 49 | 1% |
 | IPC | 71 | 0 | 0 | 71 | 0 | 1 | 70 | 0% |
@@ -15,11 +15,11 @@
 | SCH | 61 | 0 | 0 | 61 | 0 | 0 | 61 | 0% |
 | OBS | 56 | 0 | 0 | 56 | 0 | 1 | 55 | 0% |
 | SVC | 43 | 0 | 0 | 43 | 0 | 2 | 41 | 0% |
-| STO | 84 | 0 | 0 | 84 | 0 | 0 | 84 | 0% |
+| STO | 84 | 0 | 0 | 84 | 0 | 1 | 83 | 0% |
 | PKG | 91 | 0 | 0 | 91 | 0 | 2 | 89 | 0% |
-| GFX | 98 | 0 | 0 | 98 | 0 | 0 | 98 | 0% |
-| UIP | 58 | 0 | 0 | 58 | 0 | 0 | 58 | 0% |
-| TXT | 47 | 2 | 0 | 45 | 0 | 3 | 42 | 1% |
+| GFX | 98 | 0 | 0 | 98 | 0 | 1 | 97 | 0% |
+| UIP | 58 | 0 | 0 | 58 | 0 | 1 | 57 | 0% |
+| TXT | 47 | 2 | 0 | 45 | 0 | 4 | 41 | 1% |
 | ACC | 37 | 0 | 0 | 37 | 0 | 0 | 37 | 0% |
 | SEM | 44 | 0 | 0 | 44 | 0 | 0 | 44 | 0% |
 | LNX | 111 | 0 | 0 | 111 | 0 | 1 | 110 | 0% |
@@ -28,7 +28,7 @@
 | ENV | 36 | 0 | 0 | 36 | 0 | 1 | 35 | 0% |
 | HET | 30 | 0 | 0 | 30 | 0 | 1 | 29 | 0% |
 | WASM | 24 | 0 | 0 | 24 | 0 | 1 | 23 | 0% |
-| SEC | 79 | 0 | 0 | 79 | 0 | 1 | 78 | 0% |
+| SEC | 79 | 1 | 0 | 78 | 0 | 2 | 76 | 2% |
 | NET | 40 | 0 | 0 | 40 | 0 | 0 | 40 | 0% |
 | AUD | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
 | MED | 42 | 0 | 0 | 42 | 0 | 1 | 41 | 0% |
@@ -284,7 +284,6 @@ none
 - critical-path task SDK-009 has Owner none on the active rung
 - critical-path task SDK-010 has Owner none on the active rung
 - critical-path task SDK-011 has Owner none on the active rung
-- critical-path task SEC-002 has Owner none on the active rung
 - critical-path task TSK-001 has Owner none on the active rung
 - critical-path task TSK-002 has Owner none on the active rung
 - critical-path task TSK-003 has Owner none on the active rung

@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | SEC-001 | Deny ambient process enumeration in native Components | todo | blocked | S | CAP-005, CAP-001, CMP-005 |
-| SEC-002 | Publish threat model and threat Register | todo | ready | M | none |
+| SEC-002 | Publish threat model and threat Register | done | done | M | none |
 
 ## V0.5
 
@@ -15,12 +15,12 @@
 | --- | --- | --- | --- | --- | --- |
 | SEC-003 | Test no ambient filesystem, home, device, or app data | todo | blocked | M | SEC-009, SEC-006, CAP-025 |
 | SEC-004 | Decide authority sources and precedence | todo | blocked | M | CAP-007, SEC-002 |
-| SEC-005 | Decide disk encryption layer and store interaction | todo | blocked | M | SEC-002 |
+| SEC-005 | Decide disk encryption layer and store interaction | todo | ready | M | SEC-002 |
 | SEC-006 | Implement the grant taxonomy in the permission runtime | todo | blocked | M | SEC-007, SEC-004, CAP-025, PKG-028 |
 | SEC-007 | Decide user-mediated grant taxonomy | todo | blocked | M | CAP-007, SEC-002, Q-013 |
 | SEC-008 | Implement scoped Inspect Capability | todo | blocked | M | CAP-005, CAP-007, OBS-006 |
 | SEC-009 | Build the ambient-authority denial test harness | todo | blocked | S | SEC-001 |
-| SEC-010 | Record defence-in-depth and authority-design rules | todo | blocked | S | SEC-002 |
+| SEC-010 | Record defence-in-depth and authority-design rules | todo | ready | S | SEC-002 |
 | SEC-011 | Require an explicit screen-share Capability | todo | blocked | S | GFX-010, SEC-007, CAP-005 |
 | SEC-012 | Decide user identity versus Capability roots | todo | blocked | M | SEC-002, CAP-007 |
 

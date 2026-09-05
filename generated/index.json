@@ -2063,15 +2063,13 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0209"
       ],
@@ -2141,8 +2139,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "CAP-007",
-        "SEC-002"
+        "CAP-007"
       ],
       "covers": [
         "GAP-0204"
@@ -2302,7 +2299,6 @@
       "blockers": [
         "BOOT-020",
         "PKG-019",
-        "SEC-002",
         "Q-024"
       ],
       "covers": [
@@ -2562,8 +2558,7 @@
       ],
       "blockers": [
         "BOOT-018",
-        "BOOT-027",
-        "SEC-002"
+        "BOOT-027"
       ],
       "covers": [
         "GAP-0207"
@@ -4396,15 +4391,13 @@
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0076",
         "INV-0042",
@@ -4432,8 +4425,7 @@
       "blockers": [
         "CAP-013",
         "CAP-012",
-        "CAP-015",
-        "SEC-002"
+        "CAP-015"
       ],
       "covers": [
         "GAP-0483",
@@ -4466,7 +4458,6 @@
         "CAP-014",
         "CAP-015",
         "TSK-003",
-        "SEC-002",
         "Q-004"
       ],
       "covers": [
@@ -4493,8 +4484,7 @@
       ],
       "blockers": [
         "CAP-013",
-        "CAP-012",
-        "SEC-002"
+        "CAP-012"
       ],
       "covers": [
         "INV-0185",
@@ -4792,8 +4782,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "CAP-007",
-        "SEC-002"
+        "CAP-007"
       ],
       "covers": [
         "GAP-0485"
@@ -6623,8 +6612,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "CMP-012",
-        "SEC-002"
+        "CMP-012"
       ],
       "covers": [
         "INV-1164"
@@ -8077,8 +8065,7 @@
       ],
       "blockers": [
         "TSK-018",
-        "TSK-034",
-        "SEC-002"
+        "TSK-034"
       ],
       "covers": [],
       "file": "workstreams/TSK.md",
@@ -9440,8 +9427,7 @@
       ],
       "blockers": [
         "IPC-007",
-        "IPC-014",
-        "SEC-002"
+        "IPC-014"
       ],
       "covers": [],
       "file": "workstreams/IPC.md",
@@ -13691,7 +13677,6 @@
         "OBS-011"
       ],
       "blockers": [
-        "SEC-002",
         "OBS-006",
         "OBS-011"
       ],
@@ -16685,15 +16670,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-048"
       ],
@@ -19534,7 +19517,6 @@
         "PKG-055"
       ],
       "blockers": [
-        "SEC-002",
         "PKG-055"
       ],
       "covers": [
@@ -20773,15 +20755,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0228",
         "INV-0210"
@@ -23500,15 +23480,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [],
       "file": "workstreams/UIP.md",
       "downstream_weight": 2064,
@@ -24745,15 +24723,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "EXTRA-015"
       ],
@@ -25752,8 +25728,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "ACC-004",
-        "SEC-002"
+        "ACC-004"
       ],
       "covers": [
         "GAP-0554",
@@ -25926,7 +25901,6 @@
       "blockers": [
         "ACC-001",
         "ACC-002",
-        "SEC-002",
         "SEC-007",
         "CAP-007"
       ],
@@ -28168,8 +28142,7 @@
         "LNX-011",
         "CAP-005",
         "CAP-007",
-        "CMP-005",
-        "SEC-002"
+        "CMP-005"
       ],
       "covers": [
         "GAP-0188"
@@ -28388,7 +28361,6 @@
         "LNX-018",
         "CAP-007",
         "SEC-006",
-        "SEC-002",
         "Q-039"
       ],
       "covers": [
@@ -28524,8 +28496,7 @@
       "blockers": [
         "LNX-004",
         "STO-034",
-        "UIP-003",
-        "SEC-002"
+        "UIP-003"
       ],
       "covers": [
         "GAP-0505"
@@ -28578,8 +28549,7 @@
       ],
       "blockers": [
         "LNX-004",
-        "UIP-003",
-        "SEC-002"
+        "UIP-003"
       ],
       "covers": [
         "EXTRA-047"
@@ -28628,8 +28598,7 @@
       "blockers": [
         "LNX-013",
         "LNX-016",
-        "APP-004",
-        "SEC-002"
+        "APP-004"
       ],
       "covers": [
         "GAP-0311"
@@ -29410,8 +29379,7 @@
       "blockers": [
         "CAP-032",
         "SDK-038",
-        "LNX-042",
-        "SEC-002"
+        "LNX-042"
       ],
       "covers": [
         "EXTRA-009"
@@ -32805,7 +32773,6 @@
         "WIN-038"
       ],
       "blockers": [
-        "SEC-002",
         "WIN-040",
         "WIN-038"
       ],
@@ -34063,7 +34030,6 @@
       "blockers": [
         "ENV-007",
         "NET-006",
-        "SEC-002",
         "Q-031"
       ],
       "covers": [
@@ -36436,10 +36402,10 @@
       "title": "Publish threat model and threat Register",
       "type": "docs",
       "milestone": "V0",
-      "status": "todo",
-      "derived": "ready",
+      "status": "done",
+      "derived": "done",
       "size": "M",
-      "owner": "none",
+      "owner": "@agent/claude",
       "depends_on": [],
       "blockers": [],
       "covers": [
@@ -36498,8 +36464,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "CAP-007",
-        "SEC-002"
+        "CAP-007"
       ],
       "covers": [
         "INV-0218"
@@ -36514,15 +36479,13 @@
       "type": "adr",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0194",
         "GAP-0527"
@@ -36576,7 +36539,6 @@
       ],
       "blockers": [
         "CAP-007",
-        "SEC-002",
         "Q-013"
       ],
       "covers": [
@@ -36641,15 +36603,13 @@
       "type": "docs",
       "milestone": "V0.5",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "SEC-002"
       ],
-      "blockers": [
-        "SEC-002"
-      ],
+      "blockers": [],
       "covers": [
         "INV-0949",
         "INV-0950",
@@ -36700,7 +36660,6 @@
         "CAP-007"
       ],
       "blockers": [
-        "SEC-002",
         "CAP-007"
       ],
       "covers": [
@@ -36797,7 +36756,6 @@
         "CAP-005"
       ],
       "blockers": [
-        "SEC-002",
         "CAP-005"
       ],
       "covers": [
@@ -37109,7 +37067,6 @@
         "SEC-010"
       ],
       "blockers": [
-        "SEC-002",
         "SEC-010"
       ],
       "covers": [
@@ -37157,7 +37114,6 @@
       ],
       "blockers": [
         "SEC-017",
-        "SEC-002",
         "PWR-002"
       ],
       "covers": [
@@ -37267,8 +37223,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "SEC-032",
-        "SEC-002"
+        "SEC-032"
       ],
       "covers": [
         "INV-0194"
@@ -37462,8 +37417,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "SEC-007",
-        "SEC-002"
+        "SEC-007"
       ],
       "covers": [],
       "file": "workstreams/SEC.md",
@@ -37628,7 +37582,6 @@
         "SEC-005"
       ],
       "blockers": [
-        "SEC-002",
         "SEC-005"
       ],
       "covers": [
@@ -38121,7 +38074,6 @@
       ],
       "blockers": [
         "SEC-072",
-        "SEC-002",
         "GOV-024"
       ],
       "covers": [
@@ -38222,7 +38174,6 @@
         "SEC-070"
       ],
       "blockers": [
-        "SEC-002",
         "SEC-070"
       ],
       "covers": [
@@ -38304,7 +38255,6 @@
         "SEC-070"
       ],
       "blockers": [
-        "SEC-002",
         "SEC-069",
         "SEC-070"
       ],
@@ -38349,7 +38299,6 @@
         "CAP-047"
       ],
       "blockers": [
-        "SEC-002",
         "CAP-047"
       ],
       "covers": [
@@ -38475,8 +38424,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "NET-007",
-        "SEC-002"
+        "NET-007"
       ],
       "covers": [],
       "file": "workstreams/NET.md",
@@ -38501,8 +38449,7 @@
       "blockers": [
         "NET-007",
         "NET-008",
-        "CAP-010",
-        "SEC-002"
+        "CAP-010"
       ],
       "covers": [
         "GAP-0293",
@@ -45789,8 +45736,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "SDK-004",
-        "SEC-002"
+        "SDK-004"
       ],
       "covers": [
         "GAP-0187"
@@ -49191,7 +49137,6 @@
       ],
       "blockers": [
         "SEC-005",
-        "SEC-002",
         "STO-039"
       ],
       "covers": [
@@ -49241,8 +49186,7 @@
       ],
       "blockers": [
         "PKG-070",
-        "REL-004",
-        "SEC-002"
+        "REL-004"
       ],
       "covers": [
         "GAP-0341"
@@ -49325,8 +49269,7 @@
         "SEC-002"
       ],
       "blockers": [
-        "PKG-054",
-        "SEC-002"
+        "PKG-054"
       ],
       "covers": [],
       "file": "workstreams/INS.md",
@@ -56097,8 +56040,7 @@
       ],
       "blockers": [
         "KRN-031",
-        "GOV-065",
-        "SEC-002"
+        "GOV-065"
       ],
       "covers": [
         "GAP-0239",
@@ -57501,7 +57443,6 @@
       ],
       "blockers": [
         "DOC-015",
-        "SEC-002",
         "GOV-061"
       ],
       "covers": [
@@ -64483,12 +64424,12 @@
   ],
   "totals": {
     "total": 2268,
-    "done": 44,
-    "todo": 2224,
+    "done": 45,
+    "todo": 2223,
     "in_progress": 0,
     "dropped": 0,
     "weight_total": 6416,
-    "weight_done": 66,
+    "weight_done": 69,
     "gates_total": 187,
     "gates_satisfied": 0
   },
@@ -64517,12 +64458,12 @@
     },
     "V0": {
       "total": 217,
-      "done": 28,
-      "todo": 189,
+      "done": 29,
+      "todo": 188,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 673,
-      "weight_done": 42,
+      "weight_done": 45,
       "gates_total": 21,
       "gates_satisfied": 0
     },
@@ -64904,12 +64845,12 @@
     },
     "SEC": {
       "total": 79,
-      "done": 0,
-      "todo": 79,
+      "done": 1,
+      "todo": 78,
       "in_progress": 0,
       "dropped": 0,
       "weight_total": 165,
-      "weight_done": 0,
+      "weight_done": 3,
       "gates_total": 0,
       "gates_satisfied": 0
     },

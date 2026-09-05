@@ -40,7 +40,7 @@
 | STO-027 | Prototype File, Directory and UserSelected Interfaces | todo | blocked | M | STO-001 |
 | STO-028 | Add NVMe, SATA and ext4/btrfs/xfs/vfat regression tests to the CI matrix | todo | blocked | M | STO-023, KRN-014, KRN-010 |
 | STO-029 | Build the user-space storage service mediating Capability-scoped access to the substrate | todo | blocked | L | STO-012, STO-016, SVC-015, KRN-001, IPC-012, STO-001 |
-| STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | todo | blocked | S | SEC-002 |
+| STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | todo | ready | S | SEC-002 |
 | STO-031 | Add the StorageTransaction Operation kind with commit and abort completion | todo | blocked | L | STO-029, TSK-013, ABI-014, STO-020 |
 | STO-032 | Add a filesystem-diff test that Package install writes nothing outside the store | todo | blocked | S | STO-009, STO-021, PKG-025 |
 | STO-033 | Provide the Component-scoped temporary-storage Capability granted at launch | todo | blocked | S | STO-019, CAP-025 |

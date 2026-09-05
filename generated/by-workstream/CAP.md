@@ -12,7 +12,7 @@
 | CAP-004 | Implement Capability revocation invalidating all derived Capabilities | todo | blocked | L | CAP-009, CAP-003, CAP-005, TSK-010 |
 | CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | blocked | L | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009 |
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | blocked | L | CAP-005, CAP-003, CAP-011, CMP-005 |
-| CAP-007 | Decide explicit grant sources replacing ambient permissions | todo | blocked | S | SEC-002 |
+| CAP-007 | Decide explicit grant sources replacing ambient permissions | todo | ready | S | SEC-002 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | blocked | M | CAP-013, CAP-012, CAP-015, SEC-002 |
 | CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | blocked | S | CAP-014, CAP-015, TSK-003, SEC-002, Q-004 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | todo | blocked | S | CAP-013, CAP-012, SEC-002 |

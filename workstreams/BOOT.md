@@ -5,7 +5,7 @@
 - Baseline gap: No dedicated boot or firmware section; UEFI, bootloader, generation selection, measured boot and the boot counter are implied by §5.1 and §30 but unspecified.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 49 live, 2 done, 0 in-progress, 47 todo, 0 dropped. Ready: 1. Blocked: 46. Weighted: 1%.
+Tasks: 49 live, 2 done, 0 in-progress, 47 todo, 0 dropped. Ready: 2. Blocked: 45. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope

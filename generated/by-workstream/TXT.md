@@ -13,7 +13,7 @@
 | TXT-005 | Audit and record licences of every shipped font with redistribution terms | todo | blocked | S | TXT-002, GOV-016 |
 | TXT-006 | Build the typed FontMatcher Interface with family, weight, script fallback chains | todo | blocked | M | TXT-007, TXT-003, IPC-035 |
 | TXT-007 | Ship fonts as immutable content-addressed Packages with per-user installation | todo | blocked | M | TXT-002, TXT-005 |
-| TXT-008 | Write the font parsing and text service threat model | todo | blocked | S | SEC-002 |
+| TXT-008 | Write the font parsing and text service threat model | todo | ready | S | SEC-002 |
 | TXT-009 | Build the monospace grid text fast path for the Terminal | todo | ready | M | none |
 | TXT-010 | Register the input-method protocol shape as a Layer 2 Surface in UI protocol v0 | todo | blocked | S | UIP-013, IPC-038 |
 | TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | todo | ready | M | none |
