@@ -25,6 +25,7 @@ Terms in Title Case (Component, Capability, MemoryObject, Milestone, Gate) are d
 | `CONVENTIONS.md` | hand-written | This document |
 | `GLOSSARY.md` | hand-written | Canonical terms, casing and § refs |
 | `BASELINE.md` | hand-written, immutable § numbers | The architecture baseline; the only citable target for `Baseline:` |
+| `THREAT-MODEL.md` | hand-written | Adversaries, trust boundaries, safety layers and the ImageDecoder blast radius; every CAP, SEC and BOOT decision cites its T-IDs |
 | `ROADMAP.md` | generated whole file | Ladder, gate status, progress, ready head, critical path, decision leverage |
 | `STATUS.md` | generated whole file | Per-workstream table, blocked-by aggregation, unanchored tasks, steering signals |
 | `roadmap.toml` | hand-written | Size weights, policy flags, warning thresholds, generated-file list |

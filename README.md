@@ -52,6 +52,7 @@ A task's status is changed only in its block in `workstreams/<PREFIX>.md`, follo
 | `CONVENTIONS.md` | Normative rules: grammar, IDs, status model, milestones, decisions, registers, freeze discipline, commit and pull request policy |
 | `AGENTS.md` | Load order, hard rules, commands and heuristics for AI agents |
 | `BASELINE.md` | The architecture baseline with immutable section numbers; the only citable target |
+| `THREAT-MODEL.md` | Adversaries, trust boundaries, safety layers and blast radius; the narrative behind `registers/threats.md` |
 | `GLOSSARY.md` | Canonical terms and casing |
 | `decisions/README.md` | How decisions work, with the generated index |
 | `reports/README.md` | Evidence report skeletons and what is committed |
