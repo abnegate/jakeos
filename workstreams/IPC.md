@@ -417,22 +417,35 @@ Client rebind and retry codegen (IPC-028). Supervisor restart (SVC-004). Panic a
 - Depends on: IPC-006, IPC-007, IPC-004, IPC-005, ABI-007, BLD-082
 - Baseline: §14, §24, §53
 
-Front end (parse, typecheck, move/borrow/share annotations) plus the first backend: generated wire representation, client and server stubs, ownership semantics and per-method tracing metadata so IPC calls appear as semantic spans in `os trace` (§14, §24). The IDL is the single schema source; emitted headers carry the generated-code license exception.
+The IDL compiler is the single schema source for every Interface (§14). `idl/` in the platform monorepo holds the crate `jakeos-idl-compiler` (binary `jakeos-idl`): a front end that parses the language D-0148 (IPC-006) chose from `idl/interfaces/<area>/<Name>.idl`, typechecks it (Interfaces, methods, message and error types, `move`, `borrow` and `share` parameter annotations for Capability and MemoryObject arguments, the D-0141 evolution attributes), and an IR (`idl/src/ir.rs`) that backends consume; and the first backend, `idl/src/backend/rust/`, emitting the D-0154 wire representation (`<Name>_wire.rs`: layout, encode, decode, receiver-side validation), client stubs (`<Name>Client` with one `async fn` per method returning the typed result, built on the IPC-013 proxy layer), server stubs (`<Name>Server` trait plus dispatch), ownership semantics (moved arguments consume the handle in the generated signature), and per-method tracing metadata (a `TRACE_SCHEMA` table of Interface name, method name and message type ids that OBS-004 shapes and `os trace` reads). Every emitted file begins with the D-0146 (IPC-005) header text. Generated code is placed per D-0145 (IPC-004).
+
+The compiler is deterministic: the same IDL produces byte-identical output, and IPC-034 later turns that into a CI check; the sample Interface is `idl/interfaces/sdk/ImageDecoder.idl` (SDK-002).
 
 <!-- covers: INV-0292, INV-0286, INV-0287, INV-0288, INV-1005, INV-0285, INV-0474, GAP-0007 -->
 
 #### Out of scope
-Async proxy semantics (IPC-013). C backend (IPC-048). Plugin API (IPC-047). Trace substrate (OBS).
+Async proxy semantics (IPC-013). C backend (IPC-048). Plugin API for other backends (IPC-047). Trace substrate (OBS-003). Determinism CI check (IPC-034).
+
+#### Deliverables
+- idl:Cargo.toml · Crate `jakeos-idl-compiler`, binary `jakeos-idl`.
+- idl:src/frontend/ · Lexer, parser, typechecker for the D-0148 language with the ownership annotations and evolution attributes.
+- idl:src/ir.rs · The backend-facing IR.
+- idl:src/backend/rust/ · Wire layout, client stubs, server stubs, ownership signatures and `TRACE_SCHEMA` emission.
+- idl:src/header.rs · The D-0146 generated-code header text, emitted first in every file.
+- idl:interfaces/sdk/ImageDecoder.idl · The V0 sample Interface.
+- idl:tests/frontend_*.rs · Parse and typecheck tests including annotation and evolution-attribute errors.
+- idl:tests/rust_backend_*.rs · Golden-output tests for the sample Interface and determinism across two runs.
+- docs:idl/language.md · The language reference as accepted by D-0148 with the project's extensions.
 
 #### Acceptance criteria
-- [ ] The compiler parses the chosen IDL, typechecks move/borrow/share annotations, and emits Rust wire layout, client stubs, server stubs and per-method tracing metadata.
-- [ ] Every emitted file carries the generated-code license exception header from IPC-005.
-- [ ] Re-running the compiler on the same IDL produces byte-identical output; CI fails on drift.
-- [ ] A native crate cannot hand-write a parallel schema for a compiled Interface; IPC-034 rejects it.
+- [ ] `jakeos-idl` parses `idl/interfaces/sdk/ImageDecoder.idl`, typechecks `move`, `borrow` and `share` annotations (rejecting a `share` of a Capability type with a typed diagnostic), and emits Rust wire layout, client stubs, server stubs and `TRACE_SCHEMA` metadata.
+- [ ] Every emitted file begins with the D-0146 generated-code header text verbatim.
+- [ ] Running the compiler twice on the same IDL produces byte-identical output, asserted by `idl:tests/rust_backend_*`; a golden-output diff fails the test.
+- [ ] A native crate cannot hand-write a parallel schema for a compiled Interface: the generated wire types are the only types with the Interface's type id, and IPC-034 later lints it.
 
 #### Verification
 - Unit: `idl:tests/frontend_*` and `idl:tests/rust_backend_*` on host CI.
-- Integration: ImageDecoder sample from SDK-002 compiles against generated stubs.
+- Integration: the ImageDecoder sample from SDK-002 compiles against the generated stubs.
 
 #### Evidence
 - none
@@ -447,21 +460,31 @@ Async proxy semantics (IPC-013). C backend (IPC-048). Plugin API (IPC-047). Trac
 - Baseline: §12, §14, §59
 - Invariants: I-030
 
-Typed service contracts as declared in the IDL; methods surface as Operation futures from TSK and cancelling the Operation cancels the in-flight call. Required by the V0 Demo and cancellation Demo (§12, §14, §59). Native APIs are asynchronous by default (I-030).
+A typed service contract in the IDL becomes an `Interface<T>` proxy the caller awaits (§12, §14): `ipc/` in the platform monorepo holds the crate `jakeos-ipc-runtime`, the user-space Channel layer the generated stubs sit on. `ipc/src/proxy.rs` implements `Interface<T>` over a `Channel<T>` endpoint: each generated method encodes its request (IPC-012 wire), submits a Send Operation and a Receive Operation through the SDK's Operation wrappers (SDK-005), and returns a future that resolves to the typed reply or a typed failure; `ipc/src/call.rs` pairs request and reply by a per-call id in the wire header and handles the D-0139 call shape if one was chosen. Cancelling the returned future cancels the in-flight Operations (TSK-010), so the server observes cancellation through its Receive completing with `Error::Cancelled` and the client never receives a result. Native APIs are asynchronous by default (I-030): no generated method blocks.
+
+The V0 demo (CMP-011) uses the generated `ImageDecoderClient` and the cancellation demo cancels a `decode` in flight.
 
 <!-- covers: INV-0058, INV-0248, INV-0254, INV-0256, INV-0258, INV-0279, INV-1316 -->
 
 #### Out of scope
-Streams (IPC-039). Version negotiation codegen (IPC-033). Runtime executor (SDK-004).
+Streams (IPC-039). Version negotiation codegen (IPC-033). Runtime executor (SDK-004). The compiler (IPC-012).
+
+#### Deliverables
+- ipc:Cargo.toml · Crate `jakeos-ipc-runtime`.
+- ipc:src/proxy.rs · `Interface<T>` over a Channel endpoint, method dispatch to Send and Receive Operations, future construction.
+- ipc:src/call.rs · Request and reply pairing by call id, D-0139 call shape if chosen, cancellation propagation.
+- idl:src/backend/rust/proxy.rs · The generated-client shape that targets `Interface<T>` (extending IPC-012's backend).
+- idl:tests/async_stubs_*.rs · Tests: each method is a future, cancellation reaches the server, no blocking method exists.
+- ipc:tests/ipc/proxy_*.rs · Runtime tests for pairing, cancellation and typed failures.
 
 #### Acceptance criteria
-- [ ] Generated proxies expose each IDL method as an Operation future; awaiting it yields the typed result.
-- [ ] Cancelling the Operation cancels the in-flight call; the server observes cancellation and the client never receives a result.
-- [ ] The V0 Demo ImageDecoder Interface is generated from IDL and used by CMP-011.
+- [ ] Generated proxies expose each IDL method as an `async fn` returning a future; awaiting it yields the typed result, and no generated method blocks the calling execution context (TSK-001's lint passes on generated code).
+- [ ] Cancelling the future cancels the in-flight Send and Receive Operations; the server's Receive completes with `Error::Cancelled` and the client never receives a result, on `qemu-x86_64` and `hw-h002`.
+- [ ] The V0 demo's `ImageDecoderClient` is generated from `idl/interfaces/sdk/ImageDecoder.idl` and used by CMP-011 without hand-written glue.
 
 #### Verification
 - Unit: `idl:tests/async_stubs_*` on host CI.
-- Integration: V0 Demo and cancellation Demo on `qemu-x86_64` and `hw-h002`.
+- Integration: V0 demo and cancellation demo on `qemu-x86_64` and `hw-h002`.
 - Demo: V0 Component A to Channel to MemoryObject round trip on H-002.
 
 #### Evidence
@@ -478,21 +501,28 @@ Streams (IPC-039). Version negotiation codegen (IPC-033). Runtime executor (SDK-
 - Threats: T-002
 - Invariants: I-063
 
-V0 Demo and exit criterion: a MemoryObject Capability moves between Components without copying the payload, verified by physical-page identity; handle slots in the wire format with move semantics so large payloads never copy per hop (§15, §16). Confused-deputy extra handles are rejected (T-002).
+Large payloads never copy per hop because they travel as MemoryObject Capabilities inside messages (§15, §16). The D-0154 wire format reserves handle slots in the message header: `jakeos/ipc/handles.rs` validates at Send commit that the message names no more handle slots than its Interface type permits (the IDL declares the count per message type; an excess is a confused-deputy attempt, T-002, refused with the typed error and no receiver handle), and calls CAP-006's `move_between` for each slot so the sender's handle is gone and the receiver's exists in one commit; MemoryObject slots additionally trigger MEM-010's ownership transfer (unmap or invalidation per D-0199). `borrow` and `share` annotations from the IDL map onto the CAP-010 transfer rights: a `borrow` slot moves a derived Capability with a lifetime the receiver must return (MEM-018 at V0.5 enforces borrows; V0 treats `borrow` as a move of an attenuated Capability), a `share` slot is refused for MemoryObjects at V0.
+
+The V0 demo's reply carries the result MemoryObject this way; MEM-012's physical-page identity check passes through this path.
 
 <!-- covers: INV-0257, INV-1006, INV-1003, INV-0301 -->
 
 #### Out of scope
-MemoryObject map and backing (MEM). Capability derive and revocation (CAP). Physical-page identity harness (MEM-012).
+MemoryObject map and backing (MEM-005, MEM-007). Capability derive and revocation (CAP-003, CAP-004). Physical-page identity harness (MEM-012). Borrow enforcement (MEM-018).
+
+#### Deliverables
+- kernel:jakeos/ipc/handles.rs · Handle-slot validation against the Interface's declared count, `move_between` per slot at commit, MemoryObject transfer hook, `borrow` and `share` mapping.
+- idl:src/backend/rust/wire.rs · Handle-slot count and kinds emitted per message type from the IDL (extending IPC-012's backend).
+- kernel:tools/testing/selftests/jakeos/ipc/handle_transfer_*.rs · Selftests: Capability move, MemoryObject move with page identity, excess-slot refusal, `share` refusal for MemoryObjects.
 
 #### Acceptance criteria
-- [ ] A message can move a Capability and a MemoryObject; after send the sender's handle is invalid and the receiver holds the only handle.
-- [ ] Physical-page identity of a transferred MemoryObject is unchanged; MEM-012 passes through this path.
-- [ ] A message that names more handles than its type permits is rejected with a typed error and allocates no handle in the receiver.
+- [ ] A message moves a Capability and a MemoryObject; after Send commit the sender's handles are invalid and the receiver holds the only handles, on `qemu-x86_64` and `hw-h002`.
+- [ ] The physical-page identity of a transferred MemoryObject is unchanged, and MEM-012's check passes through this path.
+- [ ] A message that names more handle slots than its Interface type permits is refused with the typed error at Send commit and allocates no handle in the receiver; a `share` of a MemoryObject is refused at V0.
 
 #### Verification
 - Unit: `kernel:tests/ipc/handle_transfer_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: V0 Demo pipeline with MEM-012.
+- Integration: V0 demo pipeline with MEM-012.
 
 #### Evidence
 - none
@@ -506,21 +536,27 @@ MemoryObject map and backing (MEM). Capability derive and revocation (CAP). Phys
 - Depends on: IPC-001, IPC-016, SCH-005, TSK-020
 - Baseline: §15, §53
 
-Native IPC shape (§53): a send to a waiting receiver switches directly to the receiver. Coordinated with SCH for the direct-switch hook and with IPC-001. V0 benchmark Gate measures native Task handoff versus Linux thread switch (B-003, B-004).
+The native IPC shape (§53) is that a send to a receiver already parked in Receive switches directly to that receiver's Task rather than marking it runnable and waiting for the scheduler to pick it. `jakeos/ipc/handoff.rs` implements the hook: at Send commit, if the peer endpoint has a Receive Operation outstanding whose Task is suspended on it (TSK-020's awaited-Operation record) and the receiver is eligible to run on the current CPU (same core, or the SCH-005 direct-switch rule allows a migration), the completion of the Receive is delivered and the CPU is handed to the receiver's execution context through SCH-005's direct-switch path with the D-0139 donation semantics if a call shape was chosen; otherwise the normal wake path (TSK-020) applies. OBS traces record `handoff` versus `wake` per Send so `os trace` and B-004 can attribute latency to the path taken.
+
+The rejected shape from D-0139 (a blocking call syscall) does not exist in the ABI snapshot; B-004's same-core report includes the handoff configuration.
 
 <!-- covers: INV-1007 -->
 
 #### Out of scope
-Scheduler class mapping (SCH-004). Task multiplexer (TSK-019). Intent inheritance across handoff (SCH-024).
+Scheduler class mapping (SCH-004). Task multiplexer (TSK-019). Intent inheritance across handoff (SCH-017, SCH-024). The direct-switch scheduler hook itself (SCH-005).
+
+#### Deliverables
+- kernel:jakeos/ipc/handoff.rs · Eligibility check at Send commit and the call into SCH-005's direct switch, with the `handoff` versus `wake` trace event.
+- kernel:tools/testing/selftests/jakeos/ipc/handoff_*.rs · Selftests: handoff taken when the receiver is parked on the same core, wake path taken otherwise, no blocking entry involved.
 
 #### Acceptance criteria
-- [ ] When the receiver Task is waiting on receive, send switches to that Task without an extra run-queue hop, as traced by OBS.
-- [ ] The path is the one named by IPC-001; the rejected call shape is absent from the ABI snapshot.
-- [ ] B-004 same-core reports include this handoff configuration.
+- [ ] When the receiver Task is parked in Receive on the same core, Send switches to that Task without an extra run-queue hop, shown by the `handoff` trace event on `qemu-x86_64` and `hw-h002`; when it is not, the `wake` event appears and the TSK-020 path is used.
+- [ ] The path is the one D-0139 (IPC-001) named; the rejected blocking call shape is absent from the ABI snapshot (ABI-017).
+- [ ] B-004 same-core reports include the handoff configuration as a labelled row.
 
 #### Verification
 - Unit: `kernel:tests/ipc/handoff_*` on `qemu-x86_64` and `hw-h002`.
-- Bench: B-004 on H-001 and H-002; target per Register.
+- Bench: B-004 on H-001 and H-002; target per register.
 
 #### Evidence
 - none
@@ -535,21 +571,29 @@ Scheduler class mapping (SCH-004). Task multiplexer (TSK-019). Intent inheritanc
 - Baseline: §15, §53
 - Invariants: I-066
 
-Implements IPC-003 so the common small-message case needs no userland serialization or deserialization step (§15, §53). Measured by IPC-008. Native IPC must not require a userland serialize/deserialize step for that case.
+The common small-message case needs no user-space serialise or deserialise step (§15, §53, I-066). `jakeos/ipc/fastpath.rs` implements the technique or combination D-0142 (IPC-003) selected (shared ring, register-carried, handoff-coupled, lock-free cross-core, or the recorded mix) for messages that fit inline per the D-0154 rule: the generated wire layout (IPC-012) is the in-memory layout, so the sender's stores land in the message slot and the receiver reads them in place; the kernel validates the header and handle slots (IPC-014) and never copies the payload. Messages above the inline rule take the MemoryObject path (IPC-014). The rejected techniques from D-0142 are not reachable from generated stubs.
+
+A unit test counts payload copies between the sender's store and the receiver's load (zero on the fast path) using the kernel's copy accounting hooks; IPC-034 later turns that into a standing lint. IPC-008 measures this path for B-004 and B-005.
 
 <!-- covers: INV-0293, INV-1002, INV-1004, INV-1324 -->
 
 #### Out of scope
-Technique selection (IPC-003). Batching productionisation (IPC-043). V1 tuning (IPC-054).
+Technique selection (IPC-003). Batching productionisation (IPC-043). V1 tuning (IPC-054). Large-payload lowering (IPC-036).
+
+#### Deliverables
+- kernel:jakeos/ipc/fastpath.rs · The D-0142 technique on the inline path, header and slot validation, zero payload copies.
+- kernel:jakeos/ipc/copy_account.rs · Copy accounting hook the copy-count test and IPC-034 read (debug builds only).
+- kernel:tools/testing/selftests/jakeos/ipc/fast_path_*.rs · Selftests: zero copies on inline messages, MemoryObject path above the rule, rejected techniques unreachable.
+- kernel:Documentation/jakeos/ipc/fastpath.md · The implemented technique and the inline rule as decided.
 
 #### Acceptance criteria
-- [ ] Small messages on the selected path have no userland serialize or deserialize step: a unit test counts zero payload copies between the sender store and the receiver load; IPC-034 later turns this into a standing lint.
-- [ ] The implementation matches the technique named by IPC-003; rejected techniques are not reachable from generated stubs.
-- [ ] IPC-008 runs against this path on H-001 and H-002.
+- [ ] Small messages on the selected path have no user-space serialise or deserialise step: the copy-count test records zero payload copies between the sender's store and the receiver's load on `qemu-x86_64` and `hw-h002`.
+- [ ] The implementation matches the technique D-0142 named; rejected techniques have no entry reachable from generated stubs (asserted by the ABI-017 snapshot).
+- [ ] IPC-008 runs B-004 and B-005 against this path on H-001 and H-002.
 
 #### Verification
 - Unit: `kernel:tests/ipc/fast_path_*` on `qemu-x86_64` and `hw-h002`.
-- Bench: B-004 and B-005 on H-001 and H-002; target per Register.
+- Bench: B-004 and B-005 on H-001 and H-002; target per register.
 
 #### Evidence
 - none
@@ -561,25 +605,36 @@ Technique selection (IPC-003). Batching productionisation (IPC-043). V1 tuning (
 - Size: L
 - Owner: none
 - Depends on: ABI-019, TSK-021, BLD-012, BEN-007
-- Baseline: §15, §53, §58
+- Baseline: §15, §53, §58, §65
 - Benchmarks: B-004, B-005
 - Explores: S-012
 
-Single measured comparison on identical hardware (H-001 and H-002) of shared ring buffers, CPU-register-carried messages, seL4/LRPC-style direct handoff, lock-free cross-core queues and io_uring-style batching; same-core and cross-core round trips recorded separately. Publish-only numbers. Precedes IPC-003 and IPC-001.
+IPC-003 and IPC-001 must be decided from one measured comparison on identical hardware (§15, §53, §58). Under `jakeos/spikes/ipc/fastpath/` behind `CONFIG_JAKEOS_SPIKES`, five techniques are prototyped far enough to ping-pong a small message between two processes: `ring.rs` (shared ring in a mapped page), `gpr.rs` (message in registers through the ABI-019 syscall prototype), `handoff.rs` (seL4 and LRPC-style direct switch to the receiver), `xcore.rs` (lock-free cross-core queues with IPI wake) and `batch.rs` (io_uring-style batched submission). The driver `runtime/spikes/ipc-fastpath-driver/` measures same-core and cross-core round trip (B-004 method) and one-way throughput (B-005 method) per BEN-064 on `qemu-x86_64` and `hw-h002`, with Unix-domain-socket and pipe ping-pong baselines in the same session.
+
+The report `reports/spikes/IPC-017.md` gives separate same-core and cross-core tables per technique, cost, complexity, ABI impact (what each would make ABI on S-012) and the reject reasons, and names the candidates that remain for IPC-003. Publish-only numbers; S-012 is not frozen.
 
 <!-- covers: INV-0294, INV-0295, INV-0297, INV-0298, GAP-0480, GAP-0481 -->
 
 #### Out of scope
-Selecting the production technique (IPC-003). Standing harness (IPC-008).
+Selecting the production technique (IPC-003). Standing harness (IPC-008). Call semantics decision (IPC-001).
+
+#### Deliverables
+- kernel:jakeos/spikes/ipc/fastpath/ring.rs · Shared-ring prototype.
+- kernel:jakeos/spikes/ipc/fastpath/gpr.rs · Register-carried prototype.
+- kernel:jakeos/spikes/ipc/fastpath/handoff.rs · Direct-handoff prototype.
+- kernel:jakeos/spikes/ipc/fastpath/xcore.rs · Lock-free cross-core queue prototype.
+- kernel:jakeos/spikes/ipc/fastpath/batch.rs · Batched-submission prototype.
+- runtime:spikes/ipc-fastpath-driver/ · Same-core and cross-core round trip and throughput driver with the two baselines.
+- roadmap:reports/spikes/IPC-017.md · The report with per-technique tables and reject reasons.
 
 #### Acceptance criteria
-- [ ] Prototypes for shared ring, CPU-register-carried messages, scheduler-aware handoff, lock-free cross-core queues and batched submission run on H-001 and H-002.
-- [ ] The report records same-core and cross-core round trips separately for each prototype with Linux Unix-domain-socket and pipe baselines.
-- [ ] The report names which techniques remain candidates for IPC-003 and which are ruled out.
+- [ ] Prototypes for shared ring, register-carried messages, scheduler-aware handoff, lock-free cross-core queues and batched submission run on `qemu-x86_64` and `hw-h002` and complete a ping-pong.
+- [ ] `reports/spikes/IPC-017.md` records same-core and cross-core round trips separately for each prototype under the B-004 method, throughput under the B-005 method, and the Unix-domain-socket and pipe baselines from the same session, all labelled unpublished prototype measurements.
+- [ ] The report names, per technique, its cost, complexity, what it would make ABI on S-012 and the reject reason if any, and states which techniques remain candidates for IPC-003.
 
 #### Verification
 - Report: `reports/spikes/IPC-017.md` answers cost, complexity, ABI impact and reject reasons per technique, with same-core and cross-core tables.
-- Bench: B-004 and B-005 on H-001 and H-002; target per Register (publish).
+- Bench: B-004 and B-005 on H-001 and H-002; target per register (publish).
 
 #### Evidence
 - none
@@ -594,20 +649,23 @@ Selecting the production technique (IPC-003). Standing harness (IPC-008).
 - Baseline: §43, §58
 - Explores: S-012, S-013
 
-Written study of Capability semantics across transports, synchronous message passing and restartable resource managers; feeds IPC-006, IPC-007 and IPC-001 (§43, §58). One of the research studies kept in V0 because it informs V0 ABI surfaces.
+Before the IDL (IPC-006), the wire format (IPC-007) and the call shape (IPC-001) are fixed, the systems that solved the same problems are read (§58): Cap'n Proto RPC (capability passing over the wire, promise pipelining, zero-copy encoding), Fuchsia FIDL and Overnet (handle transfer, versioning, transport independence, §43), Genode (synchronous RPC with capability delegation, restartable servers) and QNX (message passing, resource managers, restart). The report `reports/spikes/IPC-018.md` describes each on Capability passing, synchronous versus asynchronous shapes, restart behaviour and wire encoding, scores each against the native requirements (ownership transfer, versioning, streams, multi-language codegen), and says what to take, what to reject and why, mapped to S-012 (Channel wire) and S-013 (message format) and to the three decisions.
 
 <!-- covers: INV-0816, INV-1134 -->
 
 #### Out of scope
-IDL selection (IPC-006). Wasm Component Model study (WASM-002).
+IDL selection (IPC-006). Wasm Component Model study (WASM-002). Zircon object study (ABI-022).
+
+#### Deliverables
+- roadmap:reports/spikes/IPC-018.md · The study with per-system sections, the scoring table and the take-or-reject mapping to S-012, S-013, IPC-006, IPC-007 and IPC-001.
 
 #### Acceptance criteria
-- [ ] The report covers Cap'n Proto RPC, Fuchsia FIDL/Overnet, Genode and QNX on Capability passing, sync versus async, restart and wire encoding.
-- [ ] Each system is scored against ownership transfer, versioning, streams and multi-language codegen.
-- [ ] Findings are cited by IPC-006, IPC-007 and IPC-001.
+- [ ] `reports/spikes/IPC-018.md` covers Cap'n Proto RPC, Fuchsia FIDL and Overnet, Genode and QNX on Capability passing, synchronous versus asynchronous shapes, restart and wire encoding, with sources cited by revision.
+- [ ] Each system is scored against ownership transfer, versioning, streams and multi-language codegen in one table.
+- [ ] The report's findings are mapped to S-012 and S-013 and cited by IPC-006, IPC-007 and IPC-001.
 
 #### Verification
-- Report: `reports/spikes/IPC-018.md` answers what to steal, what to reject, and which questions remain for the three V0 Decisions.
+- Report: `reports/spikes/IPC-018.md` answers what to take, what to reject, and which questions remain for the three V0 decisions.
 - Review: ABI lead sign-off recorded on the pull request.
 
 #### Evidence
@@ -624,17 +682,27 @@ IDL selection (IPC-006). Wasm Component Model study (WASM-002).
 - Explores: S-014
 - Risks: R-005
 
-The versioning design must fail on a real evolution before any rule is frozen; uses the V0 Demo ImageDecoder-style Interface and produces findings for IPC-002 (§12).
+The evolution rules (IPC-002) must fail on a real evolution before any rule is frozen (§12, R-005). Under `idl/spikes/evolve/`, the V0 ImageDecoder Interface is taken through three revisions using the compiler and stubs: revision 1 adds an optional field to the request and a new optional method; revision 2 renames a field and changes a type (a breaking change under any scheme, to see how each candidate rule set reports it); revision 3 removes a method and adds a required field. For each of D-0141's three candidate rule sets, a prototype of the rule (a compiler flag in a spike branch) is applied and an old client is run against a new server and a new client against an old server on `qemu-x86_64`, recording which changes were compatible, forward-only or breaking, and where the candidate scheme failed to detect or handle a change.
+
+The report `reports/spikes/IPC-019.md` is the evidence for IPC-002; no Layer 2 rule is frozen here.
 
 <!-- covers: GAP-0521 -->
 
 #### Out of scope
-Accepting evolution rules (IPC-002). Permanent UI protocol bump test (IPC-040).
+Accepting evolution rules (IPC-002). Permanent UI protocol bump test (IPC-040). The compiler (IPC-012).
+
+#### Deliverables
+- idl:spikes/evolve/ImageDecoder.v1.idl · Revision 1 (optional field, optional method).
+- idl:spikes/evolve/ImageDecoder.v2.idl · Revision 2 (rename and type change).
+- idl:spikes/evolve/ImageDecoder.v3.idl · Revision 3 (method removal, required field).
+- idl:spikes/evolve/runner.rs · Runs old-client-new-server and new-client-old-server for each revision pair under each candidate rule set.
+- idl:tests/evolve_*.rs · The three-revision fixture as a test that records the outcome matrix.
+- roadmap:reports/spikes/IPC-019.md · The outcome matrix and where each candidate scheme failed.
 
 #### Acceptance criteria
-- [ ] One real V0 Interface is evolved through three incompatible revisions using the compiler and stubs.
-- [ ] The report records which changes were compatible, forward-only or breaking, and where the prototype scheme failed.
-- [ ] Findings are inputs to IPC-002; no Layer 2 rule is frozen in this Spike.
+- [ ] The ImageDecoder Interface is evolved through the three revisions under `idl/spikes/evolve/` using the compiler and generated stubs, and `idl:tests/evolve_*` runs every old-and-new pairing for each candidate rule set.
+- [ ] `reports/spikes/IPC-019.md` records, per revision and rule set, which changes were compatible, forward-only or breaking, and where the candidate scheme failed to detect or handle a change.
+- [ ] The report's findings are inputs to IPC-002 and it freezes no Layer 2 rule.
 
 #### Verification
 - Report: `reports/spikes/IPC-019.md` answers how fields, methods and types evolved, where old clients broke, and which rule shapes remain viable.
@@ -654,21 +722,31 @@ Accepting evolution rules (IPC-002). Permanent UI protocol bump test (IPC-040).
 - Benchmarks: B-004
 - Explores: S-013
 
-Measures encoding, decoding and receiver-side validation cost for representative message shapes and sizes so IPC-007 and the inline-versus-MemoryObject threshold are decided on numbers (§14, §15, §53).
+The wire format (IPC-007) and the inline-versus-MemoryObject threshold must be decided on numbers (§14, §15, §53). Under `idl/spikes/wire/`, the three D-0154 candidates are prototyped as encoders and decoders for a fixed set of representative message shapes (a small request with three scalar fields, a mid-size message with a string and a list, a large message with a nested structure and a byte array at the sizes the B-004 register names): `fixed.rs` (in-place layout with zero-copy field access), `selfdesc.rs` (tagged self-describing) and `indexed.rs` (schema-indexed with a compact table). The driver `runtime/spikes/ipc-wire-driver/` measures encode cost, decode cost and receiver-side validation cost (bounds, tags, handle-slot counts, the cost a hostile sender imposes) per candidate and shape on `qemu-x86_64` and `hw-h002` per BEN-064, and measures where inline transport stops beating a MemoryObject transfer as payload grows.
+
+The report `reports/spikes/IPC-020.md` recommends a threshold rule without stating a public performance claim, and feeds IPC-007 and IPC-037 (validation hardening).
 
 <!-- covers: GAP-0520, INV-0302 -->
 
 #### Out of scope
-Choosing the format (IPC-007). Production validation hardening (IPC-037).
+Choosing the format (IPC-007). Production validation hardening (IPC-037). The transport (TSK-014).
+
+#### Deliverables
+- idl:spikes/wire/fixed.rs · Fixed-layout candidate encoder and decoder.
+- idl:spikes/wire/selfdesc.rs · Self-describing candidate.
+- idl:spikes/wire/indexed.rs · Schema-indexed candidate.
+- idl:spikes/wire/shapes.rs · The representative message shapes and sizes.
+- runtime:spikes/ipc-wire-driver/ · Encode, decode, validation and inline-versus-MemoryObject crossover measurements.
+- roadmap:reports/spikes/IPC-020.md · Per-candidate costs, zero-copy properties, the crossover and the recommended threshold rule.
 
 #### Acceptance criteria
-- [ ] In-place zero-copy and compact encode/decode are measured for representative shapes and sizes, including receiver-side validation, on H-001 and H-002.
-- [ ] The report recommends an inline-versus-MemoryObject threshold rule without stating a public performance claim.
-- [ ] Findings are inputs to IPC-007.
+- [ ] In-place zero-copy and compact encode and decode are measured for the representative shapes and sizes, including receiver-side validation under a hostile sender, on `qemu-x86_64` and `hw-h002`, labelled unpublished prototype measurements.
+- [ ] `reports/spikes/IPC-020.md` recommends an inline-versus-MemoryObject threshold rule from the measured crossover without stating a public performance claim.
+- [ ] The report's findings are inputs to IPC-007 and IPC-037.
 
 #### Verification
 - Report: `reports/spikes/IPC-020.md` answers encode, decode and validation cost per candidate, zero-copy properties, and the threshold heuristic.
-- Bench: B-004 on H-001 and H-002; target per Register (publish).
+- Bench: B-004 on H-001 and H-002; target per register (publish).
 
 #### Evidence
 - none
@@ -683,17 +761,23 @@ Choosing the format (IPC-007). Production validation hardening (IPC-037).
 - Baseline: §12, §65
 - Invariants: I-041
 
-V0 exit criterion: a message with an unknown newer field is accepted by an older receiver and an older message by a newer receiver. Includes the message-level part of the Layer 1 negotiation handshake test that ABI owns. The full schema-evolution feature set lands in IPC-038. Version negotiation exists from V0 (I-041).
+Version negotiation exists from V0 (§12, I-041). Every message type the compiler emits carries the D-0141 version header in the D-0154 wire format: `idl/src/backend/rust/header.rs` emits the Interface version identity and the field table or index base the evolution rules need, and `ipc/src/compat.rs` in `jakeos-ipc-runtime` implements the receiver rule: a message with an unknown newer field is accepted by an older receiver (the field is skipped or preserved per D-0141) and an older message is accepted by a newer receiver (absent fields take their declared defaults). `idl/tests/wire_compat_*.rs` is the permanent test: the ImageDecoder Interface compiled at two revisions, each side decoding the other's messages; it is the message-level counterpart of ABI-004's Layer 1 handshake case, and the V0 exit criterion (V0-G05) cites both. The full schema-evolution feature set (optional methods, deprecation) is IPC-038.
 
 <!-- covers: INV-0251, INV-0252 -->
 
 #### Out of scope
-Layer 1 handshake implementation (ABI-004). Optional methods and schema evolution (IPC-038).
+Layer 1 handshake implementation (ABI-004). Optional methods and schema evolution (IPC-038). The rules decision (IPC-002).
+
+#### Deliverables
+- idl:src/backend/rust/header.rs · Version header emission per D-0141 on every message type (extending IPC-012's backend).
+- ipc:src/compat.rs · Receiver-side unknown-field and absent-field handling per D-0141.
+- idl:tests/wire_compat_*.rs · The permanent two-revision forward and backward compatibility test.
+- kernel:tools/testing/selftests/jakeos/ipc/wire_compat_*.rs · The same case run end to end over a real Channel on both matrix entries.
 
 #### Acceptance criteria
-- [ ] A message with an unknown newer field is accepted by an older receiver; an older message is accepted by a newer receiver.
-- [ ] The version header is present on every generated message type used by the V0 Demo.
-- [ ] The test is retained permanently and is the message-level counterpart of ABI-004.
+- [ ] A message with an unknown newer field is accepted by an older receiver and an older message is accepted by a newer receiver, in `idl:tests/wire_compat_*` on host CI and over a real Channel on `qemu-x86_64` and `hw-h002`.
+- [ ] The version header is present on every generated message type used by the V0 demo, asserted by a test over the generated wire types.
+- [ ] `idl:tests/wire_compat_*` is retained permanently, is the message-level counterpart of ABI-004's conformance case 0, and both are cited by V0-G05.
 
 #### Verification
 - Unit: `idl:tests/wire_compat_*` on host CI.
