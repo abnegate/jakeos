@@ -7687,11 +7687,7 @@
         "TSK-020",
         "TSK-001"
       ],
-      "covers": [
-        "INV-1160",
-        "INV-0362",
-        "INV-0364"
-      ],
+      "covers": [],
       "file": "workstreams/TSK.md",
       "downstream_weight": 17,
       "anchored": true

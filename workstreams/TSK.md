@@ -503,21 +503,30 @@ Submit and completion transport (TSK-018). Priority ordering of I/O (TSK-033). I
 - Explores: S-005
 - Risks: R-007
 
-Studies io_uring submission and completion rings, linked operations and cancellation, then prototypes a shared ring, a per-Task wait object and a hybrid completion path on H-001 and H-002. Wake-up latency is measured for each option under B-009's method so TSK-007 is evidence-based. Nothing on S-005 is frozen.
+TSK-007 must choose the Operation transport from running code (§18, §65). This spike first studies io_uring's submission and completion rings, linked operations and cancellation at the merged upstream tag (§58), then prototypes three transports under `jakeos/spikes/tsk/transport/` behind `CONFIG_JAKEOS_SPIKES`: `ring.rs` (a shared submission and completion ring per process in a mapped page, entered through the ABI-019 syscall prototype), `waitobj.rs` (per-Task wait objects with a kernel queue and a syscall per submission), and `hybrid.rs` (a ring for submission with a wait object for completion delivery). The driver `runtime/spikes/tsk-transport-driver/` submits no-op Operations singly and in batches of 8 and 64 and measures submit-to-completion and wake-up latency under the B-009 method on `qemu-x86_64` and `hw-h002`, with io_uring `NOP` submit-to-completion as the baseline in the same session.
+
+The report `reports/spikes/TSK-014.md` records wake-up latency per prototype and batch size, states whether io_uring's internal structures can be reused (and which) or must be replaced (and why), describes how a batch is expressed in each, and lists what stays undecided. Nothing on S-005 is frozen.
 
 <!-- covers: INV-1144, GAP-0494 -->
 
 #### Out of scope
-The transport decision (TSK-007). Permanent harness (TSK-026).
+The transport decision (TSK-007). Permanent harness (TSK-026). The entry mechanism (ABI-019).
+
+#### Deliverables
+- kernel:jakeos/spikes/tsk/transport/ring.rs · Shared ring prototype.
+- kernel:jakeos/spikes/tsk/transport/waitobj.rs · Per-Task wait-object prototype.
+- kernel:jakeos/spikes/tsk/transport/hybrid.rs · Hybrid prototype.
+- runtime:spikes/tsk-transport-driver/ · Submission driver with batch sizes, B-009 method, io_uring `NOP` baseline.
+- roadmap:reports/spikes/TSK-014.md · The report.
 
 #### Acceptance criteria
-- [ ] The report describes shared-ring, per-Task wait-object and hybrid prototypes that ran on H-001 and H-002.
-- [ ] The report records wake-up latency for each prototype using the B-009 method and names the Linux io_uring NOP baseline.
-- [ ] The report states whether io_uring internals can be reused or must be replaced, with the reason.
+- [ ] `reports/spikes/TSK-014.md` describes shared-ring, per-Task wait-object and hybrid prototypes that ran on `qemu-x86_64` and `hw-h002` and completed no-op Operations singly and in batches of 8 and 64.
+- [ ] The report records submit-to-completion and wake-up latency for each prototype and batch size under the B-009 method, with the io_uring `NOP` baseline from the same session, all labelled unpublished prototype measurements.
+- [ ] The report states which io_uring internals can be reused and which must be replaced, with the reason for each.
 - [ ] The report lists what is not decided and does not freeze S-005.
 
 #### Verification
-- Report: answers which transport meets the V0 demo, how batches would be expressed, and whether io_uring internals are reusable; path `reports/spikes/TSK-014.md`.
+- Report: which transport meets the V0 demo, how batches would be expressed, and whether io_uring internals are reusable; path `reports/spikes/TSK-014.md`.
 - Bench: B-009 method on H-001 and H-002 for the three prototypes; no V0 absolute target.
 
 #### Evidence
@@ -535,21 +544,29 @@ The transport decision (TSK-007). Permanent harness (TSK-026).
 - Explores: S-005
 - Risks: R-007
 
-Prototypes a timer wheel and an hrtimer-per-Operation and measures per-Operation deadline overhead at high submission rates before Timer and the deadline path are built. Results feed TSK-004 and the later permanent harness.
+Every Operation carries a deadline (§19); if enforcing it costs a timer per Operation the submit path pays for it on every call. Under `jakeos/spikes/tsk/deadline/` behind `CONFIG_JAKEOS_SPIKES`, two enforcement structures are prototyped: `wheel.rs` (a hierarchical timer wheel keyed by deadline with lazy cascade) and `hrtimer.rs` (an `hrtimer` armed per Operation with a deadline), plus a `none` path for Operations without a deadline so the spike can show whether the no-deadline case stays off the structure entirely. The driver `runtime/spikes/tsk-deadline-driver/` submits no-op Operations at increasing rates with and without deadlines and measures submit-to-completion overhead under the B-009 method on `qemu-x86_64` and `hw-h002`, plus the accuracy of expiry (how late a `DeadlineExceeded` fires).
+
+The report `reports/spikes/TSK-015.md` feeds TSK-004 (representation) and TSK-010 (implementation) and the later standing harness TSK-039. S-005 is not frozen.
 
 <!-- covers: INV-0376 -->
 
 #### Out of scope
-Deadline representation decision (TSK-004). Permanent harness (TSK-039). Timer kind (TSK-012).
+Deadline representation decision (TSK-004). Permanent harness (TSK-039). Timer kind (TSK-012). Enforcement implementation (TSK-010).
+
+#### Deliverables
+- kernel:jakeos/spikes/tsk/deadline/wheel.rs · Timer-wheel prototype.
+- kernel:jakeos/spikes/tsk/deadline/hrtimer.rs · hrtimer-per-Operation prototype.
+- runtime:spikes/tsk-deadline-driver/ · Rate sweep with and without deadlines, expiry-accuracy measurement.
+- roadmap:reports/spikes/TSK-015.md · The report.
 
 #### Acceptance criteria
-- [ ] The report describes timer-wheel and hrtimer-per-Operation prototypes that ran on H-001 and H-002.
-- [ ] The report records submit-to-completion overhead with and without a deadline using the B-009 method.
-- [ ] The report states whether a no-deadline Operation stays off the enforcement data structure.
+- [ ] `reports/spikes/TSK-015.md` describes timer-wheel and hrtimer-per-Operation prototypes that ran on `qemu-x86_64` and `hw-h002` across the submission-rate sweep.
+- [ ] The report records submit-to-completion overhead with and without a deadline for each structure under the B-009 method, and the expiry lateness distribution, all labelled unpublished prototype measurements.
+- [ ] The report states whether a no-deadline Operation stays off the enforcement data structure in each prototype.
 - [ ] The report does not freeze S-005.
 
 #### Verification
-- Report: answers wheel versus per-Operation timer, overhead at high submission rates, and the no-deadline fast path; path `reports/spikes/TSK-015.md`.
+- Report: wheel versus per-Operation timer, overhead at high submission rates, expiry accuracy, and the no-deadline fast path; path `reports/spikes/TSK-015.md`.
 - Bench: B-009 method on H-001 and H-002 for both prototypes.
 
 #### Evidence
@@ -567,21 +584,30 @@ Deadline representation decision (TSK-004). Permanent harness (TSK-039). Timer k
 - Explores: S-008
 - Risks: R-007
 
-One of the V0 spikes that inform Layer 1 surfaces. Prototypes kernel-notified user scheduling (UMCG-style activations), a pure userspace runtime with async syscalls only, and kernel-managed lightweight Tasks at the live-Task scale recorded in B-014, and measures how page faults and synchronous inherited driver paths stall a worker. Feeds TSK-009. Nothing on S-008 is frozen.
+TSK-008 and TSK-009 fix how Tasks are identified and mapped (§20, §65); this spike gives them evidence. Under `jakeos/spikes/tsk/mux/` behind `CONFIG_JAKEOS_SPIKES`, three models are prototyped far enough to run the B-014 live-Task population in one process: `umcg.rs` (kernel-notified user scheduling in the UMCG lineage: a bounded worker set, a server thread receiving block and wake notifications, user-space Task switching), `userspace.rs` (a pure user-space runtime over the ABI-019 syscall prototype with no kernel help), and `kernel.rs` (kernel-managed lightweight Tasks, one execution context each). The driver `runtime/spikes/tsk-mux-driver/` creates the B-014 population, measures memory per Task and creation wall time, then injects hidden blocking (a page fault on a mapped-but-unpopulated page, and a synchronous retained driver path: a blocking `read` on a virtio-serial port from a worker) and records how long other Tasks on that worker stall and what compensation each model can apply.
+
+The report `reports/spikes/TSK-016.md` names which model is viable for V0 at B-014 scale, the compensation each achieved, and the costs that remain. S-008 is not frozen.
 
 <!-- covers: GAP-0492, INV-0385, INV-0377, GAP-0493 -->
 
 #### Out of scope
-The mapping decision (TSK-009). Multiplexer implementation (TSK-019).
+The mapping decision (TSK-009). Identity decision (TSK-008). Multiplexer implementation (TSK-019).
+
+#### Deliverables
+- kernel:jakeos/spikes/tsk/mux/umcg.rs · UMCG-style activation prototype.
+- kernel:jakeos/spikes/tsk/mux/userspace.rs · Pure user-space runtime prototype's kernel side (async entry only).
+- kernel:jakeos/spikes/tsk/mux/kernel.rs · Kernel-managed lightweight Task prototype.
+- runtime:spikes/tsk-mux-driver/ · B-014 population, hidden-blocking injection, stall measurement, per-model compensation.
+- roadmap:reports/spikes/TSK-016.md · The report.
 
 #### Acceptance criteria
-- [ ] The report describes the three prototypes running on H-001 and H-002 at the B-014 live-Task scale.
-- [ ] The report records how a page fault and a synchronous inherited driver path stall a worker in each prototype, and the compensation attempted.
-- [ ] The report names which model is viable for V0 and which costs remain.
+- [ ] `reports/spikes/TSK-016.md` describes the three prototypes running on `qemu-x86_64` and `hw-h002` at the B-014 live-Task scale, with memory per Task and creation wall time labelled unpublished prototype measurements.
+- [ ] The report records how a page fault and a synchronous retained driver path stall a worker in each model, how long other Tasks on that worker waited, and the compensation attempted and its effect.
+- [ ] The report names which model is viable for V0 and which costs remain for each.
 - [ ] The report does not freeze S-008.
 
 #### Verification
-- Report: answers kernel versus runtime split, hidden-blocking compensation, and B-014 viability per model; path `reports/spikes/TSK-016.md`.
+- Report: kernel versus runtime split, hidden-blocking compensation, and B-014 viability per model; path `reports/spikes/TSK-016.md`.
 - Bench: B-014 method on H-001 and H-002 for each prototype.
 
 #### Evidence
@@ -597,22 +623,29 @@ The mapping decision (TSK-009). Multiplexer implementation (TSK-019).
 - Baseline: §19
 - Explores: S-005
 
-Uniform cancellation is promised, but hardware makes some Operations uncancellable once DMA is issued. This spike prototypes the state machine against a real NVMe read on H-002 and answers whether cancel waits, fails, or is best-effort, and how partial results are reported. Feeds TSK-010. GPU and Wi-Fi come later.
+Uniform cancellation is promised (§19), but once an NVMe command's DMA has been issued the hardware finishes it whatever the caller wants. This spike answers Q-009 with real hardware: under `jakeos/spikes/tsk/committed/` behind `CONFIG_JAKEOS_SPIKES`, a state machine (`Submitted`, `Committed` once the command is in the device queue, `Completing`) is wrapped around a raw NVMe read on `hw-h002`'s NVMe drive using the retained block layer, and the driver `runtime/spikes/tsk-committed-driver/` issues a large read, cancels at controlled points (before queueing, after queueing, during DMA), and records what the caller can be told in each: cancel waits for the hardware and then reports the buffer as consumed; cancel fails with a typed reason; or cancel is best-effort and the completion later reports whether data landed. The partial-result shape (which bytes are valid) is prototyped for the best-effort path.
+
+The report `reports/spikes/TSK-017.md` names the recommended caller-visible contract and the rejected alternatives, and what GPU and network work (TSK-048) must reuse. TSK-003 decides from it; TSK-010 implements it. S-005 is not frozen.
 
 <!-- covers: GAP-0495, INV-0374 -->
 
 #### Out of scope
-Kernel implementation of the chosen machine (TSK-010). GPU and Wi-Fi matrix (TSK-048). GPUDispatch (TSK-049).
+Kernel implementation of the chosen machine (TSK-010). GPU and Wi-Fi matrix (TSK-048). GPUDispatch (TSK-049). The cancellation model decision (TSK-003).
+
+#### Deliverables
+- kernel:jakeos/spikes/tsk/committed/ · The state machine around a raw NVMe read through the retained block layer.
+- runtime:spikes/tsk-committed-driver/ · Cancel-at-controlled-point driver and partial-result prototype.
+- roadmap:reports/spikes/TSK-017.md · The report, including the manual procedure for the `hw-h002` run.
 
 #### Acceptance criteria
-- [ ] The report describes an NVMe Read issued on H-002 that cannot be aborted after DMA start.
-- [ ] The report states the caller-visible result of cancel in that state: wait, fail, or best-effort, and the partial-result shape.
-- [ ] The report names the rejected alternatives.
+- [ ] `reports/spikes/TSK-017.md` describes an NVMe read issued on `hw-h002` that cannot be aborted after DMA start, with the state machine and the controlled cancel points.
+- [ ] The report states the caller-visible result of cancel in each state (wait, fail, or best-effort) and the partial-result shape for the best-effort path.
+- [ ] The report names the recommended contract, the rejected alternatives with reasons, and what GPU and network work must reuse.
 - [ ] The report does not freeze S-005.
 
 #### Verification
-- Report: answers wait versus fail versus best-effort, partial-result encoding, and what GPU/network work must reuse; path `reports/spikes/TSK-017.md`.
-- Manual: NVMe Read cancel after DMA start on H-002, procedure recorded in the report.
+- Report: wait versus fail versus best-effort, partial-result encoding, and what GPU and network work must reuse; path `reports/spikes/TSK-017.md`.
+- Manual: NVMe read cancel after DMA start on `hw-h002`, procedure recorded in the report.
 
 #### Evidence
 - none
@@ -628,19 +661,31 @@ Kernel implementation of the chosen machine (TSK-010). GPU and Wi-Fi matrix (TSK
 - Benchmarks: B-009
 - Invariants: I-030
 
-Builds the transport chosen by TSK-007 and the inline-completion signalling chosen by TSK-005. `submit` enqueues an Operation and returns without waiting. Completions report results back to the submitting Task. Poll and wait are the native observation paths. This is the V0 exit that asynchronous submission and completion work.
+The transport D-0311 (TSK-007) chose and the inline-completion rule D-0307 (TSK-005) chose become the V0 submit and completion path (§18, §19). `jakeos/tsk/submit.rs` implements `operation.submit` through the ABI-002 entry layer: it validates the submission record (handle word, kind, buffer descriptor, deadline, priority), creates or reuses the Operation object (TSK-013), dispatches to the kind handler and returns without waiting; `jakeos/tsk/ring.rs` (if D-0311 chose rings) holds the per-Component submission and completion ring layout in a MemoryObject the runtime maps, with the memory-ordering rules the decision fixed; `jakeos/tsk/complete.rs` delivers a completion record (Operation identity per D-0015, typed result per D-0006, `completed_at`) to the submitting Task's transport and, when D-0307 allows, completes inline with the decided flag or return code. `operation.poll` (non-blocking read of pending completions) and `operation.wait` (the one blocking entry, awaiting at least one completion or a deadline) are the observation paths.
+
+The runtime side (`runtime/task/src/transport.rs` in `jakeos-runtime-task`) maps the ring and drives `poll` and `wait`; SDK-004's executor sits on it. B-009 no-op submit-to-completion is published from this path.
 
 <!-- covers: INV-0342, INV-0343, INV-1160, INV-0340 -->
 
 #### Out of scope
-Kind implementations (TSK-011, TSK-012). Task wake integration (TSK-020). Ring hardening (TSK-040).
+Kind implementations (TSK-011, TSK-012). Task wake integration (TSK-020). Ring hardening against a hostile Component (TSK-040). The Operation object (TSK-013).
+
+#### Deliverables
+- kernel:jakeos/tsk/submit.rs · `operation.submit`: record validation, object creation, kind dispatch, immediate return.
+- kernel:jakeos/tsk/ring.rs · Ring layout and ordering rules per D-0311 (present only if rings were chosen).
+- kernel:jakeos/tsk/complete.rs · Completion delivery, inline completion per D-0307, `operation.poll` and `operation.wait` handlers.
+- runtime:task/src/transport.rs · Runtime mapping of the transport and the `poll` and `wait` bindings in `jakeos-runtime-task`.
+- kernel:tools/jakeos/fuzz/tsk_submit/ · Fuzz target over submission records (`kernel:fuzz/tsk_submit`).
+- kernel:tools/testing/selftests/jakeos/tsk/submit_*.rs · Selftests: no-op submit returns immediately, malformed record refused with a typed error.
+- kernel:tools/testing/selftests/jakeos/tsk/complete_*.rs · Selftests: delivery to the submitter, inline rule, poll and wait semantics.
+- kernel:Documentation/jakeos/tsk/transport.md · The submission and completion record layouts and the ordering rules.
 
 #### Acceptance criteria
-- [ ] `submit` of a no-op Operation returns without waiting for completion on `qemu-x86_64` and `hw-h002`.
-- [ ] A completed Operation is delivered to the submitting Task through the chosen completion path.
-- [ ] Inline completion, if the decision allows it, is signalled exactly as the decision specifies.
-- [ ] Poll and wait observe completion without a blocking native syscall as the primary mode.
-- [ ] A B-009 publish run for no-op Operations exists on H-001 and H-002.
+- [ ] `operation.submit` of a no-op Operation returns without waiting for completion on `qemu-x86_64` and `hw-h002`, and a malformed submission record is refused with the D-0006 typed error and creates no Operation.
+- [ ] A completed Operation is delivered to the submitting Task through the D-0311 transport with identity, typed result and `completed_at`.
+- [ ] Inline completion, if D-0307 allows it, is signalled exactly as the decision specifies, and a selftest distinguishes it from a later completion.
+- [ ] `operation.poll` never blocks; `operation.wait` is the only blocking entry and returns on the first completion or its own deadline (I-030).
+- [ ] A B-009 publish run for no-op Operations exists on H-001 and H-002 from this path.
 
 #### Verification
 - Unit: `kernel:tests/tsk/submit_*` and `complete_*` on `qemu-x86_64` and `hw-h002`.
@@ -661,18 +706,26 @@ Kind implementations (TSK-011, TSK-012). Task wake integration (TSK-020). Ring h
 - Benchmarks: B-014
 - Invariants: I-017
 
-The kernel and runtime multiplex Tasks across a bounded set of execution contexts so native software can create the live-Task population recorded in B-014 without a kernel thread per Task (§20). This implements the model chosen by TSK-009, including hidden-blocking compensation. Wake-on-completion is a follow-on; V1 tuning is out of this task.
+Native software creates the B-014 live-Task population without a kernel thread per Task (§20): `jakeos/tsk/mux.rs` implements the model D-0315 (TSK-009) chose. For a UMCG-style model it is the kernel half: a bounded set of execution contexts (workers) per Component, a `TaskServer` object the runtime holds that receives typed notifications when a worker blocks in the kernel (page fault, synchronous retained driver path) or unblocks, and `worker.switch(task)` to run a Task on a worker; for a kernel-managed model it is the lightweight context allocator and scheduler hook; either way the compensation D-0315 named (activating a spare worker when one blocks) lives here. The runtime half is `runtime/task/src/scheduler.rs` in `jakeos-runtime-task`: the user-space Task queue and the switch loop, on which SDK-004's executor runs.
+
+Destroying the Component reclaims every worker and Task (the CMP-004 leak test covers it), and native software has no thread-create ABI: the only creation Operation is `task.spawn` into a TaskGroup (TSK-021).
 
 <!-- covers: INV-0379, INV-1156, INV-0377 -->
 
 #### Out of scope
-Completion wake (TSK-020). Userspace runtime crate (SDK-004). V1 affinity tuning (TSK-046).
+Completion wake (TSK-020). Userspace runtime executor (SDK-004). V1 affinity tuning (TSK-046). Task object (TSK-021).
+
+#### Deliverables
+- kernel:jakeos/tsk/mux.rs · The D-0315 kernel half: worker set, `TaskServer` notifications, `worker.switch`, blocked-worker compensation.
+- runtime:task/src/scheduler.rs · The user-space Task queue and switch loop in `jakeos-runtime-task`.
+- kernel:tools/testing/selftests/jakeos/tsk/mux_*.rs · Selftests: B-014 population without a thread per Task, blocked-worker compensation, reclamation on destroy, no thread-create ABI.
+- kernel:Documentation/jakeos/tsk/multiplexing.md · The implemented model, the notification protocol and the compensation rule.
 
 #### Acceptance criteria
-- [ ] Creating the B-014 live-Task population in one Component does not create one kernel thread per Task, on `qemu-x86_64` and `hw-h002`.
-- [ ] A worker that takes a page fault or a synchronous inherited driver path is compensated so other Tasks on that worker become runnable.
-- [ ] Destroying the Component reclaims every execution context and Task with no unbounded kernel-memory growth in the leak test.
-- [ ] Native software has no thread-create ABI.
+- [ ] Creating the B-014 live-Task population in one Component does not create one kernel execution context per Task, on `qemu-x86_64` and `hw-h002` (asserted by counting kernel contexts through the OBS provider).
+- [ ] A worker that takes a page fault or enters a synchronous retained driver path triggers the D-0315 compensation, and other Tasks queued on that worker become runnable within the bound the selftest records.
+- [ ] Destroying the Component reclaims every execution context and Task with no unbounded kernel-memory growth in the CMP-004 leak test.
+- [ ] Native software has no thread-create ABI: the ABI spec and the SDK expose `task.spawn` into a TaskGroup only (TSK-001's lint asserts it).
 
 #### Verification
 - Unit: `kernel:tests/tsk/mux_*` on `qemu-x86_64` and `hw-h002`.
@@ -693,18 +746,25 @@ Completion wake (TSK-020). Userspace runtime crate (SDK-004). V1 affinity tuning
 - Benchmarks: B-003, B-014
 - Invariants: I-030
 
-Completion integrates directly with Task scheduling (§18). The kernel records which Operation a suspended Task awaits and wakes that Task on completion so the native runtime binds to kernel Operations rather than reinventing async I/O (Principle 5). B-014's waiting Tasks and B-003's handoff measurement need this path.
+Completion integrates directly with Task scheduling (§18, Principle 5 of §67): the runtime never polls a socket to learn that work finished. `jakeos/tsk/wake.rs` records, when a Task suspends in `operation.wait` (or in the runtime's switch loop after registering interest), which Operation or wait set it awaits (the `awaited_operation` field on the Task object that OBS-005 reads), and on completion of that Operation makes the Task runnable: for a UMCG-style model by notifying the `TaskServer` and switching a worker to it, for a kernel-managed model by enqueuing its context. Native Task-to-Task handoff (A completes an Operation B awaits; B runs next on the same worker) is the B-003 measurement; the B-014 population blocking on Wait Operations all becoming runnable when their Waits signal is the scale test.
+
+The runtime binding is in `runtime/task/src/wake.rs` (the executor's `Waker` implementation over this path, per the SDK-010 contract).
 
 <!-- covers: INV-1296 -->
 
 #### Out of scope
-Inspect rendering of the awaited Operation (OBS-005). Debugger stacks (TSK-038). Direct Channel handoff (IPC-015).
+Inspect rendering of the awaited Operation (OBS-005). Debugger stacks (TSK-038). Direct Channel handoff on send (IPC-015). Multiplexing (TSK-019).
+
+#### Deliverables
+- kernel:jakeos/tsk/wake.rs · Awaited-Operation recording on the Task object and the completion-to-runnable path for the D-0315 model.
+- runtime:task/src/wake.rs · The `Waker` implementation over the kernel path in `jakeos-runtime-task`.
+- kernel:tools/testing/selftests/jakeos/tsk/wake_*.rs · Selftests: awaited-Operation visible, wake on completion without a thread per Task, B-014 population wake, handoff ordering.
 
 #### Acceptance criteria
-- [ ] A Task that submits an Operation and suspends is recorded as waiting on that Operation, visible to the OBS provider hook.
-- [ ] Completing the Operation makes the Task runnable on an execution context without a kernel thread per Task.
-- [ ] The B-014 population blocking on Wait Operations all become runnable when those Waits signal.
-- [ ] Native Task-to-Task handoff is measurable under B-003 on H-001 and H-002.
+- [ ] A Task that submits an Operation and suspends is recorded as waiting on that Operation, visible through the OBS-005 provider as the awaited Operation identity and type.
+- [ ] Completing the Operation makes the Task runnable on an execution context without a kernel thread per Task and without a second submit or poll syscall.
+- [ ] The B-014 population blocking on Wait Operations all become runnable when those Waits signal, on `qemu-x86_64` and `hw-h002`.
+- [ ] Native Task-to-Task handoff is measurable under B-003 on H-001 and H-002 from this path.
 
 #### Verification
 - Unit: `kernel:tests/tsk/wake_*` on `qemu-x86_64` and `hw-h002`.
@@ -725,19 +785,26 @@ Inspect rendering of the awaited Operation (OBS-005). Debugger stacks (TSK-038).
 - Benchmarks: B-002
 - Invariants: I-017
 
-V0 creates a native Task (§59, §69). Threads are not a native API. This object is what native software runs, implemented per TSK-008, owned by a TaskGroup. Spawn latency is published under B-002.
+A Task is what native software runs (§1, §20, §69); threads are not a native API. `jakeos/tsk/task.rs` implements the identity D-0314 (TSK-008) chose: for `Object<Task>` it registers the type id with ABI-005, embeds the header and holds state (`Runnable`, `Running`, `Waiting { awaited }`, `Terminated`), the owning TaskGroup, the intent override (SCH-010) and the awaited Operation (TSK-020); for a runtime identity it holds the compact identity record the kernel reads for tracing and cancellation. `task.spawn(taskgroup, entry, argument)` creates a Task in a TaskGroup the caller holds with the `Spawn` right and makes it runnable; `task.terminate` from inside ends it. There is no join, kill or detach: the TaskGroup (TSK-022) owns termination. Spawn latency is published under B-002 by BEN-001 using this path.
+
+The runtime side is `runtime/task/src/task.rs` in `jakeos-runtime-task`, the typed `Task` handle the SDK exposes.
 
 <!-- covers: INV-0047, INV-1314 -->
 
 #### Out of scope
-Multiplexing (TSK-019). Cancellation walk (TSK-022). Personality threads (TSK-043).
+Multiplexing (TSK-019). Cancellation walk (TSK-022). Personality threads (TSK-043). Identity decision (TSK-008).
+
+#### Deliverables
+- kernel:jakeos/tsk/task.rs · The Task identity per D-0314, `task.spawn`, `task.terminate`, state machine.
+- kernel:jakeos/cap/rights_decl.rs · The `Task` rights vocabulary if D-0314 made it a kernel object (extending CAP-011's file).
+- runtime:task/src/task.rs · The typed `Task` handle in `jakeos-runtime-task`.
+- kernel:tools/testing/selftests/jakeos/tsk/task_object_*.rs · Selftests: spawn into a TaskGroup, identity per D-0314, no thread ABI, reclamation.
 
 #### Acceptance criteria
-- [ ] A Component can spawn a Task into its TaskGroup and the Task becomes runnable, on `qemu-x86_64` and `hw-h002`.
-- [ ] The Task identity matches TSK-008 (kernel object or runtime identity with kernel visibility).
-- [ ] Native software has no thread-create, thread-join or thread-kill ABI.
-- [ ] Destroying the Task reclaims its kernel state with no leak in the V0 leak test.
-- [ ] A B-002 publish run exists on H-001 and H-002.
+- [ ] A Component spawns a Task into its TaskGroup through `task.spawn` and the Task becomes runnable, on `qemu-x86_64` and `hw-h002`; spawn into a TaskGroup without the `Spawn` right returns `Error::Rights`.
+- [ ] The Task's identity matches D-0314 (kernel object with a handle, or runtime identity with kernel visibility), and `os inspect task` names it accordingly.
+- [ ] Native software has no thread-create, thread-join or thread-kill ABI; the ABI spec contains only `task.spawn` and `task.terminate` and TSK-001's lint passes.
+- [ ] A terminated Task's kernel state is reclaimed with no leak in the CMP-004 leak test, and a B-002 publish run exists on H-001 and H-002.
 
 #### Verification
 - Unit: `kernel:tests/tsk/task_object_*` on `qemu-x86_64` and `hw-h002`.
@@ -756,17 +823,24 @@ Multiplexing (TSK-019). Cancellation walk (TSK-022). Personality threads (TSK-04
 - Baseline: §21, §59
 - Invariants: I-031
 
-V0 cancellation demo: cancelling a TaskGroup cancels owned Tasks, child groups and outstanding Operations; application cancel waits until every owned Task has terminated. A regression proves no Task survives group cancel or application exit. Operation `Cancelled` results are produced by the cancel-deadline path; the background-execution Capability exception is V0.5.
+Structured concurrency (§21): cancelling a TaskGroup cancels every Task it owns, every child TaskGroup and every outstanding Operation any of them owns, and the cancel completes only when every owned Task has terminated. `jakeos/tsk/taskgroup_cancel.rs` implements `taskgroup.cancel` for a holder with the `Cancel` right: it walks the hierarchy depth-first, calls TSK-010's `cancel` on each owned Operation (which completes them with `Error::Cancelled`), applies the D-0305 cancellation model to each Task (cooperative, forced or staged), and completes the caller's `taskgroup.cancel` Operation once the last owned Task is `Terminated`. Application exit is a cancel of the Component's root TaskGroup (CMP-004). A permanent regression proves no Task survives group cancel or application exit.
+
+The V0-G08 bound: a three-level tree of 1,000 Tasks with 1,000 outstanding Timer Operations is cancelled with every Task terminated within 50 ms of the call on `hw-h002` and within 200 ms on `qemu-x86_64`. The background-execution Capability exception is TSK-025 at V0.5.
 
 <!-- covers: INV-0389, INV-0390, INV-1165, INV-0393, INV-0392 -->
 
 #### Out of scope
-Background-execution Capability (TSK-025). Deadline inheritance (TSK-036). Operation result encoding (TSK-010).
+Background-execution Capability (TSK-025). Deadline inheritance (TSK-036). Operation result encoding (TSK-010). The cancellation model (TSK-003).
+
+#### Deliverables
+- kernel:jakeos/tsk/taskgroup_cancel.rs · `taskgroup.cancel`: hierarchy walk, Operation cancel fan-out, D-0305 per-Task model, completion after the last termination.
+- kernel:tools/testing/selftests/jakeos/tsk/taskgroup_cancel_*.rs · Selftests: fan-out to Tasks, children and Operations; completion ordering; the permanent no-survivor regression.
+- kernel:tools/testing/selftests/jakeos/tsk/taskgroup_cancel_tree.rs · The three-level 1,000-Task, 1,000-Timer scenario with the V0-G08 timing assertions.
 
 #### Acceptance criteria
-- [ ] Cancelling a TaskGroup cancels owned Tasks, child TaskGroups and their outstanding Operations on `qemu-x86_64` and `hw-h002`.
-- [ ] Application cancel completes only after every owned Task has terminated.
-- [ ] A regression in CI proves no Task remains runnable after group cancel and after application exit.
+- [ ] Cancelling a TaskGroup cancels owned Tasks, child TaskGroups and their outstanding Operations (each completing with `Error::Cancelled`) on `qemu-x86_64` and `hw-h002`.
+- [ ] `taskgroup.cancel` completes only after every owned Task is `Terminated`, and application exit cancels the Component's root TaskGroup the same way.
+- [ ] A permanent `pre-merge` regression proves no Task remains runnable after group cancel and after application exit.
 - [ ] A three-level tree of 1,000 Tasks with 1,000 outstanding Timer Operations is cancelled with every Task terminated within 50 ms of the cancel call on `hw-h002` and within 200 ms on `qemu-x86_64` (the V0-G08 bound).
 
 #### Verification
@@ -787,22 +861,28 @@ Background-execution Capability (TSK-025). Deadline inheritance (TSK-036). Opera
 - Baseline: §7, §21, §59
 - Invariants: I-017
 
-`Object<TaskGroup>` is a Capability-referenced kernel object (§7, §21). Application owns TaskGroups; TaskGroups own Tasks and child TaskGroups; each Component owns a TaskGroup. V0 creates a TaskGroup with hierarchical parent/child relationships.
+`Object<TaskGroup>` is the ownership unit of concurrency (§7, §21): an application owns TaskGroups, a TaskGroup owns Tasks and child TaskGroups, and each Component owns a root TaskGroup (CMP-014). `jakeos/tsk/taskgroup.rs` registers the type id with ABI-005, embeds the header, and holds the parent link, the child set, the owned Task set, the owned Operation set (TSK-013 Operations record their owner here), and the intent (SCH-010). Operations: `taskgroup.create(parent)` for a holder of the parent with the `Derive` right, returning a `Capability<TaskGroup>`; `taskgroup.inspect`; cancel is TSK-022. Destroying a TaskGroup with no children and no Tasks reclaims it; user space cannot mint a TaskGroup handle (a forged word returns `Error::Rights`). Its rights vocabulary is `Spawn`, `Derive`, `Cancel`, `Inspect`, `Admin`.
 
 <!-- covers: INV-0048, INV-0169, INV-0387, INV-0388, INV-1157 -->
 
 #### Out of scope
-Cancellation propagation (TSK-022). Component create wrapping this object (CMP). Inspect of the tree at V0.5 (OBS-018).
+Cancellation propagation (TSK-022). Component create wrapping this object (CMP-005). Inspect of the tree at V0.5 (OBS-018).
+
+#### Deliverables
+- kernel:jakeos/tsk/taskgroup.rs · `Object<TaskGroup>`: header, hierarchy links, owned sets, `create` and `inspect` handlers.
+- kernel:jakeos/cap/rights_decl.rs · The `TaskGroup` rights vocabulary (extending CAP-011's file).
+- kernel:jakeos/obs/providers/taskgroup.rs · The `taskgroup` inspect provider (parent, children, Tasks, Operations, intent).
+- kernel:tools/testing/selftests/jakeos/tsk/taskgroup_object_*.rs · Selftests: creation by Capability, hierarchy recording, reclamation, forgery refusal.
 
 #### Acceptance criteria
-- [ ] A Component's owned TaskGroup is a kernel object referenced by Capability, on `qemu-x86_64` and `hw-h002`.
-- [ ] A TaskGroup can own Tasks and child TaskGroups; parent/child relationships are recorded.
-- [ ] Destroying a TaskGroup without children and Tasks reclaims the object with no leak.
-- [ ] Userspace cannot mint a TaskGroup handle (forgery returns `Error::Rights` and allocates no handle).
+- [ ] A Component's root TaskGroup is a kernel object referenced by `Capability<TaskGroup>`, and `taskgroup.create` on it with the `Derive` right returns a child whose parent link is recorded, on `qemu-x86_64` and `hw-h002`.
+- [ ] A TaskGroup records its owned Tasks, child TaskGroups and owned Operations, visible through the `taskgroup` inspect provider.
+- [ ] Destroying a TaskGroup with no children and no Tasks reclaims the object with no leak in the CMP-004 leak test.
+- [ ] User space cannot mint a TaskGroup handle: a forged word returns `Error::Rights` and allocates no handle.
 
 #### Verification
 - Unit: `kernel:tests/tsk/taskgroup_object_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: Component-owned TaskGroup create/destroy in the V0 Component leak test.
+- Integration: Component-owned TaskGroup create and destroy in the V0 Component leak test.
 
 #### Evidence
 - none
@@ -816,19 +896,24 @@ Cancellation propagation (TSK-022). Component create wrapping this object (CMP).
 - Depends on: TSK-011, TSK-012, TSK-010, TSK-022, TSK-020, TSK-001
 - Baseline: §18, §19, §59
 
-Verifies the V0-G07 and V0-G08 exit criteria: Read, Write, Send, Receive, Timer and Wait complete; a deadline yields `DeadlineExceeded`; a cancelled Operation never delivers a successful result; cancelling a TaskGroup cancels owned work. The suite runs on H-001 and H-002 in CI.
-
-<!-- covers: INV-1160, INV-0362, INV-0364 -->
+V0-G07 and V0-G08 need one suite that a verifier can run and a gate can cite (§18, §19, §59). `tools/testing/selftests/jakeos/tsk/v0_acceptance_*.rs` is that suite, run by the BLD-006 guest agent as suite `tsk-v0-acceptance` on `qemu-x86_64` in `pre-merge` and on `hw-h002` nightly: Read, Write, Send, Receive, Timer and Wait each complete with a typed result; an Operation with a past deadline completes with `Error::DeadlineExceeded` and no successful result; a cancelled Operation completes with `Error::Cancelled` and no successful result; cancelling a TaskGroup leaves no runnable owned Task; and every case is written against the SDK wrappers (SDK-005) rather than raw entry so the suite also proves the SDK surface. Each case prints the roadmap task ID it verifies so BLD-006 attributes failures.
 
 #### Out of scope
-Connect, Accept, DeviceOperation (V0.5 kinds). Benchmark publication (TSK-002, BEN-001).
+Connect, Accept, DeviceOperation (V0.5 kinds). Benchmark publication (TSK-002, BEN-001). Kind implementations (TSK-011, TSK-012).
+
+#### Deliverables
+- kernel:tools/testing/selftests/jakeos/tsk/v0_acceptance_kinds.rs · The six-kind completion cases.
+- kernel:tools/testing/selftests/jakeos/tsk/v0_acceptance_deadline.rs · The deadline case.
+- kernel:tools/testing/selftests/jakeos/tsk/v0_acceptance_cancel.rs · The Operation cancel and TaskGroup cancel cases.
+- bld:image/suites/tsk-v0-acceptance.toml · The BLD-006 suite definition listing the binaries and their task IDs.
+- kernel:.github/workflows/pre-merge.yml · The `tsk-v0-acceptance` job on `qemu-x86_64`.
+- kernel:.github/workflows/nightly.yml · The same suite on `hw-h002`.
 
 #### Acceptance criteria
-- [ ] The suite passes Read, Write, Send, Receive, Timer and Wait completion on `qemu-x86_64` and `hw-h002`.
-- [ ] A deadline case in the suite yields `DeadlineExceeded` and no successful result.
-- [ ] A cancel case in the suite yields `Cancelled` and no successful result.
-- [ ] TaskGroup cancel in the suite leaves no runnable owned Task.
-- [ ] The suite is a required CI job on every merge to main.
+- [ ] The suite passes Read, Write, Send, Receive, Timer and Wait completion on `qemu-x86_64` and `hw-h002` through the SDK-005 wrappers.
+- [ ] The deadline case yields `Error::DeadlineExceeded` and no successful result; the cancel case yields `Error::Cancelled` and no successful result.
+- [ ] The TaskGroup cancel case leaves no runnable owned Task, asserted through the OBS-005 provider after the cancel completes.
+- [ ] The suite is a required `pre-merge` job on every merge to `main` of the kernel repository and runs nightly on `hw-h002`, with each case attributing failures to a task ID through BLD-006.
 
 #### Verification
 - Integration: `kernel:tests/tsk/v0_acceptance_*` on `qemu-x86_64` and `hw-h002`.
