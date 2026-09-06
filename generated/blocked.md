@@ -413,11 +413,11 @@
 | MEM-054 | Add conformance tests for every MemoryObject Layer 1 entry point | todo | MEM-050, MEM-053, MEM-051, MEM-011, MEM-017 | V4 |
 | MEM-055 | Write the retained-mm CVE triage runbook for MemoryObject in 1.x support | todo | MEM-005 | 1.0 |
 | MEM-056 | Study CXL-attached and disaggregated memory as MemoryObject backing providers | todo | MEM-017, MEM-046 | LATER |
-| SCH-001 | Benchmark ResourceDomain enforcement accuracy and per-domain overhead | todo | SCH-006, SCH-008, SCH-009, SCH-007, BEN-005 | V0 |
+| SCH-001 | Benchmark ResourceDomain enforcement accuracy and per-domain overhead | todo | SCH-006, SCH-008, SCH-009, SCH-007, BEN-005, BLD-082 | V0 |
 | SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | todo | CAP-010 | V0 |
 | SCH-003 | Decide ResourceDomain over cgroup v2 controllers versus native accounting | todo | SCH-001, SCH-012 | V0 |
 | SCH-004 | Decide how intents map onto Linux scheduler mechanisms versus a native class | todo | SCH-012 | V0 |
-| SCH-005 | Make Operation completion wake the awaiting Task and schedule TaskGroups directly | todo | TSK-020, TSK-018, CMP-005, SCH-011 | V0 |
+| SCH-005 | Make Operation completion wake the awaiting Task and schedule TaskGroups directly | todo | TSK-020, TSK-018, CMP-005, SCH-011, KRN-013 | V0 |
 | SCH-006 | Enforce ResourceDomain CPU policy: share, quota, allowed cores | todo | SCH-007 | V0 |
 | SCH-007 | Implement ResourceDomain as a Capability-referenced kernel Object | todo | SCH-002, CAP-005, ABI-005, KRN-013 | V0 |
 | SCH-008 | Enforce the ResourceDomain memory budget for member Components | todo | SCH-007 | V0 |
@@ -2183,8 +2183,8 @@
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 64 |
+| BLD-082 | 40 |
 | CAP-005 | 40 |
-| BLD-082 | 39 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -2219,6 +2219,7 @@
 | ABI-011 | 16 |
 | GFX-006 | 16 |
 | INS-027 | 16 |
+| KRN-013 | 16 |
 | MED-013 | 16 |
 | SDK-009 | 16 |
 | SEC-027 | 16 |
@@ -2227,7 +2228,6 @@
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
-| KRN-013 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |

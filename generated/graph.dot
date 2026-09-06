@@ -3461,6 +3461,7 @@ digraph roadmap {
   "BLD-082" -> "LNX-001";
   "BLD-082" -> "LNX-002";
   "BLD-082" -> "OBS-004";
+  "BLD-082" -> "SCH-001";
   "BLD-082" -> "SDK-001";
   "BLD-082" -> "SDK-002";
   "BLD-082" -> "SDK-003";
@@ -5748,6 +5749,7 @@ digraph roadmap {
   "KRN-013" -> "KRN-060";
   "KRN-013" -> "NET-002";
   "KRN-013" -> "NET-014";
+  "KRN-013" -> "SCH-005";
   "KRN-013" -> "SCH-007";
   "KRN-013" -> "SCH-012";
   "KRN-014" -> "BLD-007";

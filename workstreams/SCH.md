@@ -23,22 +23,30 @@ Kernel fork, retained Linux scheduler internals and the eBPF/sched_ext role (KRN
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SCH-006, SCH-008, SCH-009, SCH-007, BEN-007, BEN-005
+- Depends on: SCH-006, SCH-008, SCH-009, SCH-007, BEN-007, BEN-005, BLD-082
 - Baseline: §10, §23, §53, §54, §59
 - Benchmarks: B-011
 
-Create and tear down a ResourceDomain with CPU share and memory budget, attach a Component, and publish share accuracy under contention, budget-hit behaviour, creation cost and per-domain overhead on H-001 and H-002. V0 is publish-only (B-011). The report is the overhead input for SCH-003 and the measured half of V0-G09.
+ResourceDomains are only worth their cost if they enforce what they promise cheaply (§10, §23, §54). The harness `bench/harness/B-011/` (crate `jakeos-bench-resourcedomain`, scenario `resourcedomain-lifecycle`) creates a ResourceDomain with a CPU share and a memory budget through SCH-007, attaches a Component, runs a contention load against a sibling domain, then tears everything down, and records per BEN-064: p50 and p99 for create, attach and teardown; CPU-share error (requested versus measured share over the contention window); memory-budget hit and fail counts against the SCH-008 cap; and per-domain resident overhead. In the same session it records a Linux cgroup v2 create, attach and remove baseline on the personality side of the same kernel. Records go to the BEN-005 time series from the BLD-010 nightly job; reports go to `reports/benchmarks/B-011/h001.md` and `h002.md`.
+
+V0 is publish-only; the report is the overhead input SCH-003 cites and the measured half of V0-G09.
 
 <!-- covers: INV-1163 -->
 
 #### Out of scope
-Component creation latency (CMP, B-001). Isolation versus OCI (B-015 at V1). OBS inspect rendering.
+Component creation latency (CMP-001, B-001). Isolation versus OCI (B-015 at V1). OBS inspect rendering (SDK-007). Methodology (BEN-064).
+
+#### Deliverables
+- bench:harness/B-011/ · Crate `jakeos-bench-resourcedomain`: `resourcedomain-lifecycle` with the contention load and the `baseline-cgroup-v2` scenario.
+- bench:harness/B-011/README.md · The method as registered on B-011 and how share error is computed.
+- roadmap:reports/benchmarks/B-011/h001.md · The H-001 report (labelled QEMU).
+- roadmap:reports/benchmarks/B-011/h002.md · The H-002 report SCH-003 and V0-G09 cite.
 
 #### Acceptance criteria
-- [ ] Harness `bench:resourcedomain-lifecycle` exists and is invoked from the BEN runner on H-001 and H-002.
-- [ ] Each run publishes p50 and p99 for domain create, attach and teardown, plus CPU-share error and memory-budget hit/fail counts, into a B-011 report path.
-- [ ] The same session records a Linux cgroup v2 create/attach/remove baseline on the same machine.
-- [ ] Nightly CI on H-001 publishes B-011 results to the benchmark time-series export.
+- [ ] `resourcedomain-lifecycle` is invoked by the BLD-010 nightly job on `qemu-x86_64` and `hw-h002` and emits a BEN-005 record per run.
+- [ ] Each report carries p50 and p99 for domain create, attach and teardown, the CPU-share error over the contention window, and the memory-budget hit and fail counts, following the BEN-005 skeleton.
+- [ ] Each report records the Linux cgroup v2 create, attach and remove baseline from the same session on the same machine.
+- [ ] The V0 target kind of B-011 is `publish` and neither report asserts a threshold.
 
 #### Verification
 - Bench: B-011 on H-001 and H-002; target per register (V0 publish).
@@ -58,18 +66,22 @@ Component creation latency (CMP, B-001). Isolation versus OCI (B-015 at V1). OBS
 - Baseline: §8, §9.1, §23
 - Decision: D-0250
 
-Decide whether ResourceDomains nest with parent enforcement or form a flat set, and how a holder of `Capability<ResourceDomain>` delegates and attenuates budgets. The choice shapes the V0 kernel object and the later launcher and `os env` paths. Native software never configures cgroups to express nesting.
+Whether ResourceDomains nest with parent enforcement or form a flat set structured only by Capability attenuation shapes the V0 kernel object and the later launcher and `os env` paths (§8, §9.1, §23). D-0250's two options already carry the accounting, delegation and reclaim consequences; the executing agent adds what each needs from the D-0059 (CAP-010) rights encoding (how a budget right is attenuated on derive), states for each how a child budget exceeding its parent is rejected and whether parent counters include children, records the Decision as the structure plus the V0 kernel operations SCH-007 implements (`create`, `attach`, and `derive` if hierarchical), and leaves S-009 `prototyped`. Native software never configures cgroups to express nesting (D-0251 decides what is beneath).
 
 <!-- covers: INV-0435 -->
 
 #### Out of scope
-Implementation of derive (SCH-019). Capability rights encoding (CAP).
+Implementation of derive (SCH-019). Capability rights encoding (CAP-010). cgroup versus native accounting (SCH-003).
+
+#### Deliverables
+- roadmap:decisions/D-0250-decide-domain-hierarchy.md · Options with the CAP-010 attenuation consequences, the Decision as the structure and the V0 operations, rejected option, follow-ups.
+- roadmap:registers/surfaces.md · S-009 `Decided by` adds SCH-002, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] The decision file lists at least hierarchical nested budgets with parent enforcement, and a flat set whose only structure is Capability attenuation.
-- [ ] Each option states how a child budget that exceeds its parent is rejected, and whether parent counters include children.
-- [ ] The accepted option names the V0 kernel operations for create, attach and (if any) derive, without freezing S-009.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] D-0250 evaluates hierarchical nested budgets with parent enforcement, and a flat set whose only structure is Capability attenuation, with the CAP-010 rights consequences for each.
+- [ ] Each option states how a child budget that exceeds its parent is rejected and whether parent counters include children.
+- [ ] The accepted option names the V0 kernel operations for create, attach and (if any) derive that SCH-007 implements, and S-009 stays `prototyped` with SCH-002 under `Decided by`.
+- [ ] Review records ABI lead and CAP reviewer sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and capability reviewers record sign-off on the pull request.
@@ -89,18 +101,21 @@ Implementation of derive (SCH-019). Capability rights encoding (CAP).
 - Risks: R-007
 - Invariants: I-033, I-057
 
-Decide whether ResourceDomain is implemented over cgroup v2 controllers as a Phase C internal detail or as native kernel accounting, using the B-011 overhead report. Accounting remains a native kernel concept applied to every Component and Task (I-033). cgroup configuration is never a semantic step for native software (I-057).
+Beneath `Capability<ResourceDomain>` there is either the retained cgroup v2 hierarchy (cpu, memory, pids controllers driven by the kernel as a phase C implementation detail) or native accounting in the scheduler and allocator (§6, §23, §53). D-0251 chooses with SCH-001's B-011 report (per-domain create and teardown cost, share accuracy) and SCH-012's route measurements as evidence, states a migration path that keeps S-009 stable if the implementation changes later, and records that native software never opens cgroupfs (I-057) and that every Component and Task is in a domain at creation (I-033). Either way accounting is a native kernel concept; only the mechanism differs (§57 forbids rewriting cgroups without a measured benefit).
 
 <!-- covers: GAP-0531, INV-0424, INV-0994, INV-0436 -->
 
 #### Out of scope
-Making the native ABI hide cgroupfs (SCH-023). Personality cgroups (LNX).
+Making the native ABI hide cgroupfs (SCH-023). Personality cgroups (LNX). The B-011 harness (SCH-001).
+
+#### Deliverables
+- roadmap:decisions/D-0251-decide-domain-implementation.md · Options with B-011 and SCH-012 evidence, the Decision as the mechanism plus the S-009-stable migration path, rejected option, follow-ups.
 
 #### Acceptance criteria
-- [ ] The decision file lists at least cgroup v2 as an internal Phase C implementation, and native accounting with no cgroup controllers on the native path.
-- [ ] Each option cites the B-011 report for per-domain create/teardown cost and a migration path that keeps S-009 stable.
+- [ ] D-0251 evaluates cgroup v2 controllers as an internal phase C implementation and native accounting with no cgroup controllers on the native path, as named options.
+- [ ] Each option cites `reports/benchmarks/B-011/h002.md` for per-domain create and teardown cost and `reports/spikes/SCH-012.md`, and states a migration path that keeps S-009 stable.
 - [ ] The accepted option records that native software never opens cgroupfs and that every Component and Task is in a domain at creation.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] Review records kernel and ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: kernel and ABI leads record sign-off on the pull request citing the B-011 report.
@@ -120,18 +135,21 @@ Making the native ABI hide cgroupfs (SCH-023). Personality cgroups (LNX).
 - Risks: R-007
 - Invariants: I-032
 
-Decide how the native intent interface maps onto the retained Linux scheduler: EEVDF nice and latency-nice, SCHED_DEADLINE, SCHED_FIFO/RR, uclamp and cgroup cpu controllers, a sched_ext BPF scheduler, or a new native class. The native interface expresses intent, not a numeric priority (I-032). Phase A retains the Linux scheduler with intent layered on top. S-009 stays prototyped; nothing in Layer 1 freezes in V0.
+The native interface expresses intent (Interactive, Background, Throughput, LowLatency, Realtime, EnergyEfficient, Deadline), never a numeric priority (§22, I-032). D-0253 decides how intent reaches the retained Linux scheduler (§5.1, §6): mapped onto existing knobs (EEVDF nice and latency-nice, `SCHED_DEADLINE`, `SCHED_FIFO` and `SCHED_RR`, uclamp, the cgroup cpu controller), implemented as a `sched_ext` BPF scheduler, or added as a new native scheduling class. SCH-012's spike measured wakeup latency for audio-like and compositor-like loads on each route; each option is scored against those tables. Phase A retains the Linux scheduler with intent layered on top; S-009 stays prototyped and nothing in Layer 1 freezes.
 
 <!-- covers: INV-0419, INV-0398, INV-0124 -->
 
 #### Out of scope
-Implementing Interactive and Background (SCH-010). eBPF's native role (KRN-024).
+Implementing Interactive and Background (SCH-010). eBPF's native role (KRN-024). The spike (SCH-012).
+
+#### Deliverables
+- roadmap:decisions/D-0253-decide-intent-mapping.md · Options scored against the SCH-012 tables, the Decision as the route and the knob or class per intent, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] The decision file lists at least mapping onto retained Linux scheduler knobs, a sched_ext BPF scheduler, and a new native scheduling class.
-- [ ] Each option is scored against the SCH-012 wakeup measurements for audio-like and compositor-like workloads on H-001 and H-002.
-- [ ] The accepted option states that native crates expose intent classes, not nice, and that S-009 remains prototyped.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] D-0253 evaluates mapping onto retained Linux scheduler knobs, a `sched_ext` BPF scheduler, and a new native scheduling class, as named options.
+- [ ] Each option is scored against the SCH-012 wakeup measurements for audio-like and compositor-like workloads on H-001 and H-002, with `reports/spikes/SCH-012.md` cited.
+- [ ] The accepted option states that native crates expose intent classes and never nice, and that S-009 stays `prototyped`.
+- [ ] Review records scheduler and ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: scheduler and ABI leads record sign-off on the pull request citing `reports/spikes/SCH-012.md`.
@@ -145,22 +163,33 @@ Implementing Interactive and Background (SCH-010). eBPF's native role (KRN-024).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: TSK-020, TSK-018, CMP-005, SCH-011
+- Depends on: TSK-020, TSK-018, CMP-005, SCH-011, KRN-013
 - Baseline: §18, §20, §53, §59
 - Risks: R-004
 
-Completion of an Operation makes the awaiting Task runnable with no polling and no extra wakeup syscall (§18). A new Component's TaskGroup is enqueued directly, with no process bootstrap (§53 isolation step 5). Both sit on the V0 demo path and feed B-001, B-003 and B-009. The Linux syscall path stays intact (R-004).
+Two scheduler hooks make the native model real (§18, §20, §53): completion wakes the awaiting Task with no polling and no extra syscall, and a new Component's TaskGroup is enqueued directly with no process bootstrap. `jakeos/sch/wake.rs` is the scheduler side of TSK-020: it takes the runnable transition for a Task's execution context and, for the direct-switch case SCH-011 prototyped and IPC-015 calls, hands the current CPU to the woken context through a `sched_jakeos_direct_switch` hook in `kernel/sched/core.c` (one line, guarded by `CONFIG_JAKEOS`, calling into `jakeos/hooks.c`). `jakeos/sch/enqueue.rs` is the scheduler side of CMP-005's `start`: the initial Task's context is enqueued on a runqueue with its domain's intent (SCH-010) and share (SCH-006), never through `fork` or `exec`. The retained Linux scheduler is unchanged for Linux tasks (R-004); C-001 must pass equal to the unforked kernel.
+
+`unsafe` is confined to the wake and enqueue files; OBS's scheduling-delay trace events (`wakeup_to_run`) are emitted here.
 
 <!-- covers: INV-0358, INV-1000 -->
 
 #### Out of scope
-Operation ring layout (TSK). Component object creation (CMP). Channel wakeup (IPC).
+Operation ring layout (TSK-018). Component object creation (CMP-005). Channel-side handoff decision (IPC-015). Intent classes (SCH-010).
+
+#### Deliverables
+- kernel:jakeos/sch/sch.rs · Crate root for the SCH area.
+- kernel:jakeos/sch/wake.rs · Runnable transition on completion and the direct-switch path.
+- kernel:jakeos/sch/enqueue.rs · Direct enqueue of a new Component's initial Task with domain intent and share.
+- kernel:kernel/sched/core.c · The `sched_jakeos_direct_switch` and enqueue hook lines behind `CONFIG_JAKEOS`.
+- kernel:jakeos/hooks.c · The hook targets (extending KRN-013's file).
+- kernel:tools/testing/selftests/jakeos/sch/wake_on_complete_*.rs · Selftests: no poll or second syscall on wake, direct switch taken when eligible.
+- kernel:tools/testing/selftests/jakeos/sch/direct_enqueue_*.rs · Selftests: Component start enqueues without `fork` or `exec`.
 
 #### Acceptance criteria
-- [ ] Completing a Wait Operation on H-001 makes the awaiting Task runnable without a second submit or poll syscall, shown by `os trace` on the V0 demo.
-- [ ] Creating a Component enqueues its TaskGroup on a runqueue without `fork` or `exec` on the native path.
-- [ ] L0 corpus pass rate on the fork equals the unforked kernel of the same version on H-001 and H-002.
-- [ ] No `unsafe` outside the scheduler wake and enqueue files named in the pull request.
+- [ ] Completing a Wait Operation on `qemu-x86_64` makes the awaiting Task runnable without a second submit or poll syscall, shown by the `wakeup_to_run` events in `os trace` on the V0 demo.
+- [ ] Creating a Component enqueues its initial Task's context on a runqueue with its domain's intent and share, and the native path calls no `fork` or `exec` (the BLD-006 syscall trace confirms it).
+- [ ] C-001 pass rate on the fork equals the unforked kernel of the same version on H-001 and H-002 with these hooks compiled in.
+- [ ] No `unsafe` outside `jakeos/sch/wake.rs` and `jakeos/sch/enqueue.rs` in the SCH area (BLD-011 inventory).
 
 #### Verification
 - Unit: `kernel:tests/sch/wake_on_complete_*` and `kernel:tests/sch/direct_enqueue_*` on `qemu-x86_64` and `hw-h002`.
@@ -180,18 +209,27 @@ Operation ring layout (TSK). Component object creation (CMP). Channel wakeup (IP
 - Depends on: SCH-007
 - Baseline: §11, §22, §23, §59
 
-Implement share, quota and allowed-core set on the Phase C wrapper. The intent field is filled by SCH-010. Internals may later change under SCH-003 without changing `Capability<ResourceDomain>`. This is the CPU half of V0-G09.
+The CPU half of V0-G09 (§11, §22, §23): a ResourceDomain carries a CPU share (relative weight against siblings), a quota (an absolute ceiling per period, with zero meaning members do not run) and an allowed-core set. `jakeos/sch/cpu.rs` implements `resourcedomain.set_cpu(policy)` for a holder with the `Admin` right and applies it through the mechanism D-0251 (SCH-003) chose (the cgroup cpu and cpuset controllers of the domain's group, or the native accounting) so that the retained scheduler enforces it; the intent field is SCH-010's. Nothing in the native path opens cgroupfs; the domain's inspect provider (SCH-007) shows the policy and the measured share.
+
+The V0-G09 test: a domain with a 25 percent share under a busy-loop sibling for 10 seconds measures within 5 percent of the requested share on `qemu-x86_64` and `hw-h002`.
 
 <!-- covers: INV-0238, INV-0426 -->
 
 #### Out of scope
-Intent classes (SCH-010). Frequency hints (SCH-038). Hybrid core selection (SCH-036).
+Intent classes (SCH-010). Frequency hints (SCH-038). Hybrid core selection (SCH-036). The mechanism decision (SCH-003).
+
+#### Deliverables
+- kernel:jakeos/sch/cpu.rs · `resourcedomain.set_cpu`: share, quota and allowed-core set applied through the D-0251 mechanism.
+- kernel:jakeos/obs/providers/resourcedomain.rs · CPU policy and measured share fields (extending SCH-007's provider).
+- kernel:tools/testing/selftests/jakeos/sch/cpu_share_*.rs · The 25 percent share contention test.
+- kernel:tools/testing/selftests/jakeos/sch/cpu_quota_*.rs · Zero quota and raised quota tests.
+- kernel:tools/testing/selftests/jakeos/sch/cpuset_*.rs · Allowed-core set tests with `/proc` cross-check from the personality side.
 
 #### Acceptance criteria
-- [ ] A ResourceDomain with a 25 percent CPU share, under a busy-loop contention load for 10 seconds on H-001 and H-002, has measured share within 5 percent of the requested share.
-- [ ] A quota of zero runnable time leaves member Tasks unscheduled until the quota is raised.
-- [ ] A Task whose domain's allowed-core set is `{0}` never runs on another CPU, verified by `os inspect` and `/proc` traces on the personality side of the same kernel.
-- [ ] Setting share, quota or allowed cores through the native ABI does not require opening cgroupfs from the test Component.
+- [ ] A ResourceDomain with a 25 percent CPU share, under a busy-loop contention load in a sibling domain for 10 seconds on `qemu-x86_64` and `hw-h002`, has a measured share within 5 percent of the requested share.
+- [ ] A quota of zero leaves member Tasks unscheduled until the quota is raised, after which they run.
+- [ ] A Task whose domain's allowed-core set is `{0}` never runs on another CPU, verified by `os inspect resource` and by `/proc/<pid>/status` from the personality side of the same kernel.
+- [ ] Setting share, quota or allowed cores through `resourcedomain.set_cpu` opens no cgroupfs path from the test Component (the BLD-006 syscall trace confirms it).
 
 #### Verification
 - Unit: `kernel:tests/sch/cpu_share_*`, `cpu_quota_*`, `cpuset_*` on `qemu-x86_64` and `hw-h002`.
@@ -211,19 +249,31 @@ Intent classes (SCH-010). Frequency hints (SCH-038). Hybrid core selection (SCH-
 - Baseline: §7, §10, §19, §23, §53, §59, §69
 - Invariants: I-033
 
-Create ResourceDomain in one kernel operation (§53 isolation step 1), referenced only by `Capability<ResourceDomain>`. Every Component is a member. Every Operation is attributed to its domain for CPU, I/O and memory accounting. Per-domain counters and scheduling-delay tracepoints feed V0 `os inspect resource` and `os trace`. Native callers never hold a cgroup path.
+`Object<ResourceDomain>` is the accounting and policy container every Component and Task lives in (§7, §10, §23, §69). `jakeos/sch/domain.rs` registers the type id with ABI-005, embeds the header and holds the structure D-0250 (SCH-002) chose (parent link and child set if hierarchical), the member Component set, the CPU policy (SCH-006), the memory budget (SCH-008), the object limits (SCH-009), the intent (SCH-010) and the counters: CPU time, I/O bytes and count, memory charged, plus scheduling-delay tracepoints; `resourcedomain.create` (one Operation, §53 isolation step 1) returns `Capability<ResourceDomain>` with rights `Attach`, `Derive` (if hierarchical), `Admin`, `Inspect`; `resourcedomain.attach` is what CMP-005's `start` calls. Every Operation submitted by a member Task is attributed to its domain (a hook in TSK-018's submit path). Beneath it is the mechanism D-0251 will choose; until then `domain.rs` wraps a cgroup v2 group per domain as the phase A default, behind an internal trait so SCH-003's outcome swaps the implementation without touching the ABI. Native callers never hold a cgroup path.
+
+The `resourcedomain` inspect provider prints members, budgets, consumption and counters for `os inspect resource` (V0-G10).
 
 <!-- covers: INV-0053, INV-0425, INV-0996, INV-0227, INV-0368, INV-1319 -->
 
 #### Out of scope
-CPU/memory/object enforcement (sibling SCH tasks). OBS CLI rendering. CMP spawn.
+CPU, memory and object enforcement (SCH-006, SCH-008, SCH-009). OBS CLI rendering (SDK-007). Component spawn (CMP-005). The mechanism decision (SCH-003).
+
+#### Deliverables
+- kernel:jakeos/sch/domain.rs · `Object<ResourceDomain>`: header, D-0250 structure, member set, policies, counters, `create` and `attach` handlers, the internal mechanism trait with the cgroup v2 default.
+- kernel:jakeos/sch/account.rs · Per-Operation attribution hook called from TSK-018's submit path.
+- kernel:jakeos/cap/rights_decl.rs · The `ResourceDomain` rights vocabulary (extending CAP-011's file).
+- kernel:jakeos/obs/providers/resourcedomain.rs · The `resource` inspect provider.
+- kernel:tools/jakeos/fuzz/sch_domain_create/ · Fuzz target over create and attach arguments (`kernel:fuzz/sch_domain_create`).
+- kernel:tools/testing/selftests/jakeos/sch/domain_create_*.rs · Selftests: single-Operation create, no cgroupfs open, wrong-type refusal.
+- kernel:tools/testing/selftests/jakeos/sch/domain_attach_*.rs · Selftests: membership visible in inspect.
+- kernel:tools/testing/selftests/jakeos/sch/domain_account_*.rs · Selftests: counters increment per member Operation; create and destroy loop.
+- kernel:Documentation/jakeos/sch/resourcedomain.md · The object, its Operations, counters and the mechanism trait.
 
 #### Acceptance criteria
-- [ ] `create_resource_domain` returns `Capability<ResourceDomain>` and is a single kernel operation, with no cgroupfs open in the calling Component.
-- [ ] A Component created into that domain appears as a member in `os inspect resource` on H-001 and H-002.
-- [ ] An Operation submitted by a member Task increments that domain's CPU and I/O counters, visible through the inspect provider.
-- [ ] Destroying the last member and the domain reclaims the kernel object, verified by a create/destroy loop with no unbounded growth in domain handles.
-- [ ] Wrong-type use of the handle returns `Error::Rights` and allocates no handle.
+- [ ] `resourcedomain.create` returns `Capability<ResourceDomain>` in one kernel Operation with no cgroupfs open in the calling Component, on `qemu-x86_64` and `hw-h002`.
+- [ ] A Component created into that domain appears as a member in `os inspect resource`, and an Operation submitted by a member Task increments the domain's CPU and I/O counters visible through the provider.
+- [ ] Destroying the last member and then the domain reclaims the kernel object; a create and destroy loop shows no unbounded growth in domain handles or kernel memory.
+- [ ] Wrong-type use of the handle returns `Error::Rights` and allocates no handle, and `kernel:fuzz/sch_domain_create` runs one hour nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/sch/domain_create_*`, `domain_attach_*`, `domain_account_*` on `qemu-x86_64` and `hw-h002`.
@@ -242,18 +292,23 @@ CPU/memory/object enforcement (sibling SCH tasks). OBS CLI rendering. CMP spawn.
 - Depends on: SCH-007
 - Baseline: §11, §16, §23, §59
 
-Enforce the domain memory budget. Charging covers anonymous memory and MemoryObjects owned by the domain. Over-budget allocation returns a typed exhaustion error until SCH-016 refines reclaim versus kill. MEM owns the page-charging hook; SCH owns the cap. This is the memory half of V0-G09.
+The memory half of V0-G09 (§11, §16, §23): a domain's memory budget caps the sum of anonymous memory and MemoryObjects charged to it. `jakeos/sch/memory.rs` implements `resourcedomain.set_memory(budget)` for an `Admin` holder and the charge and uncharge entry points MEM-004 calls on MemoryObject create, grow and destroy and the anonymous-memory hook calls on page allocation for member Components; an allocation that would exceed the budget returns the typed exhaustion error (`Error::Exhausted` per D-0006) and charges nothing. Transferring a MemoryObject between domains (MEM-010) uncharges the sender's domain and charges the receiver's with no double count. SCH-016 later decides reclaim versus kill; V0 is fail-closed. Applied through the D-0251 mechanism (the memory controller of the domain's group, or native accounting) behind the SCH-007 trait.
 
 <!-- covers: INV-0237, INV-0427 -->
 
 #### Out of scope
 MemoryObject charging implementation (MEM-004). Exhaustion policy (SCH-016). GPU memory (SCH-031).
 
+#### Deliverables
+- kernel:jakeos/sch/memory.rs · `resourcedomain.set_memory`, `charge`, `uncharge`, the fail-closed exhaustion path, transfer re-charging.
+- kernel:jakeos/obs/providers/resourcedomain.rs · Budget and charged-bytes fields (extending SCH-007's provider).
+- kernel:tools/testing/selftests/jakeos/sch/memory_budget_*.rs · Selftests: 64 MiB budget exceeded, charged bytes after failure, transfer re-charge, no memory cgroup file opened.
+
 #### Acceptance criteria
-- [ ] A Component in a ResourceDomain with a 64 MiB budget that maps anonymous memory plus MemoryObjects past that cap receives a typed exhaustion error on H-001 and H-002.
-- [ ] After the failed map, `os inspect resource` shows charged bytes at or below 64 MiB.
-- [ ] Transferring a MemoryObject out of the domain drops the charge on the sender and raises it on the receiver, with no double count.
-- [ ] The test Component never opens a memory cgroup file.
+- [ ] A Component in a ResourceDomain with a 64 MiB budget that maps anonymous memory plus MemoryObjects past that cap receives `Error::Exhausted` on the allocation that would exceed it, on `qemu-x86_64` and `hw-h002`.
+- [ ] After the failed allocation, `os inspect resource` shows charged bytes at or below 64 MiB.
+- [ ] Transferring a MemoryObject out of the domain drops the charge on the sender's domain and raises it on the receiver's, with no double count during the transfer.
+- [ ] The test Component never opens a memory cgroup file (the BLD-006 syscall trace confirms it).
 
 #### Verification
 - Unit: `kernel:tests/sch/memory_budget_*` on `qemu-x86_64` and `hw-h002`.
@@ -274,18 +329,31 @@ MemoryObject charging implementation (MEM-004). Exhaustion policy (SCH-016). GPU
 - Risks: R-074
 - Threats: T-016
 
-Bound handles, Tasks, Channels, MemoryObjects and outstanding Operations per ResourceDomain so a runaway Component cannot exhaust kernel memory (R-074, T-016). Limits are a pids-controller equivalent behind the native object. Personality forks count against the enclosing domain. Needed for the V0 100,000-Component leak test and the V0 fault demo to stay meaningful.
+A runaway Component must not exhaust kernel memory by creating objects (R-074, T-016, §23, §51). `jakeos/sch/objects.rs` gives every ResourceDomain five limits set by `resourcedomain.set_limits`: live handles (table entries), Tasks, Channels, MemoryObjects and outstanding Operations; each object-creating kernel path (CAP-005 insert, TSK-021 spawn, IPC-010 create, MEM-005 create, TSK-018 submit) calls `objects::reserve(domain, kind)` first and returns `Error::Exhausted` without allocating when the limit is reached, and `release` on destroy. Linux-personality processes in a domain count against the same Task and handle limits (a `fork` bomb hits the Task limit exactly as a native spawn loop does), which is the pids-controller equivalent behind the native object. The provider shows live counts and limits per kind.
+
+The CMP-004 100,000-Component leak test runs with these limits enabled and still reclaims everything.
 
 <!-- covers: EXTRA-002 -->
 
 #### Out of scope
-Budget exhaustion policy beyond fail-closed (SCH-016). Capability table internals (CAP).
+Budget exhaustion policy beyond fail-closed (SCH-016). Capability table internals (CAP-005). Memory budget (SCH-008).
+
+#### Deliverables
+- kernel:jakeos/sch/objects.rs · The five limits, `reserve` and `release`, `resourcedomain.set_limits`.
+- kernel:jakeos/cap/table.rs · `reserve` call on insert (extending CAP-005's file).
+- kernel:jakeos/tsk/task.rs · `reserve` call on spawn (extending TSK-021's file).
+- kernel:jakeos/ipc/channel.rs · `reserve` call on create (extending IPC-010's file).
+- kernel:jakeos/mem/object.rs · `reserve` call on create (extending MEM-005's file).
+- kernel:jakeos/tsk/submit.rs · `reserve` call on submit (extending TSK-018's file).
+- kernel:jakeos/obs/providers/resourcedomain.rs · Live counts and limits per kind (extending SCH-007's provider).
+- kernel:tools/jakeos/fuzz/sch_object_limits/ · Fuzz target over limit boundaries (`kernel:fuzz/sch_object_limits`).
+- kernel:tools/testing/selftests/jakeos/sch/object_limits_*.rs · Selftests: each kind at its limit, personality fork bomb, leak test with limits on.
 
 #### Acceptance criteria
-- [ ] Creating one more handle, Task, Channel, MemoryObject or outstanding Operation than the domain's limit returns a typed exhaustion error and allocates no object.
-- [ ] `os inspect resource` reports live counts and limits for each of those five kinds.
-- [ ] A Linux-personality `fork` bomb inside a domain hits the same Task/handle limit as a native spawn loop.
-- [ ] The V0 Component create/destroy leak test (CMP) still reclaims kernel memory with these limits enabled.
+- [ ] Creating one more handle, Task, Channel, MemoryObject or outstanding Operation than the domain's limit returns `Error::Exhausted` and allocates no object, for each of the five kinds on `qemu-x86_64` and `hw-h002`.
+- [ ] `os inspect resource` reports live counts and limits for each of the five kinds.
+- [ ] A Linux-personality `fork` bomb inside a domain hits the same Task and handle limits as a native spawn loop, with no kernel-memory growth beyond the limits.
+- [ ] The CMP-004 create and destroy leak test still reclaims kernel memory with these limits enabled.
 
 #### Verification
 - Unit: `kernel:tests/sch/object_limits_*` on `qemu-x86_64` and `hw-h002`.
@@ -306,17 +374,26 @@ Budget exhaustion policy beyond fail-closed (SCH-016). Capability table internal
 - Risks: R-004
 - Invariants: I-032
 
-Add a typed intent field to domain CPU policy and a per-Task override. V0 carries Interactive and Background only. Wire both through the mapping chosen by SCH-004 onto the retained Linux scheduler so intent influences scheduling class and placement (§22). Kernel core owns scheduling as a native responsibility. Native crates expose the class names, not nice.
+Intent is how native software tells the scheduler what it is (§22, §69, I-032): a typed `Intent` enum on the domain's CPU policy (`resourcedomain.set_intent`) and a per-Task override (`task.set_intent`, the override wins when set), carrying `Interactive` and `Background` at V0 (the other five classes arrive with SCH-025, SCH-026 and SCH-042). `jakeos/sch/intent.rs` maps each class onto the route D-0253 (SCH-004) chose (for the knob route, for example: Interactive raises latency-nice and uclamp.min, Background lowers nice and sets the cgroup cpu weight low; for the `sched_ext` or new-class routes, the corresponding class attribute) and applies it at enqueue (SCH-005) and on change. The native SDK and ABI headers expose the class names only; no `nice`, `SCHED_FIFO` or cpuset entry exists on the native surface (ABI-018 and TSK-001 lint it).
+
+Under mixed load an Interactive Task runs while a Background busy loop is runnable, visible as `wakeup_to_run` in `os trace` (V0-G10); C-001 is unchanged with intent enabled (R-004).
 
 <!-- covers: INV-0399, INV-0400, INV-0401, INV-0413, INV-0114, INV-1322 -->
 
 #### Out of scope
-Throughput, LowLatency (SCH-026). Deadline (SCH-025). Realtime (SCH-042).
+Throughput and LowLatency (SCH-026). Deadline (SCH-025). Realtime (SCH-042). The route decision (SCH-004).
+
+#### Deliverables
+- kernel:jakeos/sch/intent.rs · The `Intent` enum, `resourcedomain.set_intent`, `task.set_intent`, the D-0253 mapping applied at enqueue and on change.
+- kernel:include/uapi/linux/jakeos/intent.h · The class names as the only user-visible scheduling vocabulary (generated from ABI-017 once it exists).
+- kernel:jakeos/obs/providers/resourcedomain.rs · The intent field (extending SCH-007's provider).
+- kernel:tools/testing/selftests/jakeos/sch/intent_interactive_*.rs · Mixed-load selftest: Interactive selected over a Background busy loop.
+- kernel:tools/testing/selftests/jakeos/sch/intent_background_*.rs · Override-wins and Background-yields selftests.
 
 #### Acceptance criteria
-- [ ] A ResourceDomain and a member Task can each declare Interactive or Background; the Task override wins when set.
-- [ ] Under mixed load on H-001 and H-002, an Interactive Task is selected to run while a Background busy-loop is runnable, shown by `os trace` wakeup-to-run.
-- [ ] The native SDK and ABI headers contain no nice, `SCHED_FIFO` or cpuset entry points.
+- [ ] A ResourceDomain and a member Task can each declare `Interactive` or `Background`; the Task override wins when set, visible in `os inspect resource` and `os inspect task`.
+- [ ] Under mixed load on `qemu-x86_64` and `hw-h002`, an Interactive Task is selected to run while a Background busy loop is runnable, shown by `wakeup_to_run` in `os trace`.
+- [ ] The native SDK and ABI headers contain no `nice`, `SCHED_FIFO` or cpuset entry points; ABI-018 and TSK-001 pass on them.
 - [ ] C-001 pass rate is unchanged on H-001 and H-002 with intent enabled.
 
 #### Verification
@@ -338,21 +415,28 @@ Throughput, LowLatency (SCH-026). Deadline (SCH-025). Realtime (SCH-042).
 - Baseline: §15, §53, §54
 - Explores: S-012
 
-Prototype a direct switch to the receiver on Channel send (the §53 scheduler-aware handoff) on the small-message fast path. Publish round-trip latency and fairness against plain wakeup so the V0 IPC table (B-003, B-004, publish-only) has a native-handoff column. Freeze nothing.
+The §53 scheduler-aware handoff (send switches directly to the receiver) needs its own measurement on the real Channel and Operation objects, not only IPC-017's prototypes (§15, §54). Under `jakeos/spikes/sch/handoff/` behind `CONFIG_JAKEOS_SPIKES`, a direct-switch hook is added to the IPC-010 Send path (the shape SCH-005 will make permanent) and the driver `runtime/spikes/sch-handoff-driver/` runs Channel ping-pong with direct switch and with plain wakeup, same core and cross core, on `qemu-x86_64` and `hw-h002`, plus a fairness scenario: an Interactive sender floods a Channel whose receiver is Background, and the spike measures whether the receiver and an unrelated Background Task still get their share. Linux `futex` and pipe ping-pong are the baselines in the same session.
+
+The report `reports/spikes/SCH-011.md` gives p50 and p99 for both modes beside the baselines, cites B-003 and B-004 without a superiority claim, records the fairness cost, and says which wake path SCH-005 should take. Nothing is frozen.
 
 <!-- covers: INV-0296 -->
 
 #### Out of scope
-Selecting the fast path (IPC-003). Intent inheritance (SCH-017).
+Selecting the fast path (IPC-003). Intent inheritance (SCH-017). The permanent hook (SCH-005).
+
+#### Deliverables
+- kernel:jakeos/spikes/sch/handoff/ · The direct-switch hook prototype on the Send path.
+- runtime:spikes/sch-handoff-driver/ · Ping-pong in both modes, the fairness flood, the two baselines.
+- roadmap:reports/spikes/SCH-011.md · The report with the mode tables, fairness result and the recommendation for SCH-005.
 
 #### Acceptance criteria
-- [ ] A prototype on H-001 and H-002 runs Channel ping-pong with direct switch and with plain wakeup, same core and cross core.
-- [ ] The report publishes p50 and p99 for both modes beside Linux futex and pipe ping-pong, citing B-003 and B-004, with no superiority claim.
-- [ ] The report records fairness: a Background receiver still runs when an Interactive sender floods the Channel.
-- [ ] `reports/spikes/SCH-011.md` exists with the spike skeleton headings.
+- [ ] The prototype on `qemu-x86_64` and `hw-h002` runs Channel ping-pong with direct switch and with plain wakeup, same core and cross core.
+- [ ] `reports/spikes/SCH-011.md` publishes p50 and p99 for both modes beside Linux `futex` and pipe ping-pong from the same session, citing B-003 and B-004, labelled unpublished prototype measurements with no superiority claim.
+- [ ] The report records fairness: whether a Background receiver and an unrelated Background Task still run when an Interactive sender floods the Channel.
+- [ ] `reports/spikes/SCH-011.md` exists with the spike skeleton headings and names the wake path for SCH-005 to take.
 
 #### Verification
-- Report: Does direct switch beat plain wakeup on B-003/B-004 same-core and cross-core on H-001 and H-002? What is the fairness cost under a Background flood? Which wake path does SCH-005 take?
+- Report: does direct switch beat plain wakeup on B-003 and B-004 same-core and cross-core on H-001 and H-002; what is the fairness cost under a Background flood; which wake path does SCH-005 take?
 - Bench: B-003 and B-004 on H-001 and H-002; target per register (V0 publish).
 
 #### Evidence
@@ -368,21 +452,30 @@ Selecting the fast path (IPC-003). Intent inheritance (SCH-017).
 - Baseline: §5.1, §22, §54
 - Explores: S-009
 
-Measure whether EEVDF plus uclamp plus cgroup cpu controllers can express the seven intent classes, then prototype intent as (a) an extension of the existing class, (b) a sched_ext BPF scheduler, and (c) a new scheduler class. Publish wakeup latency for audio-like and compositor-like workloads on H-001 and H-002. This spike feeds SCH-004. Freeze nothing.
+SCH-004 must choose the intent route from measurements, not from scheduler folklore (§5.1, §22, §54). Under `jakeos/spikes/sch/intent/` behind `CONFIG_JAKEOS_SPIKES`, three routes are prototyped far enough to express the seven intent classes: `knobs.rs` (EEVDF nice and latency-nice, uclamp, cgroup cpu controller, `SCHED_DEADLINE` for the Deadline class), `ext.rs` (a `sched_ext` BPF scheduler with an intent-aware pick), and `class.rs` (a minimal new scheduling class beside EEVDF). The driver `runtime/spikes/sch-intent-driver/` runs, for each route on `qemu-x86_64` and `hw-h002`, an audio-like load (a periodic 1 ms wakeup with a tight deadline), a compositor-like load (a vblank-period wakeup with rendering work), and a Background flood, and records wakeup p50, p99 and p99.9 for each of Interactive, Background, Throughput, LowLatency, Realtime, EnergyEfficient and Deadline-shaped loads, per BEN-064.
+
+The report `reports/spikes/SCH-012.md` includes the audio-like and compositor-like traces per route and states, with evidence, whether EEVDF plus uclamp plus cgroup controllers can distinguish the seven classes without a new class. Nothing is frozen.
 
 <!-- covers: GAP-0530, INV-0420 -->
 
 #### Out of scope
-The mapping decision (SCH-004). Audio server (AUD). Compositor (GFX).
+The mapping decision (SCH-004). Audio server (AUD). Compositor (GFX). The eBPF role decision (KRN-024).
+
+#### Deliverables
+- kernel:jakeos/spikes/sch/intent/knobs.rs · Existing-knob route prototype.
+- kernel:jakeos/spikes/sch/intent/ext.rs · `sched_ext` route prototype.
+- kernel:jakeos/spikes/sch/intent/class.rs · New-class route prototype.
+- runtime:spikes/sch-intent-driver/ · The audio-like, compositor-like and flood loads with per-class wakeup measurement.
+- roadmap:reports/spikes/SCH-012.md · Per-route, per-class tables, the traces, and the distinguishability finding.
 
 #### Acceptance criteria
-- [ ] The report contains wakeup p50/p99/p99.9 for Interactive, Background, Throughput, LowLatency, Realtime, EnergyEfficient and Deadline-shaped loads on each of the three routes, on H-001 and H-002.
+- [ ] `reports/spikes/SCH-012.md` contains wakeup p50, p99 and p99.9 for Interactive, Background, Throughput, LowLatency, Realtime, EnergyEfficient and Deadline-shaped loads on each of the three routes, on `qemu-x86_64` and `hw-h002`, labelled unpublished prototype measurements.
 - [ ] Audio-like (periodic wakeup) and compositor-like (vblank-period wakeup) traces are included for each route.
 - [ ] The report states whether EEVDF plus uclamp plus cgroup controllers can distinguish the seven classes without a new class, with evidence from those traces.
-- [ ] `reports/spikes/SCH-012.md` exists with the spike skeleton headings.
+- [ ] `reports/spikes/SCH-012.md` exists with the spike skeleton headings and does not freeze S-009.
 
 #### Verification
-- Report: Can EEVDF+uclamp+cgroup express all seven classes? What wakeup latency does each of (a) class extension, (b) sched_ext, (c) new class deliver for audio-like and compositor-like loads on H-001 and H-002? Which route does SCH-004 accept?
+- Report: can EEVDF plus uclamp plus cgroup express all seven classes; what wakeup latency does each of the knob, `sched_ext` and new-class routes deliver for audio-like and compositor-like loads on H-001 and H-002; which route does SCH-004 accept?
 - Bench: B-010 on H-001 and H-002; target per register (V0 publish).
 
 #### Evidence
