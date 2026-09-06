@@ -69,7 +69,7 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5662 |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5720 |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5611 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5477 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5329 |
@@ -177,10 +177,10 @@ Makespan (size-weight estimates): 97.
 | --- | --- |
 | BEN-005 | 63 |
 | CAP-005 | 40 |
+| BLD-082 | 33 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
-| BLD-082 | 31 |
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |

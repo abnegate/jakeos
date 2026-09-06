@@ -15,9 +15,9 @@
 | BLD-007 | Run the hardware regression matrix on QEMU and the Reference machine | todo | blocked | M | BLD-012, KRN-014, LAB-003 |
 | BLD-008 | Document and CI-exercise the kernel debug workflow | todo | blocked | S | BLD-012 |
 | BLD-009 | Provide a hermetic one-command Linux-host build and source mirror | todo | blocked | M | BLD-002, BLD-004, BLD-005, BLD-013 |
-| BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | blocked | M | BLD-012, BLD-006, BEN-005, BEN-007, BLD-001 |
+| BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | blocked | M | BLD-012, BLD-006, BEN-005, BEN-007, BLD-001, BLD-082 |
 | BLD-011 | Enforce license, provenance, unsafe and static-analysis merge gates | todo | blocked | M | BLD-003, BLD-004, GOV-003, GOV-002, ABI-003, ABI-018, BEN-004 |
-| BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | blocked | L | BLD-003, BLD-009, KRN-017 |
+| BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | blocked | L | BLD-003, BLD-009, KRN-017, BLD-082 |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | ready | L | BLD-004, KRN-004, KRN-010 |
 | BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | todo | ready | S | BLD-005, BLD-002 |
 | BLD-082 | Create the jakeos-platform monorepo with the workspace skeleton, licences and CI | todo | blocked | M | BLD-081, BLD-005, BLD-002, GOV-001, GOV-003 |

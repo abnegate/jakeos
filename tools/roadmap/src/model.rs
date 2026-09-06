@@ -156,6 +156,14 @@ pub struct Criterion {
 }
 
 #[derive(Clone, Debug)]
+pub struct DeliverableLine {
+    pub alias: String,
+    pub path: String,
+    pub text: String,
+    pub line: usize,
+}
+
+#[derive(Clone, Debug)]
 pub struct VerificationLine {
     pub kind: String,
     pub text: String,
@@ -180,6 +188,7 @@ pub struct Task {
     pub covers: Vec<String>,
     pub out_of_scope: Vec<String>,
     pub criteria: Vec<Criterion>,
+    pub deliverables: Vec<DeliverableLine>,
     pub verification: Vec<VerificationLine>,
     pub evidence: Vec<EvidenceLine>,
     pub present_sections: Vec<String>,

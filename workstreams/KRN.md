@@ -237,22 +237,33 @@ Which tree is cut (KRN-005). When full merges stop (KRN-042). Divergence policy 
 - Baseline: §6, §56.4
 - Risks: R-069
 
-Every fork patch is tagged upstream-candidate, fork-only or temporary, with rebase status, and exposed as a generated report. A CI gate fails a milestone roll-up on any unclassified patch so controlled divergence is actually controlled. SBOM coverage of the same gate is BLD.
+Controlled divergence (§6) is only controlled if every fork commit is classified. Each commit on the kernel `main` that is not an upstream commit carries a trailer `Jakeos-Divergence: upstream-candidate | fork-only | temporary` and, for `upstream-candidate`, a `Jakeos-Upstream-Series: <lore link or "pending">` trailer; `temporary` commits carry `Jakeos-Remove-When: <condition>` (a condition, never a date). The ledger tool `tools/jakeos/divergence/` in the kernel tree (a Rust binary, `jakeos-divergence`) walks `git log upstream/master..main`, reads the trailers, and generates `Documentation/jakeos/divergence-ledger.md` and `divergence-ledger.json` grouping series by classification with their upstream status.
+
+The `pre-merge` job `divergence` runs `jakeos-divergence check <base>..HEAD` and fails when any non-upstream commit in the range lacks a valid classification trailer; the `post-merge` job regenerates the ledger and commits it through the queue. The classification vocabulary is the one KRN-009's divergence policy defines; SBOM coverage of the same commits is BLD's (BLD-055, BLD-068).
 
 <!-- covers: GAP-0049, GAP-0055 -->
 
 #### Out of scope
-SBOM generation and the SBOM CI gate (BLD-055, BLD-068). Upstream trial-merge bot (KRN-023).
+SBOM generation and the SBOM CI gate (BLD-055, BLD-068). Upstream trial-merge bot (KRN-023). The policy text itself (KRN-009).
+
+#### Deliverables
+- kernel:tools/jakeos/divergence/ · Crate `jakeos-divergence`: `check` (fails unclassified commits in a range) and `render` (writes the ledger).
+- kernel:Documentation/jakeos/divergence-ledger.md · Generated ledger: series by classification, upstream link or `pending`, removal condition for temporary patches.
+- kernel:Documentation/jakeos/divergence-ledger.json · Machine-readable form of the ledger for the roadmap dashboard and KRN-023.
+- kernel:Documentation/jakeos/commit-trailers.md · The trailer grammar: `Jakeos-Divergence`, `Jakeos-Upstream-Series`, `Jakeos-Remove-When`.
+- kernel:.github/workflows/pre-merge.yml · The `divergence` job running `jakeos-divergence check`.
+- kernel:.github/workflows/post-merge.yml · The ledger regeneration step.
+- kernel:tools/jakeos/divergence/tests/ledger_*.rs · Tests: unclassified commit fails, each classification renders, temporary without a removal condition fails.
 
 #### Acceptance criteria
-- [ ] Every commit in the kernel fork tree carries a classification of upstream-candidate, fork-only or temporary, visible in a generated report in the kernel repository.
-- [ ] A pre-merge CI check on `qemu-x86_64` fails when any commit in the range is unclassified.
-- [ ] The report records rebase status per classified series.
+- [ ] Every non-upstream commit on `main` carries a `Jakeos-Divergence` trailer with one of `upstream-candidate`, `fork-only`, `temporary`, and `Documentation/jakeos/divergence-ledger.md` lists every series under its classification with its upstream link or `pending`.
+- [ ] The `pre-merge` `divergence` job on `qemu-x86_64` fails when any commit in `<base>..HEAD` that is not an upstream commit lacks a valid trailer, or when a `temporary` commit lacks `Jakeos-Remove-When`.
+- [ ] The ledger records rebase status per classified series: `clean`, `conflicted` or `dropped` against the latest merged upstream tag.
 
 #### Verification
-- Unit: `kernel:tools/divergence/ledger_*` on `qemu-x86_64`.
-- Integration: a deliberately unclassified commit is rejected by the pre-merge check.
-- Review: kernel architecture lead confirms the three classification labels match the divergence policy.
+- Unit: `kernel:tests/divergence/ledger_*` on `qemu-x86_64`.
+- Integration: a deliberately unclassified commit is rejected by the `pre-merge` check.
+- Review: kernel architecture lead confirms the three classification labels match the KRN-009 policy.
 
 #### Evidence
 - none
@@ -267,17 +278,24 @@ SBOM generation and the SBOM CI gate (BLD-055, BLD-068). Upstream trial-merge bo
 - Baseline: §6, §56.4, §57
 - Invariants: I-053
 
-The document defines what upstream tracking each of phases A through E requires and the measurable triggers for entering Phase D. It records that upstream mergeability is never preserved at the expense of the architecture (§57).
+§6 describes the fork's evolution as phases: A (native subsystem behind a config symbol, upstream merged every tag), B (native primitives take over paths the Linux personality still uses through the retained syscall table), C (wrappers over Linux internals replaced by native implementations where measured), D (selective adaptation of upstream instead of whole-tag merges, entered only on measured triggers), E (the native model is the kernel's primary model). This document, `Documentation/jakeos/divergence-policy.md`, defines each phase's upstream-tracking obligation (which follows D-0168: merge every tag through phase C), the divergence classifications KRN-008 enforces, the review rule for a `fork-only` patch that touches a shared file, and the measurable triggers for entering phase D: the merge-conflict rate per tag from the KRN-008 ledger, the count of `fork-only` series touching shared files, and the retained-mechanism inventory review outcome, each as a threshold recorded in the document and evaluated by KRN-042 against live bot data.
+
+It states I-053 plainly: upstream mergeability never outranks the architecture (§57), and a native-model change is not softened to ease a merge. It also states what the personality keeps at each phase (the Linux syscall table stays through phase C at least) so LNX-003 and KRN-050 decide against a written baseline.
 
 <!-- covers: INV-0156, INV-1100, GAP-0050, INV-1127 -->
 
 #### Out of scope
-Applying the Phase D triggers to live bot data (KRN-042). 1.0 phase requirement (KRN-050).
+Applying the phase D triggers to live bot data (KRN-042). 1.0 phase requirement (KRN-050). Trailer grammar and ledger tool (KRN-008).
+
+#### Deliverables
+- kernel:Documentation/jakeos/divergence-policy.md · Phases A to E, tracking obligation per phase, classification vocabulary, shared-file review rule, phase D entry triggers with their thresholds, and I-053.
+- kernel:README.md · A section pointing at the policy and the current phase.
 
 #### Acceptance criteria
-- [ ] The document names phases A through E, the upstream-tracking obligation of each, and measurable Phase D entry triggers.
-- [ ] The document states I-053: upstream mergeability does not outrank the architecture.
-- [ ] The document is committed under `docs/` in the kernel repository and linked from the fork README.
+- [ ] `Documentation/jakeos/divergence-policy.md` names phases A through E, the upstream-tracking obligation of each, and the measurable phase D entry triggers (conflict rate per tag, `fork-only` series touching shared files, inventory review outcome) with the threshold for each.
+- [ ] The document states I-053: upstream mergeability does not outrank the architecture, and names the review rule for a `fork-only` patch to a shared file.
+- [ ] The document defines the `Jakeos-Divergence` vocabulary KRN-008 enforces and states which phase the fork is in, updated by the KRN lead when a phase gate is passed.
+- [ ] The document is committed under `Documentation/jakeos/` in the kernel repository and linked from `kernel:README.md`.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request.
@@ -325,21 +343,34 @@ QEMU boot harness (BLD-012). OVMF boot of the image (BOOT-001). Native subsystem
 - Depends on: KRN-010, KRN-017
 - Baseline: §5.1, §55, §62
 
-A base defconfig plus fragments for QEMU minimal, QEMU desktop and the reference AMD desktop, with a CI check that each still builds and boots. Uncontrolled CONFIG drift is the usual way a fork silently drops hardware it previously supported. Fragments keep every facility the retained-mechanism inventory names enabled.
+Uncontrolled `CONFIG` drift is the usual way a fork silently drops hardware it once supported (§55). The fork keeps one base configuration, `arch/x86/configs/jakeos_defconfig`, and Kconfig fragments under `kernel/configs/jakeos/`: `qemu-minimal.config` (the BLD-012 default cell), `qemu-desktop.config` (virtio-gpu, sound, TPM, for later V0.5 cells) and `h002.config` (the reference AMD desktop: its NVMe controller, Ethernet, RDNA 3-class GPU, IOMMU, TPM 2.0 and USB controllers). `scripts/jakeos/build-config.sh <fragment>` merges base plus fragment with `scripts/kconfig/merge_config.sh` and the CI jobs build and boot each result.
+
+The fragments keep every facility the retained-mechanism inventory names enabled: `scripts/jakeos/check-retained-kconfig.py` reads the `kconfig` field of each `Documentation/jakeos/retained.toml` entry (KRN-017) and fails when a merged configuration disables one of those symbols. The QEMU fragments build and boot on `qemu-x86_64` in `pre-merge`; the H-002 fragment builds in `pre-merge` and boots on `hw-h002` in `nightly`.
 
 <!-- covers: GAP-0097 -->
 
 #### Out of scope
-Intel and AMD laptop fragments (KRN-049). Hardening overlay (KRN-034). QEMU matrix axes (BLD-012).
+Intel and AMD laptop fragments (KRN-049). Hardening overlay (KRN-034). QEMU matrix axes (BLD-012). Inventory contents (KRN-017).
+
+#### Deliverables
+- kernel:arch/x86/configs/jakeos_defconfig · The base configuration.
+- kernel:kernel/configs/jakeos/qemu-minimal.config · Fragment for the BLD-012 default cell.
+- kernel:kernel/configs/jakeos/qemu-desktop.config · Fragment for QEMU cells with virtio-gpu, sound and TPM.
+- kernel:kernel/configs/jakeos/h002.config · Fragment for the reference AMD desktop.
+- kernel:scripts/jakeos/build-config.sh · Merges base plus fragment and writes `.config`.
+- kernel:scripts/jakeos/check-retained-kconfig.py · Fails when a merged configuration disables a `kconfig` symbol named in `retained.toml`.
+- kernel:.github/workflows/pre-merge.yml · `config-qemu-minimal`, `config-qemu-desktop` (build and boot) and `config-h002` (build) jobs.
+- kernel:.github/workflows/nightly.yml · `config-h002-boot` on `hw-h002`.
+- kernel:Documentation/jakeos/configs.md · Which fragment serves which H-ID, how to add one, and the retained-symbol rule.
 
 #### Acceptance criteria
-- [ ] Checked-in fragments exist for QEMU minimal, QEMU desktop and H-002.
-- [ ] CI on `qemu-x86_64` builds and boots the QEMU fragments; CI on `hw-h002` builds and boots the H-002 fragment.
-- [ ] A kconfig check fails if a fragment disables a symbol listed under `kconfig` in `Documentation/jakeos/retained.toml` (KRN-017).
+- [ ] `kernel/configs/jakeos/` contains `qemu-minimal.config`, `qemu-desktop.config` and `h002.config`, and `scripts/jakeos/build-config.sh <fragment>` produces a `.config` from `jakeos_defconfig` plus the fragment.
+- [ ] `pre-merge` on `qemu-x86_64` builds and boots the two QEMU fragments and builds the H-002 fragment; `nightly` boots the H-002 fragment on `hw-h002` to the BLD-012 boot-complete marker.
+- [ ] `check-retained-kconfig.py` fails a merged configuration that disables any symbol listed under `kconfig` in `Documentation/jakeos/retained.toml`, and runs in `pre-merge` for every fragment.
 
 #### Verification
 - Integration: build-and-boot job per fragment on the named matrix entries.
-- Unit: kconfig required-symbol check against the inventory file.
+- Unit: `kernel:tests/config/retained_symbols_*`: a fragment that disables a retained symbol fails the check; the shipped fragments pass.
 
 #### Evidence
 - none
@@ -353,21 +384,32 @@ Intel and AMD laptop fragments (KRN-049). Hardening overlay (KRN-034). QEMU matr
 - Depends on: KRN-013, BLD-013, BLD-012
 - Baseline: §50, §51
 
-Capability derivation, Channel semantics and Operation lifecycles need in-kernel unit coverage under QEMU on every pre-merge build before integration tests are viable. This task wires KUnit plus Rust doctests and unit tests into the native subsystem's pre-merge job. CAP, IPC and TSK own the test bodies for their primitives.
+Capability derivation, Channel semantics and Operation lifecycles need in-kernel unit coverage on every pre-merge build, before integration tests through the guest agent are practical. This task wires KUnit and Rust kernel unit tests for the native subsystem into the `pre-merge` tier: the fragment `kernel/configs/jakeos/kunit.config` enables `CONFIG_KUNIT` and every `CONFIG_JAKEOS_*_KUNIT_TEST` symbol, `tools/testing/kunit/kunit.py run --kunitconfig kernel/configs/jakeos/kunit.config --arch x86_64` runs them under the BLD-012 default cell, and Rust doctests and `#[kunit_tests]` modules in `jakeos/` are included through the Rust-for-Linux KUnit integration. The job `native-unit` in `pre-merge` fails the change on any failing case.
+
+The harness path is documented so CAP, IPC and TSK add tests without touching the runner: a test module lives at `kernel:jakeos/<area>/tests/<name>.rs`, is registered by `obj-$(CONFIG_JAKEOS_<AREA>_KUNIT_TEST) += tests/<name>.o` in the area's Makefile, and its Kconfig symbol defaults to `y` under `CONFIG_JAKEOS_KUNIT_ALL`. Tests exercise native entry points only; a test that calls the Linux syscall path as if it were a native API fails review.
 
 <!-- covers: GAP-0113 -->
 
 #### Out of scope
-Capability test content (CAP). Channel test content (IPC). Operation lifecycle test content (TSK). Sanitizer profiles (BLD-026).
+Capability test content (CAP). Channel test content (IPC). Operation lifecycle test content (TSK). Sanitizer profiles (BLD-026). Guest-agent integration tests (BLD-006).
+
+#### Deliverables
+- kernel:kernel/configs/jakeos/kunit.config · Fragment enabling KUnit and every native-subsystem test symbol.
+- kernel:jakeos/Kconfig.tests · `CONFIG_JAKEOS_KUNIT_ALL` and the per-area `CONFIG_JAKEOS_<AREA>_KUNIT_TEST` symbols.
+- kernel:scripts/jakeos/run-kunit.sh · Wrapper over `kunit.py run` with the fragment, the QEMU default cell and JUnit output for CI.
+- kernel:.github/workflows/pre-merge.yml · The `native-unit` job.
+- kernel:Documentation/jakeos/testing.md · How to add a KUnit or Rust unit test for a native area, the file and Kconfig conventions, and the rule against testing through the Linux syscall path.
+- kernel:jakeos/tests/smoke.rs · One always-present test proving the harness runs.
 
 #### Acceptance criteria
-- [ ] Pre-merge CI on `qemu-x86_64` runs KUnit and Rust kernel unit tests for the native subsystem and fails the change on a failing test.
-- [ ] A documented harness path exists so CAP, IPC and TSK can add tests without editing the runner.
-- [ ] Tests do not run against the Linux syscall path as a native API.
+- [ ] `pre-merge` on `qemu-x86_64` runs `scripts/jakeos/run-kunit.sh`, executes every `CONFIG_JAKEOS_*_KUNIT_TEST` module and Rust doctest under `jakeos/`, and fails the change on any failing case.
+- [ ] `Documentation/jakeos/testing.md` documents the `jakeos/<area>/tests/<name>.rs` path, the Makefile and Kconfig lines, and a new test added by following it runs without any change to `run-kunit.sh` or the workflow.
+- [ ] The documentation states, and review enforces, that native unit tests call native entry points and never the Linux syscall table as a native API.
 
 #### Verification
-- Integration: a deliberately failing native KUnit case is rejected by pre-merge CI on `qemu-x86_64`.
-- Review: BLD CI owner confirms the job is in the pre-merge tier.
+- Integration: a deliberately failing native KUnit case is rejected by `pre-merge` on `qemu-x86_64`.
+- Unit: `kernel:tests/kunit/harness_*`: the smoke test appears in the JUnit output of a `run-kunit.sh` run.
+- Review: BLD CI owner confirms the `native-unit` job is in the `pre-merge` tier.
 
 #### Evidence
 - none
@@ -382,21 +424,34 @@ Capability test content (CAP). Channel test content (IPC). Operation lifecycle t
 - Baseline: §5.1, §6
 - Invariants: I-010
 
-Phase A mechanics: a self-contained native subsystem with its own Kconfig and minimal hooks into core files, such that a build with it disabled is functionally the chosen upstream. ABI, CAP, CMP, IPC, MEM, TSK and SCH land their kernel code in this tree. The Linux syscall path remains for the Linux personality.
+Phase A mechanics (§6): the native platform is one self-contained subsystem in the kernel tree, enabled by a single Kconfig symbol, with minimal hooks into core files, such that a build with the symbol disabled is functionally the chosen upstream tag. This task creates the layout every kernel-side task lands into and documents it in `Documentation/jakeos/layout.md`: the subsystem directory `jakeos/` with `Kconfig`, `Makefile`, one directory per area (`abi/`, `cap/`, `cmp/`, `ipc/`, `mem/`, `tsk/`, `sch/`, `obs/`), each holding a Rust crate root `<area>.rs` and a `tests/` directory (KRN-012); Rust abstractions over Linux internals that the areas share in `rust/kernel/jakeos/`; user-visible ABI headers in `include/uapi/linux/jakeos/` (generated by ABI-017's source of truth once it exists); kselftests in `tools/testing/selftests/jakeos/<area>/`; documentation in `Documentation/jakeos/`. The roadmap's `kernel:tests/<area>/<name>_*` paths denote `tools/testing/selftests/jakeos/<area>/<name>_*`, and this document says so.
+
+Hooks into core files are the minimum: an `#ifdef CONFIG_JAKEOS` call-out in the syscall entry path for the ABI-002 entry layer, a hook in `exit`/`fork` for Component lifetime (CMP-005), and a hook in the scheduler for ResourceDomain accounting (SCH); each hook is a one-line call to a function in `jakeos/hooks.c` so upstream merges touch as little as possible. New files in the subsystem are Rust unless an accepted decision exempts a named file (KRN-015, KRN-016). The Linux syscall path remains for the Linux personality.
 
 <!-- covers: INV-0140, INV-0138, INV-0015 -->
 
 #### Out of scope
-Entry layer dispatch (ABI-002). Capability table (CAP-005). Component wrapper (CMP-005).
+Entry layer dispatch (ABI-002). Capability table (CAP-005). Component wrapper (CMP-005). Kernel unit-test wiring (KRN-012). Platform monorepo layout (BLD-081).
+
+#### Deliverables
+- kernel:jakeos/Kconfig · `CONFIG_JAKEOS` (default `n`) and the per-area symbols beneath it.
+- kernel:jakeos/Makefile · `obj-$(CONFIG_JAKEOS)` entries for every area crate root.
+- kernel:jakeos/hooks.c · The single C file holding the core-file hook targets, each a one-line call site in core Linux files.
+- kernel:jakeos/<area>/<area>.rs · Empty crate roots for `abi`, `cap`, `cmp`, `ipc`, `mem`, `tsk`, `sch`, `obs`, each compiling under `CONFIG_JAKEOS`.
+- kernel:rust/kernel/jakeos/mod.rs · Shared Rust abstractions module in the `kernel` crate, behind `CONFIG_JAKEOS`.
+- kernel:include/uapi/linux/jakeos/README · Placeholder stating that headers here are generated from the ABI-017 specification.
+- kernel:tools/testing/selftests/jakeos/Makefile · Selftest scaffolding with one directory per area.
+- kernel:Documentation/jakeos/layout.md · The layout above, the `kernel:tests/<area>/…` path rule, the hook rule, and the Rust-first rule pointer.
 
 #### Acceptance criteria
-- [ ] The native subsystem has its own directory, Kconfig and Makefile, enabled by a single config symbol.
-- [ ] A build with that symbol disabled matches upstream behavior on the C-001 subset that KRN-014 runs.
-- [ ] New files in the subsystem are Rust unless an accepted Decision exempts a named file.
+- [ ] `jakeos/` exists with `Kconfig`, `Makefile`, `hooks.c`, the eight area directories with compiling crate roots, and `CONFIG_JAKEOS` is the single symbol that enables all of it, default `n`.
+- [ ] A build with `CONFIG_JAKEOS=n` boots on `qemu-x86_64` and passes the KRN-014 retained-subsystem kselftest subset and the C-001 L0 subset that KRN-014 runs, matching the upstream tag's behaviour.
+- [ ] Every hook into a core Linux file is a one-line call to a function in `jakeos/hooks.c` guarded by `CONFIG_JAKEOS`, and `Documentation/jakeos/layout.md` lists each hook with the core file it touches.
+- [ ] New files under `jakeos/` are Rust; the KRN-016 lint passes on the initial tree, and `layout.md` states the `kernel:tests/<area>/<name>_*` to `tools/testing/selftests/jakeos/<area>/` rule.
 
 #### Verification
-- Integration: disabled-symbol build boots on `qemu-x86_64` and the retained-subsystem kselftest subset is green.
-- Unit: Kconfig symbol presence and default-off on the QEMU minimal fragment.
+- Integration: `CONFIG_JAKEOS=n` build boots on `qemu-x86_64` and the retained-subsystem kselftest subset is green; `CONFIG_JAKEOS=y` build boots and the KRN-012 smoke test runs.
+- Unit: `kernel:tests/layout/hooks_*`: every `CONFIG_JAKEOS` reference outside `jakeos/` and `rust/kernel/jakeos/` is a hook listed in `layout.md`.
 
 #### Evidence
 - none
@@ -413,21 +468,32 @@ Entry layer dispatch (ABI-002). Capability table (CAP-005). Component wrapper (C
 - Risks: R-004, R-013
 - Invariants: I-054, I-098
 
-kselftest subsets for DRM, PCI, USB, NVMe/block, networking and ACPI, plus a MODULE_LICENSE and GPL-only-symbol test, run on QEMU and the reference desktop. Any regression blocks a native feature from merging. BLD hosts the runners; KRN owns the matrix contents and the inventory mapping.
+The fork preserves Linux's hardware layer (§2, §55), so a native change that breaks a retained subsystem must be caught before it lands. This task generates the regression matrix from the inventory: `tools/jakeos/retained-matrix/` (crate `jakeos-retained-matrix`) reads every `Documentation/jakeos/retained.toml` entry whose `kselftest` field names a subset (DRM, PCI, USB, NVMe/block, networking, ACPI at minimum) and writes `Documentation/jakeos/retained-matrix.toml`: one row per subset with the H-IDs it runs on (`H-001` for everything, `H-002` for everything with real hardware behind it) and the `retained.toml` entry it guards. It also adds `tools/testing/selftests/jakeos/licence/module_licence_test.sh`, which walks every built module, asserts `MODULE_LICENSE` is present and GPL-compatible, and asserts that no `EXPORT_SYMBOL_GPL` symbol is used by a module whose licence is not GPL-compatible.
+
+BLD hosts the runners (BLD-007, BLD-012); this task owns the contents and the gate rule: the `pre-merge` job `retained-matrix` runs the matrix on `qemu-x86_64` and fails the change on any red subset, and the `nightly` job runs it on `hw-h002`; while any `hw-h002` row is red, the merge queue for changes under `jakeos/` is paused by the `retained-red` required status that BLD-007 publishes.
 
 <!-- covers: INV-1045, INV-1046, INV-1047, INV-1048, INV-1049, INV-1050, INV-1051, GAP-0018, INV-0030 -->
 
 #### Out of scope
-Runner and QEMU axes (BLD-012, BLD-007). L0 corpus scenarios (LNX-002). Audio driver inventory (AUD, via the retained-mechanism list).
+Runner and QEMU axes (BLD-012, BLD-007). L0 corpus scenarios (LNX-002). Audio driver inventory (AUD, through the retained-mechanism list). Inventory contents (KRN-017).
+
+#### Deliverables
+- kernel:tools/jakeos/retained-matrix/ · Crate `jakeos-retained-matrix`: generates the matrix from `retained.toml` and fails when an entry names a `kselftest` subset that does not exist in the tree.
+- kernel:Documentation/jakeos/retained-matrix.toml · Generated matrix: subset, H-IDs, guarded entry.
+- kernel:tools/testing/selftests/jakeos/licence/module_licence_test.sh · `MODULE_LICENSE` presence and GPL-only-symbol check over every built module.
+- kernel:.github/workflows/pre-merge.yml · The `retained-matrix` job on `qemu-x86_64`.
+- kernel:.github/workflows/nightly.yml · The `retained-matrix` job on `hw-h002`.
+- kernel:Documentation/jakeos/retained-matrix.md · The gate rule, how a subset is added (through `retained.toml`, never here), and what a red row blocks.
 
 #### Acceptance criteria
-- [ ] A checked-in matrix generated from the `kselftest` entries of `Documentation/jakeos/retained.toml` (KRN-017) maps each retained DRM, PCI, USB, NVMe/block, networking and ACPI subset to H-001 and H-002.
-- [ ] A MODULE_LICENSE and GPL-only-symbol test is in the matrix and fails when an inherited module's license status changes.
-- [ ] Pre-merge CI on `qemu-x86_64` and nightly CI on `hw-h002` run the matrix; a failing subset blocks merge of the change that introduced it.
-- [ ] Native-subsystem changes cannot land while any matrix entry is red.
+- [ ] `Documentation/jakeos/retained-matrix.toml` is generated from the `kselftest` entries of `Documentation/jakeos/retained.toml` and maps each retained DRM, PCI, USB, NVMe/block, networking and ACPI subset to `H-001` and `H-002`; a hand edit to the generated file fails the `retained-matrix` job.
+- [ ] `module_licence_test.sh` is a matrix row and fails when a built module lacks `MODULE_LICENSE`, carries a non-GPL-compatible licence, or uses an `EXPORT_SYMBOL_GPL` symbol without a GPL-compatible licence.
+- [ ] `pre-merge` on `qemu-x86_64` and `nightly` on `hw-h002` run the matrix; a red subset in `pre-merge` blocks the change that introduced it.
+- [ ] While any `hw-h002` row is red, no change under `jakeos/` lands: the `retained-red` status published by BLD-007 is required for those paths.
 
 #### Verification
-- Integration: matrix jobs on `qemu-x86_64` and `hw-h002`.
+- Integration: matrix jobs on `qemu-x86_64` and `hw-h002`; a fixture that breaks a retained NVMe kselftest fails `pre-merge`.
+- Unit: `kernel:tests/retained/matrix_*`: generation from a fixture inventory, missing-subset failure, hand-edit detection.
 - Compat: C-001 on H-001 and H-002 remains the LNX-owned detector for syscall-path regressions; this matrix is the hardware-layer detector.
 - Review: kernel architecture lead accepts the inventory-to-kselftest mapping.
 
@@ -444,17 +510,23 @@ Runner and QEMU axes (BLD-012, BLD-007). L0 corpus scenarios (LNX-002). Audio dr
 - Baseline: §1, §2, §50, §57
 - Invariants: I-009
 
-One document covers the no-heroic-rewrite non-goals: a rewrite of inherited C is allowed only with an accepted Decision citing a semantic or measured benefit, and mature C is retained where rewriting adds insufficient value. The lint gate enforces the document.
+The no-heroic-rewrite rules (§2, §57, Principle 15 of §67) become one document, `Documentation/jakeos/rewrite-policy.md`: new kernel code under `jakeos/` and `rust/kernel/jakeos/` is Rust unless an accepted decision exempts a named file; inherited C is replaced only by an accepted decision that cites a semantic benefit (a native semantic the C cannot express) or a measured benefit (a B-ID report), and mature C stays where a rewrite would add insufficient value. The document defines the exemption-list format the KRN-016 lint reads: `Documentation/jakeos/rust-exemptions.toml`, one entry per exempted file with `path`, `decision` (a D-ID) and `reason`, and one entry per approved rewrite with `replaces` (the C path), `decision` and `benefit` (`semantic` or a B-ID).
+
+It also records the boundary KRN-018's spike found (which subsystems have usable Rust abstractions, which need new ones) so a developer knows before starting whether a piece of work is Rust-ready or needs an abstraction first, and it states that the personalities' C code is not covered by this rule because it is not kernel code.
 
 <!-- covers: INV-0947, INV-0014, INV-0061, INV-1115, INV-0935, INV-0138, INV-0006 -->
 
 #### Out of scope
-The CI lint (KRN-016). Per-subsystem rewrite Decisions owned by MEM, SCH, NET, STO.
+The CI lint (KRN-016). Per-subsystem rewrite decisions owned by MEM, SCH, NET, STO. The Rust abstraction spike itself (KRN-018).
+
+#### Deliverables
+- kernel:Documentation/jakeos/rewrite-policy.md · The rules, the exemption-list format, the KRN-018 boundary summary and the scope statement.
+- kernel:Documentation/jakeos/rust-exemptions.toml · The initial, empty exemption and rewrite list with the documented schema in comments.
 
 #### Acceptance criteria
-- [ ] The document states that new kernel code is Rust unless an accepted Decision exempts a named file.
-- [ ] The document states that replacing inherited C requires an accepted Decision citing a semantic or measured benefit.
-- [ ] The document is committed in the kernel tree and cited by the lint's exemption list format.
+- [ ] `Documentation/jakeos/rewrite-policy.md` states that new code under `jakeos/` and `rust/kernel/jakeos/` is Rust unless `rust-exemptions.toml` names the file with an accepted decision.
+- [ ] The document states that replacing inherited C requires an accepted decision citing a semantic benefit or a B-ID report, and defines the `rust-exemptions.toml` schema (`path`, `decision`, `reason`; `replaces`, `decision`, `benefit`) that KRN-016 reads.
+- [ ] The document summarises the KRN-018 boundary per subsystem (mm, scheduler, DRM, VFS) as Rust-ready, needs-abstraction or C-only-for-now, and is linked from `Documentation/jakeos/layout.md`.
 
 #### Verification
 - Review: kernel architecture lead sign-off recorded on the pull request.
@@ -472,21 +544,30 @@ The CI lint (KRN-016). Per-subsystem rewrite Decisions owned by MEM, SCH, NET, S
 - Baseline: §50, §51, §57
 - Invariants: I-082, I-009
 
-V0 exit: all new kernel code is Rust unless an accepted Decision exempts a specific file, and clippy and rustfmt are clean. The lint enforces the exemption list and refuses patches that replace inherited C without a linked Decision, covering the standing rules as a gate rather than per-rule tasks.
+V0 exit requires that all new kernel code is Rust unless an accepted decision exempts a specific file, and that clippy and rustfmt are clean (§50). The lint `scripts/jakeos/rust-first-lint.py` runs in `pre-merge` over `<base>..HEAD`: a new `.c` or `.h` file under `jakeos/` or `rust/kernel/jakeos/` fails unless `Documentation/jakeos/rust-exemptions.toml` lists its path with a `decision` whose file in the roadmap repository is `accepted` (the lint fetches `decisions/<D-ID>-*.md` from the roadmap at the pinned commit in `Documentation/jakeos/roadmap-pin`); a diff that deletes inherited C outside `jakeos/` and adds Rust that replaces it fails unless the exemption list has a matching `replaces` entry with an accepted decision. `cargo clippy -D warnings` and `rustfmt --check` run over the native subsystem through the BLD-011 style jobs; this task adds the Rust-first checks as the `rust-first` job.
+
+Exemptions are never comments in code; the only mechanism is the TOML entry with a decision. The lint prints the exact entry a developer must add, so a rejected change knows what to do next.
 
 <!-- covers: INV-0934, INV-0935, INV-1115, INV-0014 -->
 
 #### Out of scope
-Unsafe-code inventory publication (KRN-056). Userspace `forbid(unsafe_code)` templates (SDK). License allowlist scanning (BLD-011).
+Unsafe-code inventory publication (KRN-056). Userspace `forbid(unsafe_code)` templates (SDK). Licence allowlist scanning (BLD-011). Policy text (KRN-015).
+
+#### Deliverables
+- kernel:scripts/jakeos/rust-first-lint.py · New-C detection, rewrite-without-decision detection, exemption lookup against the roadmap's decision status.
+- kernel:Documentation/jakeos/roadmap-pin · The roadmap commit the lint reads decision status from, bumped by the queue.
+- kernel:.github/workflows/pre-merge.yml · The `rust-first` job.
+- kernel:tools/jakeos/lint-fixtures/rust-first/ · Fixtures: exempted C file, unexempted new C file, rewrite without a decision, rewrite with an accepted decision.
 
 #### Acceptance criteria
-- [ ] Pre-merge CI on `qemu-x86_64` fails a new `.c` file under the native subsystem without an exemption that names an accepted Decision.
-- [ ] Pre-merge CI fails a diff that deletes inherited C and adds a Rust replacement without a linked Decision.
-- [ ] `cargo clippy -D warnings` and rustfmt are clean for the native subsystem.
+- [ ] `pre-merge` on `qemu-x86_64` fails a new `.c` or `.h` file under `jakeos/` or `rust/kernel/jakeos/` unless `rust-exemptions.toml` names it with a decision that is `accepted` in the roadmap at `roadmap-pin`.
+- [ ] `pre-merge` fails a diff that deletes inherited C and adds a Rust replacement without a matching `replaces` entry backed by an accepted decision, and passes the same diff when the entry exists.
+- [ ] `cargo clippy -D warnings` and `rustfmt --check` are clean for the native subsystem on every `pre-merge` run.
+- [ ] A rejected change's log names the exact `rust-exemptions.toml` entry that would make it pass.
 
 #### Verification
-- Unit: lint fixtures for exempted file, unexempted new C, and rewrite-without-Decision.
-- Integration: pre-merge job on `qemu-x86_64`.
+- Unit: `kernel:tests/lint/rust_first_*` over the four fixtures.
+- Integration: `pre-merge` job on `qemu-x86_64`.
 
 #### Evidence
 - none
@@ -501,21 +582,30 @@ Unsafe-code inventory publication (KRN-056). Userspace `forbid(unsafe_code)` tem
 - Baseline: §2, §5.1, §55, §58
 - Invariants: I-010, I-054
 
-The forty-six preserve-or-retain items collapse into this inventory. The report lists every retained mechanism (page tables, allocators, interrupts, scheduler, block, net, drivers, KVM, x86-64, plus untouched ARM64 and RISC-V arch code) and the semantics each replaces. Later gates review the list rather than re-litigating each subsystem.
+The forty-six preserve-or-retain items of the baseline collapse into one inventory (§2, §5.1, §55). The spike studies the Linux tree at the merged tag and writes two things: the report `reports/spikes/KRN-017.md` in the roadmap repository, and the machine-readable inventory `Documentation/jakeos/retained.toml` in the kernel tree with one `[[mechanism]]` entry per retained mechanism carrying `subsystem` (for example `mm`, `sched`, `drm`, `block`, `net`, `kvm`, `arch/x86`), `path` (the tree path), `mechanism` (what is kept, for example `page tables`, `SLUB`, `CFS/EEVDF`, `blk-mq`, `netfilter`), `replaces` (the native semantic it does not provide, for example `process identity`, `ambient authority`), `kselftest` (the selftest subset that guards it, or `none`), `kconfig` (the symbols a fragment must keep enabled) and `arch` (`retained`, `compile-kept` or `dropped`). ARM64 and RISC-V arch code are `compile-kept`, not 1.0 platforms (I-011, I-012). KVM, page tables, allocators, interrupts and x86-64 are `retained`.
+
+KRN-011 (fragments), KRN-014 (regression matrix), BLD-012 (nightly kselftests) and NET-001 consume the TOML without a second copy; later milestone reviews annotate the report rather than re-litigating each subsystem.
 
 <!-- covers: INV-1131, INV-0015, INV-1337, INV-0063, INV-0064, INV-0068, INV-0121, INV-0122, INV-0123, INV-0133, INV-0030, INV-0031, INV-0032, INV-0115, INV-0029, INV-0026 -->
 
 #### Out of scope
-Regression matrix contents (KRN-014). Per-workstream inventories that consume this list (NET-001). Redox and XNU studies (GOV research programme).
+Regression matrix contents (KRN-014). Per-workstream inventories that consume this list (NET-001). Redox and XNU studies (GOV research programme). Kconfig fragments (KRN-011).
+
+#### Deliverables
+- roadmap:reports/spikes/KRN-017.md · The report: method, per-subsystem findings, what is retained, replaced, compile-kept or dropped, and which later gate reviews the list.
+- kernel:Documentation/jakeos/retained.toml · The inventory: one `[[mechanism]]` per retained mechanism with the seven fields.
+- kernel:Documentation/jakeos/retained.md · The schema of `retained.toml`, who consumes each field, and the rule that consumers never keep a second copy.
+- kernel:scripts/jakeos/check-retained-toml.py · Schema check: required fields present, `arch` in the allowed set, every `path` exists in the tree, every `kselftest` subset exists.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/KRN-017.md` lists each retained mechanism, the Linux subsystem path, and the native semantic it does not provide.
-- [ ] ARM64 and RISC-V arch code are listed as compile-kept, not as 1.0 platforms (I-011, I-012).
-- [ ] KVM, page tables, allocators, interrupts and x86-64 are listed as retained.
-- [ ] The machine-readable inventory is committed in the kernel tree at `Documentation/jakeos/retained.toml` with one entry per mechanism carrying `subsystem`, `path`, `mechanism`, `replaces` (the native semantic it does not provide), `kselftest` (the subset that guards it), `kconfig` (the symbols a fragment must keep enabled) and `arch` (retained, compile-kept or dropped); the spike report cites it and KRN-011 and KRN-014 consume it without a second copy.
+- [ ] `reports/spikes/KRN-017.md` lists each retained mechanism, the Linux subsystem path, and the native semantic it does not provide, and names the later gate that reviews the list.
+- [ ] `retained.toml` marks ARM64 and RISC-V arch code `compile-kept` (I-011, I-012) and marks KVM, page tables, allocators, interrupts and x86-64 `retained`.
+- [ ] Every `[[mechanism]]` entry carries `subsystem`, `path`, `mechanism`, `replaces`, `kselftest`, `kconfig` and `arch`, and `check-retained-toml.py` passes on the committed file and fails a fixture missing a field or naming a nonexistent path.
+- [ ] KRN-011 and KRN-014 read `retained.toml` directly; the report cites it and no consumer keeps a second list.
 
 #### Verification
 - Report: which mechanisms are retained, which semantics are replaced, which arch code is compile-kept, and which later gate reviews the list.
+- Unit: `kernel:tests/retained/schema_*` over the committed inventory and the failing fixtures.
 - Review: kernel architecture lead sign-off on the spike report.
 
 #### Evidence
@@ -531,17 +621,24 @@ Regression matrix contents (KRN-014). Per-workstream inventories that consume th
 - Baseline: §50, §51
 - Risks: R-002
 
-The Rust-for-Linux API surface may lack bindings to mm, scheduler, DRM and VFS. This spike identifies which subsystems need new abstractions for the native platform and reports the C-versus-Rust boundary that the rewrite-versus-retain policy and lint gate enforce. It does not itself rewrite those subsystems.
+The Rust-for-Linux API surface at the merged tag may lack bindings to memory management, the scheduler, DRM and VFS that the native subsystem needs. This spike writes, for each of the four, a minimal Rust probe under `jakeos/spikes/rust-boundary/` (not shipped) that attempts the operations the V0 tasks need (mm: allocate and map pages into a process, walk a VMA; scheduler: create a kernel thread, attach to a cgroup, read the runqueue clock; DRM: obtain a dma-buf and export it; VFS: open a file by path from kernel context and read it) using only upstream abstractions, and records whether an abstraction exists, is missing, or exists but is insufficient (and why) in `reports/spikes/KRN-018.md`. The report names the C-versus-Rust boundary the KRN-015 policy and the KRN-016 lint enforce, and lists the missing bindings that are V0 blockers versus later work, so the areas know whether to write an abstraction in `rust/kernel/jakeos/` first.
+
+No subsystem is rewritten here and no performance number is claimed; any cost comparison cites a B-ID or is qualitative.
 
 <!-- covers: GAP-0535, INV-0934 -->
 
 #### Out of scope
-The rewrite policy document (KRN-015). The lint (KRN-016). DRM stability while building graphics (GFX).
+The rewrite policy document (KRN-015). The lint (KRN-016). DRM stability while building graphics (GFX). Writing the missing abstractions (the owning areas, via `rust/kernel/jakeos/`).
+
+#### Deliverables
+- roadmap:reports/spikes/KRN-018.md · Findings per subsystem, the boundary, the V0-blocking bindings list.
+- kernel:jakeos/spikes/rust-boundary/ · The four probes as `#[cfg(CONFIG_JAKEOS_SPIKES)]` modules, kept for reference and never built by default.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/KRN-018.md` records, for mm, scheduler, DRM and VFS, whether a Rust abstraction exists upstream, is missing, or is insufficient for the native platform.
-- [ ] The report names the C-versus-Rust boundary the lint will enforce.
-- [ ] The report does not claim a performance number; any cost comparison cites a B-ID or is qualitative.
+- [ ] `reports/spikes/KRN-018.md` records, for mm, scheduler, DRM and VFS, whether a Rust abstraction exists upstream, is missing, or is insufficient for the native platform, with the probe that showed it.
+- [ ] The report names the C-versus-Rust boundary the KRN-016 lint enforces and lists the missing bindings that block V0 tasks versus those that can wait.
+- [ ] The report claims no performance number; any cost comparison cites a B-ID or is qualitative.
+- [ ] The probes exist under `jakeos/spikes/rust-boundary/` behind `CONFIG_JAKEOS_SPIKES` and are excluded from every shipped configuration.
 
 #### Verification
 - Report: which subsystems need new Rust abstractions, what the C-versus-Rust boundary is, and which missing bindings are V0 blockers versus later work.
@@ -560,17 +657,23 @@ The rewrite policy document (KRN-015). The lint (KRN-016). DRM stability while b
 - Baseline: §5.1, §6, §59
 - Corpora: C-001
 
-V0 exit: the fork boots on QEMU and the reference desktop from a CI-built image reproducible from a tagged commit, native Components start from the retained initramfs, and the L0 corpus matches the unforked kernel. This task is the roll-up that records those results and the first milestone review of the retained-mechanism list.
+V0 exit for the kernel (§59): the fork boots on `qemu-x86_64` and `hw-h002` from a CI-built image reproducible from a tagged commit, native Components start from the retained initramfs (D-0051), and the L0 corpus (C-001) matches the unforked kernel of the same upstream tag. This task is the roll-up: `Documentation/jakeos/reviews/v0-kernel.md` records the tag, the BLD-009 input manifest hash, the boot logs from both matrix entries, the C-001 report paths for both machines and the baseline kernel they were compared with, and the first milestone review note on the retained-mechanism inventory (which entries were touched by V0 work, which gate reviews it next).
+
+Nothing new is built; the task exists so the V0 gate has one document to point at and so the review of the inventory happens at a fixed point rather than never.
 
 <!-- covers: INV-1337, INV-0139 -->
 
 #### Out of scope
-Native init (SVC-007). Image builder (INS). OVMF boot implementation (BOOT-001). L0 scenario content (LNX-002).
+Native init (SVC-007). Image builder (INS). OVMF boot implementation (BOOT-001). L0 scenario content (LNX-002). Hardware bring-up (HW-001).
+
+#### Deliverables
+- kernel:Documentation/jakeos/reviews/v0-kernel.md · The roll-up: tag, manifest hash, boot logs, C-001 comparison, inventory review note.
+- roadmap:reports/compat/C-001/ · The C-001 reports for H-001 and H-002 referenced by the roll-up (produced by LNX-002's runs, cited here).
 
 #### Acceptance criteria
-- [ ] A tagged commit's CI image boots on H-001 and H-002 from a retained initramfs and starts a native Component.
-- [ ] C-001 on H-001 and H-002 matches the unforked baseline kernel of the same version.
-- [ ] The retained-mechanism inventory has a V0 review note recorded on the spike report.
+- [ ] The roll-up names a tagged commit whose CI image boots on `qemu-x86_64` and `hw-h002` from the retained initramfs and starts a native Component, with both boot logs attached.
+- [ ] C-001 on H-001 and H-002 matches the unforked baseline kernel of the same upstream tag, and the roll-up cites the `reports/compat/C-001/` reports for both.
+- [ ] The retained-mechanism inventory has a V0 review note in the roll-up and on `reports/spikes/KRN-017.md` naming the entries V0 touched and the gate that reviews the list next.
 
 #### Verification
 - Integration: boot logs from `qemu-x86_64` and `hw-h002` attached as Evidence when the task is done.
@@ -1744,20 +1847,31 @@ Measures the kernel against the §6 Phase E definition (independent native ABI, 
 - Risks: R-002
 - Invariants: I-082, I-101
 
-A Rust panic inside the kernel is a kernel crash, and infallible allocation in kernel context is a panic waiting for memory pressure. This task makes I-101 mechanical for the native subsystem: fallible allocation only, typed errors for every user-reachable failure, and a lint that rejects `unwrap`, `expect`, indexing that can panic, arithmetic that can overflow-panic and infallible allocation outside boot-time initialisation. It complements KRN-016, which enforces Rust-first; this task enforces how that Rust is written.
+A Rust panic inside the kernel is a kernel crash, and an infallible allocation in kernel context is a panic waiting for memory pressure. This task makes I-101 mechanical for the native subsystem: `scripts/jakeos/no-panic-lint.py` runs in `pre-merge` over `jakeos/` and `rust/kernel/jakeos/` and fails on `unwrap()`, `expect()`, `panic!`, `unreachable!`, `todo!`, slice or array indexing with `[]` (use `get`), arithmetic on integers without `checked_`, `wrapping_` or `saturating_` (or an explicit overflow comment), and any allocation that is not the fallible kernel form (`KBox::new(..., GFP_KERNEL)?`, `KVec::push(..., GFP_KERNEL)?`), outside modules listed in `Documentation/jakeos/no-panic-allowlist.toml`. Each allowlist entry names a module path, a `reason` and a `// SAFETY:`-style justification of why the panic or infallible allocation cannot be reached from user space; boot-time initialisation modules are the expected entries.
+
+Every allocation on a user-reachable path returns a typed error (`Error::Exhausted` from the ABI-009 vocabulary) on failure. The `nightly` fault-injection run `alloc-fault` uses the kernel's `failslab` and `fail_page_alloc` under the guest agent to fail allocations during Channel, Capability and MemoryObject creation and asserts typed errors reach user space with no panic. The rule is recorded beside the rewrite policy and cited by the ABI-006 review-gate checklist.
 
 #### Out of scope
-Rust-first and rewrite-requires-ADR lint (KRN-016). Unsafe inventory publication (KRN-056). Userspace runtime mitigations (SDK-048).
+Rust-first and rewrite-requires-ADR lint (KRN-016). Unsafe inventory publication (KRN-056). Userspace runtime mitigations (SDK-048). The fault-injection harness plumbing (BLD-026 for sanitizers; this task adds only the `alloc-fault` job).
+
+#### Deliverables
+- kernel:scripts/jakeos/no-panic-lint.py · The lint over the native subsystem with the pattern list above and allowlist lookup.
+- kernel:Documentation/jakeos/no-panic-allowlist.toml · Allowlisted modules with `path`, `reason`, `justification`.
+- kernel:Documentation/jakeos/no-panic.md · The rule, the pattern list, the allowlist format, and the fallible allocation idioms to use.
+- kernel:.github/workflows/pre-merge.yml · The `no-panic` job.
+- kernel:.github/workflows/nightly.yml · The `alloc-fault` job running fault injection under the BLD-006 agent.
+- kernel:tools/testing/selftests/jakeos/mem/alloc_fault_*.sh · Fault-injection scenarios for Channel, Capability and MemoryObject creation.
+- kernel:tools/jakeos/lint-fixtures/no-panic/ · Fixtures: `unwrap`, panicking index, unchecked arithmetic, infallible allocation, allowlisted boot module.
 
 #### Acceptance criteria
-- [ ] Pre-merge CI on `qemu-x86_64` fails a native-subsystem change that calls `unwrap`, `expect`, a panicking index or an infallible allocation outside an allowlisted boot-time initialisation module.
-- [ ] Every allocation on a user-reachable path in the native subsystem returns a typed error on failure; a fault-injection run that fails allocations during Channel, Capability and MemoryObject creation reports typed exhaustion errors and no kernel panic.
-- [ ] The lint allowlist is a checked-in file in the kernel tree; adding an entry requires a `SAFETY`-style justification comment naming why the panic or infallible allocation cannot be reached from user space.
-- [ ] The rule is recorded in the kernel tree beside the rewrite-versus-retain policy and cited by the ABI review-gate checklist.
+- [ ] `pre-merge` on `qemu-x86_64` fails a native-subsystem change that uses `unwrap`, `expect`, `panic!`, a panicking index, unchecked arithmetic or an infallible allocation outside a module listed in `no-panic-allowlist.toml`.
+- [ ] The `alloc-fault` nightly job fails allocations during Channel, Capability and MemoryObject creation and every failure surfaces to user space as a typed exhaustion error with no kernel panic in the serial log.
+- [ ] Every `no-panic-allowlist.toml` entry carries `path`, `reason` and a `justification` stating why the panic or infallible allocation is unreachable from user space; an entry without one fails the lint.
+- [ ] `Documentation/jakeos/no-panic.md` is linked from `rewrite-policy.md` and named in the ABI-006 review-gate checklist.
 
 #### Verification
-- Unit: lint fixtures for `unwrap`, panicking index, infallible allocation and an allowlisted boot-time module.
-- Integration: BLD fault-injection run on `qemu-x86_64` failing allocations in the native subsystem with no panic.
+- Unit: `kernel:tests/lint/no_panic_*` over the five fixtures.
+- Integration: the `alloc-fault` job on `qemu-x86_64` with no panic across the three creation paths.
 - Review: kernel architecture lead and SEC lead sign off on the allowlist format on the pull request.
 
 #### Evidence

@@ -212,6 +212,7 @@ pub mod code {
     pub const BASE_REOPENED_WITHOUT_UNTICK: &str = "E-114";
     pub const BASE_ILLEGAL_TRANSITION: &str = "E-115";
     pub const DONE_BEFORE_ENVIRONMENT: &str = "E-116";
+    pub const DELIVERABLES_REQUIRED: &str = "E-117";
 
     pub const TICKED_NOT_DONE: &str = "W-001";
     pub const UNANCHORED: &str = "W-002";
@@ -232,4 +233,5 @@ pub mod code {
     pub const SELF_ANSWERED_QUESTION: &str = "W-017";
     pub const HARDWARE_UNPROVIDED: &str = "W-018";
     pub const UNKNOWN_MATRIX_ENTRY: &str = "W-019";
+    pub const DELIVERABLES_MISSING: &str = "W-020";
 }

@@ -1101,3 +1101,69 @@ fn done_task_cited_by_a_gate_needs_a_verifier() {
         common::codes(&entries)
     );
 }
+
+#[test]
+fn deliverables_section_is_parsed_formatted_and_checked() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/repos.md",
+        "# Repository aliases\n\n### roadmap\n- URL: https://example.org/roadmap\nThis roadmap repository.\n",
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md").replace(
+        "#### Acceptance criteria\n- [ ] `roadmap check` validates the fixture repository.",
+        "#### Deliverables\n- roadmap:tools/roadmap/src/validate/mod.rs · The validator entry point.\n\n#### Acceptance criteria\n- [ ] `roadmap check` validates the fixture repository.",
+    );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::codes(&entries).iter().any(|code| code.starts_with("E-")),
+        "a well-formed Deliverables section is accepted: {:?}",
+        common::codes(&entries)
+    );
+    let broken = common::read(&repo.path, "workstreams/GOV.md").replace(
+        "- roadmap:tools/roadmap/src/validate/mod.rs · The validator entry point.",
+        "- nowhere:tools/roadmap/src/validate/mod.rs · The validator entry point.\n- just words without a path",
+    );
+    common::write(&repo.path, "workstreams/GOV.md", &broken);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "E-020") && common::has_code(&entries, "E-017"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
+#[test]
+fn deliverables_are_required_where_the_policy_says_so() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/repos.md",
+        "# Repository aliases\n\n### roadmap\n- URL: https://example.org/roadmap\nThis roadmap repository.\n",
+    );
+    let config = common::read(&repo.path, "roadmap.toml");
+    let config = if config.contains("[policy]") {
+        config.replace("[policy]", "[policy]\ndeliverables_required = [\"V0\"]")
+    } else {
+        format!("{config}\n[policy]\ndeliverables_required = [\"V0\"]\n")
+    };
+    common::write(&repo.path, "roadmap.toml", &config);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "W-020"),
+        "a todo build task without Deliverables warns: {:?}",
+        common::codes(&entries)
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md").replace(
+        "#### Acceptance criteria\n- [ ] `roadmap check` validates the fixture repository.",
+        "#### Deliverables\n- roadmap:tools/roadmap/src/validate/mod.rs · The validator entry point.\n\n#### Acceptance criteria\n- [ ] `roadmap check` validates the fixture repository.",
+    );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "W-020"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}

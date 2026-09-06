@@ -1852,9 +1852,9 @@
 | BLD-007 | Run the hardware regression matrix on QEMU and the Reference machine | todo | BLD-012, KRN-014, LAB-003 | V0 |
 | BLD-008 | Document and CI-exercise the kernel debug workflow | todo | BLD-012 | V0 |
 | BLD-009 | Provide a hermetic one-command Linux-host build and source mirror | todo | BLD-013 | V0 |
-| BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | BLD-012, BLD-006, BEN-005, BLD-001 | V0 |
+| BLD-010 | Run the core benchmark suite and V0 demos in CI | todo | BLD-012, BLD-006, BEN-005, BLD-001, BLD-082 | V0 |
 | BLD-011 | Enforce license, provenance, unsafe and static-analysis merge gates | todo | ABI-003, ABI-018, BEN-004 | V0 |
-| BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | BLD-009, KRN-017 | V0 |
+| BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | BLD-009, KRN-017, BLD-082 | V0 |
 | BLD-014 | Run accessibility-tree dump tests for the four V0.5 apps in CI | todo | BLD-027, ACC-003, UIP-001 | V0.5 |
 | BLD-015 | Run the ABI conformance and cross-version suite in CI | todo | ABI-024, BLD-001, BLD-006 | V0.5 |
 | BLD-016 | Adapt syzkaller to the Native ABI with a Capability-aware executor | todo | BLD-006, IPC-012, IPC-029, ABI-023 | V0.5 |
@@ -2184,10 +2184,10 @@
 | --- | --- |
 | BEN-005 | 63 |
 | CAP-005 | 40 |
+| BLD-082 | 33 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
-| BLD-082 | 31 |
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |

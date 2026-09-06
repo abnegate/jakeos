@@ -68,15 +68,17 @@ pub fn format_task(task: &Task, glossary: &[String], schema: &Schema) -> String 
     for name in SECTION_ORDER {
         let include = match name {
             "Out of scope" => !task.out_of_scope.is_empty(),
+            "Deliverables" => !task.deliverables.is_empty(),
             "Acceptance criteria" | "Verification" | "Evidence" => {
                 task.present_sections.iter().any(|item| item == name) || name != "Out of scope"
             }
             _ => false,
         };
-        if !include && name == "Out of scope" {
+        if !include && (name == "Out of scope" || name == "Deliverables") {
             continue;
         }
         if name != "Out of scope"
+            && name != "Deliverables"
             && !task.present_sections.iter().any(|item| item == name)
             && match name {
                 "Acceptance criteria" => task.criteria.is_empty(),
@@ -90,6 +92,11 @@ pub fn format_task(task: &Task, glossary: &[String], schema: &Schema) -> String 
         lines.push(format!("#### {name}"));
         match name {
             "Out of scope" => lines.extend(task.out_of_scope.clone()),
+            "Deliverables" => {
+                for item in &task.deliverables {
+                    lines.push(format!("- {}:{} · {}", item.alias, item.path, item.text));
+                }
+            }
             "Acceptance criteria" => {
                 for criterion in &task.criteria {
                     let mark = if criterion.ticked { "x" } else { " " };

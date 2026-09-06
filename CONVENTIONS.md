@@ -115,6 +115,10 @@ No headings, no lists of requirements (those are acceptance criteria).
 #### Out of scope
 Optional. Names adjacent work and the task ID or prefix that owns it.
 
+#### Deliverables
+- sdk:os/src/inspect.rs · The `os inspect` subcommand over the OBS inspect Interface.
+- kernel:Documentation/jakeos/retained.toml · One entry per retained mechanism.
+
 #### Acceptance criteria
 - [ ] Observable, testable statement. At least one. Never contains "should".
 
@@ -166,7 +170,9 @@ The covers comment `<!-- covers: INV-0123, GAP-0045 -->` sits on its own line di
 
 ### 4.3 Sections
 
-Exactly these `####` headings, in this order: `Out of scope` (optional), `Acceptance criteria`, `Verification`, `Evidence`. The last three are mandatory with at least one item each.
+Exactly these `####` headings, in this order: `Out of scope` (optional), `Deliverables` (optional, see below), `Acceptance criteria`, `Verification`, `Evidence`. The last three are mandatory with at least one item each.
+
+- **Deliverables** list every artifact the task produces as `- <alias>:<path> · <what it is>`, one per line: crates, modules, IDL files, documents, CI jobs, register entries. The alias is one from `registers/repos.md` (E-020 otherwise) and the path is relative to that alias's directory, following the layout document (BLD-081 for the platform monorepo, KRN-013 for the kernel tree). A build, docs or benchmark task in a milestone listed in `roadmap.toml` → `policy.deliverables_required` must have the section: a warning (W-020) while the task is todo, an error (E-117) once it is in progress or done. adr and spike tasks may omit it because their artifact is fixed by Type (the decision file, the spike report). Deliverables are what an agent creates; acceptance criteria are how anyone knows they are right.
 
 - **Acceptance criteria** use exactly `- [ ]` or `- [x]`. Each criterion is observable and testable by someone other than the author. The word "should" is banned (`fields.json` → `task.bannedCriteriaWords`).
 - **Verification** lines begin with one of the nine kinds: `Unit`, `Integration`, `Fuzz`, `Bench`, `Compat`, `Manual`, `Review`, `Demo`, `Report`. Type `benchmark` requires a `Bench:` line; Type `spike` requires a `Report:` line (`fields.json` → `task.verificationRequiredKind`). Verification is the plan, written before work starts.
