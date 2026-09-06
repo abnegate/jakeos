@@ -70,7 +70,7 @@ The threat model is a V0 docs task. Every CAP, SEC and BOOT decision cites T-IDs
 - Likelihood: medium
 - Impact: high
 - Status: open
-- Mitigated by: BEN-001, BEN-005, BEN-007, BEN-022, BEN-064, BLD-010, BLD-045, BLD-048, CMP-001, MEM-010, MEM-012, TSK-002, TSK-026, TSK-039
+- Mitigated by: BEN-001, BEN-005, BEN-007, BEN-022, BEN-064, BLD-010, BLD-045, BLD-048, CMP-001, CMP-002, MEM-010, MEM-012, TSK-002, TSK-026, TSK-039
 - Retire by: V0
 V0 benchmark gates are publish-only and still need a harness, Q-001 methodology, and CI on H-001 and H-002.
 

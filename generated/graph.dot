@@ -3444,6 +3444,8 @@ digraph roadmap {
   "BLD-082" -> "BLD-010";
   "BLD-082" -> "BLD-012";
   "BLD-082" -> "BOOT-005";
+  "BLD-082" -> "CMP-001";
+  "BLD-082" -> "CMP-002";
   "BLD-082" -> "CMP-011";
   "BLD-082" -> "CMP-013";
   "BLD-082" -> "GFX-001";
@@ -5733,6 +5735,7 @@ digraph roadmap {
   "KRN-012" -> "KRN-019";
   "KRN-013" -> "ABI-002";
   "KRN-013" -> "CAP-005";
+  "KRN-013" -> "CMP-005";
   "KRN-013" -> "KRN-012";
   "KRN-013" -> "KRN-019";
   "KRN-013" -> "KRN-037";

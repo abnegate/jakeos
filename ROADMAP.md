@@ -177,7 +177,7 @@ Makespan (size-weight estimates): 115.
 | --- | --- |
 | BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 35 |
+| BLD-082 | 37 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -229,6 +229,7 @@ Makespan (size-weight estimates): 115.
 | CMP-024 | 14 |
 | DOC-015 | 14 |
 | IPC-035 | 14 |
+| KRN-013 | 14 |
 | LAB-021 | 14 |
 | MEM-005 | 14 |
 | SCH-026 | 14 |
@@ -246,7 +247,6 @@ Makespan (size-weight estimates): 115.
 | HW-047 | 13 |
 | INS-045 | 13 |
 | KRN-011 | 13 |
-| KRN-013 | 13 |
 | LAB-007 | 13 |
 | LNX-005 | 13 |
 | LNX-042 | 13 |
