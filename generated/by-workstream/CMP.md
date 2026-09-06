@@ -6,11 +6,11 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| CMP-001 | Benchmark Component creation latency p50/p99 on QEMU and reference hardware | todo | blocked | M | CMP-005, BEN-005, BEN-007, Q-001 |
-| CMP-002 | Benchmark resident memory overhead per idle Component | todo | blocked | S | CMP-005, BEN-005, BEN-007, Q-001 |
+| CMP-001 | Benchmark Component creation latency p50/p99 on QEMU and reference hardware | todo | blocked | M | CMP-005, BEN-005, BEN-007, Q-001, BLD-082 |
+| CMP-002 | Benchmark resident memory overhead per idle Component | todo | blocked | S | CMP-005, BEN-005, BEN-007, Q-001, BLD-082 |
 | CMP-003 | Map immutable executable objects as Component Code | todo | blocked | M | CMP-014, CMP-005, MEM-006, MEM-008 |
 | CMP-004 | Implement Component exit causes, teardown and the 100k leak test | todo | blocked | M | CMP-008, CMP-014, CMP-005, TSK-022, SCH-009 |
-| CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | blocked | L | CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023 |
+| CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | blocked | L | CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023, KRN-013 |
 | CMP-006 | Decide what replaces PID, parent/child, exit status and process groups | done | done | M | none |
 | CMP-007 | Decide Component plus ResourceDomain as the native isolation model | done | done | S | none |
 | CMP-008 | Decide Component panic, abort and typed exit-cause semantics | done | done | M | none |

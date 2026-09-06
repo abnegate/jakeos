@@ -194,11 +194,11 @@
 | CAP-051 | Complete conformance tests for every frozen Capability entry point | todo | CAP-031, CAP-052, ABI-049, CAP-036, CAP-010, CAP-012, CAP-014, CAP-007 | V4 |
 | CAP-052 | Re-validate the frozen Capability ABI on CHERI emulator and formal model | todo | CAP-038, CAP-035, CAP-031, CAP-034 | V4 |
 | CAP-053 | Publish the Capability model guarantees and non-promises for 1.0 | todo | ABI-050, ABI-054, CAP-051, CAP-021 | 1.0 |
-| CMP-001 | Benchmark Component creation latency p50/p99 on QEMU and reference hardware | todo | CMP-005, BEN-005, Q-001 | V0 |
-| CMP-002 | Benchmark resident memory overhead per idle Component | todo | CMP-005, BEN-005, Q-001 | V0 |
+| CMP-001 | Benchmark Component creation latency p50/p99 on QEMU and reference hardware | todo | CMP-005, BEN-005, Q-001, BLD-082 | V0 |
+| CMP-002 | Benchmark resident memory overhead per idle Component | todo | CMP-005, BEN-005, Q-001, BLD-082 | V0 |
 | CMP-003 | Map immutable executable objects as Component Code | todo | CMP-014, CMP-005, MEM-006, MEM-008 | V0 |
 | CMP-004 | Implement Component exit causes, teardown and the 100k leak test | todo | CMP-014, CMP-005, TSK-022, SCH-009 | V0 |
-| CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | CMP-010, CMP-014, CAP-005, SCH-007, TSK-023 | V0 |
+| CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | CMP-010, CMP-014, CAP-005, SCH-007, TSK-023, KRN-013 | V0 |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | CMP-015, CMP-016 | V0 |
 | CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | CMP-005, CMP-004, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013, BLD-082 | V0 |
 | CMP-012 | Prove Component isolation with negative tests and the isolation Demo | todo | CMP-005, CMP-013, CAP-001, SEC-001 | V0 |
@@ -2184,7 +2184,7 @@
 | --- | --- |
 | BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 35 |
+| BLD-082 | 37 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -2236,6 +2236,7 @@
 | CMP-024 | 14 |
 | DOC-015 | 14 |
 | IPC-035 | 14 |
+| KRN-013 | 14 |
 | LAB-021 | 14 |
 | MEM-005 | 14 |
 | SCH-026 | 14 |
@@ -2253,7 +2254,6 @@
 | HW-047 | 13 |
 | INS-045 | 13 |
 | KRN-011 | 13 |
-| KRN-013 | 13 |
 | LAB-007 | 13 |
 | LNX-005 | 13 |
 | LNX-042 | 13 |

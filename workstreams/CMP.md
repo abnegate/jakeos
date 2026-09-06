@@ -23,27 +23,36 @@ Task and TaskGroup objects and cancellation propagation (TSK). Capability table,
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-005, BEN-005, BEN-007, Q-001
+- Depends on: CMP-005, BEN-005, BEN-007, Q-001, BLD-082
 - Baseline: §10, §54, §59
 - Benchmarks: B-001
 - Risks: R-001, R-009
 - Invariants: I-029, I-061
 
-Measure B-001 on H-001 and H-002 through the shared BEN runner so V0-G11 can publish Component creation latency. V0 is publish-only. The same harness is reused by V1, V4 and 1.0 gates. If the published p50 exceeds the V0 advisory band in the register, V0-G11 is satisfied only through its Or adr documenting root cause and remediation.
+Cheap isolated Components are the premise of the native model (§10, §54); B-001 is the number that says whether V0 delivered it. The harness `bench/harness/B-001/` (crate `jakeos-bench-component-create`, scenario name `component-create`) creates a minimal Component through the CMP-005 path (ComponentBuilder with one Code object, an empty Capability set, the caller's ResourceDomain) and destroys it, in warm and cold variants per BEN-064, and emits the BEN-005 time-series record with p50 and p99. It runs from the BLD-010 nightly job on `qemu-x86_64` (functional, labelled QEMU) and `hw-h002`; the V0 target kind is `publish` (D-0031) and the same harness serves the V1 absolute target and the V4 and 1.0 regression targets. CMP-035 adds the Linux `fork`, `clone` and `podman` baselines later.
+
+Reports are written from the records into `reports/benchmarks/B-001/h001.md` and `h002.md` following the BEN-005 skeleton. If the published H-002 p50 exceeds the V0 advisory band in the register, V0-G11 is satisfied only through its Or path, an accepted decision documenting root cause and remediation; this task states that in its report rather than lowering the number.
 
 <!-- covers: INV-1295, GAP-0489 -->
 
 #### Out of scope
-Harness runner and methodology (BEN). Fast-path implementation (CMP-034). Linux fork, clone and podman baselines (CMP-035).
+Harness runner and methodology (BEN-005, BEN-064). Fast-path implementation (CMP-034). Linux `fork`, `clone` and `podman` baselines (CMP-035).
+
+#### Deliverables
+- bench:harness/B-001/ · Crate `jakeos-bench-component-create`: scenario `component-create` in warm and cold variants, emitting the BEN-005 record.
+- bench:harness/B-001/README.md · How to run it per BEN-064 and what the minimal Component consists of.
+- roadmap:reports/benchmarks/B-001/h001.md · The H-001 report (labelled QEMU, functional only).
+- roadmap:reports/benchmarks/B-001/h002.md · The H-002 report V0-G11 cites, with the advisory-band comparison and the Or-path statement if applicable.
 
 #### Acceptance criteria
-- [ ] B-001 reports for H-001 and H-002 exist under `reports/benchmarks/B-001/` with p50 and p99.
-- [ ] The V0 target kind in the B-001 register is `publish`; no absolute threshold is asserted as a V0 gate.
-- [ ] If the published p50 exceeds the V0 advisory band in the B-001 register, an accepted decision documenting root cause and remediation is recorded before V0-G11 uses its Or path.
-- [ ] The harness is `bench:component-create` and is invoked from nightly CI.
+- [ ] `reports/benchmarks/B-001/h001.md` and `h002.md` exist with p50 and p99 for warm and cold creation, following the BEN-005 skeleton and citing the BEN-064 methodology revision.
+- [ ] The V0 target kind in the B-001 register is `publish` and neither report asserts a pass or fail against a threshold.
+- [ ] If the published H-002 p50 exceeds the V0 advisory band in the register, the report says so and names the accepted decision V0-G11's Or path requires.
+- [ ] `bench/harness/B-001/` is the `component-create` scenario invoked by the BLD-010 nightly job on both matrix entries and writes a BEN-005 record per run.
 
 #### Verification
 - Bench: B-001 on H-001 and H-002; target per register.
+- Unit: `bench:tests/B-001/scenario_*` asserting the record is well formed and the minimal Component is as documented.
 - Review: BEN methodology sign-off recorded on the pull request.
 
 #### Evidence
@@ -55,25 +64,33 @@ Harness runner and methodology (BEN). Fast-path implementation (CMP-034). Linux 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: CMP-005, BEN-005, BEN-007, Q-001
+- Depends on: CMP-005, BEN-005, BEN-007, Q-001, BLD-082
 - Baseline: §10, §11, §54
 - Benchmarks: B-008
+- Risks: R-009
 - Invariants: I-029, I-061
 
-Measure B-008 so V0-G15 can publish resident kernel plus runtime memory attributable to one idle minimal Component. Component graphs with hundreds of Components are viable only if this fixed cost is bounded; the absolute target lives in the register and is first gated at V1.
+Component graphs with hundreds of Components (§11) are viable only if the fixed per-Component cost is bounded; B-008 publishes it at V0 and gates it absolutely at V1. The harness `bench/harness/B-008/` (crate `jakeos-bench-idle-memory`, scenario `idle-component-memory`) records the system's resident kernel and runtime memory (from the ResourceDomain counters of SCH-007 and the kernel's own accounting), creates N idle minimal Components (N from the B-008 register method), waits for them to reach steady state, records again, and divides the delta by N; it repeats for two values of N to expose non-linear terms. The record is a BEN-005 time-series entry; reports go to `reports/benchmarks/B-008/h001.md` and `h002.md`.
 
 <!-- covers: GAP-0491 -->
 
 #### Out of scope
-Idle Task memory (TSK). Shared code pages that reduce the number (CMP-029).
+Idle Task memory (TSK, B-014). Shared code pages that reduce the number (CMP-029). Methodology (BEN-064).
+
+#### Deliverables
+- bench:harness/B-008/ · Crate `jakeos-bench-idle-memory`: scenario `idle-component-memory` with the two-N method.
+- bench:harness/B-008/README.md · The method as registered on B-008 and how resident memory is read.
+- roadmap:reports/benchmarks/B-008/h001.md · The H-001 report.
+- roadmap:reports/benchmarks/B-008/h002.md · The H-002 report V0-G15 cites.
 
 #### Acceptance criteria
-- [ ] B-008 reports for H-001 and H-002 exist under `reports/benchmarks/B-008/` for idle minimal Components.
-- [ ] The method creates many idle Components and divides the resident-memory delta, matching the B-008 register method.
-- [ ] The V0 target kind in the B-008 register is `publish`.
+- [ ] `reports/benchmarks/B-008/h001.md` and `h002.md` exist for idle minimal Components with the per-Component figure at both values of N and the BEN-005 skeleton.
+- [ ] The harness creates N idle Components and divides the resident-memory delta by N, reading memory through the SCH-007 counters and kernel accounting as the B-008 register method states.
+- [ ] The V0 target kind in the B-008 register is `publish` and the reports assert no threshold.
 
 #### Verification
 - Bench: B-008 on H-001 and H-002; target per register.
+- Unit: `bench:tests/B-008/scenario_*` asserting the delta method and record shape.
 - Review: BEN methodology sign-off recorded on the pull request.
 
 #### Evidence
@@ -89,18 +106,26 @@ Idle Task memory (TSK). Shared code pages that reduce the number (CMP-029).
 - Baseline: §10, §34
 - Invariants: I-039
 
-A Component contains Code as mapped immutable executable objects (§10). In V0 the objects come from the retained initramfs; Packages arrive at V0.5. Mappings are read-only, executable and shared across instances of the same object. W^X is enforced by MEM; CMP owns the Component-side layout.
+A Component contains Code as mapped immutable executable objects (§10, §34): sealed (MEM-008), executable (MEM-006, W^X enforced) MemoryObjects shared across every instance of the same object. In V0 the objects come from the retained initramfs: `jakeos/cmp/code.rs` implements `CodeObject::from_initramfs(path)` (kernel-internal, used by the V0 runtime bootstrap) that wraps the file's pages as a sealed executable MemoryObject once per boot and caches it by content hash, and `ComponentBuilder.attach_code(Capability<MemoryObject>)` records the objects a Component maps. At `start`, `code.rs` maps each Code object read-only and executable at the layout the runtime's loader expects (`runtime/component/src/loader.rs`, crate `jakeos-runtime-component`, which reads the ELF program headers from the object and requests the mappings), and destroy unmaps them without touching other instances.
+
+Packages replace the initramfs source at V0.5 (CMP-017) using the same `attach_code` path; the inspect provider lists mapped Code objects per Component.
 
 <!-- covers: INV-0221 -->
 
 #### Out of scope
-Package object mapping (CMP-017). MemoryObject executable and sealed properties (MEM).
+Package object mapping (CMP-017). MemoryObject executable and sealed properties (MEM-006, MEM-008). The ELF loader's relocation and symbol logic (SDK-004 runtime).
+
+#### Deliverables
+- kernel:jakeos/cmp/code.rs · `CodeObject::from_initramfs`, the content-hash cache, `attach_code` recording and the map-at-start and unmap-at-destroy paths.
+- runtime:component/src/loader.rs · ELF program-header walk that requests the Code mappings from the kernel at Component start.
+- kernel:jakeos/obs/providers/component.rs · Mapped Code objects in the `component` inspect provider (added to CMP-014's file).
+- kernel:tools/testing/selftests/jakeos/cmp/code_mapping_*.rs · Selftests: read-only executable mapping, write fault, shared pages across instances, unmap on destroy.
 
 #### Acceptance criteria
-- [ ] Creating a Component maps its Code objects read-only and executable, and a write into a Code mapping returns a typed fault.
-- [ ] Two Components created from the same initramfs Code object share the same physical pages, verified by page identity.
+- [ ] Creating a Component maps its Code objects read-only and executable at the loader's requested addresses, and a write into a Code mapping returns the typed fault MEM-006 defines.
+- [ ] Two Components created from the same initramfs Code object share the same physical pages, verified by page identity, and `from_initramfs` returns the cached object for a second request of the same path.
 - [ ] Destroying a Component unmaps its Code without unmapping other instances of the same object.
-- [ ] `os inspect component` lists the mapped Code objects for a live Component.
+- [ ] `os inspect component <handle>` lists the mapped Code objects (object id and size) for a live Component.
 
 #### Verification
 - Unit: `kernel:tests/cmp/code_mapping_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -120,19 +145,28 @@ Package object mapping (CMP-017). MemoryObject executable and sealed properties 
 - Risks: R-075
 - Invariants: I-037
 
-Typed exit causes (panic, stack overflow, OOM, cancelled, exited) are observable through the Component handle. Destroy reclaims the address space, Capability table, owned TaskGroup and ResourceDomain membership. V0-G02 is verified by a leak test that creates and destroys Components at the scale named in the criteria with no unbounded kernel-memory growth.
+A Component ends with a typed exit cause (D-0066, CMP-008), observable through its handle by whoever holds it, and destroy reclaims everything it owned (§10, §32). `jakeos/cmp/exit.rs` defines `ExitCause` (`Exited { code }`, `Panic { location }`, `StackOverflow`, `OutOfMemory`, `CapabilityViolation { object, right }`, `Cancelled`), records it on the Component object when the last Task terminates or the kernel kills the Component, and completes the holder's `component.wait` Operation with it; nothing unwinds across the ABI and no destructor runs after a fault. `jakeos/cmp/destroy.rs` tears down in order: cancel the owned TaskGroup (TSK-022) and wait for termination, unmap Code and MemoryObjects, drop the Capability table (which drops object references), leave the ResourceDomain (returning the charge), free the wrapper resources of CMP-005.
+
+V0-G02 is verified by the leak test `tools/testing/selftests/jakeos/cmp/leak_create_destroy.rs`: 100,000 create-and-destroy cycles on `qemu-x86_64` with kernel memory (`/proc/meminfo` `Slab` and the SCH-007 domain counters) sampled every 1,000 cycles and asserted flat within the suite's bound after the first 1,000.
 
 <!-- covers: EXTRA-004, INV-0070, INV-0046 -->
 
 #### Out of scope
-Panic policy decision (CMP-008). Supervision and restart (SVC). TaskGroup cancellation mechanics (TSK).
+Panic policy decision (CMP-008). Supervision and restart (SVC-004). TaskGroup cancellation mechanics (TSK-022). Object-count limits (SCH-009).
+
+#### Deliverables
+- kernel:jakeos/cmp/exit.rs · `ExitCause`, recording on the Component object, completion of `component.wait`.
+- kernel:jakeos/cmp/destroy.rs · Ordered teardown of TaskGroup, mappings, Capability table, ResourceDomain membership and wrapper resources.
+- kernel:tools/testing/selftests/jakeos/cmp/exit_cause_*.rs · Selftests: each `ExitCause` variant observed by a holder; no unwind across the ABI.
+- kernel:tools/testing/selftests/jakeos/cmp/leak_create_destroy.rs · The 100,000-cycle leak test with memory sampling.
+- kernel:Documentation/jakeos/cmp/lifecycle.md · The exit causes, the teardown order and what a holder observes at each step.
 
 #### Acceptance criteria
-- [ ] A panicking Component reports exit cause `panic` on its handle and does not unwind across the Native ABI.
-- [ ] Stack overflow and OOM are distinct typed exit causes visible to the holder of the Component handle.
-- [ ] Destroy reclaims every kernel object the Component owned; `os inspect` lists none of them afterward.
-- [ ] A leak test that creates and destroys one hundred thousand Components on H-001 reports no unbounded kernel-memory growth after teardown.
-- [ ] Cancelling a Component's TaskGroup yields exit cause `cancelled` and completes only after owned Tasks have terminated.
+- [ ] A panicking Component reports `ExitCause::Panic` on its handle through `component.wait`, and no code inside the Component runs after the fault (no destructor, no unwind across the Native ABI).
+- [ ] `StackOverflow` and `OutOfMemory` are distinct typed exit causes visible to the holder of the Component handle, and `CapabilityViolation` names the object and right.
+- [ ] Destroy reclaims every kernel object the Component owned in the documented order; `os inspect` lists none of them afterwards.
+- [ ] `leak_create_destroy.rs` creates and destroys 100,000 Components on `qemu-x86_64` and reports no unbounded kernel-memory growth after teardown (V0-G02).
+- [ ] Cancelling a Component's TaskGroup yields `ExitCause::Cancelled` and completes only after every owned Task has terminated.
 
 #### Verification
 - Unit: `kernel:tests/cmp/exit_cause_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -148,24 +182,34 @@ Panic policy decision (CMP-008). Supervision and restart (SVC). TaskGroup cancel
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023
+- Depends on: CMP-010, CMP-014, CMP-009, CAP-005, SCH-007, TSK-023, KRN-013
 - Baseline: §6, §10, §53, §59
 - Risks: R-001, R-010
 - Invariants: I-014, I-057
 
-Phase C initial implementation: a single native operation creates the AddressSpace, Capability set, owned TaskGroup and ResourceDomain membership by wrapping `task_struct`, `mm_struct`, namespaces and cgroups. The Native ABI does not expose those internals. Native Components start from a retained initramfs; native init is not a V0 deliverable (R-010). This is the V0-G02 create, grant, run and destroy path.
+Phase A Component creation (§6, §53 isolation path): the ComponentBuilder of D-0068 (CMP-009) ends in one kernel Operation, `component.start`, that creates the address space, installs the Capability set, creates the owned TaskGroup and attaches ResourceDomain membership, using the strategy D-0069 (CMP-010) chose over the Linux internals. `jakeos/cmp/builder.rs` holds the kernel-side builder object (a staging area the user-space builder fills through `component.builder.*` Operations: attach code, attach capability, set domain, set supervisor endpoint) and `jakeos/cmp/create.rs` implements `start`: it allocates an `mm_struct` and a `task_struct` for the initial Task through the retained `copy_process`-adjacent kernel paths without exposing them, attaches the process to the domain's cgroup (SCH-007's wrapper), builds the Capability table from the staged set (CAP-006 `move_between`), maps Code (CMP-003), and enqueues the initial Task (SCH-005). None of `task_struct`, `mm_struct`, cgroups or namespaces is visible on the Native ABI (I-057); native crates never call `fork`, `exec`, `clone`, `unshare` or a container runtime (I-014).
+
+Native Components start from the retained initramfs (D-0051); native init is V0.5 (R-010). The runtime side is `runtime/component/src/builder.rs` in `jakeos-runtime-component`, the typed builder the SDK exposes.
 
 <!-- covers: INV-0145, INV-0222, INV-0226, INV-0434, INV-0997, INV-1155 -->
 
 #### Out of scope
-Native AddressSpace object (CMP-045). Native membership without namespaces (CMP-046). Package launch (CMP-027). Native init (SVC).
+Native AddressSpace object (CMP-045). Native membership without namespaces (CMP-046). Package launch (CMP-027). Native init (SVC-007). Exit and teardown (CMP-004).
+
+#### Deliverables
+- kernel:jakeos/cmp/builder.rs · Kernel-side builder object and the `component.builder.*` Operation handlers.
+- kernel:jakeos/cmp/create.rs · `component.start` over the retained process, mm and cgroup paths; the only `unsafe` in the CMP area besides listed files.
+- kernel:jakeos/hooks.c · The one-line hooks in `fork`, `exit` and cgroup attach that `create.rs` needs (extending KRN-013's file).
+- runtime:component/src/builder.rs · The typed user-space `ComponentBuilder` in `jakeos-runtime-component`.
+- kernel:tools/testing/selftests/jakeos/cmp/create_destroy_*.rs · Selftests: builder round trip, grant usable at first instruction, no Linux process API on the native path.
+- kernel:Documentation/jakeos/cmp/creation.md · The builder Operations, the `start` sequence and which Linux internals each step wraps.
 
 #### Acceptance criteria
-- [ ] One native create operation returns `Capability<Component>` whose object has an AddressSpace, a Capability table, a TaskGroup and ResourceDomain membership.
-- [ ] Granting a Capability at create makes that Capability usable by the Component's first instruction and by no other Component.
-- [ ] Mapped Code runs; destroy reclaims the wrapper resources so `os inspect component` no longer lists the handle.
-- [ ] Native crates that create a Component do not call fork, exec, clone, unshare or a container runtime.
-- [ ] `os inspect component` prints state, ownership and relationships for a live Component.
+- [ ] One `component.start` Operation returns `Capability<Component>` whose object has an address space, a Capability table, a TaskGroup and ResourceDomain membership, on `qemu-x86_64` and `hw-h002`.
+- [ ] A Capability attached through the builder is usable by the Component's first instruction and by no other Component; an object not attached returns `Error::Rights`.
+- [ ] Mapped Code runs, and destroy (CMP-004) reclaims the wrapper resources so `os inspect component` no longer lists the handle.
+- [ ] Native crates that create a Component (the runtime builder and the V0 demo) call no `fork`, `exec`, `clone`, `unshare` or container runtime; the CMP-013 lint and the BLD-006 agent's syscall trace both confirm it.
+- [ ] `os inspect component <handle>` prints state, owning ResourceDomain, TaskGroup and Capability count for a live Component.
 
 #### Verification
 - Unit: `kernel:tests/cmp/create_destroy_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -312,18 +356,23 @@ Wrapper implementation (CMP-005). Personality fork (LNX).
 - Risks: R-001
 - Invariants: I-009, I-057
 
-V0 exit criteria name the wrapper-versus-native Component decision as a required accepted decision. Options are thin wrapper, wrapper plus prewarmed templates, and early native object, chosen from the two V0 creation spikes. The Native ABI stays free of `task_struct`, `mm_struct`, cgroups and namespaces regardless of option.
+V0 exit requires an accepted decision on how Components are implemented in phase A (§6, §10): a thin wrapper over `task_struct`, `mm_struct` and cgroups per creation; a wrapper plus prewarmed address-space templates that creation clones; or an early native kernel object. D-0069 chooses from the two V0 spikes: CMP-015 (where the wrapper's creation cost goes) and CMP-016 (how the three strategies compare on B-001), and states that whichever option wins, Linux internals stay an implementation detail and never appear on the Native ABI (I-057). It also states the condition under which CMP-042 (native replacement) is scheduled.
+
+The executing agent writes the options from the two reports, cites `reports/spikes/CMP-015.md` and `reports/spikes/CMP-016.md` in Evidence, records the Decision as the strategy CMP-005 implements plus the revisit condition, and lists rejected options with reasons.
 
 <!-- covers: GAP-0489, INV-0145 -->
 
 #### Out of scope
-Native replacement of the wrapper (CMP-042). Fast-path tuning (CMP-034).
+Native replacement of the wrapper (CMP-042). Fast-path tuning (CMP-034). The spikes (CMP-015, CMP-016).
+
+#### Deliverables
+- roadmap:decisions/D-0069-decide-component-strategy.md · Options from the two spike reports, the Decision as the strategy plus the CMP-042 revisit condition, Evidence citing both reports, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] At least two options are evaluated, including thin wrapper and wrapper plus prewarmed templates.
-- [ ] The accepted option cites `reports/spikes/CMP-016.md` and `reports/spikes/CMP-015.md`.
-- [ ] The accepted option states that Linux internals remain an implementation detail, not ABI.
-- [ ] A Review line names who accepts the decision.
+- [ ] D-0069 evaluates thin wrapper, wrapper plus prewarmed templates, and early native object as named options with the B-001 findings of each.
+- [ ] The accepted option cites `reports/spikes/CMP-016.md` and `reports/spikes/CMP-015.md` in Evidence and names the condition that schedules CMP-042.
+- [ ] The accepted option states that `task_struct`, `mm_struct`, cgroups and namespaces remain an implementation detail and never appear on the Native ABI (I-057).
+- [ ] Review records ABI lead and CMP lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and CMP lead sign-off recorded on the pull request.
@@ -342,18 +391,28 @@ Native replacement of the wrapper (CMP-042). Fast-path tuning (CMP-034).
 - Baseline: §16, §32, §59
 - Benchmarks: B-013
 
-The §59 demo: A sends `Channel<Request>`, B returns a result by MemoryObject ownership transfer, shown with `os trace`. The same pair runs V0-D03: B panics and A observes a typed disconnect and rebinds to a restarted B.
+The §59 demo is the first native program pair and the fixture every later gate reuses. `runtime/examples/v0-demo/` in the platform monorepo holds two Components built with the SDK: `requester` (A) and `image-decoder` (B, the SDK-002 sample). A holds a `Channel<ImageDecoder>` endpoint (the IDL Interface from SDK-002, generated by IPC-013) and sends `decode(request)`; B allocates a MemoryObject, writes the decoded result, seals it (MEM-008) and returns `Capability<MemoryObject>` in the reply by ownership transfer (MEM-010, IPC-014); A maps it and reads the result without any payload copy. `os trace --scope demo` shows the A to B to MemoryObject flow (V0-D01). The same pair runs V0-D03: `image-decoder --panic-on-second-request` makes B panic; A observes `Error::Disconnected` on its in-flight call (IPC-011), rebinds through the runtime's rebind helper (IPC-028's V0 stub, provided here as `runtime/examples/v0-demo/rebind.rs`) to a fresh B started by the demo driver, and the next request succeeds; the panic never unwinds into A (D-0066).
+
+The demo driver `runtime/examples/v0-demo/driver.rs` is what BLD-010's demo job and the BLD-006 agent run; B-013 (the demo pipeline latency) is measured on it.
 
 <!-- covers: INV-1169 -->
 
 #### Out of scope
-Channel transport (IPC). MemoryObject transfer primitive (MEM). Service supervisor (SVC). Tracing substrate (OBS).
+Channel transport (IPC-010). MemoryObject transfer primitive (MEM-010). Service supervisor (SVC-004). Tracing substrate (OBS-003). The ImageDecoder sample itself (SDK-002).
+
+#### Deliverables
+- runtime:examples/v0-demo/requester/ · Component A: sends `decode`, maps the returned MemoryObject, verifies physical-page identity through the MEM-012 check.
+- runtime:examples/v0-demo/image-decoder/ · Component B built from the SDK-002 sample, with the `--panic-on-second-request` flag for V0-D03.
+- runtime:examples/v0-demo/rebind.rs · The V0 rebind helper A uses after a typed disconnect.
+- runtime:examples/v0-demo/driver.rs · Starts the pair through the runtime builder, runs V0-D01 and V0-D03, emits the B-013 record.
+- runtime:tests/cmp/demo_request_response_*.rs · Integration tests for both demos.
+- bench:harness/B-013/ · Crate `jakeos-bench-demo-pipeline` wrapping the driver as the B-013 scenario.
 
 #### Acceptance criteria
-- [ ] Component A sends a typed request to Component B and reads the result from a transferred MemoryObject without copying payload bytes, verified by physical-page identity.
-- [ ] `os trace` on H-002 shows the A-to-B-to-MemoryObject flow for a live run of V0-D01.
-- [ ] When B panics, A observes a typed disconnect and rebinds to a new B instance that serves a subsequent request (V0-D03).
-- [ ] The panic does not unwind into A.
+- [ ] Component A sends a typed `decode` request to Component B over `Channel<ImageDecoder>` and reads the result from a transferred MemoryObject without copying payload bytes, verified by physical-page identity (MEM-012's check), on `qemu-x86_64` and `hw-h002`.
+- [ ] `os trace --scope demo` on H-002 shows the A-to-B-to-MemoryObject flow for a live run of V0-D01.
+- [ ] With `--panic-on-second-request`, B panics, A observes `Error::Disconnected` on the in-flight call and rebinds to a new B instance that serves the next request (V0-D03).
+- [ ] The panic does not unwind into A: A's Task continues and its exit cause is `Exited`.
 
 #### Verification
 - Integration: `runtime:tests/cmp/demo_request_response` on H-001 and H-002.
@@ -374,23 +433,30 @@ Channel transport (IPC). MemoryObject transfer primitive (MEM). Service supervis
 - Threats: T-001, T-011
 - Invariants: I-014, I-021, I-049
 
-Negative tests that a Component cannot reach memory, objects or Capabilities it was not granted, and receives a typed denial visible in the audit log (V0-D04). Native Components do not enter the Linux syscall ABI as a native API; the hard syscall filter is ABI at V1.
+Isolation is proven by what a Component cannot do (§9.1, §10, §51). `tools/testing/selftests/jakeos/cmp/isolation_negative_*.rs` and the user-space fixture `runtime/examples/v0-demo/intruder/` (Component C, started with an empty Capability set beside the demo pair) attempt: opening a File it was not granted (`Error::Rights`, no handle, one CAP-001 denial record with C's identity and the File type id); mapping a MemoryObject owned by A by guessing handle words (every attempt `Error::Rights`); enumerating another Component's Capabilities through `capability.query` (`Error::Rights`); and reaching the kernel through a Linux syscall number from native code (the entry layer does not route it, and SEC-001's ambient-authority harness records the attempt). V0-D04 is the File case shown with the audit record.
+
+The hard syscall filter that makes the last case a kill rather than a refusal is ABI-035 at V1; at V0 the test asserts refusal and the absence of PID, `fork`, `exec` or syscall-number shapes on native entry points (CMP-013's lint).
 
 <!-- covers: INV-1164, INV-0952, INV-0035, INV-0040 -->
 
 #### Out of scope
-Syscall filter on native Components (ABI-035). Capability mint and derive (CAP). Ambient-authority harness (SEC).
+Syscall filter on native Components (ABI-035). Capability mint and derive (CAP-003). Ambient-authority harness content (SEC-001). Process-shape lint (CMP-013).
+
+#### Deliverables
+- runtime:examples/v0-demo/intruder/ · Component C with an empty Capability set that attempts the four intrusions and reports each typed refusal.
+- kernel:tools/testing/selftests/jakeos/cmp/isolation_negative_*.rs · Selftests for the four cases including the audit record check.
+- runtime:examples/v0-demo/driver.rs · The V0-D04 scenario added to the demo driver (extending CMP-011's file).
 
 #### Acceptance criteria
-- [ ] A Component without a file Capability that attempts to open a file receives `Error::Rights` and allocates no handle (V0-D04).
-- [ ] The denial is visible in the Capability audit log with Component identity and the denied object type.
-- [ ] A Component cannot map another Component's memory or enumerate its Capabilities.
-- [ ] Native Component entry points do not expose PID, fork, exec or a Linux syscall number.
+- [ ] Component C, holding no File Capability, attempts to open a File and receives `Error::Rights` with no handle allocated (V0-D04), and one CAP-001 denial record names C and the File type id.
+- [ ] C cannot map A's MemoryObject by guessing handle words and cannot enumerate A's Capabilities through `capability.query`; every attempt returns `Error::Rights` and the CAP-001 log shows the denials.
+- [ ] A Linux syscall number issued from C's native code is not routed by the entry layer, and SEC-001's harness records the attempt.
+- [ ] Native Component entry points expose no PID, `fork`, `exec` or Linux syscall number, as CMP-013's lint asserts on the demo crates.
 
 #### Verification
 - Unit: `kernel:tests/cmp/isolation_negative_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
 - Demo: V0-D04 on H-002.
-- Review: SEC threat-model citation of T-001 recorded on the pull request.
+- Review: SEC threat-model citation of T-001 and T-011 recorded on the pull request.
 
 #### Evidence
 - none
@@ -405,21 +471,31 @@ Syscall filter on native Components (ABI-035). Capability mint and derive (CAP).
 - Baseline: §1, §3, §53, §57
 - Invariants: I-006, I-014, I-019, I-025, I-049
 
-Standing rules become a lint, not one task per rule. CI fails when a native Component entry point exposes PID, fork/exec, process-group, namespace, overlay-mount, image-layer or daemon-dependent shapes.
+The standing rules of D-0062 (no PIDs or process groups), D-0064 (no native container runtime) and D-0068 (no fork or exec) become one lint rather than one task per rule (§57). `tools/process-shape-lint/` (crate `jakeos-tools-process-shape-lint`) scans native crates' public items, `extern` blocks and the ABI specification for the names and shapes in `build/lints/process-shapes.toml`: `pid`, `getpid`, `fork`, `vfork`, `exec*`, `waitpid`, `kill`, `setpgid`, `unshare`, `setns`, `mount` with overlay types, OCI image-layer types, and calls into container daemons (`containerd`, `dockerd`, `podman` sockets). A match fails the `process-shape` job in `pre-merge` of the platform repository and, for the ABI spec, of the kernel repository; the allowlist in the same file is empty for native crates, and an exemption requires an accepted decision named on the symbol.
+
+The reviewer half of the rule is added to the ABI-006 checklist as the CMP items (a Component create path that invokes a daemon, a thread-shaped API). The personalities' own crates are excluded from the scan by path.
 
 <!-- covers: INV-0035, INV-0040, INV-0990, INV-0991, INV-0992, INV-0993, INV-0995 -->
 
 #### Out of scope
-POSIX-shaped name lint on ABI symbols (ABI). Personality syscall retention (LNX).
+POSIX-shaped name lint on ABI symbols (ABI-018). Personality syscall retention (LNX). Async-by-default lint (TSK-001).
+
+#### Deliverables
+- tools:process-shape-lint/ · Crate `jakeos-tools-process-shape-lint`: public-item and `extern` scan, ABI spec scan, allowlist lookup.
+- bld:lints/process-shapes.toml · The forbidden names and shapes and the empty native allowlist.
+- platform:.github/workflows/pre-merge.yml · The `process-shape` job over native crates.
+- kernel:.github/workflows/pre-merge.yml · The `process-shape` job over `abi/spec` at the roadmap pin and `include/uapi/linux/jakeos/`.
+- abi:review/checklist.md · The CMP process-shape items (extending ABI-006's file).
+- tools:process-shape-lint/fixtures/ · A crate exporting `fork`, a crate calling a container daemon socket, a spec file with a `pid` field.
 
 #### Acceptance criteria
-- [ ] CI fails a native crate that exports a PID, fork, exec, waitpid, unshare, overlay-mount or container-runtime API.
-- [ ] CI fails a native Component create path that invokes a container daemon.
-- [ ] The lint allowlist is empty for native crates; exemptions require an accepted decision cited on the symbol.
-- [ ] The gate runs on every merge to main.
+- [ ] The `process-shape` job fails a native crate that exports a PID, `fork`, `exec`, `waitpid`, `unshare`, overlay-mount or container-runtime API, and fails a Component create path that opens a container daemon socket.
+- [ ] `process-shapes.toml` has an empty allowlist for native crates; an exemption lands only with an accepted decision cited on the symbol, and the personality crates are excluded by path.
+- [ ] The job runs in `pre-merge` of both repositories on every pull request, and the three fixtures fail it.
+- [ ] `abi/review/checklist.md` carries the CMP process-shape reviewer items.
 
 #### Verification
-- Unit: `tools:tests/cmp/lint_no_process_shapes` on the lint fixtures.
+- Unit: `tools:tests/cmp/lint_no_process_shapes` over the fixtures.
 - Review: ABI review-gate checklist includes the CMP process-shape items.
 
 #### Evidence
@@ -435,18 +511,28 @@ POSIX-shaped name lint on ABI symbols (ABI). Personality syscall retention (LNX)
 - Baseline: §7, §10, §65, §66
 - Invariants: I-014, I-040
 
-Specifies the Component object, its lifecycle states, rights and handle semantics at surface state prototyped. No Layer 1 freeze in V0 (I-040). This is the Native Platform layer entry for Components (S-007).
+`Object<Component>` is the native identity of a running program (D-0062): no PID, no process tree. `jakeos/cmp/object.rs` registers the `Component` type id with the ABI-005 registry, embeds the `ObjectHeader`, and holds the lifecycle state machine (`Created` after `start` is accepted but before the first instruction, `Running`, `Exited { cause }` after CMP-004 records the cause, `Destroyed` once teardown completes), the owned TaskGroup handle, the ResourceDomain membership, the Capability table (CAP-005) and the supervisor endpoint. Its rights vocabulary (declared in CAP-011's `rights_decl.rs`) is `Wait`, `Cancel`, `Inspect`, `Grant` (attach a Capability before start) and `Admin`. The Operations on it at V0 are `component.wait` (completes with the exit cause), `component.cancel` (cancels the TaskGroup) and `component.inspect`. This is surface S-007 at Layer 1, `prototyped`, never frozen in V0 (I-040).
+
+The inspect provider `jakeos/obs/providers/component.rs` prints state, owning domain, TaskGroup, Capability count and (after CMP-003) mapped Code objects.
 
 <!-- covers: INV-0168, INV-0046, INV-1313 -->
 
 #### Out of scope
-Capability rights encoding (CAP). Freeze-candidate review (CMP-033). L1 freeze (CMP-052).
+Capability rights encoding (CAP-010). Freeze-candidate review (CMP-033). L1 freeze (CMP-052). Creation (CMP-005) and exit (CMP-004) mechanics.
+
+#### Deliverables
+- kernel:jakeos/cmp/cmp.rs · Crate root for the CMP area.
+- kernel:jakeos/cmp/object.rs · `Object<Component>`: header, state machine, owned handles, the `wait`, `cancel` and `inspect` Operation handlers.
+- kernel:jakeos/cap/rights_decl.rs · The `Component` rights vocabulary (extending CAP-011's file).
+- kernel:jakeos/obs/providers/component.rs · The `component` inspect provider.
+- kernel:tools/testing/selftests/jakeos/cmp/object_component_*.rs · Selftests: registry, state transitions, wrong-type Operation, inspect by handle.
+- roadmap:registers/surfaces.md · S-007 `State: prototyped`, `Explored by: CMP-015, CMP-016`.
 
 #### Acceptance criteria
-- [ ] `Object<Component>` is registered in the typed object registry with a type identifier checked on every Operation.
-- [ ] Lifecycle states include at least created, running, exited and destroyed, and a wrong-type Operation returns a typed error.
-- [ ] S-007 remains `open` or `prototyped`; it is not `frozen`.
-- [ ] `os inspect component` can name a live Component by handle.
+- [ ] `Object<Component>` is registered in the ABI-005 registry with its type id checked on every Operation; a wrong-type Operation returns the D-0006 typed error and never enters the handler.
+- [ ] The lifecycle states `Created`, `Running`, `Exited { cause }` and `Destroyed` are observable through `component.inspect`, and only the documented transitions occur (a selftest drives each).
+- [ ] S-007 remains `open` or `prototyped` in `registers/surfaces.md`; it is not `frozen`.
+- [ ] `os inspect component <handle>` names a live Component by handle with state, owning domain, TaskGroup and Capability count.
 
 #### Verification
 - Unit: `kernel:tests/cmp/object_component_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -466,17 +552,24 @@ Capability rights encoding (CAP). Freeze-candidate review (CMP-033). L1 freeze (
 - Explores: S-007
 - Risks: R-001
 
-Prototype Component creation over `task_struct`, `mm_struct` and cgroups and attribute cost to address-space setup, page-table population, Capability table and scheduler registration. The breakdown feeds CMP-010 and the V0-G11 Or path if B-001 exceeds the register advisory band.
+Before deciding how Components are implemented (CMP-010), the wrapper's cost must be known stage by stage (§6, §10). Under `jakeos/spikes/cmp/wrapper-cost/` behind `CONFIG_JAKEOS_SPIKES`, a prototype creates a Component over `task_struct`, `mm_struct` and cgroups with kernel tracepoints (`jakeos_spike_cmp_stage`) at the boundaries of address-space setup, page-table population for the initial mappings, Capability-table fill, cgroup attach and scheduler registration; a user-space driver `runtime/spikes/cmp-wrapper-driver/` creates and destroys Components in a loop on `qemu-x86_64` and `hw-h002` while `perf` and the tracepoints attribute time per stage, following the B-001 method so the breakdown is comparable with the later gate number.
+
+The report `reports/spikes/CMP-015.md` gives the per-stage share on each machine, states what share is paid before the new Component's first instruction runs, and which stages would remain if page tables were prewarmed (the CMP-016 template strategy). It feeds CMP-010 and the V0-G11 Or path if B-001 exceeds the register's advisory band.
 
 <!-- covers: INV-0230 -->
 
 #### Out of scope
-Strategy comparison (CMP-016). Permanent B-001 harness (CMP-001).
+Strategy comparison (CMP-016). Permanent B-001 harness (CMP-001). The decision (CMP-010).
+
+#### Deliverables
+- kernel:jakeos/spikes/cmp/wrapper-cost/ · The instrumented prototype creation path with the `jakeos_spike_cmp_stage` tracepoints.
+- runtime:spikes/cmp-wrapper-driver/ · Create-and-destroy loop with `perf` and tracepoint capture per B-001 method.
+- roadmap:reports/spikes/CMP-015.md · Per-stage attribution on H-001 and H-002, pre-first-instruction share, prewarm residual.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/CMP-015.md` exists with the spike skeleton headings.
-- [ ] The report attributes B-001 cost on H-001 and H-002 to named stages.
-- [ ] The report states which stages remain if page tables are prewarmed.
+- [ ] `reports/spikes/CMP-015.md` exists with the spike skeleton headings and attributes B-001 cost on `qemu-x86_64` and `hw-h002` to address-space setup, page-table population, Capability-table fill, cgroup attach and scheduler registration.
+- [ ] The report states which share of the cost is paid before the first instruction of the new Component runs.
+- [ ] The report states which stages remain if page tables are prewarmed, and labels every number an unpublished prototype measurement.
 
 #### Verification
 - Report: which of address-space setup, page-table population, Capability-table fill and scheduler registration dominates B-001 on the Linux wrapper; what share of B-001 is paid before the first instruction of the new Component runs; which costs remain if page tables are prewarmed.
@@ -496,17 +589,26 @@ Strategy comparison (CMP-016). Permanent B-001 harness (CMP-001).
 - Explores: S-007
 - Risks: R-001
 
-Compare a thin wrapper, prewarmed address-space templates and a dedicated native kernel object against the B-001 band on H-001 and H-002. CMP-010 is not accepted without these numbers. Publish-only; no superiority claim.
+CMP-010 cannot be accepted on the wrapper's numbers alone (§6, §10). Under `jakeos/spikes/cmp/strategies/` behind `CONFIG_JAKEOS_SPIKES`, three creation strategies are prototyped far enough to create a Component that runs one instruction and exits: `wrapper.rs` (the CMP-015 path), `template.rs` (a prewarmed address-space template with populated page tables for the runtime's fixed mappings, cloned per creation), and `native.rs` (a dedicated kernel object that allocates the address space and initial context directly from the retained mm and scheduler primitives without `task_struct` reuse). The driver `runtime/spikes/cmp-strategies-driver/` measures B-001 p50 and p99 for each on `qemu-x86_64` and `hw-h002` per BEN-064, and records what each strategy changes on the Native ABI (nothing, or a named difference).
+
+The report `reports/spikes/CMP-016.md` publishes the three measurements as unpublished prototype numbers with no superiority claim, states which strategy can meet the B-001 V1 absolute target without exposing Linux internals, and names the ABI-visible differences or records that there are none.
 
 <!-- covers: GAP-0489 -->
 
 #### Out of scope
-Accepting the implementation strategy (CMP-010). Permanent harness (CMP-001).
+Accepting the implementation strategy (CMP-010). Permanent harness (CMP-001). Native replacement work (CMP-042).
+
+#### Deliverables
+- kernel:jakeos/spikes/cmp/strategies/wrapper.rs · Wrapper prototype (shares code with CMP-015's).
+- kernel:jakeos/spikes/cmp/strategies/template.rs · Prewarmed address-space template prototype.
+- kernel:jakeos/spikes/cmp/strategies/native.rs · Dedicated native object prototype.
+- runtime:spikes/cmp-strategies-driver/ · B-001 measurement driver for the three strategies.
+- roadmap:reports/spikes/CMP-016.md · The comparison, the V1-target viability statement and the ABI-difference list.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/CMP-016.md` exists with the spike skeleton headings.
-- [ ] The report publishes B-001 p50 and p99 for all three strategies on H-001 and H-002.
-- [ ] The report names ABI-visible differences among the three strategies, or records that there are none.
+- [ ] `reports/spikes/CMP-016.md` exists with the spike skeleton headings and publishes B-001 p50 and p99 for the wrapper, template and native strategies on `qemu-x86_64` and `hw-h002`, labelled unpublished prototype measurements.
+- [ ] The report states which strategy can meet the B-001 V1 absolute target without exposing Linux internals on the Native ABI.
+- [ ] The report names the ABI-visible differences among the three strategies, or records that there are none.
 
 #### Verification
 - Report: how thin wrapper, prewarmed address-space templates and a dedicated native kernel object compare on B-001 on H-001 and H-002; which strategy can meet the B-001 V1 absolute target without exposing Linux internals on the Native ABI; what ABI-visible differences exist among the three strategies.
