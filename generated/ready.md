@@ -4,18 +4,18 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5752 | none |
-| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5611 | none |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5519 | none |
-| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5477 | none |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5359 | none |
-| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5329 | none |
-| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5327 | none |
-| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5327 | none |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5323 | none |
-| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5316 | none |
-| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5312 | none |
-| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5310 | none |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5898 | none |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5757 | none |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5674 | none |
+| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5632 | none |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5528 | none |
+| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5498 | none |
+| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5496 | none |
+| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5496 | none |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5492 | none |
+| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5485 | none |
+| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5481 | none |
+| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5479 | none |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4820 | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 | none |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4527 | none |

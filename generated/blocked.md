@@ -361,8 +361,8 @@
 | IPC-071 | Prototype a remote-machine transport honoring Capabilities, identity and encryption | todo | IPC-063, IPC-025, IPC-056 | LATER |
 | MEM-002 | Decide the MemoryObject kernel implementation basis | todo | MEM-011 | V0 |
 | MEM-003 | Decide whether Ownership transfer is kernel-enforced or advisory | todo | MEM-011 | V0 |
-| MEM-004 | Charge MemoryObject pages to the owning ResourceDomain memory budget | todo | MEM-005 | V0 |
-| MEM-005 | Implement the MemoryObject kernel Object over retained Linux mm | todo | MEM-002 | V0 |
+| MEM-004 | Charge MemoryObject pages to the owning ResourceDomain memory budget | todo | MEM-005, SCH-008 | V0 |
+| MEM-005 | Implement the MemoryObject kernel Object over retained Linux mm | todo | MEM-002, ABI-005, CAP-005, KRN-013 | V0 |
 | MEM-006 | Implement the executable property with W^X enforcement | todo | MEM-007 | V0 |
 | MEM-007 | Implement MemoryObject map and unmap in a Component address space | todo | MEM-005 | V0 |
 | MEM-008 | Implement the immutable property and sealed read-only mappings | todo | MEM-007 | V0 |
@@ -2183,8 +2183,8 @@
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 64 |
+| CAP-005 | 41 |
 | BLD-082 | 40 |
-| CAP-005 | 40 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -2213,17 +2213,18 @@
 | PKG-038 | 18 |
 | WIN-054 | 18 |
 | BLD-009 | 17 |
+| KRN-013 | 17 |
 | OBS-019 | 17 |
 | PKG-022 | 17 |
 | SVC-013 | 17 |
 | ABI-011 | 16 |
 | GFX-006 | 16 |
 | INS-027 | 16 |
-| KRN-013 | 16 |
 | MED-013 | 16 |
 | SDK-009 | 16 |
 | SEC-027 | 16 |
 | STO-034 | 16 |
+| ABI-005 | 15 |
 | ABI-049 | 15 |
 | CAP-010 | 15 |
 | HW-011 | 15 |
@@ -2233,7 +2234,6 @@
 | PKG-060 | 15 |
 | SEC-028 | 15 |
 | WASM-012 | 15 |
-| ABI-005 | 14 |
 | CMP-024 | 14 |
 | DOC-015 | 14 |
 | IPC-035 | 14 |
@@ -2360,6 +2360,7 @@
 | PKG-025 | 9 |
 | PKG-048 | 9 |
 | PWR-013 | 9 |
+| SCH-008 | 9 |
 | SEC-005 | 9 |
 | SEC-014 | 9 |
 | STO-012 | 9 |
@@ -2399,7 +2400,6 @@
 | PKG-028 | 8 |
 | PKG-041 | 8 |
 | REL-007 | 8 |
-| SCH-008 | 8 |
 | SCH-042 | 8 |
 | SDK-054 | 8 |
 | SDK-097 | 8 |

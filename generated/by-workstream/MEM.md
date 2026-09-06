@@ -9,8 +9,8 @@
 | MEM-001 | Decide the MemoryObject sharing coherence model across CPUs and devices | done | done | S | none |
 | MEM-002 | Decide the MemoryObject kernel implementation basis | todo | blocked | S | MEM-011 |
 | MEM-003 | Decide whether Ownership transfer is kernel-enforced or advisory | todo | blocked | S | MEM-011 |
-| MEM-004 | Charge MemoryObject pages to the owning ResourceDomain memory budget | todo | blocked | S | MEM-005 |
-| MEM-005 | Implement the MemoryObject kernel Object over retained Linux mm | todo | blocked | L | MEM-002 |
+| MEM-004 | Charge MemoryObject pages to the owning ResourceDomain memory budget | todo | blocked | S | MEM-005, SCH-008 |
+| MEM-005 | Implement the MemoryObject kernel Object over retained Linux mm | todo | blocked | L | MEM-002, ABI-005, CAP-005, KRN-013 |
 | MEM-006 | Implement the executable property with W^X enforcement | todo | blocked | M | MEM-007 |
 | MEM-007 | Implement MemoryObject map and unmap in a Component address space | todo | blocked | M | MEM-005 |
 | MEM-008 | Implement the immutable property and sealed read-only mappings | todo | blocked | M | MEM-007 |
