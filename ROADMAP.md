@@ -220,6 +220,7 @@ Makespan (size-weight estimates): 115.
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
+| KRN-013 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |
@@ -229,7 +230,6 @@ Makespan (size-weight estimates): 115.
 | CMP-024 | 14 |
 | DOC-015 | 14 |
 | IPC-035 | 14 |
-| KRN-013 | 14 |
 | LAB-021 | 14 |
 | MEM-005 | 14 |
 | SCH-026 | 14 |

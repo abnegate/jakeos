@@ -5738,6 +5738,7 @@ digraph roadmap {
   "KRN-013" -> "ABI-002";
   "KRN-013" -> "CAP-005";
   "KRN-013" -> "CMP-005";
+  "KRN-013" -> "IPC-010";
   "KRN-013" -> "KRN-012";
   "KRN-013" -> "KRN-019";
   "KRN-013" -> "KRN-037";
