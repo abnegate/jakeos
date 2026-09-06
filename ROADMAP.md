@@ -176,8 +176,8 @@ Makespan (size-weight estimates): 115.
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 64 |
+| BLD-082 | 40 |
 | CAP-005 | 40 |
-| BLD-082 | 39 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -212,6 +212,7 @@ Makespan (size-weight estimates): 115.
 | ABI-011 | 16 |
 | GFX-006 | 16 |
 | INS-027 | 16 |
+| KRN-013 | 16 |
 | MED-013 | 16 |
 | SDK-009 | 16 |
 | SEC-027 | 16 |
@@ -220,7 +221,6 @@ Makespan (size-weight estimates): 115.
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
-| KRN-013 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |

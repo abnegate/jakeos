@@ -6,11 +6,11 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| SCH-001 | Benchmark ResourceDomain enforcement accuracy and per-domain overhead | todo | blocked | M | SCH-006, SCH-008, SCH-009, SCH-007, BEN-007, BEN-005 |
+| SCH-001 | Benchmark ResourceDomain enforcement accuracy and per-domain overhead | todo | blocked | M | SCH-006, SCH-008, SCH-009, SCH-007, BEN-007, BEN-005, BLD-082 |
 | SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | todo | blocked | S | CAP-010 |
 | SCH-003 | Decide ResourceDomain over cgroup v2 controllers versus native accounting | todo | blocked | S | SCH-001, SCH-012 |
 | SCH-004 | Decide how intents map onto Linux scheduler mechanisms versus a native class | todo | blocked | S | SCH-012 |
-| SCH-005 | Make Operation completion wake the awaiting Task and schedule TaskGroups directly | todo | blocked | L | TSK-020, TSK-018, CMP-005, SCH-011 |
+| SCH-005 | Make Operation completion wake the awaiting Task and schedule TaskGroups directly | todo | blocked | L | TSK-020, TSK-018, CMP-005, SCH-011, KRN-013 |
 | SCH-006 | Enforce ResourceDomain CPU policy: share, quota, allowed cores | todo | blocked | M | SCH-007 |
 | SCH-007 | Implement ResourceDomain as a Capability-referenced kernel Object | todo | blocked | L | SCH-002, CAP-005, ABI-005, KRN-013, CMP-007 |
 | SCH-008 | Enforce the ResourceDomain memory budget for member Components | todo | blocked | M | SCH-007 |
