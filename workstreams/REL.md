@@ -1011,6 +1011,7 @@ Publisher service (REL-021). Client revoke (PKG-087). SDK publish CLI (SDK-080).
 - [ ] A Package submitted by an identity outside the core team is reviewed, signed and present in the public index.
 - [ ] The same Package is withdrawn through REL-036 and PKG-087 refuses activation afterward.
 - [ ] The drill record names the reviewer and the revocation generation.
+- [ ] At least ten Packages from identities outside the core team are published through this path (the V3-G06 count).
 
 #### Verification
 - Demo: third-party submit, review, sign, publish and revoke on H-001.
@@ -1164,6 +1165,7 @@ Capture format (OBS-029). Consent and redaction UI (INS-020, INS-021). Local met
 - [ ] The intake agent holds only the Capabilities GOV-055 listed; ambient filesystem or network besides the intake endpoint fails the isolation test (I-021, GAP-0365).
 - [ ] A report the user redacted arrives with those fields absent.
 - [ ] Personality crashes mapped by WIN-063 and LNX-027 land in the same intake schema.
+- [ ] A crash report from an alpha machine appears symbolicated and deduplicated in the tracker within 24 hours of receipt (the V3-G04 window).
 
 #### Verification
 - Integration: `rel:tests/crash/intake_structured_and_scrub` on `qemu-x86_64` (H-001).
@@ -1933,7 +1935,7 @@ Register target (REL-060). Kernel compliance report (KRN-057). Ingestion (REL-00
 
 #### Acceptance criteria
 - [ ] A published distribution of inherited High and Critical CVE time-to-generation covers the trailing window the register names.
-- [ ] The report states pass or fail against the REL-060 target without copying the number into REL.md.
+- [ ] At least 95 percent of applicable inherited High and Critical CVEs in the trailing quarter met the REL-060 SLA (the 1.0-G04 fraction); the report states pass or fail against that bar.
 - [ ] KRN-057 and this report cite the same B-ID.
 
 #### Verification

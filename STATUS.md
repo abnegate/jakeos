@@ -34,10 +34,10 @@
 | MED | 42 | 0 | 0 | 42 | 0 | 1 | 41 | 0% |
 | HW | 90 | 5 | 0 | 85 | 0 | 1 | 84 | 2% |
 | PWR | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
-| SDK | 96 | 0 | 0 | 96 | 0 | 1 | 95 | 0% |
+| SDK | 98 | 0 | 0 | 98 | 0 | 1 | 97 | 0% |
 | APP | 69 | 0 | 0 | 69 | 0 | 0 | 69 | 0% |
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
-| BLD | 80 | 4 | 0 | 76 | 0 | 1 | 75 | 3% |
+| BLD | 81 | 4 | 0 | 77 | 0 | 2 | 75 | 2% |
 | LAB | 25 | 1 | 0 | 24 | 0 | 2 | 22 | 1% |
 | BEN | 64 | 2 | 0 | 62 | 0 | 3 | 59 | 3% |
 | REL | 67 | 1 | 0 | 66 | 0 | 2 | 64 | 1% |
@@ -148,6 +148,7 @@ none
 - critical-path task BLD-011 has Owner none on the active rung
 - critical-path task BLD-012 has Owner none on the active rung
 - critical-path task BLD-013 has Owner none on the active rung
+- critical-path task BLD-081 has Owner none on the active rung
 - critical-path task BOOT-001 has Owner none on the active rung
 - critical-path task BOOT-002 has Owner none on the active rung
 - critical-path task BOOT-005 has Owner none on the active rung

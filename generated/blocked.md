@@ -42,7 +42,7 @@
 | KRN-047 | Write the Phase D playbook for adapting upstream driver improvements | todo | KRN-042, KRN-032 | V2 |
 | KRN-048 | Capture kernel panics to pstore/kdump and hand them to the crash reporter | todo | KRN-041, OBS-027, OBS-029 | V2 |
 | KRN-049 | Add kernel config fragments for the Intel and AMD target laptops | todo | KRN-011, KRN-034 | V2 |
-| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | KRN-009, KRN-042 | V3 |
+| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | KRN-009, LNX-003 | V1 |
 | KRN-051 | Establish the process for adopting upstream architecture improvements | todo | KRN-042, KRN-029 | V3 |
 | KRN-052 | Exercise kernel CVE response and publish the V3 response-time distribution | todo | KRN-030, KRN-031, KRN-045, REL-034 | V3 |
 | KRN-053 | Establish selective adoption of upstream mm, scheduler and subsystem patches | todo | KRN-042, KRN-047 | V3 |
@@ -237,7 +237,7 @@
 | CMP-049 | Add fuzz targets for the Component spawn, exit and code-mapping Surface | todo | CMP-033, BLD-035 | V3 |
 | CMP-050 | Complete the Component L1 reference documentation | todo | CMP-033 | V3 |
 | CMP-051 | Isolate Components across user sessions with negative tests | todo | CMP-012, SEC-060, WASM-012, SEC-028, SEC-064 | V3 |
-| CMP-052 | Ship the conformance suite for the frozen Component L1 Surface | todo | CMP-033, CMP-049, CMP-010, CMP-016, ABI-049, CMP-015, CMP-021 | V4 |
+| CMP-052 | Ship the conformance suite for the frozen Component L1 Surface | todo | CMP-033, CMP-049, CMP-010, CMP-016, ABI-049, CMP-015, CMP-021, CMP-045, CMP-046 | V4 |
 | CMP-053 | Close external audit findings against the Component isolation boundary | todo | CMP-039, CMP-012, SEC-067, SEC-070 | V4 |
 | CMP-054 | Publish reproducible Component creation, memory and startup metrics | todo | CMP-001, CMP-002, CMP-019, CMP-018, BEN-063 | 1.0 |
 | CMP-055 | Write the Component section of the ABI stability statement | todo | CMP-052, ABI-050 | 1.0 |
@@ -758,7 +758,7 @@
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | GFX-032 | V0.5 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | GFX-036 | V0.5 |
 | GFX-015 | Decide the compositor frame scheduling model | todo | GFX-012 | V0.5 |
-| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | GFX-036, Q-034 | V0.5 |
+| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | GFX-036, Q-034, SDK-097 | V0.5 |
 | GFX-017 | Decide the GPU API native applications render with | todo | GFX-036 | V0.5 |
 | GFX-018 | Decide compositor rendering backend policy: Vulkan-only or Vulkan plus GL | todo | GFX-035 | V0.5 |
 | GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | GFX-033, Q-027 | V0.5 |
@@ -798,7 +798,7 @@
 | GFX-053 | Bring up i915/xe internal panel and USB-C external display on the Intel laptop | todo | GFX-027, HW-022, HW-015, LAB-007 | V1 |
 | GFX-054 | Present as late as possible before scanout to minimise latency | todo | GFX-024, GFX-003, GFX-004 | V1 |
 | GFX-055 | Test that a compositor crash while locked restarts into the locked state | todo | GFX-045, GFX-007 | V1 |
-| GFX-056 | Run Mesa Vulkan and OpenGL inside native Components with Capability-mediated GPU | todo | GFX-016, GFX-036, GFX-051, GFX-030 | V1 |
+| GFX-056 | Run Mesa Vulkan and OpenGL inside native Components with Capability-mediated GPU | todo | GFX-016, GFX-036, GFX-051, GFX-030, SDK-097 | V1 |
 | GFX-057 | Mediate Linux Personality GPU access through RenderQueue capabilities | todo | GFX-056, GFX-020, LNX-031, LNX-014 | V1 |
 | GFX-058 | Spike GPU time and memory budgets via DRM scheduler and cgroup GPU controllers | todo | GFX-056, SCH-031 | V1 |
 | GFX-059 | Bring up the AMD APU internal panel and external displays on the AMD laptop | todo | GFX-027, GFX-053, HW-039, LAB-018 | V2 |
@@ -814,7 +814,7 @@
 | GFX-069 | Expose HDR Surfaces to the Wayland bridge and Windows Personality | todo | GFX-068, GFX-020 | V2 |
 | GFX-070 | Implement HDR-to-SDR and SDR-in-HDR tone mapping | todo | GFX-063, GFX-062 | V2 |
 | GFX-071 | Automate 100 hot-plug and unplug cycles including an MST daisy-chained dock | todo | GFX-075, GFX-077, LAB-018 | V2 |
-| GFX-072 | Support render offload selection and mux switching across both personalities | todo | GFX-076, HW-048 | V2 |
+| GFX-072 | Support render offload selection and mux switching across both personalities | todo | GFX-076, HW-048 | V4 |
 | GFX-073 | Apply per-display ICC profiles in the compositor | todo | GFX-063, LAB-017, GFX-022 | V2 |
 | GFX-074 | Support tearing and immediate presentation for fullscreen Surfaces | todo | GFX-079, GFX-023 | V2 |
 | GFX-075 | Support DisplayPort MST topologies and daisy-chained docks | todo | GFX-077, HW-059, HW-057 | V2 |
@@ -1035,7 +1035,7 @@
 | LNX-013 | Decide the default Capability bundle for Linux apps | todo | LNX-005, LNX-018, CAP-007, SEC-006 | V1 |
 | LNX-014 | Decide /dev, sysfs and udev coexistence with native drivers | todo | LNX-008, HW-009 | V1 |
 | LNX-015 | Decide whether ia32 emulation is retained | todo | LNX-001, KRN-017, KRN-011 | V1 |
-| LNX-016 | Decide how native applications opt into a Personality | todo | LNX-003, ABI-025, CAP-007 | V1 |
+| LNX-016 | Decide how native applications opt into a Personality | todo | LNX-003, ABI-025, CAP-007, SDK-097 | V1 |
 | LNX-017 | Decide first-class Linux packaging formats | todo | LNX-023, PKG-047, LNX-008 | V1 |
 | LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | LNX-004, STO-034, UIP-003 | V1 |
 | LNX-019 | Decide the POSIX path view of native storage | todo | STO-047, STO-042, LNX-013 | V1 |
@@ -1407,7 +1407,7 @@
 | NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | NET-007, NET-008, CAP-010 | V1 |
 | NET-007 | Decide NET baseline-gap scope: preserved stack versus native objects | todo | NET-001, NET-002 | V1 |
 | NET-008 | Decide whether NetworkConnection wraps the kernel TCP/IP stack | todo | NET-007, NET-002, ABI-013 | V1 |
-| NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | NET-007 | V1 |
+| NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | NET-007, SDK-097 | V1 |
 | NET-010 | Write the native NetworkConnection programming model for SDK v1 | todo | NET-014, NET-011, NET-019, NET-006 | V1 |
 | NET-011 | Implement native TLS on NetworkConnection using the system CA store | todo | NET-005, NET-014, SEC-016, SEC-022 | V1 |
 | NET-012 | Implement the network Capability broker and default-deny inbound firewall | todo | NET-006, NET-014, CAP-005, SVC-015 | V1 |
@@ -1440,7 +1440,7 @@
 | NET-039 | Write the retained TCP/IP and Wi-Fi CVE triage runbook for 1.x support | todo | NET-001, KRN-031, REL-006 | 1.0 |
 | NET-040 | Decide whether to ship a native typed remote shell after 1.0 | todo | NET-017 | LATER |
 | AUD-001 | Ship PipeWire and PulseAudio compatibility on AudioStream | todo | AUD-002, AUD-006, AUD-005, AUD-011, SVC-026, IPC-035 | V1 |
-| AUD-002 | Decide native AudioStream service versus PipeWire-as-native | todo | AUD-008 | V1 |
+| AUD-002 | Decide native AudioStream service versus PipeWire-as-native | todo | AUD-008, SDK-097 | V1 |
 | AUD-003 | Deny microphone use without an explicit Capability | todo | AUD-006, CAP-001, SEC-009, SEC-006 | V1 |
 | AUD-004 | Build audio round-trip latency and glitch harness | todo | AUD-007, AUD-010, LAB-011, OBS-040, BEN-005 | V1 |
 | AUD-005 | Implement restartable audio server with stream rebind | todo | AUD-006, SVC-015, SVC-009, IPC-028, CMP-028, BLD-020 | V1 |
@@ -1475,7 +1475,7 @@
 | MED-004 | Decide VA-API versus Vulkan Video for hardware codecs | todo | MED-005 | V1 |
 | MED-005 | Measure VA-API and Vulkan Video decode on reference machines | todo | GFX-001, MEM-024, HW-022 | V1 |
 | MED-006 | Measure libcamera versus V4L2 on the Intel laptop ISP | todo | HW-008, HW-009 | V1 |
-| MED-007 | Decide native media pipeline versus GStreamer or FFmpeg | todo | MED-009, GOV-020, MED-010 | V1 |
+| MED-007 | Decide native media pipeline versus GStreamer or FFmpeg | todo | MED-009, GOV-020, MED-010, SDK-097 | V1 |
 | MED-008 | Define Layer 2 decoder encoder Camera and Frame Interfaces | todo | MED-007, MED-004, MED-001, IPC-035, IPC-012 | V1 |
 | MED-009 | Prototype sandboxed decoder Components exchanging MemoryObjects | todo | MEM-022, MEM-039, CMP-024, CMP-021, SDK-002 | V1 |
 | MED-011 | Ship a first-party Camera capture application | todo | MED-013, MED-027, MED-008 | V2 |
@@ -1536,7 +1536,7 @@
 | HW-026 | Implement IOMMU-protected DMA MemoryObjects for user-space drivers | todo | HW-017, HW-006, HW-008, MEM-037, MEM-028 | V1 |
 | HW-027 | Implement XKB-data keyboard layouts, compose, dead keys and switching | todo | HW-011, SVC-025 | V1 |
 | HW-028 | Spike a Bluetooth controller in user space versus the in-kernel host | todo | HW-014, HW-006, HW-017, HW-015 | V1 |
-| HW-029 | Build the user-space driver framework over Capability<Device> | todo | HW-006, HW-017, HW-008, HW-026, HW-016 | V1 |
+| HW-029 | Build the user-space driver framework over Capability<Device> | todo | HW-006, HW-017, HW-008, HW-026, HW-016, SDK-097 | V1 |
 | HW-030 | Restart crashed user-space drivers and re-issue Device Capabilities | todo | HW-029, HW-031 | V1 |
 | HW-031 | Ship selected USB HID classes as user-space drivers | todo | HW-029, HW-014, HW-011, HW-016 | V1 |
 | HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | HW-015, HW-024, HW-011, HW-012, HW-027, HW-030 | V1 |
@@ -1552,7 +1552,7 @@
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | HW-011, HW-015, HW-039 | V2 |
 | HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 | V2 |
 | HW-047 | Define the Hardware Compatibility List schema and probe record format | todo | HW-021 | V2 |
-| HW-048 | Enable iGPU plus dGPU mux and render-offload on hybrid laptops | todo | HW-009, HW-039 | V2 |
+| HW-048 | Enable iGPU plus dGPU mux and render-offload on hybrid laptops | todo | HW-009, HW-039 | V4 |
 | HW-049 | Enumerate gamepads as Capability<InputDevice> for native and personalities | todo | HW-011, HW-031 | V2 |
 | HW-050 | Expose laptop function keys, keyboard backlight and brightness | todo | HW-015, HW-039, HW-011 | V2 |
 | HW-051 | Deliver lid and tablet-mode switch events as typed Device signals | todo | HW-015, HW-039, LAB-014 | V2 |
@@ -1719,6 +1719,8 @@
 | SDK-094 | Run the SDK compatibility suite through the 1.0 soak | todo | SDK-036, SDK-087, BLD-079, ABI-052 | 1.0 |
 | SDK-095 | Publish the Layer 3 semver stability statement for 1.x | todo | SDK-054, ABI-053, SDK-089 | 1.0 |
 | SDK-096 | Complete SDK guides for Rust and C on the 1.0 release | todo | SDK-092, SDK-095, DOC-040 | 1.0 |
+| SDK-097 | Decide the Layer 3 C-library strategy for inherited C stacks inside native Components | todo | GFX-036, SDK-028, ABI-011 | V0.5 |
+| SDK-098 | Provide the Layer 3 libc-compatible library over native objects for Mesa, codec and driver stacks | todo | SDK-049, SDK-009, SDK-003, SDK-097 | V1 |
 | APP-001 | Publish warm and cold startup for the four native applications | todo | APP-004, APP-003, APP-005, APP-006, Q-029, BEN-005 | V0.5 |
 | APP-002 | Build the OS-owned file chooser UI minting UserSelected capabilities | todo | STO-034, GFX-040, UIP-024, UIP-025, SEC-007, CAP-029, SDK-017 | V0.5 |
 | APP-003 | Build the Demo native Text Editor | todo | UIP-024, TXT-012, STO-024 | V0.5 |
@@ -2208,19 +2210,19 @@
 | OBS-019 | 17 |
 | PKG-022 | 17 |
 | SVC-013 | 17 |
+| ABI-011 | 16 |
 | GFX-006 | 16 |
 | INS-027 | 16 |
 | MED-013 | 16 |
+| SDK-009 | 16 |
 | SEC-027 | 16 |
 | STO-034 | 16 |
-| ABI-011 | 15 |
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |
-| SDK-009 | 15 |
 | SEC-028 | 15 |
 | WASM-012 | 15 |
 | ABI-005 | 14 |
@@ -2374,6 +2376,7 @@
 | HW-001 | 8 |
 | HW-016 | 8 |
 | IPC-006 | 8 |
+| LNX-003 | 8 |
 | LNX-011 | 8 |
 | LNX-015 | 8 |
 | MEM-028 | 8 |
@@ -2390,6 +2393,7 @@
 | SCH-008 | 8 |
 | SCH-042 | 8 |
 | SDK-054 | 8 |
+| SDK-097 | 8 |
 | STO-019 | 8 |
 | TXT-013 | 8 |
 | WIN-009 | 8 |
@@ -2409,6 +2413,7 @@
 | DOC-014 | 7 |
 | ENV-018 | 7 |
 | GFX-009 | 7 |
+| GFX-036 | 7 |
 | GOV-005 | 7 |
 | GOV-007 | 7 |
 | GOV-016 | 7 |
@@ -2424,8 +2429,6 @@
 | IPC-025 | 7 |
 | IPC-062 | 7 |
 | KRN-034 | 7 |
-| KRN-042 | 7 |
-| LNX-003 | 7 |
 | LNX-045 | 7 |
 | LNX-057 | 7 |
 | LNX-061 | 7 |
@@ -2480,7 +2483,6 @@
 | CMP-036 | 6 |
 | ENV-007 | 6 |
 | GFX-024 | 6 |
-| GFX-036 | 6 |
 | GFX-045 | 6 |
 | GFX-056 | 6 |
 | GFX-063 | 6 |
@@ -2497,6 +2499,7 @@
 | IPC-017 | 6 |
 | IPC-032 | 6 |
 | KRN-009 | 6 |
+| KRN-042 | 6 |
 | LAB-014 | 6 |
 | LNX-006 | 6 |
 | LNX-017 | 6 |
@@ -2516,6 +2519,7 @@
 | PWR-012 | 6 |
 | REL-021 | 6 |
 | REL-057 | 6 |
+| SDK-003 | 6 |
 | SDK-024 | 6 |
 | SDK-043 | 6 |
 | SEC-044 | 6 |
@@ -2622,7 +2626,6 @@
 | SCH-003 | 5 |
 | SCH-045 | 5 |
 | SDK-001 | 5 |
-| SDK-003 | 5 |
 | SDK-004 | 5 |
 | SDK-017 | 5 |
 | SDK-018 | 5 |
@@ -2867,6 +2870,8 @@
 | CMP-015 | 3 |
 | CMP-028 | 3 |
 | CMP-033 | 3 |
+| CMP-045 | 3 |
+| CMP-046 | 3 |
 | DOC-009 | 3 |
 | DOC-018 | 3 |
 | DOC-030 | 3 |
@@ -2986,9 +2991,11 @@
 | SDK-012 | 3 |
 | SDK-013 | 3 |
 | SDK-026 | 3 |
+| SDK-028 | 3 |
 | SDK-038 | 3 |
 | SDK-040 | 3 |
 | SDK-046 | 3 |
+| SDK-049 | 3 |
 | SDK-053 | 3 |
 | SDK-056 | 3 |
 | SDK-060 | 3 |
@@ -3141,8 +3148,6 @@
 | CMP-031 | 2 |
 | CMP-037 | 2 |
 | CMP-042 | 2 |
-| CMP-045 | 2 |
-| CMP-046 | 2 |
 | CMP-051 | 2 |
 | DOC-002 | 2 |
 | DOC-013 | 2 |
@@ -3343,10 +3348,8 @@
 | SDK-005 | 2 |
 | SDK-008 | 2 |
 | SDK-011 | 2 |
-| SDK-028 | 2 |
 | SDK-031 | 2 |
 | SDK-035 | 2 |
-| SDK-049 | 2 |
 | SDK-052 | 2 |
 | SDK-055 | 2 |
 | SDK-061 | 2 |

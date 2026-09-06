@@ -37,6 +37,10 @@ pub fn render(repo: &Repo, derived: &Derived) -> Result<BTreeMap<String, String>
         dashboard_html(&index),
     );
     files.insert("generated/index.json".to_string(), index);
+    files.insert(
+        "generated/coverage-items.md".to_string(),
+        coverage_items_markdown(repo),
+    );
     for token in repo.schema.ordered_milestones() {
         files.insert(
             format!("generated/by-milestone/{token}.md"),
@@ -505,6 +509,31 @@ fn graph_dot(repo: &Repo, derived: &Derived) -> String {
     }
     lines.push("}".to_string());
     lines.join("\n") + "\n"
+}
+
+fn coverage_items_markdown(repo: &Repo) -> String {
+    let mut lines = vec![
+        GENERATED_HEADER.to_string(),
+        "# Coverage items".to_string(),
+        String::new(),
+        "Requirement inventory, gap sweep and critique items that tasks cite in `<!-- covers: -->` comments and in prose. Generated from `tools/coverage/*.jsonl`; edit the JSONL, never this file.".to_string(),
+        String::new(),
+        "| Item | Workstream | Milestone | Text |".to_string(),
+        "| --- | --- | --- | --- |".to_string(),
+    ];
+    let mut items = repo.coverage_items();
+    items.sort_by(|left, right| left.id.cmp(&right.id));
+    for item in items {
+        lines.push(format!(
+            "| {} | {} | {} | {} |",
+            item.id,
+            item.workstream,
+            item.milestone,
+            item.text.replace('|', "\\|").replace('\n', " ")
+        ));
+    }
+    lines.push(String::new());
+    lines.join("\n")
 }
 
 fn index_json(repo: &Repo, derived: &Derived) -> Result<String> {
@@ -1410,6 +1439,21 @@ pub fn show_task(repo: &Repo, derived: &Derived, id: &str) -> Option<String> {
         for gate in gates {
             lines.push(format!("- {gate}"));
         }
+    }
+    let mut cited: BTreeSet<String> = task.covers.iter().cloned().collect();
+    let item_pattern = regex::Regex::new(r"\b(?:INV|GAP|EXTRA)-\d{3,4}\b").expect("static pattern");
+    for capture in item_pattern.find_iter(&task.raw.join("\n")) {
+        cited.insert(capture.as_str().to_string());
+    }
+    let items: Vec<String> = repo
+        .coverage_items()
+        .into_iter()
+        .filter(|item| cited.contains(&item.id))
+        .map(|item| format!("- {} · {}", item.id, item.text))
+        .collect();
+    if !items.is_empty() {
+        lines.push("Coverage items:".to_string());
+        lines.extend(items);
     }
     let mut closure: BTreeSet<usize> = derived.graph.transitive_dependencies(index);
     closure.insert(index);

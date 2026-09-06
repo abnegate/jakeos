@@ -928,6 +928,7 @@ Community channels (GOV-057). Forge hosting (GOV-001). Bug-reporter client (INS-
 - [ ] Labels cover severity, priority, hardware and Personality, and templates capture generation ID and diagnostics.
 - [ ] Response-time targets and stale handling are stated as conditions, not dates.
 - [ ] The policy is published in the same forge the hosting Decision selected.
+- [ ] The daily-driving mandate names 20 consecutive working days per core team member on H-004 or H-002 as the V1-G02 count, with fallback days to another OS logged publicly.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that publishes the triage policy.
@@ -1395,7 +1396,7 @@ Per-Gate verification (the Gate `Verified by` tasks). Generated roll-up (GOV roa
 - Baseline: §3, §28, §49
 - Decision: D-0091
 
-Redistribution licensing and wrapper ownership for third-party Linux and Windows software (Flatpak, Wine wrappers, installers). PKG decide-personality-packaging is mechanics only. Options: project-owned wrappers with redistributable licenses versus publisher-owned wrappers versus no official repackaging.
+Redistribution licensing and wrapper ownership for third-party Linux and Windows software (Flatpak, Wine wrappers, installers). PKG PKG-047 is mechanics only. Options: project-owned wrappers with redistributable licenses versus publisher-owned wrappers versus no official repackaging.
 
 <!-- covers: GAP-0463 -->
 
@@ -1831,6 +1832,7 @@ Process definition (GOV-005). Templates and venue (GOV-035). 2.0 planning RFC (G
 - [ ] The V3 Gate that requires processed external RFCs lists this task under `Verified by`.
 - [ ] Each counted RFC has an accepted or rejected Decision file and a public discussion record.
 - [ ] Authors of the counted RFCs are not the GOV Lead.
+- [ ] At least five external RFCs have reached an accepted or rejected Decision (the V3-G14 count).
 
 #### Verification
 - Review: GOV maintainer records the counted RFC IDs on the pull request that closes this task.
@@ -2073,7 +2075,7 @@ Store counts (REL). Developer-program terms (GOV-071). SDK bindings (SDK).
 
 #### Acceptance criteria
 - [ ] A published metric defines how external native Packages and external contributors are counted.
-- [ ] The V4 ecosystem Gate cites this metric rather than restating counts in Gate prose.
+- [ ] The metric report shows at least 50 external native Packages in the public repository and at least 100 external contributors with merged changes (the V4-G15 counts).
 - [ ] REL store counts are named as an input, not the definition.
 
 #### Verification

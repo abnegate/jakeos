@@ -822,6 +822,7 @@ HCL verdict (INS-028). Live session that hosts this UI (INS-034). Screen-reader 
 - [ ] Disk selection shows wipe and alongside offers from INS-026 and will not write until the user confirms.
 - [ ] The installer is a Component graph holding only installer Capabilities; it has no ambient filesystem namespace.
 - [ ] Cancel or crash before commit leaves the disk layout unchanged, proven by a partition-table snapshot.
+- [ ] On H-004 the path from live-media boot to a working desktop with Wi-Fi completes within 30 minutes wall-clock (the V3-D01 bound).
 
 #### Verification
 - Integration: `installer:tests/graphical_installer_fresh` on `qemu-x86_64` and `hw-h002`.
@@ -852,6 +853,7 @@ Probe implementation (HW-066). Database publication (REL-048). Host-side probe o
 - [ ] A fixture machine whose Wi-Fi or GPU is listed degraded shows that component named in the warning text.
 - [ ] An unlisted machine shows unsupported and requires an explicit continue control before writes; abort leaves disks untouched.
 - [ ] The verdict bytes match the probe output for the same boot (no second, weaker probe).
+- [ ] The verdict is correct for 20 community-reported Tier 2 machines drawn from the compatibility database (the V3-G01 sample size).
 
 #### Verification
 - Integration: `installer:tests/hcl_preinstall_warn` on `qemu-x86_64` with fixture HCL rows and on `hw-h002`.
@@ -875,7 +877,7 @@ Run the moderated unaided public-install study the V3 exit names: participants w
 Docs site and install guide authorship for publication (DOC). Media creation (INS-035). Accessibility audit (ACC-034).
 
 #### Acceptance criteria
-- [ ] The study report lists the participant count and success definition named by the V3 unaided-install gate and records each session against that bar.
+- [ ] The study has eight participants with no project involvement and at least seven complete the install unaided (the V3-G02 participant and success counts); the report records each session against that bar.
 - [ ] Failures are filed as INS or DOC tasks with the screen and docs paragraph that failed, not as private notes.
 - [ ] The report states that only public media and public docs were available to participants.
 
@@ -965,7 +967,7 @@ Lab scheduling (LAB-022). FDE contract check (SEC-055). QEMU layouts (INS-031).
 - [ ] Automated encrypted install plus first-boot succeeds on H-002, H-004, H-005, H-006, H-007 and H-008 in the LAB qualification job.
 - [ ] Each run records an HCL verdict before commit and a recovery generation present after commit.
 - [ ] Failures are filed per H-ID with serial and installer logs attached to this task id.
-- [ ] The gate's success threshold is met or the milestone gate remains unsatisfied; this task does not restate the threshold.
+- [ ] At least 98 of 100 automated encrypted installs succeed on each V3 Tier 1 machine in the qualification job (the V3-G01 success rate and run count).
 
 #### Verification
 - Integration: LAB qualification suite `installer:tests/tier1_install` on every V3 Tier 1 H-ID.
@@ -1282,7 +1284,7 @@ Prove the updater delivers the consecutive-alpha-release count the V3 updater ga
 Promotion without rebuild (REL-043, BLD-065). Boot fallback mechanism (BOOT). Update-success publication (BEN-052).
 
 #### Acceptance criteria
-- [ ] Each V3 Tier 1 H-ID applies the consecutive channel updates the gate names, each as a new SystemGeneration, ending on a bootable desktop.
+- [ ] Each V3 Tier 1 H-ID applies six consecutive alpha-channel updates (the V3-G03 count), each as a new SystemGeneration, ending on a bootable desktop.
 - [ ] A fault-injected failing generation in that sequence boots the previous generation unattended on each of those machines.
 - [ ] B-043 samples for the sequence are recorded; this task does not restate the success threshold.
 
@@ -1406,7 +1408,7 @@ Six-release soak gate (INS-043). Format migration V3 to V4 (INS-054). Repository
 
 #### Verification
 - Integration: `installer:tests/upgrade_chain` on `qemu-x86_64` and one `hw-h00*` LAB entry.
-- Review: REL lead confirms the oldest-supported fixture matches decide-repo-retention.
+- Review: REL lead confirms the oldest-supported fixture matches REL-029.
 
 #### Evidence
 - none
@@ -1611,6 +1613,7 @@ Format migration (PKG-089). Partition layout version (STO-079). Qualification (R
 - [ ] A V3 fixture generation on H-001 and on one V4 Tier 1 machine applies the V4 channel update, boots V4, and retains Collection hashes from before the update.
 - [ ] Rolling back to the V3 generation boots V3 with those Collections intact.
 - [ ] B-043 V4 samples for this path are recorded; this task does not restate the rate.
+- [ ] At least 100 community V3 installations have upgraded through the channel with user data preserved (the V4-G08 count).
 
 #### Verification
 - Integration: `installer:tests/v3_to_v4_upgrade` on `qemu-x86_64` and one V4 Tier 1 H-ID.

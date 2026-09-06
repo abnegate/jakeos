@@ -785,6 +785,7 @@ Stable channel launch (REL-063, REL-066). HCL publication (HW-088, REL-048). Com
 - [ ] Per-machine result files list soak outcome, firmware version, fixture set and generation id, and are the lab input to HCL rows.
 - [ ] Unbootable machines during the soak are recovered and recorded; they do not disappear from the result set.
 - [ ] LAB reports cite B-IDs and H-IDs and contain no superiority claim (I-061).
+- [ ] The soak runs for 30 days on the candidate generation (the 1.0-G01 duration matching B-041).
 
 #### Verification
 - Integration: `lab:tests/soak/stable_fleet_*` on every 1.0 hardware-scope H-ID.

@@ -1458,15 +1458,15 @@ Laptop bring-up (HW). Suspend/resume policy (PWR). Wi-Fi (NET).
 
 ### KRN-050 · Decide which kernel evolution phase is required at 1.0
 - Type: adr
-- Milestone: V3
+- Milestone: V1
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-009, KRN-042
+- Depends on: KRN-009, LNX-003
 - Baseline: §6
 - Decision: D-0155
 
-Which of phases C, D or E is a hard 1.0 requirement is KRN divergence policy, not GOV legal. The divergence policy defines the phases; KRN-059 is the 1.0 measurement. This Decision picks the gate and answers Q-003.
+Which of phases C, D or E is a hard 1.0 requirement is KRN divergence policy, not GOV legal. It is decided at V1, after the personality depth Decision and before the V2 syscall-translation work, so that work is built against the phase 1.0 requires rather than judged afterwards. The divergence policy defines the phases; KRN-059 is the 1.0 measurement. This Decision picks the gate and answers Q-003.
 
 <!-- covers: INV-0155 -->
 

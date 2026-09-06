@@ -211,7 +211,7 @@ The Camera service model Decision (MED-001). UVC hot-plug (MED-029). Object<Devi
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: MED-009, GOV-020, MED-010
+- Depends on: MED-009, GOV-020, MED-010, SDK-097
 - Baseline: §11, §17, §51, §57
 - Decision: D-0188
 - Risks: R-068

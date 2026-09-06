@@ -1560,7 +1560,7 @@ Session objects and identity (SEC). Per-user grant stores (CAP).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-033, CMP-049, CMP-009, CMP-008, CMP-010, CMP-016, ABI-049, CMP-015, CMP-021
+- Depends on: CMP-033, CMP-049, CMP-009, CMP-008, CMP-010, CMP-016, ABI-049, CMP-015, CMP-021, CMP-045, CMP-046
 - Baseline: §65, §66
 - Freezes: S-007
 - Invariants: I-040

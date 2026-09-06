@@ -42,6 +42,7 @@
 | SDK-029 | Document the unstable V0.5 SDK used by the four native apps | todo | blocked | S | SDK-023, SDK-017, SDK-020, SDK-018 |
 | SDK-030 | Measure static versus content-addressed shared-Object linking cost | todo | blocked | M | SDK-009, BEN-009, Q-001 |
 | SDK-031 | Prototype the SDK v1 crate Surface used by daily-driving apps | todo | blocked | M | SDK-018, SDK-009 |
+| SDK-097 | Decide the Layer 3 C-library strategy for inherited C stacks inside native Components | todo | blocked | M | GFX-036, SDK-028, ABI-011 |
 
 ## V1
 
@@ -78,6 +79,7 @@
 | SDK-060 | Prototype DAP breakpoints inside async Tasks | todo | blocked | M | TSK-038, SDK-004, CAP-032 |
 | SDK-061 | Prototype CPU sample attribution to Task and Component | todo | blocked | M | OBS-039, TSK-038, OBS-011 |
 | SDK-062 | Write the window, chooser, decode and render SDK tutorial | todo | blocked | M | SDK-021, SDK-023, SDK-017, SDK-013, DOC-016 |
+| SDK-098 | Provide the Layer 3 libc-compatible library over native objects for Mesa, codec and driver stacks | todo | blocked | L | SDK-049, SDK-009, SDK-003, SDK-097 |
 
 ## V2
 

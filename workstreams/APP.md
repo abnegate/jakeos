@@ -101,6 +101,7 @@ Daily-driving kernel tree (APP-011). IDE strategy (APP-020). Semantic `Editor.op
 - [ ] `os inspect` prints role, name and state for every interactive widget in the Editor tree dump.
 - [ ] The Editor Component graph matches APP-008: no private widget crate and no ambient File Capability at start.
 - [ ] Killing the compositor and rebinding leaves the unsaved buffer intact (GFX-021).
+- [ ] Two core team members each use the Text Editor for ten one-hour sessions spread over at least ten working days on H-002, every defect is filed against this task id, and the session log is attached as Evidence (the V0.5-G08 dogfooding count).
 
 #### Verification
 - Unit: `apps:tests/editor/demo_*` on `qemu-virtio-gpu`.
@@ -131,6 +132,7 @@ Daily-driving feature bar (APP-016). Terminal-session authority Decision (LNX-02
 - [ ] A Linux-personality CLI tool runs inside the Terminal window through the PTY bridge and the Terminal Component still holds no ambient File or network Capability.
 - [ ] `os inspect` prints role, name and state for every interactive widget in the Terminal tree dump.
 - [ ] The Terminal scripted acceptance scenario passes on H-003.
+- [ ] Two core team members each use the Terminal for ten one-hour sessions spread over at least ten working days on H-002, every defect is filed against this task id, and the session log is attached as Evidence (the V0.5-G08 dogfooding count).
 
 #### Verification
 - Unit: `apps:tests/terminal/demo_*` on `qemu-virtio-gpu`.
@@ -163,6 +165,7 @@ Chooser chrome (APP-002). Decoder library (SDK-013). GPU grant at launch (GFX-02
 - [ ] Opening a UserSelected image decodes in a child Component whose Capabilities are Input of image bytes and Output of a bitmap only.
 - [ ] A crafted image that panics the decoder terminates only the decoder Component; the Viewer window stays up and shows a typed decode error.
 - [ ] The Viewer cannot enumerate the directory that contained the chosen image (STO-007).
+- [ ] Two core team members each use the Image Viewer for ten one-hour sessions spread over at least ten working days on H-002, every defect is filed against this task id, and the session log is attached as Evidence (the V0.5-G08 dogfooding count).
 
 #### Verification
 - Unit: `apps:tests/viewer/demo_*` on `qemu-virtio-gpu`.
@@ -196,6 +199,7 @@ Chooser chrome (APP-002). Drag and drop (UIP-032). Foreign-format open Decision 
 - [ ] A freshly started File Browser child preview Component holds only the Capability it was handed and cannot enumerate siblings.
 - [ ] `os inspect` on a handed File shows the Browser as granter and the receiving application as holder.
 - [ ] `os inspect` prints role, name and state for every interactive widget in the File Browser tree dump.
+- [ ] Two core team members each use the File Browser for ten one-hour sessions spread over at least ten working days on H-002, every defect is filed against this task id, and the session log is attached as Evidence (the V0.5-G08 dogfooding count).
 
 #### Verification
 - Unit: `apps:tests/files/demo_*` on `qemu-virtio-gpu`.

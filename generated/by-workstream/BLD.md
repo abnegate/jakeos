@@ -19,6 +19,7 @@
 | BLD-011 | Enforce license, provenance, unsafe and static-analysis merge gates | todo | blocked | M | BLD-003, BLD-004, GOV-003, GOV-002, ABI-003, ABI-018, BEN-004 |
 | BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | blocked | L | BLD-003, BLD-009, KRN-017 |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | ready | L | BLD-004, KRN-004, KRN-010 |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | todo | ready | S | BLD-005, BLD-002 |
 
 ## V0.5
 

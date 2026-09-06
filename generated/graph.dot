@@ -49,7 +49,7 @@ digraph roadmap {
   "KRN-047" [label="KRN-047\nV2"];
   "KRN-048" [label="KRN-048\nV2"];
   "KRN-049" [label="KRN-049\nV2"];
-  "KRN-050" [label="KRN-050\nV3"];
+  "KRN-050" [label="KRN-050\nV1"];
   "KRN-051" [label="KRN-051\nV3"];
   "KRN-052" [label="KRN-052\nV3"];
   "KRN-053" [label="KRN-053\nV3"];
@@ -858,7 +858,7 @@ digraph roadmap {
   "GFX-069" [label="GFX-069\nV2"];
   "GFX-070" [label="GFX-070\nV2"];
   "GFX-071" [label="GFX-071\nV2"];
-  "GFX-072" [label="GFX-072\nV2"];
+  "GFX-072" [label="GFX-072\nV4"];
   "GFX-073" [label="GFX-073\nV2"];
   "GFX-074" [label="GFX-074\nV2"];
   "GFX-075" [label="GFX-075\nV2"];
@@ -1619,7 +1619,7 @@ digraph roadmap {
   "HW-045" [label="HW-045\nV2"];
   "HW-046" [label="HW-046\nV2"];
   "HW-047" [label="HW-047\nV2"];
-  "HW-048" [label="HW-048\nV2"];
+  "HW-048" [label="HW-048\nV4"];
   "HW-049" [label="HW-049\nV2"];
   "HW-050" [label="HW-050\nV2"];
   "HW-051" [label="HW-051\nV2"];
@@ -1788,6 +1788,8 @@ digraph roadmap {
   "SDK-094" [label="SDK-094\n1.0"];
   "SDK-095" [label="SDK-095\n1.0"];
   "SDK-096" [label="SDK-096\n1.0"];
+  "SDK-097" [label="SDK-097\nV0.5"];
+  "SDK-098" [label="SDK-098\nV1"];
   "APP-001" [label="APP-001\nV0.5"];
   "APP-002" [label="APP-002\nV0.5"];
   "APP-003" [label="APP-003\nV0.5"];
@@ -1993,6 +1995,7 @@ digraph roadmap {
   "BLD-078" [label="BLD-078\nV4"];
   "BLD-079" [label="BLD-079\n1.0"];
   "BLD-080" [label="BLD-080\n1.0"];
+  "BLD-081" [label="BLD-081\nV0"];
   "LAB-001" [label="LAB-001\nV0"];
   "LAB-002" [label="LAB-002\nV0"];
   "LAB-003" [label="LAB-003\nV0"];
@@ -2355,6 +2358,7 @@ digraph roadmap {
   "ABI-011" -> "HET-001";
   "ABI-011" -> "SCH-030";
   "ABI-011" -> "SDK-028";
+  "ABI-011" -> "SDK-097";
   "ABI-011" -> "TSK-042";
   "ABI-012" -> "ABI-002";
   "ABI-012" -> "ABI-017";
@@ -3163,6 +3167,7 @@ digraph roadmap {
   "BLD-002" -> "BLD-009";
   "BLD-002" -> "BLD-025";
   "BLD-002" -> "BLD-047";
+  "BLD-002" -> "BLD-081";
   "BLD-003" -> "BLD-001";
   "BLD-003" -> "BLD-011";
   "BLD-003" -> "BLD-012";
@@ -3180,6 +3185,7 @@ digraph roadmap {
   "BLD-005" -> "BLD-002";
   "BLD-005" -> "BLD-003";
   "BLD-005" -> "BLD-009";
+  "BLD-005" -> "BLD-081";
   "BLD-005" -> "KRN-010";
   "BLD-006" -> "BLD-010";
   "BLD-006" -> "BLD-015";
@@ -4004,7 +4010,9 @@ digraph roadmap {
   "CMP-042" -> "CMP-046";
   "CMP-045" -> "CMP-046";
   "CMP-045" -> "CMP-048";
+  "CMP-045" -> "CMP-052";
   "CMP-046" -> "CMP-048";
+  "CMP-046" -> "CMP-052";
   "CMP-046" -> "LNX-095";
   "CMP-049" -> "CMP-052";
   "CMP-050" -> "DOC-023";
@@ -4380,6 +4388,7 @@ digraph roadmap {
   "GFX-036" -> "GFX-056";
   "GFX-036" -> "GFX-087";
   "GFX-036" -> "GFX-095";
+  "GFX-036" -> "SDK-097";
   "GFX-037" -> "GFX-061";
   "GFX-038" -> "GFX-006";
   "GFX-038" -> "GFX-026";
@@ -5742,7 +5751,6 @@ digraph roadmap {
   "KRN-042" -> "KRN-045";
   "KRN-042" -> "KRN-046";
   "KRN-042" -> "KRN-047";
-  "KRN-042" -> "KRN-050";
   "KRN-042" -> "KRN-051";
   "KRN-042" -> "KRN-053";
   "KRN-042" -> "KRN-059";
@@ -5936,6 +5944,7 @@ digraph roadmap {
   "LNX-003" -> "ABI-025";
   "LNX-003" -> "ABI-041";
   "LNX-003" -> "KRN-024";
+  "LNX-003" -> "KRN-050";
   "LNX-003" -> "LNX-016";
   "LNX-003" -> "LNX-030";
   "LNX-003" -> "LNX-090";
@@ -7671,6 +7680,7 @@ digraph roadmap {
   "SDK-003" -> "SDK-039";
   "SDK-003" -> "SDK-049";
   "SDK-003" -> "SDK-090";
+  "SDK-003" -> "SDK-098";
   "SDK-004" -> "SDK-001";
   "SDK-004" -> "SDK-002";
   "SDK-004" -> "SDK-048";
@@ -7719,6 +7729,7 @@ digraph roadmap {
   "SDK-009" -> "SDK-049";
   "SDK-009" -> "SDK-050";
   "SDK-009" -> "SDK-058";
+  "SDK-009" -> "SDK-098";
   "SDK-010" -> "SDK-004";
   "SDK-011" -> "SDK-004";
   "SDK-011" -> "SDK-010";
@@ -7774,6 +7785,7 @@ digraph roadmap {
   "SDK-027" -> "SDK-018";
   "SDK-028" -> "GOV-038";
   "SDK-028" -> "SDK-049";
+  "SDK-028" -> "SDK-097";
   "SDK-030" -> "SDK-026";
   "SDK-031" -> "SDK-055";
   "SDK-031" -> "SDK-057";
@@ -7832,6 +7844,7 @@ digraph roadmap {
   "SDK-046" -> "SDK-071";
   "SDK-049" -> "SDK-059";
   "SDK-049" -> "SDK-090";
+  "SDK-049" -> "SDK-098";
   "SDK-050" -> "SDK-045";
   "SDK-052" -> "SDK-037";
   "SDK-052" -> "SDK-038";
@@ -7898,6 +7911,14 @@ digraph roadmap {
   "SDK-092" -> "SDK-096";
   "SDK-095" -> "SDK-096";
   "SDK-096" -> "DOC-041";
+  "SDK-097" -> "AUD-002";
+  "SDK-097" -> "GFX-016";
+  "SDK-097" -> "GFX-056";
+  "SDK-097" -> "HW-029";
+  "SDK-097" -> "LNX-016";
+  "SDK-097" -> "MED-007";
+  "SDK-097" -> "NET-009";
+  "SDK-097" -> "SDK-098";
   "SEC-001" -> "CMP-012";
   "SEC-001" -> "SEC-009";
   "SEC-002" -> "ACC-001";

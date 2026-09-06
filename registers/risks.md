@@ -126,7 +126,7 @@ The largest single body of new userspace code. Scope creep toward a full desktop
 - Likelihood: high
 - Impact: high
 - Status: open
-- Mitigated by: GFX-016, GFX-035, GFX-036, GFX-051, GFX-056, HET-003, HET-010, HET-015, LNX-014, LNX-031, LNX-044, MEM-019, MEM-024, MEM-025, MEM-030
+- Mitigated by: GFX-016, GFX-035, GFX-036, GFX-051, GFX-056, HET-003, HET-010, HET-015, LNX-014, LNX-031, LNX-044, MEM-019, MEM-024, MEM-025, MEM-030, SDK-097, SDK-098
 - Retire by: V0.5
 Adapting them to native components without forking Mesa may force a hybrid where the compositor is partly a Linux-personality process. Q-034.
 
@@ -350,8 +350,8 @@ Dependency is registry, then automation rules, then AI broker. The AI demo depen
 - Impact: medium
 - Status: open
 - Mitigated by: GFX-071, GFX-072, GFX-075, GFX-076, HW-048, HW-059
-- Retire by: V2
-Needed for the multi-monitor hot-plug and V4 laptop generations.
+- Retire by: V4
+MST and multi-monitor hot-plug retire at V2 on the three target machines; hybrid-graphics offload retires at V4 when H-011 and H-012 join Tier 1.
 
 ### R-045 · Safe-mode session is missing when the shell exhausts its budget
 - Likelihood: medium

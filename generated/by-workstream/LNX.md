@@ -31,7 +31,7 @@
 | LNX-013 | Decide the default Capability bundle for Linux apps | todo | blocked | S | LNX-005, LNX-018, CAP-007, SEC-006, SEC-002 |
 | LNX-014 | Decide /dev, sysfs and udev coexistence with native drivers | todo | blocked | S | LNX-008, HW-009 |
 | LNX-015 | Decide whether ia32 emulation is retained | todo | blocked | S | LNX-001, KRN-017, KRN-011 |
-| LNX-016 | Decide how native applications opt into a Personality | todo | blocked | S | LNX-003, ABI-025, CAP-007 |
+| LNX-016 | Decide how native applications opt into a Personality | todo | blocked | S | LNX-003, ABI-025, CAP-007, SDK-097 |
 | LNX-017 | Decide first-class Linux packaging formats | todo | blocked | S | LNX-023, PKG-047, LNX-008 |
 | LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | blocked | S | LNX-004, STO-034, UIP-003, SEC-002 |
 | LNX-019 | Decide the POSIX path view of native storage | todo | blocked | S | STO-047, STO-042, LNX-013 |

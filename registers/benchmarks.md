@@ -194,7 +194,7 @@ The 20 ms figure is a measurement target and never a guarantee in public materia
 - Method: p50 and p99 over 100 restarts per service with 10 clients attached.
 - Harness: bench:service-rebind
 - Baselines: PipeWire restart with attached PulseAudio clients, systemd service restart with socket activation
-- Targets: V1 publish; V2 regression 10% vs V1; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
+- Targets: V0.5 publish; V1 publish; V2 regression 10% vs V1; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
 - Status: defined
 
 ### B-025 · Environment startup, cached and cold
@@ -210,7 +210,7 @@ The 20 ms figure is a measurement target and never a guarantee in public materia
 - Method: Median of 10 runs of the corpus's non-graphics workload scripts and a syscall microbenchmark set; ratio reported per workload.
 - Harness: bench:linux-overhead
 - Baselines: Upstream Linux kernel of the same base version with a mainstream distribution userspace on the same machine
-- Targets: V1 publish on L2 workloads; V2 publish on L3 workloads; V3 publish on L4 workloads; V4 publish on L5 workloads; 1.0 publish on L5 workloads
+- Targets: V0 publish (fork syscall microbenchmarks only); V1 publish on L2 workloads; V2 publish on L3 workloads; V3 publish on L4 workloads; V4 publish on L5 workloads; 1.0 publish on L5 workloads
 - Status: defined
 The V1 aspiration is within 5% for non-graphics workloads; the number is published regardless and no milestone gates on it.
 
@@ -324,7 +324,7 @@ No superiority claim is made from this metric at any milestone.
 - Method: Ratio of medians over 10 runs per configuration in the same session.
 - Harness: bench:mitigation-overhead
 - Baselines: The same mitigations toggled on upstream Linux on the same machine
-- Targets: V4 publish; 1.0 publish
+- Targets: V1 publish; V4 publish; 1.0 publish
 - Status: defined
 
 ### B-041 · Crash-free session rate
@@ -364,7 +364,7 @@ No superiority claim is made from this metric at any milestone.
 - Method: p50 and p99 over 100 trials per item using the LAB rig where a photon boundary applies.
 - Harness: bench:desktop-essentials
 - Baselines: GNOME and KDE on Linux, Windows on the same machine
-- Targets: V2 publish; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
+- Targets: V1 publish; V2 publish; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
 - Status: defined
 
 ### B-046 · Zero-copy media path
@@ -372,7 +372,7 @@ No superiority claim is made from this metric at any milestone.
 - Method: Copy count by physical-page identity at each stage, latency p50 and p99 over 10 runs of 1,000 frames.
 - Harness: bench:zero-copy-media
 - Baselines: GStreamer with dma-buf on Linux, the same pipeline with software copies
-- Targets: V2 publish; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
+- Targets: V1 publish; V2 publish; V3 regression 10% vs V2; V4 regression 5% vs V3; 1.0 regression 5% vs V4
 - Status: defined
 
 ### B-047 · Wasm component instantiation and channel round trip

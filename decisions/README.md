@@ -376,4 +376,5 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0348 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | proposed | BEN-064 | none |
 | D-0349 | Decide how untrusted removable and foreign filesystem images are parsed | proposed | STO-085 | none |
 | D-0350 | Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics | proposed | GFX-099 | S-034 |
+| D-0351 | Decide the Layer 3 C-library strategy for inherited C stacks inside native Components | proposed | SDK-097 | none |
 <!-- roadmap:generated:end -->

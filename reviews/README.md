@@ -7,3 +7,4 @@ Reviews are hand-written and are not read by the `roadmap` tool.
 | Review | Scope |
 |---|---|
 | [01 · Architecture and roadmap nitpick](01-architecture-and-roadmap.md) | Line-by-line pass over BASELINE.md, THREAT-MODEL.md, CONVENTIONS.md, every milestone file, the registers and all 217 V0 tasks |
+| [02 · Compounding and swarm readiness](02-compounding-and-swarm-readiness.md) | Dependency-order walk of V0 to V2, cross-task consistency sweeps, unresolved gate quantities, hosting of inherited C stacks, mis-scheduled hardware |

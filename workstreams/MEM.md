@@ -69,7 +69,7 @@ Whether transfer is enforced or advisory (MEM-003). Whether dma-buf backs GPU-co
 
 #### Acceptance criteria
 - [ ] Option A (shmem/memfd), Option B (dma-buf as the object), and Option C (new native object over retained Linux mm) are evaluated with dma-buf export/import consequences.
-- [ ] The accepted option cites the spike report for transfer cost of the sizes named in GAP-0497 on H-001 and H-002.
+- [ ] The accepted option cites the spike report for transfer cost of the three B-007 sizes on H-001 and H-002.
 - [ ] The accepted option leaves native software holding MemoryObject Capabilities, not memfd or dma-buf descriptors.
 - [ ] Review sign-off is recorded on the pull request.
 
@@ -337,7 +337,7 @@ Handle slots in the wire format (IPC-014). Physical-page identity harness (MEM-0
 - Benchmarks: B-007
 - Explores: S-006
 
-Zero-copy is real only if transfer cost, including unmap and TLB shootdown, is measured against copying at realistic sizes. The spike prototypes ownership transfer on shmem/memfd, dma-buf, and a dedicated native object, and publishes cost for the sizes named in GAP-0497 on H-001 and H-002. The report feeds MEM-002, MEM-003, and B-007.
+Zero-copy is real only if transfer cost, including unmap and TLB shootdown, is measured against copying at realistic sizes. The spike prototypes ownership transfer on shmem/memfd, dma-buf, and a dedicated native object, and publishes cost for the B-007 register sizes (4 KiB, 1 MiB and 1 GiB) on H-001 and H-002. The report feeds MEM-002, MEM-003, and B-007.
 
 <!-- covers: GAP-0497 -->
 
@@ -345,7 +345,7 @@ Zero-copy is real only if transfer cost, including unmap and TLB shootdown, is m
 The standing B-007 harness in CI (BEN-003). Production object implementation (MEM-005).
 
 #### Acceptance criteria
-- [ ] Each of the three backings transfers an object of the two GAP-0497 sizes on H-001 and H-002.
+- [ ] Each of the three backings transfers an object of each of the three B-007 sizes on H-001 and H-002.
 - [ ] The report records p50 and p99 transfer cost, copy count, and TLB-shootdown observations per backing and size, with memcpy as the baseline.
 - [ ] The report answers the Report questions and does not freeze S-006.
 

@@ -12,7 +12,7 @@
 | MED-004 | Decide VA-API versus Vulkan Video for hardware codecs | todo | blocked | S | MED-005 |
 | MED-005 | Measure VA-API and Vulkan Video decode on reference machines | todo | blocked | M | GFX-001, MEM-024, HW-022 |
 | MED-006 | Measure libcamera versus V4L2 on the Intel laptop ISP | todo | blocked | M | HW-008, HW-009 |
-| MED-007 | Decide native media pipeline versus GStreamer or FFmpeg | todo | blocked | S | MED-009, GOV-020, MED-010 |
+| MED-007 | Decide native media pipeline versus GStreamer or FFmpeg | todo | blocked | S | MED-009, GOV-020, MED-010, SDK-097 |
 | MED-008 | Define Layer 2 decoder encoder Camera and Frame Interfaces | todo | blocked | M | MED-007, MED-004, MED-001, IPC-035, IPC-012 |
 | MED-009 | Prototype sandboxed decoder Components exchanging MemoryObjects | todo | blocked | M | MEM-022, MEM-039, CMP-024, CMP-021, SDK-002 |
 | MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | todo | ready | M | none |

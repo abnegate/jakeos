@@ -374,7 +374,7 @@ Policy Decision (OBS-014). Payload redaction and buffer charging (OBS-024). Debu
 - [ ] The V0.5 Image Viewer Component cannot enumerate another application's trace payloads.
 
 #### Verification
-- Unit: `kernel:tests/obs/trace_cap_*` on `qemu-x86_64` and `hw-h003`.
+- Unit: `kernel:tests/obs/trace_cap_*` on `qemu-x86_64` and `qemu-virtio-gpu`.
 - Integration: V0.5 chooser demo: Image Viewer denied traces of File Browser.
 - Review: SEC lead confirms T-027 is addressed by the check.
 

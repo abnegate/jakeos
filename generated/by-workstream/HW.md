@@ -44,7 +44,7 @@
 | HW-026 | Implement IOMMU-protected DMA MemoryObjects for user-space drivers | todo | blocked | L | HW-017, HW-006, HW-008, MEM-037, MEM-028 |
 | HW-027 | Implement XKB-data keyboard layouts, compose, dead keys and switching | todo | blocked | M | HW-011, SVC-025 |
 | HW-028 | Spike a Bluetooth controller in user space versus the in-kernel host | todo | blocked | M | HW-014, HW-006, HW-017, HW-015 |
-| HW-029 | Build the user-space driver framework over Capability<Device> | todo | blocked | L | HW-006, HW-017, HW-008, HW-026, HW-016 |
+| HW-029 | Build the user-space driver framework over Capability<Device> | todo | blocked | L | HW-006, HW-017, HW-008, HW-026, HW-016, SDK-097 |
 | HW-030 | Restart crashed user-space drivers and re-issue Device Capabilities | todo | blocked | M | HW-029, HW-031 |
 | HW-031 | Ship selected USB HID classes as user-space drivers | todo | blocked | M | HW-029, HW-014, HW-011, HW-016 |
 | HW-032 | Verify keyboard, touchpad and USB HID on the Intel laptop Reference machine | todo | blocked | S | HW-015, HW-024, HW-011, HW-012, HW-027, HW-030 |
@@ -68,7 +68,6 @@
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | blocked | M | HW-011, HW-015, HW-039 |
 | HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | blocked | L | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 |
 | HW-047 | Define the Hardware Compatibility List schema and probe record format | todo | blocked | M | HW-043, HW-021 |
-| HW-048 | Enable iGPU plus dGPU mux and render-offload on hybrid laptops | todo | blocked | M | HW-009, HW-039 |
 | HW-049 | Enumerate gamepads as Capability<InputDevice> for native and personalities | todo | blocked | M | HW-011, HW-031 |
 | HW-050 | Expose laptop function keys, keyboard backlight and brightness | todo | blocked | M | HW-015, HW-039, HW-011 |
 | HW-051 | Deliver lid and tablet-mode switch events as typed Device signals | todo | blocked | M | HW-042, HW-015, HW-039, LAB-014 |
@@ -110,6 +109,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
+| HW-048 | Enable iGPU plus dGPU mux and render-offload on hybrid laptops | todo | blocked | M | HW-009, HW-039 |
 | HW-080 | Bring up the Tier 1 Intel desktop Reference machine | todo | blocked | M | HW-003, LAB-023 |
 | HW-081 | Bring up second-Generation AMD and Intel laptops and a second AMD GPU | todo | blocked | L | HW-003, LAB-023, HW-062 |
 | HW-082 | Decide policy for third-party user-space drivers and firmware packages | todo | blocked | M | HW-056, HW-047 |

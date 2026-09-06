@@ -317,7 +317,7 @@ Small-message fast path (IPC-016). Handle slots in messages (IPC-014). Inspect C
 - Baseline: §12, §32
 - Invariants: I-037
 
-V0 fault Demo: B panics and A observes a typed disconnect. IDL error taxonomy, disconnect result on peer death, and Timeout result via Operation deadlines (§12, §32). Failure and restart are part of every typed Interface (I-037).
+V0 fault Demo: B panics and A observes a typed disconnect. IDL error taxonomy, disconnect result on peer death, and DeadlineExceeded result via Operation deadlines (§12, §32). Failure and restart are part of every typed Interface (I-037).
 
 <!-- covers: INV-0259 -->
 
@@ -326,7 +326,7 @@ Client rebind and retry codegen (IPC-028). Supervisor restart (SVC). Panic abort
 
 #### Acceptance criteria
 - [ ] Peer death completes in-flight receive Operations with a typed disconnect result and delivers no further payload.
-- [ ] An Operation with an expired deadline completes with Timeout and never delivers a late result.
+- [ ] An Operation with an expired deadline completes with DeadlineExceeded and never delivers a late result.
 - [ ] The V0 fault Demo shows Component B panicking and Component A observing the typed disconnect.
 
 #### Verification

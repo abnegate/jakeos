@@ -851,7 +851,7 @@ Stack placement Decision (HW-040). Profiles (HW-037). Audio latency publication 
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: HW-006, HW-017, HW-008, HW-026, HW-016
+- Depends on: HW-006, HW-017, HW-008, HW-026, HW-016, SDK-097
 - Baseline: §33, §55
 - Threats: T-020
 - Invariants: I-008, I-038
@@ -1407,7 +1407,7 @@ Publication hosting (REL-048). Probe implementation (HW-066). Privacy policy (HW
 
 ### HW-048 · Enable iGPU plus dGPU mux and render-offload on hybrid laptops
 - Type: build
-- Milestone: V2
+- Milestone: V4
 - Status: todo
 - Size: M
 - Owner: none

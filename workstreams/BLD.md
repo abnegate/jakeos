@@ -4,7 +4,7 @@
 - Baseline: §50, §51, §54, §55
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 80 live, 4 done, 0 in-progress, 76 todo, 0 dropped. Ready: 1. Blocked: 75. Weighted: 3%.
+Tasks: 81 live, 4 done, 0 in-progress, 77 todo, 0 dropped. Ready: 2. Blocked: 75. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -379,6 +379,7 @@ Guest test agent (BLD-006). Generation-selection cycles (BLD-022). virtio-gpu co
 - [ ] Reboot and kexec cycles complete on the default H-001 cell and leave a boot-complete marker after each.
 - [ ] Nightly CI runs kselftests for every retained subsystem named by KRN-017 (I-098).
 - [ ] virtio-gpu and generation-selection cells are absent from this matrix.
+- [ ] The matrix document names the canonical CI matrix entries and their H-IDs: `qemu-x86_64` (H-001), `qemu-virtio-gpu` (H-003), `qemu-nested` (H-015), `qemu-ia32` (H-016), `qemu-vfio` (H-017) and `hw-hNNN` for physical machine H-NNN; no other spelling appears in a roadmap Verification line.
 
 #### Verification
 - Integration: full declared matrix on H-001; panic and timeout fixtures fail the job; reboot and kexec cells pass.
@@ -1873,7 +1874,7 @@ V3 exit: kernel and IPC fuzzing run continuously in CI with no known open crashe
 Fuzz fleets (BLD-035, BLD-042). V4 clean window (BLD-073). Per-surface targets (IPC, CAP, CMP, GFX, NET).
 
 #### Acceptance criteria
-- [ ] Release-qualification queries the fuzz inventory and fails when an open Native ABI or IDL deserialiser crasher is older than the V3 gate window.
+- [ ] Release-qualification queries the fuzz inventory and fails when an open Native ABI or IDL deserialiser crasher is older than 14 days (the V3-G10 window).
 - [ ] Userspace parser crashers are listed; those older than the window fail the same job unless an accepted Decision defers a named harness.
 - [ ] The job prints crasher IDs and owning prefixes; it does not close crashers itself.
 
@@ -2154,7 +2155,7 @@ V4 exit: kernel and IPC fuzzing have zero known open crashers for the consecutiv
 Fuzz fleet (BLD-035). V3 aged-crasher gate (BLD-063). Closing crashers (owning prefixes).
 
 #### Acceptance criteria
-- [ ] Qualification fails unless the Native ABI and IDL deserialiser inventory shows zero open crashers throughout the V4 gate window.
+- [ ] Qualification fails unless the Native ABI and IDL deserialiser inventory shows zero open crashers for the 30 consecutive days before the gate (the V4-G05 window).
 - [ ] A crasher opened and closed inside the window still fails if it was open at qualification time.
 - [ ] The job prints the window definition from the V4 gate and the inventory query, with no restated duration in other documents.
 
@@ -2244,6 +2245,7 @@ Soak execution calendar (LAB-024). Ten-machine nightly (BLD-078). 1.0 soak (BLD-
 - [ ] An open P0 on any machine fails the RC; P0 is defined by GOV triage policy, not by BLD.
 - [ ] Soak results appear per H-ID on the qualification record.
 - [ ] A firmware change mid-soak is recorded and reruns the affected machine's matrix.
+- [ ] Each release-candidate soak lasts 14 days on every Tier 1 machine (the V4-G07 duration).
 
 #### Verification
 - Integration: RC soak aggregator requires all ten-machine IDs; a planted P0 fails the RC.
@@ -2364,6 +2366,34 @@ V4 second builder (BLD-074). Verifier tool (BLD-075). Signing (REL).
 #### Verification
 - Integration: two-builder rebuild of the 1.0 candidate; verifier output matches.
 - Review: REL and GOV leads confirm the third-party publication is the 1.0 reproducibility evidence.
+
+#### Evidence
+- none
+
+### BLD-081 · Define the platform monorepo layout, crate naming and the Verification path-alias grammar
+- Type: docs
+- Milestone: V0
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: BLD-005, BLD-002
+- Baseline: §50, §56.4
+- Invariants: I-099
+
+Every Verification line in this roadmap names a test path as `alias:path` (kernel, runtime, sdk, gfx, personality and twenty more aliases in `registers/repos.md`), and every agent that starts a task will create crates and directories. Without a fixed layout each swarm invents its own and the monorepo becomes unnavigable within a milestone. This document fixes the jakeos-platform directory layout, crate naming, where each alias resolves, how test files are named so the `alias:tests/...` grammar is real, and the CI matrix-entry names tasks use (`qemu-x86_64`, `qemu-virtio-gpu`, `qemu-nested`, `qemu-ia32`, `qemu-vfio`, `hw-hNNN`).
+
+#### Out of scope
+Repository topology (BLD-005). Build orchestrator (BLD-002). Kernel tree layout (KRN-013). QEMU matrix axes (BLD-012).
+
+#### Acceptance criteria
+- [ ] A committed layout document maps every alias in `registers/repos.md` to a directory in jakeos-platform and states the crate naming rule (`jakeos-<area>-<name>`) and the test-path rule (`<alias>:tests/<area>/<name>_*`).
+- [ ] A CI check fails a pull request that adds a top-level directory or crate outside the documented layout.
+- [ ] The document lists the canonical CI matrix-entry names and the H-ID each maps to; a lint rejects a Verification line in the roadmap that names an unknown alias or matrix entry.
+- [ ] Review records BLD and GOV lead sign-off on the pull request.
+
+#### Verification
+- Unit: `roadmap:tests/verification_alias_*` rejecting an unknown alias and an unknown matrix entry.
+- Review: BLD and GOV leads sign off on the pull request.
 
 #### Evidence
 - none

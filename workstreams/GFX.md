@@ -466,7 +466,7 @@ Callback implementation (GFX-024). Deadline intent of the compositor Task (SCH-0
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GFX-036, Q-034
+- Depends on: GFX-036, Q-034, SDK-097
 - Baseline: §39, §9.1, §56.1
 - Decision: D-0080
 - Risks: R-016
@@ -1652,7 +1652,7 @@ Lock mode (GFX-045). Unlock UI (APP, SEC).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: GFX-016, GFX-036, GFX-051, GFX-030
+- Depends on: GFX-016, GFX-036, GFX-051, GFX-030, SDK-097
 - Baseline: §39, §56.1, §61
 - Risks: R-016
 - Invariants: I-045
@@ -2126,7 +2126,7 @@ MST topology (GFX-075). Arrangement persistence (GFX-065).
 
 ### GFX-072 · Support render offload selection and mux switching across both personalities
 - Type: build
-- Milestone: V2
+- Milestone: V4
 - Status: todo
 - Size: M
 - Owner: none

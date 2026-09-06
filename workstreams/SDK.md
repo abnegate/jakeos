@@ -4,7 +4,7 @@
 - Baseline: §50, §52, §64, §66
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 96 live, 0 done, 0 in-progress, 96 todo, 0 dropped. Ready: 1. Blocked: 95. Weighted: 0%.
+Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 1. Blocked: 97. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -2719,6 +2719,68 @@ Docs completeness checklist (DOC-041). Snapshot (DOC-040). Layer 3 statement (SD
 
 #### Verification
 - Review: DOC lead sign-off recorded on the pull request.
+
+#### Evidence
+- none
+
+### SDK-097 · Decide the Layer 3 C-library strategy for inherited C stacks inside native Components
+- Type: adr
+- Milestone: V0.5
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: GFX-036, SDK-028, ABI-011
+- Baseline: §3, §50, §57, §66
+- Decision: D-0351
+- Risks: R-016
+- Invariants: I-013, I-026, I-046
+
+Native crates are `no_std` plus `alloc` and may not link libc (SDK-003, ABI-003), yet the compositor, GPU userspace (Mesa), codecs, Bluetooth, Wi-Fi supplicants and printing are large inherited C stacks that assume a libc, file descriptors and `dlopen`. GFX-036 measures the Mesa case at V0.5 and GFX-056, MED-007, AUD-002, NET-009 and HW-029 each need the same answer at V1; deciding it per workstream produces two or three hosting models that must later be unified. This Decision fixes one rule before the compositor is built: which inherited C stacks run inside native Components, how, and what the Layer 3 firewall means for them (§3, §50, §57, §66).
+
+#### Out of scope
+Mesa measurement (GFX-036). GPU userspace strategy (GFX-016). Native application opt-in to a Personality (LNX-016). Rust std facade (SDK-049). The library itself (SDK-098).
+
+#### Acceptance criteria
+- [ ] Option A (a Layer 3 libc-compatible library implemented over native Objects and Operations, in the manner of Fuchsia's fdio plus musl, that inherited C stacks link unmodified), option B (personality-hosted helper Components that run the C stack as a Linux-personality process bridged to native clients over Channels), and option C (no inherited C inside native Components: Rust ports or rewrites per stack) are evaluated against GFX-036 for Mesa and against the codec, Bluetooth, Wi-Fi supplicant and printing stacks.
+- [ ] The accepted option names, for each of Mesa, video codecs, BlueZ or its replacement, the Wi-Fi supplicant and CUPS, which hosting model it uses at V1 and V2 and what changes at 1.0.
+- [ ] The accepted option states which Layer the libc-compatible library or helper bridge lives in, that no Layer 1 entry is added for it (I-013, I-026), and how ABI-003 distinguishes that library from Linux `libc`.
+- [ ] The accepted option names the confused-deputy and blast-radius consequences (T-002, T-011) of each hosting model in Consequences.
+- [ ] Review records ABI, SDK and GFX lead sign-off on the pull request.
+
+#### Verification
+- Review: ABI, SDK and GFX leads sign off on the pull request that accepts the Decision file.
+- Report: `reports/spikes/GFX-036.md` is cited for the Mesa measurements.
+
+#### Evidence
+- none
+
+### SDK-098 · Provide the Layer 3 libc-compatible library over native objects for Mesa, codec and driver stacks
+- Type: build
+- Milestone: V1
+- Status: todo
+- Size: L
+- Owner: none
+- Depends on: SDK-049, SDK-009, SDK-003, SDK-097
+- Baseline: §50, §66
+- Risks: R-016
+- Invariants: I-013, I-026
+
+Implements the accepted option of SDK-097 when it names a Layer 3 libc-compatible library: a C library over native Objects and Operations so that inherited C stacks (Mesa, codecs, drivers hosted in user space) link and run inside native Components without a Linux personality, POSIX file descriptors backed by Capabilities, threads backed by Tasks, `mmap` backed by MemoryObjects, and every unsupported POSIX shape returning a typed error. If SDK-097 chooses personality-hosted helpers or Rust ports for every stack, this task is dropped as descoped with that Decision cited.
+
+#### Out of scope
+The hosting Decision (SDK-097). Rust std facade (SDK-049). Mesa integration on top of this library (GFX-056). Codec Components (MED).
+
+#### Acceptance criteria
+- [ ] An unmodified Mesa Vulkan driver build links against the library and renders the GFX-036 triangle inside a native Component on `qemu-virtio-gpu` and `hw-h002`.
+- [ ] The library's `open`, `read`, `write`, `mmap`, `pthread_create` and `dlopen` are implemented over Capabilities, Operations, MemoryObjects, Tasks and Package code objects; `os inspect` shows no Linux syscall entry from a Component using it.
+- [ ] POSIX functions the model cannot express (`fork`, signals, `/proc` paths, ambient network) return typed errors and are listed in the SDK guide.
+- [ ] ABI-003 passes for a Component that links this library and fails for one that links Linux `libc`.
+- [ ] No Layer 1 entry point was added or changed to make the library work (I-013, I-026), recorded by the ABI review gate.
+
+#### Verification
+- Unit: `sdk:tests/libc_compat/*` on `qemu-x86_64`.
+- Integration: GFX-036 triangle through the library on `qemu-virtio-gpu` and `hw-h002`.
+- Review: ABI lead confirms no Layer 1 change; SDK lead signs off on the unsupported-function list.
 
 #### Evidence
 - none

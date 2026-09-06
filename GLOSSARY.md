@@ -213,3 +213,8 @@ A named physical machine or QEMU profile in `registers/hardware.md` (`H-NNN`) on
 ## Input-to-photon latency
 
 The time from a physical input event to the corresponding change of light on the display, measured with a photodiode or high-speed camera rig on a Reference machine and compared against Linux and Windows on the same hardware. §54.
+
+## Error vocabulary
+
+The provisional names for typed kernel-boundary results used across tasks until ABI-009 fixes the error model: `Error::Rights` (forged handle, wrong type, missing right or denied derivation), `Error::Exhausted` (a ResourceDomain or kernel-object limit), `Error::Cancelled` (owner cancel), `Error::DeadlineExceeded` (deadline passed; the roadmap never calls this Timeout), `Error::Revoked` (use after revocation), `Error::Disconnected` (peer death), `Error::Integrity` (failed content or signature verification). ABI-009 may rename them; tasks written after it use its names. §7, §19, §65.
+

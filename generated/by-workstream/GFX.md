@@ -26,7 +26,7 @@
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | blocked | S | GFX-032 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | blocked | S | GFX-036 |
 | GFX-015 | Decide the compositor frame scheduling model | todo | blocked | S | GFX-012 |
-| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | blocked | S | GFX-036, Q-034 |
+| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | blocked | S | GFX-036, Q-034, SDK-097 |
 | GFX-017 | Decide the GPU API native applications render with | todo | blocked | S | GFX-036 |
 | GFX-018 | Decide compositor rendering backend policy: Vulkan-only or Vulkan plus GL | todo | blocked | S | GFX-035, HW-003 |
 | GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | blocked | S | GFX-033, Q-027 |
@@ -72,7 +72,7 @@
 | GFX-053 | Bring up i915/xe internal panel and USB-C external display on the Intel laptop | todo | blocked | M | GFX-027, HW-022, HW-015, LAB-007 |
 | GFX-054 | Present as late as possible before scanout to minimise latency | todo | blocked | M | GFX-024, GFX-003, GFX-004 |
 | GFX-055 | Test that a compositor crash while locked restarts into the locked state | todo | blocked | S | GFX-045, GFX-007 |
-| GFX-056 | Run Mesa Vulkan and OpenGL inside native Components with Capability-mediated GPU | todo | blocked | L | GFX-016, GFX-036, GFX-051, GFX-030 |
+| GFX-056 | Run Mesa Vulkan and OpenGL inside native Components with Capability-mediated GPU | todo | blocked | L | GFX-016, GFX-036, GFX-051, GFX-030, SDK-097 |
 | GFX-057 | Mediate Linux Personality GPU access through RenderQueue capabilities | todo | blocked | M | GFX-056, GFX-020, LNX-031, LNX-014 |
 | GFX-058 | Spike GPU time and memory budgets via DRM scheduler and cgroup GPU controllers | todo | blocked | M | GFX-056, SCH-031 |
 
@@ -93,7 +93,6 @@
 | GFX-069 | Expose HDR Surfaces to the Wayland bridge and Windows Personality | todo | blocked | M | GFX-068, GFX-020 |
 | GFX-070 | Implement HDR-to-SDR and SDR-in-HDR tone mapping | todo | blocked | M | GFX-063, GFX-062 |
 | GFX-071 | Automate 100 hot-plug and unplug cycles including an MST daisy-chained dock | todo | blocked | M | GFX-075, GFX-077, LAB-018 |
-| GFX-072 | Support render offload selection and mux switching across both personalities | todo | blocked | M | GFX-076, HW-048 |
 | GFX-073 | Apply per-display ICC profiles in the compositor | todo | blocked | M | GFX-063, LAB-017, GFX-022 |
 | GFX-074 | Support tearing and immediate presentation for fullscreen Surfaces | todo | blocked | M | GFX-079, GFX-023 |
 | GFX-075 | Support DisplayPort MST topologies and daisy-chained docks | todo | blocked | M | GFX-077, HW-059, HW-057 |
@@ -124,6 +123,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
+| GFX-072 | Support render offload selection and mux switching across both personalities | todo | blocked | M | GFX-076, HW-048 |
 | GFX-093 | Fix compositor and trusted-UI findings from the external security audit | todo | blocked | M | SEC-070, GFX-040, GFX-045, GFX-061 |
 | GFX-094 | Tune the presentation path to meet the input-to-photon p99 target | todo | blocked | M | GFX-004, GFX-060, GFX-054, GFX-067 |
 | GFX-095 | Lock Surface, Buffer, RenderQueue, Display and Frame Interface versions for 1.x | todo | blocked | S | GFX-052, GFX-036, GFX-014, GFX-017, GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, IPC-042, GFX-032, GFX-012, GFX-099 |

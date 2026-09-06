@@ -88,7 +88,7 @@ Linux syscall implementation (LNX). Operation ring internals (TSK). Capability t
 - Baseline: §3, §13, §57
 - Invariants: I-005, I-006, I-025, I-046, I-049
 
-Enforce the §3 compatibility firewall as a lint on every native crate from V0: native software does not link the Linux personality, libc, or a Wasm runtime used as the machine ABI (§57). Personalities consume the Native ABI and never extend it.
+Enforce the §3 compatibility firewall as a lint on every native crate from V0: native software does not link the Linux personality, libc, or a Wasm runtime used as the machine ABI (§57). Personalities consume the Native ABI and never extend it. The Layer 3 libc-compatible library decided by SDK-097 is not Linux `libc`; it is named in the lint allowlist by crate name and is the only C runtime a native crate may link.
 
 <!-- covers: INV-0867, INV-0010, INV-0011, INV-1121, INV-1123, INV-0272, INV-1130 -->
 

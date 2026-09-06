@@ -269,7 +269,7 @@ Capability granularity (NET-006). Object implementation (NET-014). Standing thro
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: NET-007
+- Depends on: NET-007, SDK-097
 - Baseline: §5.1, §61
 - Decision: D-0206
 - Risks: R-027

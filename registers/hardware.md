@@ -10,7 +10,7 @@ This register names the QEMU profiles and physical machines that milestone gates
 - Network: virtio-net
 - First milestone: V0
 - Status: planned
-Primary CI target for the execution-model gates. virtio-blk, virtio-scsi and the QEMU gdbstub are in the profile. No GPU acceleration is required.
+Primary CI target for the execution-model gates. virtio-blk, virtio-scsi and the QEMU gdbstub are in the profile. No GPU acceleration is required. CI matrix entry: `qemu-x86_64`.
 
 ### H-002 · AMD reference desktop
 - Kind: desktop
@@ -20,7 +20,7 @@ Primary CI target for the execution-model gates. virtio-blk, virtio-scsi and the
 - Network: wired Ethernet
 - First milestone: V0
 - Status: planned
-The single V0 physical machine. NVMe boot, one display at fixed refresh for V0 and V0.5. At V2 this machine gains the HDR/VRR reference display and colorimeter owned by LAB. IOMMU, TPM 2.0 and Secure Boot custom-key enrolment are selection criteria.
+The single V0 physical machine. NVMe boot, one display at fixed refresh for V0 and V0.5. At V2 this machine gains the HDR/VRR reference display and colorimeter owned by LAB. IOMMU, TPM 2.0 and Secure Boot custom-key enrolment are selection criteria. CI matrix entry: `hw-h002`.
 
 ### H-003 · QEMU/KVM x86-64 with virtio-gpu
 - Kind: qemu
@@ -30,7 +30,7 @@ The single V0 physical machine. NVMe boot, one display at fixed refresh for V0 a
 - Network: virtio-net
 - First milestone: V0.5
 - Status: planned
-Compositor CI profile. Used for crash-rebind loops and the four-application scenarios that do not need a physical scanout.
+Compositor CI profile. Used for crash-rebind loops and the four-application scenarios that do not need a physical scanout. CI matrix entry: `qemu-virtio-gpu`.
 
 ### H-004 · Intel reference laptop
 - Kind: laptop
@@ -40,7 +40,7 @@ Compositor CI profile. Used for crash-rebind loops and the four-application scen
 - Network: Intel Wi-Fi, wired Ethernet via dock
 - First milestone: V1
 - Status: planned
-Procured at V0.5 so V1 Wi-Fi roaming, suspend and battery gates have a machine. Internal display plus one external display over USB-C. Bluetooth and HDR/VRR are not required to work at V1. TPM 2.0, IOMMU and Secure Boot enrolment are selection criteria.
+Procured at V0.5 so V1 Wi-Fi roaming, suspend and battery gates have a machine. Internal display plus one external display over USB-C. Bluetooth and HDR/VRR are not required to work at V1. TPM 2.0, IOMMU and Secure Boot enrolment are selection criteria. CI matrix entry: `hw-h004`.
 
 ### H-005 · AMD reference laptop
 - Kind: laptop
@@ -50,7 +50,7 @@ Procured at V0.5 so V1 Wi-Fi roaming, suspend and battery gates have a machine. 
 - Network: Wi-Fi 6, Bluetooth, wired Ethernet via dock
 - First milestone: V2
 - Status: planned
-Second laptop of the V2 three-machine set. Battery, thermal, lid, brightness and suspend/resume gates run here.
+Second laptop of the V2 three-machine set. Battery, thermal, lid, brightness and suspend/resume gates run here. CI matrix entry: `hw-h005`.
 
 ### H-006 · NVIDIA desktop
 - Kind: desktop
@@ -60,7 +60,7 @@ Second laptop of the V2 three-machine set. Battery, thermal, lid, brightness and
 - Network: wired Ethernet
 - First milestone: V3
 - Status: planned
-Tracked as experimental at V2 with no gate. Becomes a Tier 1 gated machine at V3. The NVIDIA driver and Secure Boot module-signing decisions land before this machine's first gate.
+Tracked as experimental at V2 with no gate. Becomes a Tier 1 gated machine at V3. The NVIDIA driver and Secure Boot module-signing decisions land before this machine's first gate. CI matrix entry: `hw-h006`.
 
 ### H-007 · Intel laptop, second generation
 - Kind: laptop
@@ -70,7 +70,7 @@ Tracked as experimental at V2 with no gate. Becomes a Tier 1 gated machine at V3
 - Network: Intel Wi-Fi, Bluetooth
 - First milestone: V3
 - Status: planned
-The additional Intel laptop that takes Tier 1 from three machines to six at V3.
+The additional Intel laptop that takes Tier 1 from three machines to six at V3. CI matrix entry: `hw-h007`.
 
 ### H-008 · AMD laptop, second generation
 - Kind: laptop
@@ -80,7 +80,7 @@ The additional Intel laptop that takes Tier 1 from three machines to six at V3.
 - Network: Wi-Fi 6, Bluetooth
 - First milestone: V3
 - Status: planned
-The additional AMD laptop of the V3 six-machine Tier 1 set.
+The additional AMD laptop of the V3 six-machine Tier 1 set. CI matrix entry: `hw-h008`.
 
 ### H-009 · AMD desktop, second GPU generation
 - Kind: desktop
@@ -90,7 +90,7 @@ The additional AMD laptop of the V3 six-machine Tier 1 set.
 - Network: wired Ethernet
 - First milestone: V4
 - Status: planned
-Satisfies the V4 requirement for AMD desktops covering at least two GPU generations.
+Satisfies the V4 requirement for AMD desktops covering at least two GPU generations. CI matrix entry: `hw-h009`.
 
 ### H-010 · Intel desktop
 - Kind: desktop
@@ -100,7 +100,7 @@ Satisfies the V4 requirement for AMD desktops covering at least two GPU generati
 - Network: wired Ethernet
 - First milestone: V4
 - Status: planned
-The Intel desktop that V4 adds to Tier 1.
+The Intel desktop that V4 adds to Tier 1. CI matrix entry: `hw-h010`.
 
 ### H-011 · Intel hybrid-graphics laptop
 - Kind: laptop
@@ -110,7 +110,7 @@ The Intel desktop that V4 adds to Tier 1.
 - Network: Intel Wi-Fi, Bluetooth
 - First milestone: V4
 - Status: planned
-Exercises hybrid graphics across the compositor and both personalities. Counts toward the V4 ten-machine Tier 1 floor.
+Exercises hybrid graphics across the compositor and both personalities. Counts toward the V4 ten-machine Tier 1 floor. CI matrix entry: `hw-h011`.
 
 ### H-012 · AMD hybrid-graphics laptop
 - Kind: laptop
@@ -120,7 +120,7 @@ Exercises hybrid graphics across the compositor and both personalities. Counts t
 - Network: Wi-Fi 6, Bluetooth
 - First milestone: V4
 - Status: planned
-Second hybrid-graphics laptop. Counts toward the V4 ten-machine Tier 1 floor.
+Second hybrid-graphics laptop. Counts toward the V4 ten-machine Tier 1 floor. CI matrix entry: `hw-h012`.
 
 ### H-013 · Intel laptop, third named SKU
 - Kind: laptop
@@ -130,7 +130,7 @@ Second hybrid-graphics laptop. Counts toward the V4 ten-machine Tier 1 floor.
 - Network: Intel Wi-Fi, Bluetooth
 - First milestone: V4
 - Status: planned
-Fills the V4 ten-machine floor and the "Intel laptops, at least two generations" rule with margin.
+Fills the V4 ten-machine floor and the "Intel laptops, at least two generations" rule with margin. CI matrix entry: `hw-h013`.
 
 ### H-014 · AMD desktop, entry discrete
 - Kind: desktop
@@ -140,7 +140,7 @@ Fills the V4 ten-machine floor and the "Intel laptops, at least two generations"
 - Network: wired Ethernet
 - First milestone: V4
 - Status: planned
-Third AMD desktop SKU so the lab is not a two-machine sample of the vendor.
+Third AMD desktop SKU so the lab is not a two-machine sample of the vendor. CI matrix entry: `hw-h014`.
 
 ### H-015 · QEMU/KVM nested virtualization profile
 - Kind: qemu
@@ -148,9 +148,9 @@ Third AMD desktop SKU so the lab is not a two-machine sample of the vendor.
 - CPU: qemu64 with nested KVM
 - GPU: virtio-gpu
 - Network: virtio-net
-- First milestone: V2
+- First milestone: V1
 - Status: planned
-CI profile for the VIRT VM-manager component, guest tools and JakeOS-as-guest images.
+CI profile for the VIRT VM-manager component, guest tools and JakeOS-as-guest images. CI matrix entry: `qemu-nested`.
 
 ### H-016 · QEMU/KVM ia32 userspace profile
 - Kind: qemu
@@ -160,7 +160,7 @@ CI profile for the VIRT VM-manager component, guest tools and JakeOS-as-guest im
 - Network: virtio-net
 - First milestone: V1
 - Status: planned
-Holds the 32-bit decision in CI so syscall pruning cannot delete ia32 before Steam and Windows titles need it.
+Holds the 32-bit decision in CI so syscall pruning cannot delete ia32 before Steam and Windows titles need it. CI matrix entry: `qemu-ia32`.
 
 ### H-017 · QEMU/KVM VFIO GPU passthrough profile
 - Kind: qemu
@@ -170,7 +170,7 @@ Holds the 32-bit decision in CI so syscall pruning cannot delete ia32 before Ste
 - Network: virtio-net
 - First milestone: V2
 - Status: planned
-Used for Windows-personality GPU and HDR bring-up when a physical dual-boot is not the right isolation.
+Used for Windows-personality GPU and HDR bring-up when a physical dual-boot is not the right isolation. CI matrix entry: `qemu-vfio`.
 
 ### H-018 · Community Tier 2 sample desktop
 - Kind: desktop
@@ -180,4 +180,4 @@ Used for Windows-personality GPU and HDR bring-up when a physical dual-boot is n
 - Network: as reported
 - First milestone: none
 - Status: planned
-Placeholder for the first community-submitted Hardware Compatibility List entry. Best-effort; the installer warns. Promotion to Tier 1 is a documented REL process, not an automatic gate.
+Placeholder for the first community-submitted Hardware Compatibility List entry. Best-effort; the installer warns. Promotion to Tier 1 is a documented REL process, not an automatic gate. CI matrix entry: none; community machines never appear in the lab matrix.

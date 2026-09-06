@@ -8,24 +8,24 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 14% (30/219) | 7% | 26 | 163 |
-| V0.5 | Application model | next | 0/29 | 2% (8/437) | 1% | 24 | 405 |
-| V1 | Developer preview | planned | 0/30 | 1% (4/569) | 0% | 10 | 555 |
-| V2 | Desktop preview | planned | 0/30 | 1% (4/475) | 0% | 1 | 470 |
-| V3 | Public alpha | planned | 0/30 | 0% (0/317) | 0% | 1 | 316 |
-| V4 | Beta | planned | 0/28 | 0% (0/155) | 0% | 0 | 155 |
+| V0 | Execution model | active | 0/21 | 14% (30/220) | 7% | 27 | 163 |
+| V0.5 | Application model | next | 0/29 | 2% (8/438) | 1% | 24 | 406 |
+| V1 | Developer preview | planned | 0/30 | 1% (4/571) | 0% | 10 | 557 |
+| V2 | Desktop preview | planned | 0/30 | 1% (4/473) | 0% | 1 | 468 |
+| V3 | Public alpha | planned | 0/30 | 0% (0/316) | 0% | 1 | 315 |
+| V4 | Beta | planned | 0/28 | 0% (0/157) | 0% | 0 | 157 |
 | 1.0 | Public stable | planned | 0/19 | 0% (0/90) | 0% | 0 | 90 |
 | LATER | Deferred work | planned | 0/0 | 0% (0/13) | 0% | 1 | 12 |
 
 ## Totals
 
-Tasks 46 done / 2275 live (0 dropped). Weighted 1%. Gates 0/187.
+Tasks 46 done / 2278 live (0 dropped). Weighted 1%. Gates 0/187.
 
 ## Workstream × milestone
 
 | Workstream | V0 | V0.5 | V1 | V2 | V3 | V4 | 1.0 | LATER |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 8/20 | 0/4 | 0/18 | 0/8 | 0/4 | 0/3 | 0/3 | 0/0 |
+| KRN | 8/20 | 0/4 | 0/19 | 0/8 | 0/3 | 0/3 | 0/3 | 0/0 |
 | BOOT | 2/5 | 0/10 | 0/12 | 0/10 | 0/8 | 0/3 | 0/1 | 0/0 |
 | ABI | 0/22 | 1/9 | 0/11 | 0/3 | 0/1 | 0/5 | 0/3 | 0/0 |
 | CAP | 0/15 | 0/14 | 0/11 | 0/5 | 0/4 | 0/3 | 0/1 | 0/0 |
@@ -38,7 +38,7 @@ Tasks 46 done / 2275 live (0 dropped). Weighted 1%. Gates 0/187.
 | SVC | 0/0 | 0/15 | 0/18 | 0/4 | 0/3 | 0/2 | 0/1 | 0/0 |
 | STO | 0/1 | 0/33 | 0/19 | 0/17 | 0/8 | 0/5 | 0/2 | 0/0 |
 | PKG | 0/0 | 0/45 | 0/22 | 0/13 | 0/8 | 0/2 | 0/1 | 0/0 |
-| GFX | 0/1 | 0/44 | 0/14 | 0/30 | 0/4 | 0/3 | 0/2 | 0/1 |
+| GFX | 0/1 | 0/44 | 0/14 | 0/29 | 0/4 | 0/4 | 0/2 | 0/1 |
 | UIP | 0/0 | 0/26 | 0/16 | 0/9 | 0/3 | 0/2 | 0/1 | 0/1 |
 | TXT | 0/0 | 0/13 | 2/10 | 0/17 | 0/3 | 0/3 | 0/1 | 0/0 |
 | ACC | 0/0 | 0/5 | 0/10 | 0/10 | 0/5 | 0/5 | 0/1 | 0/1 |
@@ -53,12 +53,12 @@ Tasks 46 done / 2275 live (0 dropped). Weighted 1%. Gates 0/187.
 | NET | 0/0 | 0/2 | 0/19 | 0/7 | 0/6 | 0/3 | 0/2 | 0/1 |
 | AUD | 0/0 | 0/0 | 0/14 | 0/8 | 0/3 | 0/2 | 0/2 | 0/1 |
 | MED | 0/0 | 0/0 | 0/10 | 0/18 | 0/8 | 0/4 | 0/2 | 0/0 |
-| HW | 2/5 | 0/9 | 0/18 | 3/29 | 0/18 | 0/7 | 0/3 | 0/1 |
+| HW | 2/5 | 0/9 | 0/18 | 3/28 | 0/18 | 0/8 | 0/3 | 0/1 |
 | PWR | 0/0 | 0/5 | 0/10 | 0/9 | 0/2 | 0/2 | 0/2 | 0/0 |
-| SDK | 0/11 | 0/20 | 0/31 | 0/12 | 0/12 | 0/6 | 0/4 | 0/0 |
+| SDK | 0/11 | 0/21 | 0/32 | 0/12 | 0/12 | 0/6 | 0/4 | 0/0 |
 | APP | 0/0 | 0/9 | 0/12 | 0/35 | 0/8 | 0/2 | 0/2 | 0/1 |
 | INS | 0/0 | 0/2 | 0/3 | 0/9 | 0/35 | 0/5 | 0/2 | 0/0 |
-| BLD | 4/13 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
+| BLD | 4/14 | 0/15 | 0/24 | 0/8 | 0/10 | 0/8 | 0/2 | 0/0 |
 | LAB | 1/4 | 0/4 | 0/5 | 0/6 | 0/3 | 0/2 | 0/1 | 0/0 |
 | BEN | 1/9 | 1/14 | 0/12 | 0/13 | 0/7 | 0/5 | 0/4 | 0/0 |
 | REL | 0/0 | 1/2 | 0/7 | 0/6 | 0/37 | 0/9 | 0/6 | 0/0 |
@@ -69,21 +69,21 @@ Tasks 46 done / 2275 live (0 dropped). Weighted 1%. Gates 0/187.
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5574 |
-| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5403 |
-| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5268 |
-| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5266 |
-| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5266 |
-| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5255 |
-| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5251 |
-| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5249 |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5123 |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4720 |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4709 |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4670 |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4434 |
-| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4234 |
-| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4158 |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5585 |
+| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5413 |
+| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5278 |
+| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5276 |
+| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5276 |
+| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5265 |
+| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5261 |
+| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5259 |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5143 |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4728 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4719 |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4716 |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4433 |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4233 |
+| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4157 |
 
 ## Critical path
 
@@ -150,26 +150,26 @@ Makespan (size-weight estimates): 96.
 
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
-| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1791 | 5387 |
-| CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1740 | 5261 |
-| ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1734 | 5251 |
-| ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | 1734 | 5249 |
-| ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | 1733 | 5248 |
-| ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | 1733 | 5248 |
-| ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1733 | 5248 |
-| ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1732 | 5245 |
-| ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1736 | 5239 |
-| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1650 | 4933 |
-| TSK-008 | Decide whether every Task has kernel-visible identity | 1568 | 4701 |
-| MEM-002 | Decide the MemoryObject kernel implementation basis | 1563 | 4660 |
-| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1537 | 4582 |
-| TSK-007 | Decide Operation submission/completion transport and batching expression | 1527 | 4549 |
-| CMP-010 | Decide the Phase A Component implementation strategy | 1490 | 4423 |
-| TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1481 | 4381 |
-| ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1436 | 4235 |
-| TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1437 | 4233 |
-| TSK-003 | Decide Task cancellation model and resource cleanup | 1436 | 4226 |
-| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | 1411 | 4155 |
+| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1792 | 5397 |
+| CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1741 | 5271 |
+| ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1735 | 5261 |
+| ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | 1735 | 5259 |
+| ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | 1734 | 5258 |
+| ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | 1734 | 5258 |
+| ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1734 | 5258 |
+| ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1733 | 5255 |
+| ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1738 | 5250 |
+| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1665 | 4991 |
+| MEM-002 | Decide the MemoryObject kernel implementation basis | 1578 | 4718 |
+| TSK-008 | Decide whether every Task has kernel-visible identity | 1568 | 4708 |
+| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1536 | 4581 |
+| TSK-007 | Decide Operation submission/completion transport and batching expression | 1527 | 4556 |
+| CMP-010 | Decide the Phase A Component implementation strategy | 1489 | 4422 |
+| TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1480 | 4380 |
+| ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1436 | 4242 |
+| TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1436 | 4232 |
+| TSK-003 | Decide Task cancellation model and resource cleanup | 1435 | 4225 |
+| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | 1410 | 4154 |
 
 ## Blocked by
 
@@ -208,19 +208,19 @@ Makespan (size-weight estimates): 96.
 | OBS-019 | 17 |
 | PKG-022 | 17 |
 | SVC-013 | 17 |
+| ABI-011 | 16 |
 | GFX-006 | 16 |
 | INS-027 | 16 |
 | MED-013 | 16 |
+| SDK-009 | 16 |
 | SEC-027 | 16 |
 | STO-034 | 16 |
-| ABI-011 | 15 |
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |
-| SDK-009 | 15 |
 | SEC-028 | 15 |
 | WASM-012 | 15 |
 | ABI-005 | 14 |
@@ -374,6 +374,7 @@ Makespan (size-weight estimates): 96.
 | HW-001 | 8 |
 | HW-016 | 8 |
 | IPC-006 | 8 |
+| LNX-003 | 8 |
 | LNX-011 | 8 |
 | LNX-015 | 8 |
 | MEM-028 | 8 |
@@ -390,6 +391,7 @@ Makespan (size-weight estimates): 96.
 | SCH-008 | 8 |
 | SCH-042 | 8 |
 | SDK-054 | 8 |
+| SDK-097 | 8 |
 | STO-019 | 8 |
 | TXT-013 | 8 |
 | WIN-009 | 8 |
@@ -409,6 +411,7 @@ Makespan (size-weight estimates): 96.
 | DOC-014 | 7 |
 | ENV-018 | 7 |
 | GFX-009 | 7 |
+| GFX-036 | 7 |
 | GOV-005 | 7 |
 | GOV-007 | 7 |
 | GOV-016 | 7 |
@@ -424,8 +427,6 @@ Makespan (size-weight estimates): 96.
 | IPC-025 | 7 |
 | IPC-062 | 7 |
 | KRN-034 | 7 |
-| KRN-042 | 7 |
-| LNX-003 | 7 |
 | LNX-045 | 7 |
 | LNX-057 | 7 |
 | LNX-061 | 7 |
@@ -480,7 +481,6 @@ Makespan (size-weight estimates): 96.
 | CMP-036 | 6 |
 | ENV-007 | 6 |
 | GFX-024 | 6 |
-| GFX-036 | 6 |
 | GFX-045 | 6 |
 | GFX-056 | 6 |
 | GFX-063 | 6 |
@@ -497,6 +497,7 @@ Makespan (size-weight estimates): 96.
 | IPC-017 | 6 |
 | IPC-032 | 6 |
 | KRN-009 | 6 |
+| KRN-042 | 6 |
 | LAB-014 | 6 |
 | LNX-006 | 6 |
 | LNX-017 | 6 |
@@ -516,6 +517,7 @@ Makespan (size-weight estimates): 96.
 | PWR-012 | 6 |
 | REL-021 | 6 |
 | REL-057 | 6 |
+| SDK-003 | 6 |
 | SDK-024 | 6 |
 | SDK-043 | 6 |
 | SEC-044 | 6 |
@@ -622,7 +624,6 @@ Makespan (size-weight estimates): 96.
 | SCH-003 | 5 |
 | SCH-045 | 5 |
 | SDK-001 | 5 |
-| SDK-003 | 5 |
 | SDK-004 | 5 |
 | SDK-017 | 5 |
 | SDK-018 | 5 |
@@ -867,6 +868,8 @@ Makespan (size-weight estimates): 96.
 | CMP-015 | 3 |
 | CMP-028 | 3 |
 | CMP-033 | 3 |
+| CMP-045 | 3 |
+| CMP-046 | 3 |
 | DOC-009 | 3 |
 | DOC-018 | 3 |
 | DOC-030 | 3 |
@@ -986,9 +989,11 @@ Makespan (size-weight estimates): 96.
 | SDK-012 | 3 |
 | SDK-013 | 3 |
 | SDK-026 | 3 |
+| SDK-028 | 3 |
 | SDK-038 | 3 |
 | SDK-040 | 3 |
 | SDK-046 | 3 |
+| SDK-049 | 3 |
 | SDK-053 | 3 |
 | SDK-056 | 3 |
 | SDK-060 | 3 |
@@ -1141,8 +1146,6 @@ Makespan (size-weight estimates): 96.
 | CMP-031 | 2 |
 | CMP-037 | 2 |
 | CMP-042 | 2 |
-| CMP-045 | 2 |
-| CMP-046 | 2 |
 | CMP-051 | 2 |
 | DOC-002 | 2 |
 | DOC-013 | 2 |
@@ -1343,10 +1346,8 @@ Makespan (size-weight estimates): 96.
 | SDK-005 | 2 |
 | SDK-008 | 2 |
 | SDK-011 | 2 |
-| SDK-028 | 2 |
 | SDK-031 | 2 |
 | SDK-035 | 2 |
-| SDK-049 | 2 |
 | SDK-052 | 2 |
 | SDK-055 | 2 |
 | SDK-061 | 2 |

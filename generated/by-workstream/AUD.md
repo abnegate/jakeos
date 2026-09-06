@@ -7,7 +7,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | AUD-001 | Ship PipeWire and PulseAudio compatibility on AudioStream | todo | blocked | L | AUD-002, AUD-006, AUD-005, AUD-011, SVC-026, IPC-035 |
-| AUD-002 | Decide native AudioStream service versus PipeWire-as-native | todo | blocked | M | AUD-008 |
+| AUD-002 | Decide native AudioStream service versus PipeWire-as-native | todo | blocked | M | AUD-008, SDK-097 |
 | AUD-003 | Deny microphone use without an explicit Capability | todo | blocked | S | AUD-006, CAP-001, SEC-009, SEC-006 |
 | AUD-004 | Build audio round-trip latency and glitch harness | todo | blocked | M | AUD-007, AUD-010, LAB-011, OBS-040, BEN-005, BEN-007 |
 | AUD-005 | Implement restartable audio server with stream rebind | todo | blocked | M | AUD-006, SVC-015, SVC-009, IPC-028, CMP-028, BLD-020 |

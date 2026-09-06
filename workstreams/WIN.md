@@ -875,6 +875,7 @@ B-027 publication (BEN-044, BEN-041). W1 threshold run (WIN-051). Anti-cheat tit
 - [ ] C-007's V2 HDR-or-VRR Gold clause is met on H-002 with gamepad input scored pass.
 - [ ] Each proof title is named in the Evidence-bound rating sheet produced by WIN-006.
 - [ ] BEN-044 has a V2 publish report for those Gold titles; WIN prose cites B-027 only.
+- [ ] The V2-D03 demo title runs at 2560 by 1440 with VRR and HDR active on H-002 (the V2-D03 resolution).
 
 #### Verification
 - Compat: C-007 V2 HDR/VRR Gold clause on H-002.

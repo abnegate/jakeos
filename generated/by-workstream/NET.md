@@ -19,7 +19,7 @@
 | NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | blocked | M | NET-007, NET-008, CAP-010, SEC-002 |
 | NET-007 | Decide NET baseline-gap scope: preserved stack versus native objects | todo | blocked | S | NET-001, NET-002, KRN-001 |
 | NET-008 | Decide whether NetworkConnection wraps the kernel TCP/IP stack | todo | blocked | S | NET-007, NET-002, ABI-013 |
-| NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | blocked | S | NET-007 |
+| NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | blocked | S | NET-007, SDK-097 |
 | NET-010 | Write the native NetworkConnection programming model for SDK v1 | todo | blocked | S | NET-014, NET-011, NET-019, NET-006 |
 | NET-011 | Implement native TLS on NetworkConnection using the system CA store | todo | blocked | M | NET-005, NET-014, SEC-016, SEC-022 |
 | NET-012 | Implement the network Capability broker and default-deny inbound firewall | todo | blocked | L | NET-006, NET-014, CAP-005, SVC-015 |

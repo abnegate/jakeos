@@ -685,7 +685,7 @@ Settings indicator (APP-035). B-031 publication (BEN-039). Charge thresholds (PW
 
 #### Acceptance criteria
 - [ ] On H-004 and H-005, a B-031 mixed-workload discharge records remaining-time estimate at start and measured runtime at shutdown in the B-031 report.
-- [ ] `runtime:tests/pwr/battery_estimate_*` fails the V2-G05 run when those two values disagree by more than the tolerance constant in that test.
+- [ ] `runtime:tests/pwr/battery_estimate_*` fails the V2-G05 run when those two values disagree by more than 10 percent of measured runtime (the V2-G05 tolerance).
 - [ ] The same assertion runs on both laptops; a skip on an in-scope H-ID fails CI.
 
 #### Verification

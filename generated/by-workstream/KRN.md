@@ -58,6 +58,7 @@
 | KRN-039 | Publish the subsystem maintenance ownership map for retained Linux code | todo | blocked | S | KRN-017 |
 | KRN-040 | Rebase or adapt one upstream stable release during V1 per the divergence policy | todo | blocked | M | KRN-020, KRN-009, KRN-014, LNX-041 |
 | KRN-041 | Retain watchdog, softlockup, hung-Task and NMI detection and wire them to supervision | todo | blocked | M | KRN-011, SVC-015 |
+| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | blocked | S | KRN-009, LNX-003 |
 
 ## V2
 
@@ -76,7 +77,6 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | blocked | S | KRN-009, KRN-042 |
 | KRN-051 | Establish the process for adopting upstream architecture improvements | todo | blocked | S | KRN-042, KRN-029 |
 | KRN-052 | Exercise kernel CVE response and publish the V3 response-time distribution | todo | blocked | M | KRN-030, KRN-031, KRN-045, REL-034 |
 | KRN-053 | Establish selective adoption of upstream mm, scheduler and subsystem patches | todo | blocked | M | KRN-042, KRN-047 |

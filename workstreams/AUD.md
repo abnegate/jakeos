@@ -55,7 +55,7 @@ Personality client socket and desktop integration (LNX-033). systemd-style daemo
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: AUD-008
+- Depends on: AUD-008, SDK-097
 - Baseline: none
 - Decision: D-0028
 - Invariants: I-009, I-006
@@ -319,6 +319,7 @@ Retained-mechanism inventory (KRN-017). Laptop SKU bring-up (HW-015). PipeWire c
 - [ ] `os inspect` on those machines names the onboard output and input devices and their AudioStream holders.
 - [ ] Native software has no ALSA device node, `snd_*` syscall or PipeWire socket in the test Component's inspect dump.
 - [ ] Failure to open the device returns a typed error and leaves no leaked handle, on both machines.
+- [ ] Native playback and PipeWire-compatibility playback run simultaneously for 60 minutes on H-004 with zero underruns recorded in `os inspect` (the V1-G06 duration).
 
 #### Verification
 - Integration: `runtime:tests/aud/native_play_capture_*` on `hw-h002` and `hw-h004`.

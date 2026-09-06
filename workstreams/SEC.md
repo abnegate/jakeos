@@ -1926,7 +1926,7 @@ UI implementation (SEC-062, APP). Research programme ownership (GOV, DOC).
 
 #### Acceptance criteria
 - [ ] A moderated study script asks participants to list grants, revoke one and convert one to one-time using only the shipping UI.
-- [ ] The committed report records participant count, task completion against the V3 gate threshold, and every failed task.
+- [ ] The study has ten participants and at least 90 percent of tasks complete (the V3-G08 rate); the report records every failed task.
 - [ ] Findings that require product changes are filed as tasks with IDs; the report does not silently drop them.
 
 #### Verification
@@ -2297,6 +2297,7 @@ CVE SLA operation (REL). HCL publication (REL). Support window (GOV, REL).
 - [ ] A checklist maps each 1.0 security-posture claim to a done task ID and a T-ID.
 - [ ] Ambient-authority, permissions UI, FDE, Secure Boot/measured boot, threat model, audit closure, fuzzing and reproducible builds each have a passing Evidence line on the cited task.
 - [ ] The checklist is committed and linked from the 1.0 milestone review.
+- [ ] No fuzzer crasher against the Native ABI, IDL deserialisers or userspace parsers has been open for more than 30 days at declaration (the 1.0-G05 window).
 
 #### Verification
 - Review: SEC, BOOT, BLD and REL leads sign off on the checklist.

@@ -297,7 +297,7 @@ Task object implementation (TSK-021). Userspace runtime (SDK-004). Personality t
 - Depends on: TSK-018, TSK-003, TSK-004, TSK-017, ABI-009
 - Baseline: §19, §21, §59
 
-Owner cancel and deadline expiry deliver through the normal completion path as typed `Cancelled` and `DeadlineExceeded` results (the Timeout result of V0-G07). Cancelling a TaskGroup cancels every Operation it owns. The committed-hardware state machine from the NVMe spike is implemented for the NVMe path on H-002 so a cancelled Operation never delivers a successful result.
+Owner cancel and deadline expiry deliver through the normal completion path as typed `Cancelled` and `DeadlineExceeded` results (the DeadlineExceeded result of V0-G07). Cancelling a TaskGroup cancels every Operation it owns. The committed-hardware state machine from the NVMe spike is implemented for the NVMe path on H-002 so a cancelled Operation never delivers a successful result.
 
 <!-- covers: INV-0362, INV-0364, INV-0374, GAP-0495 -->
 
@@ -420,7 +420,7 @@ Submit and completion transport (TSK-018). Priority ordering of I/O (TSK-033). I
 - Explores: S-005
 - Risks: R-007
 
-Studies io_uring submission and completion rings, linked operations and cancellation, then prototypes a shared ring, a per-Task wait object and a hybrid completion path on H-001 and H-002. Wake-up latency is measured for each option under B-009's method so decide-operation-transport is evidence-based. Nothing on S-005 is frozen.
+Studies io_uring submission and completion rings, linked operations and cancellation, then prototypes a shared ring, a per-Task wait object and a hybrid completion path on H-001 and H-002. Wake-up latency is measured for each option under B-009's method so TSK-007 is evidence-based. Nothing on S-005 is frozen.
 
 <!-- covers: INV-1144, GAP-0494 -->
 
@@ -452,7 +452,7 @@ The transport decision (TSK-007). Permanent harness (TSK-026).
 - Explores: S-005
 - Risks: R-007
 
-Prototypes a timer wheel and an hrtimer-per-Operation and measures per-Operation deadline overhead at high submission rates before Timer and the deadline path are built. Results feed decide-deadline-representation and the later permanent harness.
+Prototypes a timer wheel and an hrtimer-per-Operation and measures per-Operation deadline overhead at high submission rates before Timer and the deadline path are built. Results feed TSK-004 and the later permanent harness.
 
 <!-- covers: INV-0376 -->
 
@@ -484,7 +484,7 @@ Deadline representation decision (TSK-004). Permanent harness (TSK-039). Timer k
 - Explores: S-008
 - Risks: R-007
 
-One of the V0 spikes that inform Layer 1 surfaces. Prototypes kernel-notified user scheduling (UMCG-style activations), a pure userspace runtime with async syscalls only, and kernel-managed lightweight Tasks at the live-Task scale recorded in B-014, and measures how page faults and synchronous inherited driver paths stall a worker. Feeds decide-task-mapping. Nothing on S-008 is frozen.
+One of the V0 spikes that inform Layer 1 surfaces. Prototypes kernel-notified user scheduling (UMCG-style activations), a pure userspace runtime with async syscalls only, and kernel-managed lightweight Tasks at the live-Task scale recorded in B-014, and measures how page faults and synchronous inherited driver paths stall a worker. Feeds TSK-009. Nothing on S-008 is frozen.
 
 <!-- covers: GAP-0492, INV-0385, INV-0377, GAP-0493 -->
 
@@ -514,7 +514,7 @@ The mapping decision (TSK-009). Multiplexer implementation (TSK-019).
 - Baseline: §19
 - Explores: S-005
 
-Uniform cancellation is promised, but hardware makes some Operations uncancellable once DMA is issued. This spike prototypes the state machine against a real NVMe read on H-002 and answers whether cancel waits, fails, or is best-effort, and how partial results are reported. Feeds operation-cancel-deadline. GPU and Wi-Fi come later.
+Uniform cancellation is promised, but hardware makes some Operations uncancellable once DMA is issued. This spike prototypes the state machine against a real NVMe read on H-002 and answers whether cancel waits, fails, or is best-effort, and how partial results are reported. Feeds TSK-010. GPU and Wi-Fi come later.
 
 <!-- covers: GAP-0495, INV-0374 -->
 
@@ -545,7 +545,7 @@ Kernel implementation of the chosen machine (TSK-010). GPU and Wi-Fi matrix (TSK
 - Benchmarks: B-009
 - Invariants: I-030
 
-Builds the transport chosen by decide-operation-transport and the inline-completion signalling chosen by decide-inline-completion. `submit` enqueues an Operation and returns without waiting. Completions report results back to the submitting Task. Poll and wait are the native observation paths. This is the V0 exit that asynchronous submission and completion work.
+Builds the transport chosen by TSK-007 and the inline-completion signalling chosen by TSK-005. `submit` enqueues an Operation and returns without waiting. Completions report results back to the submitting Task. Poll and wait are the native observation paths. This is the V0 exit that asynchronous submission and completion work.
 
 <!-- covers: INV-0342, INV-0343, INV-1160, INV-0340 -->
 
@@ -578,7 +578,7 @@ Kind implementations (TSK-011, TSK-012). Task wake integration (TSK-020). Ring h
 - Benchmarks: B-014
 - Invariants: I-017
 
-The kernel and runtime multiplex Tasks across a bounded set of execution contexts so native software can create the live-Task population recorded in B-014 without a kernel thread per Task (§20). This implements the model chosen by decide-task-mapping, including hidden-blocking compensation. Wake-on-completion is a follow-on; V1 tuning is out of this task.
+The kernel and runtime multiplex Tasks across a bounded set of execution contexts so native software can create the live-Task population recorded in B-014 without a kernel thread per Task (§20). This implements the model chosen by TSK-009, including hidden-blocking compensation. Wake-on-completion is a follow-on; V1 tuning is out of this task.
 
 <!-- covers: INV-0379, INV-1156, INV-0377 -->
 
@@ -642,7 +642,7 @@ Inspect rendering of the awaited Operation (OBS-005). Debugger stacks (TSK-038).
 - Benchmarks: B-002
 - Invariants: I-017
 
-V0 creates a native Task (§59, §69). Threads are not a native API. This object is what native software runs, implemented per decide-task-identity, owned by a TaskGroup. Spawn latency is published under B-002.
+V0 creates a native Task (§59, §69). Threads are not a native API. This object is what native software runs, implemented per TSK-008, owned by a TaskGroup. Spawn latency is published under B-002.
 
 <!-- covers: INV-0047, INV-1314 -->
 
@@ -651,7 +651,7 @@ Multiplexing (TSK-019). Cancellation walk (TSK-022). Personality threads (TSK-04
 
 #### Acceptance criteria
 - [ ] A Component can spawn a Task into its TaskGroup and the Task becomes runnable, on `qemu-x86_64` and `hw-h002`.
-- [ ] The Task identity matches decide-task-identity (kernel object or runtime identity with kernel visibility).
+- [ ] The Task identity matches TSK-008 (kernel object or runtime identity with kernel visibility).
 - [ ] Native software has no thread-create, thread-join or thread-kill ABI.
 - [ ] Destroying the Task reclaims its kernel state with no leak in the V0 leak test.
 - [ ] A B-002 publish run exists on H-001 and H-002.
@@ -684,7 +684,7 @@ Background-execution Capability (TSK-025). Deadline inheritance (TSK-036). Opera
 - [ ] Cancelling a TaskGroup cancels owned Tasks, child TaskGroups and their outstanding Operations on `qemu-x86_64` and `hw-h002`.
 - [ ] Application cancel completes only after every owned Task has terminated.
 - [ ] A regression in CI proves no Task remains runnable after group cancel and after application exit.
-- [ ] A multi-level tree cancel completes with every Task terminated before the test returns (V0-G08).
+- [ ] A three-level tree of 1,000 Tasks with 1,000 outstanding Timer Operations is cancelled with every Task terminated within 50 ms of the cancel call on `hw-h002` and within 200 ms on `qemu-x86_64` (the V0-G08 bound).
 
 #### Verification
 - Unit: `kernel:tests/tsk/taskgroup_cancel_*` on `qemu-x86_64` and `hw-h002`.
@@ -884,7 +884,7 @@ Rebind implementation (TSK-035). Capability transfer over Channels (IPC). Memory
 - Baseline: §18, §19, §41
 - Invariants: I-018
 
-Realises decide-native-notification: a kernel Event object that user space signals and that Wait Operations consume. It is the native replacement for futex, eventfd and signal wake-ups that the toolkit, compositor and Wayland bridge need for cross-Task synchronisation without ambient signals.
+Realises TSK-006: a kernel Event object that user space signals and that Wait Operations consume. It is the native replacement for futex, eventfd and signal wake-ups that the toolkit, compositor and Wayland bridge need for cross-Task synchronisation without ambient signals.
 
 <!-- covers: INV-0039 -->
 
@@ -913,7 +913,7 @@ Channel messages (IPC). Personality futex and eventfd (LNX). Wait kind itself (T
 - Depends on: TSK-007, TSK-018, TSK-011, TSK-012
 - Baseline: §18, §58
 
-decide-operation-transport fixes how batches are expressed. This task implements batch submit and io_uring-style links (Read then Send, Timer-bounded chains) that the compositor frame loop and File Browser need at V0.5. A failed link stops the chain with a typed result. Required by V0.5-G01 (Native compositor presents on the reference GPU): the compositor frame loop submits its per-frame Operations as linked batches.
+TSK-007 fixes how batches are expressed. This task implements batch submit and io_uring-style links (Read then Send, Timer-bounded chains) that the compositor frame loop and File Browser need at V0.5. A failed link stops the chain with a typed result. Required by V0.5-G01 (Native compositor presents on the reference GPU): the compositor frame loop submits its per-frame Operations as linked batches.
 
 #### Out of scope
 Transport decision (TSK-007). IPC batched send/receive at V1 (IPC-043).
@@ -999,7 +999,7 @@ NetworkConnection object (NET-014). Service discovery (IPC-023). Channel close (
 - Baseline: §19, §22, §40
 - Invariants: I-032
 
-Plumbs the carried Operation priority into block I/O ordering, Channel queueing and completion wake ordering per decide-operation-priority-model so compositor Operations preempt Background work for the V0.5 dropped-frame gate. Scheduling intent remains a SCH concept; this task is the Operation-side ordering.
+Plumbs the carried Operation priority into block I/O ordering, Channel queueing and completion wake ordering per TSK-027 so compositor Operations preempt Background work for the V0.5 dropped-frame gate. Scheduling intent remains a SCH concept; this task is the Operation-side ordering.
 
 <!-- covers: INV-0365 -->
 
@@ -1070,7 +1070,7 @@ Supervisor restart policy (SVC). Client rebind codegen (IPC-028, SDK-012). Surfa
 #### Acceptance criteria
 - [ ] In-flight Send, Receive and DeviceOperation against a killed service complete with typed `Disconnected` and never deliver a successful result, on `qemu-x86_64` and `hw-h002`.
 - [ ] After rebind, a new Operation against the same interface identity can be submitted and completed.
-- [ ] Ownership of in-flight Operations follows decide-ownership-transfer; no Operation remains owned by the dead instance.
+- [ ] Ownership of in-flight Operations follows TSK-028; no Operation remains owned by the dead instance.
 - [ ] The compositor-kill loop named by SVC-002 observes only typed failures, not process death of the client.
 
 #### Verification
@@ -1232,7 +1232,7 @@ Threat-model document (SEC-002). Handle-table generation (ABI). Capability right
 - Baseline: §19, §61
 - Benchmarks: B-030
 
-Implements the suspend/resume rule from decide-deadline-representation, refined by SVC's clock-semantics adr, on H-004 and H-002. V1 suspend-cycle gates require Timers and deadlines to behave as the decision states after wake. PWR owns the suspend mechanism; TSK owns deadline arithmetic across it.
+Implements the suspend/resume rule from TSK-004, refined by SVC's clock-semantics adr, on H-004 and H-002. V1 suspend-cycle gates require Timers and deadlines to behave as the decision states after wake. PWR owns the suspend mechanism; TSK owns deadline arithmetic across it.
 
 <!-- covers: GAP-0496 -->
 
@@ -1554,7 +1554,7 @@ Fuzz infrastructure (BLD). Channel fuzz targets (IPC-044). MemoryObject oracles 
 - Freezes: S-005, S-008
 - Invariants: I-040
 
-V4 exit: Layer 1 frozen with a conformance suite. This suite covers every Operation kind, inline-completion signalling, deadline representation and cancellation results named by decide-l1-freeze-candidates. Binaries built against the freeze candidate run on every subsequent beta build. This task carries the S-005 and S-008 freeze once ABI-049 is accepted.
+V4 exit: Layer 1 frozen with a conformance suite. This suite covers every Operation kind, inline-completion signalling, deadline representation and cancellation results named by TSK-042. Binaries built against the freeze candidate run on every subsequent beta build. This task carries the S-005 and S-008 freeze once ABI-049 is accepted.
 
 #### Out of scope
 Freeze ADR (ABI-049). Channel conformance (IPC-065). Component conformance (CMP).

@@ -474,7 +474,7 @@ Shipping the ia32 userland (LNX-035). 32-bit Win32/WoW64 (WIN-010). Attack-surfa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-003, ABI-025, CAP-007
+- Depends on: LNX-003, ABI-025, CAP-007, SDK-097
 - Baseline: §3, §46
 - Decision: D-0176
 - Invariants: I-025
