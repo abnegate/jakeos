@@ -60,7 +60,25 @@ These are not roadmap defects; they are choices the roadmap cannot make and that
 4. **154 proposed decisions have at least one option described in under 120 characters** (V0: 10, V0.5: 46, V1: 50). The option list is the space the executing agent chooses from; a thin option is an invitation to invent. The ten V0 decisions are the ones to fatten before the first adr task is claimed.
 5. **Six product questions only the owner can answer** are currently scheduled as V1 or later decisions: 32-bit Windows at 1.0 (Q-040), the anti-cheat policy (Q-043), the browser strategy (Q-044), the IDE strategy (Q-045), the legal jurisdiction (Q-049) and whether the maintainer's own machines are the lab (implicit in D-0169). Answering them now costs nothing and removes the chance that an agent decides them by default.
 
-## 4. Rerun
+## 4. Operator decisions taken
+
+The maintainer answered every question in section 3 in the same session; this is what changed.
+
+| Question | Decision | Effect in the repository |
+|---|---|---|
+| Swarm identity | Agents commit and open pull requests under the maintainer's own account | No repository change. The CI author check on done transitions is therefore satisfied by the author; the safeguard that remains is the rule that agents never set `Status: done` or `Verified by`, so every done transition is a separate human action |
+| Verifier policy | Human verification for adr tasks, `Freezes:` tasks and every task a gate or demo names in `Verified by`; the V1 switch to every task stays off through 1.0 unless GOV turns it on | `verify_gate_tasks = true` in `roadmap.toml`; one `needs_verifier` predicate shared by the validator, the field rule and `roadmap done`; CONVENTIONS section 13 rewritten. Measured load under the rule: V0 101 of 191 open tasks, V0.5 225 of 431, V1 294 of 567, V2 263 of 470, V3 220 of 316, V4 147 of 157, 1.0 89 of 90; 1,341 of 2,235 in total. The estimate given when the question was asked (150 to 250 per milestone) was wrong for V4 and 1.0, where almost every task is gate-cited; if that is more than one verifier can carry, the rule to revisit is which gates cite which tasks, not the policy |
+| Branch protection | Pull requests only, for everyone | `enforce_admins` enabled on `main`; the required `validate` check now blocks direct pushes by the maintainer too. This review's changes landed through a pull request for that reason |
+| Thin decision options | Expand all 154 now | Every proposed decision with an option under 120 characters was rewritten: a real summary, the consequences that make the option easier, harder or impossible, and the spike report that is its evidence. The `Decision`, `Consequences` and `Rejected` sections stay empty until the adr task runs |
+| Browser (Q-044) | Firefox through the Linux personality, default and only shipped browser | Recorded as owner direction on Q-044 and in D-0022's context; APP-019 confirms or rejects with APP-021's evidence |
+| IDE (Q-045) | VS Code through the Linux personality | Recorded on Q-045 and in D-0025's context; APP-020 confirms |
+| 32-bit Windows (Q-040) | Supported in 1.0 through WoW64, which requires LNX-015 to retain ia32 | Recorded on Q-040 and in D-0344's context; WIN-010 confirms |
+| Anti-cheat (Q-043) | No kernel anti-cheat driver ever; titles routed to the VIRT fallback and rated VM-only | Recorded on Q-043 and in D-0335's context; WIN-002 confirms |
+| Legal jurisdiction (Q-049) | Let GOV-039 compare | No change |
+| Recording the product answers | Owner direction, adr confirms | The answers are direction, not accepted decisions; the adr tasks keep their V1 milestone and may reject the direction with evidence |
+| Accepted-decision digest | One page in reviews/ | `reviews/accepted-decisions.md`: forty decisions, the option taken and what each forecloses |
+
+## 5. Rerun
 
 ```
 python3 reviews/scripts/waves.py        # wave structure, critical chain, effort per milestone

@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-Formal certifications would divert effort from the stability contract (§51).
+Common Criteria and FIPS 140 certifications open government and regulated markets but cost money, process and design constraints that would divert effort from the 1.0 stability contract (§51). This non-goal decision records the 1.0 position as I-091 and lists it in the published non-promises; it sits on the threat model (SEC-002) and the audit closure (SEC-070).
 
 ## Options
 
 ### Option A · Pursue Common Criteria and FIPS 140 for 1.0
-Summary: Both certifications are pursued.
-Consequences: Market access; cost and process.
+Summary: Pursue Common Criteria and FIPS 140 validation for 1.0.
+Consequences: Access to procurement that requires them. Both take years, external labs and a legal entity, and FIPS constrains the cryptographic implementations the platform may use (rustls is not validated); impossible before 1.0.
 Evidence: none
 
 ### Option B · Declare both out of scope for 1.0
-Summary: Neither is pursued.
-Consequences: Focus; some markets excluded.
+Summary: Declare both out of scope for 1.0, recorded as I-091 and in the non-promises; design nothing that precludes a later attempt.
+Consequences: Focus on the stability contract and the external audit. Regulated buyers are excluded at 1.0, which the non-promises state.
 Evidence: none
 
 ### Option C · Pursue only one
-Summary: One certification is pursued.
-Consequences: Partial access; still cost.
+Summary: Pursue FIPS 140 for the cryptographic module only.
+Consequences: Narrower and cheaper than both. Still requires a validated module and a vendor relationship, and it constrains the TLS and disk-encryption choices already made; rejected for 1.0.
 Evidence: none
 
 ## Decision
