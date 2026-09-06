@@ -6,8 +6,8 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| ABI-001 | Publish native entry/return cost per mechanism against Linux syscall and io_uring | todo | blocked | S | ABI-019, Q-001 |
-| ABI-002 | Implement the Native ABI entry layer in the Linux-derived kernel | todo | blocked | L | ABI-008, ABI-012, ABI-014, ABI-015, LNX-001 |
+| ABI-001 | Publish native entry/return cost per mechanism against Linux syscall and io_uring | todo | blocked | S | ABI-019, Q-001, BEN-005, BLD-082 |
+| ABI-002 | Implement the Native ABI entry layer in the Linux-derived kernel | todo | blocked | L | ABI-008, ABI-012, ABI-014, ABI-015, LNX-001, KRN-013 |
 | ABI-003 | Add build and lint rules forbidding native crates from linking Linux Personality or libc | todo | blocked | S | ABI-018, BLD-082 |
 | ABI-004 | Implement the Layer 1 version handshake and its forward/backward compatibility test | todo | blocked | M | ABI-016, ABI-002 |
 | ABI-005 | Implement the Object<T> typed registry with type identifier checked on every Operation | todo | blocked | L | ABI-010, ABI-013, ABI-009, ABI-002 |
@@ -22,7 +22,7 @@
 | ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | todo | blocked | S | ABI-011 |
 | ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | todo | blocked | S | TSK-014 |
 | ABI-016 | Decide the Layer 1 version identification and feature-negotiation scheme | todo | blocked | S | ABI-008, ABI-021 |
-| ABI-017 | Write the normative, versioned Native ABI specification v0 defining every entry point | todo | blocked | L | ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007 |
+| ABI-017 | Write the normative, versioned Native ABI specification v0 defining every entry point | todo | blocked | L | ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007, BLD-082 |
 | ABI-018 | Lint native surfaces against POSIX-shaped names and Linux syscall numbers | todo | blocked | S | ABI-011, BLD-082 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | todo | ready | M | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | todo | ready | S | none |
