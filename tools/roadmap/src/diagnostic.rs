@@ -227,4 +227,6 @@ pub mod code {
     pub const HAND_TYPED_PERCENT: &str = "W-013";
     pub const PERFORMANCE_NUMBER: &str = "W-014";
     pub const GLOSSARY_CASING: &str = "W-015";
+    pub const HARDWARE_SCOPE_MISSING: &str = "W-016";
+    pub const SELF_ANSWERED_QUESTION: &str = "W-017";
 }

@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: HET-001
 - Surfaces: S-028
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

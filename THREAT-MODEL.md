@@ -24,18 +24,19 @@ Each adversary is named here and enumerated as T-IDs in the register. The T-ID l
 | Adversary | Position | Wants | Register entries |
 |---|---|---|---|
 | Malicious native application | a Component the user installed and ran | ambient authority it was never handed, other applications' data, devices, the screen | T-001, T-003, T-004, T-013, T-014, T-016 |
-| Compromised Component | a legitimate Component that has been exploited (a decoder, a parser, a renderer) | to reach beyond its own capability set into its neighbours and the service that hosts it | T-002, T-005, T-015, T-016, T-038 |
+| Compromised Component | a legitimate Component that has been exploited (a decoder, a parser, a renderer, a Wasm guest) | to reach beyond its own capability set into its neighbours and the service that hosts it | T-002, T-005, T-015, T-016, T-038, T-045 |
 | Compromised compatibility application | a Linux or Windows program running inside a personality, malicious or exploited | the native grants the personality holds on its behalf, other prefixes, the host | T-011, T-025, T-032 |
 | Local unprivileged user | another login on the same machine | the first user's capability store, encrypted data, session surfaces, crash dumps | T-026, T-027, T-035 |
 | Evil maid, device off | physical access to a powered-off machine | to alter what boots, read the disk, implant firmware | T-008, T-021, T-022, T-037, T-041 |
 | Evil maid, device suspended or locked | physical access to a suspended or locked machine | unlocked memory, disk keys, the live session | T-009, T-010, T-024, T-041 |
 | Malicious DMA peripheral | a Thunderbolt, USB4 or PCIe device the user plugs in | physical memory and MemoryObjects without going through the kernel | T-024, T-020 |
+| Rogue input or storage peripheral | a USB or Bluetooth device posing as a keyboard, or a drive carrying a crafted filesystem | keystrokes into trusted surfaces while locked; the kernel's inherited filesystem parsers | T-043, T-044 |
 | Network attacker | on the path between the machine and the world | credentials, the update channel, user traffic, an unauthenticated listener | T-019, T-028, T-040 |
 | Supply-chain attacker | inside a dependency, a build worker, a signing process or a firmware vendor | to ship code the project did not write to every machine | T-006, T-007, T-028, T-029 |
-| Over-reaching automation or assistant | an AI broker or a background rule acting beyond its grants | user data and actions the user did not intend | T-017, T-018 |
+| Over-reaching automation or assistant | an AI broker, a background rule or an assistive-technology client acting beyond its grants | user data and actions the user did not intend; every other application's UI | T-017, T-018, T-046 |
 | The project itself | telemetry intake, compatibility probes, recovery tooling | more data than the user consented to | T-023, T-042, T-035 |
 
-Threats that no adversary above claims exclusively are still registered because a design must answer them: T-012 (compositor spoof), T-030 (shared writable atlas), T-031 (overlay and scanout leak), T-033 (grant survives publisher change), T-034 (mixed-version tree), T-036 (guest VM breakout), T-039 (screen-reader spoof). They are cited by the GFX, TXT, PKG, VIRT and ACC decisions that own them.
+Threats that no adversary above claims exclusively are still registered because a design must answer them: T-012 (compositor spoof), T-030 (shared writable atlas), T-031 (overlay and scanout leak), T-033 (grant survives publisher change), T-034 (mixed-version tree), T-036 (guest VM breakout), T-037 (unsigned kexec and command line), T-039 (screen-reader spoof). They are cited by the GFX, TXT, PKG, VIRT and ACC decisions that own them.
 
 ## 3. Trust boundaries
 
@@ -54,12 +55,13 @@ Security comes from several independent layers (§51). No single layer is assume
 | Layer | Stops | Fails when |
 |---|---|---|
 | Capability model (CAP) | ambient authority, forgery, amplification, confused deputies when services use the caller's capability | a service acts with its own authority (T-002), or revocation is not walked in one operation (T-005) |
-| Component isolation (CMP, SCH) | a compromised Component reaching its neighbours' memory or exhausting shared resources | shared MemoryObjects are writable by both sides (T-030), or per-domain bounds are missing (T-016) |
-| Language safety (Rust-first, unsafe inventory) | memory-corruption bugs in new code | inherited C, `unsafe` blocks, and hardware |
-| Trusted surfaces (GFX, APP) | spoofed consent, clickjacking, capture | overlay planes or scanout leak pixels (T-031), synthesised input reaches a trusted surface (T-012) |
+| Component isolation (CMP, SCH) | a compromised Component reaching its neighbours' memory or exhausting shared resources | shared MemoryObjects are writable by both sides (T-030), per-domain bounds are missing (T-016), or reused pages are handed out without zeroing |
+| Language safety (Rust-first, unsafe inventory) | memory-corruption bugs in new code | inherited C, `unsafe` blocks, and hardware; a Rust panic in the kernel is still a kernel crash, so native kernel code allocates fallibly and never panics on user-controlled input (I-101) |
+| Trusted surfaces (GFX, APP) | spoofed consent, clickjacking, capture | overlay planes or scanout leak pixels (T-031), synthesised input reaches a trusted surface (T-012), or a newly attached device types into it (T-043) |
 | Boot integrity (BOOT, SEC) | evil-maid modification, downgrade, unsigned kexec | firmware below the OS is compromised (T-021), or the watermark is not enforced by the boot manager (T-022) |
 | Encryption at rest (SEC, STO) | data theft from a powered-off or stolen machine | keys survive in a hibernation image (T-041) or memory (T-009) |
 | IOMMU (HW, KRN) | DMA from peripherals and user-space drivers | a device is not behind the IOMMU (T-024), or a driver is loaded without it (T-020) |
+| Mount policy (STO) | crafted filesystem images on removable or foreign volumes | an inherited kernel parser mounts attacker bytes without isolation or restriction (T-044) |
 | Signing and verification (REL, PKG) | malicious or substituted packages and generations | a signing key leaks (T-029) or verification happens after activation (T-034) |
 | Audit and revocation (OBS, CAP, SEM) | silent over-reach by assistants, rules and services | an action is not on the log (T-017), or grants outlive their justification (T-033) |
 | Hardware enforcement (future, §8) | forged or widened capabilities even when kernel metadata is wrong | not available on the initial x86-64 targets; the ABI leaves room for it |
@@ -85,7 +87,7 @@ The attacker cannot:
 
 Side channels (T-015) remain: a co-resident decoder can observe timing of shared caches and SMT siblings. The side-channel position statement (SEC) states which of these the project mitigates by default and which it accepts.
 
-The same analysis must be written for every Component class that parses untrusted input: video decoders (MED), font shapers (TXT), the IDL wire decoder (IPC), the personality bridges (LNX, WIN) and the compositor's client protocol (GFX). Each is a task in its workstream and cites this section.
+The same analysis must be written for every Component class that parses untrusted input: video decoders (MED), font shapers (TXT), the IDL wire decoder (IPC), the personality bridges (LNX, WIN), the compositor's client protocol (GFX), the Wasm runtime (WASM, T-045) and whatever mounts removable filesystems (STO, T-044). Each is a task in its workstream and cites this section.
 
 ## 6. Requirements this model places on decisions
 

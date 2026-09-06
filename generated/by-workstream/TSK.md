@@ -16,7 +16,7 @@
 | TSK-008 | Decide whether every Task has kernel-visible identity | todo | blocked | S | TSK-016 |
 | TSK-009 | Decide Task mapping onto kernel execution contexts | todo | blocked | M | TSK-016 |
 | TSK-010 | Implement Operation cancellation and deadline expiry with Cancelled and DeadlineExceeded results | todo | blocked | L | TSK-018, TSK-003, TSK-004, TSK-017, ABI-009 |
-| TSK-011 | Implement Read, Write, Send and Receive Operation kinds | todo | blocked | L | TSK-018, ABI-014, IPC-010, MEM-005 |
+| TSK-011 | Implement Read, Write, Send and Receive Operation kinds | todo | blocked | L | TSK-018, ABI-014, IPC-010, MEM-005, STO-001 |
 | TSK-012 | Implement Timer and Wait Operation kinds | todo | blocked | M | TSK-018, TSK-004, TSK-006 |
 | TSK-013 | Implement Operation<Result> kernel Object with owner, typed result, priority and trace points | todo | blocked | L | TSK-023, TSK-007, ABI-015, ABI-009 |
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | todo | ready | M | none |
@@ -82,7 +82,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| TSK-052 | Build Layer 1 conformance suite for the frozen Operation ABI | todo | blocked | L | TSK-042, TSK-050, TSK-051, TSK-048 |
+| TSK-052 | Build Layer 1 conformance suite for the frozen Operation ABI | todo | blocked | L | TSK-042, TSK-050, TSK-051, TSK-048, ABI-049 |
 
 ## 1.0
 

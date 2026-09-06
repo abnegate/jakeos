@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: ABI-008
 - Surfaces: S-002
-- Layer: none
+- Layer: L1
 - Spikes: ABI-019
 - Supersedes: none
 - Superseded by: none

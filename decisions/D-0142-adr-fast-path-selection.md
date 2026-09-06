@@ -1,8 +1,8 @@
 # D-0142 · Select the small-message fast-path technique from measured prototypes
 - Status: proposed
 - Task: IPC-003
-- Surfaces: none
-- Layer: none
+- Surfaces: S-012
+- Layer: L1
 - Spikes: IPC-017
 - Supersedes: none
 - Superseded by: none

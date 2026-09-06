@@ -15,8 +15,8 @@
 | ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | todo | blocked | S | ABI-011 |
 | ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | todo | blocked | S | ABI-019, ABI-001 |
 | ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | todo | blocked | S | ABI-022, ABI-020 |
-| ABI-010 | Decide Capability handle representation: dense index, sparse id or sealed value | todo | blocked | M | CAP-008, ABI-022 |
-| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | todo | blocked | M | ABI-022, Q-047 |
+| ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | todo | blocked | M | CAP-008, ABI-022 |
+| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | todo | blocked | M | ABI-022 |
 | ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | todo | blocked | M | ABI-008, ABI-010, ABI-009, ABI-014, ABI-015 |
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | todo | blocked | M | ABI-022, ABI-011 |
 | ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | todo | blocked | S | ABI-011 |

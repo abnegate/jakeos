@@ -4,7 +4,7 @@
 
 | Workstream | Total | Done | In progress | Todo | Dropped | Ready | Blocked | Weighted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| KRN | 59 | 8 | 0 | 51 | 0 | 3 | 48 | 8% |
+| KRN | 60 | 8 | 0 | 52 | 0 | 3 | 49 | 8% |
 | BOOT | 49 | 2 | 0 | 47 | 0 | 2 | 45 | 1% |
 | ABI | 54 | 1 | 0 | 53 | 0 | 4 | 49 | 1% |
 | CAP | 53 | 0 | 0 | 53 | 0 | 6 | 47 | 0% |
@@ -15,20 +15,20 @@
 | SCH | 61 | 0 | 0 | 61 | 0 | 0 | 61 | 0% |
 | OBS | 56 | 0 | 0 | 56 | 0 | 1 | 55 | 0% |
 | SVC | 43 | 0 | 0 | 43 | 0 | 2 | 41 | 0% |
-| STO | 84 | 0 | 0 | 84 | 0 | 1 | 83 | 0% |
+| STO | 85 | 0 | 0 | 85 | 0 | 1 | 84 | 0% |
 | PKG | 91 | 0 | 0 | 91 | 0 | 2 | 89 | 0% |
-| GFX | 98 | 0 | 0 | 98 | 0 | 1 | 97 | 0% |
+| GFX | 99 | 0 | 0 | 99 | 0 | 1 | 98 | 0% |
 | UIP | 58 | 0 | 0 | 58 | 0 | 1 | 57 | 0% |
 | TXT | 47 | 2 | 0 | 45 | 0 | 4 | 41 | 1% |
 | ACC | 37 | 0 | 0 | 37 | 0 | 0 | 37 | 0% |
 | SEM | 44 | 0 | 0 | 44 | 0 | 0 | 44 | 0% |
 | LNX | 111 | 0 | 0 | 111 | 0 | 1 | 110 | 0% |
-| WIN | 85 | 1 | 0 | 84 | 0 | 2 | 82 | 0% |
+| WIN | 86 | 1 | 0 | 85 | 0 | 2 | 83 | 0% |
 | VIRT | 20 | 0 | 0 | 20 | 0 | 0 | 20 | 0% |
 | ENV | 36 | 0 | 0 | 36 | 0 | 1 | 35 | 0% |
 | HET | 30 | 0 | 0 | 30 | 0 | 1 | 29 | 0% |
 | WASM | 24 | 0 | 0 | 24 | 0 | 1 | 23 | 0% |
-| SEC | 79 | 1 | 0 | 78 | 0 | 2 | 76 | 2% |
+| SEC | 81 | 1 | 0 | 80 | 0 | 2 | 78 | 2% |
 | NET | 40 | 0 | 0 | 40 | 0 | 0 | 40 | 0% |
 | AUD | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
 | MED | 42 | 0 | 0 | 42 | 0 | 1 | 41 | 0% |
@@ -39,7 +39,7 @@
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
 | BLD | 80 | 4 | 0 | 76 | 0 | 1 | 75 | 3% |
 | LAB | 25 | 1 | 0 | 24 | 0 | 2 | 22 | 1% |
-| BEN | 63 | 2 | 0 | 61 | 0 | 2 | 59 | 3% |
+| BEN | 64 | 2 | 0 | 62 | 0 | 3 | 59 | 3% |
 | REL | 67 | 1 | 0 | 66 | 0 | 2 | 64 | 1% |
 | DOC | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
 | GOV | 84 | 12 | 0 | 72 | 0 | 8 | 64 | 17% |
@@ -77,62 +77,37 @@ none
 - Q-001 blocks SDK-032
 - Q-001 blocks SVC-001
 - Q-001 blocks SVC-038
-- Q-002 blocks LNX-016
-- Q-003 blocks KRN-050
 - Q-004 blocks CAP-009
-- Q-005 blocks IPC-007
 - Q-006 blocks STO-040
-- Q-007 blocks MEM-045
-- Q-007 blocks MEM-048
-- Q-008 blocks MEM-018
 - Q-009 blocks TSK-017
 - Q-010 blocks CMP-036
 - Q-011 blocks TSK-003
 - Q-012 blocks TSK-003
-- Q-013 blocks SEC-007
 - Q-014 blocks SCH-017
 - Q-015 blocks SCH-016
 - Q-016 blocks CAP-020
 - Q-017 blocks STO-015
-- Q-018 blocks LNX-019
 - Q-019 blocks STO-041
-- Q-020 blocks PKG-047
-- Q-021 blocks PKG-046
-- Q-022 blocks LNX-024
-- Q-023 blocks PKG-007
-- Q-024 blocks BOOT-030
 - Q-025 blocks STO-056
 - Q-026 blocks PKG-071
 - Q-027 blocks GFX-019
-- Q-028 blocks LNX-014
 - Q-029 blocks APP-001
 - Q-029 blocks CMP-018
 - Q-029 blocks CMP-019
 - Q-030 blocks ENV-008
 - Q-031 blocks ENV-006
-- Q-032 blocks LNX-012
 - Q-033 blocks HET-011
 - Q-034 blocks GFX-016
-- Q-035 blocks ACC-008
 - Q-036 blocks CAP-047
-- Q-037 blocks SEC-034
 - Q-038 blocks STO-018
-- Q-039 blocks LNX-013
 - Q-040 blocks WIN-010
 - Q-041 blocks WIN-033
 - Q-042 blocks STO-018
 - Q-043 blocks WIN-002
 - Q-044 blocks APP-019
 - Q-045 blocks APP-020
-- Q-046 blocks GOV-076
-- Q-047 blocks ABI-011
-- Q-048 blocks KRN-025
 - Q-049 blocks GOV-039
 - Q-050 blocks WIN-008
-- Q-052 blocks PKG-070
-- Q-053 blocks GOV-041
-- Q-054 blocks INS-044
-- Q-055 blocks GOV-078
 - Q-056 blocks APP-056
 - Q-056 blocks SDK-093
 
@@ -165,6 +140,7 @@ none
 - critical-path task BEN-005 has Owner none on the active rung
 - critical-path task BEN-006 has Owner none on the active rung
 - critical-path task BEN-008 has Owner none on the active rung
+- critical-path task BEN-064 has Owner none on the active rung
 - critical-path task BLD-001 has Owner none on the active rung
 - critical-path task BLD-006 has Owner none on the active rung
 - critical-path task BLD-009 has Owner none on the active rung
@@ -237,6 +213,7 @@ none
 - critical-path task KRN-017 has Owner none on the active rung
 - critical-path task KRN-018 has Owner none on the active rung
 - critical-path task KRN-019 has Owner none on the active rung
+- critical-path task KRN-060 has Owner none on the active rung
 - critical-path task LAB-003 has Owner none on the active rung
 - critical-path task LAB-004 has Owner none on the active rung
 - critical-path task LNX-001 has Owner none on the active rung
@@ -283,6 +260,7 @@ none
 - critical-path task SDK-009 has Owner none on the active rung
 - critical-path task SDK-010 has Owner none on the active rung
 - critical-path task SDK-011 has Owner none on the active rung
+- critical-path task STO-001 has Owner none on the active rung
 - critical-path task TSK-001 has Owner none on the active rung
 - critical-path task TSK-002 has Owner none on the active rung
 - critical-path task TSK-003 has Owner none on the active rung

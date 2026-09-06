@@ -5,19 +5,19 @@ This register holds every inventory and gap item of kind `question`. A Q-ID is t
 ### Q-001 · What is the benchmark methodology standard
 - Workstream: BEN
 - Status: open
-- Answered by: none
+- Answered by: BEN-064
 Reference hardware list, warm and cold definitions, percentiles reported, iteration counts, CPU frequency pinning and mitigation settings. Every later B-ID target assumes this answer.
 
 ### Q-002 · How does a native application opt into a personality
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-016
 Capability to a personality, embedded Linux component, or SDK shim, and what authority that grant carries.
 
 ### Q-003 · Which kernel evolution phase is required for 1.0
 - Workstream: GOV
 - Status: open
-- Answered by: none
+- Answered by: KRN-050
 Whether Phase C, D or E of §6 is a hard requirement for the 1.0 release gate.
 
 ### Q-004 · What are revocation semantics
@@ -29,7 +29,7 @@ Eager versus lazy invalidation, revocation of in-flight operations, and cost bou
 ### Q-005 · What is the inline versus MemoryObject size threshold
 - Workstream: IPC
 - Status: open
-- Answered by: none
+- Answered by: IPC-007
 Size threshold and heuristics for an inline small message versus MemoryObject transfer.
 
 ### Q-006 · What are persistent MemoryObject semantics
@@ -41,13 +41,13 @@ Relation to the storage model, crash consistency, and content addressing of pers
 ### Q-007 · What are encrypted MemoryObject semantics
 - Workstream: SEC
 - Status: open
-- Answered by: none
+- Answered by: MEM-045
 Key ownership, who can map plaintext, and interaction with hardware memory encryption.
 
 ### Q-008 · How are MemoryObject borrows enforced across components
 - Workstream: MEM
 - Status: open
-- Answered by: none
+- Answered by: MEM-018
 Revocation on return, timeouts, or trust in the borrower.
 
 ### Q-009 · How does cancellation treat hardware-committed Operations
@@ -77,7 +77,7 @@ A Task blocked in an inherited Linux kernel path that cannot be interrupted (uni
 ### Q-013 · Which scheduling intents require a capability
 - Workstream: SEC
 - Status: open
-- Answered by: none
+- Answered by: SEC-007
 Whether Realtime and LowLatency require a capability to request, and how an unprivileged Component is prevented from starving others.
 
 ### Q-014 · How does intent inherit across a Channel handoff
@@ -107,7 +107,7 @@ How an application obtains authority to create a new file in a user-chosen locat
 ### Q-018 · How do personalities present native storage objects
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-019
 POSIX paths and Windows drive letters while respecting capability scope.
 
 ### Q-019 · What is content-store garbage collection
@@ -119,31 +119,31 @@ Root set (live generations, installed packages, pinned objects), collection poli
 ### Q-020 · How are compatibility applications packaged immutably
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: PKG-047
 OCI images, Flatpak-like bundles and Wine prefixes while still satisfying the no-mutation rule.
 
 ### Q-021 · How do security fixes reach a pinned library
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: PKG-046
 Rebuild and republish dependents, grafting or substitution rules, or runtime relinking, without global mutation.
 
 ### Q-022 · How does the native dependency model meet glibc
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-024
 Linux personality shared libraries that expect a global `/usr/lib` namespace.
 
 ### Q-023 · What is excluded from a system generation
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: PKG-007
 User data, ApplicationData, logs, caches, and how mutable state is separated from the immutable image.
 
 ### Q-024 · How atomic are kernel plus firmware updates
 - Workstream: BOOT
 - Status: open
-- Answered by: none
+- Answered by: BOOT-030
 Atomicity of kernel plus driver plus firmware updates within a generation, including firmware that cannot be rolled back.
 
 ### Q-025 · How is configuration captured for restore
@@ -167,7 +167,7 @@ Window geometry, stacking order, focus, workspace, and where it is checkpointed.
 ### Q-028 · How does a user-space driver coexist with Linux device nodes
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-014
 `/dev` nodes, sysfs and udev events for the same device.
 
 ### Q-029 · What is the visible-UI measurement boundary
@@ -191,7 +191,7 @@ How the environment's network namespace exposes service endpoints to the develop
 ### Q-032 · Is Docker socket API compatibility required
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-012
 Whether Docker socket API compatibility is required for developer adoption or whether podman-compatible tooling suffices.
 
 ### Q-033 · How does ComputeDevice relate to ComputeQueue
@@ -209,7 +209,7 @@ Mesa depends on libdrm and Linux device nodes; native components must not expose
 ### Q-035 · Are semantic actions and accessibility actions one tree
 - Workstream: ACC
 - Status: open
-- Answered by: none
+- Answered by: ACC-008
 Whether they are one tree or two, and how they stay consistent.
 
 ### Q-036 · How is capability unforgeability preserved across machines
@@ -221,7 +221,7 @@ Cryptographic capabilities, sturdy references, or proxies.
 ### Q-037 · Is an AI assistant a distinct security principal
 - Workstream: SEC
 - Status: open
-- Answered by: none
+- Answered by: SEC-034
 Whether an AI assistant is a distinct security principal from the user for audit and revocation.
 
 ### Q-038 · How is file.type determined for automation
@@ -233,7 +233,7 @@ Typed object kinds versus MIME sniffing, and where the type registry lives.
 ### Q-039 · How do Linux-personality processes acquire capabilities
 - Workstream: LNX
 - Status: open
-- Answered by: none
+- Answered by: LNX-013
 Default compatibility capability profile, path-to-capability mapping, and how the user grants more.
 
 ### Q-040 · Are 32-bit x86 Windows applications supported at 1.0
@@ -275,19 +275,19 @@ VS Code or JetBrains through the Linux personality versus a native editor or IDE
 ### Q-046 · What are the V4 and 1.0 criteria the baseline omitted
 - Workstream: GOV
 - Status: open
-- Answered by: none
+- Answered by: GOV-076
 The baseline defines no criteria for V4 beta or 1.0 stable. Stability SLOs, security audit, ABI freeze, support commitment, hardware list and compatibility pass rates are defined by the milestone files; this question closes when those files are accepted as the 1.0 definition.
 
 ### Q-047 · Which concepts are Layer 1 versus Layer 2
 - Workstream: ABI
 - Status: open
-- Answered by: none
+- Answered by: ABI-011
 Whether the compositor protocol, the package format and ResourceDomain policies are Layer 1 or Layer 2. S-001 through S-034 record the working assignment; this question closes when the V0 ABI-shape decision accepts it.
 
 ### Q-048 · How is KVM exposed natively
 - Workstream: KRN
 - Status: open
-- Answered by: none
+- Answered by: KRN-025
 Whether virtualization is `Capability<VirtualMachine>`, and whether compatibility personalities may fall back to VMs for unsupported software.
 
 ### Q-049 · Which jurisdiction should the legal entity be in
@@ -311,25 +311,25 @@ When upstream Linux raises its minimum Rust version or stabilises features the f
 ### Q-052 · May a generation switch apply without reboot
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: PKG-070
 kexec into the new kernel or a live userspace-only generation switch, given that lockdown forbids unsigned kexec and measured-boot values would need re-derivation.
 
 ### Q-053 · What is the funding plan for infrastructure through 1.0
 - Workstream: GOV
 - Status: open
-- Answered by: none
+- Answered by: GOV-041
 CDN bandwidth, build farm, hardware lab and signing hardware.
 
 ### Q-054 · Can Wi-Fi credentials be imported during migration
 - Workstream: INS
 - Status: open
-- Answered by: none
+- Answered by: INS-044
 NetworkManager keyfiles and Windows WLAN profiles (DPAPI-encrypted), or whether the user must re-enter them.
 
 ### Q-055 · Should OEM partnerships or certification precede 1.0
 - Workstream: GOV
 - Status: open
-- Answered by: none
+- Answered by: GOV-078
 OEM partnerships or a hardware certification programme before 1.0, or leave it post-1.0.
 
 ### Q-056 · Is application-state restore achievable

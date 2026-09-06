@@ -253,7 +253,7 @@ All of the following are errors if unmet when `Status: done`:
 4. `Verified by: @handle` is present when required by section 12; it differs from Owner and is never an `@agent/` identity. The verifier reruns the Verification section rather than reading the pull request.
 5. Type `adr`: the linked decision file is `accepted` or `rejected`, and Evidence contains `decision:D-NNNN`.
 6. Type `spike`: `reports/spikes/<TASK-ID>.md` exists with the skeleton headings from `reports/README.md`, and Evidence references it.
-7. Type `benchmark`: for each listed B-ID, a `reports/benchmarks/<B-NNN>/` report exists for every H-ID in the task's Milestone hardware scope and meets the register target kind for that Milestone, or the Description states why the target is deferred (warning). A task listing `Corpora:` with a `Compat:` line likewise needs a `reports/compat/<C-NNN>/` report per in-scope H-ID.
+7. Type `benchmark`: for each listed B-ID, a `reports/benchmarks/<B-NNN>/` report exists for every H-ID in the task's Milestone hardware scope and meets the register target kind for that Milestone, or the Description states why the target is deferred (warning). QEMU profiles (`Kind: qemu`) are exempt unless the B-ID's `Method` or `Harness` names QEMU or the profile: virtualised latency numbers are not gate results, and regression targets are judged on physical machines only. A task listing `Corpora:` with a `Compat:` line likewise needs a `reports/compat/<C-NNN>/` report per in-scope H-ID.
 8. Type `docs`: at least one `Review:` line or `https://` evidence line.
 9. `Freezes:` present: each S-ID's register state is `frozen` and names this task; the dependency closure contains a done spike whose `Explores` names the surface and a done adr task whose decision lists the surface; for L1 surfaces the decision cites a benchmark report.
 
@@ -367,7 +367,7 @@ A milestone file never lists tasks by hand and never carries a hand-set status. 
 - Every milestone except `LATER` has at least one gate.
 - Every `Verified by` task exists and has Milestone rank less than or equal to the gate's rank.
 - Kind benchmark cites a B-ID that has a target clause for this milestone; Kind compatibility cites a C-ID with a threshold for this milestone.
-- Hardware, surface and risk IDs exist.
+- Hardware, surface and risk IDs exist. Every hardware entry whose `First milestone` is this token appears in the token's `Hardware scope` (warning otherwise).
 - A task whose Milestone is this token but that is reachable from no gate or demo of any milestone (directly as `Verified by`, or transitively as a dependency of a verifying task) is **unanchored**, reported in `STATUS.md`. Unanchored tasks are a warning; the target is zero.
 - Changing `Verified by` or `Sequence` on a complete milestone requires the commit trailer `Roadmap-Decision: D-NNNN`.
 
@@ -462,7 +462,7 @@ Entry grammar, shared by all registers:
 One paragraph stating the entry in plain terms.
 ```
 
-Field lines follow the order in `fields.json`; `none` is the null token. Reverse-link fields (`Mitigated by`, `Addressed by`, `Enforced by`, `Explored by`, `Decided by`, `Frozen by`) are derived from the task graph by `roadmap gen` and overwritten on every run; authors write `none` and let the tool fill them. `Answered by` on questions is set by hand when the question closes (a task ID or a D-ID).
+Field lines follow the order in `fields.json`; `none` is the null token. Reverse-link fields (`Mitigated by`, `Addressed by`, `Enforced by`, `Explored by`, `Decided by`, `Frozen by`) are derived from the task graph by `roadmap gen` and overwritten on every run; authors write `none` and let the tool fill them. `Answered by` on questions is set by hand: it names the task or decision that answers the question, may be set while the question is still `open`, and `Status` becomes `answered` when that work is done.
 
 | Register | File | Fields | Enums |
 |---|---|---|---|
@@ -486,10 +486,10 @@ Register-specific rules:
 
   `publish` means measure and publish with no threshold. `absolute` states the threshold. `regression` compares against the latest committed report for the named earlier milestone on the same H-ID. `Baselines` names what the metric is compared against (Linux, Windows, macOS, containers, language runtimes). `Harness` is a repository alias plus path. Every §54 metric has a B-ID.
 - **Corpora** define the Linux (L0 to L5) and Windows (W1 to W3) compatibility corpora. `Size` is the entry count; `Scenario` is the harness alias that runs the scripted scenarios; `Scale` is the rating scale (Windows: Platinum, Gold, Silver, Bronze, Broken; Linux: pass, fail, with integration scoring); `Thresholds` follows the same per-milestone clause grammar as benchmark targets, for example `V2 Gold ≥ 50%, Silver ≥ 70%; V3 Gold ≥ 60%, Silver ≥ 80%`. Results live in `reports/compat/`.
-- **Hardware** entries are QEMU profiles and physical machines. `Tier` is `1`, `2` or `none` (QEMU profiles). `First milestone` is the earliest rung whose gates run on it; a procurement or bring-up task must exist in an earlier or equal rung.
+- **Hardware** entries are QEMU profiles and physical machines. `Tier` is `1`, `2` or `none` (QEMU profiles). `First milestone` is the earliest rung whose gates run on it and that rung's `Hardware scope` lists it; a procurement or bring-up task must exist in an earlier or equal rung. QEMU profiles satisfy functional and compatibility gates; benchmark reports are required on them only when the B-ID's method names QEMU.
 - **Surfaces** are ABI and interface shapes with a stability Layer (§66). See section 12.
 - **Invariants** are standing rules (constraints, non-goals) that are not work items. Each becomes `enforced` when at least one done task lists it under `Invariants:` and that task installs a lint, gate or test.
-- **Questions** are the only way to record an external impediment as a dependency. A Q entry has an owning Workstream and a Status; open questions with no bound task are a warning.
+- **Questions** are the only way to record an external impediment as a dependency. A Q entry has an owning Workstream and a Status; open questions with no bound task are a warning. A task never depends on the question it answers (the dependency would deadlock the task behind its own result); consumers depend on the Q, and the answering task is named in `Answered by` while the question is still `open`, which binds the question. `Status` flips to `answered` in the change that marks that task done (warning otherwise).
 - **Repos** map evidence aliases to URLs. An evidence line `kernel@3f9c1ab` requires an alias `kernel`.
 
 Generated blocks inside registers: `risks.md` (`status`), `benchmarks.md` (`results`), `questions.md` (`status`), `surfaces.md` (`status`).
@@ -565,7 +565,7 @@ Trailers:
 
 - Everything reaches `main` through a pull request. Nothing is pushed directly.
 - Required checks (`.github/workflows/roadmap.yml`): the crate's tests and lints, `roadmap fmt --check`, `roadmap check --strict`, `roadmap check --strict --base origin/<base branch>`, `roadmap gen --check` and `roadmap coverage`. The `pages` workflow publishes `generated/dashboard.html` on every push to `main`.
-- **Metadata-only fast lane**: a pull request that touches only `Status`, `Owner`, `Verified by`, Evidence lines, checkbox states and generated output merges on green checks without human review.
+- **Metadata-only fast lane**: a pull request that touches only `Status`, `Owner`, `Verified by`, Evidence lines, checkbox states and generated output merges on green checks without human review. A fast-lane pull request that sets `Status: done` additionally requires the task's `Verified by` handle to be the pull request author or an approving reviewer; CI checks this (`.github/scripts/verify-done-author.sh`), so handles are GitHub logins.
 - Pull requests touching acceptance criteria, `Depends on`, `Milestone`, Description, scope prose, gates or registers need approval from the owning workstream's Lead (or a GOV maintainer while `Lead: none`).
 - The pre-commit hook (`.githooks/pre-commit`, enabled with `git config core.hooksPath .githooks`) runs `fmt`, `gen`, `check` so pull requests arrive formatted and regenerated.
 

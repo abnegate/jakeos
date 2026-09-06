@@ -229,7 +229,7 @@ V0.5 Gate mapping (GOV-017). Code of Conduct (GOV-030). Merge-queue CI (BLD-001)
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that lands CONTRIBUTING, CODEOWNERS, the AI policy and the V0 Milestone file.
-- Manual: a metadata-only Status change merges on green checks without human review; an acceptance-criteria change requires the owning Lead.
+- Manual: a metadata-only Status change merges on green checks without human review unless it sets `Status: done`, in which case CI requires the `Verified by` handle to be the pull request author or an approver; an acceptance-criteria change requires the owning Lead.
 
 #### Evidence
 - none
@@ -1167,7 +1167,7 @@ Documentation license (GOV-021). HCL publication mechanics (REL-048). Benchmark 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GOV-024, Q-053
+- Depends on: GOV-024
 - Baseline: §56.4, §62
 - Decision: D-0099
 - Risks: R-053
@@ -2140,7 +2140,7 @@ V4 exit: support window, CVE SLA, HCL tiers and ABI stability statement drafted,
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GOV-067, Q-046
+- Depends on: GOV-067
 - Baseline: §63, §66, §70
 - Invariants: I-088
 
@@ -2195,7 +2195,7 @@ Per-Gate verification (the Gate `Verified by` tasks). Generated roll-up (GOV roa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GOV-024, Q-055
+- Depends on: GOV-024
 - Baseline: §62, §70
 - Decision: D-0104
 

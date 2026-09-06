@@ -50,7 +50,7 @@
 | --- | --- | --- | --- | --- | --- |
 | BOOT-028 | Simulate a broken SystemGeneration and verify unattended fallback on the three target machines | todo | blocked | M | BOOT-018, LAB-018, PKG-073, SVC-033 |
 | BOOT-029 | Decide ESP policy: reuse the existing OEM ESP or create a dedicated ESP for Generation entries | todo | blocked | S | BOOT-008, BOOT-013 |
-| BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | blocked | S | BOOT-020, PKG-019, SEC-002, Q-024 |
+| BOOT-030 | Decide atomicity of kernel, driver and firmware updates within a SystemGeneration | todo | blocked | S | BOOT-020, PKG-019, SEC-002 |
 | BOOT-031 | Decide Secure Boot distribution: Microsoft-signed shim, enrolled project keys, or both | todo | blocked | M | BOOT-008, BOOT-010, BOOT-011, BOOT-022 |
 | BOOT-032 | Verify SystemGeneration images at boot against their content hashes via the boot-entry root | todo | blocked | M | BOOT-007, BOOT-027, STO-052 |
 | BOOT-033 | Design and build the integrity-failure experience with a guaranteed recovery path | todo | blocked | M | BOOT-032, INS-013 |

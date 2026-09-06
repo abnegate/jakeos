@@ -4,7 +4,7 @@
 - Baseline: §8, §9, §9.1, §11, §40, §43, §44, §51, §63, §64, §67
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 79 live, 1 done, 0 in-progress, 78 todo, 0 dropped. Ready: 2. Blocked: 76. Weighted: 2%.
+Tasks: 81 live, 1 done, 0 in-progress, 80 todo, 0 dropped. Ready: 2. Blocked: 78. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -37,7 +37,7 @@ Memory and object isolation (CMP-012). Filesystem and device denials (SEC-003). 
 
 #### Acceptance criteria
 - [ ] A freshly created native Component that enumerates other Components or Tasks receives `Error::Rights` and allocates no handle, on `qemu-x86_64`.
-- [ ] The ImageDecoder fixture holds no network Capability; a connect Operation returns `Error::Rights` and no endpoint.
+- [ ] The ImageDecoder fixture holds no network Capability: its launch set and `os inspect capability` list none, and no Connect Operation kind exists at V0 through which it could reach the network.
 - [ ] The ImageDecoder fixture cannot enumerate other Components; the denial is visible in the Capability audit log.
 
 #### Verification
@@ -214,7 +214,7 @@ Taxonomy Decision (SEC-007). Persistent store across reboot (CAP-037). Prompt ch
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CAP-007, SEC-002, Q-013
+- Depends on: CAP-007, SEC-002
 - Baseline: §9.1
 - Decision: D-0269
 - Risks: R-017, R-041
@@ -338,7 +338,7 @@ Unsafe inventory generation (BLD-011, KRN-056). Hardware-enforcement hooks (SEC-
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GFX-010, SEC-007, CAP-005
+- Depends on: GFX-010, SEC-007, CAP-005, GFX-099
 - Baseline: §9.1, §40
 - Threats: T-013
 - Invariants: I-085
@@ -1046,7 +1046,7 @@ Principal Decision (SEC-034). Broker implementation (SEM-010). Mid-run revocatio
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SEM-029, SEM-001, SEC-012, SEC-007, Q-037
+- Depends on: SEM-029, SEM-001, SEC-012, SEC-007
 - Baseline: §44, §57
 - Decision: D-0266
 - Risks: R-043
@@ -2388,6 +2388,67 @@ Transport implementation (IPC, NET). Cross-machine unforgeability encoding (CAP-
 #### Verification
 - Review: IPC and CAP leads sign off on the pull request.
 - Manual: decision file lists at least two options and names I-047.
+
+#### Evidence
+- none
+
+### SEC-080 · Block new USB device enumeration while the Session is locked and confirm new keyboards before trusted input
+- Type: build
+- Milestone: V3
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: HW-075, SEC-059
+- Baseline: §9.1, §51
+- Threats: T-043, T-009
+- Invariants: I-021
+
+A device that says it is a keyboard is not the user. While the Session is locked, newly attached USB and Bluetooth devices are not enumerated as input or storage; when the Session is unlocked, a new keyboard-class device must be confirmed by the user through a trusted surface before its input reaches the unlock prompt, a permission prompt or the chooser (T-043). Existing paired and enrolled devices keep working so a docked laptop still wakes. HW owns enumeration; SEC owns the policy and its trusted-UI confirmation.
+
+#### Out of scope
+USB class enablement and Device objects (HW-075). Thunderbolt and PCIe DMA authorisation (T-024, HW). Session lock mechanics (SEC-059). Bluetooth pairing UX (HW-037).
+
+#### Acceptance criteria
+- [ ] A USB keyboard attached while the Session is locked on H-004 produces no input events and no Device object until the Session is unlocked by an already-enrolled input device.
+- [ ] A USB mass-storage device attached while locked is not mounted or probed until unlock; the filesystem parser never runs on its bytes while locked (T-044).
+- [ ] A keyboard-class device attached while unlocked cannot type into a trusted-UI Surface until the user confirms it through the trusted-UI confirmation, which itself accepts input only from already-confirmed devices.
+- [ ] Previously confirmed devices, identified by the policy the Decision record names, reconnect without a prompt across suspend and dock cycles.
+- [ ] The policy is visible in Settings and every block or confirmation is a typed audit event.
+
+#### Verification
+- Integration: `sec:tests/usb_lock_policy_*` on `hw-h004` with a programmable HID injector from the LAB rig.
+- Manual: attach a keyboard while locked on H-004 and confirm no keystroke reaches the unlock prompt; unlock with the built-in keyboard; confirm the new keyboard through the trusted prompt.
+- Review: SEC and HW leads sign off on the pull request.
+
+#### Evidence
+- none
+
+### SEC-081 · Lock the grant schema versions for 1.x with evolution tests
+- Type: build
+- Milestone: V4
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: SEC-007, CAP-043, CAP-048, IPC-042
+- Baseline: §9.1, §66
+- Freezes: S-022
+- Threats: T-033
+- Invariants: I-021
+
+V4 locks Layer 2 interface versions for 1.x. The grant schema (S-022) is the SEC-owned Layer 2 surface: one-time, session, persistent and revocable-by-user grants keyed on package identity plus publisher (T-033), their audit history and their evolution rules. This task enumerates and locks the schema versions served for 1.x and adds the old-client/new-service and new-client/old-service tests that every Layer 2 lock requires. It carries the S-022 freeze once the grant taxonomy Decision (SEC-007) and the Layer 2 evolution rules (IPC-042) are accepted.
+
+#### Out of scope
+Grant taxonomy Decision (SEC-007). Permissions UI (SEC-045, SEC-062). Layer 2 evolution rules (IPC-042). Layer 1 freeze (ABI-049).
+
+#### Acceptance criteria
+- [ ] Grant schema versions for 1.x are listed and tagged as locked, with the grant kinds, key fields and audit record shape each version serves.
+- [ ] Old-client/new-service and new-client/old-service tests pass for each listed version on `qemu-x86_64`.
+- [ ] A pull request that changes a locked grant field without a version bump fails CI.
+- [ ] S-022 is `frozen` in `registers/surfaces.md` with this task as `Frozen by` after acceptance.
+
+#### Verification
+- Integration: `runtime:tests/sec/grant_schema_l2_lock_*` on `qemu-x86_64`.
+- Review: IPC lead confirms the listed versions match the Layer 2 lock catalog; SEC lead signs off on the pull request.
 
 #### Evidence
 - none

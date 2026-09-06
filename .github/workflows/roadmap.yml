@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   validate:
@@ -35,6 +36,13 @@ jobs:
       - name: Validate transitions against the base branch
         if: github.event_name == 'pull_request'
         run: tools/roadmap/target/release/roadmap check --strict --base origin/${{ github.base_ref }}
+      - name: Done transitions are verified by the author or an approver
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: .github/scripts/verify-done-author.sh origin/${{ github.base_ref }}
       - name: Generated output is current
         run: tools/roadmap/target/release/roadmap gen --check
       - name: Coverage

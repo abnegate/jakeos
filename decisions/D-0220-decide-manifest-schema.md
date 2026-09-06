@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: PKG-011
 - Surfaces: S-018
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

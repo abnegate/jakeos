@@ -1,8 +1,8 @@
 # D-0296 · Decide the platform type registry behind choose<T>, UserSelected<T> and file.type
 - Status: proposed
 - Task: STO-018
-- Surfaces: none
-- Layer: none
+- Surfaces: S-033
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

@@ -1,8 +1,8 @@
 # D-0311 · Decide Operation submission/completion transport and batching expression
 - Status: proposed
 - Task: TSK-007
-- Surfaces: none
-- Layer: none
+- Surfaces: S-005
+- Layer: L1
 - Spikes: TSK-014
 - Supersedes: none
 - Superseded by: none

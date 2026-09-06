@@ -14,6 +14,7 @@
 | BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | blocked | M | BEN-007, KRN-010, LAB-003 |
 | BEN-007 | Decide benchmark methodology and target-kind policy | done | done | M | none |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | blocked | M | BEN-005, BEN-007, IPC-016, IPC-015 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | todo | ready | S | BEN-007, HW-003 |
 
 ## V0.5
 

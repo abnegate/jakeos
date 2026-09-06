@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: GFX-012
 - Surfaces: S-024
-- Layer: none
+- Layer: L2
 - Spikes: GFX-033
 - Supersedes: none
 - Superseded by: none

@@ -99,3 +99,5 @@ A task's status is changed only in its block in `workstreams/<PREFIX>.md`, follo
 | LATER | Parking rung | Deferred beyond 1.0: casting, NFC, WWAN, MIDI, ARM64, native filesystem and GPU stack, distributed interfaces |
 
 Everything under `generated/`, plus `ROADMAP.md` and `STATUS.md`, is generated. Do not edit it.
+
+Adversarial reviews of the plan and the roadmap live under [`reviews/`](reviews/README.md); each finding that became work is cited there by task, register or decision ID.

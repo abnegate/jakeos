@@ -4,7 +4,7 @@
 - Baseline: §3, §4, §9.1, §25, §48, §49, §56.2, §57, §62, §63, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 85 live, 1 done, 0 in-progress, 84 todo, 0 dropped. Ready: 2. Blocked: 82. Weighted: 0%.
+Tasks: 86 live, 1 done, 0 in-progress, 85 todo, 0 dropped. Ready: 2. Blocked: 83. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -2513,6 +2513,36 @@ V4 W3 run (WIN-080). Integration hold (WIN-082). B-027 harness (BEN-044).
 - Compat: C-009 1.0 thresholds and Gold-hold versus V4 on Tier 1.
 - Bench: B-027 on W3 Gold titles; target per register.
 - Review: WIN reviewer sign-off on the committed 1.0 sheet.
+
+#### Evidence
+- none
+
+### WIN-086 · Provide Media Foundation and DirectShow playback for Windows titles through the sandboxed media framework
+- Type: build
+- Milestone: V2
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: WIN-036, MED-007, MED-004
+- Baseline: §48, §56.2
+- Threats: T-038, T-011
+- Invariants: I-071
+
+Windows titles play cutscenes and in-game video through Media Foundation and DirectShow; a personality without those paths shows black video or crashes, and Proton solves it with a GStreamer-backed shim. This task provides Media Foundation and DirectShow decoding for Windows applications through the native sandboxed media framework (MED-007) so codecs stay isolated Components (T-038), patent-encumbered formats follow the MED codec policy, and no title needs a proprietary codec pack copied into its prefix.
+
+#### Out of scope
+Native media pipeline and codec Packages (MED). Hardware decode backend (MED-004). Codec patent policy (MED-033). Proton mapping onto native Objects (WIN-036).
+
+#### Acceptance criteria
+- [ ] A W1 title with a Media Foundation video intro plays it with audio in sync on H-002 with the decoder running in an isolated media Component, not inside the title's prefix Component.
+- [ ] A DirectShow-based title plays its video through the same path.
+- [ ] Codecs unavailable under the MED policy fail with a typed, user-visible message naming the format rather than a black frame.
+- [ ] No proprietary Windows codec binary is copied into any prefix by this path.
+
+#### Verification
+- Compat: C-007 scenarios with video intros on H-002.
+- Integration: `personality-windows:tests/media/mf_playback_*` and `dshow_playback_*` on `hw-h002`.
+- Review: WIN and MED leads sign off on the pull request.
 
 #### Evidence
 - none

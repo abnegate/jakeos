@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: MEM-017
 - Surfaces: S-006
-- Layer: none
+- Layer: L1
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

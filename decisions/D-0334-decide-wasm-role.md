@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: WASM-001
 - Surfaces: S-029
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

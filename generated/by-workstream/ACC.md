@@ -18,7 +18,7 @@
 | --- | --- | --- | --- | --- | --- |
 | ACC-006 | Route accessibility actions from AT clients to widgets through the tree | todo | blocked | M | ACC-008, ACC-013, UIP-036 |
 | ACC-007 | Decide assistive-technology access as Capability<AccessibilityTree> with redaction | todo | blocked | S | ACC-001, ACC-002, SEC-002, SEC-007, CAP-007 |
-| ACC-008 | Decide whether semantic actions and accessibility actions share one tree | todo | blocked | S | ACC-002, SEM-007, SEM-005, Q-035 |
+| ACC-008 | Decide whether semantic actions and accessibility actions share one tree | todo | blocked | S | ACC-002, SEM-007, SEM-005 |
 | ACC-009 | Decide the text-to-speech engine for the native screen reader | todo | blocked | S | ACC-012, GOV-016, GOV-003 |
 | ACC-010 | Publish accessibility guidelines for native application developers | todo | blocked | S | ACC-002, ACC-015, ACC-011, DOC-014, SDK-056 |
 | ACC-011 | Define and implement the focus order and keyboard traversal contract | todo | blocked | M | ACC-005, UIP-039, UIP-001 |

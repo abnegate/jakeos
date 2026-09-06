@@ -55,6 +55,7 @@
 | GFX-042 | Define window objects as Capability<Surface> handles over typed interfaces | todo | blocked | M | GFX-038, GFX-019 |
 | GFX-043 | Define the window management policy Interface between compositor and shell | todo | blocked | M | GFX-042, GFX-012 |
 | GFX-044 | Import a MemoryObject into the GPU driver without copying | todo | blocked | M | GFX-034, GFX-005, MEM-024 |
+| GFX-099 | Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics | todo | blocked | S | GFX-011, SEC-007, GFX-033 |
 
 ## V1
 
@@ -81,7 +82,7 @@
 | --- | --- | --- | --- | --- | --- |
 | GFX-059 | Bring up the AMD APU internal panel and external displays on the AMD laptop | todo | blocked | M | GFX-027, GFX-053, HW-039, LAB-018 |
 | GFX-060 | Benchmark compositor frame deadline misses under a mixed desktop workload | todo | blocked | M | GFX-006, GFX-024, BEN-007, LAB-018 |
-| GFX-061 | Implement per-Surface and per-Display screen capture capabilities | todo | blocked | M | GFX-040, GFX-037, GFX-011 |
+| GFX-061 | Implement per-Surface and per-Display screen capture capabilities | todo | blocked | M | GFX-040, GFX-037, GFX-011, GFX-099 |
 | GFX-062 | Support colour-managed Surfaces with declared colour spaces | todo | blocked | M | GFX-063, GFX-038 |
 | GFX-063 | Decide the HDR and colour management pipeline | todo | blocked | S | GFX-022, LAB-017 |
 | GFX-064 | Decide the NVIDIA support stance for 1.0 | todo | blocked | S | GFX-087, GFX-047 |
@@ -125,7 +126,7 @@
 | --- | --- | --- | --- | --- | --- |
 | GFX-093 | Fix compositor and trusted-UI findings from the external security audit | todo | blocked | M | SEC-070, GFX-040, GFX-045, GFX-061 |
 | GFX-094 | Tune the presentation path to meet the input-to-photon p99 target | todo | blocked | M | GFX-004, GFX-060, GFX-054, GFX-067 |
-| GFX-095 | Lock Surface, Buffer, RenderQueue, Display and Frame Interface versions for 1.x | todo | blocked | S | GFX-052, GFX-036, GFX-014, GFX-017, GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, IPC-042, GFX-032, GFX-012 |
+| GFX-095 | Lock Surface, Buffer, RenderQueue, Display and Frame Interface versions for 1.x | todo | blocked | S | GFX-052, GFX-036, GFX-014, GFX-017, GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, IPC-042, GFX-032, GFX-012, GFX-099 |
 
 ## 1.0
 

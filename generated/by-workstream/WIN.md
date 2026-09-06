@@ -72,6 +72,7 @@
 | WIN-054 | Integrate Wine and Proton as the Windows Personality core | todo | blocked | L | WIN-036, WIN-015, WIN-004, GOV-047 |
 | WIN-055 | Enable 32-bit Win32 binaries under the Windows Personality | todo | blocked | M | WIN-010, WIN-054, LNX-035, LNX-015 |
 | WIN-056 | Map XInput, DirectInput, raw input and force feedback | todo | blocked | M | WIN-054, HW-049 |
+| WIN-086 | Provide Media Foundation and DirectShow playback for Windows titles through the sandboxed media framework | todo | blocked | M | WIN-036, MED-007, MED-004 |
 
 ## V3
 

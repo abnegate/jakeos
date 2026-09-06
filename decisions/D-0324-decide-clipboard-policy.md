@@ -1,8 +1,8 @@
 # D-0324 · Decide clipboard authority policy: paste gesture or Capability, no ambient read
 - Status: proposed
 - Task: UIP-004
-- Surfaces: none
-- Layer: none
+- Surfaces: S-032
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

@@ -325,7 +325,7 @@ TaskGroup hierarchy walk (TSK-022). GPU and Wi-Fi committed-work matrix (TSK-048
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: TSK-018, ABI-014, IPC-010, MEM-005
+- Depends on: TSK-018, ABI-014, IPC-010, MEM-005, STO-001
 - Baseline: §18, §14, §16, §59
 
 Read and Write run against File, Channel and MemoryObject-backed sources; Send and Receive are the typed Channel<T> kinds used by the V0 demo (§18, §59). Completions carry typed results or typed failures. Native software never sees a blocking read/write thread-per-call surface.
@@ -1549,11 +1549,12 @@ Fuzz infrastructure (BLD). Channel fuzz targets (IPC-044). MemoryObject oracles 
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: TSK-042, TSK-050, TSK-051, TSK-048
+- Depends on: TSK-042, TSK-050, TSK-051, TSK-048, ABI-049
 - Baseline: §65, §66
+- Freezes: S-005, S-008
 - Invariants: I-040
 
-V4 exit: Layer 1 frozen with a conformance suite. This suite covers every Operation kind, inline-completion signalling, deadline representation and cancellation results named by decide-l1-freeze-candidates. Binaries built against the freeze candidate run on every subsequent beta build. TSK does not freeze S-005; ABI-049 does.
+V4 exit: Layer 1 frozen with a conformance suite. This suite covers every Operation kind, inline-completion signalling, deadline representation and cancellation results named by decide-l1-freeze-candidates. Binaries built against the freeze candidate run on every subsequent beta build. This task carries the S-005 and S-008 freeze once ABI-049 is accepted.
 
 #### Out of scope
 Freeze ADR (ABI-049). Channel conformance (IPC-065). Component conformance (CMP).

@@ -293,7 +293,7 @@ Capability denial audit log (CAP). Operation completion delivery (TSK).
 #### Evidence
 - none
 
-### ABI-010 · Decide Capability handle representation: dense index, sparse id or sealed value
+### ABI-010 · Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation
 - Type: adr
 - Milestone: V0
 - Status: todo
@@ -306,7 +306,7 @@ Capability denial audit log (CAP). Operation completion delivery (TSK).
 - Threats: T-003
 - Invariants: I-015, I-028, I-058
 
-Decide the userspace representation of a live kernel-object handle (S-001): dense index, sparse id, or sealed value (§7, §8). The Decision records CHERI and tagged-memory implications so a future hardware-tag path can enforce unforgeability without kernel metadata. It takes CAP-008 as input. Surface S-001 becomes prototyped, not frozen.
+Decide how the handle representation chosen by CAP-008 is packed into the Layer 1 syscall word (S-001): where the type tag and generation live, how many bits stay reserved for a future sealed-pointer layout, and what the kernel checks at the boundary (§7, §8). CAP-008 chooses the representation and table layout; this Decision fixes only its ABI-visible packing so the two are not decided twice. Surface S-001 becomes prototyped, not frozen.
 
 <!-- covers: INV-0186, INV-1271, INV-1276, INV-1279 -->
 
@@ -314,7 +314,7 @@ Decide the userspace representation of a live kernel-object handle (S-001): dens
 Rights word encoding (CAP, S-003). Capability table implementation (CAP). Hardware CHERI emulator validation (CAP).
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates dense index, sparse id and sealed value as named options, each with a CHERI/tagged-memory paragraph.
+- [ ] The Decision record evaluates at least two packings of the CAP-008 representation (type tag and generation inline in the word; opaque word with the tag held in the table), each with a CHERI/tagged-memory paragraph.
 - [ ] The accepted option states that userspace cannot mint a valid handle and that type tags are checked at the kernel boundary.
 - [ ] The Decision lists S-001 and records the representation as prototyped, not frozen.
 - [ ] Review records ABI lead and CAP lead sign-off on the pull request.
@@ -331,7 +331,7 @@ Rights word encoding (CAP, S-003). Capability table implementation (CAP). Hardwa
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ABI-022, Q-047
+- Depends on: ABI-022
 - Baseline: §66, §65
 - Decision: D-0010
 - Risks: R-067
@@ -1496,7 +1496,7 @@ Published support window and CVE SLA (GOV, REL). 1.x amendment (ABI-053).
 - Owner: none
 - Depends on: ABI-019, ABI-020, ABI-021, ABI-008, ABI-009, ABI-016, ABI-047
 - Baseline: §12, §65, §66
-- Freezes: S-002, S-004, S-011
+- Freezes: S-002, S-004, S-011, S-001
 - Invariants: I-040
 
 V4 freezes Layer 1 surfaces S-002, S-004 and S-011 after their spikes and accepted Decisions (§65, §66). Other Layer 1 surfaces freeze in their owning conformance suites. This task is the freeze record and the wiring of those three surfaces into the V4 compatibility suite.

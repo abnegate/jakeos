@@ -19,6 +19,7 @@ Do not load whole workstream files or `generated/` views unless the task is abou
 - **Never edit generated output.** `ROADMAP.md`, `STATUS.md`, `generated/**` and every `<!-- roadmap:generated:begin … -->` block are rewritten by `roadmap gen`. Edit sources and regenerate.
 - **Never allocate an ID by hand.** Use `roadmap new task`. On a branch during generation, use only draft IDs (`PREFIX-@slug`) listed in `tools/coverage/slugs.tsv`.
 - **Never mark a task done and never set `Verified by`.** Tick acceptance boxes and append Evidence lines as work lands; a human sets `Status: done` and `Verified by`. `Verified by` is never an `@agent/` identity.
+- **Never depend on the question you answer.** A task that answers a Q is named in that Q's `Answered by`; only consumers list the Q in `Depends on`.
 - **Never invent register IDs.** Every B, R, Q, S, C, T, I and H you cite must already exist in `registers/`. To add one, add the register entry in the same change with a proper title and fields.
 - **Never write "blocked" in prose.** If Verification cannot run in your environment (no hardware, no credentials, no network), record it: `roadmap block <ID> "reason"` mints a Q entry and adds it to `Depends on`.
 - **Leave `Owner: none` when authoring roadmap content.** Writing or editing tasks is not doing the work they describe. Set `Owner: @agent/<name>` only when you claim a task to execute it, and unclaim when you stop.

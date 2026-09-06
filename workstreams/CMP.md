@@ -40,7 +40,7 @@ Harness runner and methodology (BEN). Fast-path implementation (CMP-034). Linux 
 - [ ] B-001 reports for H-001 and H-002 exist under `reports/benchmarks/B-001/` with p50 and p99.
 - [ ] The V0 target kind in the B-001 register is `publish`; no absolute threshold is asserted as a V0 gate.
 - [ ] If the published p50 exceeds the V0 advisory band in the B-001 register, an accepted decision documenting root cause and remediation is recorded before V0-G11 uses its Or path.
-- [ ] The harness is `bench:component-create` and is invoked from CI on every merge to main.
+- [ ] The harness is `bench:component-create` and is invoked from nightly CI.
 
 #### Verification
 - Bench: B-001 on H-001 and H-002; target per register.

@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: CMP-021
 - Surfaces: S-007
-- Layer: none
+- Layer: L1
 - Spikes: CMP-032
 - Supersedes: none
 - Superseded by: none

@@ -357,7 +357,7 @@ Corpus scenario scripts (LNX-002). Upstream engagement policy (LNX-028). Five-mi
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-045, LNX-017, Q-032
+- Depends on: LNX-045, LNX-017
 - Baseline: §36, §56.3
 - Decision: D-0171
 - Invariants: I-019
@@ -386,7 +386,7 @@ OCI runtime integration (LNX-039). Native isolation (CMP, SCH). VM fallback (VIR
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-005, LNX-018, CAP-007, SEC-006, SEC-002, Q-039
+- Depends on: LNX-005, LNX-018, CAP-007, SEC-006, SEC-002
 - Baseline: §9.1, §46, §47
 - Decision: D-0172
 - Threats: T-011, T-025
@@ -416,7 +416,7 @@ Applying the bundle (LNX-025). Portal implementation (LNX-036). Windows default 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-008, HW-009, Q-028
+- Depends on: LNX-008, HW-009
 - Baseline: §33, §46, §56.3
 - Decision: D-0173
 - Risks: R-016
@@ -474,7 +474,7 @@ Shipping the ia32 userland (LNX-035). 32-bit Win32/WoW64 (WIN-010). Attack-surfa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-003, ABI-025, CAP-007, Q-002
+- Depends on: LNX-003, ABI-025, CAP-007
 - Baseline: §3, §46
 - Decision: D-0176
 - Invariants: I-025
@@ -561,7 +561,7 @@ Portal implementation (LNX-036). Chooser UI (APP-002). Native UserSelected minti
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-047, STO-042, LNX-013, Q-018
+- Depends on: STO-047, STO-042, LNX-013
 - Baseline: §25, §46
 - Decision: D-0180
 - Invariants: I-016
@@ -705,7 +705,7 @@ Trademark in product naming (GOV-051). Corpus redistribution legality (GOV-031).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: LNX-023, PKG-047, Q-022
+- Depends on: LNX-023, PKG-047
 - Baseline: §29, §46, §56.3
 - Decision: D-0184
 - Invariants: I-020

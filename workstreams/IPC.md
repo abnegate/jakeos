@@ -23,11 +23,11 @@ Handle representation and Layer 1 handshake (ABI). Capability mint, derive, revo
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: IPC-017, IPC-018, SCH-004, TSK-009
+- Depends on: IPC-017, IPC-018, SCH-004, TSK-009, ABI-012
 - Baseline: §15, §18, §53
 - Decision: D-0139
 
-Call semantics change scheduler and Native ABI shape irreversibly (§15, §18). Same-core and cross-core round trips from IPC-017 are reviewed with SCH and TSK before Channel send is fixed. Native software sees an Operation, never a blocking syscall.
+Call semantics change scheduler and Native ABI shape irreversibly (§15, §18). Same-core and cross-core round trips from IPC-017 are reviewed with SCH and TSK before Channel send is fixed. Native software sees an Operation, never a blocking syscall. Option B is admissible only as an Operation whose completion is awaited with time-slice donation; ABI-012 already forbids any entry that blocks the calling execution context except wait-for-completion.
 
 <!-- covers: GAP-0481 -->
 
@@ -193,7 +193,7 @@ Native IDL versus WIT mapping (IPC-022). Compiler implementation (IPC-012). Wire
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: IPC-020, IPC-018, Q-005
+- Depends on: IPC-020, IPC-018
 - Baseline: §14, §15
 - Decision: D-0154
 - Invariants: I-063
@@ -227,7 +227,7 @@ MemoryObject backing and transfer enforcement (MEM-010, MEM-003). Production low
 - Benchmarks: B-004, B-005
 - Invariants: I-061
 
-V0 benchmark Gate: small-message same-core and cross-core p50/p99 measured on H-001 and H-002 and published beside Unix-domain-socket and pipe numbers, publish-only in V0 (B-004, B-005). Registered with BEN and run in CI on every merge. Tracing-overhead measurement on this path is OBS/BEN (B-012).
+V0 benchmark Gate: small-message same-core and cross-core p50/p99 measured on H-001 and H-002 and published beside Unix-domain-socket and pipe numbers, publish-only in V0 (B-004, B-005). Registered with BEN and run in nightly CI. Tracing-overhead measurement on this path is OBS/BEN (B-012).
 
 <!-- covers: INV-0277 -->
 
@@ -237,7 +237,7 @@ Methodology and publication (BEN-003, BEN-007). Tracing-overhead ratio (B-012, O
 #### Acceptance criteria
 - [ ] Harness `bench:ipc-roundtrip-same-core` and `bench:ipc-roundtrip-cross-core` run on H-001 and H-002 and emit reports under `reports/benchmarks/B-004/` and `reports/benchmarks/B-005/`.
 - [ ] Each report includes Linux Unix-domain-socket and pipe ping-pong on the same machine.
-- [ ] CI runs the harness on every merge to main; V0 target kind is publish per the Register.
+- [ ] Nightly CI runs the harness; V0 target kind is publish per the Register.
 
 #### Verification
 - Bench: B-004 and B-005 on H-001 and H-002; target per Register.
@@ -489,7 +489,7 @@ Technique selection (IPC-003). Batching productionisation (IPC-043). V1 tuning (
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: ABI-002, TSK-021, BLD-012, BEN-007
+- Depends on: ABI-019, TSK-021, BLD-012, BEN-007
 - Baseline: §15, §53, §58
 - Benchmarks: B-004, B-005
 - Explores: S-012
@@ -1844,8 +1844,9 @@ ABI freeze Decision (ABI-049). Conformance tests (IPC-065). Deprecated-entry rem
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: IPC-041, ABI-047, IPC-010
+- Depends on: IPC-041, ABI-047, IPC-010, ABI-049
 - Baseline: §65, §66
+- Freezes: S-012
 
 V4 exit: every Layer 1 entry point has a conformance test and binaries built against the freeze candidate run on every subsequent beta build.
 
@@ -1924,6 +1925,7 @@ Project-wide unsafe inventory (BLD-011). Kernel live-patching (I-086).
 - Owner: none
 - Depends on: IPC-062, IPC-042, ABI-037, ABI-039
 - Baseline: §66
+- Freezes: S-013
 
 V4 exit: Layer 2 versions for 1.x enumerated and locked with the evolution test matrix green for every core Interface (§66).
 

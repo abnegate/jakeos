@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: NET-006
 - Surfaces: S-026
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

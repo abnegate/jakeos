@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: ACC-002
 - Surfaces: S-017
-- Layer: none
+- Layer: L2
 - Spikes: ACC-004
 - Supersedes: none
 - Superseded by: none

@@ -1,8 +1,8 @@
 # D-0269 · Decide user-mediated grant taxonomy
 - Status: proposed
 - Task: SEC-007
-- Surfaces: none
-- Layer: none
+- Surfaces: S-022
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

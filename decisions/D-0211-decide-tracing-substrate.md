@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: OBS-003
 - Surfaces: S-010
-- Layer: none
+- Layer: L1
 - Spikes: OBS-010
 - Supersedes: none
 - Superseded by: none

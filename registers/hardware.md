@@ -178,6 +178,6 @@ Used for Windows-personality GPU and HDR bring-up when a physical dual-boot is n
 - CPU: x86-64, community-reported
 - GPU: as reported
 - Network: as reported
-- First milestone: V3
+- First milestone: none
 - Status: planned
 Placeholder for the first community-submitted Hardware Compatibility List entry. Best-effort; the installer warns. Promotion to Tier 1 is a documented REL process, not an automatic gate.

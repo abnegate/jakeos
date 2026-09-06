@@ -190,11 +190,33 @@ fn validate_surface_spikes(
     diagnostics: &mut Diagnostics,
 ) {
     let layer = decision.fields.value_or_empty("Layer");
+    let surfaces = split_list(decision.fields.value_or_empty("Surfaces"));
+    if surfaces.is_empty() {
+        return;
+    }
+    let expected_layer = surfaces
+        .iter()
+        .filter_map(|surface| repo.register_entry("S", surface))
+        .map(|entry| entry.fields.value_or_empty("Layer").to_string())
+        .min()
+        .unwrap_or_default();
+    if !expected_layer.is_empty() && layer != expected_layer {
+        diagnostics.push(Diagnostic::error(
+            &decision.file,
+            decision.fields.line_of("Layer", decision.line),
+            code::FREEZE_DISCIPLINE,
+            format!(
+                "decision `{}` lists surfaces of layer {expected_layer} but declares `Layer: {layer}`",
+                decision.id
+            ),
+            "set Layer to the lowest layer among the listed surfaces",
+        ));
+    }
     if layer != "L1" && layer != "L2" {
         return;
     }
-    let surfaces = split_list(decision.fields.value_or_empty("Surfaces"));
-    if surfaces.is_empty() {
+    let status = decision.fields.value_or_empty("Status");
+    if status != "accepted" && status != "rejected" {
         return;
     }
     let spike_ids = split_list(decision.fields.value_or_empty("Spikes"));

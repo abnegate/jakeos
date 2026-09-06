@@ -27,19 +27,19 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| LNX-012 | Decide the Linux Personality container engine Surface | todo | blocked | S | LNX-045, LNX-017, Q-032 |
-| LNX-013 | Decide the default Capability bundle for Linux apps | todo | blocked | S | LNX-005, LNX-018, CAP-007, SEC-006, SEC-002, Q-039 |
-| LNX-014 | Decide /dev, sysfs and udev coexistence with native drivers | todo | blocked | S | LNX-008, HW-009, Q-028 |
+| LNX-012 | Decide the Linux Personality container engine Surface | todo | blocked | S | LNX-045, LNX-017 |
+| LNX-013 | Decide the default Capability bundle for Linux apps | todo | blocked | S | LNX-005, LNX-018, CAP-007, SEC-006, SEC-002 |
+| LNX-014 | Decide /dev, sysfs and udev coexistence with native drivers | todo | blocked | S | LNX-008, HW-009 |
 | LNX-015 | Decide whether ia32 emulation is retained | todo | blocked | S | LNX-001, KRN-017, KRN-011 |
-| LNX-016 | Decide how native applications opt into a Personality | todo | blocked | S | LNX-003, ABI-025, CAP-007, Q-002 |
+| LNX-016 | Decide how native applications opt into a Personality | todo | blocked | S | LNX-003, ABI-025, CAP-007 |
 | LNX-017 | Decide first-class Linux packaging formats | todo | blocked | S | LNX-023, PKG-047, LNX-008 |
 | LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | blocked | S | LNX-004, STO-034, UIP-003, SEC-002 |
-| LNX-019 | Decide the POSIX path view of native storage | todo | blocked | S | STO-047, STO-042, LNX-013, Q-018 |
+| LNX-019 | Decide the POSIX path view of native storage | todo | blocked | S | STO-047, STO-042, LNX-013 |
 | LNX-020 | Decide X11 primary selection stays inside the bridge | todo | blocked | S | LNX-004, UIP-003, SEC-002 |
 | LNX-021 | Decide retention and exposure of seccomp, user namespaces, overlayfs and FUSE | todo | blocked | S | LNX-001, KRN-017 |
 | LNX-022 | Decide terminal-session authority for Linux programs | todo | blocked | S | LNX-013, LNX-016, APP-004, SEC-002 |
 | LNX-023 | Decide source-built versus redistributed Linux userland | todo | blocked | S | LNX-011, LNX-008, GOV-031 |
-| LNX-024 | Decide glibc /usr/lib interoperation with Packages | todo | blocked | S | LNX-023, PKG-047, Q-022 |
+| LNX-024 | Decide glibc /usr/lib interoperation with Packages | todo | blocked | S | LNX-023, PKG-047 |
 | LNX-025 | Apply the default Capability bundle to Linux apps | todo | blocked | M | LNX-013, LNX-036, LNX-042, CAP-025 |
 | LNX-026 | Publish Linux compatibility overhead on L2 workloads | todo | blocked | M | LNX-056, BEN-027, Q-001, LNX-030, OBS-038 |
 | LNX-027 | Capture Linux core dumps and Crashpad minidumps | todo | blocked | M | LNX-049, OBS-029, OBS-026, LNX-042 |

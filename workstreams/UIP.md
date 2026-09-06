@@ -491,7 +491,7 @@ Session host and four-app launch (APP-007). V2 panel and launcher (APP-043, APP-
 - Owner: none
 - Depends on: IPC-010, IPC-012, MEM-005, MEM-010
 - Baseline: §12, §41, §65
-- Explores: S-015
+- Explores: S-015, S-032
 - Risks: R-015
 
 Prototype three transports for S-015 over Channel and MemoryObject: a retained scene graph sent to the compositor, client-rendered Buffers presented as Surfaces, and a hybrid that keeps a local retained tree while handing Buffers to the compositor. The protocol shape is nearly as permanent as the Native ABI (§65) and must exist as measured evidence before the V0.5 transport Decision, so the largest V0.5 body of new userspace code is not invented on the critical path. Measure latency, memory and toolkit ergonomics; cite B-018 for frame timing and do not state a number in the report prose.
@@ -506,6 +506,7 @@ Compositor DRM/KMS output (GFX). Toolkit widget set (UIP-020). Wayland hosting (
 - [ ] Each option is exercised as a native Component talking only Channel and MemoryObject, with no Wayland or X11 types in the prototype IDL.
 - [ ] The report records latency, memory and toolkit-ergonomics findings against B-018's method and names which option is ruled out.
 - [ ] Accessibility metadata and compositor-restart rebind are scored as qualitative constraints on each option.
+- [ ] The report records how clipboard offers and paste requests traverse each protocol model and where the clipboard Capability is checked (S-032).
 
 #### Verification
 - Report: which transport wins on measured latency, memory and toolkit ergonomics; which option is ruled out and why; how each option emits role, name and state; how each option rebinds after compositor restart; whether remote-surface remains possible without a kernel change.
@@ -1584,7 +1585,7 @@ L2 version lock (UIP-055). Personality bridges (LNX, WIN). SDK language bindings
 - Owner: none
 - Depends on: UIP-054, UIP-035, UIP-017, UIP-006, UIP-004
 - Baseline: §12, §41, §65, §66
-- Freezes: S-015
+- Freezes: S-015, S-032
 
 Lock the UI protocol L2 version for 1.x, remove deprecated messages, and freeze S-015. The compatibility suite proves V1-era clients run on the locked version. Layer 1 is not frozen by this task. Clipboard capability (S-032) stays a distinct surface; this lock covers the protocol messages that carry it.
 

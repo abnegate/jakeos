@@ -255,6 +255,9 @@ fn validate_done_benchmark(repo: &Repo, task: &Task, diagnostics: &mut Diagnosti
             .cloned()
             .unwrap_or_default();
         for machine in &hardware {
+            if !benchmark_applies_to(repo, &benchmark, machine) {
+                continue;
+            }
             let found = reports.iter().any(|name| name.contains(machine));
             if !found {
                 let deferred = task
@@ -287,6 +290,24 @@ fn validate_done_benchmark(repo: &Repo, task: &Task, diagnostics: &mut Diagnosti
             }
         }
     }
+}
+
+fn benchmark_applies_to(repo: &Repo, benchmark: &str, machine: &str) -> bool {
+    let Some(hardware) = repo.register_entry("H", machine) else {
+        return true;
+    };
+    if hardware.fields.value_or_empty("Kind") != "qemu" {
+        return true;
+    }
+    let Some(entry) = repo.register_entry("B", benchmark) else {
+        return true;
+    };
+    let text = format!(
+        "{} {}",
+        entry.fields.value_or_empty("Method"),
+        entry.fields.value_or_empty("Harness")
+    );
+    text.contains(machine) || text.to_ascii_lowercase().contains("qemu")
 }
 
 fn validate_done_docs(task: &Task, diagnostics: &mut Diagnostics) {

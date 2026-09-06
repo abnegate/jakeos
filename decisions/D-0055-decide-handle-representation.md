@@ -1,8 +1,8 @@
 # D-0055 · Decide the userspace Capability<T> handle representation and table design
 - Status: proposed
 - Task: CAP-008
-- Surfaces: none
-- Layer: none
+- Surfaces: S-001
+- Layer: L1
 - Spikes: CAP-013, CAP-012, CAP-015
 - Supersedes: none
 - Superseded by: none

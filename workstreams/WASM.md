@@ -203,6 +203,7 @@ Methodology and dashboards (BEN). Machine-code creation and Channel baselines (B
 - Depends on: WASM-003, WASM-001, GOV-003
 - Baseline: §13, §51
 - Decision: D-0332
+- Threats: T-045
 - Invariants: I-046
 
 Chooses the userspace runtime and whether it runs in-Component or as a shared host service, using WASM-003 (§13). License forces userspace-only; in-kernel embed is rejected on GPLv2 incompatibility (GAP-0024, I-046).
@@ -294,7 +295,7 @@ Editor chrome and buffer UI (APP-011). In-address-space Component class (CMP). C
 - Depends on: WASM-012, WASM-013, WASM-008, BLD-042
 - Baseline: §13, §51
 - Risks: R-051
-- Threats: T-003, T-006
+- Threats: T-003, T-006, T-045
 - Invariants: I-028
 
 The Wasm host is a trust boundary once the V1 prototype exists. A harness mutates WIT canonical ABI and import tables; panics and Capability forgeries fail closed. Feeds the V3 continuous-fuzzing gate.

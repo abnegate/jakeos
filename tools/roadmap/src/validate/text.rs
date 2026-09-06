@@ -55,6 +55,7 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
                 "run roadmap fmt, or spell the term as in GLOSSARY.md",
             ));
         }
+        warn_self_answered_questions(repo, task, diagnostics);
         for criterion in &task.criteria {
             for word in &repo.schema.task.banned_criteria_words {
                 if criterion
@@ -108,6 +109,46 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
         }
     }
     scan_source_files(repo, diagnostics);
+}
+
+fn warn_self_answered_questions(
+    repo: &Repo,
+    task: &crate::model::Task,
+    diagnostics: &mut Diagnostics,
+) {
+    let mut text = task.description_text().to_ascii_lowercase();
+    for criterion in &task.criteria {
+        text.push(' ');
+        text.push_str(&criterion.text.to_ascii_lowercase());
+    }
+    for dependency in task.list("Depends on") {
+        if !dependency.starts_with("Q-") || crate::derive::question_answered(repo, &dependency) {
+            continue;
+        }
+        let question = dependency.to_ascii_lowercase();
+        let claims = [
+            format!("answers {question}"),
+            format!("answer {question}"),
+            format!("answering {question}"),
+            format!("resolves {question}"),
+            format!("closes {question}"),
+            format!("{question} is answered"),
+            format!("{question} is marked answered"),
+            format!("{question} early"),
+        ];
+        if claims.iter().any(|claim| text.contains(claim.as_str())) {
+            diagnostics.push(Diagnostic::warning(
+                &task.file,
+                task.fields.line_of("Depends on", task.line),
+                code::SELF_ANSWERED_QUESTION,
+                format!(
+                    "task `{}` depends on `{dependency}` that its own text claims to answer",
+                    task.id
+                ),
+                "a task never depends on the question it answers; remove the dependency and set Answered by when done",
+            ));
+        }
+    }
 }
 
 fn warn_prose_numbers(

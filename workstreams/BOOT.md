@@ -345,6 +345,7 @@ Bootloader family (BOOT-008). Command-line editor policy (BOOT-019). Signing key
 - [ ] The decision file evaluates at least a single signed UKI, kernel plus separately verified initramfs and command line, and a UKI with detached add-ons.
 - [ ] The accepted option names the signed unit the bootloader verifies and what is included in PCR-extend inputs.
 - [ ] The option states whether the kernel command line is inside the signed unit at V0.5.
+- [ ] The accepted option states how early CPU microcode is carried in the signed unit and loaded before native init starts.
 - [ ] A Review line names the reviewer who accepts the decision on the pull request.
 
 #### Verification
@@ -909,7 +910,7 @@ Installer partitioning (INS-026). Foreign bootloader chain-load (BOOT-041). Rete
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BOOT-020, PKG-019, SEC-002, Q-024
+- Depends on: BOOT-020, PKG-019, SEC-002
 - Baseline: §30, §31
 - Decision: D-0046
 - Threats: T-021

@@ -1,8 +1,8 @@
 # D-0154 · Decide the typed-message wire format and inline-payload threshold
 - Status: proposed
 - Task: IPC-007
-- Surfaces: none
-- Layer: none
+- Surfaces: S-013
+- Layer: L2
 - Spikes: IPC-020, IPC-018
 - Supersedes: none
 - Superseded by: none

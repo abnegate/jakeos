@@ -218,7 +218,7 @@ Protocol emission of actions (UIP-036). Screen reader (ACC-021). Semantic regist
 - Baseline: §9, §9.1, §41, §51
 - Decision: D-0017
 - Risks: R-042
-- Threats: T-001, T-013, T-039
+- Threats: T-001, T-013, T-039, T-046
 - Invariants: I-021, I-060
 
 Decide that assistive-technology clients reach the tree only through a consent-scoped `Capability<AccessibilityTree>`, with password and secure fields redacted unless an elevated grant is held. Options are per-app grants, a session-wide grant with secure-field redaction, and an ambient bus (rejected per §9). The Decision includes an AT keylogging and screen-scraping addendum to SEC's threat model and must precede the V2 broker and screen reader.
@@ -247,7 +247,7 @@ Broker implementation (ACC-016). Permissions UI chrome (SEC-045, APP-025). Threa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ACC-002, SEM-007, SEM-005, Q-035
+- Depends on: ACC-002, SEM-007, SEM-005
 - Baseline: §41, §42, §65
 - Decision: D-0019
 
@@ -667,6 +667,7 @@ Speech engine (ACC-023). Capability broker (ACC-016). Semantic verbs (ACC-022). 
 - Owner: none
 - Depends on: ACC-021, ACC-008, SEM-007, SEM-008, SEM-002
 - Baseline: §41, §42
+- Threats: T-046
 
 Use SEM's V1 registry so the screen reader can list and invoke semantic actions such as `Editor.open` and `Terminal.run` without simulating input, proving §42's accessibility consumer. Depends on semantic interface v0; this is not an AI broker.
 

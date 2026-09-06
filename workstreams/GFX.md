@@ -4,7 +4,7 @@
 - Baseline: §9.1, §16, §17, §23, §32, §33, §39, §40, §47, §54, §55, §56.1, §57, §60, §61, §62
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 1. Blocked: 97. Weighted: 0%.
+Tasks: 99 live, 0 done, 0 in-progress, 99 todo, 0 dropped. Ready: 1. Blocked: 98. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -969,7 +969,7 @@ Architecture split (GFX-033). Reuse decision (GFX-013).
 - Depends on: GFX-032, LAB-003
 - Baseline: §32, §40, §54
 - Benchmarks: B-020, B-023
-- Explores: S-024
+- Explores: S-024, S-034
 - Risks: R-015
 
 Crash recovery and latency pull in opposite directions. Prototype each candidate split and measure both before the UI protocol depends on the architecture.
@@ -984,6 +984,7 @@ Architecture decision (GFX-012). Production compositor (GFX-006).
 - [ ] Each prototype has a B-023 measurement on H-003 and a B-020 measurement on H-002.
 - [ ] The report names which process holds DRM master in each prototype.
 - [ ] The report is committed at `reports/spikes/GFX-033.md`.
+- [ ] The report states where a screen-capture path reads pixels in each architecture and which Component holds the capture Capability (S-034).
 
 #### Verification
 - Report: crash-rebind and Input-to-photon latency per split; which DRM/KMS objects each process holds; which split the architecture adr prefers and why.
@@ -1797,7 +1798,7 @@ Idle dropped-frame test (GFX-029). BEN methodology (BEN).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GFX-040, GFX-037, GFX-011
+- Depends on: GFX-040, GFX-037, GFX-011, GFX-099
 - Baseline: §9.1, §40
 - Threats: T-013
 - Invariants: I-085
@@ -2802,9 +2803,9 @@ Harnesses (GFX-004, GFX-060). Photodiode rig (LAB).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GFX-052, GFX-036, GFX-014, GFX-017, GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, IPC-042, GFX-032, GFX-012
+- Depends on: GFX-052, GFX-036, GFX-014, GFX-017, GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, IPC-042, GFX-032, GFX-012, GFX-099
 - Baseline: §65, §66
-- Freezes: S-024
+- Freezes: S-024, S-034
 - Invariants: I-040
 
 V4 exit: Layer 2 Interface versions enumerated and locked with the old/new client evolution test passing for every core graphics Interface. S-024 freezes here. Layer 1 graphics surfaces do not exist and are not frozen.
@@ -2906,6 +2907,36 @@ VM guest Surfaces (GFX-092). Kernel distribution (forbidden, I-047). RDP/VNC pro
 #### Verification
 - Integration: `gfx:tests/remote/network_surface_*` on a pair of lab machines once the transport exists.
 - Review: IPC lead records that the kernel is not the transport.
+
+#### Evidence
+- none
+
+### GFX-099 · Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics
+- Type: adr
+- Milestone: V0.5
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: GFX-011, SEC-007, GFX-033
+- Baseline: §40, §9.1
+- Decision: D-0350
+- Threats: T-013, T-031
+- Invariants: I-085
+
+No application receives unrestricted screen capture (§40), and S-034 names the explicit screen-share and screen-record Capability with a persistent indicator. Nothing yet decides its shape: whether grants are per-Surface, per-Display or per-Session; whether the capturing Component receives frames as read-only MemoryObjects or through the compositor; how the indicator is made non-suppressible; and what a denied application receives (black frames or a typed denial). This Decision fixes that model before SEC-011 requires the Capability at V0.5 and GFX-061 implements it at V2. GFX-033 explores where each architecture reads pixels.
+
+#### Out of scope
+Capture implementation (GFX-061). Indicator layer (GFX-082). Permissions prompt policy (SEC-043). Personality screen-share via portal (APP-038).
+
+#### Acceptance criteria
+- [ ] Option A (per-Surface, per-Display and per-Session grant kinds each minting a read-only MemoryObject stream with the indicator owned by the compositor), option B (a single per-Session capture grant with compositor-side redaction of trusted surfaces), and option C (capture as a compositor-mediated stream where the client never maps frames) are evaluated against T-013 and T-031.
+- [ ] The accepted option states what an application without the Capability receives, how trusted-UI Surfaces are excluded from every capture, and how the indicator is made non-suppressible.
+- [ ] The Decision lists S-034 and records it as prototyped, not frozen.
+- [ ] GFX and SEC leads record Review sign-off on the pull request.
+
+#### Verification
+- Review: GFX and SEC leads sign off on the pull request that accepts the Decision file.
+- Report: `reports/spikes/GFX-033.md` is cited for where each compositor architecture reads pixels.
 
 #### Evidence
 - none

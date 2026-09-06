@@ -575,3 +575,9 @@ No flag-day replacement of any driver class.
 - Enforced by: none
 - Status: stated
 The 1.0 gate includes a fossilization review of the ABI, MemoryObject and ComputeDevice so later hardware does not require a major-version break.
+
+### I-101 · Native kernel Rust never panics on user-controlled input and allocates fallibly
+- Baseline: §50, §51
+- Enforced by: none
+- Status: stated
+A Rust panic inside the kernel is a kernel crash. New native kernel code uses fallible allocation, returns typed errors for every user-reachable failure, and is linted against `unwrap`, `expect`, indexing panics and infallible allocation outside boot-time initialisation.

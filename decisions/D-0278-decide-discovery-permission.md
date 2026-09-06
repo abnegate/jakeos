@@ -1,8 +1,8 @@
 # D-0278 · Decide Semantic Interface discovery and caller permissioning
 - Status: proposed
 - Task: SEM-004
-- Surfaces: none
-- Layer: none
+- Surfaces: S-023
+- Layer: L2
 - Spikes: SEM-003
 - Supersedes: none
 - Superseded by: none

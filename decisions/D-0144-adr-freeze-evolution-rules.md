@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: IPC-042
 - Surfaces: S-014
-- Layer: none
+- Layer: L2
 - Spikes: IPC-019
 - Supersedes: none
 - Superseded by: none

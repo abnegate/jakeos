@@ -64,7 +64,7 @@
 | INS-041 | Build recovery unlock, restore, reinstall and log collection | todo | blocked | L | INS-013, PKG-088, STO-061 |
 | INS-042 | Offer a dual-boot shared data partition at install | todo | blocked | M | INS-024, INS-026, STO-058, STO-060 |
 | INS-043 | Prove six consecutive Channel updates with automatic rollback | todo | blocked | M | BLD-061, BOOT-028, INS-045, INS-046, REL-043 |
-| INS-044 | Spike Wi-Fi credential import from NetworkManager and Windows | todo | blocked | M | NET-021, SEC-027, Q-054 |
+| INS-044 | Spike Wi-Fi credential import from NetworkManager and Windows | todo | blocked | M | NET-021, SEC-027 |
 | INS-045 | Apply updates as atomic new SystemGenerations | todo | blocked | L | BOOT-018, INS-006, INS-009, PKG-082, PKG-064, REL-005, REL-007 |
 | INS-046 | Let the user pick and switch update channels | todo | blocked | S | APP-040, INS-045, REL-004, REL-005 |
 | INS-047 | Test N-to-N+1, rollback and oldest-to-current upgrade chains | todo | blocked | M | INS-043, INS-045, LAB-022 |

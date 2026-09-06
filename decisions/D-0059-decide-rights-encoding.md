@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: CAP-010
 - Surfaces: S-003
-- Layer: none
+- Layer: L1
 - Spikes: CAP-013, CAP-012
 - Supersedes: none
 - Superseded by: none

@@ -21,7 +21,7 @@
         "INV-0061"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4763,
+      "downstream_weight": 4774,
       "anchored": true
     },
     {
@@ -41,7 +41,7 @@
         "INV-1118"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5620,
+      "downstream_weight": 5632,
       "anchored": true
     },
     {
@@ -61,7 +61,7 @@
         "GAP-0001"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5524,
+      "downstream_weight": 5535,
       "anchored": true
     },
     {
@@ -84,7 +84,7 @@
         "GAP-0162"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5502,
+      "downstream_weight": 5513,
       "anchored": true
     },
     {
@@ -107,7 +107,7 @@
         "GAP-0348"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5508,
+      "downstream_weight": 5519,
       "anchored": true
     },
     {
@@ -128,7 +128,7 @@
         "GAP-0052"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5506,
+      "downstream_weight": 5517,
       "anchored": true
     },
     {
@@ -151,7 +151,7 @@
         "GAP-0534"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5506,
+      "downstream_weight": 5517,
       "anchored": true
     },
     {
@@ -201,7 +201,7 @@
         "INV-1127"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 1164,
+      "downstream_weight": 1167,
       "anchored": true
     },
     {
@@ -227,7 +227,7 @@
         "INV-0119"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5499,
+      "downstream_weight": 5510,
       "anchored": true
     },
     {
@@ -250,7 +250,7 @@
         "GAP-0097"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5349,
+      "downstream_weight": 5357,
       "anchored": true
     },
     {
@@ -306,7 +306,7 @@
         "INV-0015"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4117,
+      "downstream_weight": 4648,
       "anchored": true
     },
     {
@@ -370,7 +370,7 @@
         "INV-0006"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4121,
+      "downstream_weight": 4652,
       "anchored": true
     },
     {
@@ -400,7 +400,7 @@
         "INV-0014"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4120,
+      "downstream_weight": 4651,
       "anchored": true
     },
     {
@@ -435,7 +435,7 @@
         "INV-0026"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 5562,
+      "downstream_weight": 5574,
       "anchored": true
     },
     {
@@ -460,7 +460,7 @@
         "INV-0934"
       ],
       "file": "workstreams/KRN.md",
-      "downstream_weight": 4122,
+      "downstream_weight": 4653,
       "anchored": true
     },
     {
@@ -644,12 +644,10 @@
       "owner": "none",
       "depends_on": [
         "KRN-017",
-        "KRN-001",
-        "Q-048"
+        "KRN-001"
       ],
       "blockers": [
-        "KRN-017",
-        "Q-048"
+        "KRN-017"
       ],
       "covers": [
         "INV-1329"
@@ -1287,13 +1285,11 @@
       "owner": "none",
       "depends_on": [
         "KRN-009",
-        "KRN-042",
-        "Q-003"
+        "KRN-042"
       ],
       "blockers": [
         "KRN-009",
-        "KRN-042",
-        "Q-003"
+        "KRN-042"
       ],
       "covers": [
         "INV-0155"
@@ -1531,6 +1527,30 @@
       "anchored": true
     },
     {
+      "id": "KRN-060",
+      "title": "Enforce fallible allocation and no-panic rules in native kernel Rust code",
+      "type": "build",
+      "milestone": "V0",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "M",
+      "owner": "none",
+      "depends_on": [
+        "KRN-013",
+        "KRN-016",
+        "BLD-013"
+      ],
+      "blockers": [
+        "KRN-013",
+        "KRN-016",
+        "BLD-013"
+      ],
+      "covers": [],
+      "file": "workstreams/KRN.md",
+      "downstream_weight": 0,
+      "anchored": true
+    },
+    {
       "id": "BOOT-001",
       "title": "Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image",
       "type": "build",
@@ -1558,7 +1578,7 @@
         "INV-1154"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2298,
+      "downstream_weight": 2304,
       "anchored": true
     },
     {
@@ -1583,7 +1603,7 @@
         "INV-1154"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2292,
+      "downstream_weight": 2298,
       "anchored": true
     },
     {
@@ -1602,7 +1622,7 @@
         "GAP-0478"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 3526,
+      "downstream_weight": 3534,
       "anchored": true
     },
     {
@@ -1623,7 +1643,7 @@
         "INV-0120"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 3522,
+      "downstream_weight": 3530,
       "anchored": true
     },
     {
@@ -1703,7 +1723,7 @@
         "GAP-0169"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2799,
+      "downstream_weight": 2804,
       "anchored": true
     },
     {
@@ -1729,7 +1749,7 @@
         "GAP-0528"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2803,
+      "downstream_weight": 2808,
       "anchored": true
     },
     {
@@ -1757,7 +1777,7 @@
         "GAP-0529"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2704,
+      "downstream_weight": 2709,
       "anchored": true
     },
     {
@@ -1780,7 +1800,7 @@
         "GAP-0020"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2804,
+      "downstream_weight": 2809,
       "anchored": true
     },
     {
@@ -1803,7 +1823,7 @@
         "GAP-0168"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2803,
+      "downstream_weight": 2808,
       "anchored": true
     },
     {
@@ -1833,7 +1853,7 @@
         "GAP-0529"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2696,
+      "downstream_weight": 2701,
       "anchored": true
     },
     {
@@ -1915,7 +1935,7 @@
         "GAP-0528"
       ],
       "file": "workstreams/BOOT.md",
-      "downstream_weight": 2806,
+      "downstream_weight": 2811,
       "anchored": true
     },
     {
@@ -2284,13 +2304,11 @@
       "depends_on": [
         "BOOT-020",
         "PKG-019",
-        "SEC-002",
-        "Q-024"
+        "SEC-002"
       ],
       "blockers": [
         "BOOT-020",
-        "PKG-019",
-        "Q-024"
+        "PKG-019"
       ],
       "covers": [
         "INV-0567"
@@ -2828,7 +2846,7 @@
         "GAP-0500"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5242,
+      "downstream_weight": 5250,
       "anchored": true
     },
     {
@@ -2858,7 +2876,7 @@
         "INV-1321"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5164,
+      "downstream_weight": 5172,
       "anchored": true
     },
     {
@@ -2886,7 +2904,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4302,
+      "downstream_weight": 4794,
       "anchored": true
     },
     {
@@ -2911,7 +2929,7 @@
         "INV-0147"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 1731,
+      "downstream_weight": 1735,
       "anchored": true
     },
     {
@@ -2940,7 +2958,7 @@
         "INV-0158"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5141,
+      "downstream_weight": 5149,
       "anchored": true
     },
     {
@@ -3001,7 +3019,7 @@
         "INV-0944"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4227,
+      "downstream_weight": 4235,
       "anchored": true
     },
     {
@@ -3027,7 +3045,7 @@
         "INV-1279"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5241,
+      "downstream_weight": 5249,
       "anchored": true
     },
     {
@@ -3052,12 +3070,12 @@
         "INV-1279"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5240,
+      "downstream_weight": 5248,
       "anchored": true
     },
     {
       "id": "ABI-010",
-      "title": "Decide Capability handle representation: dense index, sparse id or sealed value",
+      "title": "Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation",
       "type": "adr",
       "milestone": "V0",
       "status": "todo",
@@ -3079,7 +3097,7 @@
         "INV-1279"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5243,
+      "downstream_weight": 5251,
       "anchored": true
     },
     {
@@ -3092,19 +3110,17 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "ABI-022",
-        "Q-047"
+        "ABI-022"
       ],
       "blockers": [
-        "ABI-022",
-        "Q-047"
+        "ABI-022"
       ],
       "covers": [
         "INV-1284",
         "INV-1290"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5376,
+      "downstream_weight": 5387,
       "anchored": true
     },
     {
@@ -3136,7 +3152,7 @@
         "INV-1273"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5237,
+      "downstream_weight": 5245,
       "anchored": true
     },
     {
@@ -3161,7 +3177,7 @@
         "INV-1270"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5231,
+      "downstream_weight": 5239,
       "anchored": true
     },
     {
@@ -3183,7 +3199,7 @@
         "INV-0357"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5240,
+      "downstream_weight": 5248,
       "anchored": true
     },
     {
@@ -3205,7 +3221,7 @@
         "INV-0373"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5240,
+      "downstream_weight": 5248,
       "anchored": true
     },
     {
@@ -3230,7 +3246,7 @@
         "INV-1279"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 3587,
+      "downstream_weight": 3595,
       "anchored": true
     },
     {
@@ -3293,7 +3309,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 4397,
+      "downstream_weight": 4849,
       "anchored": true
     },
     {
@@ -3311,7 +3327,7 @@
         "GAP-0500"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5243,
+      "downstream_weight": 5251,
       "anchored": true
     },
     {
@@ -3327,7 +3343,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5241,
+      "downstream_weight": 5249,
       "anchored": true
     },
     {
@@ -3343,7 +3359,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 3588,
+      "downstream_weight": 3596,
       "anchored": true
     },
     {
@@ -3361,7 +3377,7 @@
         "INV-1133"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 5392,
+      "downstream_weight": 5403,
       "anchored": true
     },
     {
@@ -3416,7 +3432,7 @@
         "GAP-0501"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 255,
+      "downstream_weight": 263,
       "anchored": true
     },
     {
@@ -3442,7 +3458,7 @@
         "INV-0142"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 1056,
+      "downstream_weight": 1059,
       "anchored": true
     },
     {
@@ -3467,7 +3483,7 @@
         "INV-0147"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 248,
+      "downstream_weight": 256,
       "anchored": true
     },
     {
@@ -3566,7 +3582,7 @@
         "INV-1283"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 242,
+      "downstream_weight": 250,
       "anchored": true
     },
     {
@@ -3588,7 +3604,7 @@
         "INV-1137"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 348,
+      "downstream_weight": 351,
       "anchored": true
     },
     {
@@ -3643,7 +3659,7 @@
         "INV-0147"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 170,
+      "downstream_weight": 178,
       "anchored": true
     },
     {
@@ -3674,7 +3690,7 @@
         "INV-1268"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 144,
+      "downstream_weight": 152,
       "anchored": true
     },
     {
@@ -3698,7 +3714,7 @@
         "INV-0143"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 1028,
+      "downstream_weight": 1031,
       "anchored": true
     },
     {
@@ -3725,7 +3741,7 @@
         "INV-1130"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 248,
+      "downstream_weight": 256,
       "anchored": true
     },
     {
@@ -3749,7 +3765,7 @@
         "GAP-0545"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 210,
+      "downstream_weight": 218,
       "anchored": true
     },
     {
@@ -3778,7 +3794,7 @@
         "INV-1269"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 245,
+      "downstream_weight": 253,
       "anchored": true
     },
     {
@@ -3804,7 +3820,7 @@
         "GAP-0059"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 209,
+      "downstream_weight": 217,
       "anchored": true
     },
     {
@@ -3831,7 +3847,7 @@
         "INV-1278"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 147,
+      "downstream_weight": 155,
       "anchored": true
     },
     {
@@ -3881,7 +3897,7 @@
         "INV-0195"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 147,
+      "downstream_weight": 155,
       "anchored": true
     },
     {
@@ -3907,7 +3923,7 @@
         "GAP-0347"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 117,
+      "downstream_weight": 125,
       "anchored": true
     },
     {
@@ -3953,7 +3969,7 @@
         "GAP-0347"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 120,
+      "downstream_weight": 128,
       "anchored": true
     },
     {
@@ -4030,7 +4046,7 @@
       ],
       "covers": [],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 114,
+      "downstream_weight": 122,
       "anchored": true
     },
     {
@@ -4061,7 +4077,7 @@
         "INV-1268"
       ],
       "file": "workstreams/ABI.md",
-      "downstream_weight": 88,
+      "downstream_weight": 110,
       "anchored": true
     },
     {
@@ -4219,7 +4235,7 @@
       ],
       "covers": [],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1468,
+      "downstream_weight": 1472,
       "anchored": true
     },
     {
@@ -4275,7 +4291,7 @@
         "INV-0184"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3694,
+      "downstream_weight": 4286,
       "anchored": true
     },
     {
@@ -4305,7 +4321,7 @@
         "INV-1158"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2721,
+      "downstream_weight": 4147,
       "anchored": true
     },
     {
@@ -4343,7 +4359,7 @@
         "INV-1325"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 4901,
+      "downstream_weight": 4909,
       "anchored": true
     },
     {
@@ -4373,7 +4389,7 @@
         "INV-1158"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3249,
+      "downstream_weight": 3257,
       "anchored": true
     },
     {
@@ -4395,7 +4411,7 @@
         "INV-0200"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3980,
+      "downstream_weight": 3990,
       "anchored": true
     },
     {
@@ -4426,7 +4442,7 @@
         "INV-0714"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 5253,
+      "downstream_weight": 5261,
       "anchored": true
     },
     {
@@ -4456,7 +4472,7 @@
         "GAP-0484"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2729,
+      "downstream_weight": 4155,
       "anchored": true
     },
     {
@@ -4483,7 +4499,7 @@
         "INV-0176"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 4925,
+      "downstream_weight": 4933,
       "anchored": true
     },
     {
@@ -4508,7 +4524,7 @@
         "INV-0176"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3736,
+      "downstream_weight": 4328,
       "anchored": true
     },
     {
@@ -4526,7 +4542,7 @@
         "INV-1143"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 5258,
+      "downstream_weight": 5266,
       "anchored": true
     },
     {
@@ -4544,7 +4560,7 @@
         "GAP-0483"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 5258,
+      "downstream_weight": 5266,
       "anchored": true
     },
     {
@@ -4566,7 +4582,7 @@
         "GAP-0484"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 2730,
+      "downstream_weight": 4156,
       "anchored": true
     },
     {
@@ -4584,7 +4600,7 @@
         "INV-1132"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 5260,
+      "downstream_weight": 5268,
       "anchored": true
     },
     {
@@ -4726,7 +4742,7 @@
         "INV-0491"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 322,
+      "downstream_weight": 323,
       "anchored": true
     },
     {
@@ -4756,7 +4772,7 @@
         "INV-0188"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 180,
+      "downstream_weight": 188,
       "anchored": true
     },
     {
@@ -4779,7 +4795,7 @@
         "GAP-0485"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3183,
+      "downstream_weight": 3191,
       "anchored": true
     },
     {
@@ -4805,7 +4821,7 @@
         "GAP-0485"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 3152,
+      "downstream_weight": 3160,
       "anchored": true
     },
     {
@@ -4829,7 +4845,7 @@
         "INV-0235"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1395,
+      "downstream_weight": 1398,
       "anchored": true
     },
     {
@@ -4881,7 +4897,7 @@
         "INV-1150"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 325,
+      "downstream_weight": 326,
       "anchored": true
     },
     {
@@ -4905,7 +4921,7 @@
         "INV-0189"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 181,
+      "downstream_weight": 189,
       "anchored": true
     },
     {
@@ -4949,7 +4965,7 @@
         "INV-0488"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1294,
+      "downstream_weight": 1297,
       "anchored": true
     },
     {
@@ -5059,7 +5075,7 @@
         "INV-0190"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 171,
+      "downstream_weight": 179,
       "anchored": true
     },
     {
@@ -5088,7 +5104,7 @@
         "INV-0196"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 162,
+      "downstream_weight": 170,
       "anchored": true
     },
     {
@@ -5144,7 +5160,7 @@
       ],
       "covers": [],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 1494,
+      "downstream_weight": 1497,
       "anchored": true
     },
     {
@@ -5177,7 +5193,7 @@
         "INV-0491"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 319,
+      "downstream_weight": 320,
       "anchored": true
     },
     {
@@ -5207,7 +5223,7 @@
         "GAP-0487"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 159,
+      "downstream_weight": 167,
       "anchored": true
     },
     {
@@ -5231,7 +5247,7 @@
         "INV-0719"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 172,
+      "downstream_weight": 180,
       "anchored": true
     },
     {
@@ -5255,7 +5271,7 @@
         "INV-0190"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 172,
+      "downstream_weight": 180,
       "anchored": true
     },
     {
@@ -5335,7 +5351,7 @@
         "EXTRA-018"
       ],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 6,
+      "downstream_weight": 7,
       "anchored": true
     },
     {
@@ -5471,7 +5487,7 @@
       ],
       "covers": [],
       "file": "workstreams/CAP.md",
-      "downstream_weight": 27,
+      "downstream_weight": 28,
       "anchored": true
     },
     {
@@ -5726,7 +5742,7 @@
         "INV-0046"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 2881,
+      "downstream_weight": 2889,
       "anchored": true
     },
     {
@@ -5762,7 +5778,7 @@
         "INV-1155"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3845,
+      "downstream_weight": 4414,
       "anchored": true
     },
     {
@@ -5782,7 +5798,7 @@
         "INV-0220"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4697,
+      "downstream_weight": 4705,
       "anchored": true
     },
     {
@@ -5805,7 +5821,7 @@
         "INV-0993"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4829,
+      "downstream_weight": 4837,
       "anchored": true
     },
     {
@@ -5823,7 +5839,7 @@
         "EXTRA-004"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3280,
+      "downstream_weight": 3288,
       "anchored": true
     },
     {
@@ -5842,7 +5858,7 @@
         "INV-0995"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4697,
+      "downstream_weight": 4705,
       "anchored": true
     },
     {
@@ -5867,7 +5883,7 @@
         "INV-0145"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3854,
+      "downstream_weight": 4423,
       "anchored": true
     },
     {
@@ -5994,7 +6010,7 @@
         "INV-1313"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 4693,
+      "downstream_weight": 4701,
       "anchored": true
     },
     {
@@ -6012,7 +6028,7 @@
         "INV-0230"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3865,
+      "downstream_weight": 4434,
       "anchored": true
     },
     {
@@ -6034,7 +6050,7 @@
         "GAP-0489"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 3857,
+      "downstream_weight": 4426,
       "anchored": true
     },
     {
@@ -6089,7 +6105,7 @@
         "INV-0642"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 876,
+      "downstream_weight": 879,
       "anchored": true
     },
     {
@@ -6115,7 +6131,7 @@
       ],
       "covers": [],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 880,
+      "downstream_weight": 883,
       "anchored": true
     },
     {
@@ -6170,7 +6186,7 @@
         "INV-0952"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1365,
+      "downstream_weight": 1368,
       "anchored": true
     },
     {
@@ -6192,7 +6208,7 @@
         "INV-0245"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1399,
+      "downstream_weight": 1402,
       "anchored": true
     },
     {
@@ -6244,7 +6260,7 @@
         "INV-0245"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1387,
+      "downstream_weight": 1390,
       "anchored": true
     },
     {
@@ -6271,7 +6287,7 @@
         "INV-0225"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1395,
+      "downstream_weight": 1398,
       "anchored": true
     },
     {
@@ -6297,7 +6313,7 @@
         "INV-0991"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 761,
+      "downstream_weight": 764,
       "anchored": true
     },
     {
@@ -6323,7 +6339,7 @@
         "INV-1015"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 2943,
+      "downstream_weight": 2948,
       "anchored": true
     },
     {
@@ -6347,7 +6363,7 @@
         "INV-1185"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1626,
+      "downstream_weight": 1632,
       "anchored": true
     },
     {
@@ -6393,7 +6409,7 @@
         "INV-1146"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1629,
+      "downstream_weight": 1635,
       "anchored": true
     },
     {
@@ -6411,7 +6427,7 @@
         "INV-1136"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1402,
+      "downstream_weight": 1405,
       "anchored": true
     },
     {
@@ -6430,7 +6446,7 @@
         "INV-0231"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 1368,
+      "downstream_weight": 1371,
       "anchored": true
     },
     {
@@ -6536,7 +6552,7 @@
         "INV-0070"
       ],
       "file": "workstreams/CMP.md",
-      "downstream_weight": 856,
+      "downstream_weight": 859,
       "anchored": true
     },
     {
@@ -7105,7 +7121,7 @@
         "INV-1149"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4118,
+      "downstream_weight": 4226,
       "anchored": true
     },
     {
@@ -7127,7 +7143,7 @@
         "GAP-0496"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4150,
+      "downstream_weight": 4233,
       "anchored": true
     },
     {
@@ -7149,7 +7165,7 @@
         "INV-0345"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4373,
+      "downstream_weight": 4381,
       "anchored": true
     },
     {
@@ -7191,7 +7207,7 @@
         "GAP-0494"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4541,
+      "downstream_weight": 4549,
       "anchored": true
     },
     {
@@ -7214,7 +7230,7 @@
         "INV-0721"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4693,
+      "downstream_weight": 4701,
       "anchored": true
     },
     {
@@ -7239,7 +7255,7 @@
         "GAP-0493"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 2210,
+      "downstream_weight": 2216,
       "anchored": true
     },
     {
@@ -7272,7 +7288,7 @@
         "GAP-0495"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4108,
+      "downstream_weight": 4216,
       "anchored": true
     },
     {
@@ -7288,13 +7304,15 @@
         "TSK-018",
         "ABI-014",
         "IPC-010",
-        "MEM-005"
+        "MEM-005",
+        "STO-001"
       ],
       "blockers": [
         "TSK-018",
         "ABI-014",
         "IPC-010",
-        "MEM-005"
+        "MEM-005",
+        "STO-001"
       ],
       "covers": [
         "INV-0346",
@@ -7303,7 +7321,7 @@
         "INV-0349"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4054,
+      "downstream_weight": 4027,
       "anchored": true
     },
     {
@@ -7362,7 +7380,7 @@
         "INV-1317"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4533,
+      "downstream_weight": 4541,
       "anchored": true
     },
     {
@@ -7381,7 +7399,7 @@
         "GAP-0494"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 5247,
+      "downstream_weight": 5255,
       "anchored": true
     },
     {
@@ -7399,7 +7417,7 @@
         "INV-0376"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4151,
+      "downstream_weight": 4234,
       "anchored": true
     },
     {
@@ -7420,7 +7438,7 @@
         "GAP-0493"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4701,
+      "downstream_weight": 4709,
       "anchored": true
     },
     {
@@ -7443,7 +7461,7 @@
         "INV-0374"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4121,
+      "downstream_weight": 4229,
       "anchored": true
     },
     {
@@ -7476,7 +7494,7 @@
         "INV-0340"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4365,
+      "downstream_weight": 4373,
       "anchored": true
     },
     {
@@ -7502,7 +7520,7 @@
         "INV-0377"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 2200,
+      "downstream_weight": 2206,
       "anchored": true
     },
     {
@@ -7526,7 +7544,7 @@
         "INV-1296"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 2098,
+      "downstream_weight": 2104,
       "anchored": true
     },
     {
@@ -7551,7 +7569,7 @@
         "INV-1314"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 3558,
+      "downstream_weight": 3566,
       "anchored": true
     },
     {
@@ -7583,7 +7601,7 @@
         "INV-0392"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 2895,
+      "downstream_weight": 2903,
       "anchored": true
     },
     {
@@ -7613,7 +7631,7 @@
         "INV-1157"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 4690,
+      "downstream_weight": 4698,
       "anchored": true
     },
     {
@@ -7747,7 +7765,7 @@
         "INV-0367"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 1398,
+      "downstream_weight": 1404,
       "anchored": true
     },
     {
@@ -7822,7 +7840,7 @@
         "INV-0355"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 1410,
+      "downstream_weight": 1416,
       "anchored": true
     },
     {
@@ -7849,7 +7867,7 @@
         "INV-0351"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 1650,
+      "downstream_weight": 1656,
       "anchored": true
     },
     {
@@ -7934,7 +7952,7 @@
         "INV-1185"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 1395,
+      "downstream_weight": 1401,
       "anchored": true
     },
     {
@@ -8144,7 +8162,7 @@
         "INV-0386"
       ],
       "file": "workstreams/TSK.md",
-      "downstream_weight": 853,
+      "downstream_weight": 856,
       "anchored": true
     },
     {
@@ -8386,13 +8404,15 @@
         "TSK-042",
         "TSK-050",
         "TSK-051",
-        "TSK-048"
+        "TSK-048",
+        "ABI-049"
       ],
       "blockers": [
         "TSK-042",
         "TSK-050",
         "TSK-051",
-        "TSK-048"
+        "TSK-048",
+        "ABI-049"
       ],
       "covers": [],
       "file": "workstreams/TSK.md",
@@ -8434,13 +8454,15 @@
         "IPC-017",
         "IPC-018",
         "SCH-004",
-        "TSK-009"
+        "TSK-009",
+        "ABI-012"
       ],
       "blockers": [
         "IPC-017",
         "IPC-018",
         "SCH-004",
-        "TSK-009"
+        "TSK-009",
+        "ABI-012"
       ],
       "covers": [
         "GAP-0481"
@@ -8472,7 +8494,7 @@
         "INV-0249"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3846,
+      "downstream_weight": 3854,
       "anchored": true
     },
     {
@@ -8517,7 +8539,7 @@
         "GAP-0098"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4079,
+      "downstream_weight": 4087,
       "anchored": true
     },
     {
@@ -8540,7 +8562,7 @@
         "GAP-0007"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4087,
+      "downstream_weight": 4095,
       "anchored": true
     },
     {
@@ -8567,7 +8589,7 @@
         "INV-0247"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4093,
+      "downstream_weight": 4101,
       "anchored": true
     },
     {
@@ -8581,13 +8603,11 @@
       "owner": "none",
       "depends_on": [
         "IPC-020",
-        "IPC-018",
-        "Q-005"
+        "IPC-018"
       ],
       "blockers": [
         "IPC-020",
-        "IPC-018",
-        "Q-005"
+        "IPC-018"
       ],
       "covers": [
         "INV-0291",
@@ -8595,7 +8615,7 @@
         "GAP-0520"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4128,
+      "downstream_weight": 4136,
       "anchored": true
     },
     {
@@ -8646,7 +8666,7 @@
         "EXTRA-001"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1782,
+      "downstream_weight": 1788,
       "anchored": true
     },
     {
@@ -8682,7 +8702,7 @@
         "INV-1324"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4370,
+      "downstream_weight": 4346,
       "anchored": true
     },
     {
@@ -8709,7 +8729,7 @@
         "INV-0259"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 2195,
+      "downstream_weight": 2201,
       "anchored": true
     },
     {
@@ -8746,7 +8766,7 @@
         "GAP-0007"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4071,
+      "downstream_weight": 4079,
       "anchored": true
     },
     {
@@ -8778,7 +8798,7 @@
         "INV-1316"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3875,
+      "downstream_weight": 3883,
       "anchored": true
     },
     {
@@ -8881,13 +8901,13 @@
       "size": "L",
       "owner": "none",
       "depends_on": [
-        "ABI-002",
+        "ABI-019",
         "TSK-021",
         "BLD-012",
         "BEN-007"
       ],
       "blockers": [
-        "ABI-002",
+        "ABI-019",
         "TSK-021",
         "BLD-012"
       ],
@@ -8919,7 +8939,7 @@
         "INV-1134"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4150,
+      "downstream_weight": 4158,
       "anchored": true
     },
     {
@@ -8943,7 +8963,7 @@
         "GAP-0521"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3849,
+      "downstream_weight": 3857,
       "anchored": true
     },
     {
@@ -8967,7 +8987,7 @@
         "INV-0302"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 4129,
+      "downstream_weight": 4137,
       "anchored": true
     },
     {
@@ -8996,7 +9016,7 @@
         "INV-0252"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1606,
+      "downstream_weight": 1610,
       "anchored": true
     },
     {
@@ -9047,7 +9067,7 @@
         "INV-0609"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1626,
+      "downstream_weight": 1632,
       "anchored": true
     },
     {
@@ -9070,7 +9090,7 @@
         "GAP-0008"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3268,
+      "downstream_weight": 3276,
       "anchored": true
     },
     {
@@ -9123,7 +9143,7 @@
         "INV-0259"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1651,
+      "downstream_weight": 1657,
       "anchored": true
     },
     {
@@ -9180,7 +9200,7 @@
         "INV-0609"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1456,
+      "downstream_weight": 1462,
       "anchored": true
     },
     {
@@ -9253,7 +9273,7 @@
         "INV-0225"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1398,
+      "downstream_weight": 1401,
       "anchored": true
     },
     {
@@ -9278,7 +9298,7 @@
         "INV-0591"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1978,
+      "downstream_weight": 1984,
       "anchored": true
     },
     {
@@ -9305,7 +9325,7 @@
         "INV-0289"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3300,
+      "downstream_weight": 3308,
       "anchored": true
     },
     {
@@ -9370,7 +9390,7 @@
         "INV-1285"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 3265,
+      "downstream_weight": 3273,
       "anchored": true
     },
     {
@@ -9450,7 +9470,7 @@
         "INV-0252"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 1603,
+      "downstream_weight": 1607,
       "anchored": true
     },
     {
@@ -9500,7 +9520,7 @@
       ],
       "covers": [],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 212,
+      "downstream_weight": 213,
       "anchored": true
     },
     {
@@ -9562,7 +9582,7 @@
         "INV-0262"
       ],
       "file": "workstreams/IPC.md",
-      "downstream_weight": 211,
+      "downstream_weight": 212,
       "anchored": true
     },
     {
@@ -10146,12 +10166,14 @@
       "depends_on": [
         "IPC-041",
         "ABI-047",
-        "IPC-010"
+        "IPC-010",
+        "ABI-049"
       ],
       "blockers": [
         "IPC-041",
         "ABI-047",
-        "IPC-010"
+        "IPC-010",
+        "ABI-049"
       ],
       "covers": [],
       "file": "workstreams/IPC.md",
@@ -10354,7 +10376,7 @@
         "INV-0317"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4684,
+      "downstream_weight": 4660,
       "anchored": true
     },
     {
@@ -10376,7 +10398,7 @@
         "GAP-0498"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2337,
+      "downstream_weight": 2344,
       "anchored": true
     },
     {
@@ -10425,7 +10447,7 @@
         "INV-1323"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4666,
+      "downstream_weight": 4642,
       "anchored": true
     },
     {
@@ -10470,7 +10492,7 @@
         "INV-0306"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 3200,
+      "downstream_weight": 3208,
       "anchored": true
     },
     {
@@ -10548,7 +10570,7 @@
         "INV-1297"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2295,
+      "downstream_weight": 2302,
       "anchored": true
     },
     {
@@ -10566,7 +10588,7 @@
         "GAP-0497"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 4694,
+      "downstream_weight": 4670,
       "anchored": true
     },
     {
@@ -10726,12 +10748,10 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "MEM-010",
-        "Q-008"
+        "MEM-010"
       ],
       "blockers": [
-        "MEM-010",
-        "Q-008"
+        "MEM-010"
       ],
       "covers": [
         "INV-0338"
@@ -10759,7 +10779,7 @@
         "GAP-0499"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2625,
+      "downstream_weight": 2632,
       "anchored": true
     },
     {
@@ -10781,7 +10801,7 @@
         "EXTRA-006"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2201,
+      "downstream_weight": 2206,
       "anchored": true
     },
     {
@@ -10827,7 +10847,7 @@
         "INV-0324"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 374,
+      "downstream_weight": 377,
       "anchored": true
     },
     {
@@ -10875,7 +10895,7 @@
         "INV-0736"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 1947,
+      "downstream_weight": 1953,
       "anchored": true
     },
     {
@@ -10975,7 +10995,7 @@
         "INV-0332"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2147,
+      "downstream_weight": 2153,
       "anchored": true
     },
     {
@@ -11021,7 +11041,7 @@
         "GAP-0499"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 2626,
+      "downstream_weight": 2633,
       "anchored": true
     },
     {
@@ -11195,7 +11215,7 @@
         "INV-0332"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 671,
+      "downstream_weight": 677,
       "anchored": true
     },
     {
@@ -11245,7 +11265,7 @@
         "INV-0323"
       ],
       "file": "workstreams/MEM.md",
-      "downstream_weight": 371,
+      "downstream_weight": 374,
       "anchored": true
     },
     {
@@ -11369,11 +11389,9 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "Q-007",
         "MEM-007"
       ],
       "blockers": [
-        "Q-007",
         "MEM-007"
       ],
       "covers": [
@@ -11440,12 +11458,10 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "Q-007",
         "MEM-045",
         "MEM-007"
       ],
       "blockers": [
-        "Q-007",
         "MEM-045",
         "MEM-007"
       ],
@@ -11698,7 +11714,7 @@
         "INV-1163"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 985,
+      "downstream_weight": 988,
       "anchored": true
     },
     {
@@ -11720,7 +11736,7 @@
         "INV-0435"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 4054,
+      "downstream_weight": 4582,
       "anchored": true
     },
     {
@@ -11747,7 +11763,7 @@
         "INV-0436"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 895,
+      "downstream_weight": 898,
       "anchored": true
     },
     {
@@ -11823,7 +11839,7 @@
         "INV-0426"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1549,
+      "downstream_weight": 1552,
       "anchored": true
     },
     {
@@ -11857,7 +11873,7 @@
         "INV-1319"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 4046,
+      "downstream_weight": 4574,
       "anchored": true
     },
     {
@@ -11880,7 +11896,7 @@
         "INV-0427"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1180,
+      "downstream_weight": 1183,
       "anchored": true
     },
     {
@@ -11902,7 +11918,7 @@
         "EXTRA-002"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 3078,
+      "downstream_weight": 3086,
       "anchored": true
     },
     {
@@ -11981,7 +11997,7 @@
         "INV-0420"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 1560,
+      "downstream_weight": 1563,
       "anchored": true
     },
     {
@@ -12284,7 +12300,7 @@
         "INV-0437"
       ],
       "file": "workstreams/SCH.md",
-      "downstream_weight": 791,
+      "downstream_weight": 794,
       "anchored": true
     },
     {
@@ -13189,13 +13205,15 @@
         "SCH-030",
         "ABI-047",
         "SCH-007",
-        "SCH-042"
+        "SCH-042",
+        "ABI-049"
       ],
       "blockers": [
         "SCH-030",
         "ABI-047",
         "SCH-007",
-        "SCH-042"
+        "SCH-042",
+        "ABI-049"
       ],
       "covers": [],
       "file": "workstreams/SCH.md",
@@ -13440,7 +13458,7 @@
         "INV-0458"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 2037,
+      "downstream_weight": 2040,
       "anchored": true
     },
     {
@@ -13806,7 +13824,7 @@
         "INV-1266"
       ],
       "file": "workstreams/OBS.md",
-      "downstream_weight": 1626,
+      "downstream_weight": 1629,
       "anchored": true
     },
     {
@@ -14834,7 +14852,7 @@
         "GAP-0170"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2705,
+      "downstream_weight": 2710,
       "anchored": true
     },
     {
@@ -14856,7 +14874,7 @@
         "EXTRA-071"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3168,
+      "downstream_weight": 3176,
       "anchored": true
     },
     {
@@ -14878,7 +14896,7 @@
         "EXTRA-071"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3143,
+      "downstream_weight": 3151,
       "anchored": true
     },
     {
@@ -14934,7 +14952,7 @@
         "GAP-0171"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2679,
+      "downstream_weight": 2684,
       "anchored": true
     },
     {
@@ -14959,7 +14977,7 @@
         "GAP-0171"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 1640,
+      "downstream_weight": 1646,
       "anchored": true
     },
     {
@@ -14988,7 +15006,7 @@
         "EXTRA-071"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 1623,
+      "downstream_weight": 1629,
       "anchored": true
     },
     {
@@ -15042,7 +15060,7 @@
         "GAP-0171"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3140,
+      "downstream_weight": 3148,
       "anchored": true
     },
     {
@@ -15066,7 +15084,7 @@
         "INV-1301"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 1959,
+      "downstream_weight": 1965,
       "anchored": true
     },
     {
@@ -15110,7 +15128,7 @@
         "INV-0610"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 3170,
+      "downstream_weight": 3178,
       "anchored": true
     },
     {
@@ -15146,7 +15164,7 @@
         "INV-0592"
       ],
       "file": "workstreams/SVC.md",
-      "downstream_weight": 2663,
+      "downstream_weight": 2668,
       "anchored": true
     },
     {
@@ -15901,7 +15919,6 @@
         "CAP-005",
         "CAP-003",
         "CAP-004",
-        "TSK-011",
         "CMP-005"
       ],
       "blockers": [
@@ -15909,7 +15926,6 @@
         "CAP-005",
         "CAP-003",
         "CAP-004",
-        "TSK-011",
         "CMP-005"
       ],
       "covers": [
@@ -15917,7 +15933,7 @@
         "INV-0478"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2503,
+      "downstream_weight": 4067,
       "anchored": true
     },
     {
@@ -16026,7 +16042,7 @@
         "INV-0509"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1812,
+      "downstream_weight": 1816,
       "anchored": true
     },
     {
@@ -16097,7 +16113,7 @@
         "INV-0512"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2780,
+      "downstream_weight": 2785,
       "anchored": true
     },
     {
@@ -16126,7 +16142,7 @@
         "INV-0509"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1768,
+      "downstream_weight": 1772,
       "anchored": true
     },
     {
@@ -16148,7 +16164,7 @@
         "INV-0513"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2783,
+      "downstream_weight": 2788,
       "anchored": true
     },
     {
@@ -16204,7 +16220,7 @@
         "INV-0477"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2496,
+      "downstream_weight": 2501,
       "anchored": true
     },
     {
@@ -16228,7 +16244,7 @@
         "INV-0510"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2786,
+      "downstream_weight": 2791,
       "anchored": true
     },
     {
@@ -16250,7 +16266,7 @@
         "GAP-0412"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1793,
+      "downstream_weight": 1797,
       "anchored": true
     },
     {
@@ -16276,7 +16292,7 @@
         "INV-0492"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1319,
+      "downstream_weight": 1322,
       "anchored": true
     },
     {
@@ -16304,7 +16320,7 @@
         "INV-1116"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2821,
+      "downstream_weight": 2826,
       "anchored": true
     },
     {
@@ -16330,7 +16346,7 @@
         "INV-0525"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1776,
+      "downstream_weight": 1780,
       "anchored": true
     },
     {
@@ -16358,7 +16374,7 @@
         "INV-0848"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1734,
+      "downstream_weight": 1740,
       "anchored": true
     },
     {
@@ -16385,7 +16401,7 @@
         "INV-0480"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1174,
+      "downstream_weight": 1175,
       "anchored": true
     },
     {
@@ -16415,7 +16431,7 @@
         "INV-0159"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2181,
+      "downstream_weight": 2186,
       "anchored": true
     },
     {
@@ -16439,7 +16455,7 @@
         "GAP-0412"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1789,
+      "downstream_weight": 1793,
       "anchored": true
     },
     {
@@ -16494,7 +16510,7 @@
         "INV-0137"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2838,
+      "downstream_weight": 2843,
       "anchored": true
     },
     {
@@ -16518,7 +16534,7 @@
         "INV-0492"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1318,
+      "downstream_weight": 1321,
       "anchored": true
     },
     {
@@ -16569,7 +16585,7 @@
         "GAP-0524"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2824,
+      "downstream_weight": 2829,
       "anchored": true
     },
     {
@@ -16589,7 +16605,7 @@
       ],
       "covers": [],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2499,
+      "downstream_weight": 2504,
       "anchored": true
     },
     {
@@ -16651,7 +16667,7 @@
         "INV-0508"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 2186,
+      "downstream_weight": 2191,
       "anchored": true
     },
     {
@@ -16671,7 +16687,7 @@
         "EXTRA-048"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 3067,
+      "downstream_weight": 3072,
       "anchored": true
     },
     {
@@ -16784,7 +16800,7 @@
         "INV-1184"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 1641,
+      "downstream_weight": 1657,
       "anchored": true
     },
     {
@@ -16838,7 +16854,7 @@
         "INV-0481"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 793,
+      "downstream_weight": 794,
       "anchored": true
     },
     {
@@ -16992,7 +17008,7 @@
         "GAP-0416"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 732,
+      "downstream_weight": 737,
       "anchored": true
     },
     {
@@ -17120,7 +17136,7 @@
         "INV-0493"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 711,
+      "downstream_weight": 723,
       "anchored": true
     },
     {
@@ -17332,7 +17348,7 @@
         "GAP-0428"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 285,
+      "downstream_weight": 286,
       "anchored": true
     },
     {
@@ -17408,7 +17424,7 @@
         "GAP-0427"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 4,
+      "downstream_weight": 22,
       "anchored": true
     },
     {
@@ -17516,7 +17532,7 @@
         "GAP-0429"
       ],
       "file": "workstreams/STO.md",
-      "downstream_weight": 86,
+      "downstream_weight": 104,
       "anchored": true
     },
     {
@@ -17812,13 +17828,15 @@
         "STO-039",
         "STO-036",
         "STO-055",
-        "SEC-018"
+        "SEC-018",
+        "STO-085"
       ],
       "blockers": [
         "STO-039",
         "STO-036",
         "STO-055",
-        "SEC-018"
+        "SEC-018",
+        "STO-085"
       ],
       "covers": [
         "GAP-0431"
@@ -18024,13 +18042,15 @@
         "STO-050",
         "IPC-068",
         "STO-027",
-        "STO-012"
+        "STO-012",
+        "STO-018"
       ],
       "blockers": [
         "STO-050",
         "IPC-068",
         "STO-027",
-        "STO-012"
+        "STO-012",
+        "STO-018"
       ],
       "covers": [],
       "file": "workstreams/STO.md",
@@ -18089,6 +18109,26 @@
       "covers": [],
       "file": "workstreams/STO.md",
       "downstream_weight": 0,
+      "anchored": true
+    },
+    {
+      "id": "STO-085",
+      "title": "Decide how untrusted removable and foreign filesystem images are parsed",
+      "type": "adr",
+      "milestone": "V3",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "S",
+      "owner": "none",
+      "depends_on": [
+        "STO-058"
+      ],
+      "blockers": [
+        "STO-058"
+      ],
+      "covers": [],
+      "file": "workstreams/STO.md",
+      "downstream_weight": 17,
       "anchored": true
     },
     {
@@ -18214,7 +18254,7 @@
         "INV-0540"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2896,
+      "downstream_weight": 2901,
       "anchored": true
     },
     {
@@ -18252,13 +18292,11 @@
       "owner": "none",
       "depends_on": [
         "PKG-041",
-        "PKG-009",
-        "Q-023"
+        "PKG-009"
       ],
       "blockers": [
         "PKG-041",
-        "PKG-009",
-        "Q-023"
+        "PKG-009"
       ],
       "covers": [
         "INV-0565"
@@ -18290,7 +18328,7 @@
         "INV-0564"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2803,
+      "downstream_weight": 2808,
       "anchored": true
     },
     {
@@ -18317,7 +18355,7 @@
         "INV-1298"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3548,
+      "downstream_weight": 3556,
       "anchored": true
     },
     {
@@ -18344,7 +18382,7 @@
         "GAP-0019"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 398,
+      "downstream_weight": 401,
       "anchored": true
     },
     {
@@ -18375,7 +18413,7 @@
         "INV-0233"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3484,
+      "downstream_weight": 3492,
       "anchored": true
     },
     {
@@ -18401,7 +18439,7 @@
         "INV-0539"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 1659,
+      "downstream_weight": 1663,
       "anchored": true
     },
     {
@@ -18454,7 +18492,7 @@
         "INV-0516"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2886,
+      "downstream_weight": 2891,
       "anchored": true
     },
     {
@@ -18515,7 +18553,7 @@
         "INV-0043"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2772,
+      "downstream_weight": 2777,
       "anchored": true
     },
     {
@@ -18569,7 +18607,7 @@
         "INV-0555"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2780,
+      "downstream_weight": 2785,
       "anchored": true
     },
     {
@@ -18596,7 +18634,7 @@
         "INV-0554"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2805,
+      "downstream_weight": 2810,
       "anchored": true
     },
     {
@@ -18648,7 +18686,7 @@
         "INV-0559"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2687,
+      "downstream_weight": 2692,
       "anchored": true
     },
     {
@@ -18865,7 +18903,7 @@
         "GAP-0323"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3475,
+      "downstream_weight": 3483,
       "anchored": true
     },
     {
@@ -18919,7 +18957,7 @@
         "INV-0530"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3318,
+      "downstream_weight": 3326,
       "anchored": true
     },
     {
@@ -19122,7 +19160,7 @@
         "INV-0514"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 1499,
+      "downstream_weight": 1503,
       "anchored": true
     },
     {
@@ -19170,7 +19208,7 @@
         "GAP-0526"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 2902,
+      "downstream_weight": 2907,
       "anchored": true
     },
     {
@@ -19188,7 +19226,7 @@
         "INV-1140"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 3555,
+      "downstream_weight": 3563,
       "anchored": true
     },
     {
@@ -19264,7 +19302,7 @@
         "INV-0630"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 523,
+      "downstream_weight": 524,
       "anchored": true
     },
     {
@@ -19290,7 +19328,7 @@
         "INV-0639"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 669,
+      "downstream_weight": 670,
       "anchored": true
     },
     {
@@ -19304,13 +19342,11 @@
       "owner": "none",
       "depends_on": [
         "PKG-006",
-        "PKG-032",
-        "Q-021"
+        "PKG-032"
       ],
       "blockers": [
         "PKG-006",
-        "PKG-032",
-        "Q-021"
+        "PKG-032"
       ],
       "covers": [
         "INV-0550"
@@ -19330,19 +19366,17 @@
       "owner": "none",
       "depends_on": [
         "PKG-009",
-        "PKG-012",
-        "Q-020"
+        "PKG-012"
       ],
       "blockers": [
         "PKG-009",
-        "PKG-012",
-        "Q-020"
+        "PKG-012"
       ],
       "covers": [
         "INV-0541"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 788,
+      "downstream_weight": 791,
       "anchored": true
     },
     {
@@ -19414,7 +19448,7 @@
         "INV-0639"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 369,
+      "downstream_weight": 370,
       "anchored": true
     },
     {
@@ -19543,7 +19577,7 @@
         "INV-0540"
       ],
       "file": "workstreams/PKG.md",
-      "downstream_weight": 366,
+      "downstream_weight": 367,
       "anchored": true
     },
     {
@@ -19913,13 +19947,11 @@
       "owner": "none",
       "depends_on": [
         "PKG-020",
-        "BOOT-008",
-        "Q-052"
+        "BOOT-008"
       ],
       "blockers": [
         "PKG-020",
-        "BOOT-008",
-        "Q-052"
+        "BOOT-008"
       ],
       "covers": [
         "GAP-0244"
@@ -20483,7 +20515,7 @@
         "INV-0724"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2784,
+      "downstream_weight": 2792,
       "anchored": true
     },
     {
@@ -20588,7 +20620,7 @@
         "INV-0335"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1722,
+      "downstream_weight": 1728,
       "anchored": true
     },
     {
@@ -20620,7 +20652,7 @@
         "INV-1178"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1534,
+      "downstream_weight": 1540,
       "anchored": true
     },
     {
@@ -20675,7 +20707,7 @@
         "INV-1178"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1665,
+      "downstream_weight": 1671,
       "anchored": true
     },
     {
@@ -20708,7 +20740,7 @@
         "INV-0745"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 618,
+      "downstream_weight": 621,
       "anchored": true
     },
     {
@@ -20736,7 +20768,7 @@
         "INV-0732"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1956,
+      "downstream_weight": 1962,
       "anchored": true
     },
     {
@@ -20757,7 +20789,7 @@
         "INV-0210"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1393,
+      "downstream_weight": 1402,
       "anchored": true
     },
     {
@@ -20780,7 +20812,7 @@
         "GAP-0513"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2386,
+      "downstream_weight": 2393,
       "anchored": true
     },
     {
@@ -20802,7 +20834,7 @@
         "INV-0753"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1673,
+      "downstream_weight": 1679,
       "anchored": true
     },
     {
@@ -20824,7 +20856,7 @@
         "GAP-0514"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2205,
+      "downstream_weight": 2212,
       "anchored": true
     },
     {
@@ -20871,7 +20903,7 @@
         "INV-0734"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1510,
+      "downstream_weight": 1513,
       "anchored": true
     },
     {
@@ -20893,7 +20925,7 @@
         "INV-0733"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2277,
+      "downstream_weight": 2284,
       "anchored": true
     },
     {
@@ -20916,7 +20948,7 @@
         "GAP-0515"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2195,
+      "downstream_weight": 2201,
       "anchored": true
     },
     {
@@ -20940,7 +20972,7 @@
         "INV-0606"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1526,
+      "downstream_weight": 1532,
       "anchored": true
     },
     {
@@ -20962,7 +20994,7 @@
         "INV-0887"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2059,
+      "downstream_weight": 2066,
       "anchored": true
     },
     {
@@ -21008,7 +21040,7 @@
         "INV-0730"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2192,
+      "downstream_weight": 2198,
       "anchored": true
     },
     {
@@ -21033,7 +21065,7 @@
         "GAP-0514"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1548,
+      "downstream_weight": 1554,
       "anchored": true
     },
     {
@@ -21112,7 +21144,7 @@
         "INV-0735"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1336,
+      "downstream_weight": 1339,
       "anchored": true
     },
     {
@@ -21224,7 +21256,7 @@
         "INV-0728"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1507,
+      "downstream_weight": 1510,
       "anchored": true
     },
     {
@@ -21252,7 +21284,7 @@
         "INV-0770"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1418,
+      "downstream_weight": 1424,
       "anchored": true
     },
     {
@@ -21276,7 +21308,7 @@
         "INV-0753"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2502,
+      "downstream_weight": 2510,
       "anchored": true
     },
     {
@@ -21300,7 +21332,7 @@
         "GAP-0513"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2419,
+      "downstream_weight": 2427,
       "anchored": true
     },
     {
@@ -21326,7 +21358,7 @@
         "INV-0337"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2337,
+      "downstream_weight": 2344,
       "anchored": true
     },
     {
@@ -21349,7 +21381,7 @@
         "INV-1059"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2710,
+      "downstream_weight": 2718,
       "anchored": true
     },
     {
@@ -21377,7 +21409,7 @@
         "INV-1065"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2323,
+      "downstream_weight": 2330,
       "anchored": true
     },
     {
@@ -21429,7 +21461,7 @@
         "INV-0726"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 2199,
+      "downstream_weight": 2206,
       "anchored": true
     },
     {
@@ -21455,7 +21487,7 @@
         "INV-0605"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 626,
+      "downstream_weight": 629,
       "anchored": true
     },
     {
@@ -21483,7 +21515,7 @@
         "GAP-0228"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1385,
+      "downstream_weight": 1391,
       "anchored": true
     },
     {
@@ -21509,7 +21541,7 @@
         "GAP-0119"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1673,
+      "downstream_weight": 1679,
       "anchored": true
     },
     {
@@ -21534,7 +21566,7 @@
         "INV-1179"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 1523,
+      "downstream_weight": 1529,
       "anchored": true
     },
     {
@@ -21611,7 +21643,7 @@
         "GAP-0216"
       ],
       "file": "workstreams/GFX.md",
-      "downstream_weight": 253,
+      "downstream_weight": 256,
       "anchored": true
     },
     {
@@ -22020,12 +22052,14 @@
       "depends_on": [
         "GFX-040",
         "GFX-037",
-        "GFX-011"
+        "GFX-011",
+        "GFX-099"
       ],
       "blockers": [
         "GFX-040",
         "GFX-037",
-        "GFX-011"
+        "GFX-011",
+        "GFX-099"
       ],
       "covers": [
         "INV-0747",
@@ -22911,7 +22945,8 @@
         "GFX-023",
         "IPC-042",
         "GFX-032",
-        "GFX-012"
+        "GFX-012",
+        "GFX-099"
       ],
       "blockers": [
         "GFX-052",
@@ -22925,7 +22960,8 @@
         "GFX-023",
         "IPC-042",
         "GFX-032",
-        "GFX-012"
+        "GFX-012",
+        "GFX-099"
       ],
       "covers": [],
       "file": "workstreams/GFX.md",
@@ -23008,6 +23044,30 @@
       "anchored": true
     },
     {
+      "id": "GFX-099",
+      "title": "Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics",
+      "type": "adr",
+      "milestone": "V0.5",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "S",
+      "owner": "none",
+      "depends_on": [
+        "GFX-011",
+        "SEC-007",
+        "GFX-033"
+      ],
+      "blockers": [
+        "GFX-011",
+        "SEC-007",
+        "GFX-033"
+      ],
+      "covers": [],
+      "file": "workstreams/GFX.md",
+      "downstream_weight": 246,
+      "anchored": true
+    },
+    {
       "id": "UIP-001",
       "title": "Emit role, name and state for every widget and expose via os inspect",
       "type": "build",
@@ -23030,7 +23090,7 @@
       ],
       "covers": [],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1255,
+      "downstream_weight": 1258,
       "anchored": true
     },
     {
@@ -23132,7 +23192,7 @@
         "INV-1180"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1537,
+      "downstream_weight": 1543,
       "anchored": true
     },
     {
@@ -23157,7 +23217,7 @@
         "GAP-0516"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 2059,
+      "downstream_weight": 2066,
       "anchored": true
     },
     {
@@ -23182,7 +23242,7 @@
         "GAP-0517"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1540,
+      "downstream_weight": 1543,
       "anchored": true
     },
     {
@@ -23206,7 +23266,7 @@
         "INV-0786"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 2054,
+      "downstream_weight": 2061,
       "anchored": true
     },
     {
@@ -23309,7 +23369,7 @@
         "INV-1180"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1527,
+      "downstream_weight": 1533,
       "anchored": true
     },
     {
@@ -23340,7 +23400,7 @@
         "INV-0108"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 2046,
+      "downstream_weight": 2053,
       "anchored": true
     },
     {
@@ -23389,7 +23449,7 @@
         "INV-0783"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 214,
+      "downstream_weight": 215,
       "anchored": true
     },
     {
@@ -23439,7 +23499,7 @@
         "GAP-0516"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 2060,
+      "downstream_weight": 2067,
       "anchored": true
     },
     {
@@ -23461,7 +23521,7 @@
         "INV-0784"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1543,
+      "downstream_weight": 1546,
       "anchored": true
     },
     {
@@ -23479,7 +23539,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 2064,
+      "downstream_weight": 2071,
       "anchored": true
     },
     {
@@ -23507,7 +23567,7 @@
         "INV-1181"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1531,
+      "downstream_weight": 1534,
       "anchored": true
     },
     {
@@ -23559,7 +23619,7 @@
         "INV-0767"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1500,
+      "downstream_weight": 1503,
       "anchored": true
     },
     {
@@ -23589,7 +23649,7 @@
         "INV-0771"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1211,
+      "downstream_weight": 1214,
       "anchored": true
     },
     {
@@ -23613,7 +23673,7 @@
         "INV-1181"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1441,
+      "downstream_weight": 1444,
       "anchored": true
     },
     {
@@ -23641,7 +23701,7 @@
         "INV-0213"
       ],
       "file": "workstreams/UIP.md",
-      "downstream_weight": 1297,
+      "downstream_weight": 1300,
       "anchored": true
     },
     {
@@ -24579,7 +24639,7 @@
         "GAP-0030"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1340,
+      "downstream_weight": 1343,
       "anchored": true
     },
     {
@@ -24603,7 +24663,7 @@
         "INV-0781"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1336,
+      "downstream_weight": 1339,
       "anchored": true
     },
     {
@@ -24628,7 +24688,7 @@
         "GAP-0518"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1334,
+      "downstream_weight": 1337,
       "anchored": true
     },
     {
@@ -24652,7 +24712,7 @@
         "GAP-0030"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1339,
+      "downstream_weight": 1342,
       "anchored": true
     },
     {
@@ -24679,7 +24739,7 @@
         "INV-0781"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1333,
+      "downstream_weight": 1336,
       "anchored": true
     },
     {
@@ -24704,7 +24764,7 @@
         "INV-0781"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1336,
+      "downstream_weight": 1339,
       "anchored": true
     },
     {
@@ -24724,7 +24784,7 @@
         "EXTRA-015"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1335,
+      "downstream_weight": 1338,
       "anchored": true
     },
     {
@@ -24742,7 +24802,7 @@
         "INV-0771"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1208,
+      "downstream_weight": 1211,
       "anchored": true
     },
     {
@@ -24766,7 +24826,7 @@
         "EXTRA-066"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1469,
+      "downstream_weight": 1472,
       "anchored": true
     },
     {
@@ -24785,7 +24845,7 @@
         "GAP-0518"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1342,
+      "downstream_weight": 1345,
       "anchored": true
     },
     {
@@ -24807,7 +24867,7 @@
         "INV-0771"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1447,
+      "downstream_weight": 1450,
       "anchored": true
     },
     {
@@ -24836,7 +24896,7 @@
         "INV-0781"
       ],
       "file": "workstreams/TXT.md",
-      "downstream_weight": 1322,
+      "downstream_weight": 1325,
       "anchored": true
     },
     {
@@ -25750,7 +25810,7 @@
         "EXTRA-065"
       ],
       "file": "workstreams/ACC.md",
-      "downstream_weight": 1276,
+      "downstream_weight": 1279,
       "anchored": true
     },
     {
@@ -25814,7 +25874,7 @@
         "GAP-0554"
       ],
       "file": "workstreams/ACC.md",
-      "downstream_weight": 1278,
+      "downstream_weight": 1281,
       "anchored": true
     },
     {
@@ -25842,7 +25902,7 @@
         "EXTRA-065"
       ],
       "file": "workstreams/ACC.md",
-      "downstream_weight": 1258,
+      "downstream_weight": 1261,
       "anchored": true
     },
     {
@@ -25913,14 +25973,12 @@
       "depends_on": [
         "ACC-002",
         "SEM-007",
-        "SEM-005",
-        "Q-035"
+        "SEM-005"
       ],
       "blockers": [
         "ACC-002",
         "SEM-007",
-        "SEM-005",
-        "Q-035"
+        "SEM-005"
       ],
       "covers": [
         "INV-0802",
@@ -28025,7 +28083,7 @@
         "INV-0865"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 5210,
+      "downstream_weight": 5218,
       "anchored": true
     },
     {
@@ -28080,7 +28138,7 @@
         "INV-0863"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1144,
+      "downstream_weight": 1147,
       "anchored": true
     },
     {
@@ -28137,7 +28195,7 @@
         "GAP-0188"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1531,
+      "downstream_weight": 1534,
       "anchored": true
     },
     {
@@ -28225,7 +28283,7 @@
         "INV-1081"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1117,
+      "downstream_weight": 1120,
       "anchored": true
     },
     {
@@ -28253,7 +28311,7 @@
         "GAP-0502"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1145,
+      "downstream_weight": 1148,
       "anchored": true
     },
     {
@@ -28298,7 +28356,7 @@
         "INV-0876"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1589,
+      "downstream_weight": 1592,
       "anchored": true
     },
     {
@@ -28312,13 +28370,11 @@
       "owner": "none",
       "depends_on": [
         "LNX-045",
-        "LNX-017",
-        "Q-032"
+        "LNX-017"
       ],
       "blockers": [
         "LNX-045",
-        "LNX-017",
-        "Q-032"
+        "LNX-017"
       ],
       "covers": [
         "INV-0675",
@@ -28342,15 +28398,13 @@
         "LNX-018",
         "CAP-007",
         "SEC-006",
-        "SEC-002",
-        "Q-039"
+        "SEC-002"
       ],
       "blockers": [
         "LNX-005",
         "LNX-018",
         "CAP-007",
-        "SEC-006",
-        "Q-039"
+        "SEC-006"
       ],
       "covers": [
         "GAP-0231",
@@ -28372,13 +28426,11 @@
       "owner": "none",
       "depends_on": [
         "LNX-008",
-        "HW-009",
-        "Q-028"
+        "HW-009"
       ],
       "blockers": [
         "LNX-008",
-        "HW-009",
-        "Q-028"
+        "HW-009"
       ],
       "covers": [
         "INV-0625"
@@ -28410,7 +28462,7 @@
         "EXTRA-028"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 459,
+      "downstream_weight": 462,
       "anchored": true
     },
     {
@@ -28425,20 +28477,18 @@
       "depends_on": [
         "LNX-003",
         "ABI-025",
-        "CAP-007",
-        "Q-002"
+        "CAP-007"
       ],
       "blockers": [
         "LNX-003",
         "ABI-025",
-        "CAP-007",
-        "Q-002"
+        "CAP-007"
       ],
       "covers": [
         "INV-0102"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1032,
+      "downstream_weight": 1035,
       "anchored": true
     },
     {
@@ -28506,14 +28556,12 @@
       "depends_on": [
         "STO-047",
         "STO-042",
-        "LNX-013",
-        "Q-018"
+        "LNX-013"
       ],
       "blockers": [
         "STO-047",
         "STO-042",
-        "LNX-013",
-        "Q-018"
+        "LNX-013"
       ],
       "covers": [
         "INV-0493"
@@ -28566,7 +28614,7 @@
       ],
       "covers": [],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 765,
+      "downstream_weight": 768,
       "anchored": true
     },
     {
@@ -28619,7 +28667,7 @@
         "GAP-0022"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1087,
+      "downstream_weight": 1090,
       "anchored": true
     },
     {
@@ -28633,13 +28681,11 @@
       "owner": "none",
       "depends_on": [
         "LNX-023",
-        "PKG-047",
-        "Q-022"
+        "PKG-047"
       ],
       "blockers": [
         "LNX-023",
-        "PKG-047",
-        "Q-022"
+        "PKG-047"
       ],
       "covers": [
         "INV-0552"
@@ -28815,7 +28861,7 @@
         "INV-1330"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 1025,
+      "downstream_weight": 1028,
       "anchored": true
     },
     {
@@ -28934,7 +28980,7 @@
         "EXTRA-069"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 401,
+      "downstream_weight": 404,
       "anchored": true
     },
     {
@@ -29179,7 +29225,7 @@
         "INV-0864"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 845,
+      "downstream_weight": 848,
       "anchored": true
     },
     {
@@ -29264,7 +29310,7 @@
         "INV-1087"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 734,
+      "downstream_weight": 737,
       "anchored": true
     },
     {
@@ -29608,7 +29654,7 @@
         "INV-1082"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 747,
+      "downstream_weight": 750,
       "anchored": true
     },
     {
@@ -29689,7 +29735,7 @@
         "GAP-0503"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 859,
+      "downstream_weight": 862,
       "anchored": true
     },
     {
@@ -29719,7 +29765,7 @@
         "EXTRA-008"
       ],
       "file": "workstreams/LNX.md",
-      "downstream_weight": 756,
+      "downstream_weight": 759,
       "anchored": true
     },
     {
@@ -31098,7 +31144,7 @@
         "INV-1068"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 555,
+      "downstream_weight": 558,
       "anchored": true
     },
     {
@@ -31166,7 +31212,7 @@
         "GAP-0025"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 394,
+      "downstream_weight": 397,
       "anchored": true
     },
     {
@@ -31187,7 +31233,7 @@
         "GAP-0025"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 399,
+      "downstream_weight": 402,
       "anchored": true
     },
     {
@@ -31233,7 +31279,7 @@
         "GAP-0028"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 394,
+      "downstream_weight": 397,
       "anchored": true
     },
     {
@@ -31257,7 +31303,7 @@
         "GAP-0084"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 407,
+      "downstream_weight": 410,
       "anchored": true
     },
     {
@@ -31356,7 +31402,7 @@
         "INV-0908"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 391,
+      "downstream_weight": 394,
       "anchored": true
     },
     {
@@ -31381,7 +31427,7 @@
         "INV-0907"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 345,
+      "downstream_weight": 348,
       "anchored": true
     },
     {
@@ -31403,7 +31449,7 @@
         "GAP-0508"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 348,
+      "downstream_weight": 351,
       "anchored": true
     },
     {
@@ -31432,7 +31478,7 @@
         "INV-0894"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 383,
+      "downstream_weight": 386,
       "anchored": true
     },
     {
@@ -31966,7 +32012,7 @@
         "INV-0901"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 345,
+      "downstream_weight": 348,
       "anchored": true
     },
     {
@@ -31991,7 +32037,7 @@
         "INV-1331"
       ],
       "file": "workstreams/WIN.md",
-      "downstream_weight": 342,
+      "downstream_weight": 345,
       "anchored": true
     },
     {
@@ -33264,6 +33310,30 @@
       "covers": [],
       "file": "workstreams/WIN.md",
       "downstream_weight": 5,
+      "anchored": true
+    },
+    {
+      "id": "WIN-086",
+      "title": "Provide Media Foundation and DirectShow playback for Windows titles through the sandboxed media framework",
+      "type": "build",
+      "milestone": "V2",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "M",
+      "owner": "none",
+      "depends_on": [
+        "WIN-036",
+        "MED-007",
+        "MED-004"
+      ],
+      "blockers": [
+        "WIN-036",
+        "MED-007",
+        "MED-004"
+      ],
+      "covers": [],
+      "file": "workstreams/WIN.md",
+      "downstream_weight": 0,
       "anchored": true
     },
     {
@@ -35715,7 +35785,7 @@
         "INV-1142"
       ],
       "file": "workstreams/WASM.md",
-      "downstream_weight": 4101,
+      "downstream_weight": 4109,
       "anchored": true
     },
     {
@@ -36406,7 +36476,7 @@
         "INV-0244"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 5360,
+      "downstream_weight": 5369,
       "anchored": true
     },
     {
@@ -36459,7 +36529,7 @@
         "INV-0218"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 3485,
+      "downstream_weight": 3493,
       "anchored": true
     },
     {
@@ -36480,7 +36550,7 @@
         "GAP-0527"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 2846,
+      "downstream_weight": 2851,
       "anchored": true
     },
     {
@@ -36523,19 +36593,17 @@
       "owner": "none",
       "depends_on": [
         "CAP-007",
-        "SEC-002",
-        "Q-013"
+        "SEC-002"
       ],
       "blockers": [
-        "CAP-007",
-        "Q-013"
+        "CAP-007"
       ],
       "covers": [
         "EXTRA-068",
         "GAP-0227"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 3534,
+      "downstream_weight": 3556,
       "anchored": true
     },
     {
@@ -36621,12 +36689,14 @@
       "depends_on": [
         "GFX-010",
         "SEC-007",
-        "CAP-005"
+        "CAP-005",
+        "GFX-099"
       ],
       "blockers": [
         "GFX-010",
         "SEC-007",
-        "CAP-005"
+        "CAP-005",
+        "GFX-099"
       ],
       "covers": [
         "INV-0751"
@@ -36656,7 +36726,7 @@
         "GAP-0541"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 1088,
+      "downstream_weight": 1091,
       "anchored": true
     },
     {
@@ -36678,7 +36748,7 @@
         "GAP-0221"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 1069,
+      "downstream_weight": 1072,
       "anchored": true
     },
     {
@@ -36700,7 +36770,7 @@
         "GAP-0213"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 1074,
+      "downstream_weight": 1077,
       "anchored": true
     },
     {
@@ -36847,7 +36917,7 @@
         "GAP-0213"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 1066,
+      "downstream_weight": 1069,
       "anchored": true
     },
     {
@@ -37015,7 +37085,7 @@
         "GAP-0222"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 477,
+      "downstream_weight": 480,
       "anchored": true
     },
     {
@@ -37039,7 +37109,7 @@
         "GAP-0214"
       ],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 1053,
+      "downstream_weight": 1056,
       "anchored": true
     },
     {
@@ -37179,15 +37249,13 @@
         "SEM-029",
         "SEM-001",
         "SEC-012",
-        "SEC-007",
-        "Q-037"
+        "SEC-007"
       ],
       "blockers": [
         "SEM-029",
         "SEM-001",
         "SEC-012",
-        "SEC-007",
-        "Q-037"
+        "SEC-007"
       ],
       "covers": [
         "INV-0826",
@@ -37807,7 +37875,7 @@
       ],
       "covers": [],
       "file": "workstreams/SEC.md",
-      "downstream_weight": 0,
+      "downstream_weight": 3,
       "anchored": true
     },
     {
@@ -38301,6 +38369,54 @@
       "anchored": true
     },
     {
+      "id": "SEC-080",
+      "title": "Block new USB device enumeration while the Session is locked and confirm new keyboards before trusted input",
+      "type": "build",
+      "milestone": "V3",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "M",
+      "owner": "none",
+      "depends_on": [
+        "HW-075",
+        "SEC-059"
+      ],
+      "blockers": [
+        "HW-075",
+        "SEC-059"
+      ],
+      "covers": [],
+      "file": "workstreams/SEC.md",
+      "downstream_weight": 0,
+      "anchored": true
+    },
+    {
+      "id": "SEC-081",
+      "title": "Lock the grant schema versions for 1.x with evolution tests",
+      "type": "build",
+      "milestone": "V4",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "S",
+      "owner": "none",
+      "depends_on": [
+        "SEC-007",
+        "CAP-043",
+        "CAP-048",
+        "IPC-042"
+      ],
+      "blockers": [
+        "SEC-007",
+        "CAP-043",
+        "CAP-048",
+        "IPC-042"
+      ],
+      "covers": [],
+      "file": "workstreams/SEC.md",
+      "downstream_weight": 0,
+      "anchored": true
+    },
+    {
       "id": "NET-001",
       "title": "Inventory retained TCP/IP, nftables and network drivers under native objects",
       "type": "docs",
@@ -38322,7 +38438,7 @@
         "INV-0129"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1212,
+      "downstream_weight": 1215,
       "anchored": true
     },
     {
@@ -38348,7 +38464,7 @@
         "GAP-0538"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1211,
+      "downstream_weight": 1214,
       "anchored": true
     },
     {
@@ -38445,7 +38561,7 @@
         "INV-0203"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1083,
+      "downstream_weight": 1086,
       "anchored": true
     },
     {
@@ -38470,7 +38586,7 @@
         "INV-0065"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1210,
+      "downstream_weight": 1213,
       "anchored": true
     },
     {
@@ -38497,7 +38613,7 @@
         "INV-0110"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1160,
+      "downstream_weight": 1163,
       "anchored": true
     },
     {
@@ -38603,7 +38719,7 @@
         "GAP-0293"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1073,
+      "downstream_weight": 1076,
       "anchored": true
     },
     {
@@ -38658,7 +38774,7 @@
         "INV-0065"
       ],
       "file": "workstreams/NET.md",
-      "downstream_weight": 1147,
+      "downstream_weight": 1150,
       "anchored": true
     },
     {
@@ -38715,7 +38831,7 @@
       ],
       "covers": [],
       "file": "workstreams/NET.md",
-      "downstream_weight": 758,
+      "downstream_weight": 761,
       "anchored": true
     },
     {
@@ -40306,7 +40422,7 @@
         "EXTRA-057"
       ],
       "file": "workstreams/MED.md",
-      "downstream_weight": 364,
+      "downstream_weight": 367,
       "anchored": true
     },
     {
@@ -40333,7 +40449,7 @@
         "GAP-0300"
       ],
       "file": "workstreams/MED.md",
-      "downstream_weight": 365,
+      "downstream_weight": 368,
       "anchored": true
     },
     {
@@ -40384,7 +40500,7 @@
         "EXTRA-057"
       ],
       "file": "workstreams/MED.md",
-      "downstream_weight": 364,
+      "downstream_weight": 367,
       "anchored": true
     },
     {
@@ -40445,7 +40561,7 @@
         "EXTRA-057"
       ],
       "file": "workstreams/MED.md",
-      "downstream_weight": 365,
+      "downstream_weight": 368,
       "anchored": true
     },
     {
@@ -40461,7 +40577,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/MED.md",
-      "downstream_weight": 365,
+      "downstream_weight": 368,
       "anchored": true
     },
     {
@@ -41326,7 +41442,7 @@
         "INV-1154"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2289,
+      "downstream_weight": 2295,
       "anchored": true
     },
     {
@@ -41348,7 +41464,7 @@
         "INV-0612"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2311,
+      "downstream_weight": 2317,
       "anchored": true
     },
     {
@@ -41372,7 +41488,7 @@
         "INV-1233"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 3360,
+      "downstream_weight": 3369,
       "anchored": true
     },
     {
@@ -41411,7 +41527,7 @@
         "INV-1327"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2275,
+      "downstream_weight": 2281,
       "anchored": true
     },
     {
@@ -41477,7 +41593,7 @@
         "INV-0623"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 456,
+      "downstream_weight": 459,
       "anchored": true
     },
     {
@@ -41499,7 +41615,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2044,
+      "downstream_weight": 2050,
       "anchored": true
     },
     {
@@ -41527,7 +41643,7 @@
         "INV-0170"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2038,
+      "downstream_weight": 2044,
       "anchored": true
     },
     {
@@ -41552,7 +41668,7 @@
         "INV-0069"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2187,
+      "downstream_weight": 2193,
       "anchored": true
     },
     {
@@ -41578,7 +41694,7 @@
         "INV-1061"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 1888,
+      "downstream_weight": 1894,
       "anchored": true
     },
     {
@@ -41604,7 +41720,7 @@
         "EXTRA-042"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 1683,
+      "downstream_weight": 1689,
       "anchored": true
     },
     {
@@ -41624,7 +41740,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 1536,
+      "downstream_weight": 1542,
       "anchored": true
     },
     {
@@ -41648,7 +41764,7 @@
         "INV-0623"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 2055,
+      "downstream_weight": 2061,
       "anchored": true
     },
     {
@@ -41671,7 +41787,7 @@
         "INV-0624"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 573,
+      "downstream_weight": 576,
       "anchored": true
     },
     {
@@ -41692,7 +41808,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 1027,
+      "downstream_weight": 1030,
       "anchored": true
     },
     {
@@ -41716,7 +41832,7 @@
         "INV-1054"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 506,
+      "downstream_weight": 509,
       "anchored": true
     },
     {
@@ -41740,7 +41856,7 @@
         "INV-0627"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 455,
+      "downstream_weight": 458,
       "anchored": true
     },
     {
@@ -41790,7 +41906,7 @@
         "INV-1326"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 740,
+      "downstream_weight": 743,
       "anchored": true
     },
     {
@@ -41835,7 +41951,7 @@
         "INV-1058"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 215,
+      "downstream_weight": 218,
       "anchored": true
     },
     {
@@ -41859,7 +41975,7 @@
         "INV-1062"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 734,
+      "downstream_weight": 737,
       "anchored": true
     },
     {
@@ -41962,7 +42078,7 @@
         "INV-0627"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 440,
+      "downstream_weight": 443,
       "anchored": true
     },
     {
@@ -42046,7 +42162,7 @@
         "INV-0612"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 383,
+      "downstream_weight": 386,
       "anchored": true
     },
     {
@@ -42099,7 +42215,7 @@
         "INV-0615"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 259,
+      "downstream_weight": 262,
       "anchored": true
     },
     {
@@ -42705,7 +42821,7 @@
         "INV-0619"
       ],
       "file": "workstreams/HW.md",
-      "downstream_weight": 91,
+      "downstream_weight": 94,
       "anchored": true
     },
     {
@@ -43208,7 +43324,7 @@
       ],
       "covers": [],
       "file": "workstreams/HW.md",
-      "downstream_weight": 75,
+      "downstream_weight": 78,
       "anchored": true
     },
     {
@@ -44438,7 +44554,7 @@
         "INV-0964"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1455,
+      "downstream_weight": 1458,
       "anchored": true
     },
     {
@@ -44471,7 +44587,7 @@
         "INV-0280"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1361,
+      "downstream_weight": 1364,
       "anchored": true
     },
     {
@@ -44496,7 +44612,7 @@
         "GAP-0090"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1920,
+      "downstream_weight": 1926,
       "anchored": true
     },
     {
@@ -44531,7 +44647,7 @@
         "INV-1167"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1827,
+      "downstream_weight": 1833,
       "anchored": true
     },
     {
@@ -44561,7 +44677,7 @@
         "INV-0371"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1406,
+      "downstream_weight": 1409,
       "anchored": true
     },
     {
@@ -44579,7 +44695,7 @@
         "INV-1252"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1635,
+      "downstream_weight": 1638,
       "anchored": true
     },
     {
@@ -44675,7 +44791,7 @@
         "INV-0316"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1916,
+      "downstream_weight": 1922,
       "anchored": true
     },
     {
@@ -44697,7 +44813,7 @@
       ],
       "covers": [],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1835,
+      "downstream_weight": 1841,
       "anchored": true
     },
     {
@@ -44722,7 +44838,7 @@
         "INV-1148"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1836,
+      "downstream_weight": 1842,
       "anchored": true
     },
     {
@@ -44753,7 +44869,7 @@
         "INV-0603"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1392,
+      "downstream_weight": 1398,
       "anchored": true
     },
     {
@@ -44777,7 +44893,7 @@
         "INV-0967"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1220,
+      "downstream_weight": 1223,
       "anchored": true
     },
     {
@@ -44801,7 +44917,7 @@
         "INV-0229"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1221,
+      "downstream_weight": 1224,
       "anchored": true
     },
     {
@@ -44893,7 +45009,7 @@
         "INV-0966"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1294,
+      "downstream_weight": 1297,
       "anchored": true
     },
     {
@@ -45064,7 +45180,7 @@
         "INV-0968"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1208,
+      "downstream_weight": 1211,
       "anchored": true
     },
     {
@@ -45112,7 +45228,7 @@
         "GAP-0309"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 1212,
+      "downstream_weight": 1215,
       "anchored": true
     },
     {
@@ -45138,7 +45254,7 @@
         "INV-1012"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 814,
+      "downstream_weight": 817,
       "anchored": true
     },
     {
@@ -45240,7 +45356,7 @@
         "INV-0551"
       ],
       "file": "workstreams/SDK.md",
-      "downstream_weight": 817,
+      "downstream_weight": 820,
       "anchored": true
     },
     {
@@ -47016,7 +47132,7 @@
         "INV-1190"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 876,
+      "downstream_weight": 879,
       "anchored": true
     },
     {
@@ -47050,7 +47166,7 @@
         "INV-0487"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1291,
+      "downstream_weight": 1294,
       "anchored": true
     },
     {
@@ -47076,7 +47192,7 @@
         "INV-1189"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1315,
+      "downstream_weight": 1318,
       "anchored": true
     },
     {
@@ -47113,7 +47229,7 @@
         "INV-1187"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1205,
+      "downstream_weight": 1208,
       "anchored": true
     },
     {
@@ -47143,7 +47259,7 @@
         "INV-1190"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1217,
+      "downstream_weight": 1220,
       "anchored": true
     },
     {
@@ -47166,7 +47282,7 @@
         "INV-1188"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1218,
+      "downstream_weight": 1221,
       "anchored": true
     },
     {
@@ -47225,7 +47341,7 @@
       ],
       "covers": [],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1216,
+      "downstream_weight": 1219,
       "anchored": true
     },
     {
@@ -47251,7 +47367,7 @@
         "GAP-0310"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 1208,
+      "downstream_weight": 1211,
       "anchored": true
     },
     {
@@ -50186,13 +50302,11 @@
       "owner": "none",
       "depends_on": [
         "NET-021",
-        "SEC-027",
-        "Q-054"
+        "SEC-027"
       ],
       "blockers": [
         "NET-021",
-        "SEC-027",
-        "Q-054"
+        "SEC-027"
       ],
       "covers": [
         "GAP-0419"
@@ -50568,7 +50682,7 @@
         "GAP-0087"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 3174,
+      "downstream_weight": 3180,
       "anchored": true
     },
     {
@@ -50589,7 +50703,7 @@
         "GAP-0107"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4615,
+      "downstream_weight": 5044,
       "anchored": true
     },
     {
@@ -50608,7 +50722,7 @@
         "GAP-0160"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4734,
+      "downstream_weight": 5144,
       "anchored": true
     },
     {
@@ -50628,7 +50742,7 @@
         "GAP-0086"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5516,
+      "downstream_weight": 5527,
       "anchored": true
     },
     {
@@ -50652,7 +50766,7 @@
         "GAP-0114"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 2405,
+      "downstream_weight": 2411,
       "anchored": true
     },
     {
@@ -50729,7 +50843,7 @@
         "GAP-0096"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 3171,
+      "downstream_weight": 3177,
       "anchored": true
     },
     {
@@ -50796,7 +50910,7 @@
         "GAP-0155"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4202,
+      "downstream_weight": 4715,
       "anchored": true
     },
     {
@@ -50823,7 +50937,7 @@
         "EXTRA-011"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 2883,
+      "downstream_weight": 2889,
       "anchored": true
     },
     {
@@ -50847,7 +50961,7 @@
         "GAP-0089"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 4702,
+      "downstream_weight": 5123,
       "anchored": true
     },
     {
@@ -51216,7 +51330,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 1690,
+      "downstream_weight": 1696,
       "anchored": true
     },
     {
@@ -52517,7 +52631,7 @@
         "GAP-0546"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 889,
+      "downstream_weight": 892,
       "anchored": true
     },
     {
@@ -52535,7 +52649,7 @@
         "GAP-0372"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 3304,
+      "downstream_weight": 3312,
       "anchored": true
     },
     {
@@ -52556,7 +52670,7 @@
         "EXTRA-052"
       ],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 3300,
+      "downstream_weight": 3308,
       "anchored": true
     },
     {
@@ -52576,7 +52690,7 @@
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 892,
+      "downstream_weight": 895,
       "anchored": true
     },
     {
@@ -52638,7 +52752,7 @@
       ],
       "covers": [],
       "file": "workstreams/LAB.md",
-      "downstream_weight": 1375,
+      "downstream_weight": 1378,
       "anchored": true
     },
     {
@@ -53235,7 +53349,7 @@
         "INV-1126"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 4207,
+      "downstream_weight": 4720,
       "anchored": true
     },
     {
@@ -53255,7 +53369,7 @@
         "INV-1040"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 3068,
+      "downstream_weight": 3073,
       "anchored": true
     },
     {
@@ -53279,7 +53393,7 @@
         "INV-1034"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 1282,
+      "downstream_weight": 1285,
       "anchored": true
     },
     {
@@ -53299,7 +53413,7 @@
         "GAP-0482"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 4899,
+      "downstream_weight": 4933,
       "anchored": true
     },
     {
@@ -53368,7 +53482,7 @@
         "INV-1192"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 873,
+      "downstream_weight": 876,
       "anchored": true
     },
     {
@@ -53562,7 +53676,7 @@
         "INV-0640"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 890,
+      "downstream_weight": 893,
       "anchored": true
     },
     {
@@ -53641,7 +53755,7 @@
         "INV-0507"
       ],
       "file": "workstreams/BEN.md",
-      "downstream_weight": 2832,
+      "downstream_weight": 2837,
       "anchored": true
     },
     {
@@ -54804,6 +54918,25 @@
       "anchored": true
     },
     {
+      "id": "BEN-064",
+      "title": "Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations",
+      "type": "adr",
+      "milestone": "V0",
+      "status": "todo",
+      "derived": "ready",
+      "size": "S",
+      "owner": "none",
+      "depends_on": [
+        "BEN-007",
+        "HW-003"
+      ],
+      "blockers": [],
+      "covers": [],
+      "file": "workstreams/BEN.md",
+      "downstream_weight": 0,
+      "anchored": true
+    },
+    {
       "id": "REL-001",
       "title": "Decide release, SystemGeneration and Channel versioning",
       "type": "adr",
@@ -54819,7 +54952,7 @@
         "GAP-0344"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 873,
+      "downstream_weight": 874,
       "anchored": true
     },
     {
@@ -54839,7 +54972,7 @@
         "GAP-0322"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 837,
+      "downstream_weight": 838,
       "anchored": true
     },
     {
@@ -54864,7 +54997,7 @@
         "INV-0540"
       ],
       "file": "workstreams/REL.md",
-      "downstream_weight": 804,
+      "downstream_weight": 805,
       "anchored": true
     },
     {
@@ -56617,7 +56750,7 @@
         "INV-1151"
       ],
       "file": "workstreams/DOC.md",
-      "downstream_weight": 1549,
+      "downstream_weight": 1552,
       "anchored": true
     },
     {
@@ -57698,7 +57831,7 @@
         "GAP-0384"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 5567,
+      "downstream_weight": 5578,
       "anchored": true
     },
     {
@@ -57720,7 +57853,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 4306,
+      "downstream_weight": 4783,
       "anchored": true
     },
     {
@@ -57741,7 +57874,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 4900,
+      "downstream_weight": 4948,
       "anchored": true
     },
     {
@@ -57761,7 +57894,7 @@
         "GAP-0164"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 5627,
+      "downstream_weight": 5638,
       "anchored": true
     },
     {
@@ -57794,7 +57927,7 @@
         "INV-1312"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 1979,
+      "downstream_weight": 1982,
       "anchored": true
     },
     {
@@ -57818,7 +57951,7 @@
         "INV-1334"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 2007,
+      "downstream_weight": 2010,
       "anchored": true
     },
     {
@@ -57899,7 +58032,7 @@
         "GAP-0030"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 1487,
+      "downstream_weight": 1490,
       "anchored": true
     },
     {
@@ -58033,7 +58166,7 @@
         "GAP-0012"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 1670,
+      "downstream_weight": 1673,
       "anchored": true
     },
     {
@@ -58156,7 +58289,7 @@
         "GAP-0473"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 377,
+      "downstream_weight": 380,
       "anchored": true
     },
     {
@@ -58389,7 +58522,7 @@
         "GAP-0156"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 1088,
+      "downstream_weight": 1091,
       "anchored": true
     },
     {
@@ -58626,12 +58759,10 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "GOV-024",
-        "Q-053"
+        "GOV-024"
       ],
       "blockers": [
-        "GOV-024",
-        "Q-053"
+        "GOV-024"
       ],
       "covers": [
         "GAP-0068",
@@ -59445,12 +59576,10 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "GOV-067",
-        "Q-046"
+        "GOV-067"
       ],
       "blockers": [
-        "GOV-067",
-        "Q-046"
+        "GOV-067"
       ],
       "covers": [
         "INV-1251",
@@ -59494,12 +59623,10 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "GOV-024",
-        "Q-055"
+        "GOV-024"
       ],
       "blockers": [
-        "GOV-024",
-        "Q-055"
+        "GOV-024"
       ],
       "covers": [
         "GAP-0472"
@@ -60216,12 +60343,14 @@
             "ABI-020",
             "ABI-021",
             "LAB-004",
-            "SDK-010"
+            "SDK-010",
+            "KRN-060",
+            "BEN-064"
           ],
           "satisfied": false,
           "reasons": [
             "`CAP-008` is todo — Decide the userspace Capability<T> handle representation and table design",
-            "`ABI-010` is todo — Decide Capability handle representation: dense index, sparse id or sealed value",
+            "`ABI-010` is todo — Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation",
             "`CAP-010` is todo — Decide rights and transfer-rights encoding including Admin authority",
             "`IPC-006` is todo — Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new",
             "`IPC-003` is todo — Select the small-message fast-path technique from measured prototypes",
@@ -60230,7 +60359,9 @@
             "`ABI-020` is todo — Prototype typed kernel-boundary errors without errno",
             "`ABI-021` is todo — Prototype Layer 1 version and feature handshake",
             "`LAB-004` is todo — Prototype photodiode versus camera Input-to-photon measurement",
-            "`SDK-010` is todo — Decide the userspace executor shape for the native runtime"
+            "`SDK-010` is todo — Decide the userspace executor shape for the native runtime",
+            "`KRN-060` is todo — Enforce fallible allocation and no-panic rules in native kernel Rust code",
+            "`BEN-064` is todo — Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations"
           ]
         },
         {
@@ -60662,7 +60793,8 @@
             "PWR-005",
             "SDK-031",
             "SEM-003",
-            "STO-027"
+            "STO-027",
+            "GFX-099"
           ],
           "satisfied": false,
           "reasons": [
@@ -60692,7 +60824,8 @@
             "`PWR-005` is todo — Prototype Layer 2 Power, Battery and inhibit Interface shapes",
             "`SDK-031` is todo — Prototype the SDK v1 crate Surface used by daily-driving apps",
             "`SEM-003` is todo — Prototype one Editor method as a typed Semantic Interface",
-            "`STO-027` is todo — Prototype File, Directory and UserSelected Interfaces"
+            "`STO-027` is todo — Prototype File, Directory and UserSelected Interfaces",
+            "`GFX-099` is todo — Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics"
           ]
         },
         {
@@ -62448,7 +62581,8 @@
             "VIRT-004",
             "WIN-025",
             "WIN-037",
-            "WIN-046"
+            "WIN-046",
+            "WIN-086"
           ],
           "satisfied": false,
           "reasons": [
@@ -62458,7 +62592,8 @@
             "`VIRT-004` is todo — Provide OVMF firmware and TPM emulation for Windows guests",
             "`WIN-025` is todo — Map Credential Manager and DPAPI onto the native secrets service",
             "`WIN-037` is todo — Bridge OLE drag-and-drop onto native Capability-granting drops",
-            "`WIN-046` is todo — Launch Steam Proton titles through the Windows Personality"
+            "`WIN-046` is todo — Launch Steam Proton titles through the Windows Personality",
+            "`WIN-086` is todo — Provide Media Foundation and DirectShow playback for Windows titles through the sandboxed media framework"
           ]
         },
         {
@@ -62957,7 +63092,8 @@
             "GOV-049",
             "GOV-050",
             "GOV-052",
-            "GOV-053"
+            "GOV-053",
+            "STO-085"
           ],
           "satisfied": false,
           "reasons": [
@@ -62984,7 +63120,8 @@
             "`GOV-049` is todo — Decide redistribution licensing for Personality software wrappers",
             "`GOV-050` is todo — Assess export-control and cryptography distribution obligations",
             "`GOV-052` is todo — Decide Open Invention Network membership and a patent pledge",
-            "`GOV-053` is todo — Decide redistribution policy for third-party Linux and Windows software"
+            "`GOV-053` is todo — Decide redistribution policy for third-party Linux and Windows software",
+            "`STO-085` is todo — Decide how untrusted removable and foreign filesystem images are parsed"
           ]
         },
         {
@@ -63127,7 +63264,8 @@
             "SEC-054",
             "SEC-056",
             "SEC-057",
-            "SEC-059"
+            "SEC-059",
+            "SEC-080"
           ],
           "satisfied": false,
           "reasons": [
@@ -63136,7 +63274,8 @@
             "`SEC-054` is todo — Enrol enterprise CAs into the trust store",
             "`SEC-056` is todo — Support FIDO2 keys for disk unlock and login",
             "`SEC-057` is todo — Add fingerprint login through pluggable authenticators",
-            "`SEC-059` is todo — Lock the Session with hardware-backed secrets"
+            "`SEC-059` is todo — Lock the Session with hardware-backed secrets",
+            "`SEC-080` is todo — Block new USB device enumeration while the Session is locked and confirm new keyboards before trusted input"
           ]
         },
         {
@@ -63383,7 +63522,8 @@
             "TXT-045",
             "UIP-055",
             "WASM-022",
-            "PWR-008"
+            "PWR-008",
+            "SEC-081"
           ],
           "satisfied": false,
           "reasons": [
@@ -63405,7 +63545,8 @@
             "`TXT-045` is todo — Lock 1.x versions of FontMatcher, TextInput, Locale and SpellCheck interfaces",
             "`UIP-055` is todo — Lock UI protocol L2 version for 1.x and remove deprecated messages",
             "`WASM-022` is todo — Lock Wasm host Interface versions with a conformance suite",
-            "`PWR-008` is todo — Declare Layer 2 power Interface freeze candidates"
+            "`PWR-008` is todo — Declare Layer 2 power Interface freeze candidates",
+            "`SEC-081` is todo — Lock the grant schema versions for 1.x with evolution tests"
           ]
         },
         {
@@ -64409,12 +64550,12 @@
     }
   ],
   "totals": {
-    "total": 2268,
+    "total": 2275,
     "done": 46,
-    "todo": 2222,
+    "todo": 2229,
     "in_progress": 0,
     "dropped": 0,
-    "weight_total": 6416,
+    "weight_total": 6429,
     "weight_done": 72,
     "gates_total": 187,
     "gates_satisfied": 0
@@ -64443,23 +64584,23 @@
       "gates_satisfied": 0
     },
     "V0": {
-      "total": 217,
+      "total": 219,
       "done": 30,
-      "todo": 187,
+      "todo": 189,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 673,
+      "weight_total": 677,
       "weight_done": 48,
       "gates_total": 21,
       "gates_satisfied": 0
     },
     "V0.5": {
-      "total": 436,
+      "total": 437,
       "done": 8,
-      "todo": 428,
+      "todo": 429,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 1161,
+      "weight_total": 1162,
       "weight_done": 14,
       "gates_total": 29,
       "gates_satisfied": 0
@@ -64476,34 +64617,34 @@
       "gates_satisfied": 0
     },
     "V2": {
-      "total": 474,
+      "total": 475,
       "done": 4,
-      "todo": 470,
+      "todo": 471,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 1412,
+      "weight_total": 1415,
       "weight_done": 4,
       "gates_total": 30,
       "gates_satisfied": 0
     },
     "V3": {
-      "total": 315,
+      "total": 317,
       "done": 0,
-      "todo": 315,
+      "todo": 317,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 908,
+      "weight_total": 912,
       "weight_done": 0,
       "gates_total": 30,
       "gates_satisfied": 0
     },
     "V4": {
-      "total": 154,
+      "total": 155,
       "done": 0,
-      "todo": 154,
+      "todo": 155,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 429,
+      "weight_total": 430,
       "weight_done": 0,
       "gates_total": 28,
       "gates_satisfied": 0
@@ -64555,12 +64696,12 @@
       "gates_satisfied": 0
     },
     "BEN": {
-      "total": 63,
+      "total": 64,
       "done": 2,
-      "todo": 61,
+      "todo": 62,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 146,
+      "weight_total": 147,
       "weight_done": 4,
       "gates_total": 0,
       "gates_satisfied": 0
@@ -64632,12 +64773,12 @@
       "gates_satisfied": 0
     },
     "GFX": {
-      "total": 98,
+      "total": 99,
       "done": 0,
-      "todo": 98,
+      "todo": 99,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 318,
+      "weight_total": 319,
       "weight_done": 0,
       "gates_total": 0,
       "gates_satisfied": 0
@@ -64698,12 +64839,12 @@
       "gates_satisfied": 0
     },
     "KRN": {
-      "total": 59,
+      "total": 60,
       "done": 8,
-      "todo": 51,
+      "todo": 52,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 127,
+      "weight_total": 130,
       "weight_done": 10,
       "gates_total": 0,
       "gates_satisfied": 0
@@ -64830,12 +64971,12 @@
       "gates_satisfied": 0
     },
     "SEC": {
-      "total": 79,
+      "total": 81,
       "done": 1,
-      "todo": 78,
+      "todo": 80,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 165,
+      "weight_total": 169,
       "weight_done": 3,
       "gates_total": 0,
       "gates_satisfied": 0
@@ -64852,12 +64993,12 @@
       "gates_satisfied": 0
     },
     "STO": {
-      "total": 84,
+      "total": 85,
       "done": 0,
-      "todo": 84,
+      "todo": 85,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 258,
+      "weight_total": 259,
       "weight_done": 0,
       "gates_total": 0,
       "gates_satisfied": 0
@@ -64929,12 +65070,12 @@
       "gates_satisfied": 0
     },
     "WIN": {
-      "total": 85,
+      "total": 86,
       "done": 1,
-      "todo": 84,
+      "todo": 85,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 249,
+      "weight_total": 252,
       "weight_done": 1,
       "gates_total": 0,
       "gates_satisfied": 0

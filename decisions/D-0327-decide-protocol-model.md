@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: UIP-006
 - Surfaces: S-015
-- Layer: none
+- Layer: L2
 - Spikes: UIP-017
 - Supersedes: none
 - Superseded by: none

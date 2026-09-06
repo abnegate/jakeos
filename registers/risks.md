@@ -14,7 +14,7 @@ Wrapping `task_struct`, `mm_struct` and cgroups may make component creation far 
 - Likelihood: high
 - Impact: high
 - Status: open
-- Mitigated by: BLD-013, KRN-004, KRN-010, KRN-018
+- Mitigated by: BLD-013, KRN-004, KRN-010, KRN-018, KRN-060
 - Retire by: V0
 Bindings to core subsystems may be missing. Q-051 records the upstream minimum-Rust question.
 
@@ -70,7 +70,7 @@ The threat model is a V0 docs task. Every CAP, SEC and BOOT decision cites T-IDs
 - Likelihood: medium
 - Impact: high
 - Status: open
-- Mitigated by: BEN-001, BEN-005, BEN-007, BEN-022, BLD-010, BLD-045, BLD-048, CMP-001, MEM-010, MEM-012, TSK-002, TSK-026, TSK-039
+- Mitigated by: BEN-001, BEN-005, BEN-007, BEN-022, BEN-064, BLD-010, BLD-045, BLD-048, CMP-001, MEM-010, MEM-012, TSK-002, TSK-026, TSK-039
 - Retire by: V0
 V0 benchmark gates are publish-only and still need a harness, Q-001 methodology, and CI on H-001 and H-002.
 

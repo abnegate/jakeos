@@ -25,6 +25,7 @@
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | todo | ready | M | KRN-002 |
 | KRN-018 | Spike Rust-in-kernel viability and decide the C-versus-Rust boundary | todo | blocked | M | KRN-004, KRN-010, BLD-013 |
 | KRN-019 | Verify V0 kernel gates: reproducible boot from a tagged commit and L0 parity | todo | blocked | S | KRN-013, KRN-014, KRN-011, KRN-016, KRN-008, KRN-012, BOOT-001, LNX-002, HW-001 |
+| KRN-060 | Enforce fallible allocation and no-panic rules in native kernel Rust code | todo | blocked | M | KRN-013, KRN-016, BLD-013 |
 
 ## V0.5
 
@@ -40,7 +41,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | KRN-024 | Decide eBPF's native role and the Linux Personality's bpf() exposure | todo | blocked | S | KRN-017, OBS-003, LNX-003 |
-| KRN-025 | Decide how KVM is exposed natively as Capability<VirtualMachine> | todo | blocked | S | KRN-017, KRN-001, Q-048 |
+| KRN-025 | Decide how KVM is exposed natively as Capability<VirtualMachine> | todo | blocked | S | KRN-017, KRN-001 |
 | KRN-026 | Decide that kernel live-patching is a non-goal in favour of generations plus reboot | todo | blocked | S | KRN-009, PKG-009 |
 | KRN-027 | Decide module signing under Secure Boot for out-of-tree, GPU and local modules | todo | blocked | S | KRN-028 |
 | KRN-028 | Decide out-of-tree module policy: GPL-only native exports and taint semantics | todo | blocked | S | KRN-003, KRN-017 |
@@ -75,7 +76,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | blocked | S | KRN-009, KRN-042, Q-003 |
+| KRN-050 | Decide which kernel evolution phase is required at 1.0 | todo | blocked | S | KRN-009, KRN-042 |
 | KRN-051 | Establish the process for adopting upstream architecture improvements | todo | blocked | S | KRN-042, KRN-029 |
 | KRN-052 | Exercise kernel CVE response and publish the V3 response-time distribution | todo | blocked | M | KRN-030, KRN-031, KRN-045, REL-034 |
 | KRN-053 | Establish selective adoption of upstream mm, scheduler and subsystem patches | todo | blocked | M | KRN-042, KRN-047 |

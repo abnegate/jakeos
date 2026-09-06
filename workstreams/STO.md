@@ -4,7 +4,7 @@
 - Baseline: §4, §7, §9.1, §16, §18, §25, §26, §27, §31, §57, §60, §62, §67
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 0 done, 0 in-progress, 84 todo, 0 dropped. Ready: 1. Blocked: 83. Weighted: 0%.
+Tasks: 85 live, 0 done, 0 in-progress, 85 todo, 0 dropped. Ready: 1. Blocked: 84. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -21,7 +21,7 @@ Package and SystemGeneration composition (PKG). Chooser UI, File Browser chrome,
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ABI-005, CAP-005, CAP-003, CAP-004, TSK-011, CMP-005
+- Depends on: ABI-005, CAP-005, CAP-003, CAP-004, CMP-005
 - Baseline: §7, §25
 - Threats: T-001, T-003
 - Invariants: I-016, I-021
@@ -770,7 +770,7 @@ The filesystem Decision (STO-016). Energy methodology (BEN).
 - Owner: none
 - Depends on: STO-001
 - Baseline: §25, §26
-- Explores: S-027
+- Explores: S-027, S-033
 
 Prototype `Capability<File>`, `Capability<Directory>`, UserSelected and a typed change-notification Operation so STO-012 is informed by running code (§25). Surface S-027 remains open. Native software never sees a global filesystem path as ambient authority.
 
@@ -781,6 +781,7 @@ The Decision (STO-012). Freeze of S-027 (STO-082). Chooser UI (APP-002).
 - [ ] A prototype File and Directory Capability pair scopes access to a subtree on `qemu-x86_64`.
 - [ ] A prototype UserSelected grant opens one object and cannot enumerate siblings in the same Directory.
 - [ ] Surface S-027 remains `open` or `prototyped`, never `frozen`.
+- [ ] The report records how the UserSelected chooser hands authority to the caller and which Component renders it, so S-033 is explored by running code.
 
 #### Verification
 - Report: how Directory scoping composes with UserSelected, where StorageTransaction durability is expressed, and which options STO-012 must evaluate.
@@ -2105,7 +2106,7 @@ Provider implementations (STO-076, STO-078). Secrets (SEC).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: STO-039, STO-036, STO-055, SEC-018
+- Depends on: STO-039, STO-036, STO-055, SEC-018, STO-085
 - Baseline: §25, §26, §51
 
 Prerequisite for INS in-place migration. Unlock uses SEC's key-slot API; volumes surface as Collections, not ambient mounts.
@@ -2325,9 +2326,9 @@ Kernel capability audit (CAP, KRN). Personality audit (LNX, WIN).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-050, IPC-068, STO-027, STO-012
+- Depends on: STO-050, IPC-068, STO-027, STO-012, STO-018
 - Baseline: §66
-- Freezes: S-027
+- Freezes: S-027, S-033
 
 V4 exit: Layer 2 interface versions for 1.x are enumerated and locked with the evolution test passing for every core interface. Storage Interfaces are among them.
 
@@ -2396,6 +2397,36 @@ Docs site and translation pipeline (DOC). Settings UI copy (APP).
 #### Verification
 - Review: DOC lead editorial sign-off recorded on the pull request.
 - Manual: unaided-install study materials include the storage chapters.
+
+#### Evidence
+- none
+
+### STO-085 · Decide how untrusted removable and foreign filesystem images are parsed
+- Type: adr
+- Milestone: V3
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: STO-058
+- Baseline: §26, §51
+- Decision: D-0349
+- Threats: T-044
+- Invariants: I-009
+
+Inherited kernel filesystem drivers parse attacker-controlled bytes in kernel mode whenever a removable drive or a foreign partition is mounted (T-044). Before removable media (STO-058) and foreign Linux volumes (STO-074) are mounted for users, this Decision fixes how untrusted images are parsed: in an isolated user-space filesystem Component that reuses the inherited code, in the kernel with a restricted type allowlist and no auto-mount, or unrestricted as Linux does today. §26 forbids a new filesystem; this is about where the existing parsers run, decided on measured cost per HW-002 criteria.
+
+#### Out of scope
+exFAT and FAT32 support (STO-058). Foreign volume unlock and mount (STO-074). Lock-screen device policy (SEC-080).
+
+#### Acceptance criteria
+- [ ] Option A (isolated user-space filesystem Component hosting the inherited parsers for removable and foreign volumes), option B (kernel parsers behind a type allowlist with no auto-mount of untrusted volumes), and option C (unrestricted kernel mounting as on Linux) are evaluated with a fuzzing-exposure argument and a measured throughput cost per option.
+- [ ] The accepted option states which filesystem types are parsed where, what auto-mount does for an unknown volume, and how the choice appears to the user.
+- [ ] The accepted option cites T-044 and the HW-002 residency criteria rather than principle.
+- [ ] STO-074 and the removable-media path implement the accepted option; review records STO and SEC lead sign-off on the pull request.
+
+#### Verification
+- Review: STO and SEC leads sign off on the pull request that accepts the Decision file.
+- Bench: throughput of the accepted option against direct kernel mounting on H-002, published under B-037 with no superiority claim.
 
 #### Evidence
 - none

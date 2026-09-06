@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | blocked | M | ABI-005, CAP-005, CAP-003, CAP-004, TSK-011, CMP-005 |
+| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | blocked | M | ABI-005, CAP-005, CAP-003, CAP-004, CMP-005 |
 
 ## V0.5
 
@@ -99,10 +99,11 @@
 | STO-071 | Build encrypted scheduled snapshot-based backup to external and network targets | todo | blocked | L | STO-063, STO-039, SEC-027, STO-070 |
 | STO-072 | Decide whether BitLocker volumes are readable via user-space dislocker-style support | todo | blocked | S | GOV-016, STO-074 |
 | STO-073 | Decide the native storage-provider Interface for network and cloud Collections | todo | blocked | M | STO-036, STO-059 |
-| STO-074 | Unlock and mount LUKS, ext4, Btrfs and XFS volumes from other Linux installs | todo | blocked | M | STO-039, STO-036, STO-055, SEC-018 |
+| STO-074 | Unlock and mount LUKS, ext4, Btrfs and XFS volumes from other Linux installs | todo | blocked | M | STO-039, STO-036, STO-055, SEC-018, STO-085 |
 | STO-075 | Provide per-user storage roots and separately encrypted user volumes | todo | blocked | M | STO-039, SEC-042, STO-002, SEC-017 |
 | STO-076 | Provide SMB, NFS, WebDAV and SFTP shares as storage-provider Collections | todo | blocked | L | STO-073, STO-059, SEC-027, STO-034 |
 | STO-077 | Make `os restore` revert user data through storage snapshots | todo | blocked | M | STO-070, PKG-060, STO-056 |
+| STO-085 | Decide how untrusted removable and foreign filesystem images are parsed | todo | blocked | S | STO-058 |
 
 ## V4
 
@@ -112,7 +113,7 @@
 | STO-079 | Version the on-disk layout and migrate V3 installs in place | todo | blocked | S | STO-021, PKG-089 |
 | STO-080 | Write L1 conformance tests for File, Directory, Blob and StorageTransaction entry points | todo | blocked | M | STO-020, STO-019, STO-005, STO-051, ABI-033 |
 | STO-081 | Close external audit findings in the storage service, store and chooser authority | todo | blocked | M | STO-029, STO-034, STO-009, STO-007 |
-| STO-082 | Enumerate and lock storage L2 Interface versions for 1.x | todo | blocked | S | STO-050, IPC-068, STO-027, STO-012 |
+| STO-082 | Enumerate and lock storage L2 Interface versions for 1.x | todo | blocked | S | STO-050, IPC-068, STO-027, STO-012, STO-018 |
 
 ## 1.0
 

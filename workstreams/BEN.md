@@ -4,7 +4,7 @@
 - Baseline: §10, §34, §53, §54, §59
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 63 live, 2 done, 0 in-progress, 61 todo, 0 dropped. Ready: 2. Blocked: 59. Weighted: 3%.
+Tasks: 64 live, 2 done, 0 in-progress, 62 todo, 0 dropped. Ready: 3. Blocked: 59. Weighted: 3%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -156,7 +156,7 @@ Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement au
 - Risks: R-009
 - Invariants: I-061
 
-V0 requires a harness and CI on QEMU plus the reference desktop; the V0 gate publishes generated Markdown between markers on every merge. This is the shared runner in the `bench` repository, the report skeleton under `reports/benchmarks/`, the environment record (frequency pin, mitigations, warm or cold, iteration count), and per-commit history. The public dashboard is V1.
+V0 requires a harness and CI on QEMU plus the reference desktop; the generated results block reflects committed gate-run reports while nightly results go to the time-series export. This is the shared runner in the `bench` repository, the report skeleton under `reports/benchmarks/`, the environment record (frequency pin, mitigations, warm or cold, iteration count), and per-commit history. The public dashboard is V1.
 
 <!-- covers: INV-1040 -->
 
@@ -165,7 +165,7 @@ Methodology Decision (BEN-007). CI job wiring and QEMU matrix (BLD-010, BLD-012)
 
 #### Acceptance criteria
 - [ ] The `bench` runner invokes a registered harness by B-ID, records the environment fields named by BEN-007, and writes a report matching `reports/README.md`.
-- [ ] A merge to main on H-001 produces a generated results block for every V0 B-ID that has a harness, without measured values in `registers/benchmarks.md` entries.
+- [ ] A committed gate-run report on H-001 for a V0 B-ID appears in the generated results block after `roadmap gen`, without measured values in `registers/benchmarks.md` entries.
 - [ ] Report paths match `reports/benchmarks/<B-NNN>/<alias>@<sha>-<H-NNN>.md`.
 - [ ] A run that omits frequency pin or warm/cold labelling is rejected by the runner.
 
@@ -1862,6 +1862,37 @@ Dataset license Decision (GOV). Bit-for-bit image reproducibility (BLD). Claim a
 #### Verification
 - Review: BEN, GOV, and BLD leads sign off on the pull request.
 - Manual: follow the worked example for B-004 on H-001 and attach the resulting report.
+
+#### Evidence
+- none
+
+### BEN-064 · Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations
+- Type: adr
+- Milestone: V0
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: BEN-007, HW-003
+- Baseline: §54, §59
+- Decision: D-0348
+- Risks: R-009
+- Invariants: I-061
+
+BEN-007 fixed the target-kind policy and left the methodology standard that Q-001 asks for unwritten: the reference hardware list per rung, warm and cold definitions, the percentiles every report states, iteration and warm-up counts, CPU frequency pinning, SMT and mitigation settings, and how a QEMU profile is labelled so it is never read as a hardware result. Every V0 benchmark task depends on Q-001; this Decision answers it so the runner (BEN-005) has fields to enforce. It does not restate any number in prose.
+
+#### Out of scope
+Target kinds and register-only numbers (BEN-007, D-0031). Runner implementation (BEN-005). Energy measurement method (BEN-018). Visible-UI boundary (BEN-016).
+
+#### Acceptance criteria
+- [ ] Option A (one standard for every B-ID: p50 and p99 with fixed iteration and warm-up counts, frequency pinned, mitigations at the shipped default, SMT as shipped), option B (per-B-ID methodology recorded on each register entry), and option C (adopt an existing published benchmarking standard verbatim) are evaluated.
+- [ ] The accepted option records the hardware list per rung by H-ID, the warm and cold definitions, the statistics reported, iteration and warm-up counts, frequency pinning, SMT and mitigation settings, and the rule that QEMU-profile results are labelled as functional coverage rather than performance results.
+- [ ] The accepted option names the environment fields the BEN-005 runner rejects a run for omitting.
+- [ ] Q-001 is marked answered by this task in `registers/questions.md` when the Decision is accepted.
+- [ ] A Review line names who accepts the Decision.
+
+#### Verification
+- Review: BEN and GOV leads sign off on the pull request that accepts the Decision file.
+- Manual: `registers/questions.md` shows Q-001 answered by BEN-064 in the same change.
 
 #### Evidence
 - none

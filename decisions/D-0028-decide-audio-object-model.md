@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: AUD-002
 - Surfaces: S-025
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

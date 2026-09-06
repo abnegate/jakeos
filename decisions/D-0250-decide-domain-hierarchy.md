@@ -1,8 +1,8 @@
 # D-0250 · Decide hierarchical versus flat ResourceDomains and budget delegation via Capability
 - Status: proposed
 - Task: SCH-002
-- Surfaces: none
-- Layer: none
+- Surfaces: S-009
+- Layer: L1
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

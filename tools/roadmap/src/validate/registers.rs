@@ -142,13 +142,16 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
                             "use a prefix from fields.json workstreams",
                         ));
                     }
-                    if entry.status() == "open" && !bound_questions.contains(&entry.id) {
+                    if entry.status() == "open"
+                        && !bound_questions.contains(&entry.id)
+                        && is_none(entry.fields.value_or_empty("Answered by"))
+                    {
                         diagnostics.push(Diagnostic::warning(
                             &register.file,
                             entry.line,
                             code::QUESTION_UNBOUND,
                             format!("open question `{}` is bound to no task", entry.id),
-                            "add the Q-id to a task Depends on, or withdraw it",
+                            "add the Q-id to a consumer's Depends on, name the answering task in Answered by, or withdraw it",
                         ));
                     }
                     if let Some(field) = entry.fields.get("Answered by")
@@ -174,6 +177,25 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
                     }
                 }
                 "H" => {
+                    if let Some(field) = entry.fields.get("First milestone")
+                        && !is_none(&field.value)
+                        && let Some(milestone) = repo.milestone(&field.value)
+                        && !milestone
+                            .list("Hardware scope")
+                            .iter()
+                            .any(|identifier| identifier == &entry.id)
+                    {
+                        diagnostics.push(Diagnostic::warning(
+                            &register.file,
+                            field.line,
+                            code::HARDWARE_SCOPE_MISSING,
+                            format!(
+                                "`{}` names `First milestone: {}` but that milestone's Hardware scope omits it",
+                                entry.id, field.value
+                            ),
+                            "add the H-ID to the milestone's Hardware scope or change First milestone",
+                        ));
+                    }
                     if let Some(field) = entry.fields.get("First milestone")
                         && !is_none(&field.value)
                         && !repo.schema.milestones.contains(&field.value)

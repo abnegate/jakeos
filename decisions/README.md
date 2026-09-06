@@ -32,7 +32,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0004 | Decide the Layer 1 and platform deprecation process: announcement, overlap, detection | proposed | ABI-045 | none |
 | D-0005 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | proposed | ABI-008 | S-002 |
 | D-0006 | Decide the Operation result error model: typed enum per kind or uniform error Object | proposed | ABI-009 | S-004 |
-| D-0007 | Decide Capability handle representation: dense index, sparse id or sealed value | proposed | ABI-010 | none |
+| D-0007 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and generation | proposed | ABI-010 | S-001 |
 | D-0008 | Decide whether ABI headers carry a syscall-note-style exception for native programs | accepted | ABI-029 | none |
 | D-0009 | Decide the Layer 1 freeze: accept the freeze ADR over the reviewed candidate set | proposed | ABI-049 | none |
 | D-0010 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | proposed | ABI-011 | none |
@@ -80,7 +80,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0052 | Decide Capability persistence across Component restart and reboot | proposed | CAP-020 | none |
 | D-0053 | Decide how Capability unforgeability survives machine boundaries | proposed | CAP-047 | none |
 | D-0054 | Decide explicit grant sources replacing ambient permissions | proposed | CAP-007 | none |
-| D-0055 | Decide the userspace Capability<T> handle representation and table design | proposed | CAP-008 | none |
+| D-0055 | Decide the userspace Capability<T> handle representation and table design | proposed | CAP-008 | S-001 |
 | D-0056 | Decide the Capability<T> and MemoryObject mapping onto hardware capabilities | proposed | CAP-033 | none |
 | D-0057 | Decide the ABI invariants required for hardware-assisted Capability enforcement | proposed | CAP-021 | none |
 | D-0058 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | proposed | CAP-009 | none |
@@ -167,7 +167,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0139 | Decide whether the kernel offers synchronous call with time-slice donation beside async send | proposed | IPC-001 | none |
 | D-0140 | Decide which Channel syscalls become Layer 1 freeze candidates for SDK v1 | proposed | IPC-041 | none |
 | D-0141 | Decide the Interface-evolution rules for Layer 2 Interfaces (prototyped state) | proposed | IPC-002 | none |
-| D-0142 | Select the small-message fast-path technique from measured prototypes | proposed | IPC-003 | none |
+| D-0142 | Select the small-message fast-path technique from measured prototypes | proposed | IPC-003 | S-012 |
 | D-0143 | Freeze the Channel Layer 1 ABI Surface | proposed | IPC-064 | none |
 | D-0144 | Freeze the Layer 2 Interface-evolution rules for SDK v1 | proposed | IPC-042 | S-014 |
 | D-0145 | Decide whether IDL-generated code is committed or generated at build time | proposed | IPC-004 | none |
@@ -179,7 +179,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0151 | License IDL files and the ABI specification under a permissive spec license with patent non-assert | proposed | IPC-024 | none |
 | D-0152 | Decide the pluggable transport abstraction behind generated stubs | proposed | IPC-025 | none |
 | D-0153 | Decide how Capabilities and handles cross a VM transport boundary | proposed | IPC-056 | none |
-| D-0154 | Decide the typed-message wire format and inline-payload threshold | proposed | IPC-007 | none |
+| D-0154 | Decide the typed-message wire format and inline-payload threshold | proposed | IPC-007 | S-013 |
 | D-0155 | Decide which kernel evolution phase is required at 1.0 | proposed | KRN-050 | none |
 | D-0156 | Decide eBPF's native role and the Linux Personality's bpf() exposure | proposed | KRN-024 | none |
 | D-0157 | Decide kernel-core vs user-space service boundary and the criteria for moving one | accepted | KRN-001 | none |
@@ -275,7 +275,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0247 | Decide whether releases use a transparency log | proposed | REL-030 | none |
 | D-0248 | Define update channels and promotion criteria | proposed | REL-004 | none |
 | D-0249 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | proposed | SCH-016 | none |
-| D-0250 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | proposed | SCH-002 | none |
+| D-0250 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | proposed | SCH-002 | S-009 |
 | D-0251 | Decide ResourceDomain over cgroup v2 controllers versus native accounting | proposed | SCH-003 | none |
 | D-0252 | Decide intent and priority inheritance across Channel handoff | proposed | SCH-017 | none |
 | D-0253 | Decide how intents map onto Linux scheduler mechanisms versus a native class | proposed | SCH-004 | none |
@@ -294,7 +294,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0266 | Decide whether an AI assistant is a distinct principal | proposed | SEC-034 | none |
 | D-0267 | Decide authority sources and precedence | proposed | SEC-004 | none |
 | D-0268 | Decide disk encryption layer and store interaction | proposed | SEC-005 | none |
-| D-0269 | Decide user-mediated grant taxonomy | proposed | SEC-007 | none |
+| D-0269 | Decide user-mediated grant taxonomy | proposed | SEC-007 | S-022 |
 | D-0270 | Decide 1.0 multi-user and per-user encryption scope | proposed | SEC-042 | none |
 | D-0271 | Declare formal certifications out of scope for 1.0 | proposed | SEC-074 | none |
 | D-0272 | Declare multi-seat, guest, kiosk, and enterprise directory out of scope | proposed | SEC-075 | none |
@@ -303,7 +303,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0275 | Decide disk-key eviction on suspend | proposed | SEC-031 | none |
 | D-0276 | Decide TPM 2.0 as requirement versus optional | proposed | SEC-050 | none |
 | D-0277 | Decide user identity versus Capability roots | proposed | SEC-012 | none |
-| D-0278 | Decide Semantic Interface discovery and caller permissioning | proposed | SEM-004 | none |
+| D-0278 | Decide Semantic Interface discovery and caller permissioning | proposed | SEM-004 | S-023 |
 | D-0279 | Decide where assistant models execute | proposed | SEM-017 | none |
 | D-0280 | Decide the Automation rule format | proposed | SEM-018 | none |
 | D-0281 | Decide whether BitLocker volumes are readable via user-space dislocker-style support | proposed | STO-072 | none |
@@ -321,12 +321,12 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0293 | Decide how the content store maps onto the chosen filesystem without double storage | proposed | STO-017 | none |
 | D-0294 | Decide content-store garbage collection: root set, policy and user control | proposed | STO-041 | none |
 | D-0295 | Decide three-view mapping of user data across native and personalities | proposed | STO-042 | none |
-| D-0296 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | proposed | STO-018 | none |
+| D-0296 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | proposed | STO-018 | S-033 |
 | D-0297 | Decide how user data maps across native, Linux home and Windows profile views | proposed | STO-068 | none |
 | D-0298 | Decide monotonic versus wall-clock semantics for Operation deadlines across suspend | proposed | SVC-016 | none |
 | D-0299 | Decide the default-application registry and open-by-Capability model | proposed | SVC-017 | none |
 | D-0300 | Decide native init versus retained initramfs/systemd for early boot | proposed | SVC-003 | none |
-| D-0301 | Decide how a service Component reports readiness and liveness to the supervisor | proposed | SVC-004 | none |
+| D-0301 | Decide how a service Component reports readiness and liveness to the supervisor | proposed | SVC-004 | S-020 |
 | D-0302 | Decide restart budgets, strategies, backoff and escalation for supervised services | proposed | SVC-005 | none |
 | D-0303 | Decide the settings storage model: typed schema-versioned objects with history events | proposed | SVC-006 | none |
 | D-0304 | Decide whether to retain chrony or build a native NTP/NTS client | proposed | SVC-018 | none |
@@ -336,10 +336,10 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0308 | Decide which Operation ABI surfaces become Layer 1 freeze candidates | proposed | TSK-042 | none |
 | D-0309 | Decide native expression of termination, cancellation and async notification without signals | accepted | TSK-006 | none |
 | D-0310 | Decide how Operation priority relates to ResourceDomain Scheduling intent | proposed | TSK-027 | none |
-| D-0311 | Decide Operation submission/completion transport and batching expression | proposed | TSK-007 | none |
+| D-0311 | Decide Operation submission/completion transport and batching expression | proposed | TSK-007 | S-005 |
 | D-0312 | Decide Operation Ownership transfer semantics across Tasks and TaskGroups | proposed | TSK-028 | none |
 | D-0313 | Decide how Personality threads map onto native Tasks | proposed | TSK-043 | none |
-| D-0314 | Decide whether every Task has kernel-visible identity | proposed | TSK-008 | none |
+| D-0314 | Decide whether every Task has kernel-visible identity | proposed | TSK-008 | S-008 |
 | D-0315 | Decide Task mapping onto kernel execution contexts | proposed | TSK-009 | none |
 | D-0316 | Decide the default system font set and publish its script coverage matrix | proposed | TXT-002 | none |
 | D-0317 | Decide the cross-Component glyph atlas and shaped-text cache sharing model | proposed | TXT-015 | none |
@@ -349,7 +349,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0321 | Decide the shaping and rasterisation libraries for the native text stack | proposed | TXT-003 | none |
 | D-0322 | Decide hinting, subpixel positioning and gamma policy across scale factors | proposed | TXT-027 | none |
 | D-0323 | Decide whether shaping runs in-Component or in a shared text service Component | proposed | TXT-004 | none |
-| D-0324 | Decide clipboard authority policy: paste gesture or Capability, no ambient read | proposed | UIP-004 | none |
+| D-0324 | Decide clipboard authority policy: paste gesture or Capability, no ambient read | proposed | UIP-004 | S-032 |
 | D-0325 | Decide global shortcut model: named actions bound in Settings, no key grabs | proposed | UIP-030 | none |
 | D-0326 | Decide input routing and focus arbitration model for focused surfaces | proposed | UIP-005 | none |
 | D-0327 | Decide UI protocol model: retained scene tree, client Buffers, or hybrid | proposed | UIP-006 | S-015 |
@@ -373,4 +373,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0345 | Decide whether Wine hosts on the Linux Personality or the Native ABI | proposed | WIN-013 | none |
 | D-0346 | Retention and exposure of Linux sandbox primitives | proposed | LNX-021 | none |
 | D-0347 | SDK v1 crate API surface | proposed | SDK-055 | S-031 |
+| D-0348 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | proposed | BEN-064 | none |
+| D-0349 | Decide how untrusted removable and foreign filesystem images are parsed | proposed | STO-085 | none |
+| D-0350 | Decide the screen-capture Capability model: per-Surface, per-Display and per-Session grants with indicator semantics | proposed | GFX-099 | S-034 |
 <!-- roadmap:generated:end -->

@@ -160,6 +160,7 @@ Map and unmap (MEM-007). Inspect CLI rendering (SDK-007). Object registry and ha
 
 #### Acceptance criteria
 - [ ] A Component creates a MemoryObject of a requested size and the kernel records size, default properties, owner, and an empty mapping table.
+- [ ] Pages of a newly created MemoryObject read as zero before the first write; a test that destroys an object and creates another of the same size never observes prior contents.
 - [ ] Destroying the object or its Component leaves no kernel accounting for that object; a leak test of repeated create/destroy shows no unbounded growth.
 - [ ] Inspect data for a live object includes owner, mapper set, size, and properties.
 - [ ] Native crates have no API that returns a Linux memfd, dma-buf fd, or POSIX descriptor for the object.
@@ -545,7 +546,7 @@ Persistent crash consistency (STO-040, Q-006). Device-local implementation (MEM-
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: MEM-010, Q-008
+- Depends on: MEM-010
 - Baseline: §17
 - Decision: D-0191
 - Invariants: I-063
@@ -1338,7 +1339,7 @@ Cycle harness and wake policy (PWR-014). Audio and GPU rebind (AUD, GFX).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: Q-007, MEM-007
+- Depends on: MEM-007
 - Baseline: §16, §51
 - Decision: D-0194
 - Invariants: I-021
@@ -1426,7 +1427,7 @@ Pin and swap policy (MEM-038, MEM-042). Domain exhaustion (SCH-014).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: Q-007, MEM-045, MEM-007
+- Depends on: MEM-045, MEM-007
 - Baseline: §16, §51
 - Invariants: I-021
 

@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: MED-007
 - Surfaces: S-036
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

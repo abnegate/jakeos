@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: STO-012
 - Surfaces: S-027
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

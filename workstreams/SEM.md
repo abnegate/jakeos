@@ -1239,6 +1239,7 @@ Evolution-rule freeze (IPC-042). Full catalog conformance (SEM-040).
 - Owner: none
 - Depends on: SEM-040, SEM-041
 - Baseline: §42, §66
+- Freezes: S-023
 
 Enumerate and lock Layer 2 interface versions served for 1.x for Editor, Terminal, Workspace, Mail, Download, Meeting, Extractor and Notes. This is SEM's half of V4-G02; it does not freeze Layer 1.
 

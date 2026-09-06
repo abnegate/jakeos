@@ -1,8 +1,8 @@
 # D-0314 · Decide whether every Task has kernel-visible identity
 - Status: proposed
 - Task: TSK-008
-- Surfaces: none
-- Layer: none
+- Surfaces: S-008
+- Layer: L1
 - Spikes: TSK-016
 - Supersedes: none
 - Superseded by: none

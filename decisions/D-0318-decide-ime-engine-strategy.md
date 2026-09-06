@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: TXT-026
 - Surfaces: S-016
-- Layer: none
+- Layer: L2
 - Spikes: none
 - Supersedes: none
 - Superseded by: none

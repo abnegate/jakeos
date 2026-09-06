@@ -38,7 +38,7 @@ Component creation latency (CMP, B-001). Isolation versus OCI (B-015 at V1). OBS
 - [ ] Harness `bench:resourcedomain-lifecycle` exists and is invoked from the BEN runner on H-001 and H-002.
 - [ ] Each run publishes p50 and p99 for domain create, attach and teardown, plus CPU-share error and memory-budget hit/fail counts, into a B-011 report path.
 - [ ] The same session records a Linux cgroup v2 create/attach/remove baseline on the same machine.
-- [ ] CI on H-001 publishes a B-011 report on every merge to main.
+- [ ] Nightly CI on H-001 publishes B-011 results to the benchmark time-series export.
 
 #### Verification
 - Bench: B-011 on H-001 and H-002; target per register (V0 publish).
@@ -1716,11 +1716,12 @@ Telemetry intake (REL). Crash capture format (OBS). Privacy policy (GOV).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SCH-030, ABI-047, SCH-007, SCH-042
+- Depends on: SCH-030, ABI-047, SCH-007, SCH-042, ABI-049
 - Baseline: §23, §65, §66
+- Freezes: S-009
 - Invariants: I-040
 
-V4 freezes Layer 1 with a conformance suite. Tests every domain and intent syscall, error code and negotiation behaviour named by SCH-030 so 1.x binaries stay compatible. This suite does not itself freeze S-009; ABI-049 does.
+V4 freezes Layer 1 with a conformance suite. Tests every domain and intent syscall, error code and negotiation behaviour named by SCH-030 so 1.x binaries stay compatible. This suite carries the S-009 freeze once ABI-049 is accepted.
 
 #### Out of scope
 The freeze ADR (ABI). Layer 2 profile evolution tests (IPC).

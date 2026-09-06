@@ -17,11 +17,11 @@
 | SEC-004 | Decide authority sources and precedence | todo | blocked | M | CAP-007, SEC-002 |
 | SEC-005 | Decide disk encryption layer and store interaction | todo | ready | M | SEC-002 |
 | SEC-006 | Implement the grant taxonomy in the permission runtime | todo | blocked | M | SEC-007, SEC-004, CAP-025, PKG-028 |
-| SEC-007 | Decide user-mediated grant taxonomy | todo | blocked | M | CAP-007, SEC-002, Q-013 |
+| SEC-007 | Decide user-mediated grant taxonomy | todo | blocked | M | CAP-007, SEC-002 |
 | SEC-008 | Implement scoped Inspect Capability | todo | blocked | M | CAP-005, CAP-007, OBS-006 |
 | SEC-009 | Build the ambient-authority denial test harness | todo | blocked | S | SEC-001 |
 | SEC-010 | Record defence-in-depth and authority-design rules | todo | ready | S | SEC-002 |
-| SEC-011 | Require an explicit screen-share Capability | todo | blocked | S | GFX-010, SEC-007, CAP-005 |
+| SEC-011 | Require an explicit screen-share Capability | todo | blocked | S | GFX-010, SEC-007, CAP-005, GFX-099 |
 | SEC-012 | Decide user identity versus Capability roots | todo | blocked | M | SEC-002, CAP-007 |
 
 ## V1
@@ -54,7 +54,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | SEC-033 | Scope AI Capability grants to project, file, or time | todo | blocked | S | SEC-034, SEM-010, SEM-029, SEC-006, CAP-041 |
-| SEC-034 | Decide whether an AI assistant is a distinct principal | todo | blocked | M | SEM-029, SEM-001, SEC-012, SEC-007, Q-037 |
+| SEC-034 | Decide whether an AI assistant is a distinct principal | todo | blocked | M | SEM-029, SEM-001, SEC-012, SEC-007 |
 | SEC-035 | Study secure enclaves as a confidentiality home | todo | blocked | S | SEC-032, SEC-002 |
 | SEC-036 | Prove grant revocation takes effect immediately | todo | blocked | S | SEC-045, CAP-044, CAP-004 |
 | SEC-037 | Add hardware-enforcement hooks in Capability checks | todo | blocked | M | SEC-032, CAP-005, CAP-010 |
@@ -92,6 +92,7 @@
 | SEC-064 | Preserve session state across user switches | todo | blocked | S | SEC-060, SEC-028 |
 | SEC-065 | Expose TPM event log and PCR state via os inspect | todo | blocked | S | SEC-053, OBS-019, BOOT-034 |
 | SEC-066 | Research a WebAuthn platform authenticator | todo | blocked | S | SEC-014, SEC-056, SEC-053 |
+| SEC-080 | Block new USB device enumeration while the Session is locked and confirm new keyboards before trusted input | todo | blocked | M | HW-075, SEC-059 |
 
 ## V4
 
@@ -104,6 +105,7 @@
 | SEC-071 | Publish kernel-hardening and unsafe-isolation Evidence | todo | blocked | S | KRN-034, KRN-056, SEC-010, KRN-029 |
 | SEC-072 | Freeze the ambient-authority conformance suite | todo | blocked | S | SEC-039, SEC-003, SEC-019, SEC-026 |
 | SEC-073 | Ship a WebAuthn platform authenticator | todo | blocked | M | SEC-066, SEC-014, SEC-053 |
+| SEC-081 | Lock the grant schema versions for 1.x with evolution tests | todo | blocked | S | SEC-007, CAP-043, CAP-048, IPC-042 |
 
 ## 1.0
 

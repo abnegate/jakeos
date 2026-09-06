@@ -1,8 +1,8 @@
 # D-0301 · Decide how a service Component reports readiness and liveness to the supervisor
 - Status: proposed
 - Task: SVC-004
-- Surfaces: none
-- Layer: none
+- Surfaces: S-020
+- Layer: L2
 - Spikes: SVC-014
 - Supersedes: none
 - Superseded by: none

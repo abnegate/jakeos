@@ -12,7 +12,7 @@
 | PKG-004 | Benchmark store deduplication ratio on the 20-Package Corpus | todo | blocked | S | PKG-038, PKG-036, PKG-042, STO-008, STO-009, PKG-003, BEN-007 |
 | PKG-005 | Decide the content hash algorithm and chunking strategy for the store | todo | blocked | S | PKG-040, PKG-041 |
 | PKG-006 | Decide dependency resolution semantics and lockfile location | todo | blocked | S | PKG-013, PKG-005 |
-| PKG-007 | Decide what is excluded from a SystemGeneration and how mutable state is separated | todo | blocked | S | PKG-041, PKG-009, Q-023 |
+| PKG-007 | Decide what is excluded from a SystemGeneration and how mutable state is separated | todo | blocked | S | PKG-041, PKG-009 |
 | PKG-008 | Decide how a SystemGeneration is materialised on disk | todo | blocked | S | PKG-014, PKG-041, STO-016 |
 | PKG-009 | Decide that Package mutation is replaced by immutable Packages and SystemGenerations | todo | blocked | S | PKG-041 |
 | PKG-010 | Decide how immutable Packages preserve LGPL relinking rights | todo | blocked | S | PKG-009, PKG-012, GOV-003, SDK-026 |
@@ -56,8 +56,8 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| PKG-046 | Decide how security fixes reach a library pinned by many Packages | todo | blocked | S | PKG-006, PKG-032, Q-021 |
-| PKG-047 | Decide how Linux and Windows compatibility applications are packaged immutably | todo | blocked | S | PKG-009, PKG-012, Q-020 |
+| PKG-046 | Decide how security fixes reach a library pinned by many Packages | todo | blocked | S | PKG-006, PKG-032 |
+| PKG-047 | Decide how Linux and Windows compatibility applications are packaged immutably | todo | blocked | S | PKG-009, PKG-012 |
 | PKG-048 | Decide which state classes are restorable at each Milestone and in scope for 1.0 | todo | blocked | S | PKG-022, PKG-007 |
 | PKG-049 | Decide running-application behaviour when its Package is replaced by a new Generation | todo | blocked | S | PKG-016, PKG-037 |
 | PKG-050 | Decide the verified-once launch trust mechanism | todo | blocked | S | PKG-045, PKG-044 |
@@ -85,7 +85,7 @@
 | --- | --- | --- | --- | --- | --- |
 | PKG-068 | Benchmark Package-set restore time | todo | blocked | S | PKG-077 |
 | PKG-069 | Decide whether application-state restore is a 1.0 goal or non-goal | todo | blocked | S | PKG-079, PKG-048 |
-| PKG-070 | Decide whether SystemGeneration switches may apply without reboot | todo | blocked | S | PKG-020, BOOT-008, Q-052 |
+| PKG-070 | Decide whether SystemGeneration switches may apply without reboot | todo | blocked | S | PKG-020, BOOT-008 |
 | PKG-071 | Decide selective restore semantics and how partial restore avoids inconsistency | todo | blocked | S | PKG-048, PKG-060, Q-026 |
 | PKG-072 | Track and publish counts of native and Personality Packages in the repository | todo | blocked | S | PKG-064, PKG-031 |
 | PKG-073 | Implement SystemGeneration health states so a failed boot auto-selects the previous one | todo | blocked | M | PKG-019, PKG-020, BOOT-018 |

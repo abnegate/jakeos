@@ -7,7 +7,7 @@ This register names every Layer 1, Layer 2 and Layer 3 ABI surface that can be f
 - Owner: ABI
 - State: open
 - Explored by: ABI-022, ABI-042, CAP-012, CAP-013, CAP-015, CAP-038, CAP-052
-- Decided by: none
+- Decided by: ABI-010, CAP-008
 - Frozen by: none
 The representation of a live kernel-object handle in a component's capability table: index width, generation, type tag and the rules for allocation, lookup and reuse.
 
@@ -43,7 +43,7 @@ Typed error codes returned at the kernel boundary (`Error::Rights`, exhaustion, 
 - Owner: TSK
 - State: open
 - Explored by: TSK-014, TSK-015, TSK-017
-- Decided by: none
+- Decided by: TSK-007
 - Frozen by: none
 Submission and completion of `Operation<Result>`: ring layout, inline completion, deadlines, cancellation bits and how a cancelled operation never delivers a result.
 
@@ -70,7 +70,7 @@ The create, start, destroy and panic/abort operations for a Component: address s
 - Owner: TSK
 - State: open
 - Explored by: TSK-016
-- Decided by: none
+- Decided by: TSK-008
 - Frozen by: none
 Task and TaskGroup identifiers, spawn, structured cancellation propagation, and the bound that no Task outlives its group without an explicit background-execution capability.
 
@@ -79,7 +79,7 @@ Task and TaskGroup identifiers, spawn, structured cancellation propagation, and 
 - Owner: SCH
 - State: open
 - Explored by: SCH-012
-- Decided by: none
+- Decided by: SCH-002
 - Frozen by: none
 CPU share, memory budget, kernel-object limits and the typed exhaustion errors. Intent classes are expressed as policy inputs, not as a POSIX nice value.
 
@@ -106,7 +106,7 @@ The Layer 1 handshake that identifies ABI version and features. An unknown newer
 - Owner: IPC
 - State: open
 - Explored by: IPC-017, IPC-018, SCH-011
-- Decided by: none
+- Decided by: IPC-003
 - Frozen by: none
 Endpoint handles, small-message fast path, capability and MemoryObject transfer, backpressure (bounded depth, sender behavior) and the rule that native IPC is not a socket.
 
@@ -115,7 +115,7 @@ Endpoint handles, small-message fast path, capability and MemoryObject transfer,
 - Owner: IPC
 - State: open
 - Explored by: IPC-018, IPC-020
-- Decided by: none
+- Decided by: IPC-007
 - Frozen by: none
 The encoding of typed messages generated from the IDL: fields, handles, MemoryObject references, streams and futures.
 
@@ -178,7 +178,7 @@ Per-component Inputs, Outputs, capability requests and ResourceDomain hints insi
 - Owner: SVC
 - State: open
 - Explored by: SVC-014
-- Decided by: none
+- Decided by: SVC-004
 - Frozen by: none
 Supervision: restart budget, rebind protocol, readiness reporting and the capabilities a system service is started with.
 
@@ -196,7 +196,7 @@ Development-environment declaration: packages, services, ResourceDomain, storage
 - Owner: SEC
 - State: open
 - Explored by: CAP-026
-- Decided by: none
+- Decided by: SEC-007
 - Frozen by: none
 One-time, session, persistent and revocable-by-user grants, keyed on package identity plus publisher. The taxonomy decision precedes the package capability-request schema.
 
@@ -205,7 +205,7 @@ One-time, session, persistent and revocable-by-user grants, keyed on package ide
 - Owner: SEM
 - State: open
 - Explored by: SEM-003
-- Decided by: none
+- Decided by: SEM-004
 - Frozen by: none
 Typed interface discovery for Terminal, Editor and later applications. The AI broker depends on a done registry task.
 
@@ -285,8 +285,8 @@ The Rust SDK v1 crate surface with semver. Freeze candidate at V1. Rust `std` su
 - Layer: L2
 - Owner: UIP
 - State: open
-- Explored by: none
-- Decided by: none
+- Explored by: UIP-017
+- Decided by: UIP-004
 - Frozen by: none
 Clipboard as a capability. X11 primary selection is emulated inside the Wayland and X11 bridge and never crosses into this surface.
 
@@ -294,8 +294,8 @@ Clipboard as a capability. X11 primary selection is emulated inside the Wayland 
 - Layer: L2
 - Owner: STO
 - State: open
-- Explored by: none
-- Decided by: none
+- Explored by: STO-027
+- Decided by: STO-018
 - Frozen by: none
 The OS-owned file chooser that returns `UserSelected<T>` through a trusted-UI surface applications cannot overlay or spoof.
 
@@ -303,8 +303,8 @@ The OS-owned file chooser that returns `UserSelected<T>` through a trusted-UI su
 - Layer: L2
 - Owner: GFX
 - State: open
-- Explored by: none
-- Decided by: none
+- Explored by: GFX-033
+- Decided by: GFX-099
 - Frozen by: none
 Explicit screen-share and screen-record capability with a persistent indicator. An application without it receives a denied or black surface.
 

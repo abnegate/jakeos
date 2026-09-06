@@ -6,13 +6,13 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| IPC-001 | Decide whether the kernel offers synchronous call with time-slice donation beside async send | todo | blocked | S | IPC-017, IPC-018, SCH-004, TSK-009 |
+| IPC-001 | Decide whether the kernel offers synchronous call with time-slice donation beside async send | todo | blocked | S | IPC-017, IPC-018, SCH-004, TSK-009, ABI-012 |
 | IPC-002 | Decide the Interface-evolution rules for Layer 2 Interfaces (prototyped state) | todo | blocked | M | IPC-019, IPC-006 |
 | IPC-003 | Select the small-message fast-path technique from measured prototypes | todo | blocked | S | IPC-017 |
 | IPC-004 | Decide whether IDL-generated code is committed or generated at build time | todo | blocked | S | IPC-006 |
 | IPC-005 | Decide that IDL compiler output is owned by its user with no copyleft obligation | todo | blocked | S | IPC-006, GOV-003 |
 | IPC-006 | Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new | todo | blocked | M | IPC-018, WASM-002 |
-| IPC-007 | Decide the typed-message wire format and inline-payload threshold | todo | blocked | S | IPC-020, IPC-018, Q-005 |
+| IPC-007 | Decide the typed-message wire format and inline-payload threshold | todo | blocked | S | IPC-020, IPC-018 |
 | IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | blocked | M | IPC-016, IPC-015, BEN-007, BEN-005 |
 | IPC-009 | Define Channel<T> backpressure: bounded depth, slow-receiver policy, depth in os inspect | todo | blocked | M | IPC-010, TSK-011 |
 | IPC-010 | Implement the Channel kernel Object with typed endpoints, send, receive and inspect data | todo | blocked | L | ABI-002, ABI-005, CAP-005, TSK-013, KRN-001, CMP-014 |
@@ -22,7 +22,7 @@
 | IPC-014 | Transfer Capability and MemoryObject ownership inside Channel messages | todo | blocked | M | IPC-010, IPC-007, CAP-006, MEM-010, MEM-003 |
 | IPC-015 | Switch directly to a waiting receiver on send without a run-queue round trip | todo | blocked | M | IPC-001, IPC-016, SCH-005, TSK-020 |
 | IPC-016 | Implement the selected minimal-copy small-message fast path | todo | blocked | L | IPC-003, IPC-010, IPC-007 |
-| IPC-017 | Prototype and measure ring, GPR-carried, handoff and batched small-message fast paths | todo | blocked | L | ABI-002, TSK-021, BLD-012, BEN-007 |
+| IPC-017 | Prototype and measure ring, GPR-carried, handoff and batched small-message fast paths | todo | blocked | L | ABI-019, TSK-021, BLD-012, BEN-007 |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | todo | ready | S | none |
 | IPC-019 | Evolve one real V0 Interface through three incompatible revisions to exercise the versioning scheme | todo | blocked | M | IPC-012, IPC-013 |
 | IPC-020 | Benchmark in-place Zero-copy access versus compact encode/decode including validation cost | todo | blocked | M | IPC-018, BEN-007 |
@@ -95,7 +95,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | IPC-064 | Freeze the Channel Layer 1 ABI Surface | todo | blocked | S | IPC-041, ABI-049, IPC-065, IPC-008, IPC-017 |
-| IPC-065 | Add conformance tests for every frozen Channel Layer 1 entry point | todo | blocked | M | IPC-041, ABI-047, IPC-010 |
+| IPC-065 | Add conformance tests for every frozen Channel Layer 1 entry point | todo | blocked | M | IPC-041, ABI-047, IPC-010, ABI-049 |
 | IPC-066 | Close High and Critical findings from the external IPC security audit | todo | blocked | M | SEC-070, SEC-067, IPC-010, IPC-037 |
 | IPC-067 | Publish the unsafe-code inventory for IPC kernel and runtime code | todo | blocked | S | IPC-010, IPC-016, IPC-014 |
 | IPC-068 | Enumerate and lock the Layer 2 Interface versions served for 1.x | todo | blocked | M | IPC-062, IPC-042, ABI-037, ABI-039 |

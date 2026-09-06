@@ -1299,7 +1299,7 @@ Promotion without rebuild (REL-043, BLD-065). Boot fallback mechanism (BOOT). Up
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: NET-021, SEC-027, Q-054
+- Depends on: NET-021, SEC-027
 - Baseline: §9, §63
 - Threats: T-023
 

@@ -2,7 +2,7 @@
 - Status: proposed
 - Task: LNX-003
 - Surfaces: S-030
-- Layer: none
+- Layer: L2
 - Spikes: LNX-009
 - Supersedes: none
 - Superseded by: none

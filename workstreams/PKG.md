@@ -232,7 +232,7 @@ Launch mapping (PKG-037).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-041, PKG-009, Q-023
+- Depends on: PKG-041, PKG-009
 - Baseline: §30, §31
 - Decision: D-0216
 
@@ -1505,7 +1505,7 @@ The cache implementation (PKG-044). STO generation verity
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-006, PKG-032, Q-021
+- Depends on: PKG-006, PKG-032
 - Baseline: §29
 - Decision: D-0215
 
@@ -1538,7 +1538,7 @@ publication.
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-009, PKG-012, Q-020
+- Depends on: PKG-009, PKG-012
 - Baseline: §3, §28, §36
 - Decision: D-0223
 - Invariants: I-036
@@ -2255,7 +2255,7 @@ The spike (PKG-079). Window restore (APP).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-020, BOOT-008, Q-052
+- Depends on: PKG-020, BOOT-008
 - Baseline: §30
 - Decision: D-0224
 - Invariants: I-086

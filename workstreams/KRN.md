@@ -4,7 +4,7 @@
 - Baseline: §2, §5, §6, §55, §56.4
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 59 live, 8 done, 0 in-progress, 51 todo, 0 dropped. Ready: 3. Blocked: 48. Weighted: 8%.
+Tasks: 60 live, 8 done, 0 in-progress, 52 todo, 0 dropped. Ready: 3. Blocked: 49. Weighted: 8%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -734,7 +734,7 @@ Tracing substrate implementation (OBS-011). Network capability broker (NET-012).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-017, KRN-001, Q-048
+- Depends on: KRN-017, KRN-001
 - Baseline: §36, §69
 - Decision: D-0159
 - Invariants: I-081
@@ -1115,7 +1115,7 @@ VM manager Component (VIRT-008). Host-access grants UI (VIRT-005). virtio-gpu (V
 - Owner: none
 - Depends on: KRN-027, KRN-034
 - Baseline: §51, §63
-- Threats: T-007, T-008
+- Threats: T-007, T-008, T-037
 
 Kernel lockdown, module signature enforcement and verified firmware loading so the chain of trust does not end at the kernel image. V3 Secure Boot on all Tier 1 machines depends on this enforcement existing.
 
@@ -1462,7 +1462,7 @@ Laptop bring-up (HW). Suspend/resume policy (PWR). Wi-Fi (NET).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-009, KRN-042, Q-003
+- Depends on: KRN-009, KRN-042
 - Baseline: §6
 - Decision: D-0155
 
@@ -1729,6 +1729,36 @@ Measures the kernel against the §6 Phase E definition (independent native ABI, 
 
 #### Verification
 - Review: kernel architecture lead and GOV RFC editor sign-off recorded on the assessment and RFC.
+
+#### Evidence
+- none
+
+### KRN-060 · Enforce fallible allocation and no-panic rules in native kernel Rust code
+- Type: build
+- Milestone: V0
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: KRN-013, KRN-016, BLD-013
+- Baseline: §50, §51
+- Risks: R-002
+- Invariants: I-082, I-101
+
+A Rust panic inside the kernel is a kernel crash, and infallible allocation in kernel context is a panic waiting for memory pressure. This task makes I-101 mechanical for the native subsystem: fallible allocation only, typed errors for every user-reachable failure, and a lint that rejects `unwrap`, `expect`, indexing that can panic, arithmetic that can overflow-panic and infallible allocation outside boot-time initialisation. It complements KRN-016, which enforces Rust-first; this task enforces how that Rust is written.
+
+#### Out of scope
+Rust-first and rewrite-requires-ADR lint (KRN-016). Unsafe inventory publication (KRN-056). Userspace runtime mitigations (SDK-048).
+
+#### Acceptance criteria
+- [ ] Pre-merge CI on `qemu-x86_64` fails a native-subsystem change that calls `unwrap`, `expect`, a panicking index or an infallible allocation outside an allowlisted boot-time initialisation module.
+- [ ] Every allocation on a user-reachable path in the native subsystem returns a typed error on failure; a fault-injection run that fails allocations during Channel, Capability and MemoryObject creation reports typed exhaustion errors and no kernel panic.
+- [ ] The lint allowlist is a checked-in file in the kernel tree; adding an entry requires a `SAFETY`-style justification comment naming why the panic or infallible allocation cannot be reached from user space.
+- [ ] The rule is recorded in the kernel tree beside the rewrite-versus-retain policy and cited by the ABI review-gate checklist.
+
+#### Verification
+- Unit: lint fixtures for `unwrap`, panicking index, infallible allocation and an allowlisted boot-time module.
+- Integration: BLD fault-injection run on `qemu-x86_64` failing allocations in the native subsystem with no panic.
+- Review: kernel architecture lead and SEC lead sign off on the allowlist format on the pull request.
 
 #### Evidence
 - none

@@ -816,6 +816,106 @@ fn register_invalid_id_list() {
     );
 }
 
+#[test]
+fn hardware_first_milestone_outside_scope_warns() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/hardware.md",
+        "### H-001 · QEMU profile\n- Kind: qemu\n- Tier: none\n- CPU: qemu64\n- GPU: none\n- Network: virtio-net\n- First milestone: V0\n- Status: planned\nCI profile.\n",
+    );
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "W-016"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    let milestone = common::read(&repo.path, "milestones/V0.md")
+        .replace("- Hardware scope: none", "- Hardware scope: H-001");
+    common::write(&repo.path, "milestones/V0.md", &milestone);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "W-016"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
+#[test]
+fn task_depending_on_the_question_it_answers_warns() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/questions.md",
+        "### Q-001 · Which forge hosts the code\n- Workstream: GOV\n- Status: open\n- Answered by: none\nGitHub or a self-hosted forge.\n",
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace("- Depends on: GOV-001\n", "- Depends on: GOV-001, Q-001\n")
+        .replace(
+            "Build the validator, formatter and generator for the roadmap grammar.",
+            "Build the validator, formatter and generator for the roadmap grammar. This task answers Q-001.",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "W-017"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
+#[test]
+fn done_benchmark_needs_no_report_on_qemu_profiles() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/hardware.md",
+        "### H-001 · QEMU profile\n- Kind: qemu\n- Tier: none\n- CPU: qemu64\n- GPU: none\n- Network: virtio-net\n- First milestone: V0\n- Status: planned\nCI profile.\n\n### H-002 · Desktop\n- Kind: desktop\n- Tier: 1\n- CPU: x86-64\n- GPU: none\n- Network: wired\n- First milestone: V0\n- Status: planned\nReference machine.\n",
+    );
+    common::write(
+        &repo.path,
+        "registers/benchmarks.md",
+        "### B-001 · Latency\n- Metric: time\n- Method: bench on hardware\n- Harness: none\n- Baselines: none\n- Targets: V0 publish\n- Status: defined\nLatency.\n",
+    );
+    let milestone = common::read(&repo.path, "milestones/V0.md")
+        .replace("- Hardware scope: none", "- Hardware scope: H-001, H-002");
+    common::write(&repo.path, "milestones/V0.md", &milestone);
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace(
+            "- Type: build\n- Milestone: V0\n- Status: todo",
+            "- Type: benchmark\n- Milestone: V0\n- Status: done",
+        )
+        .replace(
+            "- Baseline: §1\n\nBuild the validator",
+            "- Baseline: §1\n- Benchmarks: B-001\n\nBuild the validator",
+        )
+        .replace(
+            "- [ ] `roadmap check` validates the fixture repository.",
+            "- [x] `roadmap check` validates the fixture repository.",
+        )
+        .replace(
+            "- Unit: `tools/roadmap` tests on the local crate.",
+            "- Bench: B-001 on H-002; target per register.",
+        )
+        .replace(
+            "#### Evidence\n- none\n",
+            "#### Evidence\n- https://example.org/run/1\n",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    let report_errors: Vec<String> = entries
+        .iter()
+        .filter(|entry| entry.message.contains("has no `B-001` report"))
+        .map(|entry| entry.message.clone())
+        .collect();
+    assert_eq!(
+        report_errors,
+        vec!["done benchmark `GOV-002` has no `B-001` report on `H-002`".to_string()],
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
 fn apply(root: &Path, case: &Case) {
     let mut gov = common::read(root, "workstreams/GOV.md");
     let mut decision = common::read(root, "decisions/D-0001-process.md");

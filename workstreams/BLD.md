@@ -308,7 +308,7 @@ V0 benchmark gates are publish-only (§54, §59). BLD executes BEN harnesses on 
 Harness implementation and report skeleton (BEN-005). Quiet fleet (BLD-045, BLD-048). Blocking merge policy (BEN-033, BLD-033).
 
 #### Acceptance criteria
-- [ ] Nightly CI runs the BEN V0 harness set including B-001, B-004 and B-013 on H-001 and H-002 and commits reports under `reports/benchmarks/` for those B-IDs.
+- [ ] Nightly CI runs the BEN V0 harness set including B-001, B-004 and B-013 on H-001 and H-002 and publishes results to the benchmark time-series export; gate-run reports are committed under `reports/benchmarks/` by the owning benchmark task.
 - [ ] The V0 demo pipeline runs under the guest agent on H-001 with traces retained as Evidence artifacts.
 - [ ] A missing or failed publish job fails nightly; a numeric regression does not fail merge at V0.
 - [ ] Published reports cite B-IDs and contain no performance claim without a harness name (I-061).

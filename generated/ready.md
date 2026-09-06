@@ -4,54 +4,54 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
-| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5562 | none |
-| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5392 | none |
-| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5260 | none |
-| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5258 | none |
-| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5258 | none |
-| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5247 | none |
-| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5243 | none |
-| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5241 | none |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 4702 | none |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4701 | none |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4694 | none |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4207 | none |
-| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4151 | none |
-| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4150 | none |
-| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4101 | none |
-| CAP-007 | Decide explicit grant sources replacing ambient permissions | V0 | S | 3980 | none |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 3865 | none |
-| ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3588 | none |
-| PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3555 | none |
-| LAB-003 | Procure and rack the reference AMD desktop with power and capture | V0 | M | 3300 | none |
-| SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3170 | none |
-| BEN-005 | Build the shared benchmark runner and CI publication | V0 | L | 3068 | none |
-| STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | V0.5 | S | 3067 | none |
-| PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2902 | none |
-| SEC-005 | Decide disk encryption layer and store interaction | V0.5 | M | 2846 | none |
-| BOOT-015 | Explore systemd-boot+UKI and a Rust UEFI stub booting a SystemGeneration from the store | V0.5 | M | 2806 | none |
-| SVC-003 | Decide native init versus retained initramfs/systemd for early boot | V0.5 | S | 2705 | none |
-| UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | V0.5 | S | 2064 | none |
-| GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2007 | none |
-| GOV-016 | Publish the userspace dependency license allowlist | V0.5 | S | 1670 | none |
-| SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1635 | none |
-| CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1629 | none |
-| LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1589 | none |
-| CMP-031 | Study Genode composition, session routing and resource budgets | V0.5 | S | 1402 | none |
-| GFX-011 | Write the compositor and trusted-UI section of the threat model | V0.5 | S | 1393 | none |
-| CMP-032 | Measure hardware address-space cost against SFI-style in-address-space isolation | V0.5 | M | 1368 | none |
-| TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | V0.5 | M | 1342 | none |
-| TXT-002 | Decide the default system font set and publish its script coverage matrix | V0.5 | M | 1340 | none |
-| TXT-008 | Write the font parsing and text service threat model | V0.5 | S | 1335 | none |
-| TXT-009 | Build the monospace grid text fast path for the Terminal | V0.5 | M | 1208 | none |
-| KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | V0 | M | 1164 | none |
-| REL-002 | Decide the signing key hierarchy and custody model | V0.5 | S | 837 | none |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5574 | none |
+| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5403 | none |
+| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5268 | none |
+| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5266 | none |
+| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5266 | none |
+| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5255 | none |
+| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5251 | none |
+| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5249 | none |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5123 | none |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4720 | none |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4709 | none |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4670 | none |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4434 | none |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4234 | none |
+| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4158 | none |
+| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4109 | none |
+| CAP-007 | Decide explicit grant sources replacing ambient permissions | V0 | S | 3990 | none |
+| ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3596 | none |
+| PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3563 | none |
+| LAB-003 | Procure and rack the reference AMD desktop with power and capture | V0 | M | 3308 | none |
+| SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3178 | none |
+| BEN-005 | Build the shared benchmark runner and CI publication | V0 | L | 3073 | none |
+| STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | V0.5 | S | 3072 | none |
+| PKG-040 | Measure dedup ratio, update size and hash throughput on a realistic Package set | V0.5 | M | 2907 | none |
+| SEC-005 | Decide disk encryption layer and store interaction | V0.5 | M | 2851 | none |
+| BOOT-015 | Explore systemd-boot+UKI and a Rust UEFI stub booting a SystemGeneration from the store | V0.5 | M | 2811 | none |
+| SVC-003 | Decide native init versus retained initramfs/systemd for early boot | V0.5 | S | 2710 | none |
+| UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | V0.5 | S | 2071 | none |
+| GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2010 | none |
+| GOV-016 | Publish the userspace dependency license allowlist | V0.5 | S | 1673 | none |
+| SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1638 | none |
+| CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1635 | none |
+| LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1592 | none |
+| CMP-031 | Study Genode composition, session routing and resource budgets | V0.5 | S | 1405 | none |
+| GFX-011 | Write the compositor and trusted-UI section of the threat model | V0.5 | S | 1402 | none |
+| CMP-032 | Measure hardware address-space cost against SFI-style in-address-space isolation | V0.5 | M | 1371 | none |
+| TXT-011 | Prototype HarfBuzz+FreeType against Rust shaping and raster stacks on a script Corpus | V0.5 | M | 1345 | none |
+| TXT-002 | Decide the default system font set and publish its script coverage matrix | V0.5 | M | 1343 | none |
+| TXT-008 | Write the font parsing and text service threat model | V0.5 | S | 1338 | none |
+| TXT-009 | Build the monospace grid text fast path for the Terminal | V0.5 | M | 1211 | none |
+| KRN-009 | Write the kernel divergence policy defining phases A-E and their gates | V0 | M | 1167 | none |
+| REL-002 | Decide the signing key hierarchy and custody model | V0.5 | S | 838 | none |
 | OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 613 | none |
 | HET-002 | Survey heterogeneous dispatch models before the ComputeDevice API | V0 | M | 463 | none |
-| WIN-005 | Decide a clean-room policy for the Windows Personality | V1 | S | 399 | none |
-| GOV-020 | Decide codec and proprietary-font shipping and patent policy | V1 | M | 377 | none |
-| MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | V1 | M | 365 | none |
-| CAP-026 | Survey KeyKOS, EROS, CapROS, Capsicum, Barrelfish and Theseus Capability patterns | V0.5 | M | 325 | none |
+| WIN-005 | Decide a clean-room policy for the Windows Personality | V1 | S | 402 | none |
+| GOV-020 | Decide codec and proprietary-font shipping and patent policy | V1 | M | 380 | none |
+| MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | V1 | M | 368 | none |
+| CAP-026 | Survey KeyKOS, EROS, CapROS, Capsicum, Barrelfish and Theseus Capability patterns | V0.5 | M | 326 | none |
 | WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | V1 | M | 302 | none |
 | REL-004 | Define update channels and promotion criteria | V1 | S | 264 | none |
 | ENV-021 | Prototype environment.yaml versus Package-manifest profiles | V1 | S | 245 | none |
@@ -62,6 +62,7 @@
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 46 | none |
 | LAB-006 | Procure external power meters for the energy-measurement path | V0.5 | S | 26 | none |
 | GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 0 | none |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |
 | GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

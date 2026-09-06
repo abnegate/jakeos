@@ -1233,6 +1233,7 @@ Recovery environment (INS-041). Boot menu (BOOT-014). Safe-mode graphical sessio
 - Owner: none
 - Depends on: SVC-011, SVC-028, SVC-010, IPC-042
 - Baseline: §66
+- Freezes: S-020
 
 V4 gate: Layer 2 interface versions for 1.x are enumerated and locked with old-client/new-service tests. The service manifest, settings object schema and supervisor control Interface are SVC-owned Layer 2 surfaces. S-020 is prototyped until the spike, Decision and freeze closure complete; this task enumerates and locks the versions that closure names.
 

@@ -337,3 +337,35 @@ Unsigned hibernation images are rejected under lockdown. Confidentiality lockdow
 - Status: open
 - Addressed by: none
 Hardware and compatibility submissions are opt-in, pseudonymous, reviewable before upload, and contain no serial numbers or network identifiers.
+
+### T-043 · Rogue HID device
+- Actor: a USB or Bluetooth device that presents itself as a keyboard or pointer
+- Asset: trusted surfaces, the locked session, the user's consent
+- Vector: a newly attached device injects keystrokes into the unlock prompt, a permission prompt or the chooser, or enumerates while the session is locked
+- Status: open
+- Addressed by: none
+Input from a device is not consent. New USB devices are not enumerated while the session is locked, and a new keyboard is confirmed by the user before its input reaches a trusted surface.
+
+### T-044 · Hostile filesystem image
+- Actor: a removable drive or foreign partition carrying a crafted filesystem image
+- Asset: the kernel, the mounting Component, user data
+- Vector: a malformed ext4, exFAT, NTFS or LUKS image exploits an inherited C filesystem parser when auto-mounted or probed
+- Status: open
+- Addressed by: none
+Inherited filesystem drivers parse attacker-controlled bytes in kernel mode. The mounting policy decides which types are parsed in an isolated Component, which stay in the kernel with restrictions, and what auto-mount does.
+
+### T-045 · Wasm runtime escape
+- Actor: a malicious or exploited Wasm Component
+- Asset: the host Component, Capabilities in the import table, MemoryObjects it was lent
+- Vector: a bug in the JIT, the host ABI or the Capability import table lets guest code reach beyond its declared imports
+- Status: open
+- Addressed by: none
+The Wasm runtime is a Component like any other; an escape gains only that Component's Capabilities. The host ABI and import table are fuzzed continuously and the runtime never runs in the kernel.
+
+### T-046 · Assistive-technology client over-reach
+- Actor: an application holding an accessibility-tree or automation Capability
+- Asset: the contents and actions of every other application's UI
+- Vector: an assistive-technology bridge that reads any window or synthesises any action becomes a universal sandbox bypass
+- Status: open
+- Addressed by: none
+Accessibility access is `Capability<AccessibilityTree>` with redaction, granted per client and visible in the permissions UI; secret fields are redacted and trusted-UI trees come from the trusted-UI Component.

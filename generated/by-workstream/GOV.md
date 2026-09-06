@@ -61,7 +61,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GOV-040 | Decide the license for published benchmark and HCL datasets | todo | ready | S | GOV-021 |
-| GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | blocked | M | GOV-024, Q-053 |
+| GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | blocked | M | GOV-024 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | blocked | S | GOV-035, SEM-007 |
 | GOV-043 | Decide the Workstream-split procedure at the size warning | done | done | S | GOV-004, GOV-011 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | blocked | S | GOV-036 |
@@ -106,14 +106,14 @@
 | GOV-073 | Track external-contributor and native-Package ecosystem metrics | todo | blocked | S | GOV-071 |
 | GOV-074 | Publish feature-freeze and RC soak governance for the beta | todo | blocked | S | GOV-007, GOV-076 |
 | GOV-075 | Draft support window, CVE SLA, HCL and ABI-stability policy | todo | blocked | M | GOV-076, ABI-050 |
-| GOV-076 | Define V4 beta and 1.0 stable criteria the baseline omitted | todo | blocked | M | GOV-067, Q-046 |
+| GOV-076 | Define V4 beta and 1.0 stable criteria the baseline omitted | todo | blocked | M | GOV-067 |
 | GOV-077 | Record the V4 exit review | todo | blocked | S | ABI-049, GOV-074, GOV-075 |
 
 ## 1.0
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GOV-078 | Decide OEM partnerships or hardware certification versus later | todo | blocked | S | GOV-024, Q-055 |
+| GOV-078 | Decide OEM partnerships or hardware certification versus later | todo | blocked | S | GOV-024 |
 | GOV-079 | Decide whether to run a vulnerability reward program | todo | blocked | S | GOV-041, GOV-024 |
 | GOV-080 | Verify published governance, license, trademark, RFC and security | todo | blocked | S | GOV-062, GOV-064, GOV-061, GOV-083 |
 | GOV-081 | Publish 1.x maintenance-branch and backport governance | todo | blocked | S | GOV-075, GOV-083, KRN-058 |

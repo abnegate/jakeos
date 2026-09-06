@@ -28,7 +28,7 @@
 | MEM-015 | Move MemoryObject charging with ownership and never double-charge a borrow | todo | blocked | M | MEM-004, MEM-010, MEM-026 |
 | MEM-016 | Share identical code pages across applications via content-store MemoryObjects | todo | blocked | L | MEM-008, MEM-029 |
 | MEM-017 | Decide the MemoryObject backing-provider abstraction for future memory media | todo | blocked | M | MEM-002 |
-| MEM-018 | Decide how borrowing lifetimes are enforced across Component boundaries | todo | blocked | S | MEM-010, Q-008 |
+| MEM-018 | Decide how borrowing lifetimes are enforced across Component boundaries | todo | blocked | S | MEM-010 |
 | MEM-019 | Decide whether dma-buf backs DMA- and GPU-compatible MemoryObjects | todo | blocked | S | MEM-030 |
 | MEM-020 | Decide mapping of Capability<File> into a MemoryObject | todo | blocked | S | MEM-007 |
 | MEM-021 | Decide the per-Component page-table and huge-page policy for MemoryObjects | todo | blocked | S | MEM-031 |
@@ -65,10 +65,10 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| MEM-045 | Decide encrypted MemoryObject key ownership and hardware encryption | todo | blocked | S | Q-007, MEM-007 |
+| MEM-045 | Decide encrypted MemoryObject key ownership and hardware encryption | todo | blocked | S | MEM-007 |
 | MEM-046 | Implement accelerator-local and unified-memory backing providers | todo | blocked | L | MEM-017, MEM-041, MEM-019 |
 | MEM-047 | Add a discardable property and pressure-driven release of MemoryObjects | todo | blocked | M | MEM-042 |
-| MEM-048 | Implement the encrypted MemoryObject property and key-ownership semantics | todo | blocked | M | Q-007, MEM-045, MEM-007 |
+| MEM-048 | Implement the encrypted MemoryObject property and key-ownership semantics | todo | blocked | M | MEM-045, MEM-007 |
 | MEM-049 | Study hardware memory capabilities as an enforcement backend for mappings | todo | blocked | M | MEM-043 |
 
 ## V3

@@ -1,8 +1,8 @@
-# D-0007 · Decide Capability handle representation: dense index, sparse id or sealed value
+# D-0007 · Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and generation
 - Status: proposed
 - Task: ABI-010
-- Surfaces: none
-- Layer: none
+- Surfaces: S-001
+- Layer: L1
 - Spikes: ABI-022
 - Supersedes: none
 - Superseded by: none
@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-The userspace representation of a live kernel-object handle (S-001) must be fixed with CHERI and tagged-memory implications recorded so a hardware-tag path can enforce unforgeability later (§7, §8, §65); CAP-008 is the input and S-001 stays prototyped.
+CAP-008 (D-0055) chooses the handle representation and the per-Component table layout. This Decision fixes only how that representation is packed into the Layer 1 syscall word (S-001): where the type tag and generation live, how many bits stay reserved for a future sealed-pointer layout, and what the kernel checks at the boundary (§7, §8, §65). Deciding the representation twice was the dissonance this split removes; S-001 stays prototyped.
 
 ## Options
 
-### Option A · Dense index
-Summary: A handle is a small index into the Component's handle table.
-Consequences: Compact and cache-friendly lookup; index reuse needs generation counters and a forged index is only caught at the table check.
+### Option A · Type tag and generation inline in the word
+Summary: The syscall word carries the CAP-008 index or token plus an inline type tag and generation the kernel checks before the table lookup.
+Consequences: Wrong-type and stale-handle misuse fails before touching the table; the word spends bits on metadata that a sealed-pointer layout must also reserve.
 Evidence: none
 
-### Option B · Sparse id
-Summary: A handle is a wide sparse identifier that is hard to guess and checked in a per-Component map.
-Consequences: Accidental reuse and guessing are harder; lookup is a map rather than an array and the id must still be validated at the boundary.
+### Option B · Opaque word with tag and generation held in the table
+Summary: The syscall word is the bare CAP-008 representation; type tag and generation are read from the table entry on every Operation.
+Consequences: Smallest word and the simplest mapping onto a sealed capability; every check is a table read and a forged word is only rejected at the table.
 Evidence: none
 
-### Option C · Sealed value
-Summary: A handle is a sealed value the kernel mints and userspace cannot construct, shaped to map onto a CHERI sealed capability.
-Consequences: Direct path to hardware enforcement; on x86-64 today the seal is software and the layout must be reserved now.
+### Option C · Hybrid with a reserved sealed-pointer region
+Summary: Inline tag for the common check plus a reserved region of the word that a CHERI-class path can later replace with hardware sealing.
+Consequences: Keeps the hardware escape hatch explicit at the cost of a wider word now.
 Evidence: none
 
 ## Decision

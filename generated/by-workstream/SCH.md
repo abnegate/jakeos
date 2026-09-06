@@ -88,7 +88,7 @@
 | --- | --- | --- | --- | --- | --- |
 | SCH-056 | Tune EnergyEfficient intent and energy policy on every Tier 1 laptop | todo | blocked | M | SCH-045, SCH-037, SCH-038, PWR-027 |
 | SCH-057 | Report scheduling latency and budget-exhaustion incidents from the beta fleet | todo | blocked | S | SCH-014, REL-042, BEN-049 |
-| SCH-058 | Ship the conformance suite for frozen ResourceDomain and intent Layer 1 surfaces | todo | blocked | M | SCH-030, ABI-047, SCH-007, SCH-042 |
+| SCH-058 | Ship the conformance suite for frozen ResourceDomain and intent Layer 1 surfaces | todo | blocked | M | SCH-030, ABI-047, SCH-007, SCH-042, ABI-049 |
 
 ## 1.0
 
