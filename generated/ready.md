@@ -16,9 +16,9 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5316 | none |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5312 | none |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5310 | none |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4820 | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 | none |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4793 | none |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4519 | none |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4527 | none |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4318 | none |
 | TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | V0 | M | 4313 | none |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4253 | none |

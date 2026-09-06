@@ -23,19 +23,30 @@ Handle-word encoding in the syscall ABI and Layer 1 freeze (ABI). Component crea
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CAP-005, CAP-003, CAP-004, CAP-007
+- Depends on: CAP-005, CAP-003, CAP-004, CAP-007, OBS-006
 - Baseline: §7, §9.1, §51
 - Threats: T-001
 
-Every grant, successful and failed derive, transfer, revocation and rights denial emits a typed audit record with holder, object identity, rights word and outcome. The V0 isolation demo requires a typed denial to be visible in that log (§7). Records are live events; durable tamper-evident storage is later OBS work.
+Every change to authority is an event (§7, §9.1, §51): mint, successful and failed derive, transfer, revoke and rights denial each emit one typed audit record from the kernel with the holder Component, the object identity (type id plus object id, never a kernel pointer), the rights word involved and the outcome. The V0 isolation demo (CMP-012, V0-D04) requires that a denied open is visible in this log before the demo exits. `jakeos/cap/audit.rs` defines `CapabilityAuditEvent` (kind, holder, object, rights, outcome, monotonic timestamp from D-0306's clock) and emits it through the OBS-003 tracing substrate as trace events on S-010 in the `capability` scope, so `os inspect <component> audit` and `os trace --scope capability` both show them. Records are live events; durable tamper-evident storage is OBS-044 later.
+
+Emission is compiled into the primitive that it records: `derive`, `transfer`, `revoke` and the table lookup path each call `audit::emit` on both outcomes, and a new Capability primitive without an audit probe is caught by the OBS-006 inspect review gate, which checks that every kernel path that changes a table has a matching probe listed in `jakeos/cap/audit.rs`.
 
 #### Out of scope
-Durable tamper-evident log store (OBS-044). CLI rendering (OBS, SDK). Permissions log viewer (APP-012).
+Durable tamper-evident log store (OBS-044). CLI rendering (OBS, SDK-006). Permissions log viewer (APP-012). The tracing substrate (OBS-003).
+
+#### Deliverables
+- kernel:jakeos/cap/audit.rs · `CapabilityAuditEvent`, `emit`, and the probe registry the OBS-006 review gate checks.
+- kernel:jakeos/cap/table.rs · Denial probe on lookup failure (added to CAP-005's file).
+- kernel:jakeos/cap/derive.rs · Probes on success and on `Error::Rights` (added to CAP-003's file).
+- kernel:jakeos/cap/transfer.rs · Probes on success and refusal (added to CAP-006's file).
+- kernel:jakeos/cap/revoke.rs · Probe per revoked descendant (added to CAP-004's file).
+- kernel:tools/testing/selftests/jakeos/cap/audit_events_*.rs · Selftests: four-event round trip in order, denial record fields, no probe missing.
+- kernel:Documentation/jakeos/cap/audit.md · The event schema and the rule that every table-changing path has a probe.
 
 #### Acceptance criteria
-- [ ] A denied object access with no matching table entry appends one denial record naming the Component and the requested type, visible to `os inspect` of that Component's audit stream on `qemu-x86_64`.
-- [ ] Mint, derive, transfer and revoke each append a record with holder, object identity and rights; a test creates the four events and reads them back in order.
-- [ ] Audit emission is compiled into the same change as the primitive it records; a primitive without an audit probe fails the OBS inspect review gate.
+- [ ] A denied object access with no matching table entry appends one denial record naming the Component and the requested type id, visible through `os inspect <component> audit` and `os trace --scope capability` on `qemu-x86_64`.
+- [ ] Mint, derive, transfer and revoke each append a record with holder, object identity and rights word; a selftest creates the four events and reads them back in order with the D-0306 timestamps monotonic.
+- [ ] Every kernel path that changes a Capability table is listed in the `audit.rs` probe registry; the OBS-006 review gate fails a change that adds a table-changing path without a probe.
 
 #### Verification
 - Unit: `kernel:tests/cap/audit_events_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -55,17 +66,24 @@ Durable tamper-evident log store (OBS-044). CLI rendering (OBS, SDK). Permission
 - Baseline: §7, §24, §64
 - Invariants: I-034
 
-A holder can query type, rights and object identity of Capabilities in its own table. The kernel inspect provider for kind `capability` supplies state, ownership and derivation relationships so `os inspect capability` can print them (§7). Holders cannot inspect another Component's table through this surface.
+A holder may ask what it holds (§7): the Operation `capability.query(handle)` returns the type id, rights word and object identity of a Capability in the caller's own table, or `Error::Rights` for an index that is not in the table, and never anything about another Component's table. The kernel inspect provider for kind `capability` (`jakeos/obs/providers/capability.rs`, registered through OBS-006) supplies state, holder, object identity, rights and the parent handle of a derived Capability so `os inspect capability <handle>` (SDK-006) can print them for a debugging user who holds the inspect grant, and so the V0 exit inspect suite can assert them (§24, §64).
+
+Cross-Component visibility goes only through the inspect provider under OBS's access rules (OBS-012 later); the query Operation is strictly own-table.
 
 <!-- covers: INV-0182 -->
 
 #### Out of scope
-`os inspect` CLI rendering (SDK). Cross-Component trace access (OBS-012). Revocation-walk implementation (CAP-004).
+`os inspect` CLI rendering (SDK-006). Cross-Component trace access policy (OBS-012). Revocation-walk implementation (CAP-004).
+
+#### Deliverables
+- kernel:jakeos/cap/query.rs · The `capability.query` Operation kind handler: own-table lookup, typed result, `Error::Rights` on a missing index.
+- kernel:jakeos/obs/providers/capability.rs · The inspect provider for kind `capability`: state, holder, object identity, rights, parent.
+- kernel:tools/testing/selftests/jakeos/cap/inspect_*.rs · Selftests: query of a live handle, query of a missing index, cross-table refusal, provider output for a derived handle.
 
 #### Acceptance criteria
-- [ ] A holder query of a live Capability returns type tag, rights word and object identity that match the table entry; a query of an index not in the table returns `Error::Rights`.
-- [ ] `os inspect capability` on a live handle prints holder Component, object identity, rights and parent handle when derived, on `qemu-x86_64`.
-- [ ] A Component cannot inspect another Component's table entries; the call returns `Error::Rights` and allocates no handle.
+- [ ] `capability.query` on a live Capability returns type id, rights word and object identity matching the table entry; on an index not in the caller's table it returns `Error::Rights` and allocates no handle.
+- [ ] `os inspect capability <handle>` on a live handle prints holder Component, object identity, rights and the parent handle when derived, on `qemu-x86_64`, using the `capability` provider.
+- [ ] A Component cannot query another Component's table through `capability.query`; the call returns `Error::Rights` and the other table is unchanged.
 
 #### Verification
 - Unit: `kernel:tests/cap/inspect_*` on `qemu-x86_64` and `hw-h002`.
@@ -86,18 +104,26 @@ A holder can query type, rights and object identity of Capabilities in its own t
 - Threats: T-004
 - Invariants: I-028
 
-Kernel mint inserts a typed Capability into the caller's table. `derive(cap, mask)` returns a new Capability whose rights are a strict subset of the parent's; a mask that is not a subset returns `Error::Rights` and allocates no handle. `Capability<File, ReadWrite>` derives `Capability<File, Read>`; deriving Admin without Admin authority fails. The encoding is S-003 as decided by CAP-010.
+Mint and derive are the two ways a Capability comes into existence (§7). `jakeos/cap/mint.rs` is kernel-internal: `mint::<T>(object, rights, table)` inserts a typed entry into a Component's table and is callable only from kernel code that creates objects (Component creation, Channel creation, MemoryObject creation), never from user space. `jakeos/cap/derive.rs` implements the Operation `capability.derive(handle, mask)`: it returns a new Capability to the same object whose rights are `parent_rights & mask`, refuses with `Error::Rights` and allocates nothing when `mask` is not a subset of the parent's rights (so `Capability<File, ReadWrite>` derives `Capability<File, Read>`, and deriving Admin from a handle without Admin fails), and records the parent in the new entry for the revocation walk (CAP-004). The rights word and the subset check are the S-003 encoding D-0059 (CAP-010) chose, implemented by CAP-011.
+
+The rights-monotonicity property (a child never holds a right its parent lacked, at any derivation depth) is a permanent property test in CI on both matrix entries, and `tools/jakeos/fuzz/cap_derive/` (`kernel:fuzz/cap_derive`) drives random masks and depths nightly without a panic.
 
 <!-- covers: INV-1158, INV-0181, INV-0184 -->
 
 #### Out of scope
-Revocation walk (CAP-004). Transfer over Channels (CAP-006). Handle-table layout (CAP-005).
+Revocation walk (CAP-004). Transfer over Channels (CAP-006). Handle-table layout (CAP-005). Rights encoding (CAP-010).
+
+#### Deliverables
+- kernel:jakeos/cap/mint.rs · Kernel-internal mint, callable only from object-creating kernel code.
+- kernel:jakeos/cap/derive.rs · The `capability.derive` Operation handler with the subset check and parent recording.
+- kernel:tools/jakeos/fuzz/cap_derive/ · Fuzz target over masks and depths (`kernel:fuzz/cap_derive`).
+- kernel:tools/testing/selftests/jakeos/cap/derive_*.rs · Selftests and the permanent rights-monotonicity property test.
 
 #### Acceptance criteria
-- [ ] `Capability<File, ReadWrite>` derives `Capability<File, Read>` and the child handle is a distinct table entry whose parent is the original.
+- [ ] `Capability<File, ReadWrite>` derives `Capability<File, Read>` and the child is a distinct table entry whose recorded parent is the original, on `qemu-x86_64` and `hw-h002`.
 - [ ] Deriving Admin from `Capability<File, ReadWrite>` returns `Error::Rights` and the table entry count is unchanged.
-- [ ] Deriving with a mask that is not a subset of the holder's rights returns `Error::Rights` and allocates no handle.
-- [ ] The rights-monotonicity regression is retained permanently in CI on `qemu-x86_64` and `hw-h002`.
+- [ ] Deriving with a mask that is not a subset of the holder's rights returns `Error::Rights` and allocates no handle; `mint` is unreachable from user space (no Operation kind maps to it).
+- [ ] The rights-monotonicity property test runs on both matrix entries in `pre-merge` permanently, and `kernel:fuzz/cap_derive` runs one hour nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/cap/derive_*` on `qemu-x86_64` and `hw-h002`.
@@ -118,18 +144,27 @@ Revocation walk (CAP-004). Transfer over Channels (CAP-006). Handle-table layout
 - Risks: R-003
 - Threats: T-005
 
-Revoking a Capability invalidates that handle and every Capability derived from it, using the strategy chosen by CAP-009. The V0 gate is that every derived Capability fails within one Operation at derivation depth 8. In-flight Operations on revoked handles complete with a typed error and never deliver a successful result (§7).
+Revocation is what makes attenuated delegation safe to hand out (§7): revoking a Capability invalidates that handle and every Capability derived from it, using the strategy D-0058 (CAP-009) chose (derivation-tree walk, epoch indirection or lazy check-on-use). `jakeos/cap/revoke.rs` implements the Operation `capability.revoke(handle)`: it requires the caller to hold the handle (else `Error::Rights`, no other table touched), marks the entry and every descendant revoked according to the strategy, and arranges with TSK-010 that an in-flight Operation on a revoked handle completes with `Error::Revoked` and never delivers a successful result. The V0 gate (V0-G04) is that every descendant at derivation depth 8 fails its next Operation with `Error::Rights`; `capability.query` on a revoked descendant reports revoked state and a derive from it fails.
+
+The strategy's cost bounds come from CAP-014's report; this task implements, it does not re-measure (CAP-018 adds the standing harness). `tools/jakeos/fuzz/cap_revoke/` (`kernel:fuzz/cap_revoke`) drives random derive-and-revoke sequences nightly.
 
 <!-- covers: INV-0180, INV-0187, INV-1158 -->
 
 #### Out of scope
-Choosing eager versus lazy strategy (CAP-009). Cancelling unrelated Operations (TSK-010). Cross-object-type immediacy matrix (CAP-044).
+Choosing eager versus lazy strategy (CAP-009). Cancelling unrelated Operations (TSK-010). Cross-object-type immediacy matrix (CAP-044). Standing revocation benchmark (CAP-018).
+
+#### Deliverables
+- kernel:jakeos/cap/revoke.rs · The `capability.revoke` Operation handler implementing the D-0058 strategy.
+- kernel:jakeos/cap/table.rs · The revoked state and, per strategy, the epoch or tree links (added to CAP-005's file).
+- kernel:tools/jakeos/fuzz/cap_revoke/ · Fuzz target over derive-and-revoke sequences (`kernel:fuzz/cap_revoke`).
+- kernel:tools/testing/selftests/jakeos/cap/revoke_*.rs · Selftests: depth-8 suite, in-flight Operation completion, revoked-state query, foreign-handle refusal.
+- kernel:Documentation/jakeos/cap/revocation.md · The implemented strategy, its data structures and what an in-flight Operation observes.
 
 #### Acceptance criteria
-- [ ] Revoking a root Capability at derivation depth 8 makes every descendant fail its next Operation with `Error::Rights` and no object access, on `qemu-x86_64` and `hw-h002`.
-- [ ] An in-flight Operation whose handle is revoked completes with a typed error and never delivers a successful result.
-- [ ] After revoke, `os inspect capability` on a descendant reports revoked state; a subsequent derive from it returns `Error::Rights` and allocates no handle.
-- [ ] Revocation of a Capability the caller does not hold returns `Error::Rights` and does not alter any other table.
+- [ ] Revoking a root Capability at derivation depth 8 makes every descendant fail its next Operation with `Error::Rights` and no object access, on `qemu-x86_64` and `hw-h002` (V0-G04).
+- [ ] An in-flight Operation whose handle is revoked completes with `Error::Revoked` through TSK-010's completion path and never delivers a successful result.
+- [ ] After revoke, `capability.query` and `os inspect capability` on a descendant report revoked state; a subsequent derive from it returns `Error::Rights` and allocates no handle.
+- [ ] Revoking a Capability the caller does not hold returns `Error::Rights` and does not alter any table.
 
 #### Verification
 - Unit: `kernel:tests/cap/revoke_*` on `qemu-x86_64` and `hw-h002`.
@@ -146,25 +181,35 @@ Choosing eager versus lazy strategy (CAP-009). Cancelling unrelated Operations (
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: CAP-008, CAP-010, ABI-002, ABI-005, ABI-009
+- Depends on: CAP-008, CAP-010, ABI-002, ABI-005, ABI-009, KRN-013
 - Baseline: §7, §10, §51, §69
 - Risks: R-003
 - Threats: T-003
 - Invariants: I-015, I-028, I-056
 
-Every native object access resolves a typed handle through the holder's per-Component table. The table is kernel-owned; userspace cannot mint a valid Capability. Type mismatch fails at the kernel boundary with a typed error. The layout is the one accepted by CAP-008 and stays prototyped, not frozen, through V0 (§7, §10, §51).
+The per-Component Capability table is the root of all native authority (§7, §10, §51): every object access resolves a typed handle through the holder's table, the table is kernel-owned, and user space cannot mint a valid entry. `jakeos/cap/table.rs` implements the layout D-0055 (CAP-008) accepted (dense index, sparse token or sealed-pointer shape) as `CapabilityTable` owned by the Component object: entries hold the object reference, type id, rights word (S-003 encoding from D-0059), generation, parent link for revocation and revoked state; `lookup(handle_word, expected_type)` unpacks the word per D-0007 (ABI-010), checks index, generation and type, and returns the entry or `Error::Rights` without touching the target object; `insert` and `remove` reclaim slots. `jakeos/cap/rights.rs` holds the rights word type and the subset operation. Both files are the only places `unsafe` may appear in the CAP area.
+
+Two Components holding Capabilities to one object have independent entries; closing one leaves the other. The table stays `prototyped` through V0 (S-001); nothing here freezes.
 
 <!-- covers: INV-0050, INV-0113, INV-0173, INV-0174, INV-0178, INV-0223, INV-0951, INV-1315, INV-1325 -->
 
 #### Out of scope
-Syscall handle-word packing (ABI-010). Component create/destroy (CMP-005). Derive and revoke (CAP-003, CAP-004).
+Syscall handle-word packing (ABI-010). Component create and destroy (CMP-005). Derive and revoke (CAP-003, CAP-004). Rights encoding decision (CAP-010).
+
+#### Deliverables
+- kernel:jakeos/cap/cap.rs · Crate root for the CAP area.
+- kernel:jakeos/cap/table.rs · `CapabilityTable`, entry layout per D-0055, `lookup`, `insert`, `remove`; one of the two `unsafe`-permitted files.
+- kernel:jakeos/cap/rights.rs · The rights word type and subset check per D-0059; the other `unsafe`-permitted file.
+- kernel:tools/jakeos/fuzz/cap_table/ · Fuzz target over handle words against a populated table (`kernel:fuzz/cap_table`).
+- kernel:tools/testing/selftests/jakeos/cap/table_*.rs · Selftests: empty-table denial, wrong-type lookup, independent entries, 100,000-cycle leak test.
+- kernel:Documentation/jakeos/cap/table.md · The implemented layout, entry fields, and the invariants the fuzz target checks.
 
 #### Acceptance criteria
 - [ ] A Component with an empty table receives `Error::Rights` on any object Operation and the kernel allocates no handle.
-- [ ] Looking up a `Capability<File>` through a slot that holds `Capability<Channel>` fails at the kernel boundary with a typed error and does not enter the Channel path.
-- [ ] Two Components holding Capabilities to the same Object have distinct table entries; closing one does not remove the other.
+- [ ] Looking up a `Capability<File>` through a slot that holds `Capability<Channel>` fails at the kernel boundary with the D-0006 typed error and never enters the Channel handler.
+- [ ] Two Components holding Capabilities to the same object have distinct table entries; closing one does not remove the other.
 - [ ] Table insert and remove reclaim the slot; a leak test of 100,000 insert/remove cycles on `qemu-x86_64` shows no kernel-memory growth beyond the suite's bound.
-- [ ] No `unsafe` outside `cap/table.rs` and `cap/rights.rs`.
+- [ ] No `unsafe` outside `jakeos/cap/table.rs` and `jakeos/cap/rights.rs` in the CAP area (BLD-011 inventory).
 
 #### Verification
 - Unit: `kernel:tests/cap/table_*` on `qemu-x86_64` and `hw-h002`.
@@ -185,18 +230,26 @@ Syscall handle-word packing (ABI-010). Component create/destroy (CMP-005). Deriv
 - Baseline: §7, §10, §53, §59
 - Invariants: I-056
 
-A Capability moves from one table to another when sent over a Channel or when attached as part of the explicit set at Component creation. After a move the sender no longer holds the handle; a transfer without transfer rights returns `Error::Rights` and leaves both tables unchanged. Native isolation path step 3 attaches that set at creation (§7, §53, §59).
+A Capability moves between tables in exactly two ways (§7, §53): as a handle slot in a Channel message (the wire form IPC-014 defines) or as part of the explicit set attached at Component creation through the ComponentBuilder (D-0068). `jakeos/cap/transfer.rs` implements `move_between(sender_table, receiver_table, handle)`: it checks the transfer right on the entry (CAP-011), removes the entry from the sender and inserts an entry with the same type and rights in the receiver in one kernel-side step, and on a missing transfer right returns `Error::Rights` with both tables unchanged. Channel send calls it per handle slot at the moment the message is committed (IPC-014), so a failed send leaves the sender holding everything; `ComponentBuilder.start` calls it for each attached Capability, so the new Component's table has exactly the attached entries and an undeclared object access returns `Error::Rights`.
+
+The §59 demo depends on this path: B returns a `Capability<MemoryObject>` to A over the Channel; after the move A maps the object and B's table no longer holds the handle.
 
 <!-- covers: INV-0179, INV-0998, INV-1158 -->
 
 #### Out of scope
-Wire-format handle slots (IPC-014). Address-space construction (CMP). MemoryObject payload copies (MEM).
+Wire-format handle slots (IPC-014). Address-space construction (CMP-005). MemoryObject payload copies (MEM-010). The transfer right encoding (CAP-010).
+
+#### Deliverables
+- kernel:jakeos/cap/transfer.rs · `move_between` with the transfer-right check and the atomic remove-and-insert.
+- kernel:jakeos/ipc/send.rs · The call into `move_between` per handle slot at message commit (added to IPC-014's file).
+- kernel:jakeos/cmp/builder.rs · The call into `move_between` for each attached Capability at `start` (added to CMP-005's file).
+- kernel:tools/testing/selftests/jakeos/cap/transfer_*.rs · Selftests: move over a Channel, refusal without transfer right, creation with N Capabilities, demo return path.
 
 #### Acceptance criteria
-- [ ] Sending a Capability over a Channel removes it from the sender table and inserts it in the receiver table with the same type and rights, on `qemu-x86_64`.
-- [ ] Sending without transfer rights returns `Error::Rights`, allocates no receiver handle, and leaves the sender entry intact.
-- [ ] Component creation with an explicit set of N Capabilities yields a table of N entries and no others; a sixth undeclared File open returns `Error::Rights`.
-- [ ] The V0 demo transfers a MemoryObject Capability from B to A; A maps the object and B's table no longer holds that handle.
+- [ ] Sending a Capability over a Channel removes it from the sender's table and inserts it in the receiver's table with the same type id and rights word, on `qemu-x86_64`.
+- [ ] Sending without the transfer right returns `Error::Rights`, allocates no receiver entry and leaves the sender entry intact; a message whose send fails leaves every handle with the sender.
+- [ ] Component creation with an explicit set of N Capabilities yields a table of exactly N entries; an access to an undeclared object returns `Error::Rights`.
+- [ ] In the V0 demo, B transfers a `Capability<MemoryObject>` to A; A maps the object and B's table no longer holds the handle.
 
 #### Verification
 - Unit: `kernel:tests/cap/transfer_*` on `qemu-x86_64` and `hw-h002`.
@@ -220,22 +273,27 @@ Wire-format handle slots (IPC-014). Address-space construction (CMP). MemoryObje
 - Threats: T-001
 - Invariants: I-021, I-060
 
-A Component starts with exactly the Capabilities it was handed. This decision names the sources of that set so V0 Components receive no ambient filesystem, network, device or process-enumeration authority (§9.1). SEC's later grant-taxonomy ADR refines duration and UI class on top of these sources.
+A Component starts with exactly the Capabilities it was handed (§9.1); this decision names the only sources of that set so no V0 Component receives ambient filesystem, network, device or process-enumeration authority. D-0054's options: (A) the creator at launch only (the ComponentBuilder set); (B) creator at launch plus a user's choice through a chooser or prompt plus a Package manifest's declared request; (C) manifest-declared wildcard sets. Each option's consequences cite T-001 (confused deputy) and I-021 (no ambient authority), and rejected options record how they reintroduce ambient authority. SEC-007's grant taxonomy later refines duration and UI class on top of the accepted sources.
+
+The executing agent writes the decision, states that no other source exists (and therefore that the kernel has no "default" grants), lists the V0 mechanisms that implement each source (CMP-005 for the creator set; UserSelected chooser for user choice at V0.5), and completes the task with `decision:D-0054` evidence after ABI and SEC lead review.
 
 <!-- covers: INV-0076, INV-0042, INV-0200 -->
 
 #### Out of scope
-Chooser, prompt and settings-only taxonomy (SEC-007). Launch-time binding (CAP-025). Consent UI (APP).
+Chooser, prompt and settings-only taxonomy (SEC-007). Launch-time binding (CAP-025). Consent UI (APP). Persistence across restart (CAP-020).
+
+#### Deliverables
+- roadmap:decisions/D-0054-decide-grant-sources.md · Options with T-001 and I-021 consequences, the Decision naming every source and stating no other exists, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Options evaluated include at least: (A) creator-at-launch only; (B) creator at launch plus user choice plus Package manifest request; (C) manifest-declared wildcard sets.
-- [ ] The accepted option names every source a V0 Component may receive a Capability from, and names that no other source exists.
+- [ ] D-0054 evaluates (A) creator-at-launch only, (B) creator at launch plus user choice plus Package manifest request, and (C) manifest-declared wildcard sets, as named options.
+- [ ] The accepted option names every source a V0 Component may receive a Capability from, names the mechanism implementing each, and states that no other source exists.
 - [ ] Each option cites T-001 and I-021; the rejected options record why they reintroduce ambient authority.
 - [ ] Review records ABI and SEC lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and SEC lead sign-off recorded on the pull request.
-- Manual: decision file lists at least two options with consequences and names T-001.
+- Manual: the decision file lists at least two options with consequences and names T-001.
 
 #### Evidence
 - none
@@ -253,23 +311,28 @@ Chooser, prompt and settings-only taxonomy (SEC-007). Launch-time binding (CAP-0
 - Threats: T-003
 - Invariants: I-015, I-028, I-058
 
-How a `Capability<T>` is represented to userspace and laid out in the per-Component table, replacing file descriptors and reserving room for hardware enforcement. The accepted option stays prototyped through V0; nothing L1 freezes here (§8, §65). ABI-010 consumes this decision for the syscall word.
+How a `Capability<T>` is represented to user space and laid out in the per-Component table replaces file descriptors and reserves room for hardware enforcement (§7, §8, §38). D-0055 chooses among the three CAP-013 prototypes (dense per-Component handle-table index; sparse unforgeable 64-bit token; sealed-pointer layout reservable for CHERI) with the CHERI implications from CAP-012 and the seL4 CSpace comparison from CAP-015. The accepted option states that user space cannot mint a valid Capability, that the ABI reserves a sealed-pointer layout, and how generation reuse prevents a stale handle from aliasing a new object. S-001 stays `prototyped`; ABI-010 consumes this decision for the syscall word packing and CAP-005 implements the table.
+
+The executing agent writes each option from the prototype findings (forge resistance, table density, generation reuse, CHERI reservation), cites `reports/spikes/CAP-013.md`, `reports/spikes/CAP-012.md` and `reports/spikes/CAP-015.md` in Evidence, and updates `registers/surfaces.md` so S-001 names CAP-008 under `Decided by`.
 
 <!-- covers: GAP-0483, INV-0072, INV-0036, INV-0188, INV-0714 -->
 
 #### Out of scope
-Syscall packing of the handle word (ABI-010). Rights-bit encoding (CAP-010). Layer 1 freeze (ABI-049).
+Syscall packing of the handle word (ABI-010). Rights-bit encoding (CAP-010). Layer 1 freeze (ABI-049). The prototypes (CAP-013).
+
+#### Deliverables
+- roadmap:decisions/D-0055-decide-handle-representation.md · Options from the three prototypes with CHERI paragraphs, the Decision as the representation and table design, Evidence citing the three spike reports, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-001 `Decided by: CAP-008`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] Options evaluated include at least: dense per-Component handle-table index; sparse unforgeable 64-bit token; sealed-pointer layout reservable for CHERI.
-- [ ] Each option is backed by a prototype from CAP-013 and records CHERI implications from CAP-012.
-- [ ] The accepted option states that userspace cannot mint a valid Capability and that the ABI reserves a sealed-pointer layout.
-- [ ] Surface S-001 remains `prototyped`; the decision does not freeze it.
-- [ ] Review records ABI lead sign-off on the pull request.
+- [ ] D-0055 evaluates dense per-Component handle-table index, sparse unforgeable 64-bit token, and sealed-pointer layout reservable for CHERI as named options.
+- [ ] Each option is backed by the CAP-013 prototype findings and records the CHERI implications from CAP-012, with the three spike reports cited in Evidence.
+- [ ] The accepted option states that user space cannot mint a valid Capability, that the ABI reserves a sealed-pointer layout, and how generations prevent stale-handle aliasing.
+- [ ] S-001 remains `prototyped` with CAP-008 under `Decided by`, and Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
-- Manual: decision file lists at least two options, cites `reports/spikes/CAP-013.md` and `reports/spikes/CAP-012.md`, and names T-003.
+- Manual: the decision file lists at least two options, cites `reports/spikes/CAP-013.md` and `reports/spikes/CAP-012.md`, and names T-003.
 
 #### Evidence
 - none
@@ -286,22 +349,28 @@ Syscall packing of the handle word (ABI-010). Rights-bit encoding (CAP-010). Lay
 - Risks: R-003
 - Threats: T-005
 
-Chooses how revoke walks derived Capabilities, what happens to in-flight Operations, and which cost bounds the implementation must meet. The V0 depth-8-within-one-Operation gate cannot be implemented without this choice. Coordinates with TSK on cancelling in-flight Operations; measured costs are published by the revocation spike, not claimed here.
+Revoke must make every derived Capability unusable (§7), and how it does so decides the table's data structures and what an in-flight Operation observes. D-0058 chooses among the three CAP-014 strategies (seL4-style derivation-tree walk; indirection with epoch invalidation; lazy check-on-use), states when a descendant becomes unusable relative to one Operation (the V0-G04 depth-8-within-one-Operation gate), what an in-flight Operation on a revoked handle returns (`Error::Revoked`, coordinated with TSK-003's cancellation model), and the cost bounds the implementation must meet, citing the CAP-014 report rather than restating numbers. This answers Q-004.
+
+The executing agent writes the options from the CAP-014 measurements and the CAP-015 seL4 study, records the Decision as the strategy plus the in-flight rule, and marks Q-004 answered.
 
 <!-- covers: INV-0187, GAP-0484 -->
 
 #### Out of scope
-Implementing the walk (CAP-004). Measuring mint/derive/revoke in CI (CAP-018). Hardware-committed DMA cancel (TSK-017).
+Implementing the walk (CAP-004). Measuring mint, derive and revoke in CI (CAP-018). Hardware-committed DMA cancel (TSK-017). Cross-type immediacy (CAP-044).
+
+#### Deliverables
+- roadmap:decisions/D-0058-decide-revocation.md · Options from the CAP-014 report and the CAP-015 study, the Decision as strategy plus in-flight rule plus cost bound reference, rejected options, follow-ups.
+- roadmap:registers/questions.md · Q-004 `Status: answered`.
 
 #### Acceptance criteria
-- [ ] Options evaluated include at least: seL4-style derivation-tree walk; indirection with epoch invalidation; lazy check-on-use.
-- [ ] The accepted option states when a descendant becomes unusable relative to one Operation, and what an in-flight Operation on a revoked handle returns.
-- [ ] Each option cites the CAP-014 report and T-005.
-- [ ] Review records TSK lead sign-off that in-flight Operation completion is compatible with TSK-003.
+- [ ] D-0058 evaluates seL4-style derivation-tree walk, indirection with epoch invalidation, and lazy check-on-use as named options, citing `reports/spikes/CAP-014.md` and `reports/spikes/CAP-015.md`.
+- [ ] The accepted option states when a descendant becomes unusable relative to one Operation and that an in-flight Operation on a revoked handle completes with `Error::Revoked` and never a successful result.
+- [ ] Each option cites T-005, and Q-004 is marked answered by CAP-009.
+- [ ] Review records TSK lead and ABI lead sign-off that the in-flight rule is compatible with TSK-003.
 
 #### Verification
 - Review: TSK lead and ABI lead sign-off recorded on the pull request.
-- Manual: decision file lists at least two options and cites `reports/spikes/CAP-014.md`.
+- Manual: the decision file lists at least two options and cites `reports/spikes/CAP-014.md`.
 
 #### Evidence
 - none
@@ -319,23 +388,26 @@ Implementing the walk (CAP-004). Measuring mint/derive/revoke in CI (CAP-018). H
 - Threats: T-004
 - Invariants: I-028
 
-Single decision for how rights and transfer or delegation rights are represented, including how Admin authority is expressed. Attenuation must be a subset check that a future hardware-tag path can perform without kernel metadata (S-003). The encoding stays prototyped through V0 (§7, §8).
+The rights word (S-003) is how attenuation is expressed and must be a subset check that a future hardware-tag path can perform without kernel metadata (§7, §8, R-012). D-0059 chooses among a generic bitmask shared by every type, per-object-type typed rights (each type declares its bit meanings in the ABI-005 registry), and rights as separate kernel objects, and states how Admin is expressed (a distinguished bit, a distinguished right per type, or a separate object) and how transfer and delegation rights are distinct from object-operation rights. The accepted option requires that derive is a subset check on the word and cites CAP-012 for hardware-checkability. S-003 stays `prototyped`; CAP-011 implements the checks and CAP-036 later builds the per-type registry of bits.
 
 <!-- covers: INV-0185, INV-0175, INV-0176 -->
 
 #### Out of scope
 Per-object-type registry of which bits exist (CAP-036). Implementing the checks (CAP-011). Handle-table layout (CAP-008).
 
+#### Deliverables
+- roadmap:decisions/D-0059-decide-rights-encoding.md · Options with CAP-012 hardware-checkability paragraphs, the Decision as the rights word layout (a bit table), Admin and transfer expression, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-003 `Decided by: CAP-010`, `State: prototyped`.
+
 #### Acceptance criteria
-- [ ] Options evaluated include at least: generic bitmask; per-object-type typed rights; rights as separate kernel objects.
-- [ ] The accepted option states how Admin is expressed and how transfer and delegation rights are distinct from object-operation rights.
-- [ ] The accepted option requires that derive is a subset check and that S-003 remains hardware-checkable (R-012).
-- [ ] Surface S-003 remains `prototyped`; the decision does not freeze it.
-- [ ] Review records ABI lead sign-off on the pull request.
+- [ ] D-0059 evaluates generic bitmask, per-object-type typed rights, and rights as separate kernel objects as named options.
+- [ ] The accepted option states how Admin is expressed and how transfer and delegation rights are distinct from object-operation rights, with the rights word layout as a bit table.
+- [ ] The accepted option requires that derive is a subset check on the word and cites `reports/spikes/CAP-012.md` for S-003 remaining hardware-checkable (R-012).
+- [ ] S-003 remains `prototyped` with CAP-010 under `Decided by`, and Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
-- Manual: decision file lists at least two options, names S-003 and T-004, and cites CAP-012.
+- Manual: the decision file lists at least two options, names S-003 and T-004, and cites CAP-012.
 
 #### Evidence
 - none
@@ -351,18 +423,27 @@ Per-object-type registry of which bits exist (CAP-036). Implementing the checks 
 - Threats: T-004
 - Invariants: I-028
 
-Each Operation on an object checks the holder's rights word; each transfer checks delegation or transfer rights. Missing rights return `Error::Rights` and do not perform the Operation. Implements S-003 as accepted by CAP-010 (§7).
+Every Operation on an object checks the holder's rights word before any object code runs, and every transfer checks the transfer or delegation right (§7). `jakeos/cap/check.rs` implements `require(entry, right) -> Result<(), Error>` over the S-003 encoding D-0059 chose and is the single code path ABI-002's dispatcher calls with the right each Operation kind needs: the kind table (`jakeos/abi/kinds.rs`) declares the required right per kind, and a type registered through ABI-005 must declare its rights vocabulary in `jakeos/cap/rights_decl.rs` or the KRN-012 unit tests fail. A missing right returns `Error::Rights` and does not perform the Operation; Admin-gated Operations fail on a handle that lacks Admin, including a handle derived from an Admin parent with Admin masked out.
+
+`tools/jakeos/fuzz/cap_rights/` (`kernel:fuzz/cap_rights`) drives random handles, rights words and kinds through `require` nightly and asserts that no path grants an Operation a right the entry lacks (no rights amplification).
 
 <!-- covers: INV-0175, INV-0176 -->
 
 #### Out of scope
-Per-type rights catalog for later object types (CAP-036). Channel slot move (IPC-014).
+Per-type rights catalogue for later object types (CAP-036). Channel slot move (IPC-014). The encoding decision (CAP-010).
+
+#### Deliverables
+- kernel:jakeos/cap/check.rs · `require` over the D-0059 encoding; the one path every Operation and transfer goes through.
+- kernel:jakeos/cap/rights_decl.rs · Per-type rights declarations for every V0 type; a type without one fails the unit tests.
+- kernel:jakeos/abi/kinds.rs · The required right per Operation kind (added to ABI-002's file).
+- kernel:tools/jakeos/fuzz/cap_rights/ · Fuzz target asserting no rights amplification (`kernel:fuzz/cap_rights`).
+- kernel:tools/testing/selftests/jakeos/cap/rights_check_*.rs · Selftests: missing right on Read, Write and transfer; Admin masked out; undeclared type fails.
 
 #### Acceptance criteria
-- [ ] An Operation whose rights bit is absent returns `Error::Rights` and the object's state is unchanged, covered for Read, Write and a transfer attempt.
-- [ ] A transfer without transfer rights returns `Error::Rights` and both tables are unchanged.
-- [ ] Admin-gated Operations fail with `Error::Rights` when the handle lacks Admin, including on a handle derived from an Admin parent with Admin masked out.
-- [ ] The rights check is the same code path for every object type registered at V0; adding a type without a rights declaration fails CI.
+- [ ] An Operation whose required right is absent from the entry returns `Error::Rights` and the object's state is unchanged, covered for Read, Write and a transfer attempt on `qemu-x86_64` and `hw-h002`.
+- [ ] A transfer without the transfer right returns `Error::Rights` and both tables are unchanged.
+- [ ] Admin-gated Operations return `Error::Rights` on a handle without Admin, including one derived from an Admin parent with Admin masked out.
+- [ ] `require` is the single check path for every V0 type; registering a type without a `rights_decl.rs` entry fails the KRN-012 unit tests, and `kernel:fuzz/cap_rights` runs nightly with no rights amplification and no panic.
 
 #### Verification
 - Unit: `kernel:tests/cap/rights_check_*` on `qemu-x86_64` and `hw-h002`.
@@ -384,20 +465,25 @@ Per-type rights catalog for later object types (CAP-036). Channel slot move (IPC
 - Risks: R-012
 - Invariants: I-058
 
-Written study of CHERI capability hardware: what the ABI must reserve so a sealed-pointer layout and a subset-checkable rights word can be adopted later without breaking binaries. This spike precedes CAP-008 so V0 does not freeze the OS around current x86-64 limits (§8, §65).
+The ABI must not freeze the OS around today's x86-64 (§8, §38, §65). This written study reads the CHERI ISA specification and the Morello and CHERI-RISC-V documentation at a named revision and answers what the native handle word (S-001) and rights word (S-003) must reserve so a sealed-pointer layout and a subset-checkable permission word can be adopted later without breaking binaries: which handle bits must stay opaque (no pointer-derived identity, no user-visible generation arithmetic), whether S-003 can be a subset check on a CHERI permission field or what encoding change that would need, which application-visible Capability operations stay stable under hardware enforcement, and which layout choices available now would force a Layer 1 break later.
+
+The report `reports/spikes/CAP-012.md` is cited by CAP-008 and CAP-010; it names at least one layout that would force a break and rules it out. QEMU-CHERI validation (CAP-038) and a Morello mapping prototype (CAP-039) come later.
 
 <!-- covers: INV-1143 -->
 
 #### Out of scope
 QEMU-CHERI validation of freeze candidates (CAP-038). Morello mapping prototype (CAP-039). Handle-layout prototypes (CAP-013).
 
+#### Deliverables
+- roadmap:reports/spikes/CAP-012.md · The study: reserved handle bits, S-003 as a CHERI permission subset check, stable operations, layouts ruled out, source citations.
+
 #### Acceptance criteria
-- [ ] Report lists ABI fields that must remain opaque (no pointer-derived identity, no userspace-visible generation arithmetic) for a sealed-pointer path.
-- [ ] Report states whether S-003 can be a subset check on a CHERI permission word, or which encoding change would be required.
-- [ ] Report names at least one layout that would force a Layer 1 break if chosen now, and rules it out.
+- [ ] `reports/spikes/CAP-012.md` lists the ABI fields that must remain opaque (no pointer-derived identity, no user-visible generation arithmetic) for a sealed-pointer path, with the CHERI documentation cited by revision.
+- [ ] The report states whether S-003 can be a subset check on a CHERI permission word, or which encoding change would be required.
+- [ ] The report names at least one layout that would force a Layer 1 break if chosen now and rules it out, and is cited by CAP-008 and CAP-010.
 
 #### Verification
-- Report: answers (1) which handle bits must stay reserved for a CHERI sealed pointer, (2) how rights map onto CHERI permissions, (3) what application-visible Capability operations remain stable under hardware enforcement, (4) what V0 must not freeze.
+- Report: (1) which handle bits must stay reserved for a CHERI sealed pointer, (2) how rights map onto CHERI permissions, (3) what application-visible Capability operations remain stable under hardware enforcement, (4) what V0 must not freeze.
 - Review: ABI lead records that CAP-008 cites this report.
 
 #### Evidence
@@ -414,22 +500,32 @@ QEMU-CHERI validation of freeze candidates (CAP-038). Morello mapping prototype 
 - Explores: S-001
 - Risks: R-003
 
-GAP-0483 requires the handle-representation ADR to be backed by a prototype of each option. Three layouts are built far enough to mint, look up and reject a forged handle: dense per-Component index, sparse unforgeable token, sealed-pointer-shaped value. Results feed CAP-008; nothing is frozen.
+GAP-0483 requires the handle-representation decision to be backed by a prototype of each option (§7, §8). Under `jakeos/spikes/cap/handles/` behind `CONFIG_JAKEOS_SPIKES`, three layouts are built far enough to mint a handle, look it up and reject a forged one with `Error::Rights`: `dense.rs` (a per-Component index into a table with a generation counter per slot), `sparse.rs` (a 64-bit unforgeable token: random or keyed, looked up through a hash table), and `sealed.rs` (a value shaped like a CHERI sealed pointer with opaque type and bounds fields). A user-space driver `abi/spikes/handle-driver/` mints, looks up and forges against each on `qemu-x86_64`; `kernel:tests/cap/spike_handle_*` are the prototype's own tests.
+
+The report `reports/spikes/CAP-013.md` records forge resistance, table density and generation reuse, what each layout would need reserved for a later sealed-pointer path, and which layouts remain viable for CAP-008; it does not claim a performance winner, and any timing is labelled an unpublished prototype measurement. Nothing is frozen.
 
 <!-- covers: GAP-0483 -->
 
 #### Out of scope
-Accepting the ADR (CAP-008). Production table (CAP-005). CHERI hardware study (CAP-012).
+Accepting the decision (CAP-008). Production table (CAP-005). CHERI hardware study (CAP-012).
+
+#### Deliverables
+- kernel:jakeos/spikes/cap/handles/dense.rs · Dense per-Component index prototype.
+- kernel:jakeos/spikes/cap/handles/sparse.rs · Sparse unforgeable token prototype.
+- kernel:jakeos/spikes/cap/handles/sealed.rs · Sealed-pointer-shaped prototype.
+- abi:spikes/handle-driver/ · User-space driver that mints, looks up and forges against each layout.
+- kernel:tools/testing/selftests/jakeos/cap/spike_handle_*.rs · The prototypes' tests.
+- roadmap:reports/spikes/CAP-013.md · The report.
 
 #### Acceptance criteria
-- [ ] Each of the three layouts has a prototype that mints a handle, looks it up, and rejects a forged index or token with `Error::Rights`.
-- [ ] Report records what each layout would need reserved for a later sealed-pointer path.
-- [ ] Report does not claim a performance winner; any timing is labelled unpublished prototype measurement.
+- [ ] Each of the three layouts has a prototype under `jakeos/spikes/cap/handles/` that mints a handle, looks it up, and rejects a forged index or token with `Error::Rights`, driven from `abi/spikes/handle-driver/` on `qemu-x86_64`.
+- [ ] `reports/spikes/CAP-013.md` records forge resistance, table density and generation reuse per layout and what each would need reserved for a later sealed-pointer path.
+- [ ] The report does not claim a performance winner; any timing is labelled an unpublished prototype measurement.
 
 #### Verification
-- Report: answers (1) forge resistance of each layout, (2) table density and generation reuse, (3) CHERI reservation, (4) which layouts remain viable for the ADR.
+- Report: (1) forge resistance of each layout, (2) table density and generation reuse, (3) CHERI reservation, (4) which layouts remain viable for the decision.
 - Unit: prototype tests under `kernel:tests/cap/spike_handle_*` on `qemu-x86_64`.
-- Review: ABI lead confirms the ADR cites this report.
+- Review: ABI lead confirms the decision cites this report.
 
 #### Evidence
 - none
@@ -445,20 +541,29 @@ Accepting the ADR (CAP-008). Production table (CAP-005). CHERI hardware study (C
 - Explores: S-003
 - Threats: T-005
 
-Derivation-tree walk, epoch indirection and lazy check-on-use are prototyped and measured at one million derived Capabilities. Revocation cost bounds how freely the OS can hand out attenuated Capabilities. Results are published in the spike report; they are not a gate target and are not restated as promises (§7, §53).
+Revocation cost bounds how freely the OS can hand out attenuated Capabilities (§7, §53). Under `jakeos/spikes/cap/revoke/` behind `CONFIG_JAKEOS_SPIKES`, three strategies are prototyped over a throwaway table: `tree.rs` (seL4-style derivation-tree walk), `epoch.rs` (indirection with epoch invalidation) and `lazy.rs` (check-on-use with a revoked-set lookup). A driver `abi/spikes/revoke-driver/` builds a root with one million descendants at depth 8 on `qemu-x86_64` and on `hw-h002`, revokes the root, and measures the time to revoke, the memory overhead of each strategy's bookkeeping, and whether every descendant fails within one Operation (the V0-G04 rule), and what an Operation in flight during the revoke observes.
+
+The report `reports/spikes/CAP-014.md` publishes the method and the measurements as unpublished prototype numbers and makes no superiority claim; CAP-009 chooses from it and CAP-018 turns the method into a standing harness.
 
 <!-- covers: GAP-0484 -->
 
 #### Out of scope
 Accepting the strategy (CAP-009). Production revoke (CAP-004). Standing CI harness (CAP-018).
 
+#### Deliverables
+- kernel:jakeos/spikes/cap/revoke/tree.rs · Derivation-tree walk prototype.
+- kernel:jakeos/spikes/cap/revoke/epoch.rs · Epoch indirection prototype.
+- kernel:jakeos/spikes/cap/revoke/lazy.rs · Check-on-use prototype.
+- abi:spikes/revoke-driver/ · Builds the million-descendant tree, revokes, measures, provokes an in-flight Operation.
+- roadmap:reports/spikes/CAP-014.md · Method, measurements labelled unpublished, in-flight behaviour, viable set.
+
 #### Acceptance criteria
-- [ ] Each of the three strategies revokes a root with one million descendants in a prototype on `qemu-x86_64` and on H-002.
-- [ ] Report records whether each strategy makes every descendant fail within one Operation at depth 8.
-- [ ] Report publishes the measurement method and does not state a superiority claim.
+- [ ] Each of the three strategies revokes a root with one million descendants at depth 8 in the prototype on `qemu-x86_64` and on `hw-h002`.
+- [ ] `reports/spikes/CAP-014.md` records whether each strategy makes every descendant fail within one Operation at depth 8, the memory overhead of its bookkeeping, and what an in-flight Operation observed.
+- [ ] The report publishes the measurement method, labels every number an unpublished prototype measurement, and states no superiority claim.
 
 #### Verification
-- Report: answers (1) which strategies meet the depth-8-within-one-Operation rule, (2) memory overhead of the derivation tree versus epoch table, (3) in-flight Operation behaviour, (4) the viable set for the ADR.
+- Report: (1) which strategies meet the depth-8-within-one-Operation rule, (2) memory overhead of the derivation tree versus epoch table versus revoked set, (3) in-flight Operation behaviour, (4) the viable set for the decision.
 - Bench: prototype runs on H-001 and H-002; numbers live only in `reports/spikes/CAP-014.md`.
 - Review: CAP lead confirms CAP-009 cites this report.
 
@@ -473,23 +578,25 @@ Accepting the strategy (CAP-009). Production revoke (CAP-004). Standing CI harne
 - Owner: none
 - Depends on: none
 - Baseline: §7, §58
-- Explores: S-001, S-003
 
-Written study of seL4 CSpaces, capability derivation trees, revocation and the formal-verification approach, kept in V0 because it directly informs the handle-representation and revocation ADRs (§58).
+seL4 is the reference capability kernel (§58). This written study reads the seL4 manual and kernel sources at a named revision and describes CSpace lookup (guards and radix), capability derivation (the CDT), revocation and the formal-verification approach, mapping each onto a JakeOS table operation (`lookup`, `derive`, `revoke`) and stating which seL4 mechanisms CAP does not copy and why, given residency in a Linux-derived kernel (no static CSpace layout, no untyped memory retyping, a different Component lifetime model). The report `reports/spikes/CAP-015.md` is cited by CAP-008 and CAP-009.
 
 <!-- covers: INV-1132 -->
 
 #### Out of scope
-Other capability OS survey (CAP-026). Formal tooling choice (CAP-028). Production table (CAP-005).
+Other capability OS survey (CAP-026). Formal tooling choice (CAP-028). Production table (CAP-005). Zircon study (ABI-022).
+
+#### Deliverables
+- roadmap:reports/spikes/CAP-015.md · The study with the mapping onto JakeOS table operations, the not-copied list, and recommendations for CAP-008 and CAP-009.
 
 #### Acceptance criteria
-- [ ] Report describes seL4 CSpace lookup, derive, and revoke, and maps each onto a JakeOS table operation.
-- [ ] Report names seL4 mechanisms CAP does not copy, with the reason, given Linux-derived kernel residency.
-- [ ] Report is cited by CAP-008 and CAP-009.
+- [ ] `reports/spikes/CAP-015.md` describes seL4 CSpace lookup, derive and revoke with citations to a named revision, and maps each onto a JakeOS table operation.
+- [ ] The report names the seL4 mechanisms CAP does not copy, with the reason, given Linux-derived kernel residency.
+- [ ] The report is cited by CAP-008 and CAP-009.
 
 #### Verification
-- Report: answers (1) how seL4 derivation trees revoke, (2) what CSpace guard/radix choices mean for S-001, (3) what of seL4's formal spec applies to a Linux-derived kernel, (4) recommendations for the two V0 ADRs.
-- Review: CAP lead sign-off that both V0 ADRs cite this report.
+- Report: (1) how seL4 derivation trees revoke, (2) what CSpace guard and radix choices mean for S-001, (3) what of seL4's formal specification applies to a Linux-derived kernel, (4) recommendations for the two V0 decisions.
+- Review: CAP lead sign-off that both V0 decisions cite this report.
 
 #### Evidence
 - none

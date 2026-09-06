@@ -6,7 +6,7 @@ This register names every Layer 1, Layer 2 and Layer 3 ABI surface that can be f
 - Layer: L1
 - Owner: ABI
 - State: open
-- Explored by: ABI-022, ABI-042, CAP-012, CAP-013, CAP-015, CAP-038, CAP-052
+- Explored by: ABI-022, ABI-042, CAP-012, CAP-013, CAP-038, CAP-052
 - Decided by: ABI-010, CAP-008
 - Frozen by: none
 The representation of a live kernel-object handle in a component's capability table: index width, generation, type tag and the rules for allocation, lookup and reuse.
@@ -24,7 +24,7 @@ How a component enters the kernel: syscall instruction, register convention, dis
 - Layer: L1
 - Owner: CAP
 - State: open
-- Explored by: CAP-012, CAP-014, CAP-015, CAP-027, CAP-038, CAP-039, CAP-040, CAP-052
+- Explored by: CAP-012, CAP-014, CAP-027, CAP-038, CAP-039, CAP-040, CAP-052
 - Decided by: CAP-010
 - Frozen by: none
 The rights word on `Capability<T, Rights>` so attenuation is a subset check and a future hardware-tag path can enforce it without kernel metadata.

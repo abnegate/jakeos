@@ -81,9 +81,9 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5316 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5312 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5310 |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4820 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4793 |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4519 |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4527 |
 
 ## Critical path
 
@@ -161,11 +161,11 @@ Makespan (size-weight estimates): 115.
 | ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1752 | 5309 |
 | ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1751 | 5306 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1689 | 5060 |
+| MEM-002 | Decide the MemoryObject kernel implementation basis | 1613 | 4810 |
 | TSK-008 | Decide whether every Task has kernel-visible identity | 1598 | 4794 |
-| MEM-002 | Decide the MemoryObject kernel implementation basis | 1600 | 4783 |
-| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1565 | 4664 |
+| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1569 | 4672 |
 | TSK-007 | Decide Operation submission/completion transport and batching expression | 1557 | 4642 |
-| CMP-010 | Decide the Phase A Component implementation strategy | 1519 | 4508 |
+| CMP-010 | Decide the Phase A Component implementation strategy | 1523 | 4516 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1509 | 4465 |
 | ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1464 | 4326 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1465 | 4317 |
@@ -187,8 +187,8 @@ Makespan (size-weight estimates): 115.
 | CAP-003 | 24 |
 | IPC-010 | 24 |
 | LAB-003 | 24 |
+| OBS-006 | 24 |
 | SEM-029 | 24 |
-| OBS-006 | 23 |
 | Q-001 | 23 |
 | KRN-017 | 21 |
 | PKG-016 | 21 |
@@ -246,6 +246,7 @@ Makespan (size-weight estimates): 115.
 | HW-047 | 13 |
 | INS-045 | 13 |
 | KRN-011 | 13 |
+| KRN-013 | 13 |
 | LAB-007 | 13 |
 | LNX-005 | 13 |
 | LNX-042 | 13 |
@@ -260,7 +261,6 @@ Makespan (size-weight estimates): 115.
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
-| KRN-013 | 12 |
 | KRN-014 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |

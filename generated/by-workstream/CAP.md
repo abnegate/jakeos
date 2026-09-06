@@ -6,11 +6,11 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| CAP-001 | Record Capability grants, derivations, revocations and denials in the audit log | todo | blocked | M | CAP-005, CAP-003, CAP-004, CAP-007 |
+| CAP-001 | Record Capability grants, derivations, revocations and denials in the audit log | todo | blocked | M | CAP-005, CAP-003, CAP-004, CAP-007, OBS-006 |
 | CAP-002 | Expose Capability type, rights and Object identity to holders and os inspect | todo | blocked | S | CAP-005, CAP-003, OBS-006 |
 | CAP-003 | Implement Capability mint and attenuating derive with rights monotonicity tests | todo | blocked | M | CAP-005, CAP-010, CAP-011, ABI-009 |
 | CAP-004 | Implement Capability revocation invalidating all derived Capabilities | todo | blocked | L | CAP-009, CAP-003, CAP-005, TSK-010 |
-| CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | blocked | L | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009 |
+| CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | blocked | L | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009, KRN-013 |
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | blocked | L | CAP-005, CAP-003, CAP-011, CMP-005 |
 | CAP-007 | Decide explicit grant sources replacing ambient permissions | todo | ready | S | SEC-002 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | blocked | M | CAP-013, CAP-012, CAP-015, SEC-002 |
