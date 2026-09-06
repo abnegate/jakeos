@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-Case-insensitive, case-preserving semantics for the Windows personality view must not leak into native or Linux views (§25, §48).
+Windows software expects case-insensitive, case-preserving paths. Native and Linux views are case-sensitive and must stay so (I-007, §25, §48). This decision fixes where the Windows personality's case-insensitive view lives: Wine's own path lookup, a per-prefix casefold overlay, or filesystem casefolding confined to the personality view API (STO-047), so no case-insensitive lookup leaks into native or Linux views.
 
 ## Options
 
 ### Option A · Wine path lookup
-Summary: Wine's lookup.
-Consequences: Existing; slow.
+Summary: Wine's user-space case-insensitive path lookup, scanning directories on miss.
+Consequences: Exists and is correct today. Directory scans on every miss make it the slowest option for large trees (game installs), which the W corpora's load-time metrics will show.
 Evidence: none
 
 ### Option B · Per-prefix casefold overlay
-Summary: An overlay per prefix.
-Consequences: Fast; overlay.
+Summary: A per-prefix casefold overlay filesystem presents the prefix and the user's granted objects case-insensitively to the personality only.
+Consequences: Fast lookups and confined to the prefix. One more overlay in the personality's mount graph, and objects granted from outside the prefix must be projected into it.
 Evidence: none
 
 ### Option C · Filesystem casefold confined to the personality view API
-Summary: Confined casefold.
-Consequences: Native speed; confinement.
+Summary: The personality view API returns a casefolded view (using the filesystem's casefold feature where present) for Windows-personality Components only; native and Linux views never request it.
+Consequences: Native speed with the rule enforced at the one API that builds views. Depends on the filesystem's casefold support (btrfs and ext4 have it, others do not), and fallback to A is needed on volumes without it.
 Evidence: none
 
 ## Decision
