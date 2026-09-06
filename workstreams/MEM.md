@@ -60,18 +60,21 @@ GPU-compatible allocation (MEM-024). Device-local backing (MEM-046). Explicit GP
 - Decision: D-0197
 - Invariants: I-009
 
-V0 requires an accepted choice of kernel backing for MemoryObject over retained Linux mm: shmem/memfd, dma-buf, or a new native object. The report from MEM-011 supplies transfer cost including TLB shootdown so the choice is not made on familiarity. dma-buf interoperation for GPU and DMA is a consequence of the choice, not a later surprise (§16).
+The kernel object behind MemoryObject decides what a mapping is, what ownership transfer costs and how retained drivers see the object (§16, §2). D-0197's three options (shmem and memfd, dma-buf as the object, a new native object over retained Linux mm) already carry their consequences; the executing agent fills the Decision from `reports/spikes/MEM-011.md`: transfer cost including TLB shootdown at the three B-007 sizes on H-001 and H-002 per backing, the dma-buf export and import tax, and which backing leaves native software holding only `Capability<MemoryObject>` (never a memfd or dma-buf descriptor). The Decision names the backing MEM-005 implements, the export views it must offer to retained drivers and the personality, and the rejected options with reasons; it is a rewrite-versus-retain decision under I-009 and cites the measured benefit if it picks the native object.
 
 <!-- covers: INV-0317 -->
 
 #### Out of scope
-Whether transfer is enforced or advisory (MEM-003). Whether dma-buf backs GPU-compatible objects at V0.5 (MEM-019).
+Whether transfer is enforced or advisory (MEM-003). Whether dma-buf backs GPU-compatible objects at V0.5 (MEM-019). The implementation (MEM-005).
+
+#### Deliverables
+- roadmap:decisions/D-0197-decide-memoryobject-basis.md · The Decision, Consequences, rejected options and follow-ups filled from the MEM-011 report, cited in Evidence.
 
 #### Acceptance criteria
-- [ ] Option A (shmem/memfd), Option B (dma-buf as the object), and Option C (new native object over retained Linux mm) are evaluated with dma-buf export/import consequences.
-- [ ] The accepted option cites the spike report for transfer cost of the three B-007 sizes on H-001 and H-002.
-- [ ] The accepted option leaves native software holding MemoryObject Capabilities, not memfd or dma-buf descriptors.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] D-0197 evaluates option A (shmem and memfd), option B (dma-buf as the object) and option C (new native object over retained Linux mm) with dma-buf export and import consequences for each.
+- [ ] The accepted option cites `reports/spikes/MEM-011.md` for transfer cost at the three B-007 sizes on H-001 and H-002 and, if it picks the native object, names the measured benefit that I-009 requires.
+- [ ] The accepted option leaves native software holding `Capability<MemoryObject>` only, names the export views retained drivers and the personality receive, and lists rejected options with reasons.
+- [ ] Review records ABI lead and MEM reviewer sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and MEM reviewer sign-off recorded on the pull request.
@@ -91,18 +94,21 @@ Whether transfer is enforced or advisory (MEM-003). Whether dma-buf backs GPU-co
 - Decision: D-0199
 - Invariants: I-056, I-063
 
-Ownership transfer is the ABI default for MemoryObjects (§65, §67). The decision fixes whether the kernel unmaps the sender and invalidates its handle, or the sender promises not to touch the object after the move. Enforcement cost from MEM-011 is attached so SDK move types are not designed against an unmeasured unmap.
+Ownership transfer is the ABI default for MemoryObjects (§16, §17, §65, §67). D-0199's two options (kernel-enforced unmap and invalidation, or advisory transfer) carry their consequences; the executing agent fills the Decision from `reports/spikes/MEM-011.md`'s enforcement cost (unmap plus TLB shootdown per size and mapping count) so SDK move types are designed against a number, and states three rules the accepted option fixes: what a load or store through a sender mapping does after a successful transfer (fault with a typed exit cause, or undefined under advisory), what happens to Capabilities derived from the moved handle (invalidated with the parent under enforcement), and what outstanding map Operations from the sender complete with (`Error::Revoked`). MEM-010 implements the result and IPC-014 relies on it.
 
 <!-- covers: GAP-0498 -->
 
 #### Out of scope
-Channel handle slots (IPC-014). Borrowing lifetimes (MEM-018).
+Channel handle slots (IPC-014). Borrowing lifetimes (MEM-018). The implementation (MEM-010).
+
+#### Deliverables
+- roadmap:decisions/D-0199-decide-transfer-enforcement.md · The Decision with the three rules, Consequences for the SDK move types and the threat model, rejected option, follow-ups, with the MEM-011 report cited in Evidence.
 
 #### Acceptance criteria
-- [ ] Option A (kernel unmaps the sender and invalidates the sender handle) and Option B (advisory transfer; sender promised not to touch) are evaluated with the measured enforcement cost from the spike report.
+- [ ] D-0199 evaluates option A (kernel unmaps the sender and invalidates the sender handle) and option B (advisory transfer, sender promised not to touch) with the measured enforcement cost from `reports/spikes/MEM-011.md`.
 - [ ] The accepted option states what a load or store through a sender mapping does after a successful transfer.
-- [ ] The accepted option states what happens to derived Capabilities and outstanding map Operations at transfer.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] The accepted option states what happens to derived Capabilities and to outstanding map Operations at transfer.
+- [ ] Review records ABI lead and MEM reviewer sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and MEM reviewer sign-off recorded on the pull request.
@@ -117,22 +123,27 @@ Channel handle slots (IPC-014). Borrowing lifetimes (MEM-018).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: MEM-005
+- Depends on: MEM-005, SCH-008
 - Baseline: §16, §23
 - Threats: T-016
 - Invariants: I-033
 
-V0 ResourceDomain memory-budget enforcement is meaningless unless MemoryObject pages are charged to the owner's domain. SCH owns the budget object and the typed exhaustion error; MEM installs the charging hook on create, grow, and destroy so a Component cannot exceed the domain memory budget by allocating MemoryObjects (§23).
+A memory budget that ignores MemoryObjects is no budget (§16, §23, T-016). `jakeos/mem/charge.rs` installs the charging hook: `memoryobject.create` calls SCH-008's `charge(domain, bytes)` for the object's resident pages before allocating them and fails with `Error::Exhausted` allocating nothing when the domain's budget would be exceeded; growth (a later resize Operation) charges the delta; destroy, and destroy of the owning Component, call `uncharge`. The owning domain is the creator's domain at creation; MEM-015 later moves the charge with ownership across a transfer (V0 keeps the charge with the original domain and MEM-010's transfer records the debt). The domain's charged bytes are visible in `os inspect resource`.
 
 <!-- covers: INV-0427, INV-0237 -->
 
 #### Out of scope
-Budget policy and CPU share (SCH-008). Charge-follows-owner across a transfer (MEM-015). Kernel-object count limits (SCH-009).
+Budget policy and CPU share (SCH-008). Charge follows owner across a transfer (MEM-015). Kernel-object count limits (SCH-009).
+
+#### Deliverables
+- kernel:jakeos/mem/charge.rs · The charge-before-allocate hook on create and grow, the uncharge on destroy, and the typed exhaustion path.
+- kernel:jakeos/mem/object.rs · Calls into `charge.rs` at create, grow and destroy (extending MEM-005's file).
+- kernel:tools/testing/selftests/jakeos/mem/charge_budget_*.rs · Selftests: charge visible on create, exhaustion with no pages allocated, reclaim on destroy and on Component destroy.
 
 #### Acceptance criteria
-- [ ] Creating a MemoryObject charges its resident pages to the owner's ResourceDomain and is visible in the domain's memory consumption.
-- [ ] An allocation that would exceed the domain memory budget returns a typed exhaustion error and allocates no additional pages.
-- [ ] Destroying the object or its owning Component reclaims the charge so a subsequent create at the same size succeeds.
+- [ ] Creating a MemoryObject charges its resident pages to the creator's ResourceDomain before allocation and the charge is visible in `os inspect resource`, on `qemu-x86_64` and `hw-h002`.
+- [ ] A create or grow that would exceed the domain's memory budget returns `Error::Exhausted` and allocates no additional pages.
+- [ ] Destroying the object, or its owning Component, reclaims the charge so a subsequent create at the same size succeeds.
 
 #### Verification
 - Unit: `kernel:tests/mem/charge_budget_*` on CI matrix entries `qemu-x86_64` (H-001) and `hw-h002` (H-002).
@@ -147,29 +158,39 @@ Budget policy and CPU share (SCH-008). Charge-follows-owner across a transfer (M
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: MEM-002
+- Depends on: MEM-002, ABI-005, CAP-005, KRN-013
 - Baseline: §7, §16, §24, §51, §59, §69
 - Invariants: I-009, I-034, I-082
 
-Object<Memory> is the kernel object for large data (§7, §16). Create and destroy track size, properties, owner, and the mapping table over retained Linux mm as decided by MEM-002. Destroy of the owning Component reclaims the object. Owner, mappers, and properties are exported on the inspect interface so `os inspect memory` can print state without reconstructing it from raw mm internals (§24, §59).
+`Object<MemoryObject>` is the kernel object for large data (§7, §16, §69). `jakeos/mem/object.rs` registers the type id with ABI-005, embeds the header and holds size, the property set (`writable`, `executable`, `immutable`, later `dma`, `persistent`), the owner Component and the mapping table (which Component maps it at what address with what protection), over the backing D-0197 (MEM-002) chose: `jakeos/mem/backing.rs` is the internal trait with the chosen implementation (shmem pages, a dma-buf, or the native page set), so the ABI never names the mechanism. `memoryobject.create(size, properties)` returns `Capability<MemoryObject>` with rights `Map`, `Grow`, `Seal`, `Transfer`, `Inspect`; pages read as zero before the first write and a destroyed object's pages are zeroed before reuse (T-044 class); destroy of the object, or of its owning Component, releases the pages and every mapping. The `memory` inspect provider prints owner, mapper set, size and properties for `os inspect memory` (§24, §59). No native API returns a Linux memfd, dma-buf file descriptor or POSIX descriptor; export views for retained drivers are kernel-internal.
+
+Rust throughout unless D-0197's backing requires a C shim named in `rust-exemptions.toml` (KRN-015).
 
 <!-- covers: INV-0052, INV-0163, INV-0305, INV-1318, INV-1323 -->
 
 #### Out of scope
-Map and unmap (MEM-007). Inspect CLI rendering (SDK-007). Object registry and handles (ABI-005).
+Map and unmap (MEM-007). Inspect CLI rendering (SDK-007). Object registry and handles (ABI-005). Budget charging (MEM-004).
+
+#### Deliverables
+- kernel:jakeos/mem/mem.rs · Crate root for the MEM area.
+- kernel:jakeos/mem/object.rs · `Object<MemoryObject>`: header, size, properties, owner, mapping table, `create` and `destroy` handlers.
+- kernel:jakeos/mem/backing.rs · The internal backing trait with the D-0197 implementation and the zero-on-first-use and zero-on-release rules.
+- kernel:jakeos/cap/rights_decl.rs · The `MemoryObject` rights vocabulary (extending CAP-011's file).
+- kernel:jakeos/obs/providers/memory.rs · The `memory` inspect provider.
+- kernel:tools/testing/selftests/jakeos/mem/object_create_destroy_*.rs · Selftests: create records, zero pages, no prior contents after reuse, leak loop, inspect fields, no descriptor API.
+- kernel:Documentation/jakeos/mem/memoryobject.md · The object, properties, the backing trait and the zeroing rules.
 
 #### Acceptance criteria
-- [ ] A Component creates a MemoryObject of a requested size and the kernel records size, default properties, owner, and an empty mapping table.
-- [ ] Pages of a newly created MemoryObject read as zero before the first write; a test that destroys an object and creates another of the same size never observes prior contents.
-- [ ] Destroying the object or its Component leaves no kernel accounting for that object; a leak test of repeated create/destroy shows no unbounded growth.
-- [ ] Inspect data for a live object includes owner, mapper set, size, and properties.
-- [ ] Native crates have no API that returns a Linux memfd, dma-buf fd, or POSIX descriptor for the object.
-- [ ] New kernel code for the object is Rust unless a file is exempted by an accepted decision.
+- [ ] `memoryobject.create(size, properties)` returns `Capability<MemoryObject>` and the kernel records size, default properties, owner and an empty mapping table, on `qemu-x86_64` and `hw-h002`.
+- [ ] Pages of a newly created MemoryObject read as zero before the first write; a selftest that destroys an object and creates another of the same size never observes prior contents.
+- [ ] Destroying the object or its Component leaves no kernel accounting for it; a repeated create and destroy loop shows no unbounded growth.
+- [ ] `os inspect memory <handle>` shows owner, mapper set, size and properties, and no native API returns a Linux memfd, dma-buf descriptor or POSIX descriptor for the object (ABI-018 and ABI-003 pass).
+- [ ] New kernel code for the object is Rust unless `rust-exemptions.toml` names a file with an accepted decision (KRN-016 passes).
 
 #### Verification
 - Unit: `kernel:tests/mem/object_create_destroy_*` on H-001 and H-002.
-- Integration: inspect provider for MemoryObject is exercised by the V0 `os inspect memory` path.
-- Review: ABI review-gate checklist records no exposed mm_struct or page-table layout on the native surface (I-057).
+- Integration: the `memory` inspect provider is exercised by the V0 `os inspect memory` path.
+- Review: ABI review-gate checklist records no exposed `mm_struct` or page-table layout on the native surface (I-057).
 
 #### Evidence
 - none
@@ -184,18 +205,24 @@ Map and unmap (MEM-007). Inspect CLI rendering (SDK-007). Object registry and ha
 - Baseline: §16, §51
 - Invariants: I-082
 
-Component code pages are executable MemoryObjects. The kernel refuses any mapping that is simultaneously writable and executable, and refuses to add executable to an object that already has a writable mapping (§16, §51). The check is a regression test on every kernel build.
+Component code pages are executable MemoryObjects, and no page is ever writable and executable at once (§16, §51). `jakeos/mem/wx.rs` enforces it at the two places protection changes: `memoryobject.map` refuses a request for both `writable` and `executable` with `Error::Rights` and installs nothing; `memoryobject.set_property` refuses adding `executable` to an object with any writable mapping, and adding `writable` to an object with any executable mapping, leaving mappings unchanged. A sealed executable object (MEM-008) maps read-execute and a write fault on it is a typed fault, not a silent success. The W^X suite runs on every kernel build in `pre-merge`.
 
 <!-- covers: INV-0312 -->
 
 #### Out of scope
-Sealing (MEM-008). Component code-page layout from Packages (CMP-003).
+Sealing (MEM-008). Component code-page layout from Packages (CMP-003). Map and unmap mechanics (MEM-007).
+
+#### Deliverables
+- kernel:jakeos/mem/wx.rs · The W^X checks at `map` and `set_property`.
+- kernel:jakeos/mem/map.rs · The `map` call into `wx.rs` (extending MEM-007's file).
+- kernel:tools/testing/selftests/jakeos/mem/wx_*.rs · Selftests for the four cases, run on every kernel build.
+- kernel:.github/workflows/pre-merge.yml · The `wx-suite` step in the native unit job.
 
 #### Acceptance criteria
-- [ ] Mapping an object with both writable and executable requested returns a typed rights error and installs no mapping.
-- [ ] Adding executable to an object that has a writable mapping returns a typed rights error and leaves mappings unchanged.
-- [ ] Adding writable to an object that has an executable mapping returns a typed rights error and leaves mappings unchanged.
-- [ ] A sealed executable object maps read-execute and rejects a write fault.
+- [ ] Mapping an object with both `writable` and `executable` requested returns `Error::Rights` and installs no mapping, on `qemu-x86_64` and `hw-h002`.
+- [ ] Adding `executable` to an object that has a writable mapping returns `Error::Rights` and leaves mappings unchanged; adding `writable` to an object that has an executable mapping does the same.
+- [ ] A sealed executable object maps read-execute and a write fault on the mapping is reported as a typed fault to the Component with the object unchanged.
+- [ ] The W^X suite runs in `pre-merge` on every kernel build.
 
 #### Verification
 - Unit: `kernel:tests/mem/wx_*` on H-001 and H-002.
@@ -214,18 +241,25 @@ Sealing (MEM-008). Component code-page layout from Packages (CMP-003).
 - Baseline: §16, §59, §65
 - Invariants: I-057
 
-V0 exit requires a Component to create and map a MemoryObject (§59). The writable property governs mapping protection. Mappings are tracked per Component and torn down on unmap, on object destroy, and on Component destroy. The ABI does not expose page-table layout (§65).
+V0 exit requires a Component to create and map a MemoryObject (§16, §59). `jakeos/mem/map.rs` implements `memoryobject.map(handle, protection, hint)` for a holder with the `Map` right: it installs the object's pages into the caller's address space (through the D-0197 backing's mapping path over retained mm) at an address the kernel chooses (the hint is advisory), with protection bounded by the object's properties (a non-writable object mapped writable returns `Error::Rights` and installs nothing) and by W^X (MEM-006); it records the mapping in the object's table; `memoryobject.unmap(address)` removes it. Mappings are torn down on unmap, on object destroy and on Component destroy, and an access through a stale address after unmap faults rather than observing the object. The ABI exposes addresses and lengths, never page-table layout (§65, I-057).
+
+`tools/jakeos/fuzz/mem_map/` (`kernel:fuzz/mem_map`) drives random map, unmap and destroy sequences nightly.
 
 <!-- covers: INV-1161, INV-0306 -->
 
 #### Out of scope
-Ownership transfer unmap of the sender (MEM-010). File-backed mappings (MEM-023). Address-space object internals (CMP).
+Ownership transfer unmap of the sender (MEM-010). File-backed mappings (MEM-023). Address-space object internals (CMP-045). W^X (MEM-006).
+
+#### Deliverables
+- kernel:jakeos/mem/map.rs · `map` and `unmap` handlers, protection bounding, mapping-table maintenance, teardown on destroy.
+- kernel:tools/jakeos/fuzz/mem_map/ · Fuzz target over map, unmap and destroy sequences (`kernel:fuzz/mem_map`).
+- kernel:tools/testing/selftests/jakeos/mem/map_unmap_*.rs · Selftests: store and load through a mapping, protection refusal, stale-address fault, teardown on Component destroy.
 
 #### Acceptance criteria
-- [ ] A Component maps a writable MemoryObject and can store and load through the mapping.
-- [ ] A non-writable object mapped writable returns a typed rights error and installs no mapping.
-- [ ] Unmap removes the mapping; a subsequent access through the old address does not observe the object.
-- [ ] Destroying the Component removes every mapping it held and leaves the object owned if another holder exists.
+- [ ] A Component maps a writable MemoryObject and can store and load through the mapping, on `qemu-x86_64` and `hw-h002`.
+- [ ] Mapping a non-writable object writable returns `Error::Rights` and installs no mapping.
+- [ ] After `unmap`, an access through the old address faults and does not observe the object.
+- [ ] Destroying the Component removes every mapping it held and leaves the object owned if another holder exists; `kernel:fuzz/mem_map` runs nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/mem/map_unmap_*` on H-001 and H-002.
@@ -244,18 +278,22 @@ Ownership transfer unmap of the sender (MEM-010). File-backed mappings (MEM-023)
 - Depends on: MEM-007
 - Baseline: §16, §17, §67
 
-Sealing is one-way and kernel-enforced (§16, §17). A sealed object rejects writable mappings and write faults. The V0 demo result object is sealed so the receiver cannot mutate what it was given; later immutable Package pages reuse the same property.
+Sealing is one-way and kernel-enforced (§16, §17, §67). `jakeos/mem/seal.rs` implements `memoryobject.seal(handle)` for a holder with the `Seal` right: it sets the `immutable` property, which is idempotent and irreversible (there is no unseal Operation; a request for one is refused at the ABI with the typed error), refuses any existing or future writable mapping (`Error::Rights`, mappings unchanged), and makes a write fault on a sealed mapping a typed fault to the Component with the object unchanged. The V0 demo (CMP-011) seals the result object before transfer so the receiver cannot mutate what it was given; immutable Package pages reuse the property at V0.5 (CMP-017).
 
 <!-- covers: INV-0307, INV-0330 -->
 
 #### Out of scope
-Copy-on-write private views of sealed pages (MEM-027). Package mapping (CMP-017).
+Copy-on-write private views of sealed pages (MEM-027). Package mapping (CMP-017). W^X (MEM-006).
+
+#### Deliverables
+- kernel:jakeos/mem/seal.rs · `seal`: idempotent, irreversible, writable-mapping refusal, write-fault typing.
+- kernel:tools/testing/selftests/jakeos/mem/seal_*.rs · Selftests: idempotence, no unseal, writable refusal, typed write fault, demo object sealed before transfer.
 
 #### Acceptance criteria
-- [ ] Seal is idempotent and irreversible: a sealed object reports immutable and rejects an unseal Operation.
-- [ ] Mapping a sealed object writable returns a typed rights error and installs no mapping.
+- [ ] `seal` is idempotent and irreversible: a sealed object reports `immutable`, a second `seal` succeeds without change, and no unseal Operation exists in the kind table.
+- [ ] Mapping a sealed object writable returns `Error::Rights` and installs no mapping; an existing writable mapping makes `seal` fail with `Error::Rights` and change nothing.
 - [ ] A write fault on a sealed mapping does not modify the object and is reported as a typed fault to the Component.
-- [ ] The V0 demo result object is sealed before transfer; the receiver's mapping is read-only.
+- [ ] The V0 demo result object is sealed before transfer and the receiver's mapping is read-only.
 
 #### Verification
 - Unit: `kernel:tests/mem/seal_*` on H-001 and H-002.
@@ -275,17 +313,21 @@ Copy-on-write private views of sealed pages (MEM-027). Package mapping (CMP-017)
 - Risks: R-008, R-080
 - Threats: T-015, T-016
 
-SEC publishes the V0 threat model from the register; MEM supplies the MemoryObject section so transfer enforcement, sealing, W^X, shared-mapping side channels, and ownership as a memory-safety layer are written before CAP and SEC designs freeze around them (§51).
+SEC-002 publishes the V0 threat model from the register; MEM supplies its MemoryObject section so the guarantees are written before CAP and SEC designs harden around them (§16, §17, §51). The section, `THREAT-MODEL.md` § "MemoryObject" in the roadmap repository with a mirror in `Documentation/jakeos/mem/security.md`, enumerates: transfer enforcement (what D-0199 guarantees a receiver about the sender), sealing (what a receiver may assume about an immutable object), W^X (what code pages can never become), shared-mapping side channels (what two Components sharing a mapping can infer about each other, T-015, and what the model does not claim), coherence (D-0192), zeroing on create and release (T-044 class), and ownership as a memory-safety layer (what a single owner means for aliasing); each paragraph cites the T-IDs and I-IDs it addresses and states plainly what is not claimed.
 
 <!-- covers: INV-0953 -->
 
 #### Out of scope
-The threat-model document itself (SEC-002). Side-channel position statement (SEC-029).
+The threat-model document as a whole (SEC-002). Side-channel position statement (SEC-029). The mechanisms themselves (MEM-003, MEM-006, MEM-008).
+
+#### Deliverables
+- roadmap:THREAT-MODEL.md · The "MemoryObject" section with the seven paragraphs and their T-ID and I-ID citations.
+- kernel:Documentation/jakeos/mem/security.md · The same text in the kernel tree, kept identical by a `pre-merge` diff check against the roadmap pin.
 
 #### Acceptance criteria
-- [ ] A committed document section enumerates transfer enforcement, sealing, W^X, shared-mapping side channels, and ownership, each citing T-IDs from the register.
-- [ ] The section states what the capability model claims for MemoryObject isolation and what it does not claim (T-015).
-- [ ] Review sign-off from SEC and MEM is recorded on the pull request.
+- [ ] The committed section enumerates transfer enforcement, sealing, W^X, shared-mapping side channels, coherence, zeroing and ownership, each citing the T-IDs from the register it addresses.
+- [ ] The section states what the capability model claims for MemoryObject isolation and what it does not claim (T-015), in separate sentences.
+- [ ] Review sign-off from SEC and MEM is recorded on the pull request, and SEC-002 cites the section.
 
 #### Verification
 - Review: SEC and MEM reviewers sign off on the pull request; the V0 threat-model task cites this section.
@@ -305,18 +347,26 @@ The threat-model document itself (SEC-002). Side-channel position statement (SEC
 - Risks: R-009
 - Invariants: I-056, I-063
 
-A MemoryObject Capability moves from Component A to Component B without copying payload bytes (§15, §17, §59). After the move there is a single owner. Per MEM-003 the sender's mappings are revoked or its handle is invalidated. Channel encoding of the move is IPC; this task is the kernel ownership and mapping side.
+Zero-copy across Components is an ownership move, not a share (§15, §16, §17, §59). `jakeos/mem/transfer.rs` implements the kernel side of moving a MemoryObject from Component A to Component B, called by IPC-014 at Send commit for each MemoryObject handle slot: it verifies A owns the object and holds the `Transfer` right (else `Error::Rights`, nothing changes on either side), and applies D-0199 (MEM-003): under enforcement it unmaps every mapping A holds (a TLB shootdown on the CPUs A ran on), invalidates A's handle and every Capability derived from it, completes A's outstanding map Operations with `Error::Revoked`, and sets B as owner; under advisory transfer it moves ownership and the handle and records A's promise. Payload pages are never copied; physical-page identity is unchanged (MEM-012 checks it). The `memory` inspect provider shows the new owner and no mapping for A afterwards.
+
+B-007 (transfer cost at the register sizes) is published from this path by BEN-003 with the harness owned jointly.
 
 <!-- covers: INV-0327, INV-0300, INV-1162, INV-0953, INV-1297 -->
 
 #### Out of scope
-Handle slots in the wire format (IPC-014). Physical-page identity harness (MEM-012). Borrowing (MEM-026).
+Handle slots in the wire format (IPC-014). Physical-page identity harness (MEM-012). Borrowing (MEM-026). The enforcement decision (MEM-003).
+
+#### Deliverables
+- kernel:jakeos/mem/transfer.rs · Ownership check, the D-0199 enforcement or advisory path, derived-Capability invalidation, outstanding-Operation completion, owner change.
+- kernel:jakeos/ipc/handles.rs · The call into `transfer.rs` per MemoryObject slot at Send commit (extending IPC-014's file).
+- bench:harness/B-007/ · Crate `jakeos-bench-memoryobject-transfer`, scenario `memoryobject-transfer` at the register sizes with a `memcpy` baseline (owned with BEN-003).
+- kernel:tools/testing/selftests/jakeos/mem/transfer_owner_*.rs · Selftests: owner change in inspect, stale mapping behaviour per D-0199, page identity, non-owner refusal.
 
 #### Acceptance criteria
-- [ ] After a successful transfer, inspect shows B as owner and A is not a mapper or owner.
-- [ ] A load or store through A's prior mapping after transfer does not observe the object.
-- [ ] Physical-page identity of the payload is unchanged across the transfer.
-- [ ] Transfer of a MemoryObject the sender does not own returns a typed rights error and allocates no handle on the receiver.
+- [ ] After a successful transfer, `os inspect memory` shows B as owner and A as neither owner nor mapper, on `qemu-x86_64` and `hw-h002`.
+- [ ] A load or store through A's prior mapping after the transfer behaves exactly as D-0199 states (faults under enforcement) and never observes B's writes.
+- [ ] The physical-page identity of the payload is unchanged across the transfer and no payload byte is copied (the copy-count hook of IPC-016 reads zero).
+- [ ] Transfer of a MemoryObject the sender does not own, or without the `Transfer` right, returns `Error::Rights` and allocates no handle on the receiver.
 
 #### Verification
 - Unit: `kernel:tests/mem/transfer_owner_*` on H-001 and H-002.
@@ -337,21 +387,30 @@ Handle slots in the wire format (IPC-014). Physical-page identity harness (MEM-0
 - Benchmarks: B-007
 - Explores: S-006
 
-Zero-copy is real only if transfer cost, including unmap and TLB shootdown, is measured against copying at realistic sizes. The spike prototypes ownership transfer on shmem/memfd, dma-buf, and a dedicated native object, and publishes cost for the B-007 register sizes (4 KiB, 1 MiB and 1 GiB) on H-001 and H-002. The report feeds MEM-002, MEM-003, and B-007.
+Zero-copy is real only if transfer costs less than copying at realistic sizes, including the unmap and TLB shootdown enforcement implies (§16, §17, §53). Under `jakeos/spikes/mem/transfer/` behind `CONFIG_JAKEOS_SPIKES`, ownership transfer between two processes is prototyped over three backings: `shmem.rs` (a memfd whose descriptor is passed and whose sender mapping is torn down), `dmabuf.rs` (a dma-buf exported and imported with the sender's mapping torn down) and `native.rs` (a throwaway page set with its own mapping table). The driver `runtime/spikes/mem-transfer-driver/` transfers objects of the three B-007 register sizes (4 KiB, 1 MiB, 1 GiB) on `qemu-x86_64` and `hw-h002` per BEN-064, with the sender holding one and then eight mappings so shootdown cost scales are visible, and records p50 and p99 transfer cost, copy count (through the copy accounting hook), TLB-shootdown counts from the kernel's own counters, and a `memcpy` of the same size as the baseline; for dma-buf it records the export and import tax separately.
+
+The report `reports/spikes/MEM-011.md` feeds MEM-002 and MEM-003 and the B-007 register; S-006 is not frozen.
 
 <!-- covers: GAP-0497 -->
 
 #### Out of scope
-The standing B-007 harness in CI (BEN-003). Production object implementation (MEM-005).
+The standing B-007 harness in CI (BEN-003, MEM-010). Production object implementation (MEM-005). The two decisions (MEM-002, MEM-003).
+
+#### Deliverables
+- kernel:jakeos/spikes/mem/transfer/shmem.rs · shmem and memfd backing prototype.
+- kernel:jakeos/spikes/mem/transfer/dmabuf.rs · dma-buf backing prototype with export and import timing.
+- kernel:jakeos/spikes/mem/transfer/native.rs · Native page-set backing prototype.
+- runtime:spikes/mem-transfer-driver/ · Size sweep, mapping-count sweep, `memcpy` baseline, shootdown counters.
+- roadmap:reports/spikes/MEM-011.md · Per-backing, per-size tables with copy counts and shootdown observations, and the answers below.
 
 #### Acceptance criteria
-- [ ] Each of the three backings transfers an object of each of the three B-007 sizes on H-001 and H-002.
-- [ ] The report records p50 and p99 transfer cost, copy count, and TLB-shootdown observations per backing and size, with memcpy as the baseline.
+- [ ] Each of the three backings transfers an object of each of the three B-007 sizes on `qemu-x86_64` and `hw-h002`, with the sender holding one and then eight mappings.
+- [ ] `reports/spikes/MEM-011.md` records p50 and p99 transfer cost, copy count and TLB-shootdown counts per backing, size and mapping count, with `memcpy` of the same size as the baseline and the dma-buf export and import tax separately, all labelled unpublished prototype measurements.
 - [ ] The report answers the Report questions and does not freeze S-006.
 
 #### Verification
 - Bench: B-007 method applied to the three prototypes on H-001 and H-002; publish only.
-- Report: Which backing has the lowest transfer cost at each size? What fraction of cost is TLB shootdown versus handle move? Does kernel-enforced unmap change the ranking versus advisory transfer? What dma-buf export/import tax appears at the larger size?
+- Report: which backing has the lowest transfer cost at each size; what fraction of cost is TLB shootdown versus handle move; does kernel-enforced unmap change the ranking versus advisory transfer; what dma-buf export and import tax appears at the larger size?
 
 #### Evidence
 - none
@@ -367,18 +426,24 @@ The standing B-007 harness in CI (BEN-003). Production object implementation (ME
 - Benchmarks: B-007
 - Risks: R-009
 
-V0-G06 and V0-D01 require transfer with no payload copy, checked by physical-page identity, and B-007 published for the register sizes. The suite also asserts the sender cannot use the object after transfer and that a leaked object is reclaimed with its Component.
+V0-G06 and V0-D01 require that a transfer copies no payload, checked by physical-page identity (§17, §59). `jakeos/mem/identity.rs` adds a debug-only inspect field, `page_identity`, returning a stable per-page token (a hash of the physical frame numbers, never the addresses themselves) for a mapped MemoryObject to a holder of the `Inspect` right, compiled only under `CONFIG_JAKEOS_DEBUG` so it is never a production surface; the selftest `transfer_page_identity_*` reads it in the sender before the demo's transfer and in the receiver after, asserts equality, asserts the sender's access now fails per D-0199, and asserts that destroying the owner Component with no other holder reclaims the object with no residual charge (MEM-004). The B-007 reports for the register sizes on H-001 and H-002 are produced from the MEM-010 harness and committed here as `reports/benchmarks/B-007/h001.md` and `h002.md`.
 
 <!-- covers: INV-0300, INV-1162, INV-1161 -->
 
 #### Out of scope
-Harness runner and result publication into the register (BEN-003). Channel wiring of the demo (CMP-011).
+Harness runner and result publication into the register (BEN-003). Channel wiring of the demo (CMP-011). The transfer itself (MEM-010).
+
+#### Deliverables
+- kernel:jakeos/mem/identity.rs · The debug-only `page_identity` inspect field behind `CONFIG_JAKEOS_DEBUG`.
+- kernel:tools/testing/selftests/jakeos/mem/transfer_page_identity_*.rs · The identity, sender-failure and reclamation assertions over the demo transfer.
+- roadmap:reports/benchmarks/B-007/h001.md · The H-001 report (labelled QEMU).
+- roadmap:reports/benchmarks/B-007/h002.md · The H-002 report V0-G06 cites.
 
 #### Acceptance criteria
-- [ ] The V0 demo transfer passes a physical-page identity check on H-001 and H-002.
-- [ ] After transfer the sender's access fails and the receiver reads the payload.
-- [ ] Destroying the owner Component with no other holder reclaims the object; the leak test reports no residual kernel charge.
-- [ ] B-007 reports for the register sizes exist for H-001 and H-002.
+- [ ] The V0 demo transfer passes the physical-page identity check (`page_identity` equal before and after) on `qemu-x86_64` and `hw-h002`, and `page_identity` is absent from non-debug builds.
+- [ ] After the transfer the sender's access fails per D-0199 and the receiver reads the payload.
+- [ ] Destroying the owner Component with no other holder reclaims the object and the leak test reports no residual kernel charge.
+- [ ] `reports/benchmarks/B-007/h001.md` and `h002.md` exist for the register sizes following the BEN-005 skeleton.
 
 #### Verification
 - Integration: `kernel:tests/mem/transfer_page_identity_*` on H-001 and H-002.

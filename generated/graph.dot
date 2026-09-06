@@ -2308,6 +2308,7 @@ digraph roadmap {
   "ABI-005" -> "HW-008";
   "ABI-005" -> "IPC-010";
   "ABI-005" -> "KRN-037";
+  "ABI-005" -> "MEM-005";
   "ABI-005" -> "NET-002";
   "ABI-005" -> "NET-014";
   "ABI-005" -> "PKG-033";
@@ -3705,6 +3706,7 @@ digraph roadmap {
   "CAP-005" -> "KRN-037";
   "CAP-005" -> "LNX-005";
   "CAP-005" -> "LNX-078";
+  "CAP-005" -> "MEM-005";
   "CAP-005" -> "NET-002";
   "CAP-005" -> "NET-012";
   "CAP-005" -> "OBS-006";
@@ -5747,6 +5749,7 @@ digraph roadmap {
   "KRN-013" -> "KRN-056";
   "KRN-013" -> "KRN-059";
   "KRN-013" -> "KRN-060";
+  "KRN-013" -> "MEM-005";
   "KRN-013" -> "NET-002";
   "KRN-013" -> "NET-014";
   "KRN-013" -> "SCH-005";
@@ -7666,6 +7669,7 @@ digraph roadmap {
   "SCH-008" -> "ENV-004";
   "SCH-008" -> "IPC-027";
   "SCH-008" -> "MED-024";
+  "SCH-008" -> "MEM-004";
   "SCH-008" -> "SCH-001";
   "SCH-008" -> "SCH-014";
   "SCH-008" -> "SCH-016";
