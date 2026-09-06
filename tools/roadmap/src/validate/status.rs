@@ -112,10 +112,7 @@ fn validate_done(
         .value("Verified by")
         .map(str::trim)
         .unwrap_or("");
-    let needs_verifier = repo.config.policy.require_independent_verification
-        || (repo.config.policy.verify_freezes_and_adr_always
-            && (task.task_type() == TaskType::Adr || !task.list("Freezes").is_empty()));
-    if needs_verifier && (verifier.is_empty() || verifier == "none") {
+    if repo.needs_verifier(task) && (verifier.is_empty() || verifier == "none") {
         diagnostics.push(Diagnostic::error(
             &task.file,
             task.fields.line_of("Verified by", task.line),

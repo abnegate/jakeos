@@ -2,6 +2,7 @@ use crate::config::Config;
 use crate::diagnostic::Diagnostic;
 use crate::model::{
     BaselineIndex, CoverageItem, Decision, Milestone, Register, RepoAlias, Task, Workstream,
+    split_list,
 };
 use crate::parser;
 use crate::parser::slugs::SlugIndex;
@@ -355,6 +356,29 @@ impl Repo {
 
     pub fn is_example(&self, identifier: &str) -> bool {
         identifier.starts_with(&format!("{}-", self.schema.example_prefix))
+    }
+
+    pub fn cited_by_gate(&self, id: &str) -> bool {
+        self.milestones.iter().any(|milestone| {
+            milestone.gates.iter().any(|gate| {
+                split_list(gate.fields.value_or_empty("Verified by"))
+                    .iter()
+                    .any(|cited| cited == id)
+            }) || milestone.demos.iter().any(|demo| {
+                split_list(demo.fields.value_or_empty("Verified by"))
+                    .iter()
+                    .any(|cited| cited == id)
+            })
+        })
+    }
+
+    pub fn needs_verifier(&self, task: &crate::model::Task) -> bool {
+        let policy = &self.config.policy;
+        policy.require_independent_verification
+            || (policy.verify_freezes_and_adr_always
+                && (task.task_type() == crate::model::TaskType::Adr
+                    || !task.list("Freezes").is_empty()))
+            || (policy.verify_gate_tasks && self.cited_by_gate(&task.id))
     }
 
     pub fn hardware_for_matrix_entry(&self, entry: &str) -> Option<&crate::model::RegisterEntry> {

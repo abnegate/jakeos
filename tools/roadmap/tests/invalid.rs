@@ -1057,3 +1057,47 @@ fn verification_on_an_undeclared_matrix_entry_warns() {
         common::codes(&entries)
     );
 }
+
+#[test]
+fn done_task_cited_by_a_gate_needs_a_verifier() {
+    let repo = common::materialize_valid();
+    let milestone = common::read(&repo.path, "milestones/V0.md");
+    assert!(
+        milestone.contains("GOV-002"),
+        "fixture gate must cite GOV-002: {milestone}"
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace(
+            "- Type: build\n- Milestone: V0\n- Status: todo",
+            "- Type: build\n- Milestone: V0\n- Status: done",
+        )
+        .replace("- Depends on: GOV-001\n", "- Depends on: none\n")
+        .replace(
+            "- [ ] `roadmap check` validates the fixture repository.",
+            "- [x] `roadmap check` validates the fixture repository.",
+        )
+        .replace(
+            "#### Evidence\n- none\n",
+            "#### Evidence\n- https://example.org/run/1\n",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "E-044"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    let verified = common::read(&repo.path, "workstreams/GOV.md").replace(
+        "- Baseline: §1\n\nBuild the validator",
+        "- Baseline: §1\n- Verified by: @reviewer\n\nBuild the validator",
+    );
+    common::write(&repo.path, "workstreams/GOV.md", &verified);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !entries
+            .iter()
+            .any(|entry| entry.message.contains("needs independent verification")),
+        "{:?}",
+        common::codes(&entries)
+    );
+}

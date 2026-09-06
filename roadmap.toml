@@ -7,6 +7,7 @@ XL = 20
 [policy]
 require_independent_verification = false
 verify_freezes_and_adr_always = true
+verify_gate_tasks = true
 fan_in_warning = 80
 workstream_lines_warning = 6000
 task_lines_warning = 100

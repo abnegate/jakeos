@@ -34,6 +34,7 @@ pub fn policy_flag(repo: &Repo, name: &str) -> bool {
     match name {
         "require_independent_verification" => repo.config.policy.require_independent_verification,
         "verify_freezes_and_adr_always" => repo.config.policy.verify_freezes_and_adr_always,
+        "verify_gate_tasks" => repo.config.policy.verify_gate_tasks,
         _ => false,
     }
 }

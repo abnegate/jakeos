@@ -138,6 +138,20 @@ fn done_enforces_evidence_ticks_and_verifier_policy() {
         &["done", "GOV-002", "--evidence", "https://example.org/pr/1"],
     );
     assert!(dependent.contains("unticked"));
+    let gate_task = fails(
+        root,
+        &[
+            "done",
+            "GOV-002",
+            "--tick",
+            "--evidence",
+            "https://example.org/pr/1",
+        ],
+    );
+    assert!(
+        gate_task.contains("--verified-by"),
+        "a task cited by a gate needs a verifier: {gate_task}"
+    );
     ok(
         root,
         &[
@@ -146,6 +160,8 @@ fn done_enforces_evidence_ticks_and_verifier_policy() {
             "--tick",
             "--evidence",
             "https://example.org/pr/1",
+            "--verified-by",
+            "@jake",
         ],
     );
     assert!(block(root, "GOV-002").contains("- https://example.org/pr/1"));
