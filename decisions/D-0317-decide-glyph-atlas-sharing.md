@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-V1 runs many text-rendering Components, so glyph atlas and shaped-text sharing must be decided under I-083 and T-030 (§41, §51, §67).
+V1 daily driving runs many text-rendering Components at once. D-0323 placed shaping; this decision fixes how glyph rasters and shaped runs are shared between Components: per-Component caches, a read-only atlas minted by the text service, or a shared writable atlas (§41, §67). A shared writable atlas is a cross-domain channel (I-083, T-030, T-015) that SEC-029 governs. The accepted option states the MemoryObject rights of atlas pages and that clients cannot map them writable (§51).
 
 ## Options
 
 ### Option A · Per-Component caches
-Summary: Each Component caches.
-Consequences: Isolation; memory duplication.
+Summary: Each Component rasterises and caches its own glyphs; nothing is shared.
+Consequences: No cross-Component state and no side channel. Every application holds its own copy of the system font glyphs, memory grows with the number of text-rendering Components (B-008 idle overhead), and cold caches show in startup.
 Evidence: none
 
 ### Option B · Read-only atlas minted by the text service
-Summary: A read-only shared atlas.
-Consequences: Sharing without writes; a service.
+Summary: The text service rasterises system fonts into content-addressed atlas MemoryObjects that Components map read-only; each Component adds a small private cache for its own fonts and sizes.
+Consequences: One copy of the common glyphs, warm on first use, and read-only mapping means no writer can influence another Component. The service is on the path of cache misses, atlas pages must be immutable once published, and eviction of a shared page needs a generation scheme so a mapped page is never reused underneath a client.
 Evidence: none
 
 ### Option C · Shared writable atlas
-Summary: A writable shared atlas.
-Consequences: Efficient; a cross-domain side channel.
+Summary: A shared writable atlas any Component may add glyphs to.
+Consequences: The most memory-efficient and the simplest cache. A writable shared page is a covert channel and a corruption vector between Components (I-083, T-015), and a malicious writer can replace glyphs another application displays (T-030); rejected.
 Evidence: none
 
 ## Decision

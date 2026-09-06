@@ -10,24 +10,24 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-The V1 architecture for hosting Wine must be decided with the spike as input (§3, §4, §48, §69).
+The V1 non-gated Wine bring-up needs an architecture: Wine over the Linux personality as it runs on any distribution, Wine ported onto the Native ABI, or a hybrid where graphics and input are native and the rest stays on Linux (§3, §4, §48, §69). WIN-014's spike report is the input; the V2 object mapping (WIN-036) follows this choice. The accepted option states what native software still must not see (I-007) and which V2 tasks change with the host.
 
 ## Options
 
 ### Option A · Wine over the Linux personality
-Summary: Linux-hosted Wine.
-Consequences: Low risk; not native.
-Evidence: none
+Summary: Wine and Proton run unmodified inside the Linux personality; Windows windows reach the compositor through the Wayland bridge like any Linux application.
+Consequences: Lowest risk and fastest bring-up, with Proton's tested stack (DXVK, VKD3D) intact. Windows applications are two personalities deep, every frame and input event crosses both bridges, and native integration (Capabilities, typed objects) is unavailable until the V2 mapping.
+Evidence: `reports/spikes/WIN-014.md`
 
 ### Option B · Wine ported onto the Native ABI
-Summary: Native Wine.
-Consequences: Native; a large port.
-Evidence: none
+Summary: Wine is ported onto the Native ABI: wineserver and the loader become native Components, and Win32 maps directly to Objects, Channels and MemoryObjects.
+Consequences: One personality deep, native integration from the start, and the WIN-036 mapping is the design rather than a retrofit. A very large port of a fast-moving upstream that must be rebased on every Wine release, and Proton's Linux-specific pieces (esync, fsync, DXVK's Vulkan loader) need native equivalents.
+Evidence: `reports/spikes/WIN-014.md`
 
 ### Option C · Hybrid with graphics and input native
-Summary: Hybrid Wine.
-Consequences: Balance; two paths.
-Evidence: none
+Summary: Wine runs on the Linux personality for process, file and NT semantics, but its graphics (Vulkan, DXVK) and input paths are bound to native Surfaces and input directly.
+Consequences: The latency-critical paths skip the Wayland bridge while the bulk of Wine stays upstream. Two hosting paths inside one process, Wine's winex11 or winewayland driver is replaced by a native driver the project maintains, and the seam between Linux and native halves is where bugs will live.
+Evidence: `reports/spikes/WIN-014.md`
 
 ## Decision
 Proposed. Not yet accepted.

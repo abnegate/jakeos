@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-TLS, signatures and deadlines fail with a wrong clock, so the V1 time-sync client must be chosen.
+TLS validity, Package signature verification and Operation deadlines all fail with a wrong clock, so the V1 time service (SVC-032) must synchronise it and set the RTC. This decision picks the client the service hosts: retained chrony under supervision, a native Rust NTS client, or a minimal SNTP client; names NTS versus NTP; and records that native software never calls a POSIX `ntp_adjtime`. It sits on the boot clock (BOOT-021) and the time service scaffold (SVC-015).
 
 ## Options
 
 ### Option A · chrony hosted as a supervised personality service
-Summary: chrony runs in the personality under supervision.
-Consequences: Mature and accurate; a personality-hosted service on a native path.
+Summary: chrony runs as a supervised personality-hosted helper; the native time service owns the network Capability it uses and the RTC, and exposes a typed Interface.
+Consequences: The most accurate and battle-tested client, with NTS support and good behaviour on laptops that sleep. A C daemon on a native path under the C-library strategy (SDK-097), configured through chrony's own files that the settings model wraps, and its clock-stepping behaviour must be mapped onto the step notification of D-0298.
 Evidence: none
 
 ### Option B · Native Rust NTS client Component
-Summary: A native NTS client.
-Consequences: Native and NTS by default; implementation effort.
+Summary: A native Rust NTS client Component that speaks NTS-KE and NTP over `NetworkConnection` and adjusts the clock through a typed kernel Operation.
+Consequences: Authenticated time by default and no personality dependency on the boot path. NTP's discipline loop (drift, slew, leap handling) is subtle to reimplement, and correctness bugs show up as expired certificates weeks later.
 Evidence: none
 
 ### Option C · systemd-timesyncd-class minimal client
-Summary: A minimal SNTP client.
-Consequences: Small; fewer features and no NTS.
+Summary: A minimal SNTP client in the style of systemd-timesyncd.
+Consequences: Small and quick to write. No NTS, so time is unauthenticated and an on-path attacker can move the clock to defeat certificate and signature checks (T-019 adjacent); acceptable only behind option A or B as a fallback.
 Evidence: none
 
 ## Decision
