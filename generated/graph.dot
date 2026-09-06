@@ -5732,6 +5732,7 @@ digraph roadmap {
   "KRN-011" -> "LNX-061";
   "KRN-012" -> "KRN-019";
   "KRN-013" -> "ABI-002";
+  "KRN-013" -> "CAP-005";
   "KRN-013" -> "KRN-012";
   "KRN-013" -> "KRN-019";
   "KRN-013" -> "KRN-037";
@@ -6754,6 +6755,7 @@ digraph roadmap {
   "OBS-005" -> "TSK-038";
   "OBS-005" -> "WASM-012";
   "OBS-006" -> "APP-012";
+  "OBS-006" -> "CAP-001";
   "OBS-006" -> "CAP-002";
   "OBS-006" -> "HET-006";
   "OBS-006" -> "INS-019";

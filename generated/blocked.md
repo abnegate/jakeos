@@ -147,11 +147,11 @@
 | ABI-052 | Run reference, conformance and compatibility suites on the 1.0 candidate and publish | todo | ABI-047, ABI-053, ABI-046 | 1.0 |
 | ABI-053 | Decide the 1.x stability declaration superseding the freeze ADR with stable for 1.x | todo | ABI-049, ABI-050, ABI-054 | 1.0 |
 | ABI-054 | Review ABI, MemoryObject, ComputeDevice and Capability shapes against future hardware | todo | ABI-049, ABI-042, ABI-032, GOV-025 | 1.0 |
-| CAP-001 | Record Capability grants, derivations, revocations and denials in the audit log | todo | CAP-005, CAP-003, CAP-004, CAP-007 | V0 |
+| CAP-001 | Record Capability grants, derivations, revocations and denials in the audit log | todo | CAP-005, CAP-003, CAP-004, CAP-007, OBS-006 | V0 |
 | CAP-002 | Expose Capability type, rights and Object identity to holders and os inspect | todo | CAP-005, CAP-003, OBS-006 | V0 |
 | CAP-003 | Implement Capability mint and attenuating derive with rights monotonicity tests | todo | CAP-005, CAP-010, CAP-011, ABI-009 | V0 |
 | CAP-004 | Implement Capability revocation invalidating all derived Capabilities | todo | CAP-009, CAP-003, CAP-005, TSK-010 | V0 |
-| CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009 | V0 |
+| CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009, KRN-013 | V0 |
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | CAP-005, CAP-003, CAP-011, CMP-005 | V0 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | CAP-013, CAP-012, CAP-015 | V0 |
 | CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | CAP-014, CAP-015, TSK-003 | V0 |
@@ -2194,8 +2194,8 @@
 | CAP-003 | 24 |
 | IPC-010 | 24 |
 | LAB-003 | 24 |
+| OBS-006 | 24 |
 | SEM-029 | 24 |
-| OBS-006 | 23 |
 | Q-001 | 23 |
 | KRN-017 | 21 |
 | PKG-016 | 21 |
@@ -2253,6 +2253,7 @@
 | HW-047 | 13 |
 | INS-045 | 13 |
 | KRN-011 | 13 |
+| KRN-013 | 13 |
 | LAB-007 | 13 |
 | LNX-005 | 13 |
 | LNX-042 | 13 |
@@ -2267,7 +2268,6 @@
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
-| KRN-013 | 12 |
 | KRN-014 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |
