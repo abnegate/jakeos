@@ -6,8 +6,8 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | blocked | S | TSK-006, TSK-018 |
-| TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | blocked | M | TSK-020, BEN-007, BEN-005 |
+| TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | blocked | S | TSK-006, TSK-018, BLD-082 |
+| TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | blocked | M | TSK-020, BEN-007, BEN-005, BLD-082 |
 | TSK-003 | Decide Task cancellation model and resource cleanup | todo | blocked | M | TSK-017 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | todo | blocked | S | TSK-015 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | todo | blocked | S | TSK-014 |

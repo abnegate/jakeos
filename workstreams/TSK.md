@@ -23,26 +23,36 @@ Handle encoding, kernel entry, error model and Layer 1 freeze process (ABI). Cap
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: TSK-006, TSK-018
+- Depends on: TSK-006, TSK-018, BLD-082
 - Baseline: §18, §57, §65, §67
 - Invariants: I-018, I-030
 
-Standing rules of §18 and Principle 5 (§67) are enforced once: native kernel APIs are asynchronous by default, language runtimes bind to kernel Operations, and signals are not a native notification mechanism. A CI lint and ABI review checklist reject native entry points whose primary mode blocks the calling execution context, a blocking read/write thread-per-call surface, signal-style notification, and runtime async layers that bypass kernel Operations.
+Native kernel APIs are asynchronous by default, language runtimes bind to kernel Operations, and signals are not a native notification mechanism (§18, Principle 5 of §67, D-0309). These standing rules become one lint and one checklist section rather than a task per rule. `tools/async-lint/` (crate `jakeos-tools-async-lint`) scans the ABI specification (`abi/spec/`) and native crates' public items: an entry point or public function whose documented primary mode blocks the calling execution context (any name in `build/lints/blocking-shapes.toml`: `read`, `write`, `recv`, `send`, `accept`, `wait` and `join` variants that return the result directly rather than an Operation or future, `sleep`, `usleep`, `select`, `poll`, `epoll_wait`), a thread-per-call I/O surface (`spawn_blocking` style wrappers exported publicly), signal-style notification (`signal`, `sigaction`, `kill`, `SIGUSR` symbols), and an async runtime whose reactor does not submit kernel Operations (a crate depending on `mio`, `tokio` or `async-std` with a Linux backend, detected through `cargo metadata`) each fail the `async-lint` job in `pre-merge`. The one permitted blocking shape is explicit wait-for-completion on an Operation (`operation.wait`), named in the allowlist.
+
+The reviewer half is a section of the ABI-006 checklist: an API whose only mode is synchronous, or a notification that interrupts running code, is rejected with a pointer to D-0309.
 
 <!-- covers: INV-0340, INV-0341, INV-0039, INV-1296, INV-0038 -->
 
 #### Out of scope
-Personality syscall retention (LNX). POSIX-shaped names on native crates (ABI-018).
+Personality syscall retention (LNX). POSIX-shaped names on native crates (ABI-018). Process-shape lint (CMP-013). The runtime executor (SDK-004).
+
+#### Deliverables
+- tools:async-lint/ · Crate `jakeos-tools-async-lint`: spec scan, public-item scan, dependency scan, allowlist lookup.
+- bld:lints/blocking-shapes.toml · Forbidden blocking, thread-per-call and signal shapes; the `operation.wait` allowlist entry.
+- platform:.github/workflows/pre-merge.yml · The `async-lint` job over native crates and `abi/spec`.
+- kernel:.github/workflows/pre-merge.yml · The `async-lint` job over `include/uapi/linux/jakeos/`.
+- abi:review/checklist.md · The async-by-default reviewer items (extending ABI-006's file).
+- tools:async-lint/fixtures/ · A crate exporting a blocking `read`, a crate using `sigaction`, a crate whose reactor is `mio`.
 
 #### Acceptance criteria
-- [ ] CI fails a native crate that exposes an entry point whose primary mode blocks the calling execution context.
-- [ ] CI fails a native crate that exposes a blocking read/write thread-per-call I/O surface.
-- [ ] CI fails a native crate that uses signal-style notification or an async runtime that does not submit kernel Operations.
-- [ ] The lint is wired into the V0 merge queue on matrix entry `qemu-x86_64`.
+- [ ] The `async-lint` job fails a native crate that exposes an entry point or public function whose primary mode blocks the calling execution context, except `operation.wait`.
+- [ ] The job fails a native crate that exposes a blocking read/write thread-per-call I/O surface or uses signal-style notification symbols.
+- [ ] The job fails a native crate whose async runtime reactor does not submit kernel Operations (a Linux-backend `mio`, `tokio` or `async-std` dependency), and passes the SDK runtime (SDK-004) that does.
+- [ ] The job is wired into `pre-merge` of both repositories on matrix entry `qemu-x86_64`, and the three fixtures fail it.
 
 #### Verification
-- Unit: `kernel:tests/tsk/async_lint_*` on CI matrix entry `qemu-x86_64`.
-- Review: ABI lead sign-off recorded on the pull request that lands the checklist.
+- Unit: `kernel:tests/tsk/async_lint_*` on CI matrix entry `qemu-x86_64` over the fixtures.
+- Review: ABI lead sign-off recorded on the pull request that lands the checklist section.
 
 #### Evidence
 - none
@@ -53,24 +63,33 @@ Personality syscall retention (LNX). POSIX-shaped names on native crates (ABI-01
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: TSK-020, BEN-007, BEN-005
+- Depends on: TSK-020, BEN-007, BEN-005, BLD-082
 - Baseline: §20, §54, §59
 - Benchmarks: B-003
 - Risks: R-009
 
-V0 measures context-switch behaviour as native Task handoff versus Linux thread switch on the same hardware and publishes the result. The harness is B-003 (`bench:task-switch`); the V0 target kind is publish. Numbers live only in the register and the committed report.
+Context switching is what the native Task model claims to make cheap (§20, §54); B-003 publishes native Task handoff against Linux thread and process switch on the same hardware. The harness `bench/harness/B-003/` (crate `jakeos-bench-task-switch`, scenario `task-switch`) runs a ping-pong of two Tasks in one Component alternating through Wait Operations (TSK-020's wake path), same core and cross core, and in the same session runs a Linux `futex` ping-pong between two threads and between two processes on the personality side of the same kernel; per BEN-064 it pins CPUs, records mitigation state, and emits BEN-005 records for each. V0's target kind is `publish`; TSK-046 tunes the multiplexer at V1 against the absolute target.
+
+Reports go to `reports/benchmarks/B-003/h001.md` and `h002.md`; no public material states a superiority claim without citing them (I-061).
 
 #### Out of scope
 Task creation latency (B-002, BEN-001). IPC round trip (B-004, IPC-008). V1 multiplexer tuning (TSK-046).
 
+#### Deliverables
+- bench:harness/B-003/ · Crate `jakeos-bench-task-switch`: `task-switch-same-core`, `task-switch-cross-core`, `baseline-thread-futex`, `baseline-process-futex` scenarios.
+- bench:harness/B-003/README.md · How the ping-pong is constructed and how baselines run in the same session.
+- roadmap:reports/benchmarks/B-003/h001.md · The H-001 report (labelled QEMU).
+- roadmap:reports/benchmarks/B-003/h002.md · The H-002 report V0-G16 cites.
+
 #### Acceptance criteria
-- [ ] A committed B-003 report exists for H-001 meeting the V0 publish target.
-- [ ] A committed B-003 report exists for H-002 meeting the V0 publish target.
-- [ ] Each report names the Linux thread-switch and process-switch baselines run in the same session.
+- [ ] `reports/benchmarks/B-003/h001.md` and `h002.md` exist with same-core and cross-core native Task handoff p50 and p99 and meet the V0 `publish` target kind.
+- [ ] Each report names the Linux thread-switch and process-switch `futex` baselines run in the same session on the same machine, with mitigation state recorded.
+- [ ] The harness emits a BEN-005 record per scenario from the BLD-010 nightly job on both matrix entries.
 - [ ] No public material states a superiority claim without citing those reports (I-061).
 
 #### Verification
 - Bench: B-003 on H-001 and H-002; target per register.
+- Unit: `bench:tests/B-003/scenario_*` asserting record shape and that baselines and native runs share a session.
 - Review: BEN lead confirms the reports follow the accepted methodology.
 
 #### Evidence
@@ -87,18 +106,24 @@ Task creation latency (B-002, BEN-001). IPC round trip (B-004, IPC-008). V1 mult
 - Decision: D-0305
 - Invariants: I-018
 
-V0 exit cancels a TaskGroup and never delivers a result from a cancelled Operation (§19, §21, §59). This decision picks the cancellation model native software observes, the cleanup of Capabilities, MemoryObjects and partial ownership a cancelled Task holds, and the contract when a Task is inside an uninterruptible inherited Linux path. The decision studies Trio nurseries, Kotlin coroutine scopes and Swift task groups rather than a separate V0 research spike.
+V0 exit cancels a TaskGroup and never delivers a result from a cancelled Operation (§19, §21). D-0305 picks the cancellation model native software observes: cooperative cancellation at await points (a cancelled Task runs to its next await and then unwinds its own frames), forced kernel teardown (the kernel terminates the Task's execution context and reclaims what it held), or staged cancellation with a grace deadline (cooperative first, forced after the deadline). Each option states the cleanup of Capabilities, MemoryObjects and partial ownership a cancelled Task holds, and the observable result when a Task sits in an uninterruptible retained Linux path (an NVMe DMA, per TSK-017's report): whether the caller waits, fails, or gets a best-effort completion. It answers Q-011 and Q-012, studies Trio nurseries, Kotlin coroutine scopes and Swift task groups in the decision's Context rather than a separate spike, and rejects at least one signal-like option explicitly (D-0309).
+
+The executing agent writes the options with those consequences, cites `reports/spikes/TSK-017.md`, records the Decision as the model plus the cleanup and uninterruptible-path rules, and marks Q-011 and Q-012 answered.
 
 <!-- covers: INV-0396, INV-0394, INV-0395, INV-1149 -->
 
 #### Out of scope
-Committed-hardware state machine implementation (TSK-010). Background-execution Capability exception (TSK-025). Personality thread mapping (TSK-043).
+Committed-hardware state machine implementation (TSK-010). Background-execution Capability exception (TSK-025). Personality thread mapping (TSK-043). Cancellation propagation (TSK-022).
+
+#### Deliverables
+- roadmap:decisions/D-0305-decide-cancellation-model.md · Options with cleanup and uninterruptible-path consequences, the Trio, Kotlin and Swift study in Context, Evidence citing `reports/spikes/TSK-017.md`, the Decision, rejected options including a signal-like one, follow-ups.
+- roadmap:registers/questions.md · Q-011 and Q-012 `Status: answered`.
 
 #### Acceptance criteria
-- [ ] Options evaluated include cooperative cancellation at await points, forced kernel teardown, and staged cancellation with a grace deadline.
-- [ ] Each option states cleanup of Capabilities, MemoryObjects and partial ownership, and the observable result of a Task stuck in uninterruptible inherited Linux sleep.
-- [ ] The decision cites the spike report for hardware-committed Operations and records at least one rejected signal-like option.
-- [ ] ABI lead and TSK lead sign-off is recorded on the pull request.
+- [ ] D-0305 evaluates cooperative cancellation at await points, forced kernel teardown, and staged cancellation with a grace deadline as named options.
+- [ ] Each option states the cleanup of Capabilities, MemoryObjects and partial ownership, and the observable result of a Task stuck in an uninterruptible retained Linux sleep, citing `reports/spikes/TSK-017.md`.
+- [ ] The Decision records at least one rejected signal-like option with the D-0309 reason, and Q-011 and Q-012 are marked answered by TSK-003.
+- [ ] Review records ABI lead and TSK lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and TSK lead sign-off recorded on the pull request.
@@ -118,18 +143,21 @@ Committed-hardware state machine implementation (TSK-010). Background-execution 
 - Decision: D-0306
 - Risks: R-007
 
-Every Operation carries a deadline, so clock domain, resolution, overflow horizon and the provisional suspend/resume rule are stamped into the Layer 1 Operation ABI (S-005) while the surface stays prototyped. This decision precedes Timer and Wait kinds and the cancel-and-deadline path. Suspend-cycle behaviour on a laptop is implemented later against PWR and the V1 clock-semantics adr.
+Every Operation carries a deadline (§18, §19), so its clock domain, resolution, overflow horizon and the provisional suspend and resume rule are part of the Layer 1 Operation ABI on S-005 while the surface stays prototyped (§65). D-0306 chooses among a monotonic clock that pauses in suspend, a boot-time clock that advances through it, and a wall clock, each with a stated resolution (nanoseconds) and horizon (a 64-bit count), states what a Timer Operation observes across suspend and resume under each, and names the ABI fields that carry deadline and timestamp (the `deadline` field of the submission record and the `completed_at` field of the completion record, both `u64` nanoseconds in the chosen domain). TSK-015's report on in-kernel deadline enforcement is the evidence; SVC-016 decides the laptop suspend semantics at V1 on top of this representation.
 
 <!-- covers: GAP-0496 -->
 
 #### Out of scope
-Timer kind implementation (TSK-012). Laptop suspend cycles (TSK-041, PWR). Slack and coalescing (TSK-047).
+Timer kind implementation (TSK-012). Laptop suspend cycles (TSK-041, PWR). Slack and coalescing (TSK-047). Clock semantics across suspend (SVC-016).
+
+#### Deliverables
+- roadmap:decisions/D-0306-decide-deadline-representation.md · Options with suspend consequences, Evidence citing `reports/spikes/TSK-015.md`, the Decision naming the clock, resolution, horizon and the two ABI fields, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Options evaluated include a monotonic clock that does not advance during suspend, a boot-time clock that does, and a wall clock, each with a stated resolution and overflow horizon.
+- [ ] D-0306 evaluates a monotonic clock that does not advance during suspend, a boot-time clock that does, and a wall clock, each with a stated resolution and overflow horizon.
 - [ ] Each option states what a Timer Operation observes across suspend and resume.
-- [ ] The decision names the ABI fields that carry deadline and timestamp and records that S-005 stays prototyped.
-- [ ] ABI lead sign-off is recorded on the pull request.
+- [ ] The Decision names the ABI fields that carry deadline and timestamp, their type and unit, cites `reports/spikes/TSK-015.md`, and records that S-005 stays `prototyped`.
+- [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -147,18 +175,21 @@ Timer kind implementation (TSK-012). Laptop suspend cycles (TSK-041, PWR). Slack
 - Baseline: §18, §19, §65
 - Decision: D-0307
 
-Cached reads and already-signalled Waits can finish before submit returns. Whether that is allowed, and how the ABI tells the caller that completion was inline rather than delivered later, is a Layer 1 choice on S-005 and must be fixed before the submit path is built. The surface stays prototyped.
+A cached read or an already-signalled Wait can be finished before `submit` returns (§18, §19). Whether that is allowed, and how the caller learns that completion was inline rather than delivered later, is a Layer 1 choice on S-005 that must be fixed before TSK-018 builds the submit path. D-0307 chooses among never completing inline (every completion goes through the completion transport), completing inline with an ABI-visible flag in the completion record, and completing inline with a distinct `submit` return code, and states for each how a caller distinguishes inline from later completion, including the already-signalled Wait case, and what it means for the TSK-007 transport's ring accounting. TSK-014's report on transport prototypes is the evidence.
 
 <!-- covers: INV-0345 -->
 
 #### Out of scope
-Submit and completion implementation (TSK-018). Transport choice (TSK-007).
+Submit and completion implementation (TSK-018). Transport choice (TSK-007). Wait kind (TSK-012).
+
+#### Deliverables
+- roadmap:decisions/D-0307-decide-inline-completion.md · Options with transport consequences, Evidence citing `reports/spikes/TSK-014.md`, the Decision as the rule and the signalling mechanism, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Options evaluated include never completing inline, completing inline with an ABI-visible flag, and completing inline with a distinct submit return code.
-- [ ] Each option states how a caller distinguishes inline completion from a later completion record, including the already-signalled Wait case.
-- [ ] The decision records that S-005 stays prototyped.
-- [ ] ABI lead sign-off is recorded on the pull request.
+- [ ] D-0307 evaluates never completing inline, completing inline with an ABI-visible flag, and completing inline with a distinct submit return code as named options.
+- [ ] Each option states how a caller distinguishes inline completion from a later completion record, including the already-signalled Wait case, and its effect on ring accounting.
+- [ ] The Decision cites `reports/spikes/TSK-014.md` and records that S-005 stays `prototyped`.
+- [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -208,18 +239,21 @@ Event object implementation (TSK-029). Channel messages (IPC). Personality signa
 - Decision: D-0311
 - Risks: R-007
 
-Operation completion is the hinge between kernel scheduling and the runtime and cannot change after SDK code depends on it. This decision picks shared submission and completion rings, per-Component queues, syscall-per-Operation, or a hybrid; whether io_uring internals are reused or replaced; and how batches are expressed. S-005 is prototyped, not frozen.
+Operation completion is the hinge between kernel scheduling and the runtime and cannot change after SDK code depends on it (§18, §19). D-0311 picks the transport from TSK-014's prototypes: shared submission and completion rings, per-Component kernel queues, syscall-per-Operation, or a hybrid; whether io_uring internals are reused (the ring structures and `io_uring_enter` lineage) or replaced; and how a batch of submissions is expressed (contiguous ring entries, a linked list, or one entry per call). Each option states how completion reaches the submitting Task and cites the wake-up measurements from `reports/spikes/TSK-014.md` and the B-009 records. S-005 stays prototyped; TSK-018 implements the result and TSK-024 verifies it.
 
 <!-- covers: INV-0344, GAP-0494 -->
 
 #### Out of scope
-Submit path implementation (TSK-018). Linked chains (TSK-030). Ring hardening (TSK-040).
+Submit path implementation (TSK-018). Linked chains (TSK-030). Ring hardening (TSK-040). Entry mechanism (ABI-008).
+
+#### Deliverables
+- roadmap:decisions/D-0311-decide-operation-transport.md · Options with io_uring reuse and batching consequences, Evidence citing `reports/spikes/TSK-014.md` and B-009, the Decision as transport, reuse rule and batch expression, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Options evaluated include shared rings, per-Component queues, syscall-per-Operation, and a hybrid, each stating whether io_uring internals are reused or replaced.
+- [ ] D-0311 evaluates shared rings, per-Component queues, syscall-per-Operation, and a hybrid, each stating whether io_uring internals are reused or replaced.
 - [ ] Each option states how a batch of submissions is expressed and how completion is delivered to the submitting Task.
-- [ ] The decision cites the spike report's wake-up measurements via B-009 and records that S-005 stays prototyped.
-- [ ] ABI lead sign-off is recorded on the pull request.
+- [ ] The Decision cites the spike report's wake-up measurements through B-009 and records that S-005 stays `prototyped`.
+- [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -238,18 +272,22 @@ Submit path implementation (TSK-018). Linked chains (TSK-030). Ring hardening (T
 - Decision: D-0314
 - Invariants: I-017, I-057
 
-Orthogonal to the multiplexing model: every Task may be `Object<Task>`, a runtime identity with kernel visibility only for observability and cancellation, or a hybrid. The Task ABI must not embed x86-specific execution-context assumptions (§38, I-057). S-008 stays prototyped.
+Orthogonal to how Tasks are multiplexed (TSK-009) is whether every Task has an identity the kernel knows (§20). D-0314 chooses among every Task as `Object<Task>` with a handle, a runtime identity with kernel visibility only for observability and cancellation (a compact identity table the kernel reads plus a cancellation doorbell), and a hybrid that promotes a Task to a kernel object when it needs kernel-visible cancellation or a distinct intent. Each option states how cancellation and `os inspect task` name a Task and confirms the ABI definition is architecture-neutral with no x86 execution-context assumption (§38, I-057). TSK-016's report against the B-014 live-Task scale is the evidence. S-008 stays prototyped; TSK-021 implements the result.
 
 <!-- covers: INV-0381, INV-0721 -->
 
 #### Out of scope
 Multiplexing model (TSK-009). Task implementation (TSK-021). Inspect rendering (OBS-005).
 
+#### Deliverables
+- roadmap:decisions/D-0314-decide-task-identity.md · Options with cancellation and inspect consequences, Evidence citing `reports/spikes/TSK-016.md`, the Decision, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-008 `Decided by` adds TSK-008, `State: prototyped`.
+
 #### Acceptance criteria
-- [ ] Options evaluated include every Task as `Object<Task>`, runtime identity with kernel visibility only for observability and cancellation, and a hybrid.
-- [ ] Each option states how cancellation and `os inspect` name a Task, and records that the ABI definition is architecture-neutral.
-- [ ] The decision records that S-008 stays prototyped.
-- [ ] ABI lead sign-off is recorded on the pull request.
+- [ ] D-0314 evaluates every Task as `Object<Task>`, runtime identity with kernel visibility only for observability and cancellation, and a hybrid as named options.
+- [ ] Each option states how cancellation and `os inspect task` name a Task and records that the ABI definition is architecture-neutral (I-057).
+- [ ] The Decision cites `reports/spikes/TSK-016.md` and records that S-008 stays `prototyped` with TSK-008 under `Decided by`.
+- [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -269,18 +307,22 @@ Multiplexing model (TSK-009). Task implementation (TSK-021). Inspect rendering (
 - Risks: R-007
 - Invariants: I-017
 
-Required V0 architectural decision: replace the thread model with Task and TaskGroup (§2, §20) and fix the kernel/runtime split. Options are complete models that each state how unexpected kernel blocking (page fault, inherited driver path) is compensated so a stalled worker does not starve multiplexed Tasks. S-008 stays prototyped.
+Replacing threads with Task and TaskGroup (§2, §20) requires fixing the kernel and runtime split and how hidden blocking is compensated (§21). D-0315 chooses among kernel-managed Tasks (one kernel execution context per Task), UMCG-style activations with compensating workers (a bounded worker set with the kernel reporting blocked workers), and a pure user-space runtime over async syscalls only; each option states the split, how a page fault or a synchronous retained driver path is detected and compensated so a stalled worker does not starve multiplexed Tasks, and its viability at the B-014 live-Task scale from `reports/spikes/TSK-016.md`. S-008 stays prototyped; TSK-019 implements the result and SDK-004 builds the runtime side.
 
 <!-- covers: INV-0071, INV-0380, INV-0038, GAP-0493 -->
 
 #### Out of scope
-Task object implementation (TSK-021). Userspace runtime (SDK-004). Personality threads (TSK-043).
+Task object implementation (TSK-021). Userspace runtime (SDK-004). Personality threads (TSK-043). The multiplexer (TSK-019).
+
+#### Deliverables
+- roadmap:decisions/D-0315-decide-task-mapping.md · Options with the split and compensation consequences, Evidence citing `reports/spikes/TSK-016.md` and B-014, the Decision, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-008 `Decided by` adds TSK-009.
 
 #### Acceptance criteria
-- [ ] Options evaluated include kernel-managed Tasks, UMCG-style activations with compensating workers, and a pure userspace runtime over async syscalls only.
-- [ ] Each option states the kernel/runtime split and how page faults and synchronous inherited driver paths are detected and compensated.
-- [ ] The decision cites the spike report against the B-014 live-Task scale and records that S-008 stays prototyped.
-- [ ] ABI lead and TSK lead sign-off is recorded on the pull request.
+- [ ] D-0315 evaluates kernel-managed Tasks, UMCG-style activations with compensating workers, and a pure userspace runtime over async syscalls only as named options.
+- [ ] Each option states the kernel and runtime split and how page faults and synchronous retained driver paths are detected and compensated.
+- [ ] The Decision cites `reports/spikes/TSK-016.md` against the B-014 live-Task scale and records that S-008 stays `prototyped`.
+- [ ] Review records ABI lead and TSK lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and TSK lead sign-off recorded on the pull request.
@@ -297,19 +339,30 @@ Task object implementation (TSK-021). Userspace runtime (SDK-004). Personality t
 - Depends on: TSK-018, TSK-003, TSK-004, TSK-017, ABI-009
 - Baseline: §19, §21, §59
 
-Owner cancel and deadline expiry deliver through the normal completion path as typed `Cancelled` and `DeadlineExceeded` results (the DeadlineExceeded result of V0-G07). Cancelling a TaskGroup cancels every Operation it owns. The committed-hardware state machine from the NVMe spike is implemented for the NVMe path on H-002 so a cancelled Operation never delivers a successful result.
+Cancellation and deadline expiry are completions, not interruptions (§19, §21, D-0309): `jakeos/tsk/cancel.rs` implements `operation.cancel(id)` for the owner (identity per D-0015), which marks the Operation and drives the kind's cancel hook; `jakeos/tsk/deadline.rs` implements deadline enforcement in the representation D-0306 chose (a timer wheel or hrtimer per Operation, per TSK-015's finding) and expires Operations whose deadline passed. Both deliver through the normal completion path (TSK-018) as the typed results `Error::Cancelled` and `Error::DeadlineExceeded` (D-0006), and a cancelled or expired Operation never delivers a successful result afterwards. Cancelling a TaskGroup (TSK-022) calls `cancel` on every Operation it owns.
+
+For hardware-committed work, `jakeos/tsk/committed.rs` implements the state machine TSK-017 reported for the NVMe path on `hw-h002` (`Submitted`, `Committed`, `Completing`, with the cancel-after-commit result the D-0305 model chose: wait, fail or best-effort, and the partial-result shape) so a cancel after DMA start behaves as decided and never reports success. `os inspect operation <id>` shows owner, deadline and cancellation state through the OBS-007 provider.
 
 <!-- covers: INV-0362, INV-0364, INV-0374, GAP-0495 -->
 
 #### Out of scope
-TaskGroup hierarchy walk (TSK-022). GPU and Wi-Fi committed-work matrix (TSK-048). Slack coalescing (TSK-047).
+TaskGroup hierarchy walk (TSK-022). GPU and Wi-Fi committed-work matrix (TSK-048). Slack coalescing (TSK-047). Transport (TSK-018).
+
+#### Deliverables
+- kernel:jakeos/tsk/cancel.rs · `operation.cancel` handler, owner check, kind cancel hooks, `Error::Cancelled` completion.
+- kernel:jakeos/tsk/deadline.rs · Deadline enforcement structure per TSK-015 and `Error::DeadlineExceeded` completion.
+- kernel:jakeos/tsk/committed.rs · The committed-work state machine for the NVMe path.
+- kernel:tools/jakeos/fuzz/tsk_cancel_deadline/ · Fuzz target over cancel and deadline races (`kernel:fuzz/tsk_cancel_deadline`).
+- kernel:tools/testing/selftests/jakeos/tsk/cancel_*.rs · Selftests: owner cancel, non-owner refusal, cancel-after-completion race, TaskGroup cancel fan-out.
+- kernel:tools/testing/selftests/jakeos/tsk/deadline_*.rs · Selftests: absolute and relative expiry, expiry during submission, no late success.
+- kernel:tools/testing/selftests/jakeos/tsk/nvme_committed_*.sh · The `hw-h002` NVMe committed-work scenario.
 
 #### Acceptance criteria
-- [ ] Cancelling an Operation by its owner completes it with `Cancelled` and never delivers a successful result, on `qemu-x86_64` and `hw-h002`.
-- [ ] An Operation whose deadline has passed completes with `DeadlineExceeded` through the normal completion path.
-- [ ] Cancelling a TaskGroup cancels every outstanding Operation it owns.
-- [ ] An in-flight NVMe Read on H-002 follows the spike's committed-work contract and reports the decided partial-result shape.
-- [ ] `os inspect` on an in-flight Operation shows owner, deadline and cancellation state (OBS consumes the data).
+- [ ] Cancelling an Operation by its owner completes it with `Error::Cancelled` and never delivers a successful result afterwards, on `qemu-x86_64` and `hw-h002`; a cancel by a non-owner returns `Error::Rights`.
+- [ ] An Operation whose deadline has passed completes with `Error::DeadlineExceeded` through the normal completion path, including one whose deadline passes between submission and enqueue.
+- [ ] Cancelling a TaskGroup cancels every outstanding Operation it owns (asserted by counting completions).
+- [ ] An in-flight NVMe Read on `hw-h002` cancelled after DMA start follows the D-0305 committed-work rule and reports the decided partial-result shape, never a plain success.
+- [ ] `os inspect operation <id>` on an in-flight Operation shows owner, deadline and cancellation state.
 
 #### Verification
 - Unit: `kernel:tests/tsk/cancel_*` and `kernel:tests/tsk/deadline_*` on `qemu-x86_64` and `hw-h002`.
@@ -328,19 +381,32 @@ TaskGroup hierarchy walk (TSK-022). GPU and Wi-Fi committed-work matrix (TSK-048
 - Depends on: TSK-018, ABI-014, IPC-010, MEM-005, STO-001
 - Baseline: §18, §14, §16, §59
 
-Read and Write run against File, Channel and MemoryObject-backed sources; Send and Receive are the typed Channel<T> kinds used by the V0 demo (§18, §59). Completions carry typed results or typed failures. Native software never sees a blocking read/write thread-per-call surface.
+The four data-moving kinds of §18 are implemented as kind handlers under `jakeos/tsk/kinds/`, each registered in the D-0014 kind table (`jakeos/abi/kinds.rs`) with the right it requires (CAP-011): `read.rs` and `write.rs` operate on a target object that implements the kernel `Readable` or `Writable` trait (`jakeos/tsk/kinds/traits.rs`) with a MemoryObject-backed buffer described by `(Capability<MemoryObject>, offset, length)`, and V0 targets are the STO-001 File object, a Channel endpoint (byte mode is not offered; Read and Write on a Channel are refused with the typed error so that Send and Receive remain the only Channel kinds) and MemoryObject-to-MemoryObject copies; `send.rs` and `receive.rs` are the typed `Channel<T>` kinds over IPC-010's queue, carrying a message described by `(Capability<MemoryObject>, length, handle slots)` per IPC-007's wire format. Submitting any of the four returns without waiting; completion carries a typed result (bytes moved, or the message descriptor) or a typed failure.
+
+No blocking read or write thread-per-call surface exists (TSK-001 enforces it); the V0 demo (CMP-011) uses Send and Receive.
 
 <!-- covers: INV-0346, INV-0347, INV-0348, INV-0349 -->
 
 #### Out of scope
-Channel object and backpressure (IPC). File object (STO). MemoryObject map (MEM). Connect and Accept (TSK-032).
+Channel object and backpressure (IPC-009, IPC-010). File object (STO-001). MemoryObject map (MEM-007). Connect and Accept (TSK-032). Transport (TSK-018).
+
+#### Deliverables
+- kernel:jakeos/tsk/kinds/traits.rs · `Readable` and `Writable` kernel traits and the buffer descriptor type.
+- kernel:jakeos/tsk/kinds/read.rs · Read handler over `Readable` targets.
+- kernel:jakeos/tsk/kinds/write.rs · Write handler over `Writable` targets.
+- kernel:jakeos/tsk/kinds/send.rs · Send handler over the IPC-010 queue.
+- kernel:jakeos/tsk/kinds/receive.rs · Receive handler over the IPC-010 queue.
+- kernel:jakeos/abi/kinds.rs · The four kinds registered with their required rights (extending ABI-002's file).
+- kernel:tools/testing/selftests/jakeos/tsk/kind_read_*.rs · Selftests for Read against File and MemoryObject targets and the Channel refusal.
+- kernel:tools/testing/selftests/jakeos/tsk/kind_write_*.rs · Selftests for Write.
+- kernel:tools/testing/selftests/jakeos/tsk/kind_send_*.rs · Selftests for Send.
+- kernel:tools/testing/selftests/jakeos/tsk/kind_recv_*.rs · Selftests for Receive.
 
 #### Acceptance criteria
-- [ ] A Read Operation against a File and against a MemoryObject-backed source completes with a typed result on `qemu-x86_64` and `hw-h002`.
-- [ ] A Write Operation against a writable object completes with a typed result on those matrix entries.
-- [ ] Send and Receive Operations on `Channel<T>` complete with typed messages on those matrix entries.
-- [ ] Submitting Read, Write, Send or Receive returns without waiting for completion.
-- [ ] The V0 Component-A to Channel to Component-B demo uses these kinds.
+- [ ] A Read against a File and against a MemoryObject-backed source completes with a typed result (bytes moved) on `qemu-x86_64` and `hw-h002`; a Read against a Channel endpoint is refused with the typed error.
+- [ ] A Write against a writable File or MemoryObject completes with a typed result on both matrix entries; a Write without the `Write` right returns `Error::Rights` and moves nothing.
+- [ ] Send and Receive on `Channel<T>` complete with the typed message descriptor on both matrix entries, and a Receive on an empty Channel stays outstanding until a Send arrives.
+- [ ] Submitting Read, Write, Send or Receive returns without waiting for completion, and the V0 demo (CMP-011) uses Send and Receive for its request and reply.
 
 #### Verification
 - Unit: `kernel:tests/tsk/kind_read_*`, `kind_write_*`, `kind_send_*`, `kind_recv_*` on `qemu-x86_64` and `hw-h002`.
@@ -359,18 +425,25 @@ Channel object and backpressure (IPC). File object (STO). MemoryObject map (MEM)
 - Depends on: TSK-018, TSK-004, TSK-006
 - Baseline: §18, §19, §59
 
-Timer completes at or after an absolute or relative deadline in the representation decided for the Operation ABI. Wait completes when a referenced object or set of objects reaches a signalled state. Both are V0 exit kinds and the native replacement for timerfd-style and signal-style waits.
+Timer and Wait are the native replacements for `timerfd` and signal-style waiting (§18, §19, D-0309). `jakeos/tsk/kinds/timer.rs` completes at or after an absolute deadline, or a relative one converted at submission, in the D-0306 representation, using the TSK-010 deadline structure so a Timer is an Operation whose deadline is its purpose. `jakeos/tsk/kinds/wait.rs` completes when a referenced waitable object (an `Event` from TSK-029 later, a Component's exit, another Operation's completion, or a Channel's readability at V0) reaches a signalled state; a Wait on a set of objects completes on the first to signal and reports which. A Wait on an already-signalled object follows D-0307 (inline completion or not). Both kinds are registered in the kind table with the `Wait` right on the referenced object.
 
 <!-- covers: INV-0352, INV-0353 -->
 
 #### Out of scope
-User-signalled Event object (TSK-029). Slack and coalescing (TSK-047). Deadline overhead harness (TSK-039).
+User-signalled Event object (TSK-029). Slack and coalescing (TSK-047). Deadline overhead harness (TSK-039). Deadline enforcement itself (TSK-010).
+
+#### Deliverables
+- kernel:jakeos/tsk/kinds/timer.rs · Timer handler over the deadline structure, absolute and relative forms.
+- kernel:jakeos/tsk/kinds/wait.rs · Wait handler over waitable objects and sets, with the D-0307 already-signalled behaviour.
+- kernel:jakeos/tsk/kinds/waitable.rs · The kernel `Waitable` trait implemented by Component, Operation and Channel at V0.
+- kernel:tools/testing/selftests/jakeos/tsk/kind_timer_*.rs · Selftests: absolute, relative, past deadline, cancel before expiry.
+- kernel:tools/testing/selftests/jakeos/tsk/kind_wait_*.rs · Selftests: single object, set, already signalled, cancel while waiting.
 
 #### Acceptance criteria
-- [ ] A Timer Operation with an absolute deadline completes at or after that deadline with a typed result on `qemu-x86_64` and `hw-h002`.
-- [ ] A Timer Operation with a relative deadline completes at or after that deadline on those matrix entries.
-- [ ] A Wait Operation completes when the referenced object reaches a signalled state.
-- [ ] A Wait on an already-signalled object follows the inline-completion decision.
+- [ ] A Timer with an absolute deadline completes at or after that deadline with a typed result on `qemu-x86_64` and `hw-h002`, and never before it.
+- [ ] A Timer with a relative deadline completes at or after submission time plus the relative amount on both matrix entries.
+- [ ] A Wait on a Component completes when it exits, a Wait on an Operation completes when it completes, and a Wait on a set completes on the first signalled member and reports which.
+- [ ] A Wait on an already-signalled object follows D-0307's inline-completion rule exactly (asserted by the flag or return code the decision names).
 
 #### Verification
 - Unit: `kernel:tests/tsk/kind_timer_*` and `kind_wait_*` on `qemu-x86_64` and `hw-h002`.
@@ -388,18 +461,28 @@ User-signalled Event object (TSK-029). Slack and coalescing (TSK-047). Deadline 
 - Depends on: TSK-023, TSK-007, ABI-015, ABI-009
 - Baseline: §7, §18, §19, §69
 
-Operation<Result> is the first-class unit of outstanding asynchronous work (§19, §69). Each Operation has an owner Task or TaskGroup so it can be cancelled structurally, a typed result or typed failure, a priority field carried for later ordering, and tracing hooks OBS consumes. Identity and handle encoding come from ABI-015.
+`Operation<Result>` is the first-class unit of outstanding asynchronous work (§19, §69). `jakeos/tsk/operation.rs` registers the `Operation` type id with the ABI-005 registry and defines the object: owner (a Task or TaskGroup handle, so cancellation is structural), kind (D-0014), typed result or typed failure slot (D-0006 encoding), deadline and `completed_at` (D-0306 fields), a priority field carried for later ordering (TSK-027 decides its relation to intent), the trace identity OBS consumes (a span id allocated at creation and emitted on the S-010 substrate at submit, complete and cancel), and the state (`Created`, `Submitted`, `Completed`, `Cancelled`). User space names an Operation as D-0015 (ABI-015) chose; whichever it is, user space holds a Capability or index, never the object. Destroying the owning TaskGroup without the cancel path still reclaims every Operation it owns, which the CMP-004 leak test covers.
+
+`unsafe` is confined to the files the pull request names; the OBS-007 provider reads the object for `os inspect operation`.
 
 <!-- covers: INV-0054, INV-0361, INV-0363, INV-0365, INV-0367, INV-1317 -->
 
 #### Out of scope
-Submit and completion transport (TSK-018). Priority ordering of I/O (TSK-033). Inspect rendering (OBS-007).
+Submit and completion transport (TSK-018). Priority ordering of I/O (TSK-033). Inspect rendering (OBS-007). Kind handlers (TSK-011, TSK-012).
+
+#### Deliverables
+- kernel:jakeos/tsk/tsk.rs · Crate root for the TSK area.
+- kernel:jakeos/tsk/operation.rs · `Object<Operation>`: header, owner, kind, result slot, deadline fields, priority, trace identity, state machine.
+- kernel:jakeos/tsk/trace.rs · Span emission at submit, complete and cancel on the S-010 substrate.
+- kernel:jakeos/cap/rights_decl.rs · The `Operation` rights vocabulary (`Cancel`, `Wait`, `Inspect`) (extending CAP-011's file).
+- kernel:tools/testing/selftests/jakeos/tsk/operation_object_*.rs · Selftests: creation records, result delivery, identity per D-0015, reclamation without cancel.
+- kernel:Documentation/jakeos/tsk/operation.md · The object's fields, states and what each consumer (transport, cancel, OBS) reads.
 
 #### Acceptance criteria
-- [ ] Userspace holds a Capability to an Operation, not the Object itself, using the encoding ABI decided.
-- [ ] Creating an Operation records owner, kind, deadline, priority and trace identity inspectable through the OBS provider hooks.
-- [ ] Completing an Operation delivers a typed result or a typed failure and no other payload.
-- [ ] Destroying the owning TaskGroup without the cancel path still reclaims the Operation object with no kernel-memory leak in the V0 leak test.
+- [ ] User space holds a Capability to or index of an Operation per D-0015, never the object; a forged reference returns `Error::Rights` and allocates nothing.
+- [ ] Creating an Operation records owner, kind, deadline, priority and a trace span id, all inspectable through the OBS-007 provider hooks, and a span is emitted at submit, complete and cancel.
+- [ ] Completing an Operation delivers a typed result or a typed failure in the D-0006 encoding and no other payload.
+- [ ] Destroying the owning TaskGroup without the cancel path reclaims every Operation it owns with no kernel-memory leak in the CMP-004 leak test.
 - [ ] No `unsafe` outside the TSK Operation kernel files named on the pull request.
 
 #### Verification

@@ -177,7 +177,7 @@ Makespan (size-weight estimates): 115.
 | --- | --- |
 | BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 37 |
+| BLD-082 | 39 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |

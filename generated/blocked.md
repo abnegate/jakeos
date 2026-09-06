@@ -241,8 +241,8 @@
 | CMP-053 | Close external audit findings against the Component isolation boundary | todo | CMP-039, CMP-012, SEC-067, SEC-070 | V4 |
 | CMP-054 | Publish reproducible Component creation, memory and startup metrics | todo | CMP-001, CMP-002, CMP-019, CMP-018, BEN-063 | 1.0 |
 | CMP-055 | Write the Component section of the ABI stability statement | todo | CMP-052, ABI-050 | 1.0 |
-| TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | TSK-018 | V0 |
-| TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | TSK-020, BEN-005 | V0 |
+| TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | TSK-018, BLD-082 | V0 |
+| TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | TSK-020, BEN-005, BLD-082 | V0 |
 | TSK-003 | Decide Task cancellation model and resource cleanup | todo | TSK-017 | V0 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | todo | TSK-015 | V0 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | todo | TSK-014 | V0 |
@@ -2184,7 +2184,7 @@
 | --- | --- |
 | BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 37 |
+| BLD-082 | 39 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |

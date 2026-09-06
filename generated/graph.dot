@@ -3471,6 +3471,8 @@ digraph roadmap {
   "BLD-082" -> "SDK-008";
   "BLD-082" -> "SDK-009";
   "BLD-082" -> "STO-001";
+  "BLD-082" -> "TSK-001";
+  "BLD-082" -> "TSK-002";
   "BOOT-001" -> "BOOT-002";
   "BOOT-001" -> "BOOT-005";
   "BOOT-001" -> "KRN-019";
