@@ -298,7 +298,7 @@
 | IPC-007 | Decide the typed-message wire format and inline-payload threshold | todo | IPC-020, IPC-018 | V0 |
 | IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | IPC-016, IPC-015, BEN-005, BLD-082 | V0 |
 | IPC-009 | Define Channel<T> backpressure: bounded depth, slow-receiver policy, depth in os inspect | todo | IPC-010, TSK-011 | V0 |
-| IPC-010 | Implement the Channel kernel Object with typed endpoints, send, receive and inspect data | todo | ABI-002, ABI-005, CAP-005, TSK-013, CMP-014 | V0 |
+| IPC-010 | Implement the Channel kernel Object with typed endpoints, send, receive and inspect data | todo | ABI-002, ABI-005, CAP-005, TSK-013, CMP-014, KRN-013 | V0 |
 | IPC-011 | Define and implement typed error, peer-death and timeout semantics for calls | todo | IPC-010, TSK-010, ABI-009 | V0 |
 | IPC-012 | Implement the IDL compiler with Rust wire layout, stub, ownership and tracing codegen | todo | IPC-006, IPC-007, IPC-004, IPC-005, ABI-007, BLD-082 | V0 |
 | IPC-013 | Generate Interface<T> proxies with async methods, futures and in-flight cancellation | todo | IPC-012, TSK-011, TSK-010, BLD-082 | V0 |
@@ -2227,6 +2227,7 @@
 | CAP-010 | 15 |
 | HW-011 | 15 |
 | HW-039 | 15 |
+| KRN-013 | 15 |
 | LNX-001 | 15 |
 | LNX-030 | 15 |
 | PKG-060 | 15 |
@@ -2236,7 +2237,6 @@
 | CMP-024 | 14 |
 | DOC-015 | 14 |
 | IPC-035 | 14 |
-| KRN-013 | 14 |
 | LAB-021 | 14 |
 | MEM-005 | 14 |
 | SCH-026 | 14 |

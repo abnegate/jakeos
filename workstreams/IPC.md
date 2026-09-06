@@ -27,17 +27,22 @@ Handle representation and Layer 1 handshake (ABI). Capability mint, derive, revo
 - Baseline: §15, §18, §53
 - Decision: D-0139
 
-Call semantics change scheduler and Native ABI shape irreversibly (§15, §18). Same-core and cross-core round trips from IPC-017 are reviewed with SCH and TSK before Channel send is fixed. Native software sees an Operation, never a blocking syscall. Option B is admissible only as an Operation whose completion is awaited with time-slice donation; ABI-012 already forbids any entry that blocks the calling execution context except wait-for-completion.
+Whether the kernel offers a synchronous call beside asynchronous send changes the scheduler and the Native ABI irreversibly (§15, §18, §53). D-0139 evaluates option A (asynchronous send and receive only; a request-reply is two Operations and the runtime pairs them) against option B (asynchronous send plus a `channel.call` Operation whose completion is awaited with the caller's remaining time slice donated to the callee, in the seL4 and LRPC lineage), using IPC-017's same-core and cross-core round-trip tables and IPC-018's study of Cap'n Proto RPC, FIDL, Genode and QNX. Option B is admissible only as an Operation awaited through `operation.wait`: D-0012 (ABI-012) already forbids any entry that blocks the caller except wait-for-completion, so a blocking `call` syscall is not an option. The decision names the ABI-visible entry points that follow (which kinds exist in the D-0014 table) and coordinates with the scheduler mapping D-0253 (SCH-004) and the Task mapping D-0315 (TSK-009) because donation is a scheduler operation.
+
+The executing agent writes both options with their round-trip, fairness and complexity consequences, cites `reports/spikes/IPC-017.md` and `reports/spikes/IPC-018.md`, records the Decision as the kind set and the rejected option, and lists follow-ups (IPC-015's handoff hook shape).
 
 <!-- covers: GAP-0481 -->
 
 #### Out of scope
-Fast-path technique selection (IPC-003). Direct-switch hook implementation (IPC-015, SCH-005).
+Fast-path technique selection (IPC-003). Direct-switch hook implementation (IPC-015, SCH-005). Intent inheritance across handoff (SCH-017).
+
+#### Deliverables
+- roadmap:decisions/D-0139-decide-call-semantics.md · Both options with consequences, Evidence citing the two spike reports, the Decision as the Operation kind set and the rejected option, follow-ups.
 
 #### Acceptance criteria
-- [ ] Option A (async send and receive only) and option B (async send plus synchronous call with time-slice donation to the callee) are evaluated against the spike's same-core and cross-core reports.
-- [ ] The Decision names the rejected option and the ABI-visible entry points that follow from the choice.
-- [ ] SCH and TSK leads record Review sign-off on the pull request.
+- [ ] D-0139 evaluates option A (asynchronous send and receive only) and option B (asynchronous send plus synchronous call with time-slice donation, as an awaited Operation) against the IPC-017 same-core and cross-core reports and the IPC-018 study.
+- [ ] The Decision names the rejected option, the Operation kinds that follow from the choice in the D-0014 table, and states that no entry blocks the caller except `operation.wait`.
+- [ ] Review records SCH and TSK lead sign-off on the pull request.
 
 #### Verification
 - Review: SCH and TSK leads sign off on the pull request; the Decision lists both options.
@@ -57,17 +62,23 @@ Fast-path technique selection (IPC-003). Direct-switch hook implementation (IPC-
 - Risks: R-005
 - Invariants: I-041
 
-Every Interface carries an explicit evolution strategy (§12). This Decision records how Interfaces version, add fields, add optional methods and negotiate, using findings from IPC-019. The rules are prototyped in V0; freeze is IPC-042 at V1 (R-005).
+Every Interface carries an explicit evolution strategy (§12): how it versions, how fields and optional methods are added, how peers negotiate, and what an old client sees from a new server. D-0141 records those rules for Layer 2 (S-014) in prototyped state, choosing among option A (schema-indexed optional fields with generated negotiation: every field has a stable index, absent fields take defaults, the generated stubs negotiate a feature set at bind), option B (self-describing envelopes with unknown-field preservation: each message carries its field table and receivers forward what they do not understand), and option C (explicit major and minor versions with dual-stack serving during an overlap window), using IPC-019's three-revision evolution of a real V0 Interface as the evidence. The IDL chosen by D-0148 (IPC-006) must be able to express the accepted rules. The rules freeze at V1 (IPC-042, R-005).
+
+The executing agent writes each option's consequences for wire cost, codegen complexity and what breaks old clients, cites `reports/spikes/IPC-019.md`, records the Decision as the rule set the IDL compiler enforces (IPC-021 implements the header and tests; IPC-038 the rest), and updates S-014's register entry to `prototyped`.
 
 <!-- covers: INV-0247, INV-0260, INV-0249 -->
 
 #### Out of scope
-V1 freeze of the rules (IPC-042). Layer 1 handshake (ABI-016, ABI-004).
+V1 freeze of the rules (IPC-042). Layer 1 handshake (ABI-016, ABI-004). IDL selection (IPC-006). Full schema-evolution implementation (IPC-038).
+
+#### Deliverables
+- roadmap:decisions/D-0141-decide-evolution-rules.md · Options with wire, codegen and compatibility consequences, Evidence citing `reports/spikes/IPC-019.md`, the Decision as the enforceable rule set, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-014 `Decided by: IPC-002`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] Option A (schema-indexed optional fields with generated negotiation), option B (self-describing envelopes with unknown-field preservation), and option C (explicit major/minor with dual-stack during overlap) are evaluated against the three-revision spike.
-- [ ] The Decision states how optional methods, unknown fields and version identity appear on the wire, and records that the IDL ships with an evolution story.
-- [ ] ABI lead records Review sign-off on the pull request.
+- [ ] D-0141 evaluates option A (schema-indexed optional fields with generated negotiation), option B (self-describing envelopes with unknown-field preservation), and option C (explicit major and minor versions with dual-stack overlap) against the three-revision spike.
+- [ ] The Decision states how optional methods, unknown fields and version identity appear on the wire, and records that the IDL ships with an evolution story the compiler enforces.
+- [ ] S-014 is `prototyped` with IPC-002 under `Decided by`, and Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -85,17 +96,23 @@ V1 freeze of the rules (IPC-042). Layer 1 handshake (ABI-016, ABI-004).
 - Baseline: §15, §53
 - Decision: D-0142
 
-V0 exit requires an accepted fast-path-mechanism Decision listing rejected options, chosen from IPC-017 before Channel kernel semantics are fixed (§15). The selected technique is the one IPC-016 implements. Numbers live only in the spike report and in B-004 and B-005.
+V0 exit requires an accepted fast-path decision with rejected options, chosen from IPC-017's measurements before Channel kernel semantics are fixed (§15, §53). D-0142 selects among shared ring, CPU-register-carried messages, scheduler-aware handoff, lock-free cross-core queues and a recorded combination (the option texts already carry each technique's consequences); the accepted option names the ABI-visible send path that remains (what a Channel send is on S-012) and the techniques IPC-016 implements, and lists the rejected techniques so no later task re-prototypes them. Numbers live only in `reports/spikes/IPC-017.md` and the B-004 and B-005 records.
+
+The executing agent fills the Decision and Consequences from the report's same-core and cross-core tables, cites the report in Evidence, and sets S-012's register entry `Decided by: IPC-003`, `State: prototyped`.
 
 <!-- covers: INV-0299, GAP-0480 -->
 
 #### Out of scope
-Call versus send (IPC-001). Production fast path (IPC-016).
+Call versus send (IPC-001). Production fast path (IPC-016). The prototypes (IPC-017).
+
+#### Deliverables
+- roadmap:decisions/D-0142-adr-fast-path-selection.md · The Decision, Consequences, rejected techniques and follow-ups filled from the IPC-017 report, with the report cited in Evidence.
+- roadmap:registers/surfaces.md · S-012 `Decided by: IPC-003`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] Option A (shared ring), option B (CPU-register-carried messages), option C (scheduler-aware handoff), option D (lock-free cross-core queues), and option E (a recorded combination) are evaluated against the spike report.
-- [ ] The Decision names the rejected techniques and the ABI-visible send path that remains.
-- [ ] ABI lead records Review sign-off on the pull request.
+- [ ] D-0142 evaluates option A (shared ring), option B (CPU-register-carried messages), option C (scheduler-aware handoff), option D (lock-free cross-core queues) and option E (a recorded combination) against `reports/spikes/IPC-017.md`.
+- [ ] The Decision names the rejected techniques, the technique or combination IPC-016 implements, and the ABI-visible send path that remains on S-012.
+- [ ] S-012 is `prototyped` with IPC-003 under `Decided by`, and Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -113,17 +130,20 @@ Call versus send (IPC-001). Production fast path (IPC-016).
 - Baseline: §14
 - Decision: D-0145
 
-Typed IPC across a multi-repo or multi-language ecosystem breaks when generated stubs drift from their IDL. This Decision is accepted before the first generated Rust stubs land. Determinism CI is IPC-034.
+Typed IPC across two repositories and several languages breaks when generated stubs drift from their IDL (§14). D-0145 decides, before the first Rust stubs land, whether generated code is committed beside the IDL (reviewable diffs, drift caught by a CI regeneration check) or emitted at build time by a `build.rs` step in every consuming crate (no drift by construction, generator on every build), evaluating drift, reviewability, build time, multi-language backends and how the kernel repository (which cannot depend on the platform's compiler at build time) consumes the same IDL. The accepted option states how CI proves the generator is deterministic and its output matches the IDL (IPC-034 implements that check).
 
 <!-- covers: GAP-0098 -->
 
 #### Out of scope
-Generator determinism check (IPC-034). Generated-code license exception (IPC-005).
+Generator determinism check (IPC-034). Generated-code licence exception (IPC-005). The compiler (IPC-012).
+
+#### Deliverables
+- roadmap:decisions/D-0145-decide-generated-code-placement.md · Options with drift, review, build-time and cross-repository consequences, the Decision as the placement rule and the CI proof, rejected option, follow-ups.
 
 #### Acceptance criteria
-- [ ] Option A (commit generated stubs next to the IDL) and option B (emit stubs at build time from the IDL) are evaluated against drift, reviewability and multi-language backends.
-- [ ] The Decision states how CI proves generator output is deterministic and matches the IDL.
-- [ ] BLD lead records Review sign-off on the pull request.
+- [ ] D-0145 evaluates option A (commit generated stubs beside the IDL) and option B (emit stubs at build time from the IDL) against drift, reviewability, build time, multi-language backends and kernel-repository consumption.
+- [ ] The Decision states how CI proves generator output is deterministic and matches the IDL, and where generated files live (or do not) in each repository.
+- [ ] Review records BLD lead sign-off on the pull request.
 
 #### Verification
 - Review: BLD lead sign-off recorded on the pull request.
@@ -141,17 +161,20 @@ Generator determinism check (IPC-034). Generated-code license exception (IPC-005
 - Baseline: §14, §51
 - Decision: D-0146
 
-Generated stubs land in every application from V0 onward. Unclear terms would contaminate the ecosystem. The Decision is encoded as a generated-code exception in every emitted file header by IPC-012 and is reviewed with GOV licensing policy.
+Generated stubs land in every application from V0 onward (§14); unclear terms would contaminate the ecosystem (§51). D-0146 decides, with GOV's licence firewall (D-0102), whether compiler output is owned by the compiler's user with no copyleft obligation (a generated-code exception in every emitted file header), inherits the compiler's licence, or is dedicated to the public domain, and states the exact header text every backend emits (IPC-012 emits it). Proprietary native applications are permitted (D-0262), so the exception must be unambiguous for them.
 
 <!-- covers: GAP-0007 -->
 
 #### Out of scope
-IDL and ABI specification license (IPC-024). Firewall mapping of Layers (GOV-003).
+IDL and ABI specification licence (IPC-024). Firewall mapping of layers (GOV-003). The compiler (IPC-012).
+
+#### Deliverables
+- roadmap:decisions/D-0146-decide-generated-code-licence.md · Options with ecosystem consequences, the Decision with the verbatim header text, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Option A (generated-code exception, output owned by the compiler user with no copyleft obligation), option B (output inherits the compiler license), and option C (output dedicated to the public domain) are evaluated with GOV.
-- [ ] The Decision states the header text every backend emits.
-- [ ] GOV lead records Review sign-off on the pull request.
+- [ ] D-0146 evaluates option A (generated-code exception, output owned by the compiler user with no copyleft obligation), option B (output inherits the compiler licence), and option C (output dedicated to the public domain) with GOV.
+- [ ] The Decision states the header text every backend emits, verbatim, and confirms it is compatible with D-0102 and with proprietary applications (D-0262).
+- [ ] Review records GOV lead sign-off on the pull request.
 
 #### Verification
 - Review: GOV lead sign-off recorded on the pull request.
@@ -169,17 +192,22 @@ IDL and ABI specification license (IPC-024). Firewall mapping of Layers (GOV-003
 - Baseline: §12, §14, §13
 - Decision: D-0148
 
-The IDL is the language every platform Interface is written in; switching after V1 would invalidate every generated binding. The evaluation covers ownership transfer, Capability passing, versioning, optional methods, streams and multi-language codegen (§12, §14). V0 exit requires an accepted IDL Decision with rejected options. Relationship to WIT is a later Decision (IPC-022).
+The IDL is the language every platform Interface is written in (§12, §14); switching after V1 would invalidate every generated binding. D-0148 evaluates adopting WIT (the Wasm Component Model's IDL, studied by WASM-002), FIDL, the Cap'n Proto schema language, or designing a new IDL, in a written matrix against the requirements the native model imposes: ownership transfer of Capabilities and MemoryObjects as first-class parameter modes (`move`, `borrow`, `share`), Capability passing, the evolution rules D-0141 will need (versioning, optional fields and methods), streams, multi-language codegen through a pluggable backend, and the ability to express the tracing metadata OBS-004 emits. IPC-018's study of Cap'n Proto RPC, FIDL and Overnet, Genode and QNX is the evidence. V0 exit requires the accepted decision with rejected options; the relationship to WIT for Wasm Components is IPC-022 later.
+
+The executing agent writes the matrix as the Options section, records the Decision as the language (and, for an adopted one, the named revision and the extensions the project adds), and lists follow-ups: IPC-012 (compiler), IPC-004 (placement), IPC-005 (licence).
 
 <!-- covers: GAP-0519, INV-0261, INV-0260, INV-0247 -->
 
 #### Out of scope
 Native IDL versus WIT mapping (IPC-022). Compiler implementation (IPC-012). Wire encoding (IPC-007).
 
+#### Deliverables
+- roadmap:decisions/D-0148-decide-idl.md · The evaluation matrix as options, Evidence citing `reports/spikes/IPC-018.md` and `reports/spikes/WASM-002.md`, the Decision naming the language, revision and extensions, rejected options, follow-ups.
+
 #### Acceptance criteria
-- [ ] Option A (adopt WIT), option B (adopt FIDL), option C (adopt Cap'n Proto schema), and option D (design a new IDL) are evaluated in a written matrix against ownership transfer, Capability passing, versioning, optional methods, streams and multi-language codegen.
-- [ ] The Decision records that every Interface carries an explicit evolution strategy and that the IDL ships with an evolution story.
-- [ ] WASM and ABI leads record Review sign-off on the pull request.
+- [ ] D-0148 evaluates option A (adopt WIT), option B (adopt FIDL), option C (adopt Cap'n Proto schema) and option D (design a new IDL) in a written matrix against ownership transfer modes, Capability passing, versioning, optional methods, streams, multi-language codegen and tracing metadata.
+- [ ] The Decision records that every Interface carries an explicit evolution strategy, that the IDL ships with an evolution story, and names the revision and extensions for an adopted language.
+- [ ] Review records WASM and ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: WASM and ABI leads sign off on the pull request.
@@ -198,17 +226,22 @@ Native IDL versus WIT mapping (IPC-022). Compiler implementation (IPC-012). Wire
 - Decision: D-0154
 - Invariants: I-063
 
-Chooses fixed-layout, self-describing or schema-indexed representation and its zero-copy properties, and resolves the size threshold and heuristics for inline small message versus MemoryObject transfer, from IPC-020 measurements (§14, §15). Answers Q-005. Payload bytes do not move when avoidable (I-063).
+The wire format is what a Channel carries (§14, §15) and, with the IDL, the whole Layer 2 message surface S-013. D-0154 chooses among a fixed layout (fields at compile-time offsets, in-place zero-copy access, no schema on the wire), a self-describing format (tagged fields, larger but tolerant), and a schema-indexed format (field indices with a compact table, the middle ground), using IPC-020's encode, decode and receiver-side validation measurements. It also answers Q-005: the rule for when a payload travels inline in the message versus as a MemoryObject ownership transfer, stated as a rule (for example "inline when the encoded message fits one message slot as fixed by the ring layout; otherwise a MemoryObject") without a number in prose (numbers live in the register and the report). Payload bytes never move when avoidable (I-063). S-013 becomes `prototyped`.
 
 <!-- covers: INV-0291, INV-0302, GAP-0520 -->
 
 #### Out of scope
-MemoryObject backing and transfer enforcement (MEM-010, MEM-003). Production lowering of large payloads (IPC-036).
+MemoryObject backing and transfer enforcement (MEM-002, MEM-003). Production lowering of large payloads (IPC-036). Validation hardening (IPC-037).
+
+#### Deliverables
+- roadmap:decisions/D-0154-decide-wire-format.md · Options with the IPC-020 measurements, the Decision as the format plus the inline-versus-MemoryObject rule, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-013 `Decided by: IPC-007`, `State: prototyped`.
+- roadmap:registers/questions.md · Q-005 `Status: answered`.
 
 #### Acceptance criteria
-- [ ] Option A (fixed layout), option B (self-describing), and option C (schema-indexed) are evaluated against encode, decode and receiver-side validation cost in the spike report.
-- [ ] The Decision states the inline-versus-MemoryObject threshold rule without restating a number in prose, and names S-013.
-- [ ] ABI and MEM leads record Review sign-off on the pull request.
+- [ ] D-0154 evaluates option A (fixed layout), option B (self-describing) and option C (schema-indexed) against encode, decode and receiver-side validation cost in `reports/spikes/IPC-020.md`.
+- [ ] The Decision states the inline-versus-MemoryObject threshold as a rule without a number in prose, names S-013, and marks Q-005 answered by IPC-007.
+- [ ] S-013 is `prototyped` with IPC-007 under `Decided by`, and Review records ABI and MEM lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI and MEM leads sign off on the pull request.
@@ -227,20 +260,29 @@ MemoryObject backing and transfer enforcement (MEM-010, MEM-003). Production low
 - Benchmarks: B-004, B-005
 - Invariants: I-061
 
-V0 benchmark Gate: small-message same-core and cross-core p50/p99 measured on H-001 and H-002 and published beside Unix-domain-socket and pipe numbers, publish-only in V0 (B-004, B-005). Registered with BEN and run in nightly CI. Tracing-overhead measurement on this path is OBS/BEN (B-012).
+The IPC round trip is the number the native model is judged by (§14, §53, §54). The harness `bench/harness/B-004/` (crate `jakeos-bench-ipc-roundtrip`, scenarios `ipc-roundtrip-same-core` and `ipc-roundtrip-cross-core`) runs a small-message ping-pong between two Components over the IPC-016 fast path with the IPC-015 handoff, pinned per BEN-064, and in the same session runs Unix-domain-socket and pipe ping-pong between two processes on the personality side of the same kernel; `bench/harness/B-005/` (scenario `ipc-throughput`) streams messages one way and records messages per second at the register's payload sizes. Both emit BEN-005 records from the BLD-010 nightly job on `qemu-x86_64` and `hw-h002`; reports go to `reports/benchmarks/B-004/` and `B-005/` as `h001.md` and `h002.md`. V0 is publish-only; V1 absolute targets are IPC-054's.
 
 <!-- covers: INV-0277 -->
 
 #### Out of scope
-Methodology and publication (BEN-003, BEN-007). Tracing-overhead ratio (B-012, OBS). V1 absolute targets (IPC-054).
+Methodology and publication policy (BEN-003, BEN-007). Tracing-overhead ratio (B-012, OBS-001). V1 absolute targets (IPC-054).
+
+#### Deliverables
+- bench:harness/B-004/ · Crate `jakeos-bench-ipc-roundtrip`: `ipc-roundtrip-same-core`, `ipc-roundtrip-cross-core`, `baseline-uds`, `baseline-pipe`.
+- bench:harness/B-005/ · Crate `jakeos-bench-ipc-throughput`: `ipc-throughput` at the register payload sizes with the same baselines.
+- roadmap:reports/benchmarks/B-004/h001.md · H-001 round-trip report (labelled QEMU).
+- roadmap:reports/benchmarks/B-004/h002.md · H-002 round-trip report V0-G13 cites.
+- roadmap:reports/benchmarks/B-005/h001.md · H-001 throughput report.
+- roadmap:reports/benchmarks/B-005/h002.md · H-002 throughput report.
 
 #### Acceptance criteria
-- [ ] Harness `bench:ipc-roundtrip-same-core` and `bench:ipc-roundtrip-cross-core` run on H-001 and H-002 and emit reports under `reports/benchmarks/B-004/` and `reports/benchmarks/B-005/`.
-- [ ] Each report includes Linux Unix-domain-socket and pipe ping-pong on the same machine.
-- [ ] Nightly CI runs the harness; V0 target kind is publish per the Register.
+- [ ] `ipc-roundtrip-same-core` and `ipc-roundtrip-cross-core` run on `qemu-x86_64` and `hw-h002` and the reports under `reports/benchmarks/B-004/` carry p50 and p99 for each, following the BEN-005 skeleton.
+- [ ] Each report includes Linux Unix-domain-socket and pipe ping-pong measured on the same machine in the same session, with mitigation state recorded.
+- [ ] `ipc-throughput` reports under `reports/benchmarks/B-005/` cover the register's payload sizes on both machines.
+- [ ] The BLD-010 nightly job runs both harnesses and the V0 target kind of B-004 and B-005 is `publish`.
 
 #### Verification
-- Bench: B-004 and B-005 on H-001 and H-002; target per Register.
+- Bench: B-004 and B-005 on H-001 and H-002; target per register.
 - Integration: `ipc:benches/roundtrip_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
 
 #### Evidence
@@ -257,17 +299,26 @@ Methodology and publication (BEN-003, BEN-007). Tracing-overhead ratio (B-012, O
 - Risks: R-073
 - Threats: T-016
 
-Bounded queue depth per Channel, sender behavior as block-as-Operation, fail, or drop-by-policy, and queue depth exposed to OBS for `os inspect channel` (R-073). Unspecified backpressure livelocks the fast path. Native software never sees a socket buffer API.
+Unspecified backpressure livelocks the fast path and lets a slow receiver exhaust kernel memory (R-073, T-016). `jakeos/ipc/queue.rs` gives every Channel a bounded queue depth fixed at creation (`channel.create(depth, policy)`), a slow-receiver policy chosen by the creator from `Block` (the Send Operation stays outstanding until a slot frees, which is the default), `Fail` (Send completes with `Error::Exhausted`) and `Drop` (the oldest queued message is dropped and the Send completes; only for Channel types whose IDL marks them lossy), and exposes depth, occupancy, policy and the count of blocked senders and receivers through the Channel inspect provider (OBS-007) for `os inspect channel`. Queue memory is charged to the creator's ResourceDomain (IPC-027 refines charging at V0.5) and a Channel's depth bounds its kernel memory, so exceeding depth never allocates.
+
+Native software never sees a socket-buffer API; the policy is a typed argument, not a `setsockopt`.
 
 <!-- covers: EXTRA-001 -->
 
 #### Out of scope
-ResourceDomain charging of queue memory (IPC-027). Inspect CLI rendering (SDK-007). Stream flow control (IPC-039).
+ResourceDomain charging of queue memory (IPC-027). Inspect CLI rendering (SDK-007). Stream flow control (IPC-039). The Channel object (IPC-010).
+
+#### Deliverables
+- kernel:jakeos/ipc/queue.rs · Bounded queue, the three policies, occupancy accounting, blocked-party counts.
+- kernel:jakeos/ipc/channel.rs · `channel.create(depth, policy)` arguments (extending IPC-010's file).
+- kernel:jakeos/obs/providers/channel.rs · Depth, occupancy, policy and blocked counts in the `channel` provider (extending OBS-007's file).
+- kernel:tools/testing/selftests/jakeos/ipc/backpressure_*.rs · Selftests: each policy under a slow receiver, no allocation past depth, inspect fields.
+- kernel:Documentation/jakeos/ipc/backpressure.md · The policies, their semantics for senders and receivers, and the lossy-type rule.
 
 #### Acceptance criteria
-- [ ] Each Channel has a bounded depth visible via the inspect payload consumed by `os inspect channel`.
-- [ ] A slow receiver causes the sender Operation to complete with the declared policy (block, fail, or drop) and never livelocks the fast path.
-- [ ] Exceeding depth allocates no unbounded kernel memory; T-016 exhaustion is a typed error.
+- [ ] Each Channel has a bounded depth and a policy fixed at `channel.create`, visible through `os inspect channel` with current occupancy and blocked sender and receiver counts.
+- [ ] A slow receiver causes the sender's Send Operation to behave per the declared policy (`Block` stays outstanding, `Fail` completes with `Error::Exhausted`, `Drop` discards the oldest and completes) and never livelocks the fast path, on `qemu-x86_64` and `hw-h002`.
+- [ ] Exceeding depth allocates no additional kernel memory; the T-016 exhaustion is the typed error, and a `Drop` policy is refused at creation for a Channel type not marked lossy in its IDL.
 
 #### Verification
 - Unit: `kernel:tests/ipc/backpressure_*` on `qemu-x86_64` and `hw-h002`.
@@ -282,27 +333,39 @@ ResourceDomain charging of queue memory (IPC-027). Inspect CLI rendering (SDK-00
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: ABI-002, ABI-005, CAP-005, TSK-013, KRN-001, CMP-014
+- Depends on: ABI-002, ABI-005, CAP-005, TSK-013, KRN-001, CMP-014, KRN-013
 - Baseline: §4, §7, §14, §59
 - Invariants: I-018
 
-Kernel Core owns Channel transport (§4). Channel Object handles, endpoint pairs, queuing, peer-closed state and the ownership and relationship data behind `os inspect channel` are a V0 exit criterion. Built on the wrapper strategy from CMP and handle representation from ABI. Native IPC is not a socket (I-018).
+Channel transport is kernel core (§4, D-0157). `jakeos/ipc/channel.rs` registers the `Channel` type id with ABI-005 and implements `channel.create` returning a pair of `Capability<Channel>` endpoints of one Interface type id (from the IDL compiler's type registry, IPC-012) with rights `Send`, `Receive`, `Transfer`, `Inspect`; each endpoint holds the queue (IPC-009), the peer link, and peer-closed state. Send and Receive are the TSK-011 Operation kinds: `send.rs` and `recv.rs` are the glue that enqueues a message descriptor (IPC-007 format) and completes a waiting Receive, moving handle slots through CAP-006's `move_between` at commit (IPC-014). Closing the last handle to an endpoint marks the peer closed, which IPC-011 turns into typed disconnects. The `channel` inspect provider reports endpoints, Interface type, queue state, waiting senders and receivers and peer-closed state (V0-G10). Destroying both endpoints reclaims queue memory (the CMP-004 leak test covers it).
+
+Native IPC is not a socket (I-018): there is no byte-stream mode, no `read` on a Channel, and the ABI-006 gate rejects such entries.
 
 <!-- covers: INV-0051, INV-0112, INV-0161, INV-0278, INV-1159, INV-1324 -->
 
 #### Out of scope
-Small-message fast path (IPC-016). Handle slots in messages (IPC-014). Inspect CLI (SDK-007). Typed inspect Interface (OBS-007).
+Small-message fast path (IPC-016). Handle slots in messages (IPC-014). Inspect CLI (SDK-007). Typed inspect Interface (OBS-006). Backpressure policy (IPC-009).
+
+#### Deliverables
+- kernel:jakeos/ipc/ipc.rs · Crate root for the IPC area.
+- kernel:jakeos/ipc/channel.rs · `Object<Channel>`: endpoint pair, Interface type id, peer link, peer-closed state, `channel.create`.
+- kernel:jakeos/ipc/send.rs · Send-kind glue: enqueue, handle-slot commit hook, completion.
+- kernel:jakeos/ipc/recv.rs · Receive-kind glue: dequeue or park, completion with the message descriptor.
+- kernel:jakeos/cap/rights_decl.rs · The `Channel` rights vocabulary (extending CAP-011's file).
+- kernel:jakeos/obs/providers/channel.rs · The `channel` inspect provider.
+- kernel:tools/testing/selftests/jakeos/ipc/channel_*.rs · Selftests: create, typed send and receive, peer-closed, reclamation, no byte mode.
+- kernel:Documentation/jakeos/ipc/channel.md · The object, its Operations and states.
 
 #### Acceptance criteria
-- [ ] Creating a Channel yields a typed endpoint pair; send and receive are Operations and complete with typed results.
-- [ ] `os inspect channel` data includes endpoints, message type, queue depth, waiting senders and receivers, and peer-closed state for every live Channel.
-- [ ] Native crates cannot open a Channel as a socket or byte pipe; the ABI review Gate rejects such entry points.
-- [ ] Destroying both endpoints reclaims queue memory; the V0 Component leak test shows no Channel residue.
+- [ ] `channel.create` yields a typed endpoint pair of one Interface type id; Send and Receive are Operations that complete with typed results, and a Send of a message of another type id is refused with the typed error, on `qemu-x86_64` and `hw-h002`.
+- [ ] `os inspect channel` data includes endpoints, Interface type, queue depth and occupancy, waiting senders and receivers, and peer-closed state for every live Channel (V0-G10).
+- [ ] No native entry reads or writes a Channel as a byte stream; the ABI-006 gate and TSK-011's Read refusal enforce it.
+- [ ] Destroying both endpoints reclaims queue memory; the CMP-004 leak test shows no Channel residue.
 
 #### Verification
 - Unit: `kernel:tests/ipc/channel_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: V0 Demo pipeline with CMP-011.
-- Review: ABI review Gate checklist includes Channel.
+- Integration: V0 demo pipeline with CMP-011.
+- Review: ABI review gate checklist includes Channel.
 
 #### Evidence
 - none
@@ -317,21 +380,29 @@ Small-message fast path (IPC-016). Handle slots in messages (IPC-014). Inspect C
 - Baseline: §12, §32
 - Invariants: I-037
 
-V0 fault Demo: B panics and A observes a typed disconnect. IDL error taxonomy, disconnect result on peer death, and DeadlineExceeded result via Operation deadlines (§12, §32). Failure and restart are part of every typed Interface (I-037).
+Failure and restart are part of every typed Interface (§12, §32, I-037). `jakeos/ipc/failure.rs` implements the peer-death path: when the last handle to an endpoint is dropped (its Component exited with any D-0066 cause, or closed it), every outstanding Receive on the peer completes with `Error::Disconnected`, every outstanding Send completes with `Error::Disconnected` without delivering, and no further payload is ever delivered on that Channel; a later Send returns `Error::Disconnected` immediately. Deadlines on Channel Operations are TSK-010's (`Error::DeadlineExceeded`, never a late result). The IDL error taxonomy is the D-0006 vocabulary plus per-Interface application errors declared in the IDL (`error` types in the IPC-012 front end), which travel in the reply message as typed values distinct from transport failures.
+
+The V0 fault demo (V0-D03, CMP-011) exercises it: B panics and A observes `Error::Disconnected` on its in-flight call. Client rebind and retry codegen is IPC-028 at V0.5; A rebinds manually in the demo.
 
 <!-- covers: INV-0259 -->
 
 #### Out of scope
-Client rebind and retry codegen (IPC-028). Supervisor restart (SVC). Panic abort policy (CMP-008).
+Client rebind and retry codegen (IPC-028). Supervisor restart (SVC-004). Panic abort policy (CMP-008). Deadline enforcement (TSK-010).
+
+#### Deliverables
+- kernel:jakeos/ipc/failure.rs · Peer-death detection on last-handle drop and `Error::Disconnected` completion of outstanding Operations.
+- idl:src/frontend/errors.rs · IDL `error` type declarations and their placement in reply messages (extending IPC-012's front end).
+- kernel:tools/testing/selftests/jakeos/ipc/failure_*.rs · Selftests: peer death during Receive, during Send, after close; no late payload; deadline case.
+- kernel:Documentation/jakeos/ipc/failure.md · The failure taxonomy: transport errors versus IDL application errors, and what each side observes on peer death.
 
 #### Acceptance criteria
-- [ ] Peer death completes in-flight receive Operations with a typed disconnect result and delivers no further payload.
-- [ ] An Operation with an expired deadline completes with DeadlineExceeded and never delivers a late result.
-- [ ] The V0 fault Demo shows Component B panicking and Component A observing the typed disconnect.
+- [ ] Peer death completes every outstanding Receive on the surviving endpoint with `Error::Disconnected`, completes outstanding Sends without delivering, and delivers no further payload, on `qemu-x86_64` and `hw-h002`.
+- [ ] An Operation with an expired deadline completes with `Error::DeadlineExceeded` and never delivers a late result (through TSK-010's path).
+- [ ] IDL-declared application errors travel in the reply as typed values distinct from transport failures, and the V0 fault demo shows Component B panicking and Component A observing `Error::Disconnected`.
 
 #### Verification
 - Unit: `kernel:tests/ipc/failure_*` on `qemu-x86_64` and `hw-h002`.
-- Demo: V0 fault Demo on H-002.
+- Demo: V0 fault demo on H-002.
 - Integration: deadline and peer-death cases in TSK-024.
 
 #### Evidence
