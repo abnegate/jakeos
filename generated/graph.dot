@@ -2928,6 +2928,7 @@ digraph roadmap {
   "BEN-004" -> "BEN-062";
   "BEN-004" -> "BLD-011";
   "BEN-004" -> "REL-014";
+  "BEN-005" -> "ABI-001";
   "BEN-005" -> "APP-001";
   "BEN-005" -> "AUD-004";
   "BEN-005" -> "BEN-001";
@@ -3433,8 +3434,10 @@ digraph roadmap {
   "BLD-079" -> "REL-066";
   "BLD-079" -> "SDK-094";
   "BLD-081" -> "BLD-082";
+  "BLD-082" -> "ABI-001";
   "BLD-082" -> "ABI-003";
   "BLD-082" -> "ABI-006";
+  "BLD-082" -> "ABI-017";
   "BLD-082" -> "ABI-018";
   "BLD-082" -> "BEN-005";
   "BLD-082" -> "BLD-006";
@@ -5728,6 +5731,7 @@ digraph roadmap {
   "KRN-011" -> "LNX-015";
   "KRN-011" -> "LNX-061";
   "KRN-012" -> "KRN-019";
+  "KRN-013" -> "ABI-002";
   "KRN-013" -> "KRN-012";
   "KRN-013" -> "KRN-019";
   "KRN-013" -> "KRN-037";

@@ -98,8 +98,8 @@
 | BOOT-047 | Execute signing-key rotation and SBAT revocation through the boot chain on the testing Channel | todo | BOOT-038, BOOT-044, REL-041 | V4 |
 | BOOT-048 | Make UKI and bootloader images reproduce bit-for-bit with deterministic signing layout | todo | BOOT-008, BOOT-011, BOOT-044 | V4 |
 | BOOT-049 | Verify the update and rollback guarantee by fault injection on every Tier 1 machine | todo | BOOT-038, BOOT-028, BOOT-013, BOOT-047, INS-056, INS-043, PKG-091, STO-083 | 1.0 |
-| ABI-001 | Publish native entry/return cost per mechanism against Linux syscall and io_uring | todo | ABI-019, Q-001 | V0 |
-| ABI-002 | Implement the Native ABI entry layer in the Linux-derived kernel | todo | ABI-008, ABI-012, ABI-014, ABI-015, LNX-001 | V0 |
+| ABI-001 | Publish native entry/return cost per mechanism against Linux syscall and io_uring | todo | ABI-019, Q-001, BEN-005, BLD-082 | V0 |
+| ABI-002 | Implement the Native ABI entry layer in the Linux-derived kernel | todo | ABI-008, ABI-012, ABI-014, ABI-015, LNX-001, KRN-013 | V0 |
 | ABI-003 | Add build and lint rules forbidding native crates from linking Linux Personality or libc | todo | ABI-018, BLD-082 | V0 |
 | ABI-004 | Implement the Layer 1 version handshake and its forward/backward compatibility test | todo | ABI-016, ABI-002 | V0 |
 | ABI-005 | Implement the Object<T> typed registry with type identifier checked on every Operation | todo | ABI-010, ABI-013, ABI-009, ABI-002 | V0 |
@@ -114,7 +114,7 @@
 | ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | todo | ABI-011 | V0 |
 | ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | todo | TSK-014 | V0 |
 | ABI-016 | Decide the Layer 1 version identification and feature-negotiation scheme | todo | ABI-008, ABI-021 | V0 |
-| ABI-017 | Write the normative, versioned Native ABI specification v0 defining every entry point | todo | ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007 | V0 |
+| ABI-017 | Write the normative, versioned Native ABI specification v0 defining every entry point | todo | ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007, BLD-082 | V0 |
 | ABI-018 | Lint native surfaces against POSIX-shaped names and Linux syscall numbers | todo | ABI-011, BLD-082 | V0 |
 | ABI-023 | Generate the C header, snapshot, docs and fuzz descriptions from the ABI definition | todo | ABI-017, ABI-007, ABI-027 | V0.5 |
 | ABI-024 | Build the ABI conformance suite with one test per prototyped Layer 1 entry point | todo | ABI-017, ABI-002, ABI-005, ABI-004 | V0.5 |
@@ -2182,9 +2182,9 @@
 
 | Blocker | Tasks |
 | --- | --- |
-| BEN-005 | 63 |
+| BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 33 |
+| BLD-082 | 35 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -2267,6 +2267,7 @@
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
+| KRN-013 | 12 |
 | KRN-014 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |
@@ -2289,7 +2290,6 @@
 | HET-009 | 11 |
 | HW-008 | 11 |
 | HW-009 | 11 |
-| KRN-013 | 11 |
 | LAB-011 | 11 |
 | LNX-036 | 11 |
 | MED-008 | 11 |

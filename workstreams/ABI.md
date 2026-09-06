@@ -23,24 +23,34 @@ Capability rights encoding, derivation and revocation (CAP, S-003). Component cr
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ABI-019, Q-001
+- Depends on: ABI-019, Q-001, BEN-005, BLD-082
 - Baseline: §65, §54
 - Benchmarks: B-009
 
-Measure entry and return cost of each prototype from ABI-019 on a no-op Operation so the Layer 1 entry-mechanism Decision can cite a published B-009 report. V0 is publish-only. Comparison baselines are the Linux syscall path and io_uring NOP submit-to-completion named on B-009. Native software still never sees those Linux interfaces.
+ABI-008 must choose the Layer 1 entry mechanism from measured cost, not taste (§65, §54). This benchmark runs the three ABI-019 prototypes (syscall-per-Operation, shared submission page with doorbell, vDSO-style trampoline) on a no-op Operation and publishes entry-plus-return cost per mechanism as B-009, using the BEN-005 runner and the BEN-064 methodology (warm and cold runs, percentiles, CPU pinning, mitigation state recorded). The comparison baselines named on B-009 are the Linux `syscall` path (`getpid`) and io_uring `NOP` submit-to-completion, measured on the same machine in the same session; native software never sees those interfaces, they are baselines only.
+
+The harness is `bench/harness/B-009/` (crate `jakeos-bench-entry-cost`) with one scenario per mechanism and per baseline, each producing the BEN-005 time-series record. Reports are written by hand from the records into `reports/benchmarks/B-009/h001.md` and `h002.md` in the roadmap repository following the BEN-005 report skeleton; V0 is publish-only (D-0031), so the reports state numbers and method and no pass or fail.
 
 <!-- covers: GAP-0500 -->
 
 #### Out of scope
-Standing Operation latency publication after the Decision (BEN). io_uring lineage evaluation (TSK).
+Standing Operation latency publication after the Decision (BEN). io_uring lineage evaluation (TSK-014). The prototypes themselves (ABI-019). Methodology (BEN-064).
+
+#### Deliverables
+- bench:harness/B-009/ · Crate `jakeos-bench-entry-cost`: scenarios `syscall-per-op`, `shared-page`, `trampoline`, `baseline-syscall`, `baseline-io-uring-nop`.
+- bench:harness/B-009/README.md · How the harness is run per BEN-064, which kernel configuration and prototype build it needs.
+- roadmap:reports/benchmarks/B-009/h001.md · The H-001 report (functional coverage only, labelled as QEMU).
+- roadmap:reports/benchmarks/B-009/h002.md · The H-002 report that ABI-008 cites.
 
 #### Acceptance criteria
-- [ ] A report exists under `reports/benchmarks/B-009/` for H-001 and for H-002 covering syscall-per-Operation, shared submission page, and trampoline entry.
-- [ ] Each report names the B-009 method, the Linux syscall and io_uring NOP baselines, and the mechanism under test.
-- [ ] The reports are cited from the Decision record of ABI-008.
+- [ ] `reports/benchmarks/B-009/h001.md` and `h002.md` exist, follow the BEN-005 skeleton, and cover syscall-per-Operation, shared submission page and trampoline entry plus the two baselines.
+- [ ] Each report names the B-009 method, the BEN-064 methodology revision, the Linux `syscall` and io_uring `NOP` baselines, the mitigation state and the mechanism under test, and asserts no threshold (V0 publish).
+- [ ] D-0005 (ABI-008) cites `reports/benchmarks/B-009/h002.md` in its Evidence lines.
+- [ ] `bench/harness/B-009/` runs from the BLD-010 nightly job and writes a BEN-005 time-series record per scenario.
 
 #### Verification
 - Bench: B-009 on H-001 and H-002; target per register (V0 publish).
+- Unit: `bench:tests/B-009/scenarios_*` asserting each scenario emits a well-formed record.
 - Review: BEN lead confirms the reports follow the B-009 method recorded in the register.
 
 #### Evidence
@@ -52,26 +62,38 @@ Standing Operation latency publication after the Decision (BEN). io_uring lineag
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: ABI-008, ABI-012, ABI-014, ABI-015, LNX-001
+- Depends on: ABI-008, ABI-012, ABI-014, ABI-015, LNX-001, KRN-013
 - Baseline: §6, §7, §65
 - Risks: R-004
 
-Implement the Native ABI entry layer in the Linux-derived kernel so every V0 primitive test reaches the kernel through the chosen entry mechanism and object-operation dispatch (§6 Phase A, §65). The retained Linux syscall path stays intact for the L0 corpus. Native software enters only through this layer.
+The entry layer is the one door native software has into the kernel (§6 phase A, §65): the mechanism D-0005 (ABI-008) chose, the object-Operation dispatch D-0012 (ABI-012) chose, the Operation kind set of D-0014 (ABI-014) and the Operation identity of D-0015 (ABI-015). It lives in `jakeos/abi/` (KRN-013 layout): `entry.rs` implements the chosen mechanism (for a syscall mechanism, one architecture-neutral `jakeos_enter` syscall number registered in `arch/x86/entry/syscalls/syscall_64.tbl` behind `CONFIG_JAKEOS`; for a shared page, the doorbell syscall and page setup), `dispatch.rs` resolves `(handle word, Operation kind)` through the CAP-005 table and the ABI-005 type registry to the target object's handler, and `kinds.rs` holds the kind table with the reserved slots. The user-visible constants are generated into `include/uapi/linux/jakeos/entry.h` from the ABI-017 specification once it exists; until then the header is hand-maintained with a `// TODO(ABI-017)` marker that the KRN-016 lint tolerates only in this file.
+
+The retained Linux syscall table stays intact and untouched for the L0 corpus: `jakeos_enter` is an addition, not a replacement, and the dispatcher never routes a Linux syscall. `os inspect abi` shows the entry-layer identity (mechanism name and ABI version) through the OBS-006 provider. `unsafe` is confined to `entry.rs` and the files the pull request lists.
 
 <!-- covers: INV-1321 -->
 
 #### Out of scope
-Linux syscall implementation (LNX). Operation ring internals (TSK). Capability table storage (CAP).
+Linux syscall implementation (LNX). Operation ring internals (TSK-024). Capability table storage (CAP-005). Object type registry (ABI-005). Header generation (ABI-017, SDK).
+
+#### Deliverables
+- kernel:jakeos/abi/abi.rs · Crate root for the ABI area.
+- kernel:jakeos/abi/entry.rs · The D-0005 entry mechanism; the only `unsafe` in the area outside listed files.
+- kernel:jakeos/abi/dispatch.rs · Handle-word plus Operation-kind resolution to object handlers through the CAP-005 table and the ABI-005 registry.
+- kernel:jakeos/abi/kinds.rs · The Operation kind table with D-0014's reserved slots.
+- kernel:include/uapi/linux/jakeos/entry.h · User-visible entry constants (hand-maintained until ABI-017 generates it).
+- kernel:arch/x86/entry/syscalls/syscall_64.tbl · The `jakeos_enter` entry behind `CONFIG_JAKEOS`, if D-0005 chose a syscall mechanism.
+- kernel:jakeos/obs/providers/abi.rs · The `os inspect abi` provider: mechanism name and ABI version.
+- kernel:tools/testing/selftests/jakeos/abi/entry_*.rs · Selftests: no-op Operation round trip, Linux syscall path untouched, inspect identity.
 
 #### Acceptance criteria
-- [ ] A native Component on `qemu-x86_64` and `hw-h002` submits a no-op Operation through the Native ABI entry layer and observes a completion without using a Linux syscall number.
-- [ ] The Linux syscall path used by C-001 still boots and is not routed through the Native ABI dispatcher.
-- [ ] `os inspect` on a live native Component shows the entry-layer identity chosen by ABI-008.
-- [ ] No `unsafe` outside the entry-layer crate files listed in the pull request.
+- [ ] A native Component on `qemu-x86_64` and `hw-h002` submits a no-op Operation through `jakeos/abi/entry.rs` and observes its completion without invoking any Linux syscall number.
+- [ ] The Linux syscall table used by C-001 boots and passes unchanged, and `dispatch.rs` has no path that handles a Linux syscall.
+- [ ] `os inspect abi` on a live native Component prints the mechanism name chosen by D-0005 and the ABI version.
+- [ ] No `unsafe` outside `jakeos/abi/entry.rs` and the files listed in the pull request description; the BLD-011 unsafe inventory shows only those.
 
 #### Verification
 - Unit: `kernel:tests/abi/entry_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
-- Integration: V0 primitive suite reaches the kernel only through this layer on H-001 and H-002.
+- Integration: V0 primitive suite reaches the kernel only through this layer on H-001 and H-002 (the BLD-006 agent run with `strace`-equivalent tracing showing no Linux syscalls from native Components).
 - Compat: C-001 scenario run on H-001 and H-002 after the layer lands.
 - Demo: native Component A to B round trip on H-002 enters through this layer, shown with `os trace`.
 
@@ -88,17 +110,26 @@ Linux syscall implementation (LNX). Operation ring internals (TSK). Capability t
 - Baseline: §3, §13, §57
 - Invariants: I-005, I-006, I-025, I-046, I-049
 
-Enforce the §3 compatibility firewall as a lint on every native crate from V0: native software does not link the Linux personality, libc, or a Wasm runtime used as the machine ABI (§57). Personalities consume the Native ABI and never extend it. The Layer 3 libc-compatible library decided by SDK-097 is not Linux `libc`; it is named in the lint allowlist by crate name and is the only C runtime a native crate may link.
+The §3 firewall is enforced by a lint from V0, before the first native crate exists: native software never links the Linux personality, `libc`, or a Wasm runtime used as the machine ABI (§57, I-005, I-006, I-046). `tools/firewall-lint/` (crate `jakeos-tools-firewall-lint`) reads `cargo metadata` for the workspace and fails when a crate outside `personality-linux/` and `personality-windows/` depends, directly or transitively, on a crate in `build/lints/firewall-denylist.toml` (`libc`, `nix`, `rustix` in its libc backend, the personality crates, `wasmtime` and `wasmer` when used as the process ABI rather than as a hosted runtime Component) unless the crate is on the allowlist in the same file with the decision that permits it. The only C runtime a native crate may link is the Layer 3 library D-0351 (SDK-097) decides, named there by crate name.
+
+The lint runs as the `abi-firewall` job in `pre-merge` (BLD-011 makes it required). The sample crate `sdk/examples/image-decoder/` (SDK-001) is the positive fixture; `tools/firewall-lint/fixtures/` holds a crate that depends on `libc` and one that links the personality, both of which must fail.
 
 <!-- covers: INV-0867, INV-0010, INV-0011, INV-1121, INV-1123, INV-0272, INV-1130 -->
 
 #### Out of scope
-POSIX-shaped name lint on ABI headers (ABI-018). Personality opt-in (LNX). Wasm runtime as machine ABI (WASM).
+POSIX-shaped name lint on ABI headers (ABI-018). Personality opt-in (LNX-016). Wasm runtime as machine ABI decision (WASM-001). The C-library strategy (SDK-097).
+
+#### Deliverables
+- tools:firewall-lint/ · Crate `jakeos-tools-firewall-lint`: dependency-graph walk, denylist and allowlist evaluation, human-readable violation report naming the dependency path.
+- bld:lints/firewall-denylist.toml · The denied crates and the allowlisted exceptions with their decision IDs.
+- tools:firewall-lint/fixtures/ · A crate depending on `libc` and a crate depending on the personality, both expected to fail.
+- platform:.github/workflows/pre-merge.yml · The `abi-firewall` job.
 
 #### Acceptance criteria
-- [ ] A native crate whose `Cargo.toml` depends on `libc` or the Linux personality crate fails CI on `qemu-x86_64`.
-- [ ] A native crate that imports a Wasm runtime as the machine ABI fails the same lint.
-- [ ] The ImageDecoder sample crate passes the lint.
+- [ ] A native crate whose dependency graph reaches `libc` or the Linux personality crate fails the `abi-firewall` job on `qemu-x86_64`, and the failure names the dependency path.
+- [ ] A native crate that depends on a Wasm runtime as its process ABI fails the same lint; a Wasm host Component listed in the allowlist with its decision passes.
+- [ ] The ImageDecoder sample crate (SDK-001) passes the lint, and both fixture crates fail it.
+- [ ] `firewall-denylist.toml` names the SDK-097 Layer 3 C library as the only permitted C runtime once D-0351 is accepted, and lists no other exception without a decision ID.
 
 #### Verification
 - Unit: `sdk:tests/lint/firewall_*` on CI matrix entry `qemu-x86_64`.
@@ -117,23 +148,32 @@ POSIX-shaped name lint on ABI headers (ABI-018). Personality opt-in (LNX). Wasm 
 - Baseline: §12, §65
 - Invariants: I-041
 
-Implement the Layer 1 handshake that identifies ABI version and features at kernel entry, not only as an IDL message test (§12, §65 rule 6). An unknown newer field is accepted by an older receiver and an older message by a newer receiver. This test is the first ABI conformance case and is retained permanently.
+The Layer 1 handshake identifies ABI version and features at kernel entry (§65 rule 6), using the scheme D-0016 (ABI-016) chose: a version word, feature bits, or both, exchanged on the Component's first entry. Kernel side, `jakeos/abi/handshake.rs` validates the Component's advertised version and feature request against the kernel's, records the negotiated set on the Component object, and refuses an Operation from a Component that has not completed the handshake with the typed error D-0006 (ABI-009) names for it, allocating no handle. Runtime side, `runtime/abi/src/handshake.rs` in crate `jakeos-runtime-abi` performs the handshake before the first Operation and exposes the negotiated feature set to the SDK.
+
+The compatibility test is the first ABI conformance case, `abi/conformance/cases/000_handshake.rs`, and is never removed: a Component built against ABI v0 completes the handshake with a kernel that advertises an additional optional field or feature, and a Component that omits a field the kernel knows completes it with a newer kernel; in both directions the following no-op Operation succeeds. The case runs in `pre-merge` on every merge to `main` of both repositories.
 
 <!-- covers: INV-1274, INV-0147 -->
 
 #### Out of scope
-IDL unknown-field tests (IPC). Layer 2 interface version negotiation (IPC).
+IDL unknown-field tests (IPC-019). Layer 2 interface version negotiation (IPC). The scheme decision (ABI-016). The conformance suite runner beyond case 0 (ABI-027).
+
+#### Deliverables
+- kernel:jakeos/abi/handshake.rs · Kernel-side negotiation, recorded on the Component object, refusal path with the typed error.
+- runtime:abi/src/handshake.rs · Runtime-side handshake in `jakeos-runtime-abi`, run before the first Operation.
+- abi:conformance/cases/000_handshake.rs · Conformance case 0: forward and backward compatibility in both directions.
+- abi:conformance/README.md · The conformance suite skeleton: case numbering, where cases live, that case 0 is permanent.
+- kernel:tools/testing/selftests/jakeos/abi/handshake_*.rs · Selftests for the kernel side, including the refusal path.
 
 #### Acceptance criteria
-- [ ] A native Component built against ABI v0 completes the handshake with a kernel that advertises a newer optional field, and the Operation succeeds.
-- [ ] A native Component that omits a field the kernel knows completes the handshake with a newer kernel, and the Operation succeeds.
-- [ ] Handshake failure returns the typed error named by ABI-009 and allocates no handle.
-- [ ] The handshake test is listed as case 0 of the conformance suite skeleton.
+- [ ] A native Component built against ABI v0 completes the handshake with a kernel that advertises a newer optional field or feature, and its following no-op Operation succeeds, on `qemu-x86_64` and `hw-h002`.
+- [ ] A native Component that omits a field the kernel knows completes the handshake with the newer kernel, and its following Operation succeeds.
+- [ ] An Operation before the handshake, or a handshake with an incompatible version, returns the typed error named by D-0006 and allocates no handle.
+- [ ] `abi/conformance/cases/000_handshake.rs` exists, is listed as case 0 in `abi/conformance/README.md`, and runs in `pre-merge` on both repositories.
 
 #### Verification
 - Unit: `kernel:tests/abi/handshake_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
-- Integration: retained as the first ABI conformance case on every merge to main.
-- Demo: handshake success and unknown-field acceptance shown in `os inspect` on H-002.
+- Integration: case 0 retained as the first ABI conformance case on every merge to `main`.
+- Demo: handshake success and unknown-field acceptance shown in `os inspect abi` on H-002.
 
 #### Evidence
 - none
@@ -150,18 +190,28 @@ IDL unknown-field tests (IPC). Layer 2 interface version negotiation (IPC).
 - Threats: T-003
 - Invariants: I-015, I-028
 
-Implement `Object<T>` as the typed kernel object with a type identifier checked on every Operation (§7). Userspace holds only a Capability to the object. Forged handles and wrong-type operations fail with the typed error from ABI-009 and allocate no handle.
+Every native kernel object is an `Object<T>` with a type identifier checked on every Operation (§7); user space holds only a Capability to it. `jakeos/abi/object.rs` defines the registry: a `TypeId` (a `u16` allocated from `jakeos/abi/types.rs`, which lists every V0 type: `Component`, `Task`, `TaskGroup`, `Channel`, `Operation`, `MemoryObject`, `ResourceDomain`, `Event`, `Timer`), the `ObjectHeader` every kernel object embeds (type id, generation, owning Component, reference count, live handle count), and `register_type::<T>()` that binds a `TypeId` to the handler table `dispatch.rs` calls. Which types are kernel-resident follows D-0013 (ABI-013); how the type tag sits in the handle word follows D-0007 (ABI-010).
+
+Dispatch checks the type identifier from the CAP-005 table entry against the handler's expected type before any object code runs; a forged handle (no table entry, wrong generation) or a wrong-type handle returns the typed error D-0006 names (`Error::Rights` or its equivalent) and allocates no handle. The inspect provider `jakeos/obs/providers/object.rs` prints type, owner and live handle count for every kind. The fuzz target `tools/jakeos/fuzz/abi_handle/` (the roadmap path `kernel:fuzz/abi_handle`) drives random handle words and kinds through dispatch for an hour nightly without a panic.
 
 <!-- covers: INV-0049, INV-0158 -->
 
 #### Out of scope
-Capability rights encoding and derivation (CAP). Which types live in kernel versus user services (ABI-013). Channel endpoints (IPC).
+Capability rights encoding and derivation (CAP-003, CAP-010). Which types live in kernel versus user services (ABI-013). Channel endpoints (IPC-008). Handle-word packing (ABI-010).
+
+#### Deliverables
+- kernel:jakeos/abi/object.rs · `ObjectHeader`, `TypeId`, `register_type`, the handler table dispatch consults.
+- kernel:jakeos/abi/types.rs · The V0 type identifier table with a reserved range for later kinds.
+- kernel:jakeos/obs/providers/object.rs · The `os inspect object` provider.
+- kernel:tools/jakeos/fuzz/abi_handle/ · Fuzz target over handle words and kinds (`kernel:fuzz/abi_handle`).
+- kernel:tools/testing/selftests/jakeos/abi/object_registry_*.rs · Selftests and property tests for unforgeability and type mismatch.
+- kernel:Documentation/jakeos/abi/objects.md · The registry design: header layout, type id allocation, how an area registers a type.
 
 #### Acceptance criteria
-- [ ] Operating on a forged handle returns `Error::Rights` (or the equivalent named by ABI-009) and allocates no handle.
-- [ ] Operating on a live handle with the wrong type identifier returns a typed error and does not invoke the target object's operation.
-- [ ] `os inspect` prints type identifier, owning Component and live handle count for every V0 object kind.
-- [ ] Property tests cover unforgeability and type mismatch on `qemu-x86_64` and `hw-h002`.
+- [ ] Operating on a forged handle returns `Error::Rights` (or the equivalent named by D-0006) and allocates no handle, on `qemu-x86_64` and `hw-h002`.
+- [ ] Operating on a live handle with the wrong type identifier returns the typed error and the target object's handler is never entered (asserted by a handler-entry counter).
+- [ ] `os inspect object` prints type identifier, owning Component and live handle count for every V0 type in `types.rs`.
+- [ ] Property tests over random handle words and type ids on both matrix entries find no path that reaches a handler without a matching type, and `kernel:fuzz/abi_handle` runs one hour nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/abi/object_registry_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -182,22 +232,32 @@ Capability rights encoding and derivation (CAP). Which types live in kernel vers
 - Risks: R-007
 - Invariants: I-002, I-013, I-026, I-055, I-056, I-057, I-058
 
-Collapse the §65 rules into one review-gate checklist on every Layer 1 change: reject interfaces justified only by a POSIX, Linux or Windows equivalent; flag x86-64-only and page-table-layout assumptions; reject exposed kernel internals (`task_struct`, `mm_struct`, cgroups, namespaces); require a deprecation and compatibility-shim plan; keep the surface Capability-based, Component-oriented, asynchronous and object-based. No Layer 1 surface is frozen in V0.
+The §65 rules become one checklist that every Layer 1 change is measured against, applied by CI where a rule is mechanical and by the reviewer where it is not. The checklist `abi/review/checklist.md` in the platform monorepo lists each rule with its mechanical test: a Layer 1 entry must cite an accepted decision (the pull request body carries `Decision: D-NNNN` and the file is `accepted` in the roadmap at the pinned commit); a native header must not name `task_struct`, `mm_struct`, cgroups, namespaces or page-table layout (regex list in `abi/review/forbidden-internals.txt`); an entry justified only by a POSIX, Linux or Windows equivalent is rejected (the reviewer's item, with the ABI-018 lint as the mechanical half); x86-64-only assumptions are flagged (`#[cfg(target_arch)]` in Layer 1 code without an architecture-neutral definition fails); every change carries a deprecation and compatibility-shim plan section; the surface stays Capability-based, Component-oriented, asynchronous and object-based (reviewer items with examples). No Layer 1 surface is frozen in V0 and the checklist says so.
+
+`tools/abi-review-gate/` (crate `jakeos-tools-abi-review-gate`) runs the mechanical items as the `abi-review-gate` job in `pre-merge` of both repositories, for changes touching `jakeos/abi/`, `include/uapi/linux/jakeos/` or `abi/`; the RFC template (GOV-005) embeds the reviewer items verbatim.
 
 <!-- covers: INV-0081, INV-0103, INV-0034, INV-0003, INV-1277, INV-1275, INV-0708, INV-0702, INV-0198, INV-1276, INV-1305, INV-1283, INV-1268 -->
 
 #### Out of scope
-Mechanical snapshot diff (ABI-027). RFC process text (GOV). Capability rights review (CAP).
+Mechanical snapshot diff (ABI-027). RFC process text (GOV-005). Capability rights review (CAP). POSIX-name lint content (ABI-018).
+
+#### Deliverables
+- abi:review/checklist.md · The §65 rules, each marked mechanical (with its job) or reviewer (with its examples), and the no-freeze-in-V0 statement.
+- abi:review/forbidden-internals.txt · The kernel-internal names a native header may not contain.
+- tools:abi-review-gate/ · Crate `jakeos-tools-abi-review-gate`: decision-link check against the roadmap pin, forbidden-internals scan, `target_arch` scan, plan-section presence.
+- platform:.github/workflows/pre-merge.yml · The `abi-review-gate` job for changes under `abi/`.
+- kernel:.github/workflows/pre-merge.yml · The `abi-review-gate` job for changes under `jakeos/abi/` and `include/uapi/linux/jakeos/`.
+- docs:rfc/template.md · The RFC template section that embeds the reviewer items (co-owned with GOV-005).
 
 #### Acceptance criteria
-- [ ] A pull request that adds a Layer 1 entry justified only by a POSIX, Linux or Windows equivalent fails the review-gate job.
-- [ ] A pull request that names `task_struct`, `mm_struct`, cgroups, namespaces or page-table layout in a native header fails the review-gate job.
-- [ ] A pull request that changes Layer 1 without a linked adr id fails the review-gate job.
-- [ ] The checklist is a checked-in file consumed by CI and by the RFC template.
+- [ ] A pull request that adds a Layer 1 entry whose only justification is a POSIX, Linux or Windows equivalent fails review against `checklist.md`, and one whose body lacks an accepted `Decision: D-NNNN` fails the `abi-review-gate` job.
+- [ ] A pull request that names `task_struct`, `mm_struct`, cgroups, namespaces or page-table layout in a native header, or uses `#[cfg(target_arch)]` in Layer 1 code without an architecture-neutral definition, fails the `abi-review-gate` job.
+- [ ] A Layer 1 change without a deprecation and compatibility-shim plan section in its pull request body fails the job.
+- [ ] `checklist.md` is consumed by both CI jobs and embedded in `docs:rfc/template.md`, and states that no Layer 1 surface is frozen in V0.
 
 #### Verification
-- Unit: `tools:tests/abi_review_gate_*` on CI matrix entry `qemu-x86_64`.
-- Integration: pre-merge job on a fixture pull request for each failing class.
+- Unit: `tools:tests/abi_review_gate_*` on CI matrix entry `qemu-x86_64`, one fixture per failing class.
+- Integration: pre-merge job on a fixture pull request for each failing class in both repositories.
 - Review: ABI lead sign-off recorded on the pull request that lands the checklist.
 
 #### Evidence
@@ -214,17 +274,22 @@ Mechanical snapshot diff (ABI-027). RFC process text (GOV). Capability rights re
 - Decision: D-0003
 - Invariants: I-002
 
-Decide how languages bind to Layer 1 so the Native ABI stays language-neutral (§50). Options are a stable C-compatible header plus IDL-generated per-language stubs, an IDL-only substrate with no C header, and a Rust-native ABI with other languages as afterthoughts. The Decision is recorded before the Rust runtime and C header are built.
+Languages other than Rust must reach Layer 1 without a second Native ABI (§50, I-002). This decision fixes the binding substrate in D-0003: a stable C-compatible header (`abi/include/jakeos/abi.h`, generated from the ABI-017 specification) plus IDL-generated per-language stubs for Layer 2; an IDL-only substrate with no C header; or a Rust-native ABI with other languages bound through Rust. The agent executing this task writes the Options with consequences drawn from ABI-011's layer placement, records the Decision as a rule ("every language reaches Layer 1 through ..."), lists rejected options with the deciding reason, and names follow-ups (the header generator task in SDK, the IDL backend rule in IPC-047).
+
+Acceptance is by review: ABI and SDK leads sign off on the pull request, the decision file's Status becomes `accepted`, and the task is completed with `roadmap done ABI-007 --evidence decision:D-0003 --verified-by <handle>`.
 
 <!-- covers: INV-0945, INV-0944 -->
 
 #### Out of scope
-IDL language choice (IPC). Rust SDK crate (SDK). C wrapper safety (SDK).
+IDL language choice (IPC-018). Rust SDK crate (SDK-003). C wrapper safety (SDK). The header generator itself (SDK, after this decision).
+
+#### Deliverables
+- roadmap:decisions/D-0003-decide-binding-substrate.md · Options, Decision, Consequences, Rejected options, Follow-ups filled in; Status `accepted` or `rejected`.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates C-compatible header plus IDL stubs, IDL-only, and Rust-native ABI as named options.
-- [ ] The accepted option states how a non-Rust language reaches Layer 1 without a second Native ABI.
-- [ ] Review records ABI lead and SDK lead sign-off on the pull request.
+- [ ] D-0003 evaluates C-compatible header plus IDL stubs, IDL-only, and Rust-native ABI as named options with consequences.
+- [ ] The accepted option states how a non-Rust language reaches Layer 1 without a second Native ABI, and names the header path and the stub generator it relies on.
+- [ ] Review records ABI lead and SDK lead sign-off on the pull request, and Evidence carries `decision:D-0003`.
 
 #### Verification
 - Review: ABI lead and SDK lead sign-off recorded on the pull request.
@@ -244,18 +309,24 @@ IDL language choice (IPC). Rust SDK crate (SDK). C wrapper safety (SDK).
 - Risks: R-003, R-007
 - Invariants: I-055
 
-Decide how a Component enters the kernel and bound the Layer 1 entry-point count (§65 rule 1). Options are a syscall instruction per Operation, a shared submission page with rare doorbell syscalls, and vDSO-style trampolines. The Decision cites the B-009 reports from ABI-001. Surface S-002 becomes prototyped, not frozen.
+How a Component enters the kernel, and how many entry points Layer 1 may ever have, is §65 rule 1. D-0005 chooses among the three ABI-019 prototypes (syscall instruction per Operation, shared submission page with rare doorbell syscalls, vDSO-style trampolines) using the B-009 reports from ABI-001 as Evidence, and records a hard maximum count of kernel entry points that the ABI-006 review gate enforces from then on. Surface S-002 (the entry surface) is listed by the decision and moves to `prototyped`; nothing is frozen.
+
+The executing agent fills the Options from the ABI-019 report (each mechanism's entry-point count, async-only preservation, tagged-memory consequences), cites `reports/benchmarks/B-009/h002.md` in Evidence, writes the Decision as a rule with the entry-point bound as a number in the decision file (the one place a bound may appear), lists rejected options with reasons, and updates `registers/surfaces.md` so S-002's `Decided by` names ABI-008 and its State is `prototyped`.
 
 <!-- covers: GAP-0500, INV-1269, INV-1279 -->
 
 #### Out of scope
-Operation ring layout (TSK). Implementation of the chosen mechanism (ABI-002). Layer 1 freeze (ABI-049).
+Operation ring layout (TSK-007). Implementation of the chosen mechanism (ABI-002). Layer 1 freeze (ABI-049). The measurements (ABI-001).
+
+#### Deliverables
+- roadmap:decisions/D-0005-decide-entry-mechanism.md · Options from the ABI-019 report, Decision with the entry-point bound, Evidence citing the B-009 H-002 report, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-002 `Decided by: ABI-008`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates syscall-per-Operation, shared submission page with rare doorbell syscalls, and trampoline entry as named options.
-- [ ] The accepted option records a maximum count of kernel entry points and lists rejected options with reasons.
-- [ ] The Decision lists S-002 and cites a B-009 report produced by ABI-001.
-- [ ] Surface S-002 is recorded as prototyped, not frozen.
+- [ ] D-0005 evaluates syscall-per-Operation, shared submission page with rare doorbell syscalls, and trampoline entry as named options, each with the ABI-019 findings on entry-point count and async-only preservation.
+- [ ] The accepted option records the maximum count of kernel entry points and lists the rejected options with the deciding reason for each.
+- [ ] D-0005 lists S-002 in `Surfaces`, cites `reports/benchmarks/B-009/h002.md` in Evidence, and S-002's register entry names ABI-008 under `Decided by`.
+- [ ] S-002 is `prototyped`, not `frozen`, after the task is done.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -274,18 +345,25 @@ Operation ring layout (TSK). Implementation of the chosen mechanism (ABI-002). L
 - Decision: D-0006
 - Threats: T-003
 
-Decide the failure encoding for Operation results so forged handles, denied derivation and Timeout are stable across the ABI (§19). Options are a typed error enum per Operation kind, a uniform error object, and a hybrid with a uniform class plus a per-kind payload. Native errors are not errno values (S-004).
+Every Operation completes with a result, and the failure encoding must be stable across the ABI so that forged handles, denied derivation, deadline expiry, cancellation and exhaustion mean the same thing everywhere (§19). D-0006 chooses among a typed error enum per Operation kind, a uniform error object shared by every kind, and a hybrid of a uniform error class plus a per-kind payload, using the ABI-020 prototype report and the Zircon study (ABI-022) as Evidence. Native errors are not errno values; the GLOSSARY's provisional vocabulary (`Error::Rights`, `Exhausted`, `Cancelled`, `DeadlineExceeded`, `Revoked`, `Disconnected`, `Integrity`) is what the accepted option must name an encoding for. Surface S-004 (the error surface) becomes `prototyped`.
+
+The executing agent writes each option's consequences for the SDK's `Result` type, for IDL transport of errors across a Channel and for `os inspect`, records the Decision as the error vocabulary and its encoding, updates GLOSSARY.md's "Error vocabulary" entry from provisional to decided, and sets S-004's register entry.
 
 <!-- covers: INV-0375, INV-1279 -->
 
 #### Out of scope
-Capability denial audit log (CAP). Operation completion delivery (TSK).
+Capability denial audit log (CAP-001). Operation completion delivery (TSK-007). Personality errno translation (LNX).
+
+#### Deliverables
+- roadmap:decisions/D-0006-decide-error-model.md · Options, Decision naming the encoding for each vocabulary term, Evidence citing `reports/spikes/ABI-020.md`, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-004 `Decided by: ABI-009`, `State: prototyped`.
+- roadmap:GLOSSARY.md · The "Error vocabulary" entry updated from provisional to the decided encoding.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates typed enum per kind, uniform error object, and hybrid class-plus-payload as named options.
-- [ ] The accepted option names the encoding for forged handle, wrong type, denied rights, timeout, cancellation and resource exhaustion.
-- [ ] The Decision lists S-004 and states that native errors are not errno values.
-- [ ] Surface S-004 is recorded as prototyped, not frozen.
+- [ ] D-0006 evaluates typed enum per kind, uniform error object, and hybrid class-plus-payload as named options with consequences for the SDK `Result`, Channel transport and `os inspect`.
+- [ ] The accepted option names the encoding for forged handle, wrong type, denied rights, deadline expiry, cancellation, revocation, disconnection, integrity failure and resource exhaustion, using the GLOSSARY vocabulary.
+- [ ] D-0006 lists S-004, states that native errors are not errno values, and S-004 is `prototyped`, not `frozen`, after the task is done.
+- [ ] GLOSSARY.md's error vocabulary entry no longer says provisional.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -306,17 +384,23 @@ Capability denial audit log (CAP). Operation completion delivery (TSK).
 - Threats: T-003
 - Invariants: I-015, I-028, I-058
 
-Decide how the handle representation chosen by CAP-008 is packed into the Layer 1 syscall word (S-001): where the type tag and generation live, how many bits stay reserved for a future sealed-pointer layout, and what the kernel checks at the boundary (§7, §8). CAP-008 chooses the representation and table layout; this Decision fixes only its ABI-visible packing so the two are not decided twice. Surface S-001 becomes prototyped, not frozen.
+CAP-008 chooses the Capability representation and table design; this decision fixes only how that representation is packed into the 64-bit word user space passes at the Layer 1 boundary (S-001): where the type tag and generation live (inline in the word, or held in the table and looked up), how many bits stay reserved for a future sealed-pointer layout (CAP-012), and what the kernel checks at the boundary before dispatch (§7, §8). Both decisions cite the same prototypes (CAP-013) and CHERI study (CAP-012) so the two are never decided twice.
+
+The executing agent writes at least two packings as options, each with a paragraph on CHERI and tagged memory, records the Decision as the bit layout (a table in the decision file is the one place the layout appears until ABI-017 specifies it), states that user space cannot mint a valid handle and that type tags are checked at the boundary, and sets S-001's register entry to `prototyped` with `Decided by: CAP-008, ABI-010`.
 
 <!-- covers: INV-0186, INV-1271, INV-1276, INV-1279 -->
 
 #### Out of scope
-Rights word encoding (CAP, S-003). Capability table implementation (CAP). Hardware CHERI emulator validation (CAP).
+Rights word encoding (CAP-010, S-003). Capability table implementation (CAP-005). Hardware CHERI emulator validation (CAP-038). The representation itself (CAP-008).
+
+#### Deliverables
+- roadmap:decisions/D-0007-decide-handle-word.md · At least two packings with CHERI paragraphs, the Decision as a bit-layout table, Evidence citing `reports/spikes/CAP-013.md` and `reports/spikes/CAP-012.md`, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-001 `Decided by` adds ABI-010, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates at least two packings of the CAP-008 representation (type tag and generation inline in the word; opaque word with the tag held in the table), each with a CHERI/tagged-memory paragraph.
-- [ ] The accepted option states that userspace cannot mint a valid handle and that type tags are checked at the kernel boundary.
-- [ ] The Decision lists S-001 and records the representation as prototyped, not frozen.
+- [ ] D-0007 evaluates at least two packings of the CAP-008 representation (type tag and generation inline in the word; opaque word with the tag held in the table), each with a CHERI and tagged-memory paragraph.
+- [ ] The accepted option gives the bit layout as a table, states that user space cannot mint a valid handle, and states that type tags are checked at the kernel boundary before dispatch.
+- [ ] D-0007 lists S-001 and the register records S-001 as `prototyped`, not `frozen`, with ABI-010 under `Decided by`.
 - [ ] Review records ABI lead and CAP lead sign-off on the pull request.
 
 #### Verification
@@ -337,18 +421,25 @@ Rights word encoding (CAP, S-003). Capability table implementation (CAP). Hardwa
 - Risks: R-067
 - Invariants: I-040, I-055
 
-Enumerate which primitives are Layer 1 and place every public concept in Layer 1 or Layer 2, answering Q-047 for compositor protocol, Package format and ResourceDomain policy (§66). Options are a minimal Layer 1 (handles, entry, errors, negotiation, object type ids), a Layer 1 that also includes Channel and ResourceDomain as kernel objects, and a Layer 1 that also includes compositor protocol and Package format. No Layer 1 surface is frozen.
+§66 defines stability layers; this decision applies them: it enumerates the Layer 1 primitives and places every public concept of the baseline in Layer 1 or Layer 2, answering Q-047 for the compositor protocol, the Package format and ResourceDomain policy. The options in D-0010 are a minimal Layer 1 (handles, entry, errors, negotiation, object type ids), a Layer 1 that also includes Channel and ResourceDomain as kernel objects, and a Layer 1 that also includes the compositor protocol and the Package format. The accepted option is a table: every V0 kernel primitive and every named public concept with its layer and its S-ID, which `registers/surfaces.md` must agree with.
+
+The executing agent writes the table into the decision, reconciles `registers/surfaces.md` (every S-ID's `Layer` matches the table; a concept in the table without an S-ID gets one added in the same change with `State: open`), marks Q-047 answered, and states that no Layer 1 surface is frozen. ABI-017 turns the table into the specification's stability declaration.
 
 <!-- covers: INV-1284, INV-1290 -->
 
 #### Out of scope
-Layer 2 evolution rules (IPC). SDK crate surface (SDK). Freeze of any Layer 1 surface (ABI-049).
+Layer 2 evolution rules (IPC-002). SDK crate surface (SDK-054). Freeze of any Layer 1 surface (ABI-049).
+
+#### Deliverables
+- roadmap:decisions/D-0010-decide-layer-1-scope.md · Options, the layer table as the Decision, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · Every S-ID's `Layer` matches the table; new S-IDs for concepts the table names that had none.
+- roadmap:registers/questions.md · Q-047 `Status: answered`.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates minimal Layer 1, Layer 1 including Channel and ResourceDomain, and Layer 1 including compositor protocol and Package format as named options.
-- [ ] The accepted option lists every V0 kernel primitive as Layer 1 or Layer 2 and names the S-ID for each.
-- [ ] Q-047 is answerable from the accepted option without a second Decision.
-- [ ] No listed Layer 1 surface is recorded as frozen.
+- [ ] D-0010 evaluates minimal Layer 1, Layer 1 including Channel and ResourceDomain, and Layer 1 including compositor protocol and Package format as named options.
+- [ ] The accepted option is a table listing every V0 kernel primitive and every public concept (including compositor protocol, Package format and ResourceDomain policy) as Layer 1 or Layer 2 with its S-ID, and `registers/surfaces.md` agrees with it after the change.
+- [ ] Q-047 is marked answered by ABI-011 and needs no second decision.
+- [ ] No Layer 1 surface is recorded as `frozen`.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -367,18 +458,23 @@ Layer 2 evolution rules (IPC). SDK crate surface (SDK). Freeze of any Layer 1 su
 - Decision: D-0012
 - Invariants: I-030, I-056, I-063
 
-Fix how Operations are invoked on typed handles: no blocking entry other than wait-for-completion (§65 rule 4), and Capability and MemoryObject arguments move rather than copy (§65 rule 5). Options are syscall-per-operation dispatch, ring-indexed dispatch through the chosen entry mechanism, and a hybrid with inline completion for already-ready work.
+How an Operation is invoked on a typed handle is the shape of every native call (§18, §65 rules 4 and 5): no Native ABI entry blocks the caller as its primary mode except explicit wait-for-completion, and Capability and MemoryObject arguments move rather than copy. D-0012 chooses among syscall-per-operation dispatch (one entry per kind through the D-0005 mechanism), ring-indexed dispatch (the entry mechanism carries a ring slot that names handle, kind and arguments), and a hybrid that completes already-ready work inline (interacting with D-0307, TSK-005). It depends on the entry mechanism (D-0005), the handle word (D-0007), the error model (D-0006), the kind set (D-0014) and Operation identity (D-0015), and it names S-002 and S-004 as the dispatch and error surfaces it rests on, both still `prototyped`.
+
+The executing agent writes each option's consequences for the entry-point count bound of D-0005, for the TSK-007 transport, and for the SDK's `submit` signature; records the Decision as two rules (async-only entry; move semantics for handle-bearing arguments) plus the dispatch shape; and lists rejected options with reasons. ABI-002 implements the result.
 
 <!-- covers: INV-1279, INV-1272, INV-1273 -->
 
 #### Out of scope
-Operation ring byte layout (TSK). Inline-completion signalling details (TSK). MemoryObject map/unmap (MEM).
+Operation ring byte layout (TSK-007). Inline-completion signalling details (TSK-005). MemoryObject map and unmap (MEM-006). Entry mechanism (ABI-008).
+
+#### Deliverables
+- roadmap:decisions/D-0012-decide-dispatch.md · Options with consequences for the entry bound, the transport and the SDK `submit` signature; the Decision as the two rules plus the dispatch shape; rejected options; follow-ups.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates syscall-per-operation dispatch, ring-indexed dispatch, and hybrid-with-inline-completion as named options.
-- [ ] The accepted option states that no Native ABI entry blocks the calling execution context as its primary mode except explicit wait-for-completion.
-- [ ] The accepted option states that Capability and MemoryObject arguments use ownership transfer by default.
-- [ ] The Decision lists S-002 and S-004 as the dispatch and error surfaces it depends on, still prototyped.
+- [ ] D-0012 evaluates syscall-per-operation dispatch, ring-indexed dispatch and hybrid-with-inline-completion as named options.
+- [ ] The accepted option states that no Native ABI entry blocks the calling execution context as its primary mode except explicit wait-for-completion (I-030).
+- [ ] The accepted option states that Capability and MemoryObject arguments use ownership transfer by default (I-056, I-063) and names the exception mechanism, if any, for borrowed arguments.
+- [ ] D-0012 lists S-002 and S-004 as the surfaces it depends on, both still `prototyped`, and Review records ABI lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead sign-off recorded on the pull request.
@@ -397,17 +493,23 @@ Operation ring byte layout (TSK). Inline-completion signalling details (TSK). Me
 - Decision: D-0013
 - Invariants: I-008, I-055
 
-Decide which `Object<T>` types are implemented in the kernel and which are user-service objects reached through Channels, with written kernel-residency criteria (§65 rule 2, I-008). Options are kernel residency for isolation or privilege only, kernel residency when measured cost requires it, and kernel residency for every typed object. V0 object types are placed against the accepted criterion.
+Not every typed object is a kernel object (§65 rule 2, I-008): some are user-service objects reached through Channels. D-0013 writes the residency criterion and applies it to every V0 `Object<T>` (Component, Task, TaskGroup, Channel, Operation, MemoryObject, ResourceDomain, Event, Timer, and the V0 File and Device shapes STO-001 and HW need). Options: kernel residency only for isolation or privilege (an object is in the kernel only if user space could not enforce its semantics), kernel residency when measured cost requires it (a B-ID report shows the Channel round trip is unaffordable), and kernel residency for every typed object. The output is a table in the decision: every V0 type, kernel-resident or user-service, and the criterion it met; high-level semantics that fail the criterion are recorded as Layer 2 services rather than Layer 1 entry points.
+
+The executing agent draws on the Zircon study (ABI-022: which types Zircon keeps in-kernel and why) and the layer placement of D-0010, writes the table, and updates `registers/surfaces.md` where a user-service object needs an L2 surface that does not yet exist.
 
 <!-- covers: INV-0172, INV-1270 -->
 
 #### Out of scope
-User-space driver hosting (SVC). Channel implementation (IPC). ComputeDevice dispatch (HET).
+User-space driver hosting (SVC-004). Channel implementation (IPC-008). ComputeDevice dispatch (HET-011). Layer placement of concepts (ABI-011).
+
+#### Deliverables
+- roadmap:decisions/D-0013-decide-kernel-residency.md · The three criteria as options, the residency table as the Decision, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · New L2 surface entries for user-service objects the table names that had none.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates isolation-or-privilege, measured-cost, and all-objects-in-kernel as named residency criteria.
-- [ ] The accepted option lists every V0 `Object<T>` as kernel-resident or user-service and cites the criterion used.
-- [ ] High-level semantics that fail the criterion are recorded as Layer 2 services, not Layer 1 entry points.
+- [ ] D-0013 evaluates isolation-or-privilege, measured-cost and all-objects-in-kernel as named residency criteria with consequences.
+- [ ] The accepted option lists every V0 `Object<T>` as kernel-resident or user-service and cites the criterion each met, with `reports/spikes/ABI-022.md` cited for the Zircon comparison.
+- [ ] High-level semantics that fail the criterion are recorded as Layer 2 services with an S-ID, not as Layer 1 entry points.
 - [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
@@ -426,17 +528,22 @@ User-space driver hosting (SVC). Channel implementation (IPC). ComputeDevice dis
 - Baseline: §18, §65
 - Decision: D-0014
 
-Decide whether the Operation kind set (Read, Write, Receive, Send, Connect, Accept, Timer, Wait, GPUDispatch, DeviceOperation, StorageTransaction) is a closed kernel enum or an extensible registry that user-space services can add to (§18). The extensibility rule is an ABI stability property and precedes the entry layer build. GPUDispatch, DeviceOperation and StorageTransaction are reserved even if implemented later.
+The Operation kind set (Read, Write, Receive, Send, Connect, Accept, Timer, Wait, GPUDispatch, DeviceOperation, StorageTransaction, §18) is an ABI stability property: whether it is a closed kernel enum, an extensible registry user-space services add to, or a closed V0 set with reserved slots decides how a new kind lands after V0 and whether that is a Layer 1 change. D-0014 chooses, states the rule for adding a kind, and records that GPUDispatch, DeviceOperation and StorageTransaction occupy reserved slots (with their numeric values) or are deferred with a reservation plan. ABI-002's `kinds.rs` implements the table.
+
+The executing agent writes the options with consequences for the entry-point bound (D-0005), for the IDL (a kind that user space defines needs a wire form) and for the V4 freeze, and records the kind table with slot numbers in the decision as the one place they appear before ABI-017.
 
 <!-- covers: INV-0357 -->
 
 #### Out of scope
-Implementation of each kind (TSK). ComputeDevice dispatch (HET). Storage durability (STO).
+Implementation of each kind (TSK-011, TSK-012). ComputeDevice dispatch (HET-011). Storage durability (STO-038). The kind table code (ABI-002).
+
+#### Deliverables
+- roadmap:decisions/D-0014-decide-operation-kinds.md · Options, the Decision with the kind table and reserved slot numbers, the rule for adding a kind, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates a closed kernel enum, an extensible user-service registry, and a closed V0 set with reserved slots as named options.
-- [ ] The accepted option names how a new kind is added after V0 and whether that addition is a Layer 1 change.
-- [ ] GPUDispatch, DeviceOperation and StorageTransaction occupy reserved slots or are explicitly deferred with a reservation plan.
+- [ ] D-0014 evaluates a closed kernel enum, an extensible user-service registry, and a closed V0 set with reserved slots as named options.
+- [ ] The accepted option names how a new kind is added after V0 and whether that addition is a Layer 1 change subject to the ABI-006 gate.
+- [ ] GPUDispatch, DeviceOperation and StorageTransaction occupy numbered reserved slots in the decision's table, or are deferred with a reservation plan that names their slots.
 - [ ] Review records ABI lead and TSK lead sign-off on the pull request.
 
 #### Verification
@@ -455,16 +562,19 @@ Implementation of each kind (TSK). ComputeDevice dispatch (HET). Storage durabil
 - Baseline: §19, §65
 - Decision: D-0015
 
-Decide how an in-flight Operation is identified from user space: as a `Capability<Operation>`, as an index in the submission ring, or as an opaque handle with a separate cancellation token (§19). V0 cancellation and deadline tests need a stable reference. TSK-014 informs the options; TSK owns completion delivery.
+Cancel and deadline must name an in-flight Operation, and V0's cancellation tests need a stable reference (§19). D-0015 chooses how user space identifies an in-flight Operation: as a `Capability<Operation>` in the holder's table, as an index in the submission ring (TSK-014's shared-ring prototype), or as an opaque handle with a separate cancellation token. Each option states how cancel and deadline name the Operation without any blocking entry other than wait-for-completion, what happens to the identifier after completion (reuse, generation), and what `os inspect operation` prints. TSK-013 implements the chosen identity; TSK owns completion delivery.
 
 <!-- covers: INV-0373 -->
 
 #### Out of scope
-Completion ring layout (TSK). Cancellation of hardware-committed work (TSK, Q-009).
+Completion ring layout (TSK-007). Cancellation of hardware-committed work (TSK-017, Q-009). The Operation object (TSK-013).
+
+#### Deliverables
+- roadmap:decisions/D-0015-decide-operation-identity.md · Options with the TSK-014 findings, the Decision as the identity rule and its reuse and generation semantics, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates Capability-to-Operation, ring index, and opaque handle plus cancellation token as named options.
-- [ ] The accepted option states how cancel and deadline name the in-flight Operation without a blocking syscall other than wait-for-completion.
+- [ ] D-0015 evaluates Capability-to-Operation, ring index, and opaque handle plus cancellation token as named options, citing `reports/spikes/TSK-014.md`.
+- [ ] The accepted option states how cancel and deadline name the in-flight Operation without a blocking entry other than wait-for-completion, and what the identifier means after completion.
 - [ ] Review records ABI lead and TSK lead sign-off on the pull request.
 
 #### Verification
@@ -484,17 +594,21 @@ Completion ring layout (TSK). Cancellation of hardware-committed work (TSK, Q-00
 - Decision: D-0016
 - Invariants: I-041
 
-Decide what the Layer 1 handshake negotiates (§65 rule 6): a version word at first entry, feature bits, or both. The V0 handshake test (ABI-004) implements this scheme at kernel entry, not only as an IDL message test. Surface S-011 becomes prototyped, not frozen.
+§65 rule 6 requires that the Layer 1 handshake identify ABI version and features at kernel entry. D-0016 chooses what it negotiates: a version word at first entry, a feature bit set, or both, using the ABI-021 prototype report. Each option states how an older Component talks to a newer kernel and a newer Component to an older kernel, where the handshake sits relative to the entry mechanism (D-0005), and what a mismatch returns. S-011 (the negotiation surface) becomes `prototyped`; ABI-004 implements the scheme.
 
 <!-- covers: INV-1274, INV-1279 -->
 
 #### Out of scope
-Layer 2 interface version negotiation (IPC). Implementation of the handshake (ABI-004).
+Layer 2 interface version negotiation (IPC-019). Implementation of the handshake (ABI-004). The entry mechanism (ABI-008).
+
+#### Deliverables
+- roadmap:decisions/D-0016-decide-negotiation.md · Options citing `reports/spikes/ABI-021.md`, the Decision as the negotiated fields and compatibility rules, rejected options, follow-ups.
+- roadmap:registers/surfaces.md · S-011 `Decided by: ABI-016`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] The Decision record evaluates version word, feature bits, and version word plus feature bits as named options.
-- [ ] The accepted option states how an older Component talks to a newer kernel and how a newer Component talks to an older kernel.
-- [ ] The Decision lists S-011 and records it as prototyped, not frozen.
+- [ ] D-0016 evaluates version word, feature bits, and version word plus feature bits as named options.
+- [ ] The accepted option states how an older Component talks to a newer kernel and how a newer Component talks to an older kernel, and what a mismatch returns.
+- [ ] D-0016 lists S-011 and the register records it as `prototyped`, not `frozen`, with ABI-016 under `Decided by`.
 - [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
@@ -509,25 +623,41 @@ Layer 2 interface version negotiation (IPC). Implementation of the handshake (AB
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007
+- Depends on: ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007, BLD-082
 - Baseline: §7, §65, §66
 - Risks: R-067
 - Invariants: I-040, I-055
 
-Write the normative, versioned Native ABI specification v0 that enumerates and bounds every syscall and object-operation, records every Layer 1 surface as prototyped, and carries the stability-layer declaration from ABI-011 (§65, §66). The specification is the source of truth for the snapshot, the C header and the first conformance cases.
+The specification is the single source of truth for the Native ABI (§65, §66): the C header, the ABI snapshot the conformance suite diffs (ABI-027) and the first conformance cases are all generated from it. It lives in the platform monorepo as `abi/spec/v0/` (crate `jakeos-abi-spec`): machine-readable TOML files, one per surface (`entry.toml` for the D-0005 mechanism and the entry-point bound, `handles.toml` for the D-0007 word layout, `errors.toml` for the D-0006 vocabulary and encoding, `kinds.toml` for the D-0014 kind table, `objects.toml` for the D-0013 type table with type ids, `negotiation.toml` for the D-0016 fields), plus `stability.toml` carrying the D-0010 layer placement with every surface marked `prototyped`. `abi/tools/render/` (crate `jakeos-abi-render`) renders the TOML into `docs/abi/v0.md` (the human-readable normative text) and into `abi/include/jakeos/abi.h` (the C header, D-0003), and the kernel's `include/uapi/linux/jakeos/` headers are regenerated from the same source by a `pre-merge` check that fails on drift.
+
+The document states the entry-point bound from D-0005, defines every V0 entry point, object type and error code with its numeric value, and records each Layer 1 surface S-001, S-002, S-004 and S-011 as `prototyped`. Freeze-candidate marking is ABI-038; IDL-to-docs generation for Layer 2 is DOC.
 
 <!-- covers: INV-1280, INV-1269 -->
 
 #### Out of scope
-IDL-to-docs generation (DOC). SDK crate guide (SDK). Freeze-candidate marking (ABI-038).
+IDL-to-docs generation (DOC). SDK crate guide (SDK). Freeze-candidate marking (ABI-038). Snapshot diff tooling (ABI-027).
+
+#### Deliverables
+- abi:spec/v0/entry.toml · Entry mechanism, entry points and the count bound.
+- abi:spec/v0/handles.toml · Handle word layout from D-0007.
+- abi:spec/v0/errors.toml · Error vocabulary and encoding from D-0006.
+- abi:spec/v0/kinds.toml · Operation kind table with reserved slots from D-0014.
+- abi:spec/v0/objects.toml · Object types, type ids and residency from D-0013.
+- abi:spec/v0/negotiation.toml · Version and feature fields from D-0016.
+- abi:spec/v0/stability.toml · Layer placement from D-0010 with every surface `prototyped`.
+- abi:tools/render/ · Crate `jakeos-abi-render`: TOML to `docs/abi/v0.md` and to `abi/include/jakeos/abi.h`.
+- docs:abi/v0.md · The rendered normative specification.
+- abi:include/jakeos/abi.h · The rendered C header.
+- kernel:scripts/jakeos/check-uapi-drift.sh · Fails `pre-merge` when `include/uapi/linux/jakeos/` differs from the rendered header at `roadmap-pin`.
 
 #### Acceptance criteria
-- [ ] A versioned specification document exists that defines every V0 Layer 1 entry point, object type and error code.
-- [ ] Each Layer 1 surface S-001, S-002, S-004 and S-011 is recorded as prototyped, not frozen.
-- [ ] The document states the entry-point bound from ABI-008.
+- [ ] `abi/spec/v0/` defines every V0 Layer 1 entry point, object type (with type id), Operation kind (with slot) and error code (with value), and `docs/abi/v0.md` and `abi/include/jakeos/abi.h` are rendered from it with no hand edits (a render in CI produces no diff).
+- [ ] Each Layer 1 surface S-001, S-002, S-004 and S-011 is recorded as `prototyped`, not `frozen`, in `stability.toml` and in the rendered document.
+- [ ] The document states the entry-point bound from D-0005 and the kernel's `include/uapi/linux/jakeos/` headers match the rendered header, enforced by `check-uapi-drift.sh` in `pre-merge`.
 - [ ] Review records ABI lead sign-off on the pull request.
 
 #### Verification
+- Unit: `abi:tests/spec/render_*`: rendering is deterministic and a TOML change without a re-render fails.
 - Review: ABI lead sign-off recorded on the pull request.
 
 #### Evidence
@@ -543,21 +673,31 @@ IDL-to-docs generation (DOC). SDK crate guide (SDK). Freeze-candidate marking (A
 - Baseline: §3, §57, §65
 - Invariants: I-013, I-026, I-049
 
-Lint Native ABI headers and the surfaces register so a Layer 1 entry does not exist because POSIX or Linux has an equivalent (§57, §65 rule 9). Names such as `open`, `read`, `write`, `fork` and `ioctl`, Linux syscall numbers, and Wayland objects on native surfaces fail the lint unless an accepted Decision exempts them.
+A Layer 1 entry must not exist because POSIX or Linux has an equivalent (§57, §65 rule 9). `tools/abi-posix-lint/` (crate `jakeos-tools-abi-posix-lint`) scans the ABI specification (`abi/spec/`), the rendered header, the kernel's `include/uapi/linux/jakeos/` and `registers/surfaces.md` for the names in `build/lints/posix-names.txt` (`open`, `read`, `write`, `close`, `fork`, `exec`, `ioctl`, `mmap`, `select`, `poll`, `socket`, `bind`, `signal`, `kill`, `pipe`, `dup` and the rest of the list) used as entry-point or object-operation names, for any literal equal to a Linux x86-64 syscall number in an entry definition, and for Wayland object names (`wl_surface`, `wl_seat`, `xdg_toplevel` and the `wl_`/`xdg_` prefixes) on a native surface. A match fails the `abi-posix-lint` job in `pre-merge` (BLD-011 makes it required) unless `build/lints/posix-names-exemptions.toml` lists the symbol with an accepted decision.
+
+The lint is deliberately about names on Layer 1 surfaces; the linking firewall is ABI-003 and the reviewer's judgement about POSIX-shaped semantics is ABI-006.
 
 <!-- covers: INV-1130 -->
 
 #### Out of scope
-Linking firewall against libc and the Linux personality (ABI-003). CI execution plumbing (BLD). Wayland bridge (LNX).
+Linking firewall against libc and the Linux personality (ABI-003). CI execution plumbing (BLD-011). Wayland bridge (LNX-004). Reviewer checklist (ABI-006).
+
+#### Deliverables
+- tools:abi-posix-lint/ · Crate `jakeos-tools-abi-posix-lint`: name scan, syscall-number scan, Wayland-name scan, exemption lookup.
+- bld:lints/posix-names.txt · The forbidden names, one per line.
+- bld:lints/posix-names-exemptions.toml · Exempted symbols with their decision IDs (initially empty).
+- platform:.github/workflows/pre-merge.yml · The `abi-posix-lint` job.
+- kernel:.github/workflows/pre-merge.yml · The same job over `include/uapi/linux/jakeos/`.
+- tools:abi-posix-lint/fixtures/ · A header declaring `open` as an entry, a header embedding syscall number 2, a surface naming `wl_surface`.
 
 #### Acceptance criteria
-- [ ] A native header that declares `open`, `read`, `write`, `fork` or `ioctl` as a Layer 1 entry point fails CI on `qemu-x86_64`.
-- [ ] A native header that embeds a Linux syscall number as a Native ABI entry fails the same lint.
-- [ ] An accepted Decision that names an exemption is the only way a matching symbol lands.
+- [ ] A native header or spec file that declares `open`, `read`, `write`, `fork` or `ioctl` (or any name in `posix-names.txt`) as a Layer 1 entry point or object operation fails the `abi-posix-lint` job on `qemu-x86_64`.
+- [ ] A native header or spec file that embeds a Linux x86-64 syscall number as a Native ABI entry value fails the same lint; a Wayland object name on a surface in `registers/surfaces.md` fails it.
+- [ ] A matching symbol lands only when `posix-names-exemptions.toml` lists it with a decision that is `accepted`; the three fixtures fail.
 
 #### Verification
-- Unit: `tools:tests/abi_posix_lint_*` on CI matrix entry `qemu-x86_64`.
-- Integration: pre-merge lint job on native headers and `registers/surfaces.md`.
+- Unit: `tools:tests/abi_posix_lint_*` on CI matrix entry `qemu-x86_64` over the fixtures.
+- Integration: pre-merge lint job on `abi/spec/`, the rendered header, the kernel UAPI directory and `registers/surfaces.md`.
 
 #### Evidence
 - none
@@ -573,22 +713,31 @@ Linking firewall against libc and the Linux personality (ABI-003). CI execution 
 - Explores: S-002
 - Risks: R-007
 
-Prototype the three candidate Native ABI entry mechanisms so ABI-008 is not a paper Decision (§65). Each prototype submits a no-op Operation on H-001 and H-002 and is measured by ABI-001. Nothing is frozen.
+ABI-008 must not be a paper decision (§65). This spike builds the three candidate entry mechanisms far enough to submit and complete a no-op Operation from a user-space process on `qemu-x86_64` and `hw-h002`: a syscall instruction per Operation (a new syscall number in the x86-64 table behind `CONFIG_JAKEOS_SPIKES`), a shared submission page mapped into the process with a doorbell syscall that the kernel polls or is woken by, and a vDSO-style trampoline where the kernel maps an entry stub whose address the process calls. The prototypes live under `jakeos/spikes/entry/` and are never built into a shipped configuration; a tiny user-space driver `abi/spikes/entry-driver/` exercises each. ABI-001 measures them.
+
+The report `reports/spikes/ABI-019.md` answers, per mechanism: how many kernel entry points it needs (the D-0005 bound input), whether it preserves async-only entry (§65 rule 4), what breaks on a future tagged-memory or CHERI CPU (CAP-012), what a mismatch or bad argument does, and what ABI-001 must measure. Nothing is frozen; S-002 stays `open` or `prototyped`.
 
 <!-- covers: GAP-0500 -->
 
 #### Out of scope
-The Decision (ABI-008). io_uring lineage inside TSK. Production entry layer (ABI-002).
+The Decision (ABI-008). io_uring lineage inside TSK (TSK-014). Production entry layer (ABI-002). Measurement (ABI-001).
+
+#### Deliverables
+- kernel:jakeos/spikes/entry/syscall.rs · Syscall-per-Operation prototype behind `CONFIG_JAKEOS_SPIKES`.
+- kernel:jakeos/spikes/entry/shared_page.rs · Shared submission page plus doorbell prototype.
+- kernel:jakeos/spikes/entry/trampoline.rs · vDSO-style trampoline prototype.
+- abi:spikes/entry-driver/ · User-space driver that submits a no-op through each prototype and checks completion.
+- roadmap:reports/spikes/ABI-019.md · The report with the skeleton headings from `reports/README.md` and the answers above.
 
 #### Acceptance criteria
-- [ ] Three prototypes exist: syscall-per-Operation, shared submission page with doorbell, and trampoline entry.
-- [ ] Each prototype submits and completes a no-op Operation on H-001 and H-002.
-- [ ] The Spike report records what each prototype rules out and recommends which options the adr must evaluate.
+- [ ] Three prototypes exist under `jakeos/spikes/entry/` behind `CONFIG_JAKEOS_SPIKES` (syscall-per-Operation, shared submission page with doorbell, trampoline entry), and none is built in a shipped configuration.
+- [ ] Each prototype submits and completes a no-op Operation from `abi/spikes/entry-driver/` on `qemu-x86_64` and `hw-h002`.
+- [ ] `reports/spikes/ABI-019.md` records, per mechanism, the entry-point count, async-only preservation, tagged-memory consequences and failure behaviour, states what each rules out, and recommends the options ABI-008 must evaluate.
 - [ ] Surface S-002 remains `open` or `prototyped`, never `frozen`.
 
 #### Verification
 - Report: which mechanism preserves async-only entry, how many kernel entry points each needs, what breaks on a future tagged-memory CPU, and what ABI-001 must measure.
-- Integration: each prototype boots on `qemu-x86_64` and `hw-h002`.
+- Integration: each prototype boots and completes the no-op on `qemu-x86_64` and `hw-h002`.
 
 #### Evidence
 - none
@@ -604,19 +753,28 @@ The Decision (ABI-008). io_uring lineage inside TSK. Production entry layer (ABI
 - Explores: S-004
 - Risks: R-007
 
-Prototype typed kernel-boundary errors (`Error::Rights`, exhaustion, disconnect, timeout) so ABI-009 is not a paper Decision (§7, §12). Native errors are not errno values. Surface S-004 remains open.
+ABI-009 must choose an error model from running code (§7, §12). This spike prototypes typed kernel-boundary errors under `jakeos/spikes/errors/`: a completion record carrying `Error::Rights`, `Error::Exhausted`, `Error::Disconnected` and `Error::DeadlineExceeded` (the GLOSSARY vocabulary) in each of the three candidate encodings (typed enum per kind, uniform error object, uniform class plus per-kind payload), returned to a user-space driver `abi/spikes/errors-driver/` on `qemu-x86_64` and `hw-h002`, and carried across a prototype Channel message to see which encodings survive transport intact. No errno value appears anywhere in the native path.
+
+The spike also ships the negative fixture crate `abi/fixtures/errno-user/`, a native crate that matches on `errno` values, so that ABI-003's firewall lint has a failing case ready the day it lands. The report `reports/spikes/ABI-020.md` answers which encodings preserve typed errors across a Channel, what errno translation would leak into native crates, and which options ABI-009 must evaluate. S-004 stays `open` or `prototyped`.
 
 #### Out of scope
 The Decision (ABI-009). Personality errno translation (LNX). Freeze of S-004 (ABI-051).
 
+#### Deliverables
+- kernel:jakeos/spikes/errors/ · The three encodings behind `CONFIG_JAKEOS_SPIKES`, each returning the four vocabulary errors.
+- abi:spikes/errors-driver/ · User-space driver that provokes each error and checks the encoding, including across a prototype Channel.
+- abi:fixtures/errno-user/ · Negative fixture crate matching on `errno`, for ABI-003 to reject.
+- roadmap:reports/spikes/ABI-020.md · The report.
+
 #### Acceptance criteria
-- [ ] A prototype returns `Error::Rights`, exhaustion, disconnect and timeout on H-001 and H-002 without producing an errno.
-- [ ] The prototype ships a negative fixture crate that matches on errno, for ABI-003 to reject once that lint lands.
+- [ ] The prototype returns `Error::Rights`, `Error::Exhausted`, `Error::Disconnected` and `Error::DeadlineExceeded` in each of the three encodings on `qemu-x86_64` and `hw-h002`, and no errno value appears in the native path.
+- [ ] `abi/fixtures/errno-user/` exists and is the fixture ABI-003 rejects once that lint lands.
+- [ ] `reports/spikes/ABI-020.md` records which encodings survive a Channel transport intact and which options ABI-009 must evaluate.
 - [ ] Surface S-004 remains `open` or `prototyped`, never `frozen`.
 
 #### Verification
 - Report: which encodings preserve typed errors across a Channel, what errno translation would leak into native crates, and which options ABI-009 must evaluate.
-- Integration: the prototype boots on `qemu-x86_64` and `hw-h002`.
+- Integration: the prototype boots and the driver passes on `qemu-x86_64` and `hw-h002`.
 
 #### Evidence
 - none
@@ -632,19 +790,27 @@ The Decision (ABI-009). Personality errno translation (LNX). Freeze of S-004 (AB
 - Explores: S-011
 - Risks: R-007
 
-Prototype the Layer 1 handshake that identifies ABI version and features so ABI-016 is informed by running code (§12, §65). An unknown newer field is accepted by an older receiver and an older message by a newer receiver. Surface S-011 remains open.
+ABI-016 must be informed by running code (§12, §65 rule 6). This spike prototypes the Layer 1 handshake under `jakeos/spikes/handshake/`: on a process's first entry it exchanges a version word and a feature bit set with the kernel in each of the candidate shapes (version word only, feature bits only, both), and a user-space driver `abi/spikes/handshake-driver/` built in two variants (an "older" one that omits a field and a "newer" one that adds an unknown field) runs against a kernel built in the opposite variant so both compatibility directions are exercised on `qemu-x86_64` and `hw-h002`.
+
+The report `reports/spikes/ABI-021.md` answers where the handshake runs relative to the first Operation, what happens on a mismatch (typed error, no handle), how unknown fields are carried so an older receiver ignores them, and which options ABI-016 must evaluate. S-011 stays `open` or `prototyped`.
 
 #### Out of scope
-The Decision (ABI-016). IDL message versioning (IPC-019). Freeze of S-011 (ABI-051).
+The Decision (ABI-016). IDL message versioning (IPC-019). Freeze of S-011 (ABI-051). The production handshake (ABI-004).
+
+#### Deliverables
+- kernel:jakeos/spikes/handshake/ · The three candidate shapes behind `CONFIG_JAKEOS_SPIKES`, with an "older" and "newer" kernel variant selected by a boot parameter.
+- abi:spikes/handshake-driver/ · The driver in "older" and "newer" variants.
+- roadmap:reports/spikes/ABI-021.md · The report.
 
 #### Acceptance criteria
-- [ ] A prototype handshake identifies ABI version and a feature bit on H-001 and H-002.
-- [ ] An older receiver accepts a newer message that carries an unknown field and a newer receiver accepts an older message.
+- [ ] The prototype handshake identifies ABI version and a feature bit on `qemu-x86_64` and `hw-h002` in each of the three shapes.
+- [ ] The "older" driver completes the handshake against the "newer" kernel with an unknown field present, and the "newer" driver completes it against the "older" kernel with a field omitted; a deliberate version mismatch returns a typed error and no handle.
+- [ ] `reports/spikes/ABI-021.md` records where the handshake runs, the mismatch behaviour, how unknown fields are carried, and which options ABI-016 must evaluate.
 - [ ] Surface S-011 remains `open` or `prototyped`, never `frozen`.
 
 #### Verification
 - Report: where the handshake runs relative to the first Operation, what happens on a mismatch, and which options ABI-016 must evaluate.
-- Integration: the prototype boots on `qemu-x86_64` and `hw-h002`.
+- Integration: the prototype boots and both driver variants pass on `qemu-x86_64` and `hw-h002`.
 
 #### Evidence
 - none
@@ -659,17 +825,22 @@ The Decision (ABI-016). IDL message versioning (IPC-019). Freeze of S-011 (ABI-0
 - Baseline: §7, §58
 - Explores: S-001
 
-Study Fuchsia/Zircon handles, rights, VMOs, channels, FIDL and the component framework as the closest existing analogue of the native object model (§58). The report feeds ABI-010, ABI-013 and ABI-012. It does not adopt Zircon as the Native ABI.
+Fuchsia's Zircon is the closest shipping analogue of the native object model (§58): handles with rights, VMOs, channels, FIDL and the component framework. This written study reads the Zircon kernel sources and documentation at a named revision and answers, for each concept, what the design is, why it was chosen, what it costs, and whether the native model takes or rejects the idea, mapping each conclusion onto S-001 (handle representation), S-004 (errors), S-012 (Channel wire) or a specific adr (ABI-010, ABI-012, ABI-013). It explicitly does not adopt Zircon as the Native ABI and recommends freezing nothing.
+
+The report `reports/spikes/ABI-022.md` follows the spike skeleton and cites sources by path and revision. Ideas that fail §65 rules 7 (no exposed kernel internals) or 9 (no entry justified by an existing equivalent) are listed as rejected with the rule they fail.
 
 <!-- covers: INV-1133 -->
 
 #### Out of scope
-seL4 capability study (CAP). FIDL versus other IDL choice (IPC). NT object manager study (ABI-031).
+seL4 capability study (CAP-015). FIDL versus other IDL choice (IPC-018). NT object manager study (ABI-031). Component framework as a supervision model (SVC).
+
+#### Deliverables
+- roadmap:reports/spikes/ABI-022.md · The study with per-concept sections, the take-or-reject mapping to surfaces and adrs, and the source citations.
 
 #### Acceptance criteria
-- [ ] The Spike report describes Zircon handle tables, rights, VMOs, channels, FIDL and components with citations.
-- [ ] The report lists ABI assumptions worth taking and ABI assumptions worth rejecting, each mapped to S-001 or to an adr.
-- [ ] The report does not recommend freezing any Layer 1 surface.
+- [ ] `reports/spikes/ABI-022.md` describes Zircon handle tables, rights, VMOs, channels, FIDL and components with citations to a named source revision.
+- [ ] The report lists ABI assumptions worth taking and worth rejecting, each mapped to S-001, S-004, S-012 or a named adr (ABI-010, ABI-012, ABI-013), and names the §65 rule any rejected idea fails.
+- [ ] The report recommends freezing no Layer 1 surface and is cited by ABI-010 and ABI-013.
 
 #### Verification
 - Report: what Zircon handle representation implies for S-001, which object types Zircon keeps in-kernel and why, how Zircon errors map onto S-004 options, and which ideas fail §65 rules 7 and 9.

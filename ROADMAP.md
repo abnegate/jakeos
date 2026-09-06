@@ -69,81 +69,81 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5720 |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5752 |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5611 |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5519 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5477 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5359 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5329 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5327 |
 | CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5327 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5323 |
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5316 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5312 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5310 |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5230 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 4801 |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4793 |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4519 |
-| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4318 |
 
 ## Critical path
 
 # Critical path to V0
 
-Makespan (size-weight estimates): 97.
+Makespan (size-weight estimates): 115.
 
-1. weight 97 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → OBS-009
-2. weight 95 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → IPC-019 → IPC-002 → IPC-021
-3. weight 92 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → SDK-007
-4. weight 92 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → CMP-011 → BEN-002
-5. weight 89 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007
-6. weight 81 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → TSK-024
-7. weight 78 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011
-8. weight 76 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → BEN-008 → BEN-003
-9. weight 73 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → IPC-008
-10. weight 67 · GOV-004 → GOV-001 → BLD-005 → BLD-002 → BLD-081 → BLD-082 → LNX-001 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004
+1. weight 115 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → OBS-009
+2. weight 113 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → IPC-019 → IPC-002 → IPC-021
+3. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → SDK-007
+4. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → CMP-011 → BEN-002
+5. weight 107 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007
+6. weight 99 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → TSK-024
+7. weight 96 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011
+8. weight 94 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → BEN-008 → BEN-003
+9. weight 91 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → IPC-008
+10. weight 85 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004
 
 ## Slack
 
-- ABI-002 slack 0 ef 21 lf 21
-- ABI-005 slack 0 ef 29 lf 29
-- BLD-002 slack 0 ef 6 lf 6
+- ABI-002 slack 0 ef 39 lf 39
+- ABI-005 slack 0 ef 47 lf 47
 - BLD-005 slack 0 ef 3 lf 3
-- BLD-081 slack 0 ef 7 lf 7
-- BLD-082 slack 0 ef 10 lf 10
-- CAP-004 slack 0 ef 67 lf 67
-- CMP-014 slack 0 ef 32 lf 32
+- BLD-009 slack 0 ef 17 lf 17
+- BLD-012 slack 0 ef 25 lf 25
+- BLD-013 slack 0 ef 14 lf 14
+- CAP-004 slack 0 ef 85 lf 85
+- CMP-014 slack 0 ef 50 lf 50
 - GOV-001 slack 0 ef 2 lf 2
 - GOV-004 slack 0 ef 1 lf 1
-- IPC-009 slack 0 ef 81 lf 81
-- LNX-001 slack 0 ef 13 lf 13
-- OBS-007 slack 0 ef 89 lf 89
-- OBS-009 slack 0 ef 97 lf 97
-- STO-001 slack 0 ef 70 lf 70
-- TSK-010 slack 0 ef 59 lf 59
-- TSK-011 slack 0 ef 78 lf 78
-- TSK-013 slack 0 ef 43 lf 43
-- TSK-018 slack 0 ef 51 lf 51
-- TSK-023 slack 0 ef 35 lf 35
-- ABI-010 slack 1 ef 9 lf 10
-- ABI-012 slack 1 ef 12 lf 13
-- CAP-008 slack 1 ef 6 lf 7
-- CAP-013 slack 1 ef 3 lf 4
-- KRN-002 slack 1 ef 1 lf 2
-- KRN-004 slack 1 ef 3 lf 4
-- KRN-005 slack 1 ef 2 lf 3
-- KRN-007 slack 1 ef 3 lf 4
-- KRN-010 slack 1 ef 6 lf 7
-- KRN-011 slack 1 ef 9 lf 10
-- SEC-002 slack 1 ef 3 lf 4
-- BLD-004 slack 2 ef 1 lf 3
-- IPC-002 slack 2 ef 92 lf 94
-- IPC-013 slack 2 ef 86 lf 88
-- IPC-019 slack 2 ef 89 lf 91
-- IPC-021 slack 2 ef 95 lf 97
-- KRN-003 slack 2 ef 2 lf 4
-- KRN-006 slack 2 ef 2 lf 4
-- ABI-011 slack 3 ef 6 lf 9
-- ABI-014 slack 3 ef 7 lf 10
+- IPC-009 slack 0 ef 99 lf 99
+- KRN-002 slack 0 ef 1 lf 1
+- KRN-004 slack 0 ef 3 lf 3
+- KRN-005 slack 0 ef 2 lf 2
+- KRN-007 slack 0 ef 3 lf 3
+- KRN-010 slack 0 ef 6 lf 6
+- KRN-013 slack 0 ef 31 lf 31
+- KRN-014 slack 0 ef 28 lf 28
+- OBS-007 slack 0 ef 107 lf 107
+- OBS-009 slack 0 ef 115 lf 115
+- STO-001 slack 0 ef 88 lf 88
+- TSK-010 slack 0 ef 77 lf 77
+- TSK-011 slack 0 ef 96 lf 96
+- TSK-013 slack 0 ef 61 lf 61
+- TSK-018 slack 0 ef 69 lf 69
+- TSK-023 slack 0 ef 53 lf 53
+- KRN-003 slack 1 ef 2 lf 3
+- KRN-006 slack 1 ef 2 lf 3
+- IPC-002 slack 2 ef 110 lf 112
+- IPC-013 slack 2 ef 104 lf 106
+- IPC-019 slack 2 ef 107 lf 109
+- IPC-021 slack 2 ef 113 lf 115
+- BEN-002 slack 5 ef 110 lf 115
+- BLD-004 slack 5 ef 1 lf 6
+- CMP-011 slack 5 ef 107 lf 112
+- SDK-007 slack 5 ef 110 lf 115
+- BLD-002 slack 7 ef 6 lf 13
+- BLD-081 slack 7 ef 7 lf 14
+- BLD-082 slack 7 ef 10 lf 17
+- ABI-001 slack 8 ef 19 lf 27
 
 
 ## Decision leverage
@@ -151,6 +151,7 @@ Makespan (size-weight estimates): 97.
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
 | ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1812 | 5461 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | 1774 | 5359 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1759 | 5322 |
 | ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1759 | 5315 |
 | ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1753 | 5312 |
@@ -169,15 +170,14 @@ Makespan (size-weight estimates): 97.
 | ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1464 | 4326 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1465 | 4317 |
 | TSK-003 | Decide Task cancellation model and resource cleanup | 1464 | 4310 |
-| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | 1441 | 4243 |
 
 ## Blocked by
 
 | Blocker | Tasks |
 | --- | --- |
-| BEN-005 | 63 |
+| BEN-005 | 64 |
 | CAP-005 | 40 |
-| BLD-082 | 33 |
+| BLD-082 | 35 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -260,6 +260,7 @@ Makespan (size-weight estimates): 97.
 | BLD-001 | 12 |
 | BLD-041 | 12 |
 | GFX-010 | 12 |
+| KRN-013 | 12 |
 | KRN-014 | 12 |
 | LAB-023 | 12 |
 | LNX-043 | 12 |
@@ -282,7 +283,6 @@ Makespan (size-weight estimates): 97.
 | HET-009 | 11 |
 | HW-008 | 11 |
 | HW-009 | 11 |
-| KRN-013 | 11 |
 | LAB-011 | 11 |
 | LNX-036 | 11 |
 | MED-008 | 11 |
