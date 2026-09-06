@@ -2,7 +2,7 @@ use crate::assign;
 use crate::derive;
 use crate::diagnostic::Severity;
 use crate::fmt as formatter;
-use crate::model::{EvidenceLine, Status, Task, TaskType};
+use crate::model::{EvidenceLine, Status, Task};
 use crate::repo::{LoadOptions, Repo};
 use crate::validate;
 use anyhow::{Context, Result, bail};
@@ -105,9 +105,7 @@ pub fn done(
         );
     }
     let owner = task.owner().to_string();
-    let requires_verifier = repo.config.policy.require_independent_verification
-        || (repo.config.policy.verify_freezes_and_adr_always
-            && (task.task_type() == TaskType::Adr || task.fields.contains("Freezes")));
+    let requires_verifier = repo.needs_verifier(task);
     match verified_by {
         Some(verifier) => {
             if verifier.starts_with("@agent/") {

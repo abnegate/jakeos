@@ -1,5 +1,5 @@
 use crate::diagnostic::{Diagnostic, Diagnostics, code};
-use crate::model::{Status, Task, TaskType};
+use crate::model::{Status, Task};
 use crate::repo::Repo;
 use crate::schema::{Conditional, SECTION_ORDER};
 use crate::validate::policy_flag;
@@ -167,9 +167,8 @@ fn validate_conditionals(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics
         validate_single(task, key, conditional, present, line, diagnostics);
     }
 
-    if repo.config.policy.verify_freezes_and_adr_always
-        && task.status() == Status::Done
-        && (task.task_type() == TaskType::Adr || !task.list("Freezes").is_empty())
+    if task.status() == Status::Done
+        && repo.needs_verifier(task)
         && !field_is_present(task, "Verified by", null_token)
     {
         diagnostics.push(Diagnostic::error(
@@ -177,7 +176,7 @@ fn validate_conditionals(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics
             task.fields.line_of("Verified by", task.line),
             code::DONE_WITHOUT_VERIFIER,
             format!(
-                "done task `{}` freezes a surface or records a decision and needs independent verification",
+                "done task `{}` records a decision, freezes a surface or is cited by a gate and needs independent verification",
                 task.id
             ),
             "add `- Verified by: @handle` naming someone other than the owner",

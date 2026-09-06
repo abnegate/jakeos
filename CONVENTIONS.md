@@ -519,8 +519,9 @@ Schedule: L1 surfaces are `prototyped` through V0 (V0 lists no surfaces to freez
 
 ## 13. Verification policy
 
-- `Verified by` is required on every done task from V1 onward (`roadmap.toml` → `require_independent_verification` is switched on when V1 becomes active).
-- `Verified by` is required from V0 on any done task that carries `Freezes:` or is Type `adr` (`verify_freezes_and_adr_always = true`). These are the most permanent decisions (§65).
+- `Verified by` is required on any done task that carries `Freezes:` or is Type `adr` (`verify_freezes_and_adr_always = true`). These are the most permanent decisions (§65).
+- `Verified by` is required on any done task that a milestone gate or demo names in `Verified by` (`verify_gate_tasks = true`). A gate is satisfied by its tasks being done, so the tasks that satisfy gates are verified by a human; the tasks beneath them are done when CI and evidence say so.
+- `require_independent_verification` widens the rule to every done task. It is off and stays off through 1.0 unless a GOV decision turns it on; the maintainer decided at the start of V0 that one verifier cannot rerun every task and that gate-satisfying tasks are where independence pays.
 - The verifier differs from the Owner, is a human `@handle`, and is never `@agent/<name>`. Agents never verify their own or any other task.
 - The verifier reruns the Verification section. Reading the pull request is not verification.
 

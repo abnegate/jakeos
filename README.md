@@ -43,7 +43,7 @@ Common commands: `check`, `fmt`, `gen`, `show <ID>`, `ready`, `blocked`, `gate <
 
 ## How progress is updated
 
-A task's status is changed only in its block in `workstreams/<PREFIX>.md`, following the transitions in `CONVENTIONS.md`: claim by setting an owner, tick acceptance boxes and append evidence as work lands, and mark done only with evidence and (from V1, and always for decisions and surface freezes) an independent verifier. Everything else is derived: `ROADMAP.md`, `STATUS.md`, `generated/**` and the marker blocks inside milestone, register and decision files are rewritten by `roadmap gen` and must never be edited by hand. Milestone status is derived from gates, and gates are satisfied by their verifying tasks being done.
+A task's status is changed only in its block in `workstreams/<PREFIX>.md`, following the transitions in `CONVENTIONS.md`: claim by setting an owner, tick acceptance boxes and append evidence as work lands, and mark done only with evidence and, for decisions, surface freezes and every task a gate cites, an independent human verifier. Everything else is derived: `ROADMAP.md`, `STATUS.md`, `generated/**` and the marker blocks inside milestone, register and decision files are rewritten by `roadmap gen` and must never be edited by hand. Milestone status is derived from gates, and gates are satisfied by their verifying tasks being done.
 
 ## Documents
 

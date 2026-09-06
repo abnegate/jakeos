@@ -42,6 +42,7 @@ impl Weights {
 pub struct Policy {
     pub require_independent_verification: bool,
     pub verify_freezes_and_adr_always: bool,
+    pub verify_gate_tasks: bool,
     pub fan_in_warning: usize,
     pub workstream_lines_warning: usize,
     pub task_lines_warning: usize,
@@ -52,6 +53,7 @@ impl Default for Policy {
         Self {
             require_independent_verification: false,
             verify_freezes_and_adr_always: true,
+            verify_gate_tasks: true,
             fan_in_warning: 60,
             workstream_lines_warning: 6000,
             task_lines_warning: 100,
