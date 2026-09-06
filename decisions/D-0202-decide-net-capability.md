@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-§9.1 says a native application must not automatically receive network access but never defines a network Capability, so granularity and default-deny inbound must be fixed; S-026 stays prototyped.
+A native application receives no network access by default (§9.1) but the baseline never defines a network Capability. This decision fixes the granularity of `NetworkConnection` rights on S-026 (prototyped until V4), records that default-deny inbound is retained nftables rather than a rewritten filter, that listen is an explicit right never granted ambiently (T-001, I-021), and names the rights word CAP-036 registers. It sits on the NET scope (NET-007) and placement (NET-008) decisions.
 
 ## Options
 
 ### Option A · Binary any/none
-Summary: Network access is all or nothing.
-Consequences: Simple to grant; coarse and over-privileging.
+Summary: One right: network or no network.
+Consequences: Trivial to grant and explain. Every application that needs to reach one service gets the whole internet and the local network, and there is no way to express "may listen", so inbound is either open or impossible; over-privileging by construction.
 Evidence: none
 
 ### Option B · GAP-0293 set
-Summary: Rights for any, internet-only, local-network, specific hosts/ports and listen.
-Consequences: Useful granularity; more rights to register and explain.
+Summary: Rights for any, internet-only, local-network, named hosts and ports, and listen, composable and attenuable like other rights.
+Consequences: A store client gets internet-only, a printer tool gets local-network, a development server gets listen on one port, and the grant taxonomy (D-0269) can class them. More rights to register, a hosts-and-ports right needs a resolver that binds names to the right, and `os inspect` must render the set legibly.
 Evidence: none
 
 ### Option C · Flow-level per connection
-Summary: Each connection is granted.
-Consequences: Precise; unusable prompts.
+Summary: Every connection is individually granted.
+Consequences: Perfect precision. A browser opens hundreds of connections per page, so the prompt rate makes the model unusable; rejected for interactive use and recorded so it is not re-proposed except as an audit mode.
 Evidence: none
 
 ## Decision

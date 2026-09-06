@@ -10,24 +10,24 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-Native profiles are attributed to Task, Component and TaskGroup, not threads (§24, §64).
+Native profiles attribute time to Task, Component and TaskGroup rather than to threads (§24, §64), because a Task migrates between workers and a thread view says nothing about the program. SDK-061 spikes the profiler; this decision picks the export format and records the attribution keys, building on the trace schema (OBS-015).
 
 ## Options
 
 ### Option A · pprof
-Summary: pprof is the export format.
-Consequences: Existing tooling; a thread-centric model.
-Evidence: none
+Summary: pprof protobuf profiles with Task, Component and TaskGroup as sample labels.
+Consequences: Every pprof viewer and continuous-profiling backend opens them. pprof's model is thread and stack centric, so Task attribution is a label rather than the primary axis and viewers group by thread by default; asynchronous Task stacks need a convention.
+Evidence: `reports/spikes/SDK-061.md`
 
 ### Option B · Firefox Profiler
-Summary: The Firefox Profiler format.
-Consequences: A capable UI; format fit for Tasks.
-Evidence: none
+Summary: Firefox Profiler processed-profile format with Tasks as tracks.
+Consequences: A capable, maintained web UI with tracks, markers and flame graphs that already understands asynchronous work through markers. The format is defined by one consumer and changes with it, and server-side aggregation tooling is thinner than pprof's.
+Evidence: `reports/spikes/SDK-061.md`
 
 ### Option C · Native format folded into traces
-Summary: Profiles are trace events.
-Consequences: Unified with tracing; tooling to build.
-Evidence: none
+Summary: Samples are trace events on the S-035 schema; the profiler is a view over a trace.
+Consequences: One data model for tracing and profiling, so a profile and a trace of the same run line up exactly and the Task attribution is native. Every viewer needs a converter (to pprof or Firefox Profiler), and sampling at profile rates stresses the trace ring.
+Evidence: `reports/spikes/SDK-061.md`
 
 ## Decision
 Proposed. Not yet accepted.
