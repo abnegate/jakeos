@@ -10,23 +10,23 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-Public alpha volume exceeds a single origin, and content addressing makes untrusted mirrors safe (§27, §63, T-019).
+Public alpha download volume exceeds what one origin serves (§27, §63). Because every object is content-addressed and repository metadata is signed (D-0245), an untrusted mirror can serve bytes without being trusted, which makes a project-owned global mirror network buy little. This decision fixes the topology and how mirror health is checked without giving any mirror signing authority or a way to tamper with signed objects (T-019); it sits on the repository model (D-0243) and the funding plan (GOV-041).
 
 ## Options
 
 ### Option A · Origin plus CDN plus verified volunteer mirrors
-Summary: Volunteer mirrors without a project network.
-Consequences: Cheap scale; mirror health.
+Summary: One origin behind a commercial CDN, plus volunteer mirrors that clients use only after verifying the signed index against the origin's; mirror health is measured by fetching known objects and comparing hashes.
+Consequences: Cheap global scale and the community can help without being trusted. Volunteer mirrors go stale or vanish, so the client must fall back to the CDN transparently, and a freeze attack by a mirror is detectable only with the timestamp role of D-0245.
 Evidence: none
 
 ### Option B · Origin plus CDN only
-Summary: CDN only.
-Consequences: Simple; cost.
+Summary: Origin plus CDN only.
+Consequences: Simplest operation and one party to hold accountable. CDN egress cost scales with the user base with no offset, and regions the CDN serves poorly have no alternative.
 Evidence: none
 
 ### Option C · Project-operated global mirror network
-Summary: Own mirrors.
-Consequences: Control; expense.
+Summary: A project-operated global mirror network on rented hosts.
+Consequences: Full control over freshness and availability. Standing infrastructure cost and operations burden for a one-person project, and it recreates what the CDN already sells; rejected.
 Evidence: none
 
 ## Decision

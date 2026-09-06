@@ -10,7 +10,7 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-§56.5 makes a browser existential for V1 daily driving and 1.0, so the Decision records which personality browsers ship, whether a native port is promised, and whether applications get a sandboxed native WebView Component (§56.5, §61).
+§56.5 makes a browser existential for V1 daily driving and 1.0, so the Decision records which personality browsers ship, whether a native port is promised, and whether applications get a sandboxed native WebView Component (§56.5, §61). The maintainer's recorded direction (Q-044) is option B, Firefox as the default and only shipped browser, for this adr to confirm or reject with evidence from APP-021.
 
 ## Options
 

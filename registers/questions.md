@@ -241,6 +241,7 @@ Default compatibility capability profile, path-to-capability mapping, and how th
 - Status: open
 - Answered by: WIN-010
 WoW64, and what kernel support that requires. Tied to the V1 ia32 decision.
+Owner direction, recorded at V0 start: 32-bit Win32 is supported in 1.0 through WoW64 (WIN-010 option A), which requires LNX-015 to retain ia32; WIN-010 confirms or rejects this with evidence.
 
 ### Q-041 · How do Windows installers become installed applications
 - Workstream: WIN
@@ -259,18 +260,21 @@ A platform type registry so `files.choose::<Image>()` and `UserSelected<T>` shar
 - Status: open
 - Answered by: WIN-002
 Refuse, VM fallback, or vendor engagement, for kernel-level anti-cheat drivers that are incompatible with the capability model.
+Owner direction, recorded at V0 start: no anti-cheat kernel driver ever loads; affected titles are routed to the VIRT fallback and rated VM-only (WIN-002 option B); WIN-002 confirms or rejects this with evidence.
 
 ### Q-044 · What is the browser strategy
 - Workstream: APP
 - Status: open
 - Answered by: APP-019
 Chromium or Firefox through the Linux personality, a native port, or both, and the criteria for switching.
+Owner direction, recorded at V0 start: Firefox through the Linux personality is the default and only shipped browser; Chromium is installable from the corpus but not shipped (APP-019 option B); APP-019 confirms or rejects this with evidence.
 
 ### Q-045 · What is the IDE strategy
 - Workstream: APP
 - Status: open
 - Answered by: APP-020
 VS Code or JetBrains through the Linux personality versus a native editor or IDE, and the criteria for switching.
+Owner direction, recorded at V0 start: VS Code through the Linux personality is the V1 daily-driving IDE (APP-020 option A); APP-020 confirms or rejects this with evidence.
 
 ### Q-046 · What are the V4 and 1.0 criteria the baseline omitted
 - Workstream: GOV

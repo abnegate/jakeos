@@ -10,7 +10,7 @@
 - Revisit when: an accepted later Decision supersedes this one, or a spike shows the chosen option cannot meet a Gate that cites it
 
 ## Context
-V1 self-hosting needs a usable IDE for kernel and platform development on the OS (§56.5, §61) without promising a native IDE at 1.0, and the criteria for a later native port must be recorded.
+V1 self-hosting needs a usable IDE for kernel and platform development on the OS (§56.5, §61) without promising a native IDE at 1.0, and the criteria for a later native port must be recorded. The maintainer's recorded direction (Q-045) is option A, VS Code through the Linux personality, for this adr to confirm or reject with evidence.
 
 ## Options
 
