@@ -55,7 +55,7 @@
 | KRN-060 | Enforce fallible allocation and no-panic rules in native kernel Rust code | todo | KRN-013, KRN-016, BLD-013 | V0 |
 | BOOT-001 | Boot the forked kernel on QEMU/KVM under OVMF from a CI-built image | todo | BLD-006, BLD-009, BLD-012, KRN-011 | V0 |
 | BOOT-002 | Boot the forked kernel on the reference AMD desktop from the tagged CI image | todo | BOOT-001, LAB-003 | V0 |
-| BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | BOOT-001, CMP-003, CMP-014 | V0 |
+| BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | BOOT-001, CMP-003, CMP-014, BLD-082 | V0 |
 | BOOT-006 | Build the harness measuring reboot-into-previous-Generation time and publish results | todo | BOOT-014, Q-001 | V0.5 |
 | BOOT-007 | Define the on-disk boot-entry format mapping a menu entry to a SystemGeneration | todo | BOOT-008, BOOT-011, PKG-019, PKG-008, PKG-029 | V0.5 |
 | BOOT-008 | Decide the bootloader: systemd-boot, GRUB or a native Rust UEFI stub | todo | BOOT-010, BOOT-015 | V0.5 |
@@ -100,10 +100,10 @@
 | BOOT-049 | Verify the update and rollback guarantee by fault injection on every Tier 1 machine | todo | BOOT-038, BOOT-028, BOOT-013, BOOT-047, INS-056, INS-043, PKG-091, STO-083 | 1.0 |
 | ABI-001 | Publish native entry/return cost per mechanism against Linux syscall and io_uring | todo | ABI-019, Q-001 | V0 |
 | ABI-002 | Implement the Native ABI entry layer in the Linux-derived kernel | todo | ABI-008, ABI-012, ABI-014, ABI-015, LNX-001 | V0 |
-| ABI-003 | Add build and lint rules forbidding native crates from linking Linux Personality or libc | todo | ABI-018 | V0 |
+| ABI-003 | Add build and lint rules forbidding native crates from linking Linux Personality or libc | todo | ABI-018, BLD-082 | V0 |
 | ABI-004 | Implement the Layer 1 version handshake and its forward/backward compatibility test | todo | ABI-016, ABI-002 | V0 |
 | ABI-005 | Implement the Object<T> typed registry with type identifier checked on every Operation | todo | ABI-010, ABI-013, ABI-009, ABI-002 | V0 |
-| ABI-006 | Institute the ABI review Gate checklist enforcing the §65 rules on every L1 change | todo | ABI-011, ABI-018, GOV-005 | V0 |
+| ABI-006 | Institute the ABI review Gate checklist enforcing the §65 rules on every L1 change | todo | ABI-011, ABI-018, GOV-005, BLD-082 | V0 |
 | ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | todo | ABI-011 | V0 |
 | ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | todo | ABI-019, ABI-001 | V0 |
 | ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | todo | ABI-022, ABI-020 | V0 |
@@ -115,7 +115,7 @@
 | ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | todo | TSK-014 | V0 |
 | ABI-016 | Decide the Layer 1 version identification and feature-negotiation scheme | todo | ABI-008, ABI-021 | V0 |
 | ABI-017 | Write the normative, versioned Native ABI specification v0 defining every entry point | todo | ABI-011, ABI-008, ABI-010, ABI-009, ABI-012, ABI-013, ABI-014, ABI-015, ABI-016, ABI-007 | V0 |
-| ABI-018 | Lint native surfaces against POSIX-shaped names and Linux syscall numbers | todo | ABI-011 | V0 |
+| ABI-018 | Lint native surfaces against POSIX-shaped names and Linux syscall numbers | todo | ABI-011, BLD-082 | V0 |
 | ABI-023 | Generate the C header, snapshot, docs and fuzz descriptions from the ABI definition | todo | ABI-017, ABI-007, ABI-027 | V0.5 |
 | ABI-024 | Build the ABI conformance suite with one test per prototyped Layer 1 entry point | todo | ABI-017, ABI-002, ABI-005, ABI-004 | V0.5 |
 | ABI-025 | Select Native ABI or Linux ABI execution world per Component or process at entry | todo | ABI-002, LNX-001, LNX-003 | V0.5 |
@@ -154,7 +154,7 @@
 | CAP-005 | Implement the kernel Capability Object and per-Component Capability table | todo | CAP-008, CAP-010, ABI-002, ABI-005, ABI-009 | V0 |
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | CAP-005, CAP-003, CAP-011, CMP-005 | V0 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | CAP-013, CAP-012, CAP-015 | V0 |
-| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | CAP-014, CAP-015, TSK-003, Q-004 | V0 |
+| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | CAP-014, CAP-015, TSK-003 | V0 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | todo | CAP-013, CAP-012 | V0 |
 | CAP-011 | Implement rights and transfer-rights checks on every Capability Operation | todo | CAP-010, CAP-005 | V0 |
 | CAP-014 | Prototype and measure revocation strategies at one million derived Capabilities | todo | CAP-015 | V0 |
@@ -162,7 +162,7 @@
 | CAP-017 | Gate persistent background execution behind Capability<BackgroundExecution> | todo | CAP-010, CAP-005, CAP-011 | V0.5 |
 | CAP-018 | Benchmark Capability mint, derive, transfer and revocation cost | todo | CAP-003, CAP-004, CAP-006, CAP-009, BEN-005 | V0.5 |
 | CAP-019 | Write property-based tests for Capability unforgeability, typing and attenuation | todo | CAP-003, CAP-004, CAP-005, CAP-028 | V0.5 |
-| CAP-020 | Decide Capability persistence across Component restart and reboot | todo | CAP-026, CAP-007, SEC-007, Q-016 | V0.5 |
+| CAP-020 | Decide Capability persistence across Component restart and reboot | todo | CAP-026, CAP-007, SEC-007 | V0.5 |
 | CAP-021 | Decide the ABI invariants required for hardware-assisted Capability enforcement | todo | CAP-027, CAP-012, CAP-008, CAP-010 | V0.5 |
 | CAP-022 | Decide how a Component obtains its initial and later Capabilities | todo | CAP-007 | V0.5 |
 | CAP-023 | Implement the Capability discovery namespace decided in the service discovery ADR | todo | CAP-022, CAP-005, CAP-006 | V0.5 |
@@ -187,7 +187,7 @@
 | CAP-044 | Test immediate revocation across camera, microphone, files, network and screen capture | todo | CAP-004, CAP-036, CAP-037, NET-012, AUD-003, STO-034, GFX-061, MED-013 | V2 |
 | CAP-045 | Study hardware provenance tracking for Capability audit | todo | CAP-033, CAP-001 | V2 |
 | CAP-046 | Document every Capability Object type and right for the Layer 1 reference | todo | CAP-036, CAP-031, DOC-010 | V3 |
-| CAP-047 | Decide how Capability unforgeability survives machine boundaries | todo | CAP-008, CAP-021, IPC-056, Q-036 | V3 |
+| CAP-047 | Decide how Capability unforgeability survives machine boundaries | todo | CAP-008, CAP-021, IPC-056 | V3 |
 | CAP-048 | Implement one-time and time-bounded Capability grants with per-application history | todo | CAP-037, CAP-020, SEC-007, CAP-001 | V3 |
 | CAP-049 | Isolate persistent grant stores per user session | todo | CAP-037, SEC-042, SEC-028 | V3 |
 | CAP-050 | Close external audit findings in Capability enforcement | todo | CAP-031, CAP-005, CAP-004, CAP-019, CAP-042 | V4 |
@@ -200,14 +200,14 @@
 | CMP-004 | Implement Component exit causes, teardown and the 100k leak test | todo | CMP-014, CMP-005, TSK-022, SCH-009 | V0 |
 | CMP-005 | Implement Component creation as one kernel Operation over Linux internals | todo | CMP-010, CMP-014, CAP-005, SCH-007, TSK-023 | V0 |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | CMP-015, CMP-016 | V0 |
-| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | CMP-005, CMP-004, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013 | V0 |
+| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | CMP-005, CMP-004, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013, BLD-082 | V0 |
 | CMP-012 | Prove Component isolation with negative tests and the isolation Demo | todo | CMP-005, CMP-013, CAP-001, SEC-001 | V0 |
-| CMP-013 | Add the ABI review Gate rejecting process, thread and container shapes | todo | ABI-018 | V0 |
+| CMP-013 | Add the ABI review Gate rejecting process, thread and container shapes | todo | ABI-018, BLD-082 | V0 |
 | CMP-014 | Define Object<Component> in the native Object model | todo | ABI-005, ABI-013 | V0 |
 | CMP-016 | Benchmark wrapper, prewarmed-template and native Component strategies | todo | CMP-015 | V0 |
 | CMP-017 | Map immutable Package objects directly into the Component AddressSpace | todo | CMP-003, PKG-037, PKG-045 | V0.5 |
-| CMP-018 | Benchmark native application cold startup | todo | BEN-005, Q-001, Q-029 | V0.5 |
-| CMP-019 | Benchmark native application warm startup from click to first presented frame | todo | BEN-005, Q-001, Q-029 | V0.5 |
+| CMP-018 | Benchmark native application cold startup | todo | BEN-005, Q-001 | V0.5 |
+| CMP-019 | Benchmark native application warm startup from click to first presented frame | todo | BEN-005, Q-001 | V0.5 |
 | CMP-020 | Verify the native isolation path needs no daemon, namespace, overlay or fork | todo | CMP-027, CMP-013, BEN-020 | V0.5 |
 | CMP-021 | Decide whether every Component owns a hardware address space | todo | CMP-032 | V0.5 |
 | CMP-022 | Decide static manifest graphs versus dynamic child instantiation | todo | CMP-031 | V0.5 |
@@ -221,7 +221,7 @@
 | CMP-033 | Bring the Component L1 Surface to freeze-candidate state with tests | todo | CMP-014, CMP-004, CMP-003, ABI-034 | V1 |
 | CMP-034 | Implement the Component creation fast path to the Register target | todo | CMP-010, CMP-005, CMP-001 | V1 |
 | CMP-035 | Publish Component creation beside fork+exec, clone and podman run | todo | CMP-001, BEN-006 | V1 |
-| CMP-036 | Decide how Personality processes map onto Components | todo | LNX-060, Q-010 | V1 |
+| CMP-036 | Decide how Personality processes map onto Components | todo | LNX-060 | V1 |
 | CMP-037 | Write the Component design guidelines for SDK v1 | todo | CMP-024, CMP-022 | V1 |
 | CMP-038 | Implement the in-address-space Component class if the adr adopts it | todo | CMP-021, CMP-014, WASM-012 | V1 |
 | CMP-039 | Publish the Component isolation boundary assurance report | todo | CMP-012 | V1 |
@@ -243,7 +243,7 @@
 | CMP-055 | Write the Component section of the ABI stability statement | todo | CMP-052, ABI-050 | 1.0 |
 | TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | TSK-018 | V0 |
 | TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | TSK-020, BEN-005 | V0 |
-| TSK-003 | Decide Task cancellation model and resource cleanup | todo | TSK-017, Q-011, Q-012 | V0 |
+| TSK-003 | Decide Task cancellation model and resource cleanup | todo | TSK-017 | V0 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | todo | TSK-015 | V0 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | todo | TSK-014 | V0 |
 | TSK-007 | Decide Operation submission/completion transport and batching expression | todo | TSK-014 | V0 |
@@ -253,7 +253,6 @@
 | TSK-011 | Implement Read, Write, Send and Receive Operation kinds | todo | TSK-018, ABI-014, IPC-010, MEM-005, STO-001 | V0 |
 | TSK-012 | Implement Timer and Wait Operation kinds | todo | TSK-018, TSK-004 | V0 |
 | TSK-013 | Implement Operation<Result> kernel Object with owner, typed result, priority and trace points | todo | TSK-023, TSK-007, ABI-015, ABI-009 | V0 |
-| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | todo | Q-009 | V0 |
 | TSK-018 | Implement submit(Operation), completion delivery and poll/wait in the Native ABI | todo | TSK-013, TSK-007, TSK-005, ABI-002, ABI-012 | V0 |
 | TSK-019 | Implement Task multiplexing across bounded execution contexts | todo | TSK-009, TSK-021 | V0 |
 | TSK-020 | Integrate Operation completion with Task suspension and wake on execution contexts | todo | TSK-019, TSK-018 | V0 |
@@ -297,19 +296,19 @@
 | IPC-005 | Decide that IDL compiler output is owned by its user with no copyleft obligation | todo | IPC-006 | V0 |
 | IPC-006 | Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new | todo | IPC-018, WASM-002 | V0 |
 | IPC-007 | Decide the typed-message wire format and inline-payload threshold | todo | IPC-020, IPC-018 | V0 |
-| IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | IPC-016, IPC-015, BEN-005 | V0 |
+| IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | IPC-016, IPC-015, BEN-005, BLD-082 | V0 |
 | IPC-009 | Define Channel<T> backpressure: bounded depth, slow-receiver policy, depth in os inspect | todo | IPC-010, TSK-011 | V0 |
 | IPC-010 | Implement the Channel kernel Object with typed endpoints, send, receive and inspect data | todo | ABI-002, ABI-005, CAP-005, TSK-013, CMP-014 | V0 |
 | IPC-011 | Define and implement typed error, peer-death and timeout semantics for calls | todo | IPC-010, TSK-010, ABI-009 | V0 |
-| IPC-012 | Implement the IDL compiler with Rust wire layout, stub, ownership and tracing codegen | todo | IPC-006, IPC-007, IPC-004, IPC-005, ABI-007 | V0 |
-| IPC-013 | Generate Interface<T> proxies with async methods, futures and in-flight cancellation | todo | IPC-012, TSK-011, TSK-010 | V0 |
+| IPC-012 | Implement the IDL compiler with Rust wire layout, stub, ownership and tracing codegen | todo | IPC-006, IPC-007, IPC-004, IPC-005, ABI-007, BLD-082 | V0 |
+| IPC-013 | Generate Interface<T> proxies with async methods, futures and in-flight cancellation | todo | IPC-012, TSK-011, TSK-010, BLD-082 | V0 |
 | IPC-014 | Transfer Capability and MemoryObject ownership inside Channel messages | todo | IPC-010, IPC-007, CAP-006, MEM-010, MEM-003 | V0 |
 | IPC-015 | Switch directly to a waiting receiver on send without a run-queue round trip | todo | IPC-001, IPC-016, SCH-005, TSK-020 | V0 |
 | IPC-016 | Implement the selected minimal-copy small-message fast path | todo | IPC-003, IPC-010, IPC-007 | V0 |
 | IPC-017 | Prototype and measure ring, GPR-carried, handoff and batched small-message fast paths | todo | ABI-019, TSK-021, BLD-012 | V0 |
-| IPC-019 | Evolve one real V0 Interface through three incompatible revisions to exercise the versioning scheme | todo | IPC-012, IPC-013 | V0 |
+| IPC-019 | Evolve one real V0 Interface through three incompatible revisions to exercise the versioning scheme | todo | IPC-012, IPC-013, BLD-082 | V0 |
 | IPC-020 | Benchmark in-place Zero-copy access versus compact encode/decode including validation cost | todo | IPC-018 | V0 |
-| IPC-021 | Add the version header and forward/backward unknown-field compatibility tests | todo | IPC-007, IPC-002, IPC-012, ABI-004 | V0 |
+| IPC-021 | Add the version header and forward/backward unknown-field compatibility tests | todo | IPC-007, IPC-002, IPC-012, ABI-004, BLD-082 | V0 |
 | IPC-022 | Decide the relationship between the native IDL and WIT | todo | IPC-006, WASM-002 | V0.5 |
 | IPC-023 | Decide service naming and discovery: kernel-held directory or user-space broker | todo | IPC-010, CAP-022, SVC-004 | V0.5 |
 | IPC-024 | License IDL files and the ABI specification under a permissive spec license with patent non-assert | todo | IPC-006 | V0.5 |
@@ -330,7 +329,7 @@
 | IPC-039 | Support stream (multi-value) results with flow control in the IDL and runtime | todo | IPC-009, IPC-013, IPC-012 | V0.5 |
 | IPC-040 | Add the permanent UI protocol v0 to v0.1 Interface-versioning regression test | todo | IPC-038, IPC-033, UIP-015 | V0.5 |
 | IPC-041 | Decide which Channel syscalls become Layer 1 freeze candidates for SDK v1 | todo | ABI-034, IPC-010, IPC-016, IPC-014, IPC-009, IPC-008, IPC-017 | V1 |
-| IPC-042 | Freeze the Layer 2 Interface-evolution rules for SDK v1 | todo | IPC-002, IPC-038, IPC-040, IPC-019 | V1 |
+| IPC-042 | Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1 | todo | IPC-002, IPC-038, IPC-040, IPC-019 | V1 |
 | IPC-043 | Implement batched Channel send and receive submission over Operations | todo | IPC-017, IPC-010, TSK-030, IPC-016 | V1 |
 | IPC-044 | Add structure-aware fuzz targets for the Channel syscall Surface | todo | IPC-010, IPC-014, IPC-026, BLD-016, BLD-035 | V1 |
 | IPC-045 | Implement feature negotiation between Interface endpoints | todo | IPC-002, IPC-033, IPC-042 | V1 |
@@ -429,8 +428,8 @@
 | SCH-013 | Benchmark wakeup latency per intent class under contention | todo | SCH-010, SCH-026, SCH-025, SCH-001, BEN-005 | V0.5 |
 | SCH-014 | Implement budget exhaustion handling and owner notification per ResourceDomain | todo | SCH-016, SVC-015, SCH-008, SCH-009, SCH-006 | V0.5 |
 | SCH-015 | Run the compositor under Deadline intent aligned to display vblank | todo | SCH-025, GFX-015, GFX-029 | V0.5 |
-| SCH-016 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | todo | SCH-008, SCH-009, SCH-006, Q-015 | V0.5 |
-| SCH-017 | Decide intent and priority inheritance across Channel handoff | todo | SCH-010, IPC-010, SCH-011, Q-014 | V0.5 |
+| SCH-016 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | todo | SCH-008, SCH-009, SCH-006 | V0.5 |
+| SCH-017 | Decide intent and priority inheritance across Channel handoff | todo | SCH-010, IPC-010, SCH-011 | V0.5 |
 | SCH-018 | Export per-ResourceDomain usage and scheduling-delay data for inspection | todo | SCH-007, OBS-007, SCH-010 | V0.5 |
 | SCH-019 | Implement ResourceDomain delegation and attenuation through Capability | todo | SCH-002, SCH-007, CAP-003 | V0.5 |
 | SCH-020 | Add ResourceDomain latency policy setting default intent and deadlines | todo | SCH-010, SCH-025, SCH-007 | V0.5 |
@@ -478,7 +477,7 @@
 | OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | OBS-011, Q-001 | V0 |
 | OBS-002 | Trace and inspect Capability grant, derivation, transfer and revocation | todo | OBS-008, OBS-006, CAP-001, CAP-003 | V0 |
 | OBS-003 | Decide the tracing substrate and its measured overhead ceiling | todo | OBS-010 | V0 |
-| OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | OBS-011, IPC-012 | V0 |
+| OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | OBS-011, IPC-012, BLD-082 | V0 |
 | OBS-005 | Expose Component and Task inspection data including the awaited Operation | todo | OBS-006, CMP-005, TSK-021, TSK-020 | V0 |
 | OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 | V0 |
 | OBS-007 | Expose Channel, Operation, MemoryObject and ResourceDomain inspection data | todo | OBS-006, IPC-009, TSK-013, MEM-005, SCH-007, SCH-009 | V0 |
@@ -571,7 +570,7 @@
 | SVC-041 | Lock the service manifest and settings schema versions for 1.x | todo | SVC-011, SVC-028, SVC-010, IPC-042 | V4 |
 | SVC-042 | Ship the supervision conformance suite run on every Tier 1 machine per RC | todo | SVC-034, SVC-035, SVC-033, HW-086, HW-072 | V4 |
 | SVC-043 | Verify by fault injection that rollback and `os restore` preserve and restore settings | todo | SVC-029, BOOT-049, PKG-060 | 1.0 |
-| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | ABI-005, CAP-005, CAP-003, CAP-004, CMP-005 | V0 |
+| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | ABI-005, CAP-005, CAP-003, CAP-004, CMP-005, BLD-082 | V0 |
 | STO-002 | Provide ApplicationData private storage granted by default at launch | todo | STO-019, SEC-007, PKG-007, CAP-025 | V0.5 |
 | STO-003 | Implement atomic replacement of a file or tree with no partial reads | todo | STO-020, STO-031, STO-011 | V0.5 |
 | STO-004 | Benchmark Capability-scoped storage Object I/O against direct Linux file I/O | todo | STO-020, STO-029, STO-019, BEN-014 | V0.5 |
@@ -585,10 +584,10 @@
 | STO-012 | Decide replacing the global namespace with Capability-scoped storage objects | todo | STO-001, STO-030, CAP-007, STO-027 | V0.5 |
 | STO-013 | Decide the content-hash algorithm, identifier format, chunking and upgrade path | todo | PKG-040, STO-030 | V0.5 |
 | STO-014 | Decide GPT partition and volume layout for store, generations, user data, swap and recovery | todo | STO-016 | V0.5 |
-| STO-015 | Decide how an application gains authority to create one new file in a user-chosen place | todo | STO-012, SEC-007, Q-017 | V0.5 |
+| STO-015 | Decide how an application gains authority to create one new file in a user-chosen place | todo | STO-012, SEC-007 | V0.5 |
 | STO-016 | Decide the initial Linux filesystem under the native storage layer | todo | STO-026, SEC-005 | V0.5 |
 | STO-017 | Decide how the content store maps onto the chosen filesystem without double storage | todo | STO-016, STO-013, PKG-014 | V0.5 |
-| STO-018 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | todo | STO-012, Q-038, Q-042 | V0.5 |
+| STO-018 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | todo | STO-012 | V0.5 |
 | STO-019 | Define Object<Directory> whose Capability scopes access to its subtree | todo | STO-029, STO-012, STO-020 | V0.5 |
 | STO-020 | Define Object<File> with Read, Write and metadata Operations and its rights set | todo | STO-029, STO-001, TSK-011, ABI-009, MEM-020 | V0.5 |
 | STO-021 | Implement the partition and volume layout library used by the image builder | todo | STO-014, STO-016 | V0.5 |
@@ -609,8 +608,8 @@
 | STO-037 | Implement content-store garbage collection with pinning and `os store gc` | todo | STO-041, STO-008, PKG-052 | V1 |
 | STO-038 | Decide when Write and StorageTransaction data is power-loss safe | todo | STO-031, STO-020 | V1 |
 | STO-039 | Decide encryption layering across the verified system store and encrypted user data | todo | SEC-005, STO-017, STO-009 | V1 |
-| STO-040 | Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing | todo | MEM-020, STO-038, STO-005, Q-006 | V1 |
-| STO-041 | Decide content-store garbage collection: root set, policy and user control | todo | STO-009, PKG-007, Q-019 | V1 |
+| STO-040 | Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing | todo | MEM-020, STO-038, STO-005 | V1 |
+| STO-041 | Decide content-store garbage collection: root set, policy and user control | todo | STO-009, PKG-007 | V1 |
 | STO-042 | Decide three-view mapping of user data across native and personalities | todo | STO-036, STO-012 | V1 |
 | STO-043 | Provide the StorageSnapshot primitive used by `os env` environments | todo | STO-025, STO-011 | V1 |
 | STO-044 | Provide a content-hash keyed cache API for build outputs, decoded assets and precompiled code | todo | STO-009, STO-041, STO-013 | V1 |
@@ -625,7 +624,7 @@
 | STO-053 | Deduplicate identical content in user data with an idle-intent reflink pass | todo | STO-011, SCH-010, SCH-041 | V1 |
 | STO-054 | Benchmark snapshot creation and restore time on the three target machines | todo | STO-070, STO-025, BEN-042 | V2 |
 | STO-055 | Decide how the storage model degrades on foreign filesystems lacking its metadata | todo | STO-012, STO-036 | V2 |
-| STO-056 | Decide how configuration and application state become versioned restorable objects | todo | STO-002, SVC-006, Q-025 | V2 |
+| STO-056 | Decide how configuration and application state become versioned restorable objects | todo | STO-002, SVC-006 | V2 |
 | STO-057 | Build disk health: TRIM/discard policy and SMART monitoring with notifications | todo | STO-029, STO-006, SVC-015 | V2 |
 | STO-058 | Support exFAT and FAT32 removable media with formatting and known limitations | todo | STO-055, STO-062 | V2 |
 | STO-059 | Support SMB, NFS and WebDAV as foreign network filesystems | todo | STO-055, STO-036, STO-047 | V2 |
@@ -723,7 +722,7 @@
 | PKG-068 | Benchmark Package-set restore time | todo | PKG-077 | V2 |
 | PKG-069 | Decide whether application-state restore is a 1.0 goal or non-goal | todo | PKG-079, PKG-048 | V2 |
 | PKG-070 | Decide whether SystemGeneration switches may apply without reboot | todo | PKG-020, BOOT-008 | V2 |
-| PKG-071 | Decide selective restore semantics and how partial restore avoids inconsistency | todo | PKG-048, PKG-060, Q-026 | V2 |
+| PKG-071 | Decide selective restore semantics and how partial restore avoids inconsistency | todo | PKG-048, PKG-060 | V2 |
 | PKG-072 | Track and publish counts of native and Personality Packages in the repository | todo | PKG-064, PKG-031 | V2 |
 | PKG-073 | Implement SystemGeneration health states so a failed boot auto-selects the previous one | todo | PKG-019, PKG-020, BOOT-018 | V2 |
 | PKG-074 | Expose a typed SystemGeneration management Interface for settings and rollback UI | todo | PKG-020, PKG-060, PKG-077, IPC-035 | V2 |
@@ -744,7 +743,7 @@
 | PKG-089 | Implement store and Generation format migration for V3 to V4 upgrades with rollback | todo | PKG-016, PKG-014, PKG-012, PKG-082 | V4 |
 | PKG-090 | Lock Package and Generation manifest schema versions for 1.x with evolution tests | todo | PKG-031, PKG-011, PKG-041, IPC-062, PKG-005 | V4 |
 | PKG-091 | Verify the update and rollback guarantee on every Tier 1 machine | todo | PKG-073, PKG-082, PKG-060, PKG-077, PKG-086, PKG-052, PKG-059, BOOT-028 | 1.0 |
-| GFX-001 | Inventory retained DRM/KMS drivers and pin the no-native-GPU-stack rule | todo | KRN-017 | V0 |
+| GFX-001 | Inventory retained DRM/KMS drivers and pin the no-native-GPU-stack rule | todo | KRN-017, BLD-082 | V0 |
 | GFX-002 | Benchmark compositor restart-to-rebound time | todo | GFX-007, LAB-003 | V0.5 |
 | GFX-003 | Benchmark compositor commit-to-scanout latency against a Wayland compositor | todo | GFX-024, GFX-006, LAB-003 | V0.5 |
 | GFX-004 | Benchmark GUI Input-to-photon latency on the photodiode rig | todo | GFX-031, GFX-006, LAB-001, UIP-011 | V0.5 |
@@ -758,10 +757,10 @@
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | GFX-032 | V0.5 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | GFX-036 | V0.5 |
 | GFX-015 | Decide the compositor frame scheduling model | todo | GFX-012 | V0.5 |
-| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | GFX-036, Q-034, SDK-097 | V0.5 |
+| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | GFX-036, SDK-097 | V0.5 |
 | GFX-017 | Decide the GPU API native applications render with | todo | GFX-036 | V0.5 |
 | GFX-018 | Decide compositor rendering backend policy: Vulkan-only or Vulkan plus GL | todo | GFX-035 | V0.5 |
-| GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | GFX-033, Q-027 | V0.5 |
+| GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | GFX-033 | V0.5 |
 | GFX-020 | Decide whether Wayland is served by the compositor or by a bridge Component | todo | GFX-012 | V0.5 |
 | GFX-021 | Demonstrate compositor crash, restart, rebind and continued rendering | todo | GFX-007, APP-003 | V0.5 |
 | GFX-022 | Define and implement Display with mode, refresh, scaling, HDR and VRR metadata | todo | GFX-018 | V0.5 |
@@ -1021,8 +1020,8 @@
 | SEM-042 | Lock Semantic Interface catalog versions for 1.x | todo | SEM-040, SEM-041 | V4 |
 | SEM-043 | Publish the 1.x supported Semantic Interface catalog | todo | SEM-042, DOC-028, DOC-040 | 1.0 |
 | SEM-044 | Demonstrate 1.0 AI-assisted automation with visible Capability grants | todo | SEM-009, SEM-025, PKG-059, SDK-069, SEM-029 | 1.0 |
-| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | KRN-011, KRN-017 | V0 |
-| LNX-002 | Run the L0 Corpus with zero regressions | todo | LNX-001, BLD-012, KRN-014, BEN-006 | V0 |
+| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | KRN-011, KRN-017, BLD-082 | V0 |
+| LNX-002 | Run the L0 Corpus with zero regressions | todo | LNX-001, BLD-012, KRN-014, BEN-006, BLD-082 | V0 |
 | LNX-003 | Decide Linux Personality depth and translation phase | todo | LNX-009, LNX-011, KRN-009 | V0.5 |
 | LNX-004 | Decide Wayland hosting and X11 via Xwayland | todo | LNX-010, GFX-020, LNX-011 | V0.5 |
 | LNX-005 | Bound POSIX authority by Component capabilities | todo | LNX-001, LNX-011, CAP-005, CAP-007, CMP-005 | V0.5 |
@@ -1131,13 +1130,12 @@
 | LNX-109 | Document unsupported Linux software classes | todo | LNX-106, LNX-105, WIN-083 | 1.0 |
 | LNX-110 | Hold L5 pass rate with zero Gold regressions | todo | LNX-107, LNX-104, LNX-103, AUD-029, ACC-033 | 1.0 |
 | LNX-111 | Publish the final L5 compatibility report | todo | LNX-110, LNX-106, LNX-109, LNX-108 | 1.0 |
-| WIN-002 | Decide the kernel-level anti-cheat policy | todo | WIN-003, Q-043 | V1 |
+| WIN-002 | Decide the kernel-level anti-cheat policy | todo | WIN-003 | V1 |
 | WIN-004 | Lint the tree against the Windows Personality clean-room policy | todo | WIN-005 | V1 |
 | WIN-006 | Build the per-title Windows scenario harness | todo | WIN-009, LAB-026 | V1 |
 | WIN-007 | Publish an upstream-first policy for Wine, Proton, DXVK and VKD3D | todo | WIN-005, PKG-010 | V1 |
-| WIN-008 | Decide that Win32 emulation stays in userspace | todo | Q-050 | V1 |
 | WIN-009 | Define the W1 Corpus and rating scale | todo | WIN-002, WIN-010 | V1 |
-| WIN-010 | Decide 32-bit Win32 support and WoW64 requirements | todo | LNX-015, Q-040 | V1 |
+| WIN-010 | Decide 32-bit Win32 support and WoW64 requirements | todo | LNX-015 | V1 |
 | WIN-011 | Survey Win32 APIs required by the W1 productivity set | todo | WIN-009 | V1 |
 | WIN-012 | Package Wine and Proton runtimes as immutable Packages for CI | todo | WIN-007, WIN-004, PKG-047, PKG-038 | V1 |
 | WIN-013 | Decide whether Wine hosts on the Linux Personality or the Native ABI | todo | WIN-014, WIN-008 | V1 |
@@ -1160,7 +1158,7 @@
 | WIN-030 | Run Wine tests and the W1 smoke Corpus on GPU lab machines | todo | WIN-017, WIN-006, WIN-026 | V2 |
 | WIN-031 | Wire Vulkan present, explicit sync and fullscreen scanout | todo | WIN-026, GFX-074, GFX-057 | V2 |
 | WIN-032 | Pass HDR metadata from DXVK and VKD3D to the native Surface | todo | WIN-026, WIN-049, GFX-069 | V2 |
-| WIN-033 | Decide how prefix installers become installed applications | todo | WIN-040, APP-032, Q-041 | V2 |
+| WIN-033 | Decide how prefix installers become installed applications | todo | WIN-040, APP-032 | V2 |
 | WIN-034 | Map NT objects and handles onto native Objects and Capabilities | todo | WIN-035, WIN-054, ABI-005 | V2 |
 | WIN-035 | Decide NT Object-manager, async I/O, descriptor and section fidelity | todo | WIN-008, ABI-031 | V2 |
 | WIN-036 | Decide how Wine and Proton map onto native Objects | todo | WIN-013, WIN-035 | V2 |
@@ -1239,9 +1237,9 @@
 | ENV-003 | Create a NetworkNamespace for each development environment | todo | ENV-002, ENV-006, ENV-010, NET-012, NET-016, SCH-033 | V1 |
 | ENV-004 | Map environment resources onto a ResourceDomain | todo | ENV-007, ENV-010, SCH-014, SCH-006, SCH-019, SCH-032, SCH-007, SCH-008, SCH-034 | V1 |
 | ENV-005 | Create a StorageSnapshot for each development environment | todo | ENV-007, ENV-010, STO-011, STO-043 | V1 |
-| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | ENV-007, NET-006, Q-031 | V1 |
+| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | ENV-007, NET-006 | V1 |
 | ENV-007 | Decide whether DevelopmentEnvironment is kernel or userspace | todo | CMP-005, SCH-007 | V1 |
-| ENV-008 | Decide environment.yaml schema versus Package manifest profile | todo | PKG-006, PKG-011, Q-030, ENV-021 | V1 |
+| ENV-008 | Decide environment.yaml schema versus Package manifest profile | todo | PKG-006, PKG-011, ENV-021 | V1 |
 | ENV-009 | Decide how environment services are hosted and packaged | todo | ENV-022, PKG-047 | V1 |
 | ENV-010 | Implement the environment.yaml schema with lock and validation | todo | ENV-008 | V1 |
 | ENV-011 | Emit development environment changes as history events | todo | ENV-012, PKG-022 | V1 |
@@ -1279,7 +1277,7 @@
 | HET-008 | Implement ComputeQueue as a typed submission Object | todo | HET-011, HET-009, HET-007 | V1 |
 | HET-009 | Implement ComputeDevice kernel ABI with CPU as first class | todo | HET-001, HET-011, ABI-032, ABI-014 | V1 |
 | HET-010 | Prototype Vulkan compute versus DRM job submission on AMD | todo | HET-002, HET-001 | V1 |
-| HET-011 | Decide how ComputeDevice relates to ComputeQueue | todo | HET-001, HET-002, Q-033 | V1 |
+| HET-011 | Decide how ComputeDevice relates to ComputeQueue | todo | HET-001, HET-002 | V1 |
 | HET-012 | Define GPUDispatch cancellation after work is submitted to the GPU | todo | HET-019, TSK-003, TSK-017, TSK-010 | V2 |
 | HET-013 | Route Throughput to GPU and LowLatency to CPU in the V2 Demo | todo | HET-016, HET-017, HET-014, HET-015, SCH-049 | V2 |
 | HET-014 | Encode ComputeDevice dispatch preferences for workload placement | todo | HET-001, HET-009, MEM-034, MEM-041, IPC-042 | V2 |
@@ -1513,8 +1511,8 @@
 | MED-041 | Publish native CDM and Layer 1 secure-path as 1.0 non-goals | todo | MED-023, MED-036, DOC-028 | 1.0 |
 | MED-042 | Publish B-046 versus Linux and Windows on every Tier 1 machine | todo | MED-040, BEN-060 | 1.0 |
 | HW-001 | Bring up the V0 AMD desktop Reference machine to a booting kernel | todo | LAB-003, BOOT-002 | V0 |
-| HW-004 | Inventory retained Linux buses, firmware load and input in the fork | todo | KRN-017 | V0 |
-| HW-005 | Gate retained PCIe, USB, ACPI and input regressions on the AMD desktop | todo | HW-004, HW-001, KRN-014 | V0 |
+| HW-004 | Inventory retained Linux buses, firmware load and input in the fork | todo | KRN-017, BLD-082 | V0 |
+| HW-005 | Gate retained PCIe, USB, ACPI and input regressions on the AMD desktop | todo | HW-004, HW-001, KRN-014, BLD-082 | V0 |
 | HW-006 | Decide user-space driver access: VFIO, UIO or native Device DMA | todo | HW-013, HW-014 | V0.5 |
 | HW-007 | Decide Capability<InputDevice> rights with no ambient device nodes | todo | HW-013, CAP-007 | V0.5 |
 | HW-008 | Define Object<Device> and mint Capability<Device> from enumeration | todo | HW-013, HW-009, HW-007, ABI-005 | V0.5 |
@@ -1626,14 +1624,15 @@
 | PWR-028 | Verify the suspend cycle Gate on every V4 Tier 1 machine | todo | PWR-026, HW-086, LAB-023, LAB-024 | V4 |
 | PWR-029 | Publish energy numbers versus Linux and Windows on 1.0 | todo | PWR-027, BEN-060, BEN-047 | 1.0 |
 | PWR-030 | Prove Tier 1 suspend on the 1.0 soak and HCL | todo | PWR-028, LAB-025, REL-048, HW-089 | 1.0 |
-| SDK-001 | Implement the #[Component] entry macro and Context Capability Surface | todo | SDK-004, SDK-009, CMP-014, CAP-005 | V0 |
-| SDK-002 | Ship ImageDecoder as the V0 typed-service SDK sample | todo | SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007 | V0 |
-| SDK-003 | Declare a no_std rustc JSON target for native userspace | todo | ABI-003, BLD-009 | V0 |
-| SDK-004 | Implement the tiny native runtime that multiplexes Tasks over Operations | todo | SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023 | V0 |
-| SDK-005 | Expose Operation cancel, deadline and await on the Rust SDK | todo | SDK-009, TSK-010, TSK-013, ABI-009 | V0 |
-| SDK-007 | Ship os inspect for every V0 Object kind | todo | SDK-006, OBS-006, OBS-005, OBS-007 | V0 |
-| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | SDK-006, OBS-011, OBS-003 | V0 |
-| SDK-009 | Implement the primary Rust SDK crate over the Native ABI | todo | SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010 | V0 |
+| SDK-001 | Implement the #[Component] entry macro and Context Capability Surface | todo | SDK-004, SDK-009, CMP-014, CAP-005, BLD-082 | V0 |
+| SDK-002 | Ship ImageDecoder as the V0 typed-service SDK sample | todo | SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007, BLD-082 | V0 |
+| SDK-003 | Declare a no_std rustc JSON target for native userspace | todo | ABI-003, BLD-009, BLD-082 | V0 |
+| SDK-004 | Implement the tiny native runtime that multiplexes Tasks over Operations | todo | SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023, BLD-082 | V0 |
+| SDK-005 | Expose Operation cancel, deadline and await on the Rust SDK | todo | SDK-009, TSK-010, TSK-013, ABI-009, BLD-082 | V0 |
+| SDK-006 | Implement the os CLI skeleton for inspect and trace | todo | BLD-082 | V0 |
+| SDK-007 | Ship os inspect for every V0 Object kind | todo | SDK-006, OBS-006, OBS-005, OBS-007, BLD-082 | V0 |
+| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | SDK-006, OBS-011, OBS-003, BLD-082 | V0 |
+| SDK-009 | Implement the primary Rust SDK crate over the Native ABI | todo | SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010, BLD-082 | V0 |
 | SDK-010 | Decide the userspace executor shape for the native runtime | todo | SDK-011, TSK-009 | V0 |
 | SDK-011 | Study Rust async and Tokio for mapping Operations onto SDK futures | todo | TSK-014, TSK-016 | V0 |
 | SDK-012 | Implement Channel disconnect, rebind, retry and restore-state | todo | SDK-009, IPC-028, SVC-009, TSK-035 | V0.5 |
@@ -1717,13 +1716,13 @@
 | SDK-090 | Propose the native rustc target for upstream tier-3 inclusion | todo | SDK-003, SDK-049, SDK-059, BLD-046 | V4 |
 | SDK-091 | Make SDK and binding packages bit-for-bit reproducible | todo | SDK-084, BLD-041, BLD-077 | V4 |
 | SDK-092 | Complete Rust and C SDK references for the beta review | todo | SDK-086, DOC-038 | V4 |
-| SDK-093 | Restore opted-in application state through os restore | todo | SDK-069, PKG-069, PKG-079, Q-056 | 1.0 |
+| SDK-093 | Restore opted-in application state through os restore | todo | SDK-069, PKG-069, PKG-079, Q-056, APP-056 | 1.0 |
 | SDK-094 | Run the SDK compatibility suite through the 1.0 soak | todo | SDK-036, SDK-087, BLD-079, ABI-052 | 1.0 |
 | SDK-095 | Publish the Layer 3 semver stability statement for 1.x | todo | SDK-054, ABI-053, SDK-089 | 1.0 |
 | SDK-096 | Complete SDK guides for Rust and C on the 1.0 release | todo | SDK-092, SDK-095, DOC-040 | 1.0 |
 | SDK-097 | Decide the Layer 3 C-library strategy for inherited C stacks inside native Components | todo | GFX-036, SDK-028, ABI-011 | V0.5 |
 | SDK-098 | Provide the Layer 3 libc-compatible library over native objects for Mesa, codec and driver stacks | todo | SDK-049, SDK-009, SDK-003, SDK-097 | V1 |
-| APP-001 | Publish warm and cold startup for the four native applications | todo | APP-004, APP-003, APP-005, APP-006, Q-029, BEN-005 | V0.5 |
+| APP-001 | Publish warm and cold startup for the four native applications | todo | APP-004, APP-003, APP-005, APP-006, BEN-005 | V0.5 |
 | APP-002 | Build the OS-owned file chooser UI minting UserSelected capabilities | todo | STO-034, GFX-040, UIP-024, UIP-025, SEC-007, CAP-029, SDK-017 | V0.5 |
 | APP-003 | Build the Demo native Text Editor | todo | UIP-024, TXT-012, STO-024, APP-008 | V0.5 |
 | APP-004 | Build the Demo native Terminal on the system text stack | todo | APP-009, APP-008, UIP-024, UIP-023, TXT-009, UIP-001, SDK-023, SDK-025 | V0.5 |
@@ -1741,8 +1740,8 @@
 | APP-016 | Extend Terminal for daily development with tabs, splits and graphics | todo | APP-004, APP-009, LNX-022, TXT-020 | V1 |
 | APP-017 | Build a thin panel with a running-application list for daily driving | todo | APP-007, APP-013, UIP-016, LNX-038 | V1 |
 | APP-018 | Build a window switcher usable for daily development | todo | APP-017, GFX-010, UIP-013 | V1 |
-| APP-019 | Decide browser strategy for 1.0 and the native WebView Component | todo | APP-021, LNX-031, Q-044 | V1 |
-| APP-020 | Decide IDE strategy for 1.0 and the criteria for a native port | todo | APP-003, LNX-032, SDK-040, Q-045 | V1 |
+| APP-019 | Decide browser strategy for 1.0 and the native WebView Component | todo | APP-021, LNX-031 | V1 |
+| APP-020 | Decide IDE strategy for 1.0 and the criteria for a native port | todo | APP-003, LNX-032, SDK-040 | V1 |
 | APP-021 | Prototype a sandboxed native WebView Component for in-app web content | todo | CMP-024, GFX-026, CAP-025, LNX-031 | V1 |
 | APP-022 | Publish notification, lock and launcher latencies against desktop baselines | todo | APP-033, APP-014, APP-032, APP-030, BEN-035 | V2 |
 | APP-023 | Integrate the default browser with URL dispatch, downloads and chooser | todo | APP-019, APP-026, APP-002, LNX-036, LNX-080, MED-013, AUD-003 | V2 |
@@ -1778,7 +1777,7 @@
 | APP-053 | Decide the shared PDF renderer for viewer, thumbnails and print preview | todo | APP-051 | V2 |
 | APP-054 | Decide status-tray policy: StatusNotifierItem compatibility versus none | todo | APP-017, LNX-052 | V2 |
 | APP-055 | Prototype Capability-scoped desktop search without ambient home access | todo | STO-034, CAP-017, SCH-010 | V2 |
-| APP-056 | Prototype session restore of application windows from system history | todo | PKG-079, PKG-022, Q-056 | V2 |
+| APP-056 | Prototype session restore of application windows from system history | todo | PKG-079, PKG-022 | V2 |
 | APP-057 | Build the Settings About panel with notices and license texts | todo | APP-040, REL-049, INS-037 | V3 |
 | APP-058 | Polish the desktop shell and applications for external alpha users | todo | APP-048, APP-061, SEC-062, APP-063 | V3 |
 | APP-059 | Build the automation-rule editor over Semantic interfaces | todo | SEM-031, SEM-029, SEM-018, SEM-025, APP-040 | V3 |
@@ -1849,7 +1848,7 @@
 | INS-055 | Prove full-disk encryption install with Secure Boot on Tier 1 | todo | BOOT-043, INS-027, INS-032, SEC-055 | 1.0 |
 | INS-056 | Prove power-cut mid-update recovers the previous SystemGeneration | todo | BOOT-025, INS-045, LAB-003, PKG-082 | 1.0 |
 | BLD-001 | Structure CI into tiers and enforce a merge queue | todo | BLD-012, BLD-011 | V0 |
-| BLD-006 | Build a guest-side test agent that reports structured results | todo | BLD-012, BLD-009 | V0 |
+| BLD-006 | Build a guest-side test agent that reports structured results | todo | BLD-012, BLD-009, BLD-082 | V0 |
 | BLD-007 | Run the hardware regression matrix on QEMU and the Reference machine | todo | BLD-012, KRN-014, LAB-003 | V0 |
 | BLD-008 | Document and CI-exercise the kernel debug workflow | todo | BLD-012 | V0 |
 | BLD-009 | Provide a hermetic one-command Linux-host build and source mirror | todo | BLD-013 | V0 |
@@ -1923,7 +1922,9 @@
 | BLD-078 | Run nightly CI on at least ten Tier 1 machines | todo | BLD-069, LAB-023 | V4 |
 | BLD-079 | Run the 1.0 soak matrix on the Tier 1 fleet | todo | BLD-076, LAB-025 | 1.0 |
 | BLD-080 | Reproduce the 1.0 image with two independent rebuilders | todo | BLD-074, BLD-075, BLD-077 | 1.0 |
-| LAB-001 | Build the Input-to-photon photodiode rig on the reference desktop | todo | LAB-003, LAB-004 | V0 |
+| BLD-082 | Create the jakeos-platform monorepo with the workspace skeleton, licences and CI | todo | BLD-081 | V0 |
+| LAB-001 | Build the Input-to-photon photodiode rig on the reference desktop | todo | LAB-003, LAB-004, BLD-082 | V0 |
+| LAB-003 | Procure and rack the reference AMD desktop with power and capture | todo | BLD-082 | V0 |
 | LAB-004 | Prototype photodiode versus camera Input-to-photon measurement | todo | LAB-003 | V0 |
 | LAB-005 | Decide lab job-scheduler family and unbootable-machine recovery | todo | LAB-008 | V0.5 |
 | LAB-007 | Procure and rack the Intel laptop with remote power and console | todo | LAB-003 | V0.5 |
@@ -1950,7 +1951,7 @@
 | BEN-001 | Publish V0 Component, Task and ResourceDomain cost benchmarks | todo | BEN-005, BEN-006, CMP-001, CMP-002, TSK-002, TSK-020, TSK-018, SCH-001, SCH-010, LAB-003 | V0 |
 | BEN-002 | Publish V0 Demo pipeline latency, copies and memory | todo | BEN-005, BEN-006, CMP-011, MEM-010, MEM-012, IPC-016, LAB-003 | V0 |
 | BEN-003 | Publish V0 IPC, MemoryObject and syscall-overhead benchmarks | todo | BEN-005, BEN-006, BEN-008, IPC-008, IPC-016, MEM-010, OBS-001, LNX-001, LAB-003 | V0 |
-| BEN-005 | Build the shared benchmark runner and CI publication | todo | BEN-064 | V0 |
+| BEN-005 | Build the shared benchmark runner and CI publication | todo | BEN-064, BLD-082 | V0 |
 | BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | LAB-003 | V0 |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | BEN-005, IPC-016, IPC-015 | V0 |
 | BEN-009 | Publish native application startup and input-to-photon | todo | BEN-005, CMP-019, CMP-018, APP-001, APP-004, APP-003, APP-005, LAB-001 | V0.5 |
@@ -2134,7 +2135,6 @@
 | GOV-036 | Run trademark clearance and Register word and logo marks | todo | GOV-024 | V1 |
 | GOV-037 | Author the V1 Milestone gates including self-hosting and dogfooding | todo | GOV-017 | V1 |
 | GOV-038 | Record the V1 exit review | todo | SDK-054, SDK-055, NET-006, AUD-002, REL-003, LNX-018, WASM-007, SDK-028, LNX-015, KRN-024, KRN-026, IPC-042, LNX-021 | V1 |
-| GOV-039 | Compare legal-entity jurisdictions for export, GDPR and tax | todo | Q-049 | V1 |
 | GOV-041 | Decide the funding model and publish infrastructure-cost finances | todo | GOV-024 | V2 |
 | GOV-042 | Decide governance of the standard Semantic Interface catalogue | todo | GOV-035, SEM-007 | V2 |
 | GOV-044 | Define rules for third-party marks in compatibility claims | todo | GOV-036 | V2 |
@@ -2187,6 +2187,7 @@
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
+| BLD-082 | 31 |
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |
@@ -2856,6 +2857,7 @@
 | APP-008 | 3 |
 | APP-016 | 3 |
 | APP-048 | 3 |
+| APP-056 | 3 |
 | APP-058 | 3 |
 | BEN-009 | 3 |
 | BEN-020 | 3 |
@@ -2992,7 +2994,6 @@
 | PKG-084 | 3 |
 | PKG-089 | 3 |
 | PWR-021 | 3 |
-| Q-029 | 3 |
 | REL-006 | 3 |
 | REL-025 | 3 |
 | REL-044 | 3 |
@@ -3099,7 +3100,6 @@
 | APP-051 | 2 |
 | APP-052 | 2 |
 | APP-053 | 2 |
-| APP-056 | 2 |
 | APP-061 | 2 |
 | APP-063 | 2 |
 | APP-065 | 2 |
@@ -3331,7 +3331,6 @@
 | PWR-026 | 2 |
 | PWR-027 | 2 |
 | PWR-028 | 2 |
-| Q-056 | 2 |
 | REL-010 | 2 |
 | REL-011 | 2 |
 | REL-013 | 2 |
@@ -3551,6 +3550,7 @@
 | BLD-075 | 1 |
 | BLD-076 | 1 |
 | BLD-078 | 1 |
+| BLD-081 | 1 |
 | BOOT-002 | 1 |
 | BOOT-006 | 1 |
 | BOOT-019 | 1 |
@@ -3831,34 +3831,7 @@
 | PWR-016 | 1 |
 | PWR-018 | 1 |
 | PWR-025 | 1 |
-| Q-004 | 1 |
-| Q-006 | 1 |
-| Q-009 | 1 |
-| Q-010 | 1 |
-| Q-011 | 1 |
-| Q-012 | 1 |
-| Q-014 | 1 |
-| Q-015 | 1 |
-| Q-016 | 1 |
-| Q-017 | 1 |
-| Q-019 | 1 |
-| Q-025 | 1 |
-| Q-026 | 1 |
-| Q-027 | 1 |
-| Q-030 | 1 |
-| Q-031 | 1 |
-| Q-033 | 1 |
-| Q-034 | 1 |
-| Q-036 | 1 |
-| Q-038 | 1 |
-| Q-040 | 1 |
-| Q-041 | 1 |
-| Q-042 | 1 |
-| Q-043 | 1 |
-| Q-044 | 1 |
-| Q-045 | 1 |
-| Q-049 | 1 |
-| Q-050 | 1 |
+| Q-056 | 1 |
 | REL-009 | 1 |
 | REL-020 | 1 |
 | REL-027 | 1 |

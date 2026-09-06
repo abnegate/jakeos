@@ -9,7 +9,7 @@
 | OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | blocked | S | OBS-011, Q-001 |
 | OBS-002 | Trace and inspect Capability grant, derivation, transfer and revocation | todo | blocked | M | OBS-008, OBS-006, CAP-001, CAP-003 |
 | OBS-003 | Decide the tracing substrate and its measured overhead ceiling | todo | blocked | S | OBS-010 |
-| OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | blocked | M | OBS-011, IPC-012 |
+| OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | blocked | M | OBS-011, IPC-012, BLD-082 |
 | OBS-005 | Expose Component and Task inspection data including the awaited Operation | todo | blocked | M | OBS-006, CMP-005, TSK-021, TSK-020 |
 | OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | blocked | L | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 |
 | OBS-007 | Expose Channel, Operation, MemoryObject and ResourceDomain inspection data | todo | blocked | L | OBS-006, IPC-009, TSK-013, MEM-005, SCH-007, SCH-009 |

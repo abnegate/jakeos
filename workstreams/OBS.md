@@ -114,7 +114,7 @@ eBPF as sched_ext or network policy (KRN-024). Export format (OBS-015). Implemen
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: OBS-011, IPC-012
+- Depends on: OBS-011, IPC-012, BLD-082
 - Baseline: §14, §24
 
 OBS owns the event-id, method-name and message-type schema that IDL codegen emits so every Channel call appears in `os trace` by Interface and method rather than as an anonymous send (§14, §24). The V0 demo trace must show `Channel<Request>` by name. IPC owns the compiler; this task is the OBS metadata plugin and schema.

@@ -4,6 +4,7 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5662 | none |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5611 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5477 | none |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5329 | none |
@@ -18,12 +19,12 @@
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4793 | none |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4519 | none |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4318 | none |
+| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | V0 | M | 4313 | none |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4253 | none |
 | WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4203 | none |
 | CAP-007 | Decide explicit grant sources replacing ambient permissions | V0 | S | 4096 | none |
 | ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3775 | none |
 | PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3701 | none |
-| LAB-003 | Procure and rack the reference AMD desktop with power and capture | V0 | M | 3373 | none |
 | SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | V0.5 | S | 3322 | none |
 | BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 3221 | none |
 | STO-030 | Write the storage threat analysis: chooser spoofing, TOCTOU across snapshots, store poisoning | V0.5 | S | 3198 | none |
@@ -33,7 +34,6 @@
 | SVC-003 | Decide native init versus retained initramfs/systemd for early boot | V0.5 | S | 2907 | none |
 | UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | V0.5 | S | 2109 | none |
 | GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2034 | none |
-| SDK-006 | Implement the os CLI skeleton for inspect and trace | V0 | S | 1830 | none |
 | GOV-016 | Publish the userspace dependency license allowlist | V0.5 | S | 1693 | none |
 | CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1647 | none |
 | LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1617 | none |
@@ -49,6 +49,8 @@
 | LAB-006 | Procure external power meters for the energy-measurement path | V0.5 | S | 697 | none |
 | OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | V0 | M | 679 | none |
 | HET-002 | Survey heterogeneous dispatch models before the ComputeDevice API | V0 | M | 491 | none |
+| GOV-039 | Compare legal-entity jurisdictions for export, GDPR and tax | V1 | S | 475 | none |
+| WIN-008 | Decide that Win32 emulation stays in userspace | V1 | S | 419 | none |
 | WIN-005 | Decide a clean-room policy for the Windows Personality | V1 | S | 411 | none |
 | GOV-020 | Decide codec and proprietary-font shipping and patent policy | V1 | M | 381 | none |
 | CAP-026 | Survey KeyKOS, EROS, CapROS, Capsicum, Barrelfish and Theseus Capability patterns | V0.5 | M | 326 | none |
@@ -60,7 +62,6 @@
 | GOV-040 | Decide the license for published benchmark and HCL datasets | V2 | S | 100 | none |
 | CAP-028 | Evaluate Kani, TLA+ and Alloy for modelling the Capability derivation core | V0.5 | S | 49 | none |
 | GOV-029 | Add See also citations so gates can name LATER tasks | V1 | S | 1 | none |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 0 | none |
 | GOV-014 | Populate the repository-alias Register from the hosting Decision | V0.5 | S | 0 | none |
 | GOV-028 | Implement roadmap stale, slipped, history and dropped reasons | V1 | S | 0 | none |
 | HW-090 | Park NFC, WWAN and eSIM hardware enablement after 1.0 | LATER | S | 0 | none |

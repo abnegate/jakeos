@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| GFX-001 | Inventory retained DRM/KMS drivers and pin the no-native-GPU-stack rule | todo | blocked | S | KRN-017, HW-003 |
+| GFX-001 | Inventory retained DRM/KMS drivers and pin the no-native-GPU-stack rule | todo | blocked | S | KRN-017, HW-003, BLD-082 |
 
 ## V0.5
 
@@ -26,10 +26,10 @@
 | GFX-013 | Decide compositor infrastructure reuse versus build-anew | todo | blocked | S | GFX-032 |
 | GFX-014 | Decide explicit GPU synchronisation as the only path for native Surfaces | todo | blocked | S | GFX-036 |
 | GFX-015 | Decide the compositor frame scheduling model | todo | blocked | S | GFX-012 |
-| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | blocked | S | GFX-036, Q-034, SDK-097 |
+| GFX-016 | Decide the GPU userspace strategy from the Mesa-behind-capabilities Spike | todo | blocked | S | GFX-036, SDK-097 |
 | GFX-017 | Decide the GPU API native applications render with | todo | blocked | S | GFX-036 |
 | GFX-018 | Decide compositor rendering backend policy: Vulkan-only or Vulkan plus GL | todo | blocked | S | GFX-035, HW-003 |
-| GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | blocked | S | GFX-033, Q-027 |
+| GFX-019 | Decide which compositor state survives restart and where it is checkpointed | todo | blocked | S | GFX-033 |
 | GFX-020 | Decide whether Wayland is served by the compositor or by a bridge Component | todo | blocked | S | GFX-012 |
 | GFX-021 | Demonstrate compositor crash, restart, rebind and continued rendering | todo | blocked | S | GFX-007, APP-003 |
 | GFX-022 | Define and implement Display with mode, refresh, scaling, HDR and VRR metadata | todo | blocked | M | GFX-018 |

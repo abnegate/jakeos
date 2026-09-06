@@ -322,7 +322,7 @@ Backend Decision (HET-003). Production GPU ComputeDevice (HET-015). Native GPU d
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: HET-001, HET-002, Q-033
+- Depends on: HET-001, HET-002
 - Baseline: §7, §37, §39
 - Decision: D-0118
 

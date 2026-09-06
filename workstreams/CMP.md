@@ -338,7 +338,7 @@ Native replacement of the wrapper (CMP-042). Fast-path tuning (CMP-034).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013
+- Depends on: CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013, BLD-082
 - Baseline: §16, §32, §59
 - Benchmarks: B-013
 
@@ -401,7 +401,7 @@ Syscall filter on native Components (ABI-035). Capability mint and derive (CAP).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: CMP-007, CMP-009, CMP-006, ABI-018
+- Depends on: CMP-007, CMP-009, CMP-006, ABI-018, BLD-082
 - Baseline: §1, §3, §53, §57
 - Invariants: I-006, I-014, I-019, I-025, I-049
 
@@ -1087,7 +1087,7 @@ OCI isolation cost as a separate metric (BEN B-015). Fast-path implementation (C
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-006, LNX-060, Q-010
+- Depends on: CMP-006, LNX-060
 - Baseline: §3, §10, §46, §48
 - Decision: D-0067
 - Invariants: I-014, I-025

@@ -21,7 +21,7 @@ Package and SystemGeneration composition (PKG). Chooser UI, File Browser chrome,
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ABI-005, CAP-005, CAP-003, CAP-004, CMP-005
+- Depends on: ABI-005, CAP-005, CAP-003, CAP-004, CMP-005, BLD-082
 - Baseline: §7, §25
 - Threats: T-001, T-003
 - Invariants: I-016, I-021
@@ -425,7 +425,7 @@ Image builder consumption (INS-001). Installer wipe-versus-alongside policy (INS
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-012, SEC-007, Q-017
+- Depends on: STO-012, SEC-007
 - Baseline: §9.1, §25
 - Decision: D-0289
 
@@ -512,7 +512,7 @@ Store service implementation (STO-009). Package manifest format (PKG).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: STO-012, Q-038, Q-042
+- Depends on: STO-012
 - Baseline: §25, §45, §52
 - Decision: D-0296
 
@@ -1139,7 +1139,7 @@ LUKS/dm-crypt versus fscrypt (SEC-005). Installer FDE UI (INS).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: MEM-020, STO-038, STO-005, Q-006
+- Depends on: MEM-020, STO-038, STO-005
 - Baseline: §16, §26, §27
 - Decision: D-0288
 
@@ -1167,7 +1167,7 @@ Implementation (STO-046). Mapping coherence (MEM).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-009, PKG-007, Q-019
+- Depends on: STO-009, PKG-007
 - Baseline: §27
 - Decision: D-0294
 
@@ -1592,7 +1592,7 @@ NTFS driver (STO-060). exFAT support (STO-058).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-002, SVC-006, Q-025
+- Depends on: STO-002, SVC-006
 - Baseline: §31
 - Decision: D-0290
 

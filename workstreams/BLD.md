@@ -4,7 +4,7 @@
 - Baseline: §50, §51, §54, §55
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 81 live, 4 done, 0 in-progress, 77 todo, 0 dropped. Ready: 2. Blocked: 75. Weighted: 2%.
+Tasks: 82 live, 4 done, 0 in-progress, 78 todo, 0 dropped. Ready: 2. Blocked: 76. Weighted: 2%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -173,7 +173,7 @@ Forge hosting (GOV-001). Kernel fork bootstrap (KRN-010). Build orchestrator (BL
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BLD-012, BLD-009
+- Depends on: BLD-012, BLD-009, BLD-082
 - Baseline: §10, §12, §16, §59
 
 V0 Component, Channel, Capability and MemoryObject tests must run inside the booted image, not only on the Linux host (§59). The agent starts as a Component in the guest, runs the nominated suite, and streams structured results including task IDs over virtio-serial or vsock to the harness.
@@ -2394,6 +2394,35 @@ Repository topology (BLD-005). Build orchestrator (BLD-002). Kernel tree layout 
 #### Verification
 - Unit: `roadmap:tests/verification_alias_*` rejecting an unknown alias and an unknown matrix entry.
 - Review: BLD and GOV leads sign off on the pull request.
+
+#### Evidence
+- none
+
+### BLD-082 · Create the jakeos-platform monorepo with the workspace skeleton, licences and CI
+- Type: build
+- Milestone: V0
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: BLD-081, BLD-005, BLD-002, GOV-001, GOV-003
+- Baseline: §50, §56.4
+- Invariants: I-099
+
+Every Verification line outside the kernel names a path inside the jakeos-platform monorepo (`runtime:`, `sdk:`, `idl:`, `bench:` and the other aliases in `registers/repos.md`), yet no repository exists for those paths to live in; the first V0 tasks that produce user-space code (the `os` CLI, the IDL compiler, the runtime crate, the benchmark harnesses) would each create it ad hoc. This task creates github.com/abnegate/jakeos-platform once, from the layout document of BLD-081, so every later task lands crates into a tree that already has the directory skeleton, the licences decided by GOV-003, the Cargo workspace decided by BLD-002 and a CI workflow that runs the layout check, `cargo fmt --check`, `cargo clippy -D warnings` and `cargo test` on the GitHub-hosted runners decided by BLD-003.
+
+#### Out of scope
+Layout and alias grammar (BLD-081). Kernel repository (KRN-010). Self-hosted KVM and hardware runners (BLD-010, BLD-048). Reproducible image builds (BLD-009). Package repository and signing (REL).
+
+#### Acceptance criteria
+- [ ] github.com/abnegate/jakeos-platform exists with `main` protected, a root `Cargo.toml` workspace, one directory per alias in `registers/repos.md` below `platform` each containing a `README.md` stating its owning prefix, and no crate outside the BLD-081 layout.
+- [ ] `LICENSE` files match D-0102: MIT at the root and in every crate directory; a CI check fails a pull request that adds a file whose SPDX header names another licence.
+- [ ] A pull request that adds a top-level directory or crate outside the BLD-081 layout fails CI; the fixture pull request that proves it is linked from the repository README.
+- [ ] CI on GitHub-hosted runners runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` for the workspace on every pull request and the first green run is linked from Evidence.
+- [ ] `registers/repos.md` URLs for every alias below `platform` resolve to an existing directory of the new repository.
+
+#### Verification
+- Integration: `platform:.github/workflows/ci.yml` green on the initial pull request; `platform:tools/layout-check` fixture rejecting an undocumented top-level directory.
+- Review: BLD and GOV leads sign off on the initial pull request.
 
 #### Evidence
 - none

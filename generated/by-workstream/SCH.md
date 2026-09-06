@@ -26,8 +26,8 @@
 | SCH-013 | Benchmark wakeup latency per intent class under contention | todo | blocked | M | SCH-010, SCH-026, SCH-025, SCH-001, BEN-005 |
 | SCH-014 | Implement budget exhaustion handling and owner notification per ResourceDomain | todo | blocked | L | SCH-016, SVC-015, SCH-008, SCH-009, SCH-006 |
 | SCH-015 | Run the compositor under Deadline intent aligned to display vblank | todo | blocked | M | SCH-025, GFX-015, GFX-029 |
-| SCH-016 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | todo | blocked | S | SCH-008, SCH-009, SCH-006, Q-015 |
-| SCH-017 | Decide intent and priority inheritance across Channel handoff | todo | blocked | S | SCH-010, IPC-010, SCH-011, Q-014 |
+| SCH-016 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | todo | blocked | S | SCH-008, SCH-009, SCH-006 |
+| SCH-017 | Decide intent and priority inheritance across Channel handoff | todo | blocked | S | SCH-010, IPC-010, SCH-011 |
 | SCH-018 | Export per-ResourceDomain usage and scheduling-delay data for inspection | todo | blocked | M | SCH-007, OBS-007, SCH-010 |
 | SCH-019 | Implement ResourceDomain delegation and attenuation through Capability | todo | blocked | M | SCH-002, SCH-007, CAP-003 |
 | SCH-020 | Add ResourceDomain latency policy setting default intent and deadlines | todo | blocked | M | SCH-010, SCH-025, SCH-007 |

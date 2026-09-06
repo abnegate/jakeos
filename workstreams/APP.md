@@ -577,7 +577,7 @@ Workspaces and overview (APP-050). Panel taskbar (APP-043). Wayland switcher pro
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: APP-021, LNX-031, Q-044
+- Depends on: APP-021, LNX-031
 - Baseline: §56.5, §61
 - Decision: D-0022
 - Risks: R-025
@@ -607,7 +607,7 @@ WebView implementation (APP-049). Personality GPU browser (LNX-031). URL dispatc
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: APP-003, LNX-032, SDK-040, Q-045
+- Depends on: APP-003, LNX-032, SDK-040
 - Baseline: §56.5, §61
 - Decision: D-0025
 - Risks: R-025, R-026
@@ -1704,7 +1704,7 @@ Search Component (APP-027). Store index (STO-065). Semantic Workspace.search (SE
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-079, PKG-022, Q-056
+- Depends on: PKG-079, PKG-022
 - Baseline: §31, §62
 - Risks: R-084
 

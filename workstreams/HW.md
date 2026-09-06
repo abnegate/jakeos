@@ -116,7 +116,7 @@ Lab site and racking (LAB-002, LAB-003). Public vendor purchase ranking (HW-044)
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: HW-002, KRN-017
+- Depends on: HW-002, KRN-017, BLD-082
 - Baseline: §2, §5.1, §55
 - Invariants: I-010, I-054
 
@@ -145,7 +145,7 @@ Merge-blocking regression runs (HW-005). DRM inventory (GFX-001). Whole-kernel r
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: HW-004, HW-001, KRN-014
+- Depends on: HW-004, HW-001, KRN-014, BLD-082
 - Baseline: §5.1, §55
 - Risks: R-013
 - Invariants: I-054, I-098

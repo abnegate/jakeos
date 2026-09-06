@@ -842,6 +842,34 @@ fn hardware_first_milestone_outside_scope_warns() {
 }
 
 #[test]
+fn question_with_a_consumer_but_no_answering_task_warns() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/questions.md",
+        "### Q-001 · Which forge hosts the code\n- Workstream: GOV\n- Status: open\n- Answered by: none\nGitHub or a self-hosted forge.\n",
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace("- Depends on: GOV-001\n", "- Depends on: GOV-001, Q-001\n");
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "W-007"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    let questions = common::read(&repo.path, "registers/questions.md")
+        .replace("- Answered by: none", "- Answered by: GOV-001");
+    common::write(&repo.path, "registers/questions.md", &questions);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "W-007"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
+#[test]
 fn task_depending_on_the_question_it_answers_warns() {
     let repo = common::materialize_valid();
     common::write(
@@ -952,4 +980,80 @@ fn messages(entries: &[roadmap::diagnostic::Diagnostic]) -> String {
         .map(|entry| format!("{} {}", entry.code, entry.message))
         .collect::<Vec<_>>()
         .join("; ")
+}
+
+#[test]
+fn done_task_cannot_verify_on_an_entry_nobody_provided() {
+    let repo = common::materialize_valid();
+    common::write(
+        &repo.path,
+        "registers/hardware.md",
+        "### H-002 · Desktop\n- Kind: desktop\n- Tier: 1\n- CPU: x86-64\n- GPU: none\n- Network: wired\n- First milestone: V0\n- Matrix entry: hw-h002\n- Provided by: GOV-001\n- Status: planned\nReference machine.\n",
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace(
+            "- Type: build\n- Milestone: V0\n- Status: todo",
+            "- Type: build\n- Milestone: V0\n- Status: done",
+        )
+        .replace("- Depends on: GOV-001\n", "- Depends on: none\n")
+        .replace(
+            "- [ ] `roadmap check` validates the fixture repository.",
+            "- [x] `roadmap check` validates the fixture repository.",
+        )
+        .replace(
+            "- Unit: `tools/roadmap` tests on the local crate.",
+            "- Integration: `tools/roadmap` tests on `hw-h002`.",
+        )
+        .replace(
+            "#### Evidence\n- none\n",
+            "#### Evidence\n- https://example.org/run/1\n",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "E-116"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    let hardware = common::read(&repo.path, "registers/hardware.md")
+        .replace("- Provided by: GOV-001", "- Provided by: none");
+    common::write(&repo.path, "registers/hardware.md", &hardware);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "E-116"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    assert!(
+        common::has_code(&entries, "W-018"),
+        "{:?}",
+        common::codes(&entries)
+    );
+}
+
+#[test]
+fn verification_on_an_undeclared_matrix_entry_warns() {
+    let repo = common::materialize_valid();
+    let gov = common::read(&repo.path, "workstreams/GOV.md").replace(
+        "- Unit: `tools/roadmap` tests on the local crate.",
+        "- Unit: `tools/roadmap` tests on `qemu-x86_64`.",
+    );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "W-019"),
+        "{:?}",
+        common::codes(&entries)
+    );
+    common::write(
+        &repo.path,
+        "registers/hardware.md",
+        "### H-001 · QEMU profile\n- Kind: qemu\n- Tier: none\n- CPU: qemu64\n- GPU: none\n- Network: virtio-net\n- First milestone: V0\n- Matrix entry: qemu-x86_64\n- Provided by: GOV-001\n- Status: planned\nCI profile.\n",
+    );
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "W-019"),
+        "{:?}",
+        common::codes(&entries)
+    );
 }

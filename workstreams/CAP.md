@@ -280,7 +280,7 @@ Syscall packing of the handle word (ABI-010). Rights-bit encoding (CAP-010). Lay
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: CAP-014, CAP-015, TSK-003, SEC-002, Q-004
+- Depends on: CAP-014, CAP-015, TSK-003, SEC-002
 - Baseline: §7
 - Decision: D-0058
 - Risks: R-003
@@ -624,7 +624,7 @@ Machine-checked model in CI (CAP-035). Tooling choice (CAP-028). Fuzz targets fo
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CAP-026, CAP-007, SEC-007, Q-016
+- Depends on: CAP-026, CAP-007, SEC-007
 - Baseline: §7, §9.1, §25
 - Decision: D-0052
 - Threats: T-002
@@ -1447,7 +1447,7 @@ Page generation and site (DOC-023, DOC-010). ABI entry-point list (ABI-046).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: CAP-008, CAP-021, IPC-056, Q-036
+- Depends on: CAP-008, CAP-021, IPC-056
 - Baseline: §7, §43, §57
 - Decision: D-0053
 - Invariants: I-047

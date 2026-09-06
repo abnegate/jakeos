@@ -222,7 +222,7 @@ MemoryObject backing and transfer enforcement (MEM-010, MEM-003). Production low
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: IPC-016, IPC-015, BEN-007, BEN-005
+- Depends on: IPC-016, IPC-015, BEN-007, BEN-005, BLD-082
 - Baseline: §14, §54, §53
 - Benchmarks: B-004, B-005
 - Invariants: I-061
@@ -343,7 +343,7 @@ Client rebind and retry codegen (IPC-028). Supervisor restart (SVC). Panic abort
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: IPC-006, IPC-007, IPC-004, IPC-005, ABI-007
+- Depends on: IPC-006, IPC-007, IPC-004, IPC-005, ABI-007, BLD-082
 - Baseline: §14, §24, §53
 
 Front end (parse, typecheck, move/borrow/share annotations) plus the first backend: generated wire representation, client and server stubs, ownership semantics and per-method tracing metadata so IPC calls appear as semantic spans in `os trace` (§14, §24). The IDL is the single schema source; emitted headers carry the generated-code license exception.
@@ -372,7 +372,7 @@ Async proxy semantics (IPC-013). C backend (IPC-048). Plugin API (IPC-047). Trac
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: IPC-012, TSK-011, TSK-010
+- Depends on: IPC-012, TSK-011, TSK-010, BLD-082
 - Baseline: §12, §14, §59
 - Invariants: I-030
 
@@ -548,7 +548,7 @@ IDL selection (IPC-006). Wasm Component Model study (WASM-002).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: IPC-012, IPC-013
+- Depends on: IPC-012, IPC-013, BLD-082
 - Baseline: §12
 - Explores: S-014
 - Risks: R-005
@@ -608,7 +608,7 @@ Choosing the format (IPC-007). Production validation hardening (IPC-037).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: IPC-007, IPC-002, IPC-012, ABI-004
+- Depends on: IPC-007, IPC-002, IPC-012, ABI-004, BLD-082
 - Baseline: §12, §65
 - Invariants: I-041
 
@@ -1196,7 +1196,7 @@ V4 freeze (IPC-064). ABI candidate review process (ABI-034).
 #### Evidence
 - none
 
-### IPC-042 · Freeze the Layer 2 Interface-evolution rules for SDK v1
+### IPC-042 · Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1
 - Type: adr
 - Milestone: V1
 - Status: todo

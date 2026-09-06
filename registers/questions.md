@@ -23,7 +23,7 @@ Whether Phase C, D or E of §6 is a hard requirement for the 1.0 release gate.
 ### Q-004 · What are revocation semantics
 - Workstream: CAP
 - Status: open
-- Answered by: none
+- Answered by: CAP-009
 Eager versus lazy invalidation, revocation of in-flight operations, and cost bounds on revocation trees.
 
 ### Q-005 · What is the inline versus MemoryObject size threshold
@@ -35,7 +35,7 @@ Size threshold and heuristics for an inline small message versus MemoryObject tr
 ### Q-006 · What are persistent MemoryObject semantics
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-040
 Relation to the storage model, crash consistency, and content addressing of persistent MemoryObjects.
 
 ### Q-007 · What are encrypted MemoryObject semantics
@@ -53,25 +53,25 @@ Revocation on return, timeouts, or trust in the borrower.
 ### Q-009 · How does cancellation treat hardware-committed Operations
 - Workstream: TSK
 - Status: open
-- Answered by: none
+- Answered by: TSK-017
 In-flight DMA, GPU dispatch and network send: whether cancel waits, fails, or returns best-effort, and how partially completed results are reported.
 
 ### Q-010 · How do personality threads map onto native Tasks
 - Workstream: CMP
 - Status: open
-- Answered by: none
+- Answered by: CMP-036
 Linux personality threads and Windows personality threads versus native Tasks and execution contexts.
 
 ### Q-011 · What is cleanup for a cancelled Task holding objects
 - Workstream: CMP
 - Status: open
-- Answered by: none
+- Answered by: TSK-003
 Capabilities, MemoryObjects, or partially transferred ownership: released immediately, on Task exit, or by the owner.
 
 ### Q-012 · How does cancellation treat uninterruptible Linux paths
 - Workstream: CMP
 - Status: open
-- Answered by: none
+- Answered by: TSK-003
 A Task blocked in an inherited Linux kernel path that cannot be interrupted (uninterruptible sleep).
 
 ### Q-013 · Which scheduling intents require a capability
@@ -83,25 +83,25 @@ Whether Realtime and LowLatency require a capability to request, and how an unpr
 ### Q-014 · How does intent inherit across a Channel handoff
 - Workstream: SCH
 - Status: open
-- Answered by: none
+- Answered by: SCH-017
 So a LowLatency client calling a shared service does not queue behind Background work in the service.
 
 ### Q-015 · What happens on ResourceDomain budget exhaustion
 - Workstream: SCH
 - Status: open
-- Answered by: none
+- Answered by: SCH-016
 Memory reclaim, throttling, Operation failure, or Component termination, and how it is reported to the owner.
 
 ### Q-016 · How do persistent grants survive restart
 - Workstream: CAP
 - Status: open
-- Answered by: none
+- Answered by: CAP-020
 How an application retains access to a user-selected object across restarts (durable capability, recent-files list) and how the user revokes it.
 
 ### Q-017 · How does save-as grant create authority
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-015
 How an application obtains authority to create a new file in a user-chosen location without directory access.
 
 ### Q-018 · How do personalities present native storage objects
@@ -113,7 +113,7 @@ POSIX paths and Windows drive letters while respecting capability scope.
 ### Q-019 · What is content-store garbage collection
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-041
 Root set (live generations, installed packages, pinned objects), collection policy, and user control.
 
 ### Q-020 · How are compatibility applications packaged immutably
@@ -149,19 +149,19 @@ Atomicity of kernel plus driver plus firmware updates within a generation, inclu
 ### Q-025 · How is configuration captured for restore
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-056
 Structured settings store versus snapshotting ApplicationData so configuration participates in restore.
 
 ### Q-026 · How does selective restore avoid inconsistency
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: PKG-071
 Restore only apps, only OS, and how a partial restore avoids inconsistent combinations.
 
 ### Q-027 · Which compositor state is restored after restart
 - Workstream: GFX
 - Status: open
-- Answered by: none
+- Answered by: GFX-019
 Window geometry, stacking order, focus, workspace, and where it is checkpointed.
 
 ### Q-028 · How does a user-space driver coexist with Linux device nodes
@@ -172,20 +172,20 @@ Window geometry, stacking order, focus, workspace, and where it is checkpointed.
 
 ### Q-029 · What is the visible-UI measurement boundary
 - Workstream: BEN
-- Status: open
-- Answered by: none
+- Status: answered
+- Answered by: BEN-016
 The measurement boundary for visible UI is the first compositor presentation of a non-blank frame, so startup numbers are comparable across applications and systems. B-016 cites this entry.
 
 ### Q-030 · How are environment.yaml version specifiers locked
 - Workstream: ENV
 - Status: open
-- Answered by: none
+- Answered by: ENV-008
 How specifiers such as language and database versions are locked, where the lock file lives, and how service packages are discovered.
 
 ### Q-031 · How does an environment expose service endpoints
 - Workstream: ENV
 - Status: open
-- Answered by: none
+- Answered by: ENV-006
 How the environment's network namespace exposes service endpoints to the developer's shell, IDE and browser without granting ambient network authority.
 
 ### Q-032 · Is Docker socket API compatibility required
@@ -197,13 +197,13 @@ Whether Docker socket API compatibility is required for developer adoption or wh
 ### Q-033 · How does ComputeDevice relate to ComputeQueue
 - Workstream: HET
 - Status: open
-- Answered by: none
+- Answered by: HET-011
 Whether a queue is derived from a device capability, and who owns scheduling between them.
 
 ### Q-034 · How do native components use Mesa without DRM
 - Workstream: GFX
 - Status: open
-- Answered by: none
+- Answered by: GFX-016
 Mesa depends on libdrm and Linux device nodes; native components must not expose DRM to the application.
 
 ### Q-035 · Are semantic actions and accessibility actions one tree
@@ -215,7 +215,7 @@ Whether they are one tree or two, and how they stay consistent.
 ### Q-036 · How is capability unforgeability preserved across machines
 - Workstream: CAP
 - Status: open
-- Answered by: none
+- Answered by: CAP-047
 Cryptographic capabilities, sturdy references, or proxies.
 
 ### Q-037 · Is an AI assistant a distinct security principal
@@ -227,7 +227,7 @@ Whether an AI assistant is a distinct security principal from the user for audit
 ### Q-038 · How is file.type determined for automation
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-018
 Typed object kinds versus MIME sniffing, and where the type registry lives.
 
 ### Q-039 · How do Linux-personality processes acquire capabilities
@@ -239,37 +239,37 @@ Default compatibility capability profile, path-to-capability mapping, and how th
 ### Q-040 · Are 32-bit x86 Windows applications supported at 1.0
 - Workstream: WIN
 - Status: open
-- Answered by: none
+- Answered by: WIN-010
 WoW64, and what kernel support that requires. Tied to the V1 ia32 decision.
 
 ### Q-041 · How do Windows installers become installed applications
 - Workstream: WIN
 - Status: open
-- Answered by: none
+- Answered by: WIN-033
 How `setup.exe` writing into a prefix becomes an installed application visible in the launcher and system history.
 
 ### Q-042 · Where do typed object kinds such as Image come from
 - Workstream: STO
 - Status: open
-- Answered by: none
+- Answered by: STO-018
 A platform type registry so `files.choose::<Image>()` and `UserSelected<T>` share one type system.
 
 ### Q-043 · What is the kernel-level anti-cheat policy
 - Workstream: WIN
 - Status: open
-- Answered by: none
+- Answered by: WIN-002
 Refuse, VM fallback, or vendor engagement, for kernel-level anti-cheat drivers that are incompatible with the capability model.
 
 ### Q-044 · What is the browser strategy
 - Workstream: APP
 - Status: open
-- Answered by: none
+- Answered by: APP-019
 Chromium or Firefox through the Linux personality, a native port, or both, and the criteria for switching.
 
 ### Q-045 · What is the IDE strategy
 - Workstream: APP
 - Status: open
-- Answered by: none
+- Answered by: APP-020
 VS Code or JetBrains through the Linux personality versus a native editor or IDE, and the criteria for switching.
 
 ### Q-046 · What are the V4 and 1.0 criteria the baseline omitted
@@ -293,13 +293,13 @@ Whether virtualization is `Capability<VirtualMachine>`, and whether compatibilit
 ### Q-049 · Which jurisdiction should the legal entity be in
 - Workstream: GOV
 - Status: open
-- Answered by: none
+- Answered by: GOV-039
 Export controls, GDPR, trademark cost and tax treatment of donations.
 
 ### Q-050 · Does in-kernel PE loading conflict with Wine licensing
 - Workstream: WIN
 - Status: open
-- Answered by: none
+- Answered by: WIN-008
 Whether NT-object or PE-loading emulation in the GPLv2 kernel conflicts with LGPL Wine components, or whether all Win32 emulation must remain in userspace.
 
 ### Q-051 · How does the fork track upstream's minimum Rust version
@@ -335,7 +335,7 @@ OEM partnerships or a hardware certification programme before 1.0, or leave it p
 ### Q-056 · Is application-state restore achievable
 - Workstream: PKG
 - Status: open
-- Answered by: none
+- Answered by: APP-056
 Checkpointing, application-cooperative state interfaces, or not at all, and whether to scope it as a 1.0 non-goal if evidence is negative.
 
 <!-- roadmap:generated:begin status -->
@@ -369,7 +369,7 @@ Checkpointing, application-cooperative state interfaces, or not at all, and whet
 | Q-026 | How does selective restore avoid inconsistency | open |
 | Q-027 | Which compositor state is restored after restart | open |
 | Q-028 | How does a user-space driver coexist with Linux device nodes | open |
-| Q-029 | What is the visible-UI measurement boundary | open |
+| Q-029 | What is the visible-UI measurement boundary | answered |
 | Q-030 | How are environment.yaml version specifiers locked | open |
 | Q-031 | How does an environment expose service endpoints | open |
 | Q-032 | Is Docker socket API compatibility required | open |

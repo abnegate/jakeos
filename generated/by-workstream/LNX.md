@@ -6,8 +6,8 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | blocked | M | KRN-002, KRN-010, KRN-011, KRN-017 |
-| LNX-002 | Run the L0 Corpus with zero regressions | todo | blocked | M | LNX-001, BLD-012, KRN-014, BEN-006 |
+| LNX-001 | Retain Linux syscall ABI for unmodified userspace | todo | blocked | M | KRN-002, KRN-010, KRN-011, KRN-017, BLD-082 |
+| LNX-002 | Run the L0 Corpus with zero regressions | todo | blocked | M | LNX-001, BLD-012, KRN-014, BEN-006, BLD-082 |
 
 ## V0.5
 

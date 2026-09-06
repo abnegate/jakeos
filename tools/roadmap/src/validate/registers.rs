@@ -6,15 +6,9 @@ use std::collections::BTreeSet;
 
 pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
     let mut referenced_benchmarks: BTreeSet<String> = BTreeSet::new();
-    let mut bound_questions: BTreeSet<String> = BTreeSet::new();
     for task in &repo.tasks {
         for id in task.list("Benchmarks") {
             referenced_benchmarks.insert(id);
-        }
-        for id in task.depends_on() {
-            if id.starts_with("Q-") {
-                bound_questions.insert(id);
-            }
         }
     }
     for milestone in &repo.milestones {
@@ -143,15 +137,14 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
                         ));
                     }
                     if entry.status() == "open"
-                        && !bound_questions.contains(&entry.id)
                         && is_none(entry.fields.value_or_empty("Answered by"))
                     {
                         diagnostics.push(Diagnostic::warning(
                             &register.file,
                             entry.line,
                             code::QUESTION_UNBOUND,
-                            format!("open question `{}` is bound to no task", entry.id),
-                            "add the Q-id to a consumer's Depends on, name the answering task in Answered by, or withdraw it",
+                            format!("open question `{}` names no answering task", entry.id),
+                            "name the adr or spike that answers it in Answered by (a consumer in Depends on does not answer it), or withdraw it",
                         ));
                     }
                     if let Some(field) = entry.fields.get("Answered by")
@@ -177,6 +170,54 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
                     }
                 }
                 "H" => {
+                    let providers = entry.list("Provided by");
+                    let declares_entry = !is_none(entry.fields.value_or_empty("Matrix entry"));
+                    if declares_entry && providers.is_empty() {
+                        diagnostics.push(Diagnostic::warning(
+                            &register.file,
+                            entry.line,
+                            code::HARDWARE_UNPROVIDED,
+                            format!(
+                                "hardware `{}` declares a CI matrix entry but no `Provided by` task",
+                                entry.id
+                            ),
+                            "name the procurement, bring-up or CI-profile task that makes the entry real",
+                        ));
+                    }
+                    let first_milestone = entry.fields.value_or_empty("First milestone");
+                    for provider in providers {
+                        match repo.task(&provider) {
+                            None => diagnostics.push(Diagnostic::error(
+                                &register.file,
+                                entry.fields.line_of("Provided by", entry.line),
+                                code::DANGLING_REFERENCE,
+                                format!(
+                                    "`Provided by` on `{}` names unknown task `{provider}`",
+                                    entry.id
+                                ),
+                                "name an existing task",
+                            )),
+                            Some(task) => {
+                                if let (Some(first), Some(rank)) = (
+                                    repo.schema.rank(first_milestone),
+                                    repo.schema.rank(task.milestone()),
+                                ) && rank > first
+                                {
+                                    diagnostics.push(Diagnostic::warning(
+                                        &register.file,
+                                        entry.line,
+                                        code::HARDWARE_UNPROVIDED,
+                                        format!(
+                                            "hardware `{}` is first used at {first_milestone} but `{provider}` provides it at {}",
+                                            entry.id,
+                                            task.milestone()
+                                        ),
+                                        "move the provider earlier or the first milestone later",
+                                    ));
+                                }
+                            }
+                        }
+                    }
                     if let Some(field) = entry.fields.get("First milestone")
                         && !is_none(&field.value)
                         && let Some(milestone) = repo.milestone(&field.value)

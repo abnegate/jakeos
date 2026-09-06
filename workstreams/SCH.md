@@ -483,7 +483,7 @@ Frame object and explicit sync (GFX). Input-to-photon rig (LAB, BEN).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SCH-008, SCH-009, SCH-006, Q-015
+- Depends on: SCH-008, SCH-009, SCH-006
 - Baseline: §23, §32
 - Decision: D-0249
 - Threats: T-016
@@ -514,7 +514,7 @@ Implementation (SCH-014). Safe-mode UX (SVC, APP).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SCH-010, IPC-010, SCH-011, Q-014
+- Depends on: SCH-010, IPC-010, SCH-011
 - Baseline: §15, §22, §32
 - Decision: D-0252
 

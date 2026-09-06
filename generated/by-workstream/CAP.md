@@ -14,7 +14,7 @@
 | CAP-006 | Implement Capability transfer over Channels and at Component creation | todo | blocked | L | CAP-005, CAP-003, CAP-011, CMP-005 |
 | CAP-007 | Decide explicit grant sources replacing ambient permissions | todo | ready | S | SEC-002 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | todo | blocked | M | CAP-013, CAP-012, CAP-015, SEC-002 |
-| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | blocked | S | CAP-014, CAP-015, TSK-003, SEC-002, Q-004 |
+| CAP-009 | Decide revocation semantics: eager vs lazy, in-flight Operations, cost bounds | todo | blocked | S | CAP-014, CAP-015, TSK-003, SEC-002 |
 | CAP-010 | Decide rights and transfer-rights encoding including Admin authority | todo | blocked | S | CAP-013, CAP-012, SEC-002 |
 | CAP-011 | Implement rights and transfer-rights checks on every Capability Operation | todo | blocked | M | CAP-010, CAP-005 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | todo | ready | S | none |
@@ -30,7 +30,7 @@
 | CAP-017 | Gate persistent background execution behind Capability<BackgroundExecution> | todo | blocked | M | CAP-010, CAP-005, CAP-011 |
 | CAP-018 | Benchmark Capability mint, derive, transfer and revocation cost | todo | blocked | M | CAP-003, CAP-004, CAP-006, CAP-009, BEN-005, BEN-007 |
 | CAP-019 | Write property-based tests for Capability unforgeability, typing and attenuation | todo | blocked | M | CAP-003, CAP-004, CAP-005, CAP-028 |
-| CAP-020 | Decide Capability persistence across Component restart and reboot | todo | blocked | M | CAP-026, CAP-007, SEC-007, Q-016 |
+| CAP-020 | Decide Capability persistence across Component restart and reboot | todo | blocked | M | CAP-026, CAP-007, SEC-007 |
 | CAP-021 | Decide the ABI invariants required for hardware-assisted Capability enforcement | todo | blocked | S | CAP-027, CAP-012, CAP-008, CAP-010 |
 | CAP-022 | Decide how a Component obtains its initial and later Capabilities | todo | blocked | S | CAP-007, SEC-002 |
 | CAP-023 | Implement the Capability discovery namespace decided in the service discovery ADR | todo | blocked | L | CAP-022, CAP-005, CAP-006 |
@@ -72,7 +72,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | CAP-046 | Document every Capability Object type and right for the Layer 1 reference | todo | blocked | M | CAP-036, CAP-031, DOC-010 |
-| CAP-047 | Decide how Capability unforgeability survives machine boundaries | todo | blocked | S | CAP-008, CAP-021, IPC-056, Q-036 |
+| CAP-047 | Decide how Capability unforgeability survives machine boundaries | todo | blocked | S | CAP-008, CAP-021, IPC-056 |
 | CAP-048 | Implement one-time and time-bounded Capability grants with per-application history | todo | blocked | M | CAP-037, CAP-020, SEC-007, CAP-001 |
 | CAP-049 | Isolate persistent grant stores per user session | todo | blocked | M | CAP-037, SEC-042, SEC-028 |
 

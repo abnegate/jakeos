@@ -169,7 +169,7 @@ Full grammar and coupling rules: `CONVENTIONS.md` section 10.
 | D-0141 | Decide the Interface-evolution rules for Layer 2 Interfaces (prototyped state) | proposed | IPC-002 | none |
 | D-0142 | Select the small-message fast-path technique from measured prototypes | proposed | IPC-003 | S-012 |
 | D-0143 | Freeze the Channel Layer 1 ABI Surface | proposed | IPC-064 | none |
-| D-0144 | Freeze the Layer 2 Interface-evolution rules for SDK v1 | proposed | IPC-042 | S-014 |
+| D-0144 | Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1 | proposed | IPC-042 | S-014 |
 | D-0145 | Decide whether IDL-generated code is committed or generated at build time | proposed | IPC-004 | none |
 | D-0146 | Decide that IDL compiler output is owned by its user with no copyleft obligation | proposed | IPC-005 | none |
 | D-0147 | Decide how the IDL language itself is versioned | proposed | IPC-055 | none |

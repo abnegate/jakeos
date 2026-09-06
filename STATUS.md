@@ -9,7 +9,7 @@
 | ABI | 54 | 1 | 0 | 53 | 0 | 4 | 49 | 1% |
 | CAP | 53 | 0 | 0 | 53 | 0 | 6 | 47 | 0% |
 | CMP | 55 | 4 | 0 | 51 | 0 | 4 | 47 | 5% |
-| TSK | 53 | 1 | 0 | 52 | 0 | 3 | 49 | 1% |
+| TSK | 53 | 1 | 0 | 52 | 0 | 4 | 48 | 1% |
 | IPC | 71 | 0 | 0 | 71 | 0 | 1 | 70 | 0% |
 | MEM | 56 | 1 | 0 | 55 | 0 | 1 | 54 | 1% |
 | SCH | 61 | 0 | 0 | 61 | 0 | 0 | 61 | 0% |
@@ -23,7 +23,7 @@
 | ACC | 37 | 0 | 0 | 37 | 0 | 0 | 37 | 0% |
 | SEM | 44 | 0 | 0 | 44 | 0 | 0 | 44 | 0% |
 | LNX | 111 | 0 | 0 | 111 | 0 | 1 | 110 | 0% |
-| WIN | 86 | 1 | 0 | 85 | 0 | 2 | 83 | 0% |
+| WIN | 86 | 1 | 0 | 85 | 0 | 3 | 82 | 0% |
 | VIRT | 20 | 0 | 0 | 20 | 0 | 0 | 20 | 0% |
 | ENV | 36 | 0 | 0 | 36 | 0 | 0 | 36 | 0% |
 | HET | 30 | 0 | 0 | 30 | 0 | 1 | 29 | 0% |
@@ -34,15 +34,15 @@
 | MED | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
 | HW | 90 | 5 | 0 | 85 | 0 | 1 | 84 | 2% |
 | PWR | 30 | 0 | 0 | 30 | 0 | 0 | 30 | 0% |
-| SDK | 98 | 0 | 0 | 98 | 0 | 1 | 97 | 0% |
+| SDK | 98 | 0 | 0 | 98 | 0 | 0 | 98 | 0% |
 | APP | 69 | 0 | 0 | 69 | 0 | 0 | 69 | 0% |
 | INS | 56 | 0 | 0 | 56 | 0 | 0 | 56 | 0% |
-| BLD | 81 | 4 | 0 | 77 | 0 | 2 | 75 | 2% |
-| LAB | 27 | 1 | 0 | 26 | 0 | 2 | 24 | 1% |
+| BLD | 82 | 4 | 0 | 78 | 0 | 2 | 76 | 2% |
+| LAB | 27 | 1 | 0 | 26 | 0 | 1 | 25 | 1% |
 | BEN | 64 | 2 | 0 | 62 | 0 | 2 | 60 | 3% |
 | REL | 67 | 1 | 0 | 66 | 0 | 2 | 64 | 1% |
 | DOC | 42 | 0 | 0 | 42 | 0 | 0 | 42 | 0% |
-| GOV | 84 | 12 | 0 | 72 | 0 | 8 | 64 | 17% |
+| GOV | 84 | 12 | 0 | 72 | 0 | 9 | 63 | 17% |
 
 ## Unanchored
 
@@ -77,38 +77,6 @@ none
 - Q-001 blocks SDK-032
 - Q-001 blocks SVC-001
 - Q-001 blocks SVC-038
-- Q-004 blocks CAP-009
-- Q-006 blocks STO-040
-- Q-009 blocks TSK-017
-- Q-010 blocks CMP-036
-- Q-011 blocks TSK-003
-- Q-012 blocks TSK-003
-- Q-014 blocks SCH-017
-- Q-015 blocks SCH-016
-- Q-016 blocks CAP-020
-- Q-017 blocks STO-015
-- Q-019 blocks STO-041
-- Q-025 blocks STO-056
-- Q-026 blocks PKG-071
-- Q-027 blocks GFX-019
-- Q-029 blocks APP-001
-- Q-029 blocks CMP-018
-- Q-029 blocks CMP-019
-- Q-030 blocks ENV-008
-- Q-031 blocks ENV-006
-- Q-033 blocks HET-011
-- Q-034 blocks GFX-016
-- Q-036 blocks CAP-047
-- Q-038 blocks STO-018
-- Q-040 blocks WIN-010
-- Q-041 blocks WIN-033
-- Q-042 blocks STO-018
-- Q-043 blocks WIN-002
-- Q-044 blocks APP-019
-- Q-045 blocks APP-020
-- Q-049 blocks GOV-039
-- Q-050 blocks WIN-008
-- Q-056 blocks APP-056
 - Q-056 blocks SDK-093
 
 ## Steering signals
@@ -149,6 +117,7 @@ none
 - critical-path task BLD-012 has Owner none on the active rung
 - critical-path task BLD-013 has Owner none on the active rung
 - critical-path task BLD-081 has Owner none on the active rung
+- critical-path task BLD-082 has Owner none on the active rung
 - critical-path task BOOT-001 has Owner none on the active rung
 - critical-path task BOOT-002 has Owner none on the active rung
 - critical-path task BOOT-005 has Owner none on the active rung

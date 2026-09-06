@@ -11,7 +11,7 @@
 | BLD-003 | Decide the CI platform with self-hosted KVM runners | done | done | S | BLD-005, GOV-001 |
 | BLD-004 | Decide LLVM/Clang as the sole C compiler and reject a custom compiler | done | done | S | none |
 | BLD-005 | Decide repository topology before a second repository exists | done | done | S | GOV-001 |
-| BLD-006 | Build a guest-side test agent that reports structured results | todo | blocked | M | BLD-012, BLD-009 |
+| BLD-006 | Build a guest-side test agent that reports structured results | todo | blocked | M | BLD-012, BLD-009, BLD-082 |
 | BLD-007 | Run the hardware regression matrix on QEMU and the Reference machine | todo | blocked | M | BLD-012, KRN-014, LAB-003 |
 | BLD-008 | Document and CI-exercise the kernel debug workflow | todo | blocked | S | BLD-012 |
 | BLD-009 | Provide a hermetic one-command Linux-host build and source mirror | todo | blocked | M | BLD-002, BLD-004, BLD-005, BLD-013 |
@@ -20,6 +20,7 @@
 | BLD-012 | Define the QEMU boot matrix, boot harness and kselftests | todo | blocked | L | BLD-003, BLD-009, KRN-017 |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | todo | ready | L | BLD-004, KRN-004, KRN-010 |
 | BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | todo | ready | S | BLD-005, BLD-002 |
+| BLD-082 | Create the jakeos-platform monorepo with the workspace skeleton, licences and CI | todo | blocked | M | BLD-081, BLD-005, BLD-002, GOV-001, GOV-003 |
 
 ## V0.5
 

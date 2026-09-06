@@ -2289,7 +2289,7 @@ INS-009. BOOT lockdown and PCR policy.
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-048, PKG-060, Q-026
+- Depends on: PKG-048, PKG-060
 - Baseline: §31
 - Decision: D-0227
 

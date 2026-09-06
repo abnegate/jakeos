@@ -4,7 +4,7 @@
 - Baseline: §18, §19, §20, §21
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 53 live, 1 done, 0 in-progress, 52 todo, 0 dropped. Ready: 3. Blocked: 49. Weighted: 1%.
+Tasks: 53 live, 1 done, 0 in-progress, 52 todo, 0 dropped. Ready: 4. Blocked: 48. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -82,7 +82,7 @@ Task creation latency (B-002, BEN-001). IPC round trip (B-004, IPC-008). V1 mult
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: TSK-017, Q-011, Q-012
+- Depends on: TSK-017
 - Baseline: §19, §21, §58
 - Decision: D-0305
 - Invariants: I-018
@@ -510,7 +510,7 @@ The mapping decision (TSK-009). Multiplexer implementation (TSK-019).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: Q-009
+- Depends on: none
 - Baseline: §19
 - Explores: S-005
 

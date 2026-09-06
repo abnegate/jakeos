@@ -8,7 +8,7 @@
 | --- | --- | --- | --- | --- | --- |
 | TSK-001 | Add async-by-default ABI review Gate and blocking-syscall lint | todo | blocked | S | TSK-006, TSK-018 |
 | TSK-002 | Benchmark native Task handoff against Linux thread switch and publish | todo | blocked | M | TSK-020, BEN-007, BEN-005 |
-| TSK-003 | Decide Task cancellation model and resource cleanup | todo | blocked | M | TSK-017, Q-011, Q-012 |
+| TSK-003 | Decide Task cancellation model and resource cleanup | todo | blocked | M | TSK-017 |
 | TSK-004 | Decide deadline and timestamp representation in the Operation ABI | todo | blocked | S | TSK-015 |
 | TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | todo | blocked | S | TSK-014 |
 | TSK-006 | Decide native expression of termination, cancellation and async notification without signals | done | done | S | none |
@@ -22,7 +22,7 @@
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | todo | ready | M | none |
 | TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | todo | ready | M | none |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | todo | ready | M | none |
-| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | todo | blocked | M | Q-009 |
+| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | todo | ready | M | none |
 | TSK-018 | Implement submit(Operation), completion delivery and poll/wait in the Native ABI | todo | blocked | L | TSK-013, TSK-007, TSK-005, ABI-002, ABI-012 |
 | TSK-019 | Implement Task multiplexing across bounded execution contexts | todo | blocked | L | TSK-009, TSK-021 |
 | TSK-020 | Integrate Operation completion with Task suspension and wake on execution contexts | todo | blocked | L | TSK-019, TSK-018 |

@@ -10,7 +10,7 @@
 | BOOT-002 | Boot the forked kernel on the reference AMD desktop from the tagged CI image | todo | blocked | M | BOOT-001, HW-003, LAB-003 |
 | BOOT-003 | Decide UEFI-only boot on x86-64 with no legacy BIOS/CSM support through 1.0 | done | done | S | none |
 | BOOT-004 | Decide V0 boots Linux init from a retained initramfs with native Components beside it | done | done | S | BOOT-003 |
-| BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | blocked | M | BOOT-001, BOOT-004, CMP-003, CMP-014 |
+| BOOT-005 | Retain the Linux initramfs handoff and launch native Components beside Linux init | todo | blocked | M | BOOT-001, BOOT-004, CMP-003, CMP-014, BLD-082 |
 
 ## V0.5
 

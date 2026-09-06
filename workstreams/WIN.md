@@ -4,7 +4,7 @@
 - Baseline: §3, §4, §9.1, §25, §48, §49, §56.2, §57, §62, §63, §69
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 86 live, 1 done, 0 in-progress, 85 todo, 0 dropped. Ready: 2. Blocked: 83. Weighted: 0%.
+Tasks: 86 live, 1 done, 0 in-progress, 85 todo, 0 dropped. Ready: 3. Blocked: 82. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -52,7 +52,7 @@ Wine bring-up (WIN-015). VM fallback product (VIRT-002). Native ABI firewall lin
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: WIN-003, Q-043
+- Depends on: WIN-003
 - Baseline: §48, §56.2, §57
 - Decision: D-0335
 - Risks: R-031, R-036
@@ -231,7 +231,7 @@ Licence review of shipped builds (GOV-047). Runtime Packages (WIN-012). Relinkin
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: WIN-001, GOV-003, Q-050
+- Depends on: WIN-001, GOV-003
 - Baseline: §3, §48, §5.1
 - Decision: D-0343
 - Threats: T-011
@@ -293,7 +293,7 @@ Per-title harness (WIN-006). W1 gate run (WIN-051). Public database publication 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: WIN-001, LNX-015, Q-040
+- Depends on: WIN-001, LNX-015
 - Baseline: §48, §56.2
 - Decision: D-0344
 - Risks: R-032
@@ -980,7 +980,7 @@ HDR output pipeline (GFX-068). Personality HDR Surfaces (GFX-069). Linux HDR (LN
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: WIN-040, APP-032, Q-041
+- Depends on: WIN-040, APP-032
 - Baseline: §28, §49
 - Decision: D-0339
 

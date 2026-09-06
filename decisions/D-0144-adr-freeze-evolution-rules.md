@@ -1,4 +1,4 @@
-# D-0144 · Freeze the Layer 2 Interface-evolution rules for SDK v1
+# D-0144 · Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1
 - Status: proposed
 - Task: IPC-042
 - Surfaces: S-014

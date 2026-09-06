@@ -1,6 +1,6 @@
 use crate::diagnostic::{Diagnostic, Diagnostics, code};
 use crate::repo::Repo;
-use crate::util::{apply_glossary, is_imperative_title, strip_generated_text};
+use crate::util::{apply_glossary, is_imperative_title, matrix_entries, strip_generated_text};
 
 pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
     for task in &repo.tasks {
@@ -56,6 +56,22 @@ pub fn validate(repo: &Repo, diagnostics: &mut Diagnostics) {
             ));
         }
         warn_self_answered_questions(repo, task, diagnostics);
+        for line in &task.verification {
+            for entry in matrix_entries(&line.text) {
+                if repo.hardware_for_matrix_entry(&entry).is_none() {
+                    diagnostics.push(Diagnostic::warning(
+                        &task.file,
+                        line.line,
+                        code::UNKNOWN_MATRIX_ENTRY,
+                        format!(
+                            "`{}` verifies on CI matrix entry `{entry}` that no hardware entry declares",
+                            task.id
+                        ),
+                        "use a `Matrix entry` declared in registers/hardware.md",
+                    ));
+                }
+            }
+        }
         for criterion in &task.criteria {
             for word in &repo.schema.task.banned_criteria_words {
                 if criterion

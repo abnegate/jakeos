@@ -84,7 +84,7 @@ Linux syscall implementation (LNX). Operation ring internals (TSK). Capability t
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ABI-018
+- Depends on: ABI-018, BLD-082
 - Baseline: §3, §13, §57
 - Invariants: I-005, I-006, I-025, I-046, I-049
 
@@ -177,7 +177,7 @@ Capability rights encoding and derivation (CAP). Which types live in kernel vers
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ABI-011, ABI-018, GOV-005
+- Depends on: ABI-011, ABI-018, GOV-005, BLD-082
 - Baseline: §3, §8, §38, §65
 - Risks: R-007
 - Invariants: I-002, I-013, I-026, I-055, I-056, I-057, I-058
@@ -539,7 +539,7 @@ IDL-to-docs generation (DOC). SDK crate guide (SDK). Freeze-candidate marking (A
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ABI-011
+- Depends on: ABI-011, BLD-082
 - Baseline: §3, §57, §65
 - Invariants: I-013, I-026, I-049
 

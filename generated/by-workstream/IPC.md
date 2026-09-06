@@ -13,20 +13,20 @@
 | IPC-005 | Decide that IDL compiler output is owned by its user with no copyleft obligation | todo | blocked | S | IPC-006, GOV-003 |
 | IPC-006 | Decide the IDL: adopt WIT, FIDL, Cap'n Proto schema or design new | todo | blocked | M | IPC-018, WASM-002 |
 | IPC-007 | Decide the typed-message wire format and inline-payload threshold | todo | blocked | S | IPC-020, IPC-018 |
-| IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | blocked | M | IPC-016, IPC-015, BEN-007, BEN-005 |
+| IPC-008 | Build the IPC round-trip benchmark against Linux UDS and pipe ping-pong | todo | blocked | M | IPC-016, IPC-015, BEN-007, BEN-005, BLD-082 |
 | IPC-009 | Define Channel<T> backpressure: bounded depth, slow-receiver policy, depth in os inspect | todo | blocked | M | IPC-010, TSK-011 |
 | IPC-010 | Implement the Channel kernel Object with typed endpoints, send, receive and inspect data | todo | blocked | L | ABI-002, ABI-005, CAP-005, TSK-013, KRN-001, CMP-014 |
 | IPC-011 | Define and implement typed error, peer-death and timeout semantics for calls | todo | blocked | M | IPC-010, TSK-010, CMP-008, ABI-009 |
-| IPC-012 | Implement the IDL compiler with Rust wire layout, stub, ownership and tracing codegen | todo | blocked | L | IPC-006, IPC-007, IPC-004, IPC-005, ABI-007 |
-| IPC-013 | Generate Interface<T> proxies with async methods, futures and in-flight cancellation | todo | blocked | L | IPC-012, TSK-011, TSK-010 |
+| IPC-012 | Implement the IDL compiler with Rust wire layout, stub, ownership and tracing codegen | todo | blocked | L | IPC-006, IPC-007, IPC-004, IPC-005, ABI-007, BLD-082 |
+| IPC-013 | Generate Interface<T> proxies with async methods, futures and in-flight cancellation | todo | blocked | L | IPC-012, TSK-011, TSK-010, BLD-082 |
 | IPC-014 | Transfer Capability and MemoryObject ownership inside Channel messages | todo | blocked | M | IPC-010, IPC-007, CAP-006, MEM-010, MEM-003 |
 | IPC-015 | Switch directly to a waiting receiver on send without a run-queue round trip | todo | blocked | M | IPC-001, IPC-016, SCH-005, TSK-020 |
 | IPC-016 | Implement the selected minimal-copy small-message fast path | todo | blocked | L | IPC-003, IPC-010, IPC-007 |
 | IPC-017 | Prototype and measure ring, GPR-carried, handoff and batched small-message fast paths | todo | blocked | L | ABI-019, TSK-021, BLD-012, BEN-007 |
 | IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | todo | ready | S | none |
-| IPC-019 | Evolve one real V0 Interface through three incompatible revisions to exercise the versioning scheme | todo | blocked | M | IPC-012, IPC-013 |
+| IPC-019 | Evolve one real V0 Interface through three incompatible revisions to exercise the versioning scheme | todo | blocked | M | IPC-012, IPC-013, BLD-082 |
 | IPC-020 | Benchmark in-place Zero-copy access versus compact encode/decode including validation cost | todo | blocked | M | IPC-018, BEN-007 |
-| IPC-021 | Add the version header and forward/backward unknown-field compatibility tests | todo | blocked | M | IPC-007, IPC-002, IPC-012, ABI-004 |
+| IPC-021 | Add the version header and forward/backward unknown-field compatibility tests | todo | blocked | M | IPC-007, IPC-002, IPC-012, ABI-004, BLD-082 |
 
 ## V0.5
 
@@ -57,7 +57,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | IPC-041 | Decide which Channel syscalls become Layer 1 freeze candidates for SDK v1 | todo | blocked | S | ABI-034, IPC-010, IPC-016, IPC-014, IPC-009, IPC-008, IPC-017 |
-| IPC-042 | Freeze the Layer 2 Interface-evolution rules for SDK v1 | todo | blocked | S | IPC-002, IPC-038, IPC-040, IPC-019 |
+| IPC-042 | Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1 | todo | blocked | S | IPC-002, IPC-038, IPC-040, IPC-019 |
 | IPC-043 | Implement batched Channel send and receive submission over Operations | todo | blocked | M | IPC-017, IPC-010, TSK-030, IPC-016 |
 | IPC-044 | Add structure-aware fuzz targets for the Channel syscall Surface | todo | blocked | M | IPC-010, IPC-014, IPC-026, BLD-016, BLD-035 |
 | IPC-045 | Implement feature negotiation between Interface endpoints | todo | blocked | M | IPC-002, IPC-033, IPC-042 |

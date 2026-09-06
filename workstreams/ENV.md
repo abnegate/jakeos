@@ -182,7 +182,7 @@ StorageSnapshot primitive (STO-043). Overlayfs inside the Linux personality (LNX
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ENV-007, NET-006, SEC-002, Q-031
+- Depends on: ENV-007, NET-006, SEC-002
 - Baseline: §9, §9.1, §35
 - Decision: D-0072
 - Threats: T-001, T-002
@@ -243,7 +243,7 @@ Schema of environment.yaml (ENV-008). Service hosting path (ENV-009). Implementa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: PKG-006, PKG-011, Q-030, ENV-021
+- Depends on: PKG-006, PKG-011, ENV-021
 - Baseline: §28, §29, §35
 - Decision: D-0074
 - Invariants: I-036

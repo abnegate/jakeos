@@ -151,7 +151,7 @@ Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement au
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: BEN-007, BEN-064
+- Depends on: BEN-007, BEN-064, BLD-082
 - Baseline: §54, §59
 - Risks: R-009
 - Invariants: I-061

@@ -23,7 +23,7 @@ Kernel DRM driver code and rebase of amdgpu, i915/xe, nouveau and virtio-gpu (KR
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-017, HW-003
+- Depends on: KRN-017, HW-003, BLD-082
 - Baseline: §5.1, §39, §55, §56.1, §57
 - Risks: R-013
 - Invariants: I-045, I-054
@@ -466,7 +466,7 @@ Callback implementation (GFX-024). Deadline intent of the compositor Task (SCH-0
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GFX-036, Q-034, SDK-097
+- Depends on: GFX-036, SDK-097
 - Baseline: §39, §9.1, §56.1
 - Decision: D-0080
 - Risks: R-016
@@ -554,7 +554,7 @@ Compositor GPU composition (GFX-006). Target SKU list (HW-003).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: GFX-033, Q-027
+- Depends on: GFX-033
 - Baseline: §32, §40
 - Decision: D-0087
 

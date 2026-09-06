@@ -211,6 +211,7 @@ pub mod code {
     pub const BASE_DONE_TO_DROPPED: &str = "E-113";
     pub const BASE_REOPENED_WITHOUT_UNTICK: &str = "E-114";
     pub const BASE_ILLEGAL_TRANSITION: &str = "E-115";
+    pub const DONE_BEFORE_ENVIRONMENT: &str = "E-116";
 
     pub const TICKED_NOT_DONE: &str = "W-001";
     pub const UNANCHORED: &str = "W-002";
@@ -229,4 +230,6 @@ pub mod code {
     pub const GLOSSARY_CASING: &str = "W-015";
     pub const HARDWARE_SCOPE_MISSING: &str = "W-016";
     pub const SELF_ANSWERED_QUESTION: &str = "W-017";
+    pub const HARDWARE_UNPROVIDED: &str = "W-018";
+    pub const UNKNOWN_MATRIX_ENTRY: &str = "W-019";
 }

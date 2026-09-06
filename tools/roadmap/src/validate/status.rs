@@ -2,7 +2,7 @@ use crate::derive::Derived;
 use crate::diagnostic::{Diagnostic, Diagnostics, code};
 use crate::model::{Status, Task, TaskType};
 use crate::repo::Repo;
-use crate::util::{SPIKE_HEADINGS, is_none};
+use crate::util::{SPIKE_HEADINGS, is_none, matrix_entries};
 
 pub fn validate(repo: &Repo, derived: &Derived, diagnostics: &mut Diagnostics) {
     for (position, task) in repo.tasks.iter().enumerate() {
@@ -145,6 +145,7 @@ fn validate_done(
         }
     }
 
+    validate_done_environment(repo, task, diagnostics);
     match task.task_type() {
         TaskType::Adr => validate_done_adr(repo, task, diagnostics),
         TaskType::Spike => validate_done_spike(repo, task, diagnostics),
@@ -237,6 +238,37 @@ fn validate_done_spike(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) 
             ),
             format!("add `- report:{relative}`"),
         ));
+    }
+}
+
+fn validate_done_environment(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) {
+    for line in &task.verification {
+        for entry in matrix_entries(&line.text) {
+            let Some(hardware) = repo.hardware_for_matrix_entry(&entry) else {
+                continue;
+            };
+            for provider in hardware.list("Provided by") {
+                let provided = provider == task.id
+                    || repo
+                        .task(&provider)
+                        .is_some_and(|candidate| candidate.status() == Status::Done);
+                if !provided {
+                    diagnostics.push(Diagnostic::error(
+                        &task.file,
+                        line.line,
+                        code::DONE_BEFORE_ENVIRONMENT,
+                        format!(
+                            "done task `{}` verifies on `{entry}` before `{provider}` provides it",
+                            task.id
+                        ),
+                        format!(
+                            "finish `{provider}` (`Provided by` on {}) first, or verify on an entry that exists",
+                            hardware.id
+                        ),
+                    ));
+                }
+            }
+        }
     }
 }
 

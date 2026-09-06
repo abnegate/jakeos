@@ -6,15 +6,15 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| SDK-001 | Implement the #[Component] entry macro and Context Capability Surface | todo | blocked | M | SDK-004, SDK-009, CMP-014, CAP-005 |
-| SDK-002 | Ship ImageDecoder as the V0 typed-service SDK sample | todo | blocked | M | SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007 |
-| SDK-003 | Declare a no_std rustc JSON target for native userspace | todo | blocked | M | ABI-003, BLD-004, BLD-009 |
-| SDK-004 | Implement the tiny native runtime that multiplexes Tasks over Operations | todo | blocked | L | SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023 |
-| SDK-005 | Expose Operation cancel, deadline and await on the Rust SDK | todo | blocked | M | SDK-009, TSK-010, TSK-013, ABI-009 |
-| SDK-006 | Implement the os CLI skeleton for inspect and trace | todo | ready | S | none |
-| SDK-007 | Ship os inspect for every V0 Object kind | todo | blocked | M | SDK-006, OBS-006, OBS-005, OBS-007 |
-| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | blocked | M | SDK-006, OBS-011, OBS-003 |
-| SDK-009 | Implement the primary Rust SDK crate over the Native ABI | todo | blocked | M | SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010 |
+| SDK-001 | Implement the #[Component] entry macro and Context Capability Surface | todo | blocked | M | SDK-004, SDK-009, CMP-014, CAP-005, BLD-082 |
+| SDK-002 | Ship ImageDecoder as the V0 typed-service SDK sample | todo | blocked | M | SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007, BLD-082 |
+| SDK-003 | Declare a no_std rustc JSON target for native userspace | todo | blocked | M | ABI-003, BLD-004, BLD-009, BLD-082 |
+| SDK-004 | Implement the tiny native runtime that multiplexes Tasks over Operations | todo | blocked | L | SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023, BLD-082 |
+| SDK-005 | Expose Operation cancel, deadline and await on the Rust SDK | todo | blocked | M | SDK-009, TSK-010, TSK-013, ABI-009, BLD-082 |
+| SDK-006 | Implement the os CLI skeleton for inspect and trace | todo | blocked | S | BLD-082 |
+| SDK-007 | Ship os inspect for every V0 Object kind | todo | blocked | M | SDK-006, OBS-006, OBS-005, OBS-007, BLD-082 |
+| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | blocked | M | SDK-006, OBS-011, OBS-003, BLD-082 |
+| SDK-009 | Implement the primary Rust SDK crate over the Native ABI | todo | blocked | M | SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010, BLD-082 |
 | SDK-010 | Decide the userspace executor shape for the native runtime | todo | blocked | S | SDK-011, TSK-009 |
 | SDK-011 | Study Rust async and Tokio for mapping Operations onto SDK futures | todo | blocked | M | TSK-014, TSK-016 |
 
@@ -130,7 +130,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| SDK-093 | Restore opted-in application state through os restore | todo | blocked | M | SDK-069, PKG-069, PKG-079, Q-056 |
+| SDK-093 | Restore opted-in application state through os restore | todo | blocked | M | SDK-069, PKG-069, PKG-079, Q-056, APP-056 |
 | SDK-094 | Run the SDK compatibility suite through the 1.0 soak | todo | blocked | S | SDK-036, SDK-087, BLD-079, ABI-052 |
 | SDK-095 | Publish the Layer 3 semver stability statement for 1.x | todo | blocked | S | SDK-054, ABI-053, SDK-089 |
 | SDK-096 | Complete SDK guides for Rust and C on the 1.0 release | todo | blocked | S | SDK-092, SDK-095, DOC-040 |

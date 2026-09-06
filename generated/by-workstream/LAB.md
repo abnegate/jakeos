@@ -6,9 +6,9 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| LAB-001 | Build the Input-to-photon photodiode rig on the reference desktop | todo | blocked | M | LAB-003, LAB-004 |
+| LAB-001 | Build the Input-to-photon photodiode rig on the reference desktop | todo | blocked | M | LAB-003, LAB-004, BLD-082 |
 | LAB-002 | Decide lab site and the remote power, console and capture stack | done | done | S | none |
-| LAB-003 | Procure and rack the reference AMD desktop with power and capture | todo | ready | M | LAB-002, HW-003 |
+| LAB-003 | Procure and rack the reference AMD desktop with power and capture | todo | blocked | M | LAB-002, HW-003, BLD-082 |
 | LAB-004 | Prototype photodiode versus camera Input-to-photon measurement | todo | blocked | S | LAB-003 |
 
 ## V0.5

@@ -309,7 +309,7 @@ QEMU boot harness (BLD-012). OVMF boot of the image (BOOT-001). Native subsystem
 - [x] A tagged commit builds with the BLD-013 pin.
 
 #### Verification
-- Integration: CI clones the tree, fetches upstream, and builds the tag on `qemu-x86_64`.
+- Integration: `kernel:.github/workflows` clones the tree, fetches upstream and builds the tag on a GitHub-hosted runner; the QEMU boot smoke on H-001 belongs to BLD-012.
 - Review: kernel architecture lead sign-off on the bootstrap README.
 
 #### Evidence

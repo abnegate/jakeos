@@ -21,7 +21,7 @@
 | HET-008 | Implement ComputeQueue as a typed submission Object | todo | blocked | M | HET-011, HET-009, HET-007 |
 | HET-009 | Implement ComputeDevice kernel ABI with CPU as first class | todo | blocked | L | HET-001, HET-011, ABI-032, ABI-014 |
 | HET-010 | Prototype Vulkan compute versus DRM job submission on AMD | todo | blocked | M | HET-002, HET-001 |
-| HET-011 | Decide how ComputeDevice relates to ComputeQueue | todo | blocked | S | HET-001, HET-002, Q-033 |
+| HET-011 | Decide how ComputeDevice relates to ComputeQueue | todo | blocked | S | HET-001, HET-002 |
 
 ## V2
 

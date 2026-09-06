@@ -86,7 +86,7 @@
 | PKG-068 | Benchmark Package-set restore time | todo | blocked | S | PKG-077 |
 | PKG-069 | Decide whether application-state restore is a 1.0 goal or non-goal | todo | blocked | S | PKG-079, PKG-048 |
 | PKG-070 | Decide whether SystemGeneration switches may apply without reboot | todo | blocked | S | PKG-020, BOOT-008 |
-| PKG-071 | Decide selective restore semantics and how partial restore avoids inconsistency | todo | blocked | S | PKG-048, PKG-060, Q-026 |
+| PKG-071 | Decide selective restore semantics and how partial restore avoids inconsistency | todo | blocked | S | PKG-048, PKG-060 |
 | PKG-072 | Track and publish counts of native and Personality Packages in the repository | todo | blocked | S | PKG-064, PKG-031 |
 | PKG-073 | Implement SystemGeneration health states so a failed boot auto-selects the previous one | todo | blocked | M | PKG-019, PKG-020, BOOT-018 |
 | PKG-074 | Expose a typed SystemGeneration management Interface for settings and rollback UI | todo | blocked | M | PKG-020, PKG-060, PKG-077, IPC-035 |

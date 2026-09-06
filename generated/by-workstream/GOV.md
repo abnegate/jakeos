@@ -54,7 +54,7 @@
 | GOV-036 | Run trademark clearance and Register word and logo marks | todo | blocked | M | GOV-024 |
 | GOV-037 | Author the V1 Milestone gates including self-hosting and dogfooding | todo | blocked | S | GOV-017 |
 | GOV-038 | Record the V1 exit review | todo | blocked | S | SDK-054, SDK-055, NET-006, AUD-002, REL-003, LNX-018, WASM-007, SDK-028, LNX-015, KRN-024, KRN-026, IPC-042, LNX-021 |
-| GOV-039 | Compare legal-entity jurisdictions for export, GDPR and tax | todo | blocked | S | Q-049 |
+| GOV-039 | Compare legal-entity jurisdictions for export, GDPR and tax | todo | ready | S | none |
 
 ## V2
 

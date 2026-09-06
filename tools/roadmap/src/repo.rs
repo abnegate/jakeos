@@ -357,6 +357,13 @@ impl Repo {
         identifier.starts_with(&format!("{}-", self.schema.example_prefix))
     }
 
+    pub fn hardware_for_matrix_entry(&self, entry: &str) -> Option<&crate::model::RegisterEntry> {
+        self.register("H")?
+            .entries
+            .iter()
+            .find(|hardware| hardware.fields.value_or_empty("Matrix entry") == entry)
+    }
+
     pub fn register_entry(&self, family: &str, id: &str) -> Option<&crate::model::RegisterEntry> {
         self.register(family).and_then(|register| register.get(id))
     }

@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | blocked | M | ABI-005, CAP-005, CAP-003, CAP-004, CMP-005 |
+| STO-001 | Expose File as a typed kernel Object reachable only via Capability<File, Rights> | todo | blocked | M | ABI-005, CAP-005, CAP-003, CAP-004, CMP-005, BLD-082 |
 
 ## V0.5
 
@@ -25,10 +25,10 @@
 | STO-012 | Decide replacing the global namespace with Capability-scoped storage objects | todo | blocked | M | STO-001, STO-030, CAP-007, STO-027 |
 | STO-013 | Decide the content-hash algorithm, identifier format, chunking and upgrade path | todo | blocked | S | PKG-040, STO-030 |
 | STO-014 | Decide GPT partition and volume layout for store, generations, user data, swap and recovery | todo | blocked | M | STO-016 |
-| STO-015 | Decide how an application gains authority to create one new file in a user-chosen place | todo | blocked | S | STO-012, SEC-007, Q-017 |
+| STO-015 | Decide how an application gains authority to create one new file in a user-chosen place | todo | blocked | S | STO-012, SEC-007 |
 | STO-016 | Decide the initial Linux filesystem under the native storage layer | todo | blocked | M | STO-026, GOV-003, SEC-005 |
 | STO-017 | Decide how the content store maps onto the chosen filesystem without double storage | todo | blocked | S | STO-016, STO-013, PKG-014 |
-| STO-018 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | todo | blocked | M | STO-012, Q-038, Q-042 |
+| STO-018 | Decide the platform type registry behind choose<T>, UserSelected<T> and file.type | todo | blocked | M | STO-012 |
 | STO-019 | Define Object<Directory> whose Capability scopes access to its subtree | todo | blocked | M | STO-029, STO-012, STO-020 |
 | STO-020 | Define Object<File> with Read, Write and metadata Operations and its rights set | todo | blocked | M | STO-029, STO-001, TSK-011, ABI-009, MEM-020 |
 | STO-021 | Implement the partition and volume layout library used by the image builder | todo | blocked | M | STO-014, STO-016 |
@@ -55,8 +55,8 @@
 | STO-037 | Implement content-store garbage collection with pinning and `os store gc` | todo | blocked | M | STO-041, STO-008, PKG-052 |
 | STO-038 | Decide when Write and StorageTransaction data is power-loss safe | todo | blocked | S | STO-031, STO-020 |
 | STO-039 | Decide encryption layering across the verified system store and encrypted user data | todo | blocked | M | SEC-005, STO-017, STO-009 |
-| STO-040 | Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing | todo | blocked | S | MEM-020, STO-038, STO-005, Q-006 |
-| STO-041 | Decide content-store garbage collection: root set, policy and user control | todo | blocked | S | STO-009, PKG-007, Q-019 |
+| STO-040 | Decide persistent MemoryObject semantics: storage backing, crash consistency, content addressing | todo | blocked | S | MEM-020, STO-038, STO-005 |
+| STO-041 | Decide content-store garbage collection: root set, policy and user control | todo | blocked | S | STO-009, PKG-007 |
 | STO-042 | Decide three-view mapping of user data across native and personalities | todo | blocked | M | STO-036, STO-012 |
 | STO-043 | Provide the StorageSnapshot primitive used by `os env` environments | todo | blocked | M | STO-025, STO-011 |
 | STO-044 | Provide a content-hash keyed cache API for build outputs, decoded assets and precompiled code | todo | blocked | M | STO-009, STO-041, STO-013 |
@@ -76,7 +76,7 @@
 | --- | --- | --- | --- | --- | --- |
 | STO-054 | Benchmark snapshot creation and restore time on the three target machines | todo | blocked | S | STO-070, STO-025, BEN-042, BEN-007 |
 | STO-055 | Decide how the storage model degrades on foreign filesystems lacking its metadata | todo | blocked | M | STO-012, STO-036 |
-| STO-056 | Decide how configuration and application state become versioned restorable objects | todo | blocked | S | STO-002, SVC-006, Q-025 |
+| STO-056 | Decide how configuration and application state become versioned restorable objects | todo | blocked | S | STO-002, SVC-006 |
 | STO-057 | Build disk health: TRIM/discard policy and SMART monitoring with notifications | todo | blocked | M | STO-029, STO-006, SVC-015 |
 | STO-058 | Support exFAT and FAT32 removable media with formatting and known limitations | todo | blocked | M | STO-055, STO-062 |
 | STO-059 | Support SMB, NFS and WebDAV as foreign network filesystems | todo | blocked | M | STO-055, STO-036, STO-047 |

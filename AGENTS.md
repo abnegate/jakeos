@@ -30,6 +30,7 @@ Do not load whole workstream files or `generated/` views unless the task is abou
 - **Never write a calendar date** anywhere the tool reads.
 - **Never delete or renumber an ID**, and never move a task between files.
 - **Never depend on a D-ID.** Depend on the adr task.
+- **Never name a CI matrix entry that `registers/hardware.md` does not declare.** Verification runs on `Matrix entry` names only; a task cannot be done until the entry's `Provided by` tasks are done, so check `roadmap show <ID>` for the environment before claiming.
 - **Never break milestone monotonicity.** A dependency's rank must be less than or equal to the dependent's rank, with no exception for adr or spike dependencies. Move the decision earlier; do not misstate the dependent.
 
 ## 3. Commands

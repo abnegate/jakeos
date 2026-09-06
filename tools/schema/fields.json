@@ -95,7 +95,7 @@
     "T": {"file": "registers/threats.md", "fields": ["Actor", "Asset", "Vector", "Status", "Addressed by"], "enums": {"Status": ["open", "mitigated", "accepted"]}},
     "I": {"file": "registers/invariants.md", "fields": ["Baseline", "Enforced by", "Status"], "enums": {"Status": ["stated", "enforced"]}},
     "Q": {"file": "registers/questions.md", "fields": ["Workstream", "Status", "Answered by"], "enums": {"Status": ["open", "answered", "withdrawn"]}},
-    "H": {"file": "registers/hardware.md", "fields": ["Kind", "Tier", "CPU", "GPU", "Network", "First milestone", "Status"], "enums": {"Kind": ["qemu", "desktop", "laptop"], "Status": ["planned", "procured", "in-lab", "retired"]}},
+    "H": {"file": "registers/hardware.md", "fields": ["Kind", "Tier", "CPU", "GPU", "Network", "First milestone", "Matrix entry", "Provided by", "Status"], "enums": {"Kind": ["qemu", "desktop", "laptop"], "Status": ["planned", "procured", "in-lab", "retired"]}},
     "S": {"file": "registers/surfaces.md", "fields": ["Layer", "Owner", "State", "Explored by", "Decided by", "Frozen by"], "enums": {"Layer": ["L1", "L2", "L3", "L4"], "State": ["open", "prototyped", "frozen", "superseded"]}}
   },
   "generated": {

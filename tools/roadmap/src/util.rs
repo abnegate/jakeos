@@ -450,6 +450,15 @@ pub fn copy_dir(from: &Path, to: &Path) -> std::io::Result<()> {
     Ok(())
 }
 
+pub fn matrix_entries(text: &str) -> Vec<String> {
+    let pattern =
+        regex::Regex::new(r"\b(qemu-[a-z0-9_-]+|hw-h\d{3})\b").expect("matrix entry pattern");
+    pattern
+        .find_iter(text)
+        .map(|found| found.as_str().to_string())
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::apply_glossary;

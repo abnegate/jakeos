@@ -12,15 +12,15 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| WIN-002 | Decide the kernel-level anti-cheat policy | todo | blocked | S | WIN-003, Q-043 |
+| WIN-002 | Decide the kernel-level anti-cheat policy | todo | blocked | S | WIN-003 |
 | WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | todo | ready | M | WIN-001 |
 | WIN-004 | Lint the tree against the Windows Personality clean-room policy | todo | blocked | S | WIN-005 |
 | WIN-005 | Decide a clean-room policy for the Windows Personality | todo | ready | S | WIN-001, GOV-003 |
 | WIN-006 | Build the per-title Windows scenario harness | todo | blocked | M | WIN-009, LAB-026 |
 | WIN-007 | Publish an upstream-first policy for Wine, Proton, DXVK and VKD3D | todo | blocked | S | WIN-005, PKG-010 |
-| WIN-008 | Decide that Win32 emulation stays in userspace | todo | blocked | S | WIN-001, GOV-003, Q-050 |
+| WIN-008 | Decide that Win32 emulation stays in userspace | todo | ready | S | WIN-001, GOV-003 |
 | WIN-009 | Define the W1 Corpus and rating scale | todo | blocked | M | WIN-001, WIN-002, WIN-010 |
-| WIN-010 | Decide 32-bit Win32 support and WoW64 requirements | todo | blocked | S | WIN-001, LNX-015, Q-040 |
+| WIN-010 | Decide 32-bit Win32 support and WoW64 requirements | todo | blocked | S | WIN-001, LNX-015 |
 | WIN-011 | Survey Win32 APIs required by the W1 productivity set | todo | blocked | S | WIN-009 |
 | WIN-012 | Package Wine and Proton runtimes as immutable Packages for CI | todo | blocked | M | WIN-007, WIN-004, PKG-047, PKG-038 |
 | WIN-013 | Decide whether Wine hosts on the Linux Personality or the Native ABI | todo | blocked | M | WIN-014, WIN-008 |
@@ -48,7 +48,7 @@
 | WIN-030 | Run Wine tests and the W1 smoke Corpus on GPU lab machines | todo | blocked | M | WIN-017, WIN-006, WIN-026 |
 | WIN-031 | Wire Vulkan present, explicit sync and fullscreen scanout | todo | blocked | L | WIN-026, GFX-074, GFX-057 |
 | WIN-032 | Pass HDR metadata from DXVK and VKD3D to the native Surface | todo | blocked | M | WIN-026, WIN-049, GFX-069 |
-| WIN-033 | Decide how prefix installers become installed applications | todo | blocked | S | WIN-040, APP-032, Q-041 |
+| WIN-033 | Decide how prefix installers become installed applications | todo | blocked | S | WIN-040, APP-032 |
 | WIN-034 | Map NT objects and handles onto native Objects and Capabilities | todo | blocked | M | WIN-035, WIN-054, ABI-005 |
 | WIN-035 | Decide NT Object-manager, async I/O, descriptor and section fidelity | todo | blocked | M | WIN-008, ABI-031 |
 | WIN-036 | Decide how Wine and Proton map onto native Objects | todo | blocked | M | WIN-013, WIN-035 |

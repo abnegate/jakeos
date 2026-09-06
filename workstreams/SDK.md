@@ -4,7 +4,7 @@
 - Baseline: §50, §52, §64, §66
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 1. Blocked: 97. Weighted: 0%.
+Tasks: 98 live, 0 done, 0 in-progress, 98 todo, 0 dropped. Ready: 0. Blocked: 98. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -23,7 +23,7 @@ Layer 1 entry, handle encoding, error model and the generated C header (ABI). ID
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-004, SDK-009, CMP-014, CAP-005
+- Depends on: SDK-004, SDK-009, CMP-014, CAP-005, BLD-082
 - Baseline: §52
 - Invariants: I-021
 
@@ -52,7 +52,7 @@ Kernel Component object (CMP-014). Window and chooser methods on Context (SDK-02
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007
+- Depends on: SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007, BLD-082
 - Baseline: §11, §14, §52, §59
 
 ImageDecoder is the reference typed service for the V0 demo: Input of image bytes, Output of a bitmap, ResourceDomain budgets from the §11 example, written against the Rust SDK and generated IDL stubs (§14, §59). The sample is a native Component, not a Linux process.
@@ -81,7 +81,7 @@ V0 demo orchestration (CMP-011). Isolated decode library used by PhotoEditor (SD
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ABI-003, BLD-004, BLD-009
+- Depends on: ABI-003, BLD-004, BLD-009, BLD-082
 - Baseline: §3, §50
 - Invariants: I-006, I-049, I-089
 
@@ -110,7 +110,7 @@ Layer 3 `std` crate (SDK-049). Upstream tier-3 proposal (SDK-090). Kernel rustc 
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023
+- Depends on: SDK-010, SDK-011, SDK-009, TSK-018, TSK-020, TSK-023, BLD-082
 - Baseline: §18, §20, §52, §59
 - Invariants: I-030
 
@@ -141,7 +141,7 @@ Kernel Operation ring (TSK-018). Executor Decision (SDK-010). Debugger Task stac
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-009, TSK-010, TSK-013, ABI-009
+- Depends on: SDK-009, TSK-010, TSK-013, ABI-009, BLD-082
 - Baseline: §19, §52
 
 §19 is the SDK surface for outstanding work. `operation.cancel()`, `operation.deadline(...)` and `operation.await` are the V0 entry points; cancellation and deadline gates are unusable without them. Await integrates with the native runtime so the owning Task suspends until completion.
@@ -169,7 +169,7 @@ Kernel cancel and deadline (TSK-010). Executor (SDK-004).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: none
+- Depends on: BLD-082
 - Baseline: §64
 - Invariants: I-034
 
@@ -198,7 +198,7 @@ Inspect rendering (SDK-007). Trace rendering (SDK-008). Package and generation s
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-006, OBS-006, OBS-005, OBS-007
+- Depends on: SDK-006, OBS-006, OBS-005, OBS-007, BLD-082
 - Baseline: §24, §64
 
 V0 exit prints Component, Task, Channel, Capability, MemoryObject and ResourceDomain state (§64). OBS owns the data plane; this task is the `os inspect` command that renders those records. Tooling does not reconstruct wait edges from scheduler traces when inspect already stores them.
@@ -227,7 +227,7 @@ Inspect Interface and providers (OBS-006, OBS-005, OBS-007). ComputeQueue inspec
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-006, OBS-011, OBS-003
+- Depends on: SDK-006, OBS-011, OBS-003, BLD-082
 - Baseline: §24, §64
 
 V0 demo and the tracing-overhead gate need `os trace` over the OBS substrate (§24, §64). Enablement is dynamic and Capability-gated; disabled scopes are OBS's problem, this command only requests and renders them.
@@ -256,7 +256,7 @@ Trace ring (OBS-011). Overhead measurement (OBS-001). Offline export (SDK-022).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010
+- Depends on: SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010, BLD-082
 - Baseline: §4, §16, §50, §52
 - Invariants: I-005, I-063
 
@@ -2625,7 +2625,7 @@ Editorial completion (DOC-035). C guide (DOC-038). Extra-language guide (DOC-037
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-069, PKG-069, PKG-079, Q-056
+- Depends on: SDK-069, PKG-069, PKG-079, Q-056, APP-056
 - Baseline: §31
 
 §31 long-term restore of application state where apps opt in to checkpointing. SDK exposes the checkpoint API and `os restore` consumes it. Scope follows PKG-069 and Q-056.

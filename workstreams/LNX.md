@@ -25,7 +25,7 @@ Kernel fork, retained-mechanism inventory and divergence phases (KRN). Native AB
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: KRN-002, KRN-010, KRN-011, KRN-017
+- Depends on: KRN-002, KRN-010, KRN-011, KRN-017, BLD-082
 - Baseline: §3, §6, §46, §59
 - Risks: R-004
 - Invariants: I-006, I-010, I-049
@@ -56,7 +56,7 @@ Native ABI entry layer (ABI-002). Translation onto native primitives (LNX-090). 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: LNX-001, BLD-012, KRN-014, BEN-006
+- Depends on: LNX-001, BLD-012, KRN-014, BEN-006, BLD-082
 - Baseline: §6, §46, §59
 - Corpora: C-001
 - Risks: R-004

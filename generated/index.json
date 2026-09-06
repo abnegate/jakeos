@@ -1663,12 +1663,14 @@
         "BOOT-001",
         "BOOT-004",
         "CMP-003",
-        "CMP-014"
+        "CMP-014",
+        "BLD-082"
       ],
       "blockers": [
         "BOOT-001",
         "CMP-003",
-        "CMP-014"
+        "CMP-014",
+        "BLD-082"
       ],
       "covers": [
         "INV-0120",
@@ -2893,10 +2895,12 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "ABI-018"
+        "ABI-018",
+        "BLD-082"
       ],
       "blockers": [
-        "ABI-018"
+        "ABI-018",
+        "BLD-082"
       ],
       "covers": [
         "INV-0867",
@@ -2977,12 +2981,14 @@
       "depends_on": [
         "ABI-011",
         "ABI-018",
-        "GOV-005"
+        "GOV-005",
+        "BLD-082"
       ],
       "blockers": [
         "ABI-011",
         "ABI-018",
-        "GOV-005"
+        "GOV-005",
+        "BLD-082"
       ],
       "covers": [
         "INV-0081",
@@ -3304,10 +3310,12 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "ABI-011"
+        "ABI-011",
+        "BLD-082"
       ],
       "blockers": [
-        "ABI-011"
+        "ABI-011",
+        "BLD-082"
       ],
       "covers": [
         "INV-1130"
@@ -4462,14 +4470,12 @@
         "CAP-014",
         "CAP-015",
         "TSK-003",
-        "SEC-002",
-        "Q-004"
+        "SEC-002"
       ],
       "blockers": [
         "CAP-014",
         "CAP-015",
-        "TSK-003",
-        "Q-004"
+        "TSK-003"
       ],
       "covers": [
         "INV-0187",
@@ -4732,14 +4738,12 @@
       "depends_on": [
         "CAP-026",
         "CAP-007",
-        "SEC-007",
-        "Q-016"
+        "SEC-007"
       ],
       "blockers": [
         "CAP-026",
         "CAP-007",
-        "SEC-007",
-        "Q-016"
+        "SEC-007"
       ],
       "covers": [
         "GAP-0486",
@@ -5452,14 +5456,12 @@
       "depends_on": [
         "CAP-008",
         "CAP-021",
-        "IPC-056",
-        "Q-036"
+        "IPC-056"
       ],
       "blockers": [
         "CAP-008",
         "CAP-021",
-        "IPC-056",
-        "Q-036"
+        "IPC-056"
       ],
       "covers": [
         "INV-0817"
@@ -5908,7 +5910,8 @@
         "IPC-011",
         "MEM-010",
         "SDK-002",
-        "IPC-013"
+        "IPC-013",
+        "BLD-082"
       ],
       "blockers": [
         "CMP-005",
@@ -5918,7 +5921,8 @@
         "IPC-011",
         "MEM-010",
         "SDK-002",
-        "IPC-013"
+        "IPC-013",
+        "BLD-082"
       ],
       "covers": [
         "INV-1169"
@@ -5972,10 +5976,12 @@
         "CMP-007",
         "CMP-009",
         "CMP-006",
-        "ABI-018"
+        "ABI-018",
+        "BLD-082"
       ],
       "blockers": [
-        "ABI-018"
+        "ABI-018",
+        "BLD-082"
       ],
       "covers": [
         "INV-0035",
@@ -6104,8 +6110,7 @@
       ],
       "blockers": [
         "BEN-005",
-        "Q-001",
-        "Q-029"
+        "Q-001"
       ],
       "covers": [
         "INV-0642"
@@ -6132,8 +6137,7 @@
       ],
       "blockers": [
         "BEN-005",
-        "Q-001",
-        "Q-029"
+        "Q-001"
       ],
       "covers": [],
       "file": "workstreams/CMP.md",
@@ -6549,12 +6553,10 @@
       "owner": "none",
       "depends_on": [
         "CMP-006",
-        "LNX-060",
-        "Q-010"
+        "LNX-060"
       ],
       "blockers": [
-        "LNX-060",
-        "Q-010"
+        "LNX-060"
       ],
       "covers": [
         "INV-0070"
@@ -7117,14 +7119,10 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "TSK-017",
-        "Q-011",
-        "Q-012"
+        "TSK-017"
       ],
       "blockers": [
-        "TSK-017",
-        "Q-011",
-        "Q-012"
+        "TSK-017"
       ],
       "covers": [
         "INV-0396",
@@ -7459,15 +7457,11 @@
       "type": "spike",
       "milestone": "V0",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "M",
       "owner": "none",
-      "depends_on": [
-        "Q-009"
-      ],
-      "blockers": [
-        "Q-009"
-      ],
+      "depends_on": [],
+      "blockers": [],
       "covers": [
         "GAP-0495",
         "INV-0374"
@@ -8645,12 +8639,14 @@
         "IPC-016",
         "IPC-015",
         "BEN-007",
-        "BEN-005"
+        "BEN-005",
+        "BLD-082"
       ],
       "blockers": [
         "IPC-016",
         "IPC-015",
-        "BEN-005"
+        "BEN-005",
+        "BLD-082"
       ],
       "covers": [
         "INV-0277"
@@ -8760,14 +8756,16 @@
         "IPC-007",
         "IPC-004",
         "IPC-005",
-        "ABI-007"
+        "ABI-007",
+        "BLD-082"
       ],
       "blockers": [
         "IPC-006",
         "IPC-007",
         "IPC-004",
         "IPC-005",
-        "ABI-007"
+        "ABI-007",
+        "BLD-082"
       ],
       "covers": [
         "INV-0292",
@@ -8795,12 +8793,14 @@
       "depends_on": [
         "IPC-012",
         "TSK-011",
-        "TSK-010"
+        "TSK-010",
+        "BLD-082"
       ],
       "blockers": [
         "IPC-012",
         "TSK-011",
-        "TSK-010"
+        "TSK-010",
+        "BLD-082"
       ],
       "covers": [
         "INV-0058",
@@ -8967,11 +8967,13 @@
       "owner": "none",
       "depends_on": [
         "IPC-012",
-        "IPC-013"
+        "IPC-013",
+        "BLD-082"
       ],
       "blockers": [
         "IPC-012",
-        "IPC-013"
+        "IPC-013",
+        "BLD-082"
       ],
       "covers": [
         "GAP-0521"
@@ -9017,13 +9019,15 @@
         "IPC-007",
         "IPC-002",
         "IPC-012",
-        "ABI-004"
+        "ABI-004",
+        "BLD-082"
       ],
       "blockers": [
         "IPC-007",
         "IPC-002",
         "IPC-012",
-        "ABI-004"
+        "ABI-004",
+        "BLD-082"
       ],
       "covers": [
         "INV-0251",
@@ -9573,7 +9577,7 @@
     },
     {
       "id": "IPC-042",
-      "title": "Freeze the Layer 2 Interface-evolution rules for SDK v1",
+      "title": "Decide whether the Layer 2 Interface-evolution rules freeze at V1 with SDK v1",
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
@@ -12116,14 +12120,12 @@
       "depends_on": [
         "SCH-008",
         "SCH-009",
-        "SCH-006",
-        "Q-015"
+        "SCH-006"
       ],
       "blockers": [
         "SCH-008",
         "SCH-009",
-        "SCH-006",
-        "Q-015"
+        "SCH-006"
       ],
       "covers": [
         "INV-0442"
@@ -12144,14 +12146,12 @@
       "depends_on": [
         "SCH-010",
         "IPC-010",
-        "SCH-011",
-        "Q-014"
+        "SCH-011"
       ],
       "blockers": [
         "SCH-010",
         "IPC-010",
-        "SCH-011",
-        "Q-014"
+        "SCH-011"
       ],
       "covers": [
         "INV-0422"
@@ -13404,11 +13404,13 @@
       "owner": "none",
       "depends_on": [
         "OBS-011",
-        "IPC-012"
+        "IPC-012",
+        "BLD-082"
       ],
       "blockers": [
         "OBS-011",
-        "IPC-012"
+        "IPC-012",
+        "BLD-082"
       ],
       "covers": [
         "INV-0290"
@@ -15953,14 +15955,16 @@
         "CAP-005",
         "CAP-003",
         "CAP-004",
-        "CMP-005"
+        "CMP-005",
+        "BLD-082"
       ],
       "blockers": [
         "ABI-005",
         "CAP-005",
         "CAP-003",
         "CAP-004",
-        "CMP-005"
+        "CMP-005",
+        "BLD-082"
       ],
       "covers": [
         "INV-0479",
@@ -16314,13 +16318,11 @@
       "owner": "none",
       "depends_on": [
         "STO-012",
-        "SEC-007",
-        "Q-017"
+        "SEC-007"
       ],
       "blockers": [
         "STO-012",
-        "SEC-007",
-        "Q-017"
+        "SEC-007"
       ],
       "covers": [
         "INV-0492"
@@ -16393,14 +16395,10 @@
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "STO-012",
-        "Q-038",
-        "Q-042"
+        "STO-012"
       ],
       "blockers": [
-        "STO-012",
-        "Q-038",
-        "Q-042"
+        "STO-012"
       ],
       "covers": [
         "INV-0490",
@@ -16979,14 +16977,12 @@
       "depends_on": [
         "MEM-020",
         "STO-038",
-        "STO-005",
-        "Q-006"
+        "STO-005"
       ],
       "blockers": [
         "MEM-020",
         "STO-038",
-        "STO-005",
-        "Q-006"
+        "STO-005"
       ],
       "covers": [
         "INV-0318"
@@ -17006,13 +17002,11 @@
       "owner": "none",
       "depends_on": [
         "STO-009",
-        "PKG-007",
-        "Q-019"
+        "PKG-007"
       ],
       "blockers": [
         "STO-009",
-        "PKG-007",
-        "Q-019"
+        "PKG-007"
       ],
       "covers": [
         "INV-0524"
@@ -17396,13 +17390,11 @@
       "owner": "none",
       "depends_on": [
         "STO-002",
-        "SVC-006",
-        "Q-025"
+        "SVC-006"
       ],
       "blockers": [
         "STO-002",
-        "SVC-006",
-        "Q-025"
+        "SVC-006"
       ],
       "covers": [
         "INV-0588"
@@ -20006,13 +19998,11 @@
       "owner": "none",
       "depends_on": [
         "PKG-048",
-        "PKG-060",
-        "Q-026"
+        "PKG-060"
       ],
       "blockers": [
         "PKG-048",
-        "PKG-060",
-        "Q-026"
+        "PKG-060"
       ],
       "covers": [
         "INV-0589"
@@ -20535,10 +20525,12 @@
       "owner": "none",
       "depends_on": [
         "KRN-017",
-        "HW-003"
+        "HW-003",
+        "BLD-082"
       ],
       "blockers": [
-        "KRN-017"
+        "KRN-017",
+        "BLD-082"
       ],
       "covers": [
         "INV-0128",
@@ -20927,12 +20919,10 @@
       "owner": "none",
       "depends_on": [
         "GFX-036",
-        "Q-034",
         "SDK-097"
       ],
       "blockers": [
         "GFX-036",
-        "Q-034",
         "SDK-097"
       ],
       "covers": [
@@ -20998,12 +20988,10 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "GFX-033",
-        "Q-027"
+        "GFX-033"
       ],
       "blockers": [
-        "GFX-033",
-        "Q-027"
+        "GFX-033"
       ],
       "covers": [
         "INV-0606"
@@ -28113,11 +28101,13 @@
         "KRN-002",
         "KRN-010",
         "KRN-011",
-        "KRN-017"
+        "KRN-017",
+        "BLD-082"
       ],
       "blockers": [
         "KRN-011",
-        "KRN-017"
+        "KRN-017",
+        "BLD-082"
       ],
       "covers": [
         "INV-0004",
@@ -28156,13 +28146,15 @@
         "LNX-001",
         "BLD-012",
         "KRN-014",
-        "BEN-006"
+        "BEN-006",
+        "BLD-082"
       ],
       "blockers": [
         "LNX-001",
         "BLD-012",
         "KRN-014",
-        "BEN-006"
+        "BEN-006",
+        "BLD-082"
       ],
       "covers": [
         "INV-0141"
@@ -31224,12 +31216,10 @@
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "WIN-003",
-        "Q-043"
+        "WIN-003"
       ],
       "blockers": [
-        "WIN-003",
-        "Q-043"
+        "WIN-003"
       ],
       "covers": [
         "INV-1073",
@@ -31357,17 +31347,14 @@
       "type": "adr",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
       "depends_on": [
         "WIN-001",
-        "GOV-003",
-        "Q-050"
+        "GOV-003"
       ],
-      "blockers": [
-        "Q-050"
-      ],
+      "blockers": [],
       "covers": [
         "GAP-0084"
       ],
@@ -31411,12 +31398,10 @@
       "owner": "none",
       "depends_on": [
         "WIN-001",
-        "LNX-015",
-        "Q-040"
+        "LNX-015"
       ],
       "blockers": [
-        "LNX-015",
-        "Q-040"
+        "LNX-015"
       ],
       "covers": [
         "GAP-0507",
@@ -32017,13 +32002,11 @@
       "owner": "none",
       "depends_on": [
         "WIN-040",
-        "APP-032",
-        "Q-041"
+        "APP-032"
       ],
       "blockers": [
         "WIN-040",
-        "APP-032",
-        "Q-041"
+        "APP-032"
       ],
       "covers": [
         "INV-0931"
@@ -34158,13 +34141,11 @@
       "depends_on": [
         "ENV-007",
         "NET-006",
-        "SEC-002",
-        "Q-031"
+        "SEC-002"
       ],
       "blockers": [
         "ENV-007",
-        "NET-006",
-        "Q-031"
+        "NET-006"
       ],
       "covers": [
         "INV-0665"
@@ -34207,13 +34188,11 @@
       "depends_on": [
         "PKG-006",
         "PKG-011",
-        "Q-030",
         "ENV-021"
       ],
       "blockers": [
         "PKG-006",
         "PKG-011",
-        "Q-030",
         "ENV-021"
       ],
       "covers": [
@@ -35258,13 +35237,11 @@
       "owner": "none",
       "depends_on": [
         "HET-001",
-        "HET-002",
-        "Q-033"
+        "HET-002"
       ],
       "blockers": [
         "HET-001",
-        "HET-002",
-        "Q-033"
+        "HET-002"
       ],
       "covers": [
         "INV-0696"
@@ -41637,10 +41614,12 @@
       "owner": "none",
       "depends_on": [
         "HW-002",
-        "KRN-017"
+        "KRN-017",
+        "BLD-082"
       ],
       "blockers": [
-        "KRN-017"
+        "KRN-017",
+        "BLD-082"
       ],
       "covers": [
         "INV-0016",
@@ -41677,12 +41656,14 @@
       "depends_on": [
         "HW-004",
         "HW-001",
-        "KRN-014"
+        "KRN-014",
+        "BLD-082"
       ],
       "blockers": [
         "HW-004",
         "HW-001",
-        "KRN-014"
+        "KRN-014",
+        "BLD-082"
       ],
       "covers": [
         "INV-0016",
@@ -44680,13 +44661,15 @@
         "SDK-004",
         "SDK-009",
         "CMP-014",
-        "CAP-005"
+        "CAP-005",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-004",
         "SDK-009",
         "CMP-014",
-        "CAP-005"
+        "CAP-005",
+        "BLD-082"
       ],
       "covers": [
         "INV-0963",
@@ -44711,7 +44694,8 @@
         "SDK-004",
         "IPC-012",
         "CMP-005",
-        "SCH-007"
+        "SCH-007",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-001",
@@ -44719,7 +44703,8 @@
         "SDK-004",
         "IPC-012",
         "CMP-005",
-        "SCH-007"
+        "SCH-007",
+        "BLD-082"
       ],
       "covers": [
         "INV-0236",
@@ -44741,11 +44726,13 @@
       "depends_on": [
         "ABI-003",
         "BLD-004",
-        "BLD-009"
+        "BLD-009",
+        "BLD-082"
       ],
       "blockers": [
         "ABI-003",
-        "BLD-009"
+        "BLD-009",
+        "BLD-082"
       ],
       "covers": [
         "GAP-0090"
@@ -44769,7 +44756,8 @@
         "SDK-009",
         "TSK-018",
         "TSK-020",
-        "TSK-023"
+        "TSK-023",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-010",
@@ -44777,7 +44765,8 @@
         "SDK-009",
         "TSK-018",
         "TSK-020",
-        "TSK-023"
+        "TSK-023",
+        "BLD-082"
       ],
       "covers": [
         "INV-0360",
@@ -44802,13 +44791,15 @@
         "SDK-009",
         "TSK-010",
         "TSK-013",
-        "ABI-009"
+        "ABI-009",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-009",
         "TSK-010",
         "TSK-013",
-        "ABI-009"
+        "ABI-009",
+        "BLD-082"
       ],
       "covers": [
         "INV-0369",
@@ -44825,11 +44816,15 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "ready",
+      "derived": "blocked",
       "size": "S",
       "owner": "none",
-      "depends_on": [],
-      "blockers": [],
+      "depends_on": [
+        "BLD-082"
+      ],
+      "blockers": [
+        "BLD-082"
+      ],
       "covers": [
         "INV-1252"
       ],
@@ -44850,13 +44845,15 @@
         "SDK-006",
         "OBS-006",
         "OBS-005",
-        "OBS-007"
+        "OBS-007",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-006",
         "OBS-006",
         "OBS-005",
-        "OBS-007"
+        "OBS-007",
+        "BLD-082"
       ],
       "covers": [
         "INV-1253",
@@ -44882,12 +44879,14 @@
       "depends_on": [
         "SDK-006",
         "OBS-011",
-        "OBS-003"
+        "OBS-003",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-006",
         "OBS-011",
-        "OBS-003"
+        "OBS-003",
+        "BLD-082"
       ],
       "covers": [
         "INV-1259"
@@ -44912,7 +44911,8 @@
         "ABI-002",
         "CAP-003",
         "MEM-005",
-        "IPC-010"
+        "IPC-010",
+        "BLD-082"
       ],
       "blockers": [
         "SDK-003",
@@ -44921,7 +44921,8 @@
         "ABI-002",
         "CAP-003",
         "MEM-005",
-        "IPC-010"
+        "IPC-010",
+        "BLD-082"
       ],
       "covers": [
         "INV-0937",
@@ -47154,13 +47155,15 @@
         "SDK-069",
         "PKG-069",
         "PKG-079",
-        "Q-056"
+        "Q-056",
+        "APP-056"
       ],
       "blockers": [
         "SDK-069",
         "PKG-069",
         "PKG-079",
-        "Q-056"
+        "Q-056",
+        "APP-056"
       ],
       "covers": [
         "INV-0585"
@@ -47315,7 +47318,6 @@
         "APP-003",
         "APP-005",
         "APP-006",
-        "Q-029",
         "BEN-005"
       ],
       "covers": [
@@ -47848,13 +47850,11 @@
       "owner": "none",
       "depends_on": [
         "APP-021",
-        "LNX-031",
-        "Q-044"
+        "LNX-031"
       ],
       "blockers": [
         "APP-021",
-        "LNX-031",
-        "Q-044"
+        "LNX-031"
       ],
       "covers": [
         "GAP-0307",
@@ -47876,14 +47876,12 @@
       "depends_on": [
         "APP-003",
         "LNX-032",
-        "SDK-040",
-        "Q-045"
+        "SDK-040"
       ],
       "blockers": [
         "APP-003",
         "LNX-032",
-        "SDK-040",
-        "Q-045"
+        "SDK-040"
       ],
       "covers": [
         "INV-1106"
@@ -48887,19 +48885,17 @@
       "owner": "none",
       "depends_on": [
         "PKG-079",
-        "PKG-022",
-        "Q-056"
+        "PKG-022"
       ],
       "blockers": [
         "PKG-079",
-        "PKG-022",
-        "Q-056"
+        "PKG-022"
       ],
       "covers": [
         "GAP-0283"
       ],
       "file": "workstreams/APP.md",
-      "downstream_weight": 6,
+      "downstream_weight": 9,
       "anchored": true
     },
     {
@@ -50893,7 +50889,7 @@
         "GAP-0087"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5225,
+      "downstream_weight": 5736,
       "anchored": true
     },
     {
@@ -50933,7 +50929,7 @@
         "GAP-0160"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5252,
+      "downstream_weight": 5752,
       "anchored": true
     },
     {
@@ -50953,7 +50949,7 @@
         "GAP-0086"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5584,
+      "downstream_weight": 5766,
       "anchored": true
     },
     {
@@ -50967,11 +50963,13 @@
       "owner": "none",
       "depends_on": [
         "BLD-012",
-        "BLD-009"
+        "BLD-009",
+        "BLD-082"
       ],
       "blockers": [
         "BLD-012",
-        "BLD-009"
+        "BLD-009",
+        "BLD-082"
       ],
       "covers": [
         "GAP-0114"
@@ -52843,7 +52841,31 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 0,
+      "downstream_weight": 5662,
+      "anchored": true
+    },
+    {
+      "id": "BLD-082",
+      "title": "Create the jakeos-platform monorepo with the workspace skeleton, licences and CI",
+      "type": "build",
+      "milestone": "V0",
+      "status": "todo",
+      "derived": "blocked",
+      "size": "M",
+      "owner": "none",
+      "depends_on": [
+        "BLD-081",
+        "BLD-005",
+        "BLD-002",
+        "GOV-001",
+        "GOV-003"
+      ],
+      "blockers": [
+        "BLD-081"
+      ],
+      "covers": [],
+      "file": "workstreams/BLD.md",
+      "downstream_weight": 5659,
       "anchored": true
     },
     {
@@ -52857,11 +52879,13 @@
       "owner": "none",
       "depends_on": [
         "LAB-003",
-        "LAB-004"
+        "LAB-004",
+        "BLD-082"
       ],
       "blockers": [
         "LAB-003",
-        "LAB-004"
+        "LAB-004",
+        "BLD-082"
       ],
       "covers": [
         "EXTRA-049",
@@ -52896,14 +52920,17 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "ready",
+      "derived": "blocked",
       "size": "M",
       "owner": "none",
       "depends_on": [
         "LAB-002",
-        "HW-003"
+        "HW-003",
+        "BLD-082"
       ],
-      "blockers": [],
+      "blockers": [
+        "BLD-082"
+      ],
       "covers": [
         "EXTRA-052"
       ],
@@ -53654,10 +53681,12 @@
       "owner": "none",
       "depends_on": [
         "BEN-007",
-        "BEN-064"
+        "BEN-064",
+        "BLD-082"
       ],
       "blockers": [
-        "BEN-064"
+        "BEN-064",
+        "BLD-082"
       ],
       "covers": [
         "INV-1040"
@@ -58143,7 +58172,7 @@
         "GAP-0384"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 5635,
+      "downstream_weight": 5817,
       "anchored": true
     },
     {
@@ -58186,7 +58215,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 5029,
+      "downstream_weight": 5754,
       "anchored": true
     },
     {
@@ -58206,7 +58235,7 @@
         "GAP-0164"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 5695,
+      "downstream_weight": 5858,
       "anchored": true
     },
     {
@@ -59025,15 +59054,11 @@
       "type": "spike",
       "milestone": "V1",
       "status": "todo",
-      "derived": "blocked",
+      "derived": "ready",
       "size": "S",
       "owner": "none",
-      "depends_on": [
-        "Q-049"
-      ],
-      "blockers": [
-        "Q-049"
-      ],
+      "depends_on": [],
+      "blockers": [],
       "covers": [
         "GAP-0041"
       ],
@@ -60611,13 +60636,15 @@
           "verified_by": [
             "BEN-002",
             "BEN-005",
-            "BLD-010"
+            "BLD-010",
+            "BLD-082"
           ],
           "satisfied": false,
           "reasons": [
             "`BEN-002` is todo — Publish V0 Demo pipeline latency, copies and memory",
             "`BEN-005` is todo — Build the shared benchmark runner and CI publication",
-            "`BLD-010` is todo — Run the core benchmark suite and V0 demos in CI"
+            "`BLD-010` is todo — Run the core benchmark suite and V0 demos in CI",
+            "`BLD-082` is todo — Create the jakeos-platform monorepo with the workspace skeleton, licences and CI"
           ]
         },
         {
@@ -64876,12 +64903,12 @@
     }
   ],
   "totals": {
-    "total": 2280,
+    "total": 2281,
     "done": 46,
-    "todo": 2234,
+    "todo": 2235,
     "in_progress": 0,
     "dropped": 0,
-    "weight_total": 6445,
+    "weight_total": 6448,
     "weight_done": 72,
     "gates_total": 187,
     "gates_satisfied": 0
@@ -64910,12 +64937,12 @@
       "gates_satisfied": 0
     },
     "V0": {
-      "total": 220,
+      "total": 221,
       "done": 30,
-      "todo": 190,
+      "todo": 191,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 678,
+      "weight_total": 681,
       "weight_done": 48,
       "gates_total": 21,
       "gates_satisfied": 0
@@ -65033,12 +65060,12 @@
       "gates_satisfied": 0
     },
     "BLD": {
-      "total": 81,
+      "total": 82,
       "done": 4,
-      "todo": 77,
+      "todo": 78,
       "in_progress": 0,
       "dropped": 0,
-      "weight_total": 240,
+      "weight_total": 243,
       "weight_done": 6,
       "gates_total": 0,
       "gates_satisfied": 0

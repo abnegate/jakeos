@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 12 done, 0 in-progress, 72 todo, 0 dropped. Ready: 8. Blocked: 64. Weighted: 17%.
+Tasks: 84 live, 12 done, 0 in-progress, 72 todo, 0 dropped. Ready: 9. Blocked: 63. Weighted: 17%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -1112,7 +1112,7 @@ Per-Gate verification (the Gate `Verified by` tasks). Generated roll-up (GOV roa
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: Q-049
+- Depends on: none
 - Baseline: §63
 
 Question answered before the entity Decision: export controls, GDPR, trademark cost and donation tax treatment. Jurisdiction is expensive to change.

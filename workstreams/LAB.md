@@ -5,7 +5,7 @@
 - Baseline gap: The baseline names Reference machines, Input-to-photon latency and energy tracking but specifies no physical lab, racks, remote power, consoles, capture, scheduler or procurement.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 27 live, 1 done, 0 in-progress, 26 todo, 0 dropped. Ready: 2. Blocked: 24. Weighted: 1%.
+Tasks: 27 live, 1 done, 0 in-progress, 26 todo, 0 dropped. Ready: 1. Blocked: 25. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -26,7 +26,7 @@ SKU selection, driver bring-up, HID services, LVFS firmware updates and HCL prob
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: LAB-003, LAB-004
+- Depends on: LAB-003, LAB-004, BLD-082
 - Baseline: §54, §59
 - Benchmarks: B-020
 - Risks: R-022
@@ -91,7 +91,7 @@ Scheduler family and unbootable recovery (LAB-005). SKU list (HW-003). Quiet per
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: LAB-002, HW-003
+- Depends on: LAB-002, HW-003, BLD-082
 - Baseline: §59, §62
 - Risks: R-022, R-081
 - Invariants: I-074

@@ -29,8 +29,8 @@
 | APP-016 | Extend Terminal for daily development with tabs, splits and graphics | todo | blocked | M | APP-004, APP-009, LNX-022, TXT-020 |
 | APP-017 | Build a thin panel with a running-application list for daily driving | todo | blocked | S | APP-007, APP-013, UIP-016, LNX-038 |
 | APP-018 | Build a window switcher usable for daily development | todo | blocked | S | APP-017, GFX-010, UIP-013 |
-| APP-019 | Decide browser strategy for 1.0 and the native WebView Component | todo | blocked | S | APP-021, LNX-031, Q-044 |
-| APP-020 | Decide IDE strategy for 1.0 and the criteria for a native port | todo | blocked | S | APP-003, LNX-032, SDK-040, Q-045 |
+| APP-019 | Decide browser strategy for 1.0 and the native WebView Component | todo | blocked | S | APP-021, LNX-031 |
+| APP-020 | Decide IDE strategy for 1.0 and the criteria for a native port | todo | blocked | S | APP-003, LNX-032, SDK-040 |
 | APP-021 | Prototype a sandboxed native WebView Component for in-app web content | todo | blocked | M | CMP-024, GFX-026, CAP-025, LNX-031 |
 
 ## V2
@@ -71,7 +71,7 @@
 | APP-053 | Decide the shared PDF renderer for viewer, thumbnails and print preview | todo | blocked | S | APP-051 |
 | APP-054 | Decide status-tray policy: StatusNotifierItem compatibility versus none | todo | blocked | S | APP-017, LNX-052 |
 | APP-055 | Prototype Capability-scoped desktop search without ambient home access | todo | blocked | M | STO-034, CAP-017, SCH-010 |
-| APP-056 | Prototype session restore of application windows from system history | todo | blocked | S | PKG-079, PKG-022, Q-056 |
+| APP-056 | Prototype session restore of application windows from system history | todo | blocked | S | PKG-079, PKG-022 |
 
 ## V3
 

@@ -147,7 +147,7 @@ Native init implementation (SVC-007). Early-userspace design at V0.5 (SVC-003). 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BOOT-001, BOOT-004, CMP-003, CMP-014
+- Depends on: BOOT-001, BOOT-004, CMP-003, CMP-014, BLD-082
 - Baseline: §5.1, §59
 - Risks: R-010
 - Invariants: I-094

@@ -16,9 +16,9 @@
 | CMP-008 | Decide Component panic, abort and typed exit-cause semantics | done | done | M | none |
 | CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | done | done | S | none |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | blocked | M | CMP-015, CMP-016 |
-| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | blocked | M | CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013 |
+| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | blocked | M | CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013, BLD-082 |
 | CMP-012 | Prove Component isolation with negative tests and the isolation Demo | todo | blocked | M | CMP-005, CMP-007, CMP-013, CAP-001, SEC-001 |
-| CMP-013 | Add the ABI review Gate rejecting process, thread and container shapes | todo | blocked | S | CMP-007, CMP-009, CMP-006, ABI-018 |
+| CMP-013 | Add the ABI review Gate rejecting process, thread and container shapes | todo | blocked | S | CMP-007, CMP-009, CMP-006, ABI-018, BLD-082 |
 | CMP-014 | Define Object<Component> in the native Object model | todo | blocked | M | CMP-006, CMP-009, CMP-007, ABI-005, ABI-013 |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | todo | ready | M | none |
 | CMP-016 | Benchmark wrapper, prewarmed-template and native Component strategies | todo | blocked | L | CMP-015 |
@@ -51,7 +51,7 @@
 | CMP-033 | Bring the Component L1 Surface to freeze-candidate state with tests | todo | blocked | M | CMP-014, CMP-004, CMP-003, CMP-009, CMP-008, ABI-034 |
 | CMP-034 | Implement the Component creation fast path to the Register target | todo | blocked | L | CMP-010, CMP-005, CMP-001 |
 | CMP-035 | Publish Component creation beside fork+exec, clone and podman run | todo | blocked | S | CMP-001, BEN-006 |
-| CMP-036 | Decide how Personality processes map onto Components | todo | blocked | M | CMP-006, LNX-060, Q-010 |
+| CMP-036 | Decide how Personality processes map onto Components | todo | blocked | M | CMP-006, LNX-060 |
 | CMP-037 | Write the Component design guidelines for SDK v1 | todo | blocked | M | CMP-024, CMP-008, CMP-022 |
 | CMP-038 | Implement the in-address-space Component class if the adr adopts it | todo | blocked | M | CMP-021, CMP-014, WASM-012 |
 | CMP-039 | Publish the Component isolation boundary assurance report | todo | blocked | M | CMP-012, SEC-002 |

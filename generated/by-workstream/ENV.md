@@ -16,9 +16,9 @@
 | ENV-003 | Create a NetworkNamespace for each development environment | todo | blocked | M | ENV-002, ENV-006, ENV-010, NET-012, NET-016, SCH-033 |
 | ENV-004 | Map environment resources onto a ResourceDomain | todo | blocked | M | ENV-007, ENV-010, SCH-014, SCH-006, SCH-019, SCH-032, SCH-007, SCH-008, SCH-034 |
 | ENV-005 | Create a StorageSnapshot for each development environment | todo | blocked | M | ENV-007, ENV-010, STO-011, STO-043 |
-| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | blocked | S | ENV-007, NET-006, SEC-002, Q-031 |
+| ENV-006 | Decide how environment endpoints are granted without ambient network | todo | blocked | S | ENV-007, NET-006, SEC-002 |
 | ENV-007 | Decide whether DevelopmentEnvironment is kernel or userspace | todo | blocked | S | CMP-005, SCH-007 |
-| ENV-008 | Decide environment.yaml schema versus Package manifest profile | todo | blocked | S | PKG-006, PKG-011, Q-030, ENV-021 |
+| ENV-008 | Decide environment.yaml schema versus Package manifest profile | todo | blocked | S | PKG-006, PKG-011, ENV-021 |
 | ENV-009 | Decide how environment services are hosted and packaged | todo | blocked | S | ENV-022, PKG-047 |
 | ENV-010 | Implement the environment.yaml schema with lock and validation | todo | blocked | M | ENV-008 |
 | ENV-011 | Emit development environment changes as history events | todo | blocked | S | ENV-012, PKG-022 |
