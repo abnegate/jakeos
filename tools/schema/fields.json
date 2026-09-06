@@ -39,7 +39,7 @@
     "droppedReasons": ["duplicate", "descoped", "superseded", "infeasible", "merged"],
     "ownerPattern": "^(none|@[a-z0-9][a-z0-9-]*|@agent/[a-z0-9][a-z0-9-]*)$",
     "sections": {
-      "Out of scope": {"required": false},
+      "Out of scope": {"required": false}, "Deliverables": {"required": false, "minItems": 1},
       "Acceptance criteria": {"required": true, "minItems": 1, "checkbox": true},
       "Verification": {"required": true, "minItems": 1, "lineKinds": ["Unit", "Integration", "Fuzz", "Bench", "Compat", "Manual", "Review", "Demo", "Report"]},
       "Evidence": {"required": true, "minItems": 1}

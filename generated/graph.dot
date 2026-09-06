@@ -3438,6 +3438,8 @@ digraph roadmap {
   "BLD-082" -> "ABI-018";
   "BLD-082" -> "BEN-005";
   "BLD-082" -> "BLD-006";
+  "BLD-082" -> "BLD-010";
+  "BLD-082" -> "BLD-012";
   "BLD-082" -> "BOOT-005";
   "BLD-082" -> "CMP-011";
   "BLD-082" -> "CMP-013";

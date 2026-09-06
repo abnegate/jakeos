@@ -1,5 +1,13 @@
 use crate::diagnostic::{Diagnostic, code};
-use crate::model::{Criterion, EvidenceLine, Fields, Task, VerificationLine, Workstream};
+use std::sync::LazyLock;
+
+static DELIVERABLE_LINE: LazyLock<regex::Regex> = LazyLock::new(|| {
+    regex::Regex::new(r"^- ([a-z][a-z-]*):(\S+) · (.+)$").expect("deliverable pattern")
+});
+
+use crate::model::{
+    Criterion, DeliverableLine, EvidenceLine, Fields, Task, VerificationLine, Workstream,
+};
 use crate::parser::{
     NumberedLine, numbered, parse_field_block, strip_generated_blocks, text_of, trim_blank_edges,
 };
@@ -258,6 +266,7 @@ fn parse_task(
 
     let mut out_of_scope = Vec::new();
     let mut criteria = Vec::new();
+    let mut deliverables = Vec::new();
     let mut verification = Vec::new();
     let mut evidence = Vec::new();
     let mut present_sections = Vec::new();
@@ -301,6 +310,29 @@ fn parse_task(
                             code::INVALID_CHECKBOX,
                             format!("acceptance criterion is not a checkbox item: `{text}`"),
                             "write `- [ ] <observable statement>` or `- [x] …`",
+                        ));
+                    }
+                }
+            }
+            "Deliverables" => {
+                for (number, text) in &body {
+                    if text.trim().is_empty() {
+                        continue;
+                    }
+                    if let Some(captures) = DELIVERABLE_LINE.captures(text) {
+                        deliverables.push(DeliverableLine {
+                            alias: captures[1].to_string(),
+                            path: captures[2].to_string(),
+                            text: captures[3].trim().to_string(),
+                            line: *number,
+                        });
+                    } else {
+                        diagnostics.push(Diagnostic::error(
+                            relative_path,
+                            *number,
+                            code::MALFORMED_BLOCK,
+                            format!("malformed deliverable in `{id}`: {text}"),
+                            "write `- <alias>:<path> · <what the artifact is>`",
                         ));
                     }
                 }
@@ -363,6 +395,7 @@ fn parse_task(
         covers,
         out_of_scope,
         criteria,
+        deliverables,
         verification,
         evidence,
         present_sections,

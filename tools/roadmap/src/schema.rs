@@ -4,8 +4,9 @@ use serde::Deserialize;
 use std::collections::BTreeMap;
 use std::path::Path;
 
-pub const SECTION_ORDER: [&str; 4] = [
+pub const SECTION_ORDER: [&str; 5] = [
     "Out of scope",
+    "Deliverables",
     "Acceptance criteria",
     "Verification",
     "Evidence",

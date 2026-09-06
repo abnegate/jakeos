@@ -1,5 +1,5 @@
 use crate::diagnostic::{Diagnostic, Diagnostics, code};
-use crate::model::{Status, Task};
+use crate::model::{Status, Task, TaskType};
 use crate::repo::Repo;
 use crate::schema::{Conditional, SECTION_ORDER};
 use crate::validate::policy_flag;
@@ -232,7 +232,61 @@ fn validate_owner(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) {
     }
 }
 
+fn validate_deliverables(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) {
+    for item in &task.deliverables {
+        if !repo.alias_exists(&item.alias) {
+            diagnostics.push(Diagnostic::error(
+                &task.file,
+                item.line,
+                code::DANGLING_REFERENCE,
+                format!(
+                    "deliverable on `{}` names unknown repository alias `{}`",
+                    task.id, item.alias
+                ),
+                "use an alias from registers/repos.md",
+            ));
+        }
+    }
+    let wants = matches!(
+        task.task_type(),
+        TaskType::Build | TaskType::Docs | TaskType::Benchmark
+    ) && repo
+        .config
+        .policy
+        .deliverables_required
+        .iter()
+        .any(|token| token == task.milestone())
+        && task.deliverables.is_empty()
+        && task.status() != Status::Dropped;
+    if !wants {
+        return;
+    }
+    let message = format!(
+        "task `{}` has no `#### Deliverables` section naming the artifacts it produces",
+        task.id
+    );
+    let hint = "list every artifact as `- <alias>:<path> · <what it is>` so an agent knows where the work lands";
+    if task.status() == Status::Todo {
+        diagnostics.push(Diagnostic::warning(
+            &task.file,
+            task.line,
+            code::DELIVERABLES_MISSING,
+            message,
+            hint,
+        ));
+    } else {
+        diagnostics.push(Diagnostic::error(
+            &task.file,
+            task.line,
+            code::DELIVERABLES_REQUIRED,
+            message,
+            hint,
+        ));
+    }
+}
+
 fn validate_sections(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) {
+    validate_deliverables(repo, task, diagnostics);
     for name in SECTION_ORDER {
         let Some(section) = repo.schema.task.sections.get(name) else {
             continue;
@@ -252,6 +306,7 @@ fn validate_sections(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics) {
             continue;
         }
         let count = match name {
+            "Deliverables" => task.deliverables.len(),
             "Acceptance criteria" => task.criteria.len(),
             "Verification" => task.verification.len(),
             "Evidence" => task.evidence.len(),

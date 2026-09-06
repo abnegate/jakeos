@@ -29,22 +29,36 @@ Kernel fork, retained-mechanism inventory and RISC-V build-only CI (KRN). Bootlo
 - Baseline: §59, §55
 - Invariants: I-099
 
-V0 gates and bisection assume main is always green and every landed commit was tested against the tree it landed on (§59). This task structures CI into pre-merge (lint, unit, QEMU smoke boot), post-merge (full QEMU matrix), and nightly (sanitizers, kselftests, publish-only benches, hardware regression), and enforces a merge queue with no direct pushes. Release qualification is a later tier (BLD-067).
+V0 gates and bisection assume that `main` in both code repositories is always green and that every landed commit was tested against the exact tree it landed on (§59). This task arranges the GitHub Actions jobs of jakeos-kernel and jakeos-platform into three tiers with fixed names: `pre-merge` (lint, unit tests, one QEMU smoke boot on `qemu-x86_64`) runs on every pull request and is the only tier the merge queue waits for; `post-merge` (the full BLD-012 QEMU matrix) runs on every commit that lands; `nightly` (sanitizer boots, the KRN-014 kselftest matrix, the BLD-010 publish-only benchmark jobs and the BLD-007 hardware regression matrix) runs once a day on the self-hosted runners decided by D-0034. Both repositories use GitHub's merge queue on `main` with direct pushes refused, so a landed commit is always a queue commit with a recorded green `pre-merge` run.
+
+The tier names are a contract: every later BLD task that adds a job names its tier, and no task may add a required check outside `pre-merge`. Release qualification is a later tier owned by BLD-067. Runner labels are `hosted` for GitHub-hosted runners and `lab-kvm`, `lab-hw-<hNNN>` for the self-hosted ones from LAB-002 and LAB-003.
 
 <!-- covers: GAP-0109, GAP-0110 -->
 
 #### Out of scope
-Runner platform choice (BLD-003). Harness implementation (BLD-012). Release-qualification checklist (BLD-067).
+Runner platform choice (BLD-003). Harness implementation (BLD-012). Release-qualification checklist (BLD-067). Merge-queue policy for the roadmap repository (GOV).
+
+#### Deliverables
+- kernel:.github/workflows/pre-merge.yml · Lint, unit tests and the `qemu-x86_64` smoke boot; the only required check for the kernel merge queue.
+- kernel:.github/workflows/post-merge.yml · The full BLD-012 QEMU matrix on every landed commit.
+- kernel:.github/workflows/nightly.yml · Sanitizer boots, the KRN-014 kselftest matrix, BLD-007 hardware regression and BLD-010 benchmark publication.
+- platform:.github/workflows/pre-merge.yml · `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, the BLD-081 layout check and the ABI-003 firewall lint.
+- platform:.github/workflows/post-merge.yml · Workspace tests against the newest kernel post-merge image.
+- platform:.github/workflows/nightly.yml · Platform nightly jobs registered by later tasks.
+- bld:ci/tiers.md · The tier contract: names, triggers, runner labels, what may be a required check, and how a task registers a job in a tier.
+- bld:ci/branch-protection.json · The branch protection and merge-queue settings applied to both repositories, applied by `gh api` from a documented command.
 
 #### Acceptance criteria
-- [ ] Pre-merge required checks are lint, unit tests and a QEMU smoke boot on H-001; a failing check rejects the merge-queue entry.
-- [ ] Post-merge CI runs the declared QEMU matrix from BLD-012 on every landed commit.
-- [ ] Nightly CI runs sanitizer boots, retained-subsystem kselftests and BLD-010 publication jobs.
-- [ ] Direct pushes to the default branch are rejected; every merge is a merge-queue commit with a recorded passing run.
+- [ ] `pre-merge` on both repositories is the only required status check; it runs lint, unit tests and the `qemu-x86_64` smoke boot from BLD-012, and a red `pre-merge` removes the entry from the merge queue.
+- [ ] `post-merge` runs the declared BLD-012 matrix on every commit that lands on `main` of jakeos-kernel.
+- [ ] `nightly` runs sanitizer boots, the KRN-014 retained-subsystem kselftest matrix, the BLD-007 hardware regression jobs and the BLD-010 publication jobs, on the `lab-kvm` and `lab-hw-h002` runners.
+- [ ] A direct push to `main` of either repository is rejected by branch protection; every commit on `main` is a merge-queue commit whose `pre-merge` run is linked from the commit status.
+- [ ] `bld:ci/tiers.md` names the three tiers, their triggers and runner labels, and states that no later task adds a required check outside `pre-merge`.
 
 #### Verification
-- Integration: merge-queue fixture on H-001 where a red smoke boot prevents land and a green run produces a merge commit.
-- Review: GOV process reviewer confirms no direct-push path remains on the default branch.
+- Integration: merge-queue fixture on `qemu-x86_64` where a pull request with a deliberately failing smoke boot is removed from the queue and a green one lands as a queue commit.
+- Unit: `bld:tests/ci/tiers_*` asserting every workflow file declares a tier name and a runner label from `bld:ci/tiers.md`.
+- Review: GOV process reviewer confirms no direct-push path remains on `main` of either repository.
 
 #### Evidence
 - none
@@ -176,21 +190,30 @@ Forge hosting (GOV-001). Kernel fork bootstrap (KRN-010). Build orchestrator (BL
 - Depends on: BLD-012, BLD-009, BLD-082
 - Baseline: §10, §12, §16, §59
 
-V0 Component, Channel, Capability and MemoryObject tests must run inside the booted image, not only on the Linux host (§59). The agent starts as a Component in the guest, runs the nominated suite, and streams structured results including task IDs over virtio-serial or vsock to the harness.
+V0 Component, Channel, Capability and MemoryObject tests must run inside the booted image, not only as host-side unit tests (§59). The guest agent is a native Component, `jakeos-build-guest-agent`, started by the retained initramfs (D-0051) when the kernel command line carries `jakeos.agent=<suite>`. It runs the nominated suite (a directory of test executables under `/opt/jakeos/tests/<suite>/` in the image), and streams one JSON record per test over virtio-serial (`/dev/virtio-ports/org.jakeos.agent`) or vsock port 5000 to the harness of BLD-012. The record schema is `{ "test": "<name>", "task": "<PREFIX-NNN>", "result": "pass" | "fail" | "skip", "duration_ns": <int>, "log": "<tail>" }`, followed by a final `{ "done": true, "passed": n, "failed": n, "skipped": n }`.
+
+The harness side lives in `jakeos-build-harness`: it opens the channel before boot, waits for the agent handshake `{ "agent": "jakeos", "protocol": 1 }`, fails the job when no handshake arrives within the BLD-012 boot timeout, and captures serial and QEMU logs on failure. Test content belongs to the owning workstreams; each test binary prints the roadmap task ID it verifies so a failing record names the task.
 
 <!-- covers: GAP-0114 -->
 
 #### Out of scope
 Boot-complete detection and panic handling (BLD-012). Compatibility-corpus job plumbing (BLD-017). Test content (CMP, IPC, CAP, MEM).
 
+#### Deliverables
+- bld:guest-agent/ · Crate `jakeos-build-guest-agent`: suite discovery, execution, JSON record streaming over virtio-serial or vsock.
+- bld:guest-agent/protocol.md · The handshake and record schema, protocol version 1.
+- bld:harness/src/agent.rs · Harness-side listener in `jakeos-build-harness`: handshake wait, record collection, timeout and log capture.
+- bld:image/agent.conf · Initramfs hook that starts the agent when `jakeos.agent=<suite>` is on the kernel command line.
+- bld:tests/guest_agent_protocol_*.rs · Protocol tests: schema round trip, handshake timeout, failing-record task attribution.
+
 #### Acceptance criteria
-- [ ] The agent runs inside the H-001 smoke image and reports pass, fail and skip records as JSON over virtio-serial or vsock.
-- [ ] Each failing record includes the roadmap task ID named by the test.
-- [ ] A harness-side timeout with no agent handshake fails the job and captures serial plus QEMU logs.
-- [ ] Host-side unit tests of the Native ABI are not a substitute for a guest-agent run of the V0 primitive suite.
+- [ ] Booting the `qemu-x86_64` smoke image with `jakeos.agent=v0-primitives` runs every executable under `/opt/jakeos/tests/v0-primitives/` and the harness receives one JSON record per test plus the final summary record, over virtio-serial or vsock.
+- [ ] Each `fail` record carries the roadmap task ID printed by the test binary; a fixture test that fails on purpose appears in the harness output as `fail` with its task ID.
+- [ ] A boot with no agent handshake within the BLD-012 timeout fails the job and attaches the serial log and the QEMU log to the run.
+- [ ] `bld:guest-agent/protocol.md` states that host-side unit tests of the Native ABI are not a substitute for a guest-agent run of the V0 primitive suite.
 
 #### Verification
-- Integration: V0 primitive suite on H-001 via the agent, with a deliberate failing fixture mapping to a nominated task ID.
+- Integration: V0 primitive suite on `qemu-x86_64` through the agent, with a deliberately failing fixture attributed to a nominated task ID.
 - Unit: `bld:tests/guest_agent_protocol_*` on `qemu-x86_64`.
 
 #### Evidence
@@ -207,21 +230,30 @@ Boot-complete detection and panic handling (BLD-012). Compatibility-corpus job p
 - Risks: R-013
 - Invariants: I-054, I-098
 
-Native features must not regress hardware support while the fork lands (§55). KRN owns the retained-mechanism inventory and matrix contents; BLD hosts the DRM, PCI, USB, NVMe, networking and ACPI regression jobs on H-001 and H-002 and fails the merge when a retained kselftest or hardware probe regresses.
+Native features must not regress hardware support while the fork lands (§55). KRN-014 owns the matrix contents, generated from the `kselftest` entries of `Documentation/jakeos/retained.toml`; this task hosts the jobs. A `nightly` job `hardware-regression` runs the KRN-014 matrix for DRM, PCI, USB, NVMe/block, networking and ACPI on `qemu-x86_64` and on `hw-h002`, and a `post-merge` job runs the same matrix on `hw-h002` for every kernel change that lands. A regression in any retained kselftest or in the hardware probe (a device present in the previous run's `lspci`, `lsusb` and DRM connector inventory that is absent now) fails the job.
+
+Each run records the KRN inventory revision (the git blob hash of `retained.toml`) and the job identifier into the boot log so `os inspect` on the machine, and the run summary, name what was executed. Runner labels follow BLD-001.
 
 <!-- covers: INV-1052 -->
 
 #### Out of scope
-Matrix contents and GPL-only-symbol tests (KRN-014). Nightly kselftest runner axes (BLD-012). Lab racking (LAB-003).
+Matrix contents and GPL-only-symbol tests (KRN-014). Nightly kselftest runner axes (BLD-012). Lab racking (LAB-003). Laptop matrices (BLD-018 and later).
+
+#### Deliverables
+- kernel:.github/workflows/hardware-regression.yml · The `post-merge` job on `hw-h002` and the `nightly` job on `qemu-x86_64` and `hw-h002`, both invoking the KRN-014 matrix runner.
+- bld:harness/src/hardware_probe.rs · Probe inventory capture (PCI, USB, DRM connectors, block devices, network interfaces) and comparison with the previous green run.
+- bld:harness/src/kselftest.rs · Runner that executes the KRN-014 generated matrix and maps each subset result to its `retained.toml` entry.
+- bld:tests/hardware/probe_diff_*.rs · Tests for probe comparison: a removed device fails, an added device passes with a note.
 
 #### Acceptance criteria
-- [ ] Post-merge CI runs the KRN retained-subsystem matrix on H-001 for DRM, PCI, USB, NVMe, networking and ACPI.
-- [ ] The same matrix runs on H-002 for every kernel change that lands on the default branch.
-- [ ] A regression in a retained kselftest or probe fails the job and is visible as a required check.
-- [ ] `os inspect` on a passing H-002 run lists the matrix job identifier and the KRN inventory revision it executed.
+- [ ] The `nightly` hardware-regression job runs the KRN-014 matrix on `qemu-x86_64` for DRM, PCI, USB, NVMe/block, networking and ACPI and publishes per-subset results.
+- [ ] The `post-merge` hardware-regression job runs the same matrix on `hw-h002` for every kernel commit that lands on `main`.
+- [ ] A regression in a retained kselftest, or a device present in the previous green probe inventory and absent now, fails the job and appears as a failed commit status.
+- [ ] The run log and `os inspect` on a passing `hw-h002` run show the job identifier and the `retained.toml` blob hash executed.
 
 #### Verification
-- Integration: matrix jobs on H-001 and H-002; a fixture that breaks a retained NVMe kselftest fails the check.
+- Integration: matrix jobs on `qemu-x86_64` and `hw-h002`; a fixture that breaks a retained NVMe kselftest fails the job; a fixture that hides a USB device from the probe fails the job.
+- Unit: `bld:tests/hardware/probe_diff_*` on `qemu-x86_64`.
 - Review: KRN lead confirms BLD executes the KRN-014 contents without a second inventory.
 
 #### Evidence
@@ -237,20 +269,28 @@ Matrix contents and GPL-only-symbol tests (KRN-014). Nightly kselftest runner ax
 - Baseline: §50, §64
 - Risks: R-011
 
-Without QEMU gdbstub, kgdb, early console and crash-dump analysis, V0 debugging becomes folklore (R-011). This page records those four paths for the fork and CI exercises each one so the first boot is debuggable.
+Without a written and exercised path for QEMU gdbstub, kgdb, early console and crash-dump analysis, V0 kernel debugging becomes folklore that lives in one person's shell history (R-011). This page, `Documentation/jakeos/debugging.md` in the kernel tree, records the four paths for the fork on the `qemu-x86_64` profile: attaching `gdb` to QEMU's gdbstub with the `vmlinux` symbols from the BLD-009 build, breaking into `kgdb` over the serial console with `kgdboc`, capturing `earlycon` output before the console driver is up, and analysing a crash dump captured by `kdump` with `drgn`. Every command in the page is copied from a CI job that runs it, so the page cannot drift from what works.
+
+The CI job `debug-workflow` in the `nightly` tier performs each path against the BLD-012 default cell: it sets a gdbstub breakpoint on `start_kernel` and continues, hits a documented `kgdb` breakpoint via `SysRq-g`, asserts that `earlycon` output precedes the first console line, and symbolises a panic triggered by `jakeos.debug.panic=1` with `drgn` to the faulting function.
 
 <!-- covers: EXTRA-010 -->
 
 #### Out of scope
-Crash-capture format (OBS). Symbol upload (BLD-038). Watchdog wiring (KRN).
+Crash-capture format for Components (OBS-029). Symbol upload to the crash pipeline (BLD-038). Watchdog wiring (KRN). Debugging user-space Components with the SDK debugger (SDK).
+
+#### Deliverables
+- kernel:Documentation/jakeos/debugging.md · The four debug paths with the exact commands, profile names and expected output.
+- kernel:.github/workflows/nightly.yml · The `debug-workflow` job invoking `bld:debug/run.sh` on the BLD-012 default cell.
+- bld:debug/run.sh · The script the page's commands are copied from: gdbstub attach, kgdb breakpoint, earlycon capture, kdump plus drgn symbolisation.
+- kernel:jakeos/debug/panic_trigger.rs · Boot-time hook that panics when `jakeos.debug.panic=1` is on the command line, compiled only under `CONFIG_JAKEOS_DEBUG`.
 
 #### Acceptance criteria
-- [ ] A committed page documents QEMU gdbstub attach, kgdb, early console and drgn analysis of a crash dump on H-001.
-- [ ] CI breaks in the gdbstub, hits a documented kgdb breakpoint, captures early-console output, and symbolises a deliberate panic with drgn.
-- [ ] The page names the QEMU profile from BLD-012 and does not invent a second machine type.
+- [ ] `Documentation/jakeos/debugging.md` documents QEMU gdbstub attach, kgdb over `kgdboc`, `earlycon` capture and `drgn` analysis of a `kdump` crash dump on `qemu-x86_64`, and every command in it appears verbatim in `bld:debug/run.sh`.
+- [ ] The `debug-workflow` nightly job breaks at `start_kernel` through the gdbstub, hits the documented `kgdb` breakpoint, asserts `earlycon` output precedes the first console line, and symbolises the `jakeos.debug.panic=1` panic to `panic_trigger` with `drgn`.
+- [ ] The page names the BLD-012 `qemu-x86_64` profile and does not define a second machine type or QEMU command line.
 
 #### Verification
-- Integration: debug-workflow job on H-001 covering gdbstub, kgdb, early console and drgn.
+- Integration: `debug-workflow` job on `qemu-x86_64` covering gdbstub, kgdb, earlycon and drgn.
 - Review: kernel architecture lead accepts the page on the pull request.
 
 #### Evidence
@@ -267,23 +307,34 @@ Crash-capture format (OBS). Symbol upload (BLD-038). Watchdog wiring (KRN).
 - Threats: T-007
 - Invariants: I-090
 
-V0 boots from a CI-built image reproducible from a tagged commit; this command is the contributor entry point (§59). Builds run in a hermetic sandbox with pinned content-addressed inputs, no network after fetch, committed lockfiles and a project-controlled source mirror keyed by content hash. Non-Linux hosts get a containerised Linux environment; native Windows and macOS host builds are out of 1.0 (I-090). The native `os env` sandbox waits for V1.
+V0 boots from a CI-built image that anyone can reproduce from a tagged commit (§59); this command is the contributor entry point and the thing CI runs. `build/jakeos-build` in the platform monorepo (a Rust binary, crate `jakeos-build-cli`, invoked as `./build/jakeos-build image --profile qemu-x86_64`) fetches every input by content hash from the project mirror, then builds inside a hermetic sandbox (Bubblewrap on Linux) with the network disabled after the fetch phase, using the pinned kernel toolchain from BLD-013, the pinned user-space Rust toolchain, and committed lockfiles (`Cargo.lock`, `build/lock/sources.toml` for kernel sources, firmware and C dependencies). The output is a bootable image for the named profile plus a manifest of every input hash.
+
+The mirror is an object store keyed by content hash (BLAKE3 or SHA-256 as D-0213 later fixes; V0 uses SHA-256 and records it in the lockfile) hosted at the URL in `build/mirror.toml`; `jakeos-build mirror add <url>` fetches, hashes and uploads a new source, and a build that needs a hash absent from the mirror and the lockfile fails before compiling. Non-Linux hosts use the containerised Linux environment described in `docs/contributing/build.md`; native Windows and macOS host builds are out of 1.0 (I-090). The native `os env` sandbox replaces Bubblewrap at V1 (BLD-043).
 
 <!-- covers: GAP-0458, GAP-0092, GAP-0157, GAP-0161, GAP-0096 -->
 
 #### Out of scope
-Native `os env` hermetic builds (BLD-043). Remote cache (BLD-025). Image builder shared with release (INS-001, BLD-024).
+Native `os env` hermetic builds (BLD-043). Remote build cache (BLD-025). Image builder shared with release (INS-001, BLD-024). Reproducibility verification across builders (BLD-054).
+
+#### Deliverables
+- bld:cli/ · Crate `jakeos-build-cli`, binary `jakeos-build`, subcommands `image`, `kernel`, `mirror add`, `mirror verify`.
+- bld:sandbox/ · Crate `jakeos-build-sandbox`: Bubblewrap invocation with network off after fetch, read-only inputs, single writable output directory.
+- bld:lock/sources.toml · Content-hash lockfile for kernel sources, firmware, C dependencies and toolchain archives.
+- bld:mirror.toml · Mirror URL, hash algorithm and the upload credential name (never the credential).
+- docs:contributing/build.md · The one-command contributor page for Linux hosts and the containerised path for macOS and Windows hosts.
+- bld:tests/build/hermetic_*.rs · Tests: missing lockfile entry fails before compile, network access after fetch is refused, two builds of one tag produce identical input manifests.
 
 #### Acceptance criteria
-- [ ] From a clean Linux checkout, one documented command produces a bootable H-001 image whose inputs are content-hashed and whose build has no network after fetch.
-- [ ] All crates, C dependencies, firmware, Linux sources and toolchain artifacts used by that command exist in the project mirror keyed by content hash, with committed lockfiles.
-- [ ] A new dependency without a lockfile and mirror entry fails the build.
-- [ ] The contributor path for macOS and Windows hosts is the containerised Linux environment; a native Windows or macOS toolchain is not documented or tested.
-- [ ] A tagged commit rebuilds the same command on a second Linux machine and boots H-001.
+- [ ] From a clean Linux checkout, `./build/jakeos-build image --profile qemu-x86_64` produces a bootable `qemu-x86_64` image whose input manifest lists every input by content hash and whose sandbox has no network after the fetch phase.
+- [ ] Every crate, C dependency, firmware blob, Linux source archive and toolchain artifact used by that command exists in the mirror keyed by content hash and in `bld:lock/sources.toml` or `Cargo.lock`.
+- [ ] Adding a dependency whose hash is absent from the lockfile or the mirror fails the build with a typed error naming the missing hash before any compilation starts.
+- [ ] `docs:contributing/build.md` documents the containerised Linux environment as the only path for macOS and Windows hosts; no native Windows or macOS toolchain is documented or tested.
+- [ ] The same tagged commit built on a second Linux machine produces an identical input manifest and boots `qemu-x86_64`.
 
 #### Verification
-- Integration: one-command build and H-001 boot from a tagged commit on two Linux hosts; a network-off after fetch rebuild succeeds.
-- Manual: follow the committed contributor page on a Linux host with no ambient rustup toolchain.
+- Integration: one-command build and `qemu-x86_64` boot from a tagged commit on two Linux hosts; a rebuild with the network disabled after fetch succeeds.
+- Unit: `bld:tests/build/hermetic_*` on `qemu-x86_64`.
+- Manual: a contributor follows `docs:contributing/build.md` on a Linux host with no ambient rustup toolchain and reaches a booting image.
 
 #### Evidence
 - none
@@ -294,29 +345,37 @@ Native `os env` hermetic builds (BLD-043). Remote cache (BLD-025). Image builder
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BLD-012, BLD-006, BEN-005, BEN-007, BLD-001
+- Depends on: BLD-012, BLD-006, BEN-005, BEN-007, BLD-001, BLD-082
 - Baseline: §54, §59
 - Benchmarks: B-001, B-004, B-013
 - Risks: R-009
 - Invariants: I-061, I-088
 
-V0 benchmark gates are publish-only (§54, §59). BLD executes BEN harnesses on pinned H-001 and H-002 and records V0 demo runs. Numeric fail-on-regression is BLD-033; BEN owns methodology and the quiet fleet consumption.
+V0 benchmark gates are publish-only (D-0031, §54): the numbers must be measured and published, not compared with a threshold. This task adds the `nightly` job `benchmarks` that runs the BEN-005 harness set (`bench/harness/<B-NNN>/` in the platform monorepo) for at least B-001, B-004 and B-013 on the `lab-kvm` runner (`qemu-x86_64`, functional coverage only) and on the `lab-hw-h002` runner (the numbers that count), following the BEN-064 methodology, and writes results as `bench/results/<B-NNN>/<run-id>.json` in the time-series export format BEN-005 defines. Gate-run reports under `reports/benchmarks/` in the roadmap repository are committed by the owning benchmark task from those results, never by this job.
+
+The same job runs the V0 demo pipeline (Component A to Channel to Component B to MemoryObject return, CMP-016) under the BLD-006 guest agent on `qemu-x86_64` and stores the `os trace` output as a run artifact for Evidence. A missing or failed publish fails the nightly run; a numeric regression does not fail anything at V0 (BLD-033 adds that at V1). Every published report cites B-IDs and names the harness; a report line with a number and no harness name is rejected by the BEN-004 lint before publication.
 
 <!-- covers: INV-1041, INV-1175 -->
 
 #### Out of scope
-Harness implementation and report skeleton (BEN-005). Quiet fleet (BLD-045, BLD-048). Blocking merge policy (BEN-033, BLD-033).
+Harness implementation and report skeleton (BEN-005). Quiet-fleet configuration (BLD-045, BLD-048). Blocking merge on regression (BEN-033, BLD-033). Methodology (BEN-064).
+
+#### Deliverables
+- platform:.github/workflows/nightly.yml · The `benchmarks` job on `lab-kvm` and `lab-hw-h002`, running every harness under `bench/harness/` and the V0 demo pipeline.
+- bld:bench/run.rs · Runner in `jakeos-build-harness` that executes a harness by B-ID, pins CPUs as BEN-064 prescribes, and writes the time-series record.
+- bench:results/README.md · The results directory contract: one JSON per run, schema owned by BEN-005, retention by BLD.
+- bld:bench/demo.rs · Driver that runs the CMP-016 pipeline under the guest agent and stores the trace artifact.
 
 #### Acceptance criteria
-- [ ] Nightly CI runs the BEN V0 harness set including B-001, B-004 and B-013 on H-001 and H-002 and publishes results to the benchmark time-series export; gate-run reports are committed under `reports/benchmarks/` by the owning benchmark task.
-- [ ] The V0 demo pipeline runs under the guest agent on H-001 with traces retained as Evidence artifacts.
-- [ ] A missing or failed publish job fails nightly; a numeric regression does not fail merge at V0.
-- [ ] Published reports cite B-IDs and contain no performance claim without a harness name (I-061).
+- [ ] The `benchmarks` nightly job runs the BEN-005 harnesses for B-001, B-004 and B-013 on `qemu-x86_64` and `hw-h002` and writes `bench/results/<B-NNN>/<run-id>.json` in the BEN-005 export format for each.
+- [ ] The V0 demo pipeline runs under the BLD-006 agent on `qemu-x86_64` and the `os trace` output is attached to the run as an artifact.
+- [ ] A missing or failed publish step fails the nightly run; a numeric change between runs does not fail any job at V0.
+- [ ] Every published record cites its B-ID and harness path; a record with a number and no harness name fails the BEN-004 lint and is not published (I-061).
 
 #### Verification
 - Bench: B-001, B-004 and B-013 on H-001 and H-002; target per register (V0 publish).
 - Demo: V0 Component-to-Channel-to-MemoryObject pipeline on H-001 via BLD-006.
-- Review: BEN lead confirms BLD executes BEN harnesses and does not define targets.
+- Review: BEN lead confirms BLD executes BEN harnesses and defines no targets.
 
 #### Evidence
 - none
@@ -332,25 +391,35 @@ Harness implementation and report skeleton (BEN-005). Quiet fleet (BLD-045, BLD-
 - Threats: T-007
 - Invariants: I-013, I-049, I-067
 
-V0 merge is the cheapest place to settle license, provenance and style (§51, §57). Required pre-merge checks enforce the kernel license allowlist (no Apache-2.0-only or CDDL), SPDX headers, Signed-off-by and verified signatures, rustfmt and clippy with warnings denied, sparse, smatch, adapted checkpatch, cargo-deny, Miri where feasible, and a CI-generated unsafe inventory. ABI and BEN own their lint content; this task makes those jobs required. SDK `forbid(unsafe_code)` templates stay in SDK. Userspace allowlist scanning beyond cargo-deny is BLD-023.
+V0 merge is the cheapest place to settle licence, provenance and style (§51, §57). This task makes a fixed set of checks required in the `pre-merge` tier of both repositories. Kernel: the licence allowlist from D-0102 and D-0162 (GPLv2-compatible only; a file or vendored crate under Apache-2.0-only or CDDL fails), `SPDX-License-Identifier` on every source file, `Signed-off-by` (D-0092) and a verified commit signature on every queue commit, `rustfmt --check` and `clippy -D warnings` for the native subsystem, `sparse`, `smatch` and the adapted `checkpatch.pl` for C, and the unsafe inventory: `bld:lints/unsafe-inventory` walks every native crate, lists each `unsafe` block with its `// SAFETY:` comment, publishes `unsafe-inventory.json` as a run artifact and fails when a block has no comment. Platform: `cargo-deny` with the D-0102 allowlist, `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, Miri on the crates whose `Cargo.toml` opts in with `[package.metadata.jakeos] miri = true`, and the same unsafe inventory.
+
+ABI-003 (firewall lint), ABI-018 (POSIX-shape lint) and BEN-004 (claim-to-benchmark lint) are made required checks by this task; their content stays with ABI and BEN. SDK `forbid(unsafe_code)` templates stay in SDK; the broader userspace licence allowlist scan is BLD-023.
 
 <!-- covers: GAP-0002, GAP-0009, GAP-0037, GAP-0123, INV-0957, GAP-0124, GAP-0011, GAP-0155 -->
 
 #### Out of scope
-DCO versus CLA policy (GOV-002). Userspace allowlist publication (GOV-016). SDK templates (SDK). Full firmware and corpus license scan (BLD-023).
+DCO versus CLA policy (GOV-002). Userspace allowlist publication (GOV-016). SDK templates (SDK). Full firmware and corpus licence scan (BLD-023). Fuzzing (BLD-026).
+
+#### Deliverables
+- bld:lints/license-allowlist.toml · The D-0102 and D-0162 licence allowlist consumed by the kernel check and by `cargo-deny`.
+- bld:lints/kernel-license-check.sh · Fails a kernel file or vendored crate whose licence is outside the allowlist or that lacks an SPDX header.
+- bld:lints/unsafe-inventory/ · Crate `jakeos-build-unsafe-inventory`: walks native crates, emits `unsafe-inventory.json`, fails on an `unsafe` block without a `// SAFETY:` comment.
+- bld:lints/deny.toml · `cargo-deny` configuration for the platform workspace.
+- kernel:.github/workflows/pre-merge.yml · Required jobs `license`, `provenance`, `style-rust`, `style-c`, `unsafe-inventory`, `abi-firewall`, `abi-posix-lint`, `bench-claims`.
+- platform:.github/workflows/pre-merge.yml · Required jobs `deny`, `fmt`, `clippy`, `miri`, `unsafe-inventory`, `abi-firewall`, `bench-claims`.
+- bld:lints/README.md · What each check enforces, which decision it comes from, and how to request an exemption (an accepted decision, never a comment).
 
 #### Acceptance criteria
-- [ ] A kernel crate or source file whose license is Apache-2.0-only or CDDL fails pre-merge CI (I-067).
-- [ ] A source file without `SPDX-License-Identifier` fails pre-merge CI.
-- [ ] A merge-queue commit lacking Signed-off-by or a verified signature fails pre-merge CI.
-- [ ] rustfmt drift, clippy warnings, sparse/smatch/checkpatch findings and cargo-deny hits fail pre-merge CI.
-- [ ] CI publishes an unsafe-block inventory per native crate; a new unsafe block without a `SAFETY` comment fails the job.
-- [ ] ABI-003, ABI-018 and BEN-004 are required checks of this gate.
+- [ ] A kernel source file or vendored crate whose licence is Apache-2.0-only or CDDL fails the `license` job (I-067); a file without `SPDX-License-Identifier` fails the same job.
+- [ ] A merge-queue commit without `Signed-off-by` or without a verified signature fails the `provenance` job.
+- [ ] `rustfmt` drift, a `clippy` warning, a `sparse`, `smatch` or `checkpatch` finding, or a `cargo-deny` hit fails the `pre-merge` tier of its repository.
+- [ ] `unsafe-inventory.json` is published for every native crate on every `pre-merge` run and a new `unsafe` block without a `// SAFETY:` comment fails the job.
+- [ ] `abi-firewall` (ABI-003), `abi-posix-lint` (ABI-018) and `bench-claims` (BEN-004) are required checks of the `pre-merge` tier.
 
 #### Verification
-- Unit: fixtures for missing SPDX, Apache-2.0-only crate, missing Signed-off-by, clippy warning, and undocumented unsafe on `qemu-x86_64`.
-- Integration: each fixture is a rejected merge-queue entry.
-- Review: GOV licensing reviewer confirms the kernel allowlist matches GOV-003.
+- Unit: `bld:tests/lints/*` fixtures for missing SPDX, Apache-2.0-only crate, missing Signed-off-by, clippy warning, undocumented `unsafe`, on `qemu-x86_64`.
+- Integration: each fixture is a rejected merge-queue entry on both repositories.
+- Review: GOV licensing reviewer confirms `bld:lints/license-allowlist.toml` matches D-0102 and D-0162.
 
 #### Evidence
 - none
@@ -361,29 +430,42 @@ DCO versus CLA policy (GOV-002). Userspace allowlist publication (GOV-016). SDK 
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: BLD-003, BLD-009, KRN-017
+- Depends on: BLD-003, BLD-009, KRN-017, BLD-082
 - Baseline: §55, §59
 - Risks: R-013
 - Invariants: I-098
 
-V0 primary CI is QEMU/KVM on H-001 (§59). This task declares the q35, OVMF with and without Secure Boot, TPM, virtio block/net/input/sound, CPU-count, memory and NUMA axes, drives boot-complete over serial, detects kernel and Rust panics, enforces timeouts, and exercises reboot and kexec. Nightly kselftests run for every retained subsystem named by KRN. Generation-selection cycles wait for V0.5. virtio-gpu compositor axes wait for V0.5.
+V0 primary CI is QEMU/KVM on H-001 (§59). This task defines the matrix in `build/qemu/matrix.toml` and builds the harness that runs it. Axes: machine `q35`; firmware OVMF with and without Secure Boot; TPM emulation via `swtpm` on and off; virtio block, net, input and sound; CPU counts 1, 2, 8 and 64; memory 512 MB, 2 GB, 8 GB and 64 GB; NUMA topologies of one, two and four nodes. The default cell (`q35`, OVMF without Secure Boot, no TPM, 2 CPUs, 2 GB, one node) is the `qemu-x86_64` smoke boot every `pre-merge` run uses; the full matrix runs `post-merge`. The harness (`jakeos-build-harness`, `build/harness/`) launches QEMU with the BLD-009 image for a cell, waits for the boot-complete marker `jakeos: boot complete` on the serial console, fails on a kernel panic or a Rust panic pattern, fails on timeout, and for the default cell performs a reboot cycle and a `kexec` cycle, each ending in a fresh marker.
+
+Nightly, the harness runs `kselftest` for every subsystem whose `retained.toml` entry (KRN-017) names a `kselftest` subset, on the default cell, and publishes per-subset results. The matrix document is also where the canonical CI matrix-entry names live: `qemu-x86_64` (H-001), `qemu-virtio-gpu` (H-003), `qemu-nested` (H-015), `qemu-ia32` (H-016), `qemu-vfio` (H-017) and `hw-hNNN` for physical machine H-NNN; the roadmap's own validator refuses any other spelling. virtio-gpu compositor cells wait for V0.5 (BLD-028) and generation-selection cycles for BLD-022.
 
 <!-- covers: GAP-0111, GAP-0112, EXTRA-011 -->
 
 #### Out of scope
-Guest test agent (BLD-006). Generation-selection cycles (BLD-022). virtio-gpu compositor matrix (BLD-028). Matrix contents ownership (KRN-014).
+Guest test agent (BLD-006). Generation-selection cycles (BLD-022). virtio-gpu compositor matrix (BLD-028). Matrix contents ownership (KRN-014). Nested virtualisation profile (KRN-036).
+
+#### Deliverables
+- bld:qemu/matrix.toml · The axes, the default cell, the profile names and the H-ID each maps to; the single source for CI matrix-entry names.
+- bld:qemu/matrix.md · Human-readable rendering of the matrix and the rules for adding a cell or a profile.
+- bld:harness/ · Crate `jakeos-build-harness`: QEMU launch per cell, serial marker wait, panic detection, timeout, reboot and kexec cycles, kselftest execution.
+- bld:harness/src/panic_patterns.rs · The kernel panic and Rust panic patterns the harness treats as failure.
+- kernel:.github/workflows/pre-merge.yml · The `smoke-boot` job on the default cell.
+- kernel:.github/workflows/post-merge.yml · The `qemu-matrix` job over every cell.
+- kernel:.github/workflows/nightly.yml · The `kselftests` job over every `retained.toml` subset.
+- bld:tests/qemu/harness_*.rs · Tests: marker detection, panic detection on a fixture log, timeout, cell expansion from `matrix.toml`.
 
 #### Acceptance criteria
-- [ ] A committed matrix document lists q35, OVMF with and without Secure Boot, TPM emulation, virtio block/net/input/sound, CPU counts 1, 2, 8 and 64, memory from 512 MB to 64 GB, and multi-node NUMA topologies.
-- [ ] The harness reaches a boot-complete marker over serial on every matrix cell, fails on kernel panic or Rust panic, and fails on timeout.
-- [ ] Reboot and kexec cycles complete on the default H-001 cell and leave a boot-complete marker after each.
-- [ ] Nightly CI runs kselftests for every retained subsystem named by KRN-017 (I-098).
-- [ ] virtio-gpu and generation-selection cells are absent from this matrix.
-- [ ] The matrix document names the canonical CI matrix entries and their H-IDs: `qemu-x86_64` (H-001), `qemu-virtio-gpu` (H-003), `qemu-nested` (H-015), `qemu-ia32` (H-016), `qemu-vfio` (H-017) and `hw-hNNN` for physical machine H-NNN; no other spelling appears in a roadmap Verification line.
+- [ ] `bld:qemu/matrix.toml` lists `q35`, OVMF with and without Secure Boot, `swtpm` on and off, virtio block, net, input and sound, CPU counts 1, 2, 8 and 64, memory 512 MB, 2 GB, 8 GB and 64 GB, and NUMA topologies of one, two and four nodes, and names the default cell.
+- [ ] The harness reaches `jakeos: boot complete` on the serial console for every matrix cell, fails on a kernel panic or Rust panic pattern from `panic_patterns.rs`, and fails on the per-cell timeout.
+- [ ] A reboot cycle and a `kexec` cycle on the default cell each end in a fresh boot-complete marker.
+- [ ] The `kselftests` nightly job runs every subset named under `kselftest` in `Documentation/jakeos/retained.toml` (I-098) and publishes per-subset results.
+- [ ] No virtio-gpu cell and no generation-selection cycle exists in this matrix.
+- [ ] `bld:qemu/matrix.toml` names the canonical CI matrix entries `qemu-x86_64` (H-001), `qemu-virtio-gpu` (H-003), `qemu-nested` (H-015), `qemu-ia32` (H-016), `qemu-vfio` (H-017) and the `hw-hNNN` form, and no other spelling appears in a roadmap Verification line.
 
 #### Verification
-- Integration: full declared matrix on H-001; panic and timeout fixtures fail the job; reboot and kexec cells pass.
-- Review: KRN lead confirms kselftest set matches the retained-mechanism inventory.
+- Integration: full declared matrix on `qemu-x86_64`; panic and timeout fixtures fail the job; reboot and kexec cells pass.
+- Unit: `bld:tests/qemu/harness_*` on `qemu-x86_64`.
+- Review: KRN lead confirms the kselftest set matches the retained-mechanism inventory.
 
 #### Evidence
 - none
@@ -399,22 +481,34 @@ Guest test agent (BLD-006). Generation-selection cycles (BLD-022). virtio-gpu co
 - Risks: R-002
 - Invariants: I-082, I-089
 
-V0 native kernel subsystems need Rust-in-kernel so they can land (§50). This task pins rustc, the allowed unstable features, bindgen and Kbuild integration, ties upgrades to the Rust-for-Linux cadence chosen by KRN-004, and runs a next-candidate toolchain canary that does not gate the primary kernel build. Userspace rustc is a separate pin.
+The native kernel subsystem is Rust (KRN-016), so the fork needs a pinned Rust-in-kernel toolchain before any of it can land (§50). This task commits `rust-toolchain.toml` at the kernel tree root with the exact `rustc` version, the matching LLVM version shared with Clang (D-0036), `bindgen` version and the allowed `-Zunstable-options` feature list in `Documentation/jakeos/rust-features.txt`, per the D-0165 rule that the pin may lag the Rust-for-Linux minimum of the merged upstream tag by at most two releases. Kbuild integration means `CONFIG_RUST=y` builds with `make LLVM=1 rustavailable` passing on the pinned toolchain, and the `jakeos/` subsystem's `.rs` objects build through the standard `obj-y += foo.o` rule.
+
+A `nightly` job `toolchain-canary` builds the kernel with the next candidate Rust release from the mirror and reports success or failure without gating anything, so a future bump is known to work before it is needed. Toolchain archives come from the BLD-009 mirror by content hash; no `rustup` is required on any runner. User-space `rustc` is pinned separately by BLD-046.
 
 <!-- covers: INV-0007, INV-0936, GAP-0089 -->
 
 #### Out of scope
-Pinning policy Decision (KRN-004). Userspace rustc (BLD-046). Rewrite-versus-retain (KRN).
+Pinning policy decision (KRN-004). Userspace rustc pin (BLD-046). Rewrite-versus-retain (KRN-015). Rust abstraction gaps (KRN-018).
+
+#### Deliverables
+- kernel:rust-toolchain.toml · The pinned `rustc` channel and components for the kernel tree.
+- kernel:Documentation/jakeos/toolchain.md · Pinned rustc, LLVM and bindgen versions, the D-0165 lag rule, and the bump procedure.
+- kernel:Documentation/jakeos/rust-features.txt · The allowed unstable feature list, one per line, checked by the build.
+- kernel:scripts/jakeos/check-toolchain.sh · Fails the build when the installed toolchain differs from the pin or a source uses a feature outside the list.
+- kernel:.github/workflows/nightly.yml · The non-blocking `toolchain-canary` job on the next candidate release.
+- bld:lock/sources.toml · Mirror entries for the pinned and canary toolchain archives.
 
 #### Acceptance criteria
-- [ ] The fork builds with a committed rustc version, allowed-unstable-feature set and bindgen/Kbuild integration on H-001.
-- [ ] A next-candidate toolchain job builds the kernel and is non-blocking on the primary merge queue.
-- [ ] Toolchain artifacts come from the content-hash mirror used by BLD-009; no ambient rustup is required.
-- [ ] rustc and LLVM carry only upstream-bound patches (I-089); a forked LLVM is not in the graph.
+- [ ] The fork builds with `CONFIG_RUST=y` on `qemu-x86_64` using the `rustc`, LLVM and `bindgen` versions in `kernel:rust-toolchain.toml` and `Documentation/jakeos/toolchain.md`, and `make LLVM=1 rustavailable` passes.
+- [ ] A native-subsystem source that enables a feature absent from `rust-features.txt`, or a runner whose toolchain differs from the pin, fails `check-toolchain.sh` in `pre-merge`.
+- [ ] The `toolchain-canary` nightly job builds the kernel with the next candidate release and is not a required check on any tier.
+- [ ] Every toolchain artifact is fetched from the BLD-009 mirror by content hash; no job installs `rustup`.
+- [ ] `rustc` and LLVM carry only upstream-bound patches recorded in `toolchain.md` (I-089); no forked LLVM is in the build graph.
 
 #### Verification
-- Integration: pinned toolchain kernel build and next-candidate canary on H-001.
-- Review: KRN lead confirms the pin matches KRN-004.
+- Integration: pinned-toolchain kernel build and the `toolchain-canary` job on `qemu-x86_64`.
+- Unit: `bld:tests/toolchain/pin_*` asserting the lockfile, `rust-toolchain.toml` and `toolchain.md` agree on versions.
+- Review: KRN lead confirms the pin and lag rule match KRN-004 and D-0165.
 
 #### Evidence
 - none
@@ -2380,19 +2474,27 @@ V4 second builder (BLD-074). Verifier tool (BLD-075). Signing (REL).
 - Baseline: §50, §56.4
 - Invariants: I-099
 
-Every Verification line in this roadmap names a test path as `alias:path` (kernel, runtime, sdk, gfx, personality and twenty more aliases in `registers/repos.md`), and every agent that starts a task will create crates and directories. Without a fixed layout each swarm invents its own and the monorepo becomes unnavigable within a milestone. This document fixes the jakeos-platform directory layout, crate naming, where each alias resolves, how test files are named so the `alias:tests/...` grammar is real, and the CI matrix-entry names tasks use (`qemu-x86_64`, `qemu-virtio-gpu`, `qemu-nested`, `qemu-ia32`, `qemu-vfio`, `hw-hNNN`).
+Every Verification line in this roadmap names a test path as `alias:path`, and every Deliverables line names an artifact the same way; every agent that starts a task creates crates and directories. Without one fixed layout each agent invents its own and the monorepo becomes unnavigable within a milestone. This document, `docs/layout.md` in jakeos-platform, maps every alias in `registers/repos.md` to its directory (as the register already lists: `runtime/`, `sdk/`, `compositor/`, `apps/`, `personality-linux/`, `personality-windows/`, `installer/`, `docs/`, `bench/`, `packages/`, `hardware/`, `storage/`, `release/`, `idl/`, `semantic/`, `text/`, `environments/`, `media/`, `accessibility/`, `lab/`, `wasm/`, `tools/`, `bench/compat/`, `ipc/`, `build/`, `abi/`, `boot/`, `runtime/component/`, `observability/`, `security/`, `ui/`), fixes the crate naming rule `jakeos-<area>-<name>` (area is the directory name, name is the crate's purpose, for example `jakeos-sdk-os`, `jakeos-idl-compiler`, `jakeos-runtime-supervisor`), the binary naming rule (the `os` CLI is the one binary without the prefix), the test-path rule `<alias>:tests/<area>/<name>_*` resolving to `<directory>/tests/<name>_*.rs` (integration tests) with unit tests beside their module, the placement of C headers (`abi/include/jakeos/*.h`), IDL files (`idl/interfaces/<area>/<Name>.idl`) and documents (`docs/<area>/`), and the CI matrix-entry names from BLD-012 with the H-ID each maps to.
+
+The document is enforced twice: `tools/layout-check` (crate `jakeos-tools-layout-check`) fails a pull request that adds a top-level directory or a crate outside the documented layout or with a non-conforming name, and the roadmap validator (W-019 and the alias check) rejects a Verification or Deliverables line that names an unknown alias or matrix entry.
 
 #### Out of scope
-Repository topology (BLD-005). Build orchestrator (BLD-002). Kernel tree layout (KRN-013). QEMU matrix axes (BLD-012).
+Repository topology (BLD-005). Build orchestrator (BLD-002). Kernel tree layout (KRN-013). QEMU matrix axes (BLD-012). Creating the repository (BLD-082).
+
+#### Deliverables
+- docs:layout.md · The layout document: alias-to-directory table, crate and binary naming rules, test-path rule, header, IDL and document placement, matrix-entry names.
+- tools:layout-check/ · Crate `jakeos-tools-layout-check`: fails on an undocumented top-level directory, an undocumented crate directory or a crate name outside `jakeos-<area>-<name>`.
+- platform:.github/workflows/pre-merge.yml · The `layout` job running `jakeos-tools-layout-check` on every pull request.
+- roadmap:registers/repos.md · Every alias's URL points at the directory the layout document names.
 
 #### Acceptance criteria
-- [ ] A committed layout document maps every alias in `registers/repos.md` to a directory in jakeos-platform and states the crate naming rule (`jakeos-<area>-<name>`) and the test-path rule (`<alias>:tests/<area>/<name>_*`).
-- [ ] A CI check fails a pull request that adds a top-level directory or crate outside the documented layout.
-- [ ] The document lists the canonical CI matrix-entry names and the H-ID each maps to; a lint rejects a Verification line in the roadmap that names an unknown alias or matrix entry.
+- [ ] `docs:layout.md` maps every alias in `registers/repos.md` to a directory in jakeos-platform, states the crate naming rule `jakeos-<area>-<name>`, the binary rule (`os` is the only unprefixed binary) and the test-path rule `<alias>:tests/<area>/<name>_*`, and lists where C headers, IDL files and documents live.
+- [ ] `jakeos-tools-layout-check` fails a pull request that adds a top-level directory, a crate directory or a crate name outside the documented layout; the `layout` job is required in `pre-merge`.
+- [ ] The document lists the canonical CI matrix-entry names and the H-ID each maps to, and the roadmap validator rejects a Verification or Deliverables line that names an unknown alias or matrix entry (W-019, E-020).
 - [ ] Review records BLD and GOV lead sign-off on the pull request.
 
 #### Verification
-- Unit: `roadmap:tests/verification_alias_*` rejecting an unknown alias and an unknown matrix entry.
+- Unit: `tools:tests/layout/check_*` with fixtures for an undocumented directory and a misnamed crate; `roadmap:tests/verification_alias_*` rejecting an unknown alias and an unknown matrix entry.
 - Review: BLD and GOV leads sign off on the pull request.
 
 #### Evidence
@@ -2408,20 +2510,34 @@ Repository topology (BLD-005). Build orchestrator (BLD-002). Kernel tree layout 
 - Baseline: §50, §56.4
 - Invariants: I-099
 
-Every Verification line outside the kernel names a path inside the jakeos-platform monorepo (`runtime:`, `sdk:`, `idl:`, `bench:` and the other aliases in `registers/repos.md`), yet no repository exists for those paths to live in; the first V0 tasks that produce user-space code (the `os` CLI, the IDL compiler, the runtime crate, the benchmark harnesses) would each create it ad hoc. This task creates github.com/abnegate/jakeos-platform once, from the layout document of BLD-081, so every later task lands crates into a tree that already has the directory skeleton, the licences decided by GOV-003, the Cargo workspace decided by BLD-002 and a CI workflow that runs the layout check, `cargo fmt --check`, `cargo clippy -D warnings` and `cargo test` on the GitHub-hosted runners decided by BLD-003.
+Every Verification line outside the kernel names a path inside the jakeos-platform monorepo, yet no repository exists for those paths to live in; the first V0 tasks that produce user-space code (the `os` CLI, the IDL compiler, the runtime crate, the benchmark harnesses) would each create it ad hoc. This task creates github.com/abnegate/jakeos-platform once, from the BLD-081 layout document: a root `Cargo.toml` workspace with `resolver = "2"`, `rust-toolchain.toml` for the user-space pin, one directory per alias below `platform` each holding a `README.md` that states its owning workstream prefix and purpose, `LICENSE` (MIT, D-0102) at the root and a `license = "MIT"` field in every crate manifest, `.gitattributes`, `.editorconfig`, and `rustfmt.toml` and `clippy.toml` shared by the workspace.
+
+CI on GitHub-hosted runners (D-0034) runs on every pull request: the `layout` job from BLD-081, `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test --workspace`, and an SPDX check that fails a file whose header names a licence other than MIT. `main` is protected with the merge queue and the `pre-merge` tier name from BLD-001. The first pull request is the fixture that proves the layout check rejects an undocumented top-level directory, and is linked from the repository README.
 
 #### Out of scope
-Layout and alias grammar (BLD-081). Kernel repository (KRN-010). Self-hosted KVM and hardware runners (BLD-010, BLD-048). Reproducible image builds (BLD-009). Package repository and signing (REL).
+Layout and alias grammar (BLD-081). Kernel repository (KRN-010). Self-hosted KVM and hardware runners (BLD-010, BLD-048). Reproducible image builds (BLD-009). Package repository and signing (REL). Tier structure across both repositories (BLD-001).
+
+#### Deliverables
+- platform:Cargo.toml · The workspace manifest listing every crate directory, `resolver = "2"`, shared `[workspace.package]` fields including `license = "MIT"`.
+- platform:rust-toolchain.toml · The user-space Rust pin (BLD-046 later governs bumps).
+- platform:LICENSE · MIT, per D-0102.
+- platform:README.md · Purpose, the alias table pointer to `docs/layout.md`, the contributor page pointer, and the link to the layout-check fixture pull request.
+- platform:<alias-directory>/README.md · One per alias directory below `platform`, naming the owning prefix and what belongs there.
+- platform:.github/workflows/pre-merge.yml · `layout`, `fmt`, `clippy`, `test` and `spdx` jobs on GitHub-hosted runners.
+- platform:rustfmt.toml · Shared formatting configuration.
+- platform:clippy.toml · Shared lint configuration.
+- tools:spdx-check/ · Crate `jakeos-tools-spdx-check`: fails a source file whose SPDX header is not `MIT`.
 
 #### Acceptance criteria
-- [ ] github.com/abnegate/jakeos-platform exists with `main` protected, a root `Cargo.toml` workspace, one directory per alias in `registers/repos.md` below `platform` each containing a `README.md` stating its owning prefix, and no crate outside the BLD-081 layout.
-- [ ] `LICENSE` files match D-0102: MIT at the root and in every crate directory; a CI check fails a pull request that adds a file whose SPDX header names another licence.
-- [ ] A pull request that adds a top-level directory or crate outside the BLD-081 layout fails CI; the fixture pull request that proves it is linked from the repository README.
-- [ ] CI on GitHub-hosted runners runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` for the workspace on every pull request and the first green run is linked from Evidence.
-- [ ] `registers/repos.md` URLs for every alias below `platform` resolve to an existing directory of the new repository.
+- [ ] github.com/abnegate/jakeos-platform exists with `main` protected behind the merge queue, a root `Cargo.toml` workspace, one directory per alias in `registers/repos.md` below `platform` each containing a `README.md` that names its owning prefix, and no crate outside the BLD-081 layout.
+- [ ] `LICENSE` is MIT at the root, every crate manifest carries `license = "MIT"`, and the `spdx` job fails a pull request that adds a file whose SPDX header names another licence.
+- [ ] The `layout` job fails a pull request that adds a top-level directory or crate outside the BLD-081 layout; the fixture pull request that proves it is linked from `platform:README.md`.
+- [ ] `pre-merge` on GitHub-hosted runners runs `layout`, `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test --workspace` and `spdx` on every pull request, and the first green run is linked from Evidence.
+- [ ] Every `registers/repos.md` URL for an alias below `platform` resolves to an existing directory of the repository.
 
 #### Verification
-- Integration: `platform:.github/workflows/ci.yml` green on the initial pull request; `platform:tools/layout-check` fixture rejecting an undocumented top-level directory.
+- Integration: `platform:.github/workflows/pre-merge.yml` green on the initial pull request; the layout-check fixture pull request rejected.
+- Unit: `tools:tests/spdx/check_*` with a non-MIT header fixture.
 - Review: BLD and GOV leads sign off on the initial pull request.
 
 #### Evidence
