@@ -37,7 +37,7 @@ Kernel Component object (CMP-014). Window and chooser methods on Context (SDK-02
 #### Acceptance criteria
 - [ ] A crate with `#[component] async fn main(ctx: Context)` links the native runtime and starts tracing without a handwritten bootstrap.
 - [ ] `Context` methods resolve only Capabilities present in the launch set; a missing kind returns `Error::Rights` and allocates no handle.
-- [ ] Generated bootstrap registers the Component TaskGroup so spawned Tasks are owned (SDK-016).
+- [ ] Generated bootstrap registers the Component TaskGroup so spawned Tasks are owned: a unit test spawns a Task from `main` and `os inspect task` names the Component TaskGroup as its owner (SDK-016 later lints this).
 
 #### Verification
 - Unit: `sdk:tests/component_macro_*` on `qemu-x86_64` and `hw-h002`.
@@ -1408,7 +1408,7 @@ Threat model (SEC-002). Mitigation overhead bench (KRN-029). Kernel hardening (K
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: SDK-028, SDK-009, SDK-003, ABI-006
+- Depends on: SDK-028, SDK-009, SDK-003, ABI-006, ABI-028
 - Baseline: §3, §50, §52, §66
 - Risks: R-028
 - Invariants: I-013, I-026
@@ -1468,7 +1468,7 @@ SDK-level tests need mock Capabilities and mock services so Components can be ex
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SDK-022, OBS-041
+- Depends on: SDK-022, OBS-041, OBS-024
 - Baseline: §24, §61, §64
 
 V1 debugger and tracing gate: `os trace` exports a session viewable offline using the OBS-chosen format. OBS owns the schema; SDK writes the file a developer copies off-device.

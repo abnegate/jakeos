@@ -1131,7 +1131,7 @@ C binding and headers (SDK-033, SDK-034). Rust guide (DOC-032). Crate reference 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: DOC-015, GOV-071, GOV-063, SDK-080
+- Depends on: DOC-015, GOV-071, GOV-063, SDK-080, GOV-073
 - Baseline: §56.5, §66
 
 V4-G15 requires developer-program documentation published. GOV owns programme terms and publisher identity; REL owns the repository; SDK owns `os publish`; DOC publishes the onboarding docs.

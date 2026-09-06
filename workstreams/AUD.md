@@ -787,7 +787,7 @@ HCL publication (REL-048, REL-035). NVIDIA GPU bring-up (HW-070, HW-052). Camera
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: AUD-008, AUD-002, AUD-006, AUD-005, AUD-009, AUD-003, AUD-001, AUD-022
+- Depends on: AUD-008, AUD-002, AUD-006, AUD-005, AUD-009, AUD-003, AUD-001, AUD-022, ABI-049
 - Baseline: §7, §65, §66
 - Freezes: S-025
 - Invariants: I-040

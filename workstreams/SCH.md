@@ -453,7 +453,7 @@ The policy decision (SCH-016). Safe-mode session (SVC).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SCH-025, GFX-015
+- Depends on: SCH-025, GFX-015, GFX-029
 - Baseline: §22, §40, §60
 
 The compositor frame Task declares a per-vblank Deadline and Interactive default so composition is deadline-sensitive (§22). GFX owns frame scheduling; SCH supplies the class and admission. Verified against the V0.5 idle capture and B-018.
@@ -902,7 +902,7 @@ Build-time of the image (B-039, BLD). Editor features (APP).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: ABI-011, SCH-007, SCH-010, SCH-025, SCH-026
+- Depends on: ABI-011, SCH-007, SCH-010, SCH-025, SCH-026, SCH-001
 - Baseline: §23, §65, §66
 - Decision: D-0254
 - Risks: R-007, R-054

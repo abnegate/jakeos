@@ -10,7 +10,7 @@
 | BEN-002 | Publish V0 Demo pipeline latency, copies and memory | todo | blocked | M | BEN-005, BEN-007, BEN-006, CMP-011, MEM-010, MEM-012, IPC-016, LAB-003 |
 | BEN-003 | Publish V0 IPC, MemoryObject and syscall-overhead benchmarks | todo | blocked | M | BEN-005, BEN-007, BEN-006, BEN-008, IPC-008, IPC-016, MEM-010, OBS-001, LNX-001, LAB-003 |
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | todo | ready | S | BEN-007 |
-| BEN-005 | Build the shared benchmark runner and CI publication | todo | ready | L | BEN-007 |
+| BEN-005 | Build the shared benchmark runner and CI publication | todo | blocked | L | BEN-007, BEN-064 |
 | BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | blocked | M | BEN-007, KRN-010, LAB-003 |
 | BEN-007 | Decide benchmark methodology and target-kind policy | done | done | M | none |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | blocked | M | BEN-005, BEN-007, IPC-016, IPC-015 |
@@ -65,9 +65,9 @@
 | BEN-041 | Publish the gaming benchmark suite on the AMD desktop | todo | blocked | M | BEN-044, WIN-006, WIN-009, LAB-015, LAB-018 |
 | BEN-042 | Publish snapshot creation and restore time | todo | blocked | S | BEN-005, BEN-007, STO-025, PKG-068 |
 | BEN-043 | Verify no V1 benchmark regression at V2 | todo | blocked | S | BEN-029, BEN-005 |
-| BEN-044 | Publish Windows Personality overhead against Proton and Windows | todo | blocked | M | BEN-005, BEN-047, WIN-006, WIN-009, LAB-015 |
+| BEN-044 | Publish Windows Personality overhead against Proton and Windows | todo | blocked | M | BEN-005, BEN-047, WIN-006, WIN-009, LAB-015, WIN-029 |
 | BEN-045 | Publish Zero-copy NIC-to-GPU copies per stage | todo | blocked | M | BEN-005, BEN-007, MED-028, MED-017, MEM-010 |
-| BEN-046 | Pin macOS comparison baseline on comparable hardware | todo | blocked | M | BEN-007, BEN-006 |
+| BEN-046 | Pin macOS comparison baseline on comparable hardware | todo | blocked | M | BEN-007, BEN-006, LAB-027 |
 | BEN-047 | Pin Windows comparison baseline on reference hardware | todo | blocked | M | BEN-007, LAB-015, LAB-018 |
 
 ## V3

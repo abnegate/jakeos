@@ -65,9 +65,9 @@
 | SDK-046 | Implement the native CPU profiler attributed to Task and Component | todo | blocked | M | SDK-053, SDK-061, OBS-039, TSK-038 |
 | SDK-047 | Integrate remote development into a JakeOS VM or device | todo | blocked | M | SDK-039, SDK-040, SDK-037, SDK-041 |
 | SDK-048 | Enable userspace exploit mitigations in the native runtime | todo | blocked | M | SDK-004, SEC-002 |
-| SDK-049 | Implement the Layer 3 Rust std compatibility crate | todo | blocked | L | SDK-028, SDK-009, SDK-003, ABI-006 |
+| SDK-049 | Implement the Layer 3 Rust std compatibility crate | todo | blocked | L | SDK-028, SDK-009, SDK-003, ABI-006, ABI-028 |
 | SDK-050 | Provide a Component test harness with mock capabilities | todo | blocked | M | SDK-009, SDK-001, CAP-003, IPC-030 |
-| SDK-051 | Export an os trace session that can be viewed offline | todo | blocked | S | SDK-022, OBS-041 |
+| SDK-051 | Export an os trace session that can be viewed offline | todo | blocked | S | SDK-022, OBS-041, OBS-024 |
 | SDK-052 | Decide DAP versus a native debugger protocol | todo | blocked | S | SDK-060, CAP-032 |
 | SDK-053 | Decide profiler export format and Task attribution | todo | blocked | S | SDK-061, OBS-015 |
 | SDK-054 | Decide the Layer 3 SDK semver and deprecation policy | todo | blocked | S | SDK-018, ABI-039, ABI-037 |

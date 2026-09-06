@@ -685,7 +685,7 @@ Boot menu presentation (BOOT-014). Generation compose and rollback test content 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BLD-011, GOV-016, GOV-003
+- Depends on: BLD-011, GOV-016, GOV-003, TXT-005
 - Baseline: §50, §51
 - Threats: T-007
 - Invariants: I-067, I-068
@@ -804,7 +804,7 @@ Linker, LTO and PGO policy Decision (BLD-039). Symbol upload (BLD-038). Userspac
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: BLD-018, BLD-006, BLD-028
+- Depends on: BLD-018, BLD-006, BLD-028, BLD-020
 - Baseline: §41, §42, §60
 
 Implements the accepted harness so V0.5 scripted app scenarios and compositor-rebind run in QEMU CI without pixel scraping (§42). Drivers speak Semantic interfaces and the accessibility tree; compositor rendering goldens remain GFX.
@@ -1865,7 +1865,7 @@ Advisory text and disclosure process (REL). Signing keys (REL-041). Public dashb
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BLD-035, BLD-042, NET-023
+- Depends on: BLD-035, BLD-042, NET-023, IPC-061
 - Baseline: §51, §63
 
 V3 exit: kernel and IPC fuzzing run continuously in CI with no known open crasher older than the window named by the V3 gate. This task turns BLD-035 inventory into a release-qualification failure. Workstreams own closing their crashers.
@@ -2036,7 +2036,7 @@ SBOM generation (BLD-055). Signed publication (REL-051). Format Decision (BLD-05
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BLD-058, LAB-021
+- Depends on: BLD-058, LAB-021, BLD-052
 - Baseline: §63
 - Risks: R-037
 

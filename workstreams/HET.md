@@ -582,7 +582,7 @@ Operation kind wrapper and rights check on the TSK object (TSK-049). Cancel-afte
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: HET-009, HET-001, HET-015, HET-016
+- Depends on: HET-009, HET-001, HET-015, HET-016, HW-062
 - Baseline: §37, §38
 - Invariants: I-024, I-058
 
@@ -756,7 +756,7 @@ Intent class implementation (SCH). Frequency governors (PWR). GPU-queue priority
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: HET-009, HET-008, HET-019, HET-007, HET-024, HET-005, HET-022
+- Depends on: HET-009, HET-008, HET-019, HET-007, HET-024, HET-005, HET-022, ABI-049
 - Baseline: §37, §65, §66
 - Risks: R-054
 - Invariants: I-040

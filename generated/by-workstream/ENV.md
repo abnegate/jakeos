@@ -23,15 +23,15 @@
 | ENV-010 | Implement the environment.yaml schema with lock and validation | todo | blocked | M | ENV-008 |
 | ENV-011 | Emit development environment changes as history events | todo | blocked | S | ENV-012, PKG-022 |
 | ENV-012 | Implement development environment create, rebuild and destroy | todo | blocked | M | ENV-013, ENV-014, ENV-017 |
-| ENV-013 | Implement DevelopmentEnvironment as composed native primitives | todo | blocked | M | CMP-005, ENV-002, ENV-003, ENV-004, ENV-005, ENV-007 |
+| ENV-013 | Implement DevelopmentEnvironment as composed native primitives | todo | blocked | M | CMP-005, ENV-002, ENV-003, ENV-004, ENV-005, ENV-007, ENV-001 |
 | ENV-014 | Implement the development environment cache for warm enter | todo | blocked | M | CMP-040, ENV-005, ENV-013, ENV-019, STO-044 |
 | ENV-015 | Inject service secrets as Capabilities into environment Components | todo | blocked | S | ENV-002, ENV-007, SEC-027 |
 | ENV-016 | Expose DevelopmentEnvironment state through os inspect | todo | blocked | S | ENV-013, OBS-019, SDK-007 |
-| ENV-017 | Instantiate environment services as isolated Components | todo | blocked | L | CMP-017, ENV-009, ENV-013, ENV-015, ENV-019, LNX-032, PKG-058 |
+| ENV-017 | Instantiate environment services as isolated Components | todo | blocked | L | CMP-017, ENV-009, ENV-013, ENV-015, ENV-019, LNX-032, PKG-058, ENV-001 |
 | ENV-018 | Ship the php-postgres-redis reference environment.yaml | todo | blocked | M | ENV-011, ENV-012, ENV-016, ENV-017 |
 | ENV-019 | Resolve environment.yaml runtimes to immutable Packages | todo | blocked | M | CMP-017, ENV-010, PKG-037, PKG-038 |
 | ENV-020 | Provide the self-host environment.yaml for building the OS | todo | blocked | M | BLD-043, ENV-012, ENV-001, ENV-019, SDK-041 |
-| ENV-021 | Prototype environment.yaml versus Package-manifest profiles | todo | ready | S | none |
+| ENV-021 | Prototype environment.yaml versus Package-manifest profiles | todo | blocked | S | PKG-011 |
 | ENV-022 | Measure environment service hosting paths against B-025 | todo | blocked | M | CMP-005, PKG-058, Q-001, SCH-007, STO-043 |
 | ENV-023 | Store environment build outputs as content-addressed objects | todo | blocked | M | ENV-014, STO-044 |
 
@@ -40,7 +40,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | ENV-024 | Attach the native Terminal and Editor to a development environment | todo | blocked | M | APP-011, APP-016, ENV-003, ENV-005, ENV-012 |
-| ENV-025 | Convert docker-compose.yml and devcontainer.json to environment.yaml | todo | blocked | M | ENV-008, ENV-009, ENV-010 |
+| ENV-025 | Convert docker-compose.yml and devcontainer.json to environment.yaml | todo | blocked | M | ENV-008, ENV-009, ENV-010, ENV-001 |
 | ENV-026 | Publish the environment service catalogue and version index | todo | blocked | M | ENV-018, ENV-019, PKG-064 |
 | ENV-027 | Rebuild a development environment when environment.yaml changes | todo | blocked | S | ENV-011, ENV-012, STO-035 |
 | ENV-028 | Restore a development environment from system history | todo | blocked | M | ENV-011, ENV-012, PKG-048 |

@@ -1350,7 +1350,7 @@ On-screen keyboard (UIP). Gesture routing (UIP). Machines without the hardware.
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016
+- Depends on: HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016, BOOT-024
 - Baseline: §31, §32
 - Threats: T-021
 - Invariants: I-022

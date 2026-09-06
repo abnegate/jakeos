@@ -5,7 +5,7 @@
 - Baseline gap: The baseline names Object<Camera>, ImageDecoder isolation, MemoryObject zero-copy and media as an ecosystem need, but specifies no media pipeline, codec packaging, hardware decode path, camera service or protected-content policy.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 42 live, 0 done, 0 in-progress, 42 todo, 0 dropped. Ready: 1. Blocked: 41. Weighted: 0%.
+Tasks: 42 live, 0 done, 0 in-progress, 42 todo, 0 dropped. Ready: 0. Blocked: 42. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -306,7 +306,7 @@ The framework Decision (MED-007). Production AV1/VP9 Packages (MED-024). Hardwar
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: none
+- Depends on: IPC-012, MEM-010, SDK-002
 - Baseline: none
 - Explores: S-036
 
@@ -1145,7 +1145,7 @@ Native CDM (rejected by MED-023). Browser product (APP, LNX). 1.0 non-goal text 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: MED-030, HW-086
+- Depends on: MED-030, HW-086, REL-048
 - Baseline: §62, §63
 
 V4 hardware gate: every Tier 1 machine passes Camera in the full hardware test suite each RC, including the NVIDIA desktop and both vendor laptops. HW owns the combined suite; MED supplies Camera cases (grant, Frame, revoke, denial, hot-plug where UVC is present).

@@ -46,7 +46,7 @@
 | IPC-033 | Generate Interface version identities and negotiation code | todo | blocked | M | IPC-002, IPC-012, ABI-016 |
 | IPC-034 | Add CI lints for IPC non-goals, transport-agnostic stubs and generator determinism | todo | blocked | S | IPC-012, IPC-004, ABI-003 |
 | IPC-035 | Register Layer 2 core platform Interfaces with strong versions and a CI version check | todo | blocked | M | IPC-033, IPC-024, IPC-012 |
-| IPC-036 | Lower large and variable-size payload types to MemoryObject transfer in codegen | todo | blocked | M | IPC-007, IPC-012, IPC-014, MEM-010 |
+| IPC-036 | Lower large and variable-size payload types to MemoryObject transfer in codegen | todo | blocked | M | IPC-007, IPC-012, IPC-014, MEM-010, IPC-034 |
 | IPC-037 | Harden receiver-side wire validation for bounds, handle counts and type tags | todo | blocked | M | IPC-007, IPC-014, SEC-002 |
 | IPC-038 | Support optional methods and forward/backward schema evolution in the IDL | todo | blocked | M | IPC-002, IPC-012, IPC-021 |
 | IPC-039 | Support stream (multi-value) results with flow control in the IDL and runtime | todo | blocked | M | IPC-009, IPC-013, IPC-012 |

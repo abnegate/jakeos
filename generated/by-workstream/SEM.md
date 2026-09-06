@@ -17,7 +17,7 @@
 | SEM-004 | Decide Semantic Interface discovery and caller permissioning | todo | blocked | M | SEM-003, CAP-007, SEC-007 |
 | SEM-005 | Publish Semantic Interface authoring guidelines | todo | blocked | S | SEM-004, SEM-002, IPC-032 |
 | SEM-006 | Let applications expose typed Semantic interfaces from IDL | todo | blocked | M | SEM-004, SEM-002, IPC-051, IPC-012 |
-| SEM-007 | Ship a session-local Semantic Interface registry | todo | blocked | M | SEM-006, SEM-004, PKG-057, OBS-019 |
+| SEM-007 | Ship a session-local Semantic Interface registry | todo | blocked | M | SEM-006, SEM-004, PKG-057, OBS-019, SEM-001 |
 | SEM-008 | Ship Terminal.run and Editor.open Semantic Interface v0 | todo | blocked | M | SEM-007, APP-015, APP-016, APP-011 |
 
 ## V2
@@ -37,7 +37,7 @@
 | SEM-019 | Demonstrate Download.completed to Extractor.extract | todo | blocked | S | SEM-031, SEM-030, SEM-024, SEM-011, STO-018 |
 | SEM-020 | Demonstrate Meeting.start to Notes.create | todo | blocked | S | SEM-031, SEM-024, SEM-011 |
 | SEM-021 | Demonstrate Project opened to environment start | todo | blocked | S | SEM-031, SEM-022, ENV-029 |
-| SEM-022 | Ship the reference Editor Semantic Interface in the native editor | todo | blocked | M | SEM-008, SEM-028, SEM-029, APP-011 |
+| SEM-022 | Ship the reference Editor Semantic Interface in the native editor | todo | blocked | M | SEM-008, SEM-028, SEM-029, APP-011, SEM-013 |
 | SEM-023 | Expose Semantic interfaces from shipped native UI applications | todo | blocked | M | SEM-029, SEM-026, APP-040, APP-043 |
 | SEM-024 | Ship Extractor and Notes fixture Components | todo | blocked | S | SEM-006, SEM-029 |
 | SEM-025 | Expose registry, rules, and action graphs to os inspect | todo | blocked | S | SEM-029, SEM-031, SEM-010, SEM-009, OBS-019, SDK-007 |
@@ -57,7 +57,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | SEM-036 | Publish the public-alpha automation and Semantic Interface guide | todo | blocked | M | SEM-031, SEM-010, SEM-005, DOC-014 |
-| SEM-037 | Fuzz the registry and Automation rule engine | todo | blocked | M | SEM-029, SEM-031, SEM-026, BLD-035, BLD-042 |
+| SEM-037 | Fuzz the registry and Automation rule engine | todo | blocked | M | SEM-029, SEM-031, SEM-026, BLD-035, BLD-042, BLD-063 |
 | SEM-038 | Record Automation rule changes as system history events | todo | blocked | M | SEM-031, PKG-022, PKG-059, PKG-086 |
 | SEM-039 | Isolate the Semantic Interface registry per user | todo | blocked | M | SEM-029, SEM-031, SEC-042, SEC-060, CMP-051 |
 

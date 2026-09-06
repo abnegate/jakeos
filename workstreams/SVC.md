@@ -245,7 +245,7 @@ Store locator and read-only mount (BOOT-012). Generation compose (PKG-016). Veri
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-004, SDK-004
+- Depends on: SVC-004, SDK-004, SVC-005
 - Baseline: §32
 
 Runtime-side implementation of the readiness Decision: a service reports ready over its supervisor Channel, dependents start only after readiness, and liveness loss triggers the restart policy. Shipped as a runtime module jointly with SDK; the supervisor side lives here.
@@ -275,7 +275,7 @@ SDK packaging of the crate (SDK). Probe-versus-notification Decision (SVC-004). 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-008, IPC-023, IPC-026, CMP-028
+- Depends on: SVC-008, IPC-023, IPC-026, CMP-028, SVC-012
 - Baseline: §32
 - Invariants: I-037
 
@@ -333,7 +333,7 @@ V0.5 fault injection and the compositor-restart gate need a controlled kill, res
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SVC-005, SVC-004, PKG-011, PKG-031, IPC-035
+- Depends on: SVC-005, SVC-004, PKG-011, PKG-031, IPC-035, PKG-027
 - Baseline: §28, §32
 - Invariants: I-020
 

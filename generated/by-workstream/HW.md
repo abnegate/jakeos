@@ -66,7 +66,7 @@
 | HW-043 | Decide Hardware Compatibility List tiers and promotion criteria | done | done | S | HW-003 |
 | HW-044 | Decide public vendor priorities for purchase guidance | todo | blocked | S | HW-003, HW-018 |
 | HW-045 | Enable basic touchscreen and pen digitizer as InputDevice Capabilities | todo | blocked | M | HW-011, HW-015, HW-039 |
-| HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | blocked | L | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016 |
+| HW-046 | Ship an LVFS firmware update service recorded in SystemGeneration history | todo | blocked | L | HW-023, BOOT-030, BOOT-037, PKG-022, LAB-016, BOOT-024 |
 | HW-047 | Define the Hardware Compatibility List schema and probe record format | todo | blocked | M | HW-043, HW-021 |
 | HW-049 | Enumerate gamepads as Capability<InputDevice> for native and personalities | todo | blocked | M | HW-011, HW-031 |
 | HW-050 | Expose laptop function keys, keyboard backlight and brightness | todo | blocked | M | HW-015, HW-039, HW-011 |

@@ -70,7 +70,7 @@ Tracked as experimental at V2 with no gate. Becomes a Tier 1 gated machine at V3
 - Network: Intel Wi-Fi, Bluetooth
 - First milestone: V3
 - Status: planned
-The additional Intel laptop that takes Tier 1 from three machines to six at V3. CI matrix entry: `hw-h007`.
+The additional Intel laptop that takes Tier 1 from three machines to six at V3. SKU selection requires an NPU with an upstream Linux driver so HET-020 has a reference ComputeDevice backend. CI matrix entry: `hw-h007`.
 
 ### H-008 · AMD laptop, second generation
 - Kind: laptop

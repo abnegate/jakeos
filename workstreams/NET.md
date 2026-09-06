@@ -178,7 +178,7 @@ CA trust-store object (SEC-016). TLS implementation (NET-011). Personality certi
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: NET-007, NET-008, CAP-010, SEC-002
+- Depends on: NET-007, NET-008, CAP-010, SEC-002, CAP-036
 - Baseline: §9.1
 - Decision: D-0202
 - Threats: T-001, T-019

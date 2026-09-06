@@ -346,7 +346,7 @@ Corpus scenario scripts (LNX-002). Upstream engagement policy (LNX-028). Five-mi
 
 #### Verification
 - Review: architecture lead and LNX lead sign-off recorded on the pull request.
-- Manual: the brief is cited by LNX-002 and LNX-006.
+- Manual: the brief is cited by LNX-006 and LNX-007.
 
 #### Evidence
 - none
@@ -586,7 +586,7 @@ View API (STO-047). Three-view mapping (STO-042). Home and XDG presentation (LNX
 
 ### LNX-020 · Decide X11 primary selection stays inside the bridge
 - Type: adr
-- Milestone: V1
+- Milestone: V0.5
 - Status: todo
 - Size: S
 - Owner: none
@@ -1637,7 +1637,7 @@ Native change-notification Operation (STO-035). IDE chrome (APP). Fanotify extra
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019
+- Depends on: LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019, LAB-026
 - Baseline: §47, §49, §56.3, §61
 - Corpora: C-003
 - Risks: R-025
@@ -2443,7 +2443,7 @@ fork as native (forbidden). fork over native primitives (LNX-095). Component map
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035
+- Depends on: LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035, LAB-026
 - Baseline: §47, §49, §62
 - Corpora: C-004, C-010
 - Risks: R-064
@@ -2907,7 +2907,7 @@ Docs site (DOC-028). Windows chapters (WIN-081). Five-minute guide (LNX-054).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101
+- Depends on: LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101, LAB-026
 - Baseline: §49, §56.3, §63
 - Corpora: C-005
 - Invariants: I-096
@@ -3107,7 +3107,7 @@ Windows ratings export (WIN-074). Database product (REL). Scenario authorship (t
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LNX-104, ACC-033, BLD-017
+- Depends on: LNX-104, ACC-033, BLD-017, LAB-026
 - Baseline: §49, §56.3, §63
 - Corpora: C-006, C-010
 - Risks: R-064

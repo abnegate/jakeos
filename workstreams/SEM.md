@@ -200,7 +200,7 @@ IDL annotation syntax (IPC-051). Session-local registry (SEM-007). App-side Term
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SEM-006, SEM-004, PKG-057, OBS-019
+- Depends on: SEM-006, SEM-004, PKG-057, OBS-019, SEM-001
 - Baseline: §42, §61
 - Risks: R-043
 - Invariants: I-021, I-051
@@ -657,7 +657,7 @@ Environment objects (ENV). Editor.openProject (SEM-022). Restore of environments
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SEM-008, SEM-028, SEM-029, APP-011
+- Depends on: SEM-008, SEM-028, SEM-029, APP-011, SEM-013
 - Baseline: §42, §60, §61, §62
 
 Extend V1 Editor.open with Editor.openProject(Project), searchSymbols(Query) returning Symbol[], and runTests(TestSelection) returning TestRun on the native editor. APP owns the editor; SEM owns the Semantic interface used by the V2 action-graph demo.
@@ -1102,7 +1102,7 @@ Docs site (DOC). Authoring guidelines already shipped (SEM-005). Automation-rule
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SEM-029, SEM-031, SEM-026, BLD-035, BLD-042
+- Depends on: SEM-029, SEM-031, SEM-026, BLD-035, BLD-042, BLD-063
 - Baseline: §42, §45, §51, §63
 - Threats: T-018
 

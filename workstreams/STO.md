@@ -2407,7 +2407,7 @@ Docs site and translation pipeline (DOC). Settings UI copy (APP).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: STO-058
+- Depends on: STO-058, HW-002
 - Baseline: §26, §51
 - Decision: D-0349
 - Threats: T-044

@@ -25,7 +25,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| REL-010 | Deliver a rotatable trust store inside SystemGenerations | todo | blocked | M | REL-002, REL-003, PKG-016, PKG-029 |
+| REL-010 | Deliver a rotatable trust store inside SystemGenerations | todo | blocked | M | REL-002, REL-003, PKG-016, PKG-029, PKG-055 |
 | REL-011 | Define hardware support tiers as the HCL unit | todo | blocked | S | HW-003, HW-043, HW-047 |
 | REL-012 | Decide the repository model and source trust display | todo | blocked | S | REL-003, REL-004 |
 | REL-013 | Expose a repository search and metadata API | todo | blocked | M | REL-012, REL-008, REL-007, BLD-055 |
@@ -37,9 +37,9 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | REL-016 | Decide whether the repository accepts publisher prebuilts or rebuilds every Package | todo | blocked | S | REL-012, BLD-054 |
-| REL-017 | Automate release qualification as a CI checklist | todo | blocked | M | REL-027, REL-019, BLD-067, BEN-053 |
+| REL-017 | Automate release qualification as a CI checklist | todo | blocked | M | REL-027, REL-019, BLD-067, BEN-053, REL-046, REL-051 |
 | REL-018 | Publish inherited-CVE time-to-Generation measurements | todo | blocked | S | REL-006, KRN-052, REL-044, BEN-007 |
-| REL-019 | Build once, sign and promote identical release artifacts | todo | blocked | L | REL-041, REL-004, BLD-065, BLD-061, INS-001 |
+| REL-019 | Build once, sign and promote identical release artifacts | todo | blocked | L | REL-041, REL-004, BLD-065, BLD-061, INS-001, BLD-067 |
 | REL-020 | Build a download site with signatures and Verification instructions | todo | blocked | M | REL-024, REL-041, REL-050, REL-046 |
 | REL-021 | Build the publisher submission, review and signing pipeline | todo | blocked | L | REL-025, REL-028, REL-016, REL-041, GOV-063 |
 | REL-022 | Collect opt-in Personality compatibility reports | todo | blocked | M | REL-015, LNX-091, WIN-064, WIN-068, GOV-061, VIRT-013 |
@@ -64,7 +64,7 @@
 | REL-041 | Operate HSM-backed signing for kernel, generations and Packages | todo | blocked | L | REL-032, REL-003, REL-010, GOV-024, GOV-066 |
 | REL-042 | Operate opt-in telemetry intake for crash-free and boot rates | todo | blocked | M | GOV-055, GOV-061, INS-021, OBS-051, REL-038 |
 | REL-043 | Promote consecutive alpha SystemGenerations through channels | todo | blocked | M | REL-019, REL-005, REL-017, INS-045 |
-| REL-044 | Publish machine-readable security advisories and a feed | todo | blocked | M | REL-047, REL-006, PKG-081, BLD-062 |
+| REL-044 | Publish machine-readable security advisories and a feed | todo | blocked | M | REL-047, REL-006, PKG-081, BLD-062, REL-041 |
 | REL-045 | Publish AppStream catalogue metadata for the repository | todo | blocked | S | REL-013, REL-050 |
 | REL-046 | Publish corresponding source beside every binary Generation | todo | blocked | M | REL-019, GOV-059, GOV-003 |
 | REL-047 | Publish vulnerability disclosure policy and signed advisory format | todo | blocked | S | KRN-031, GOV-065, SEC-002 |
@@ -95,7 +95,7 @@
 | REL-062 | Publish crash-free-session and boot-success rates per Channel | todo | blocked | S | REL-066, REL-055, REL-042, BEN-049, BEN-052 |
 | REL-063 | Sign and launch the 1.0 stable Channel with the final HCL | todo | blocked | M | REL-066, REL-057, REL-041, REL-048, HW-088, REL-064 |
 | REL-064 | Publish trailing inherited-CVE response against the SLA | todo | blocked | S | REL-060, REL-018, KRN-057 |
-| REL-065 | Publish 1.0 release notes and the V3/V4 migration guide | todo | blocked | S | REL-014, REL-063, BEN-062 |
+| REL-065 | Publish 1.0 release notes and the V3/V4 migration guide | todo | blocked | S | REL-014, REL-063, BEN-062, REL-067 |
 | REL-066 | Soak the 1.0 release candidate on Tier 1 and the beta fleet | todo | blocked | M | REL-057, REL-061, REL-017, BLD-079, HW-087 |
 | REL-067 | Define and CI-test supported upgrade paths between stables | todo | blocked | M | REL-029, REL-059, INS-047, PKG-091 |
 

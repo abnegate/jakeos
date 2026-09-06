@@ -403,7 +403,7 @@ Toolkit (UIP-020). Compositor KMS output (GFX-008). SDK `ctx.ui.window` (SDK-023
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: UIP-013
+- Depends on: UIP-013, LNX-020
 - Baseline: §41, §57, §68
 - Threats: T-032
 - Invariants: I-048
@@ -697,7 +697,7 @@ Shaping and rasterisation (TXT-013). Editing model (TXT-012). IME engines (TXT-0
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: UIP-020, UIP-022
+- Depends on: UIP-020, UIP-022, GFX-040
 - Baseline: §41, §60
 
 Build the widget set the four APP demo applications need: buttons, lists, text fields, scroll views, menus, dialogs, splitters and image views. Each widget is a declarative element with a retained render node. Text rendering inside the fields is UIP-023; this task ships the widget shells and composition.
@@ -1399,7 +1399,7 @@ Bidi of text runs (TXT-038). Translation catalogs (TXT). Appearance settings (UI
 #### Acceptance criteria
 - [ ] Setting locale direction to RTL mirrors row, splitter and scroll-view geometry for a fixture tree; a pixel-stable test on `qemu-virtio-gpu` asserts the mirror.
 - [ ] Focus traversal in RTL visits widgets in mirrored visual order.
-- [ ] Mixed LTR text runs inside an RTL layout remain correctly ordered via TXT bidi, not via toolkit-local reordering.
+- [ ] Mixed LTR text runs inside an RTL layout are ordered as the Unicode Bidirectional Algorithm reference implementation orders them, via TXT bidi and not toolkit-local reordering.
 
 #### Verification
 - Unit: `sdk:tests/toolkit/rtl_mirror_*` on `qemu-virtio-gpu`.
@@ -1666,7 +1666,7 @@ Layer 1 ABI stability statement (ABI). Layer 3 SDK statement (SDK-095). Parked t
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: UIP-043, UIP-049
+- Depends on: UIP-043, UIP-049, HW-051
 - Baseline: §41, §62
 
 Park on-screen keyboard, tablet mode and convertible form-factor UI after 1.0. GAP-0287 excludes them from 1.0; INV-0776 names future tablet. Adaptive-form-factors must not be stretched into these before 1.0. Basic touchscreen and touchpad gestures remain in UIP-049.

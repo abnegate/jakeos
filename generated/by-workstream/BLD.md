@@ -34,11 +34,11 @@
 | BLD-020 | Build a fault-injection framework for service kill and kernel failures | todo | blocked | M | BLD-006, SVC-015 |
 | BLD-021 | Publish a flaky-test policy and automate quarantine in CI | todo | blocked | M | BLD-001 |
 | BLD-022 | Extend the boot harness to SystemGeneration selection cycles | todo | blocked | M | BLD-012, PKG-015 |
-| BLD-023 | Run license compliance scanning in CI across kernel, crates and firmware | todo | blocked | M | BLD-011, GOV-016, GOV-003 |
+| BLD-023 | Run license compliance scanning in CI across kernel, crates and firmware | todo | blocked | M | BLD-011, GOV-016, GOV-003, TXT-005 |
 | BLD-024 | Produce Milestone test images from the shared image builder | todo | blocked | M | INS-001, BLD-009, PKG-016 |
 | BLD-025 | Deploy a shared content-addressed remote build cache | todo | blocked | M | BLD-002, BLD-009, BLD-003 |
 | BLD-026 | Define sanitizer debug and release build profiles and boot them nightly | todo | blocked | M | BLD-013, BLD-012, BLD-004 |
-| BLD-027 | Build the semantic-Interface and accessibility-tree GUI test harness | todo | blocked | L | BLD-018, BLD-006, BLD-028 |
+| BLD-027 | Build the semantic-Interface and accessibility-tree GUI test harness | todo | blocked | L | BLD-018, BLD-006, BLD-028, BLD-020 |
 | BLD-028 | Add virtio-gpu QEMU configurations to the compositor CI matrix | todo | blocked | S | BLD-012 |
 
 ## V1
@@ -89,13 +89,13 @@
 | --- | --- | --- | --- | --- | --- |
 | BLD-061 | Produce nightly images for the alpha Channel | todo | blocked | S | BLD-024, REL-005 |
 | BLD-062 | Build an embargoed private path for security-release compilation | todo | blocked | M | BLD-034, BLD-065 |
-| BLD-063 | Gate V3 on no known open Native ABI fuzzer crasher | todo | blocked | S | BLD-035, BLD-042, NET-023 |
+| BLD-063 | Gate V3 on no known open Native ABI fuzzer crasher | todo | blocked | S | BLD-035, BLD-042, NET-023, IPC-061 |
 | BLD-064 | Migrate CI runners to bare-metal JakeOS | todo | blocked | L | BLD-057, INS-004, LAB-021, BLD-034 |
 | BLD-065 | Build release artifacts once and promote them across channels | todo | blocked | M | BLD-041, BLD-024 |
 | BLD-066 | Publish public CI and benchmark dashboards | todo | blocked | S | BLD-052, BEN-031 |
 | BLD-067 | Implement the release-qualification CI tier | todo | blocked | M | BLD-001, BLD-069, BLD-041, BLD-033, BLD-063 |
 | BLD-068 | Gate releases on complete SBOMs for every SystemGeneration | todo | blocked | S | BLD-055, BLD-067 |
-| BLD-069 | Run nightly CI on all six Tier 1 machines | todo | blocked | M | BLD-058, LAB-021 |
+| BLD-069 | Run nightly CI on all six Tier 1 machines | todo | blocked | M | BLD-058, LAB-021, BLD-052 |
 | BLD-070 | Emit SLSA-style build provenance from hermetic CI | todo | blocked | M | BLD-055, BLD-009, BLD-065 |
 
 ## V4

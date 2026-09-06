@@ -46,7 +46,7 @@
 | OBS-028 | Package build-id keyed debug symbols and a symbolication tool for every build | todo | blocked | M | BLD-026 |
 | OBS-029 | Decide the Component crash capture format | todo | blocked | S | OBS-006, CMP-008 |
 | OBS-030 | Decide the persistent journal record format and retention model | todo | blocked | S | OBS-015, PKG-007 |
-| OBS-031 | Write the instrumentation guide for semantic events and inspect providers | todo | blocked | S | OBS-008, OBS-019, OBS-025 |
+| OBS-031 | Write the instrumentation guide for semantic events and inspect providers | todo | blocked | S | OBS-008, OBS-019, OBS-025, OBS-017 |
 | OBS-032 | Add an always-on flight recorder with trigger-based dumps on failure | todo | blocked | M | OBS-025, OBS-009, OBS-035, OBS-001 |
 | OBS-033 | Define inspection and trace schemas as versioned Layer 2 interfaces | todo | blocked | M | OBS-006, IPC-042, IPC-035 |
 | OBS-034 | Add privacy redaction and bug-report export to the journal | todo | blocked | M | OBS-035, OBS-030, OBS-032 |
@@ -91,5 +91,5 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | OBS-055 | Publish the 30-day soak leak and hang report for the release candidate | todo | blocked | S | OBS-036, OBS-047, LAB-025 |
-| OBS-056 | Publish the 1.x stability statement for inspection and trace interfaces | todo | blocked | S | OBS-052, IPC-070 |
+| OBS-056 | Publish the 1.x stability statement for inspection and trace interfaces | todo | blocked | S | OBS-052, IPC-070, ABI-053 |
 

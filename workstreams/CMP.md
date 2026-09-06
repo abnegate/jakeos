@@ -338,7 +338,7 @@ Native replacement of the wrapper (CMP-042). Fast-path tuning (CMP-034).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002
+- Depends on: CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013
 - Baseline: §16, §32, §59
 - Benchmarks: B-013
 
@@ -791,7 +791,7 @@ IDL codegen for endpoint bundles (IPC). Graph wiring of many children (CMP-024).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-007, CMP-027, SCH-023
+- Depends on: CMP-007, CMP-027, SCH-023, CMP-013
 - Baseline: §23, §53
 - Invariants: I-019
 

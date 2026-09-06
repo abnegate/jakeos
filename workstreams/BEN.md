@@ -4,7 +4,7 @@
 - Baseline: §10, §34, §53, §54, §59
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 64 live, 2 done, 0 in-progress, 62 todo, 0 dropped. Ready: 3. Blocked: 59. Weighted: 3%.
+Tasks: 64 live, 2 done, 0 in-progress, 62 todo, 0 dropped. Ready: 2. Blocked: 60. Weighted: 3%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -151,7 +151,7 @@ Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement au
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: BEN-007
+- Depends on: BEN-007, BEN-064
 - Baseline: §54, §59
 - Risks: R-009
 - Invariants: I-061
@@ -1306,7 +1306,7 @@ New V2 metrics (sibling BEN tasks). Merge exceptions (BEN-033).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BEN-005, BEN-047, WIN-006, WIN-009, LAB-015
+- Depends on: BEN-005, BEN-047, WIN-006, WIN-009, LAB-015, WIN-029
 - Baseline: §48, §54, §56.2
 - Benchmarks: B-027
 - Risks: R-035
@@ -1367,7 +1367,7 @@ Hardware decode (MED). MemoryObject transfer microbenchmark (B-007). ComputeDevi
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BEN-007, BEN-006
+- Depends on: BEN-007, BEN-006, LAB-027
 - Baseline: §54
 - Invariants: I-061
 

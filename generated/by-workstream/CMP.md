@@ -16,7 +16,7 @@
 | CMP-008 | Decide Component panic, abort and typed exit-cause semantics | done | done | M | none |
 | CMP-009 | Decide the native Component spawn primitive that replaces fork and exec | done | done | S | none |
 | CMP-010 | Decide the Phase A Component implementation strategy | todo | blocked | M | CMP-015, CMP-016 |
-| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | blocked | M | CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002 |
+| CMP-011 | Build the V0 Demo: Component A requests, Component B returns a MemoryObject | todo | blocked | M | CMP-005, CMP-004, CMP-008, CAP-006, IPC-010, IPC-011, MEM-010, SDK-002, IPC-013 |
 | CMP-012 | Prove Component isolation with negative tests and the isolation Demo | todo | blocked | M | CMP-005, CMP-007, CMP-013, CAP-001, SEC-001 |
 | CMP-013 | Add the ABI review Gate rejecting process, thread and container shapes | todo | blocked | S | CMP-007, CMP-009, CMP-006, ABI-018 |
 | CMP-014 | Define Object<Component> in the native Object model | todo | blocked | M | CMP-006, CMP-009, CMP-007, ABI-005, ABI-013 |
@@ -36,7 +36,7 @@
 | CMP-023 | Enforce constraints on dynamically created child Components | todo | blocked | M | CMP-022, CMP-024, SCH-009 |
 | CMP-024 | Instantiate declared Component graphs with attenuated per-child authority | todo | blocked | L | CMP-022, CMP-025, CAP-024 |
 | CMP-025 | Bind Component Inputs<T> and Outputs<T> declarations to Channels at launch | todo | blocked | M | CMP-014, IPC-031, PKG-031 |
-| CMP-026 | Show ResourceDomain plus capabilities subsume mount, pid, net, user and ipc namespaces | todo | blocked | M | CMP-007, CMP-027, SCH-023 |
+| CMP-026 | Show ResourceDomain plus capabilities subsume mount, pid, net, user and ipc namespaces | todo | blocked | M | CMP-007, CMP-027, SCH-023, CMP-013 |
 | CMP-027 | Implement the native launch path from Package entry to scheduled Component | todo | blocked | L | CMP-005, CMP-009, SCH-007 |
 | CMP-028 | Preserve Component identity across restart so clients can rebind | todo | blocked | M | CMP-004, CMP-030 |
 | CMP-029 | Share verified code pages across Component instances of one Package | todo | blocked | M | CMP-017, CMP-002, MEM-016, PKG-039 |

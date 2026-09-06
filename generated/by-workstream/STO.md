@@ -103,7 +103,7 @@
 | STO-075 | Provide per-user storage roots and separately encrypted user volumes | todo | blocked | M | STO-039, SEC-042, STO-002, SEC-017 |
 | STO-076 | Provide SMB, NFS, WebDAV and SFTP shares as storage-provider Collections | todo | blocked | L | STO-073, STO-059, SEC-027, STO-034 |
 | STO-077 | Make `os restore` revert user data through storage snapshots | todo | blocked | M | STO-070, PKG-060, STO-056 |
-| STO-085 | Decide how untrusted removable and foreign filesystem images are parsed | todo | blocked | S | STO-058 |
+| STO-085 | Decide how untrusted removable and foreign filesystem images are parsed | todo | blocked | S | STO-058, HW-002 |
 
 ## V4
 

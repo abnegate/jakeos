@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| INS-001 | Build the SystemGeneration image builder | todo | blocked | M | BOOT-008, BOOT-011, PKG-008, PKG-016, PKG-029, REL-001, STO-014, STO-021 |
+| INS-001 | Build the SystemGeneration image builder | todo | blocked | M | BOOT-008, BOOT-011, PKG-008, PKG-016, PKG-029, REL-001, STO-014, STO-021, SVC-007 |
 | INS-002 | Ship scripted install from a built SystemGeneration image | todo | blocked | M | BOOT-007, INS-001, PKG-017, STO-021 |
 
 ## V1
@@ -29,7 +29,7 @@
 | INS-011 | Provide guided scripted image install for preview machines | todo | blocked | M | INS-007, INS-008, INS-005 |
 | INS-012 | Write the installer and updater threat model | todo | blocked | S | PKG-054, SEC-002 |
 | INS-013 | Ship a signed recovery SystemGeneration on the ESP | todo | blocked | L | BOOT-029, BOOT-027, INS-008, PKG-016, REL-003 |
-| INS-014 | Expose SystemGeneration restore in Settings and boot UX | todo | blocked | M | APP-040, BOOT-028, BOOT-014, INS-006, PKG-073, PKG-074, PKG-060, SDK-069 |
+| INS-014 | Expose SystemGeneration restore in Settings and boot UX | todo | blocked | M | APP-040, BOOT-028, BOOT-014, INS-006, PKG-073, PKG-074, PKG-060, SDK-069, PKG-017 |
 
 ## V3
 
@@ -39,7 +39,7 @@
 | INS-016 | Publish install, first-boot and update-apply times | todo | blocked | S | INS-010, INS-027, INS-045, Q-001, BEN-005, INS-032, LAB-021 |
 | INS-017 | Share Bluetooth pairing keys across dual-boot | todo | blocked | M | HW-035, HW-036, INS-026, SEC-027 |
 | INS-018 | Import browser bookmarks, history, passwords and extensions | todo | blocked | M | APP-019, INS-036, INS-049, SEC-027 |
-| INS-019 | Ship a built-in bug reporter bundling traces, inspect output and Generation ID | todo | blocked | M | INS-021, OBS-006, OBS-034, SDK-007 |
+| INS-019 | Ship a built-in bug reporter bundling traces, inspect output and Generation ID | todo | blocked | M | INS-021, OBS-006, OBS-034, SDK-007, HW-068 |
 | INS-020 | Ship opt-in crash-report client with secret scrubbing | todo | blocked | L | GOV-061, INS-021, INS-010, INS-012, KRN-048, OBS-026, OBS-027, OBS-029 |
 | INS-021 | Show crash and telemetry contents and allow redaction before send | todo | blocked | M | GOV-061, OBS-050, OBS-034 |
 | INS-022 | Decide hardware clock UTC versus localtime for dual-boot | todo | blocked | S | INS-008, SVC-018, SVC-032 |
@@ -54,7 +54,7 @@
 | INS-031 | Automate installer QEMU runs across disk layouts | todo | blocked | M | BLD-012, INS-026, INS-027, INS-028 |
 | INS-032 | Prove installer success rate on every Tier 1 machine | todo | blocked | M | HW-062, HW-070, INS-027, INS-028, INS-031, LAB-021, LAB-022, SEC-055 |
 | INS-033 | Import Linux home directories with per-item destination choice | todo | blocked | M | INS-023, INS-036, STO-042, STO-074 |
-| INS-034 | Ship a live-boot USB desktop that does not touch disks | todo | blocked | L | APP-040, APP-043, GFX-008, GFX-010, HW-066, INS-004, INS-001 |
+| INS-034 | Ship a live-boot USB desktop that does not touch disks | todo | blocked | L | APP-040, APP-043, GFX-008, GFX-010, HW-066, INS-004, INS-001, HW-068 |
 | INS-035 | Ship install-media creation with checksum and signature checks | todo | blocked | M | REL-020, REL-019, INS-027 |
 | INS-036 | Record each migration import as a restorable history event | todo | blocked | S | PKG-022, PKG-060, STO-025, STO-077 |
 | INS-037 | Show third-party notices and GPL offer in installer and Settings | todo | blocked | S | REL-049 |

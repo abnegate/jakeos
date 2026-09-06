@@ -18,7 +18,7 @@
 | KRN-010 | Create the kernel fork repository with upstream remote and rebase workflow | done | done | M | KRN-002, KRN-005, KRN-007, KRN-006, KRN-003, KRN-004, BLD-005 |
 | KRN-011 | Maintain a base defconfig plus per-target fragments with a build-and-boot check | todo | blocked | M | KRN-010, KRN-017 |
 | KRN-012 | Wire KUnit and Rust kernel unit tests for native primitives into pre-merge CI | todo | blocked | M | KRN-013, BLD-013, BLD-012 |
-| KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | blocked | M | KRN-010, KRN-001, KRN-017, KRN-015, KRN-016 |
+| KRN-013 | Add the native platform as an in-tree kernel subsystem beside Linux facilities | todo | blocked | M | KRN-010, KRN-001, KRN-017, KRN-015, KRN-016, KRN-014 |
 | KRN-014 | Define the retained-subsystem regression matrix as a merge-blocking Gate | todo | blocked | M | KRN-017, KRN-011, BLD-012 |
 | KRN-015 | Write the rewrite-versus-retain policy for replacing inherited C with Rust | todo | blocked | S | KRN-002, KRN-018, KRN-003 |
 | KRN-016 | Enforce Rust-first and rewrite-requires-ADR rules with a kernel-tree CI lint | todo | blocked | S | KRN-015, KRN-010, BLD-013, BLD-011 |
@@ -44,7 +44,7 @@
 | KRN-025 | Decide how KVM is exposed natively as Capability<VirtualMachine> | todo | blocked | S | KRN-017, KRN-001 |
 | KRN-026 | Decide that kernel live-patching is a non-goal in favour of generations plus reboot | todo | blocked | S | KRN-009, PKG-009 |
 | KRN-027 | Decide module signing under Secure Boot for out-of-tree, GPU and local modules | todo | blocked | S | KRN-028 |
-| KRN-028 | Decide out-of-tree module policy: GPL-only native exports and taint semantics | todo | blocked | S | KRN-003, KRN-017 |
+| KRN-028 | Decide out-of-tree module policy: GPL-only native exports and taint semantics | todo | blocked | S | KRN-003, KRN-017, KRN-014 |
 | KRN-029 | Benchmark security mitigation overhead with mitigations on versus off | todo | blocked | S | KRN-034, Q-001, BEN-007 |
 | KRN-030 | Build the CVE ingestion pipeline tagging applicability against the fork | todo | blocked | M | KRN-031, KRN-008, KRN-022 |
 | KRN-031 | Write the kernel CVE response process: triage, backport, test, disclosure | todo | blocked | S | KRN-008, KRN-039 |

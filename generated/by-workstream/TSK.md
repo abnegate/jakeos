@@ -69,7 +69,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | TSK-048 | Verify cancellation state machine against NVMe, GPU and Wi-Fi on all target machines | todo | blocked | M | TSK-010, TSK-049, NET-014, HET-012 |
-| TSK-049 | Implement GPUDispatch Operation kind with committed-work cancellation | todo | blocked | L | TSK-018, TSK-010, TSK-017, ABI-014, HET-019, HET-016, HET-003 |
+| TSK-049 | Implement GPUDispatch Operation kind with committed-work cancellation | todo | blocked | L | TSK-018, TSK-010, TSK-017, ABI-014, HET-019, HET-016, HET-003, HET-012 |
 
 ## V3
 

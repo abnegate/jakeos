@@ -40,7 +40,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| HET-020 | Define NPU ComputeDevice class with one reference hardware backend | todo | blocked | L | HET-009, HET-001, HET-015, HET-016 |
+| HET-020 | Define NPU ComputeDevice class with one reference hardware backend | todo | blocked | L | HET-009, HET-001, HET-015, HET-016, HW-062 |
 | HET-021 | Define DSP FPGA and accelerator ComputeDevice classes without backends | todo | blocked | M | HET-001, HET-009 |
 | HET-022 | Publish Layer 1 reference pages for ComputeDevice and ComputeQueue | todo | blocked | S | HET-009, HET-008, HET-019, HET-007 |
 | HET-023 | Enumerate NVIDIA GPU as a ComputeDevice on the V3 desktop | todo | blocked | M | HET-015, HET-003, HET-016, HW-018, HW-070 |
@@ -51,7 +51,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| HET-026 | Ship ComputeDevice Layer 1 conformance tests for the ABI freeze | todo | blocked | M | HET-009, HET-008, HET-019, HET-007, HET-024, HET-005, HET-022 |
+| HET-026 | Ship ComputeDevice Layer 1 conformance tests for the ABI freeze | todo | blocked | M | HET-009, HET-008, HET-019, HET-007, HET-024, HET-005, HET-022, ABI-049 |
 | HET-027 | Lock the Layer 2 dispatch preference schema for the 1.x line | todo | blocked | S | HET-002, HET-001, HET-004, HET-014, HET-017, IPC-042, HET-010 |
 
 ## 1.0

@@ -31,7 +31,7 @@
 | SEC-013 | Define administrator versus standard user | todo | blocked | S | SEC-012 |
 | SEC-014 | Define pluggable authenticator interfaces | todo | blocked | M | SEC-012 |
 | SEC-015 | Build a re-authentication Authorization service | todo | blocked | M | SEC-020, SEC-013, SEC-028, CAP-003 |
-| SEC-016 | Provide a typed CA trust store with pinning | todo | blocked | M | SEC-002, CAP-005 |
+| SEC-016 | Provide a typed CA trust store with pinning | todo | blocked | M | SEC-002, CAP-005, SEC-013 |
 | SEC-017 | Provide encrypted volumes for developer machines | todo | blocked | M | SEC-005, SEC-018, STO-016 |
 | SEC-018 | Expose a pre-boot disk-unlock key-slot API | todo | blocked | M | SEC-005 |
 | SEC-019 | Hide stable hardware identifiers without a Capability | todo | blocked | S | SEC-009, CAP-005 |
@@ -41,7 +41,7 @@
 | SEC-023 | Forbid setuid binaries in native Packages | todo | blocked | S | SEC-015, BLD-011, PKG-028 |
 | SEC-024 | Mirror the CA trust store into personalities | todo | blocked | S | SEC-016 |
 | SEC-025 | Require saving an offline recovery key | todo | blocked | S | SEC-017, SEC-018 |
-| SEC-026 | Prove no application can read another app's secrets | todo | blocked | S | SEC-027 |
+| SEC-026 | Prove no application can read another app's secrets | todo | blocked | S | SEC-027, SEC-009 |
 | SEC-027 | Build a per-application secrets service | todo | blocked | M | SEC-020, SEC-028, CAP-005 |
 | SEC-028 | Implement Session linking identity, seat, and root | todo | blocked | M | SEC-020, SEC-012 |
 | SEC-029 | Publish the microarchitectural side-Channel statement | todo | blocked | S | SEC-002, SEC-010 |
@@ -100,9 +100,9 @@
 | --- | --- | --- | --- | --- | --- |
 | SEC-067 | Close High and Critical audit findings | todo | blocked | M | SEC-070 |
 | SEC-068 | Triage Medium audit findings with public tracking | todo | blocked | S | SEC-070 |
-| SEC-069 | Re-verify High and Critical fixes with the auditor | todo | blocked | S | SEC-067 |
+| SEC-069 | Re-verify High and Critical fixes with the auditor | todo | blocked | S | SEC-067, GFX-093, KRN-054, IPC-066, CAP-050, CMP-053, STO-081, BOOT-046, LNX-103, WIN-073 |
 | SEC-070 | Commission an independent security audit | todo | blocked | L | SEC-072, SEC-002, GOV-024 |
-| SEC-071 | Publish kernel-hardening and unsafe-isolation Evidence | todo | blocked | S | KRN-034, KRN-056, SEC-010, KRN-029 |
+| SEC-071 | Publish kernel-hardening and unsafe-isolation Evidence | todo | blocked | S | KRN-034, KRN-056, SEC-010, KRN-029, SEC-072 |
 | SEC-072 | Freeze the ambient-authority conformance suite | todo | blocked | S | SEC-039, SEC-003, SEC-019, SEC-026 |
 | SEC-073 | Ship a WebAuthn platform authenticator | todo | blocked | M | SEC-066, SEC-014, SEC-053 |
 | SEC-081 | Lock the grant schema versions for 1.x with evolution tests | todo | blocked | S | SEC-007, CAP-043, CAP-048, IPC-042 |
@@ -114,7 +114,7 @@
 | SEC-074 | Declare formal certifications out of scope for 1.0 | todo | blocked | S | SEC-002, SEC-070 |
 | SEC-075 | Declare multi-seat, guest, kiosk, and enterprise directory out of scope | todo | blocked | S | SEC-014, SEC-012 |
 | SEC-076 | Verify 1.0 security-posture claims against the threat model | todo | blocked | S | SEC-077, SEC-069, SEC-072, SEC-055, SEC-071, BLD-041, BLD-073 |
-| SEC-077 | Refresh the public threat model for 1.0 | todo | blocked | S | SEC-002, SEC-069, SEC-070 |
+| SEC-077 | Refresh the public threat model for 1.0 | todo | blocked | S | SEC-002, SEC-069, SEC-070, SEC-068 |
 
 ## LATER
 

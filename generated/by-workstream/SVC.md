@@ -13,10 +13,10 @@
 | SVC-005 | Decide restart budgets, strategies, backoff and escalation for supervised services | todo | blocked | S | SVC-014 |
 | SVC-006 | Decide the settings storage model: typed schema-versioned objects with history events | todo | blocked | S | PKG-009 |
 | SVC-007 | Build the native init Component that starts the supervisor from a SystemGeneration | todo | blocked | L | SVC-003, BOOT-012, BOOT-009, PKG-021, PKG-019, CMP-027, CAP-023 |
-| SVC-008 | Implement readiness and liveness signalling in the native service runtime | todo | blocked | M | SVC-004, SDK-004 |
-| SVC-009 | Re-advertise interfaces after restart so clients rebind by Interface identity | todo | blocked | M | SVC-008, IPC-023, IPC-026, CMP-028 |
+| SVC-008 | Implement readiness and liveness signalling in the native service runtime | todo | blocked | M | SVC-004, SDK-004, SVC-005 |
+| SVC-009 | Re-advertise interfaces after restart so clients rebind by Interface identity | todo | blocked | M | SVC-008, IPC-023, IPC-026, CMP-028, SVC-012 |
 | SVC-010 | Expose service control and supervision-tree state via `os service` and `os inspect` | todo | blocked | S | SVC-015, OBS-019, SDK-007 |
-| SVC-011 | Define the service manifest: capabilities, dependencies, restart policy, readiness | todo | blocked | M | SVC-005, SVC-004, PKG-011, PKG-031, IPC-035 |
+| SVC-011 | Define the service manifest: capabilities, dependencies, restart policy, readiness | todo | blocked | M | SVC-005, SVC-004, PKG-011, PKG-031, IPC-035, PKG-027 |
 | SVC-012 | Add a CI lint requiring restart/rebind on every service Interface | todo | blocked | S | SVC-011, IPC-032 |
 | SVC-013 | Build the settings service storing typed, schema-versioned settings objects | todo | blocked | M | SVC-006, SVC-015, PKG-022 |
 | SVC-014 | Study BEAM and Fuchsia supervision to shape restart strategies | todo | ready | S | none |

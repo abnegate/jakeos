@@ -25,7 +25,7 @@
 | --- | --- | --- | --- | --- | --- |
 | SCH-013 | Benchmark wakeup latency per intent class under contention | todo | blocked | M | SCH-010, SCH-026, SCH-025, SCH-001, BEN-005 |
 | SCH-014 | Implement budget exhaustion handling and owner notification per ResourceDomain | todo | blocked | L | SCH-016, SVC-015, SCH-008, SCH-009, SCH-006 |
-| SCH-015 | Run the compositor under Deadline intent aligned to display vblank | todo | blocked | M | SCH-025, GFX-015 |
+| SCH-015 | Run the compositor under Deadline intent aligned to display vblank | todo | blocked | M | SCH-025, GFX-015, GFX-029 |
 | SCH-016 | Decide behaviour on ResourceDomain budget exhaustion and owner reporting | todo | blocked | S | SCH-008, SCH-009, SCH-006, Q-015 |
 | SCH-017 | Decide intent and priority inheritance across Channel handoff | todo | blocked | S | SCH-010, IPC-010, SCH-011, Q-014 |
 | SCH-018 | Export per-ResourceDomain usage and scheduling-delay data for inspection | todo | blocked | M | SCH-007, OBS-007, SCH-010 |
@@ -45,7 +45,7 @@
 | --- | --- | --- | --- | --- | --- |
 | SCH-028 | Benchmark audio-callback jitter under LowLatency and Realtime intent | todo | blocked | M | SCH-042, SCH-026, AUD-007, BEN-005 |
 | SCH-029 | Benchmark Interactive latency while a Throughput build runs | todo | blocked | M | SCH-026, SCH-010, BEN-005 |
-| SCH-030 | Decide which ResourceDomain and intent surfaces are Layer 1 freeze candidates | todo | blocked | S | ABI-011, SCH-007, SCH-010, SCH-025, SCH-026 |
+| SCH-030 | Decide which ResourceDomain and intent surfaces are Layer 1 freeze candidates | todo | blocked | S | ABI-011, SCH-007, SCH-010, SCH-025, SCH-026, SCH-001 |
 | SCH-031 | Add ResourceDomain GPU budget enforced through graphics and compute queues | todo | blocked | L | SCH-007, SCH-003 |
 | SCH-032 | Add ResourceDomain I/O budget for bandwidth and IOPS of storage Operations | todo | blocked | M | SCH-007, SCH-003, TSK-033 |
 | SCH-033 | Add ResourceDomain network policy applied to network Capabilities | todo | blocked | M | SCH-007, NET-006, NET-012 |

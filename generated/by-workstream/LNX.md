@@ -22,6 +22,7 @@
 | LNX-009 | Measure Linux Personality implementation depth options | todo | blocked | M | LNX-001, LNX-011, BEN-006, Q-001 |
 | LNX-010 | Prototype nested versus in-compositor Wayland hosting | todo | blocked | M | LNX-001, GFX-010, MEM-025 |
 | LNX-011 | Treat Linux compatibility as a product | todo | ready | S | none |
+| LNX-020 | Decide X11 primary selection stays inside the bridge | todo | blocked | S | LNX-004, UIP-003, SEC-002 |
 
 ## V1
 
@@ -35,7 +36,6 @@
 | LNX-017 | Decide first-class Linux packaging formats | todo | blocked | S | LNX-023, PKG-047, LNX-008 |
 | LNX-018 | Decide xdg-desktop-portal as the native grant bridge | todo | blocked | S | LNX-004, STO-034, UIP-003, SEC-002 |
 | LNX-019 | Decide the POSIX path view of native storage | todo | blocked | S | STO-047, STO-042, LNX-013 |
-| LNX-020 | Decide X11 primary selection stays inside the bridge | todo | blocked | S | LNX-004, UIP-003, SEC-002 |
 | LNX-021 | Decide retention and exposure of seccomp, user namespaces, overlayfs and FUSE | todo | blocked | S | LNX-001, KRN-017 |
 | LNX-022 | Decide terminal-session authority for Linux programs | todo | blocked | S | LNX-013, LNX-016, APP-004, SEC-002 |
 | LNX-023 | Decide source-built versus redistributed Linux userland | todo | blocked | S | LNX-011, LNX-008, GOV-031 |
@@ -71,7 +71,7 @@
 | LNX-053 | Provide X11 via Xwayland inside the Personality | todo | blocked | M | LNX-004, LNX-006, LNX-020 |
 | LNX-054 | Publish a five-minute Linux application launch guide | todo | blocked | S | LNX-011, LNX-038, LNX-017 |
 | LNX-055 | Retain inotify for Linux IDE file watching | todo | blocked | S | LNX-047, STO-035, LNX-005 |
-| LNX-056 | Define and run the L2 Corpus | todo | blocked | L | LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019 |
+| LNX-056 | Define and run the L2 Corpus | todo | blocked | L | LNX-041, LNX-038, LNX-039, LNX-058, LNX-031, LNX-061, LNX-053, GOV-031, BLD-017, LNX-029, LNX-046, LNX-048, TXT-019, LAB-026 |
 | LNX-057 | Run unmodified glibc and musl in the Personality | todo | blocked | M | LNX-030, LNX-023, LNX-001 |
 | LNX-058 | Ship Flatpak runtimes inside the Linux Personality | todo | blocked | L | LNX-017, LNX-061, LNX-036, LNX-045, PKG-047 |
 | LNX-059 | Survey glibc and systemd needs of top desktop apps | todo | blocked | M | LNX-008, LNX-057 |
@@ -104,7 +104,7 @@
 | LNX-081 | Bridge ScreenCast portal to native screen-share | todo | blocked | M | LNX-036, APP-025, APP-031, SEC-044 |
 | LNX-082 | Provide signals inside the Linux Personality | todo | blocked | M | LNX-083, LNX-042, TSK-043 |
 | LNX-083 | Provide the POSIX process model in the Personality | todo | blocked | L | LNX-042, CMP-036, LNX-090 |
-| LNX-084 | Define and run the L3 Corpus | todo | blocked | L | LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035 |
+| LNX-084 | Define and run the L3 Corpus | todo | blocked | L | LNX-073, LNX-066, LNX-071, LNX-070, LNX-086, LNX-079, LNX-081, LNX-068, LNX-069, LNX-074, LNX-075, LNX-082, LNX-085, LNX-088, LNX-089, TXT-035, LAB-026 |
 | LNX-085 | Shim org.freedesktop.secrets onto native secrets | todo | blocked | M | SEC-027, SEC-026, LNX-043, LNX-025 |
 | LNX-086 | Ship 32-bit multilib for the Steam runtime | todo | blocked | M | LNX-015, LNX-035, LNX-066, LNX-071 |
 | LNX-087 | Evaluate Flatpak and Snap as Personality Package sources | todo | blocked | M | LNX-058, LNX-036, LNX-017 |
@@ -125,7 +125,7 @@
 | LNX-097 | Keep L0 through L3 Gold Corpus entries green | todo | blocked | S | LNX-073, LNX-084, LNX-095 |
 | LNX-098 | Implement pid namespaces over Components | todo | blocked | L | LNX-045, LNX-095, LNX-042, LNX-039 |
 | LNX-099 | Publish the Linux compatibility guide | todo | blocked | M | LNX-100, LNX-054, DOC-021, LNX-028 |
-| LNX-100 | Define and run the L4 Corpus | todo | blocked | L | LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101 |
+| LNX-100 | Define and run the L4 Corpus | todo | blocked | L | LNX-097, LNX-096, LNX-093, BLD-017, LNX-094, LNX-098, LNX-101, LAB-026 |
 | LNX-101 | Implement signal delivery over native primitives | todo | blocked | L | LNX-082, LNX-090, TSK-013, LNX-095 |
 
 ## V4
@@ -137,7 +137,7 @@
 | LNX-104 | Keep L0 through L4 Gold Corpus entries green | todo | blocked | S | LNX-097, LNX-100 |
 | LNX-105 | Lock Linux Personality product contracts for 1.x | todo | blocked | S | LNX-003, LNX-016, LNX-018, LNX-107, LNX-090, LNX-009 |
 | LNX-106 | Publish Corpora and results as machine-readable data | todo | blocked | S | LNX-107, REL-015, LNX-104 |
-| LNX-107 | Define and run the L5 Corpus | todo | blocked | L | LNX-104, ACC-033, BLD-017 |
+| LNX-107 | Define and run the L5 Corpus | todo | blocked | L | LNX-104, ACC-033, BLD-017, LAB-026 |
 
 ## 1.0
 

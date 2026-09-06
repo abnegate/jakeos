@@ -914,7 +914,7 @@ Store implementation (OBS-035). Redaction and bug-report export (OBS-034). Colle
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: OBS-008, OBS-019, OBS-025
+- Depends on: OBS-008, OBS-019, OBS-025, OBS-017
 - Baseline: §24, §52, §64
 
 SDK v1 ships at V1. Third-party Components must know how to emit semantic events and register inspect providers so OBS-017 is achievable outside the core team.
@@ -1640,7 +1640,7 @@ Fleet soak execution (LAB-025). Channel launch (REL). Hang detector (OBS-047).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: OBS-052, IPC-070
+- Depends on: OBS-052, IPC-070, ABI-053
 - Baseline: §66
 
 1.0 exit: Layer 2 supported interface versions listed in a published compatibility document with deprecation policy. This task authors the inspect and trace sections of that document.

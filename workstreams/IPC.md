@@ -472,7 +472,7 @@ Implements IPC-003 so the common small-message case needs no userland serializat
 Technique selection (IPC-003). Batching productionisation (IPC-043). V1 tuning (IPC-054).
 
 #### Acceptance criteria
-- [ ] Small messages on the selected path have no userland serialize or deserialize step; IPC-034 rejects such a step on the hot path.
+- [ ] Small messages on the selected path have no userland serialize or deserialize step: a unit test counts zero payload copies between the sender store and the receiver load; IPC-034 later turns this into a standing lint.
 - [ ] The implementation matches the technique named by IPC-003; rejected techniques are not reachable from generated stubs.
 - [ ] IPC-008 runs against this path on H-001 and H-002.
 
@@ -1036,7 +1036,7 @@ Owning those services (GFX, STO, NET, AUD, PKG). Evolution diff tool (IPC-052). 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: IPC-007, IPC-012, IPC-014, MEM-010
+- Depends on: IPC-007, IPC-012, IPC-014, MEM-010, IPC-034
 - Baseline: §15, §16
 - Invariants: I-063
 
@@ -1748,6 +1748,7 @@ Fuzz fleet and crasher-age Gate (BLD-063, BLD-035).
 - [ ] Open crasher age is reported for BLD-063; IPC owns the inventory, BLD owns the Gate.
 
 #### Verification
+- Integration: `ipc:fuzz/coverage_inventory_*` on `qemu-x86_64` produces the per-syscall and per-Interface coverage table the V3 gate reads.
 - Report: inventory committed under `reports/` paths named by BLD, covering every IPC surface.
 - Review: BLD lead sign-off recorded on the pull request.
 

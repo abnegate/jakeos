@@ -298,7 +298,7 @@ Client delta fetch (INS-025). Store-level object diff (PKG-083). B-035 publicati
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: REL-002, REL-003, PKG-016, PKG-029
+- Depends on: REL-002, REL-003, PKG-016, PKG-029, PKG-055
 - Baseline: §30, §63
 - Risks: R-030
 - Threats: T-028, T-029
@@ -510,7 +510,7 @@ SBOM generation (BLD-055). Publisher pipeline (REL-021). Non-free channel consen
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: REL-027, REL-019, BLD-067, BEN-053
+- Depends on: REL-027, REL-019, BLD-067, BEN-053, REL-046, REL-051
 - Baseline: §54, §63
 - Invariants: I-061, I-088
 
@@ -571,7 +571,7 @@ Kernel backport (KRN-045). Published SLA text (REL-060). Advisory format (REL-04
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: REL-041, REL-004, BLD-065, BLD-061, INS-001
+- Depends on: REL-041, REL-004, BLD-065, BLD-061, INS-001, BLD-067
 - Baseline: §27, §30, §63
 - Threats: T-007, T-028
 - Invariants: I-022, I-086
@@ -1333,7 +1333,7 @@ Client apply and rollback UX (INS-045, INS-043). Qualification checklist (REL-01
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: REL-047, REL-006, PKG-081, BLD-062
+- Depends on: REL-047, REL-006, PKG-081, BLD-062, REL-041
 - Baseline: §56.4, §63
 - Threats: T-007
 
@@ -1951,7 +1951,7 @@ Register target (REL-060). Kernel compliance report (KRN-057). Ingestion (REL-00
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: REL-014, REL-063, BEN-062
+- Depends on: REL-014, REL-063, BEN-062, REL-067
 - Baseline: §31, §54, §63
 - Invariants: I-061
 

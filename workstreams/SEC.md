@@ -493,7 +493,7 @@ Setuid lint (SEC-023). Trusted-UI elevation Surface (GFX-040). Durable audit sto
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SEC-002, CAP-005
+- Depends on: SEC-002, CAP-005, SEC-013
 - Baseline: §9.1, §51
 - Threats: T-019
 
@@ -797,7 +797,7 @@ Installer confirmation UX (INS-010). TPM seal (SEC-052). Cloud backup (STO).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SEC-027
+- Depends on: SEC-027, SEC-009
 - Baseline: §9.1
 - Threats: T-001
 - Invariants: I-021
@@ -2082,7 +2082,7 @@ Code fixes for High and Critical (SEC-067). Auditor letter (SEC-069).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SEC-067
+- Depends on: SEC-067, GFX-093, KRN-054, IPC-066, CAP-050, CMP-053, STO-081, BOOT-046, LNX-103, WIN-073
 - Baseline: §63
 - Risks: R-055
 
@@ -2140,7 +2140,7 @@ Legal-entity form (GOV-024). Closing findings (SEC-067). Personality-specific fi
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-034, KRN-056, SEC-010, KRN-029
+- Depends on: KRN-034, KRN-056, SEC-010, KRN-029, SEC-072
 - Baseline: §51
 - Invariants: I-082
 
@@ -2312,7 +2312,7 @@ CVE SLA operation (REL). HCL publication (REL). Support window (GOV, REL).
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: SEC-002, SEC-069, SEC-070
+- Depends on: SEC-002, SEC-069, SEC-070, SEC-068
 - Baseline: §9, §51, §63
 - Risks: R-008
 

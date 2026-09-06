@@ -16,7 +16,7 @@
 | NET-003 | Implement DHCPv4 and IPv6 SLAAC/DHCPv6 with privacy extensions | todo | blocked | M | NET-015, NET-012 |
 | NET-004 | Publish NetworkConnection throughput and latency against Linux sockets | todo | blocked | M | NET-014, BEN-007, BEN-005 |
 | NET-005 | Decide the native TLS library and how it consumes the CA trust store | todo | blocked | S | NET-007, SEC-002 |
-| NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | blocked | M | NET-007, NET-008, CAP-010, SEC-002 |
+| NET-006 | Decide per-application network Capability granularity and inbound firewall | todo | blocked | M | NET-007, NET-008, CAP-010, SEC-002, CAP-036 |
 | NET-007 | Decide NET baseline-gap scope: preserved stack versus native objects | todo | blocked | S | NET-001, NET-002, KRN-001 |
 | NET-008 | Decide whether NetworkConnection wraps the kernel TCP/IP stack | todo | blocked | S | NET-007, NET-002, ABI-013 |
 | NET-009 | Decide the Wi-Fi supplicant: iwd, wpa_supplicant or native Rust | todo | blocked | S | NET-007, SDK-097 |

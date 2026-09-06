@@ -362,7 +362,7 @@ The standing B-007 harness in CI (BEN-003). Production object implementation (ME
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: MEM-010
+- Depends on: MEM-010, IPC-014
 - Baseline: §17, §59
 - Benchmarks: B-007
 - Risks: R-009
@@ -1110,7 +1110,7 @@ B-016 publication (BEN-030). Address-space construction (CMP).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: MEM-028
+- Depends on: MEM-028, HW-017
 - Baseline: §16, §17, §33, §55
 - Threats: T-020, T-024
 - Invariants: I-038, I-074
@@ -1555,7 +1555,7 @@ Fuzz infrastructure and crasher age gate (BLD-035, BLD-063). syzkaller port (BLD
 
 #### Acceptance criteria
 - [ ] Fuzz targets cover create, map, unmap, transfer, borrow, seal, pin, and property changes.
-- [ ] Oracles fail the input if a post-transfer sender mapping works, if a sealed object is written, or if W^X is violated.
+- [ ] Oracles fail the input if a load or store through a post-transfer sender mapping succeeds, if a sealed object is written, or if W^X is violated.
 - [ ] Targets are wired into the BLD nightly fleet.
 
 #### Verification

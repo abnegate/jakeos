@@ -611,7 +611,7 @@ The Decision (ABI-009). Personality errno translation (LNX). Freeze of S-004 (AB
 
 #### Acceptance criteria
 - [ ] A prototype returns `Error::Rights`, exhaustion, disconnect and timeout on H-001 and H-002 without producing an errno.
-- [ ] A native crate that matches on errno fails ABI-003.
+- [ ] The prototype ships a negative fixture crate that matches on errno, for ABI-003 to reject once that lint lands.
 - [ ] Surface S-004 remains `open` or `prototyped`, never `frozen`.
 
 #### Verification

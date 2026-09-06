@@ -19,7 +19,7 @@
 | UIP-011 | Instrument input pipeline stages with trace timestamps for latency measurement | todo | blocked | S | UIP-012, UIP-010, OBS-013 |
 | UIP-012 | Route pointer, keyboard and touch input only to focused surfaces | todo | blocked | L | UIP-005, UIP-013, HW-011, HW-012 |
 | UIP-013 | Define UI protocol v0 IDL: surfaces, frames and Buffers over Channel | todo | blocked | L | UIP-006, UIP-008, IPC-012, IPC-002, GFX-038 |
-| UIP-014 | Add CI lint rejecting X11, Wayland and primary-selection concepts in native IDL | todo | blocked | S | UIP-013 |
+| UIP-014 | Add CI lint rejecting X11, Wayland and primary-selection concepts in native IDL | todo | blocked | S | UIP-013, LNX-020 |
 | UIP-015 | Version UI protocol under §12 rules and bump v0 to v0.1 with old clients running | todo | blocked | M | UIP-013, IPC-002 |
 | UIP-016 | Add privileged shell Surface roles to protocol v0 for panel and launcher | todo | blocked | M | UIP-013, UIP-025 |
 | UIP-017 | Prototype UI protocol as scene graph, client buffers and hybrid; measure | todo | blocked | L | IPC-010, IPC-012, MEM-005, MEM-010 |
@@ -29,7 +29,7 @@
 | UIP-021 | Build GPU renderer drawing toolkit render tree into MemoryObject Buffers | todo | blocked | L | UIP-020, GFX-005, MEM-024, GFX-017, MEM-019 |
 | UIP-022 | Build responsive layout engine with constraints and reflow on resize | todo | blocked | M | UIP-020 |
 | UIP-023 | Integrate TXT shaping into toolkit text display and editing widgets | todo | blocked | M | UIP-024, TXT-013, TXT-012, TXT-006, TXT-003 |
-| UIP-024 | Build widget set sufficient for Terminal, File Browser, Editor and Viewer | todo | blocked | L | UIP-020, UIP-022 |
+| UIP-024 | Build widget set sufficient for Terminal, File Browser, Editor and Viewer | todo | blocked | L | UIP-020, UIP-022, GFX-040 |
 | UIP-025 | Define Capability<UI> granted at launch: window creation without screen contents | todo | blocked | M | UIP-013, CAP-007, GFX-026, UIP-019 |
 | UIP-026 | Automate V0.5 UI gates: window, input, animation, clipboard denial, a11y dump | todo | blocked | S | UIP-013, UIP-012, UIP-010, UIP-003, UIP-001, UIP-015, UIP-025, UIP-024, UIP-002, BLD-027, ACC-003 |
 
@@ -93,5 +93,5 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| UIP-058 | Park on-screen keyboard, tablet mode and convertible form-factor UI | todo | blocked | L | UIP-043, UIP-049 |
+| UIP-058 | Park on-screen keyboard, tablet mode and convertible form-factor UI | todo | blocked | L | UIP-043, UIP-049, HW-051 |
 

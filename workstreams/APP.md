@@ -86,7 +86,7 @@ UserSelected minting and isolation test (STO-034, STO-007). SDK `files.choose` (
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: UIP-024, TXT-012, STO-024
+- Depends on: UIP-024, TXT-012, STO-024, APP-008
 - Baseline: §11, §41, §60
 
 Ship the V0.5 native Text Editor as a Component graph with declarative UI, accessibility metadata and a scripted acceptance scenario (§60). Kernel-scale editing, diagnostics and IDE features wait for V1. The editor maps immutable Package objects at launch and holds no ambient filesystem namespace (I-021, I-039).
@@ -148,7 +148,7 @@ Daily-driving feature bar (APP-016). Terminal-session authority Decision (LNX-02
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: APP-002, STO-034, GFX-026, UIP-025, SDK-013
+- Depends on: APP-002, STO-034, GFX-026, UIP-025, SDK-013, STO-007
 - Baseline: §9.1, §11, §60
 - Threats: T-001, T-038
 - Invariants: I-021, I-029
@@ -318,7 +318,7 @@ L2 corpus pass rates (LNX-056). Browser and IDE strategy (APP-019, APP-020). Por
 
 #### Acceptance criteria
 - [ ] Git, the Decision's browser and the Decision's IDE appear as launchable entries in the V1 launcher on H-004.
-- [ ] Copy-paste works between the personality browser and the native Text Editor in both directions.
+- [ ] Copy-paste of plain text and of an image round-trips between the personality browser and the native Text Editor in both directions, verified by a scripted scenario on H-004.
 - [ ] The native chooser can grant the personality IDE exactly one UserSelected file, and the IDE cannot enumerate the parent directory.
 - [ ] Native software still has no POSIX path API; personality entries are imported, not in-process.
 
@@ -519,7 +519,7 @@ V0.5 demo Terminal (APP-004). Authority Decision (LNX-022). Semantic `Terminal.r
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: APP-007, APP-013, UIP-016
+- Depends on: APP-007, APP-013, UIP-016, LNX-038
 - Baseline: §41, §61
 
 Ship a running-application list sufficient for V1 daily work. Status indicators, quick settings and Personality taskbar polish wait for the V2 panel. The thin panel uses the privileged shell Surface role from UIP.
@@ -1285,7 +1285,7 @@ Print dialog and IPP discovery (APP-064, HW-071). Display arrangement mechanics 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: APP-043, AUD-009, PWR-018, UIP-045
+- Depends on: APP-043, AUD-009, PWR-018, UIP-045, APP-033
 - Baseline: §41, §62
 - Threats: T-012
 
@@ -1538,7 +1538,7 @@ V1 switcher (APP-018). Compositor checkpoint Decision (GFX-019). UX script (APP-
 - [ ] At least two workspaces exist; moving a window and switching workspace focuses the expected Surface on H-003.
 - [ ] Overview shows live window thumbnails and activates one.
 - [ ] Layout after compositor rebind matches the checkpoint Decision (geometry and workspace).
-- [ ] Keyboard-only workspace switch works and emits accessibility state.
+- [ ] The named workspace-switch shortcut moves focus to the target workspace with no pointer input and emits the workspace-changed accessibility state event.
 
 #### Verification
 - Unit: `apps:tests/shell/workspaces_*` on `qemu-virtio-gpu`.
@@ -1855,7 +1855,7 @@ Backup service (STO-071). Secrets (SEC). Network stack (NET). Machine-to-machine
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: APP-051, APP-053, CMP-024, UIP-024, APP-008
+- Depends on: APP-051, APP-053, CMP-024, UIP-024, APP-008, ACC-015
 - Baseline: §11, §56.5, §63
 - Threats: T-038
 - Invariants: I-029

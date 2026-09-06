@@ -878,7 +878,7 @@ Deadline-miss benchmark under load (GFX-060). GPU composition (GFX-006).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GFX-017, GFX-016, GFX-005
+- Depends on: GFX-017, GFX-016, GFX-005, GFX-023
 - Baseline: §39, §9.1
 
 Capability-scoped render submission object per §39. Native applications submit work through RenderQueue, never through a DRM render node.
@@ -2453,7 +2453,7 @@ Indicator chrome (APP-031). Camera service (MED-013). Capture capability (GFX-06
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GFX-051, GFX-048, GFX-009
+- Depends on: GFX-051, GFX-048, GFX-009, GFX-050
 - Baseline: §32, §33
 - Invariants: I-037
 
@@ -2662,7 +2662,7 @@ Network transport for remote Surfaces (GFX-098). VM guest Surfaces (GFX-092).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GFX-071, GFX-068, GFX-088, GFX-077, LAB-021
+- Depends on: GFX-071, GFX-068, GFX-088, GFX-077, LAB-021, HW-070
 - Baseline: §62, §63
 
 V3 six Tier 1 machines fully tested each release. The Hardware Compatibility List needs display hot-plug, HDR/VRR and multi-monitor results per machine. Runs every release candidate through V4 and 1.0.

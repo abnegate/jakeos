@@ -46,7 +46,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| AUD-026 | Ship AudioStream conformance tests for the freeze | todo | blocked | M | AUD-008, AUD-002, AUD-006, AUD-005, AUD-009, AUD-003, AUD-001, AUD-022 |
+| AUD-026 | Ship AudioStream conformance tests for the freeze | todo | blocked | M | AUD-008, AUD-002, AUD-006, AUD-005, AUD-009, AUD-003, AUD-001, AUD-022, ABI-049 |
 | AUD-027 | Verify audio on every V4 Tier 1 machine | todo | blocked | S | AUD-025, AUD-026, HW-081, HW-080, HW-086, LAB-023 |
 
 ## 1.0

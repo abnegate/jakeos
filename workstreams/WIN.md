@@ -172,7 +172,7 @@ CI lint (WIN-004). Upstream-first patch policy (WIN-007). Redistributable packag
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: WIN-009
+- Depends on: WIN-009, LAB-026
 - Baseline: §48, §49, §56.2
 - Corpora: C-007
 - Risks: R-031
@@ -810,7 +810,7 @@ Format mapping Decision (APP-052). Taskbar widgets (APP-043). Installer-to-launc
 #### Acceptance criteria
 - [ ] Double-clicking a C-007 `.exe` from the File Browser on H-002 starts a prefix Component and shows a native Surface with no wizard and no extra desktop.
 - [ ] The new window appears in the native task switcher.
-- [ ] A non-PE file named `.exe` does not start Wine; the failure is a typed error visible to WIN-064.
+- [ ] A non-PE file named `.exe` does not start Wine; the failure is a typed error visible in `os inspect` (WIN-064 later maps it to user-facing text).
 
 #### Verification
 - Integration: `win:tests/launch/double_click_*` on H-002.
@@ -874,7 +874,7 @@ B-027 publication (BEN-044, BEN-041). W1 threshold run (WIN-051). Anti-cheat tit
 #### Acceptance criteria
 - [ ] C-007's V2 HDR-or-VRR Gold clause is met on H-002 with gamepad input scored pass.
 - [ ] Each proof title is named in the Evidence-bound rating sheet produced by WIN-006.
-- [ ] BEN-044 has a V2 publish report for those Gold titles; WIN prose cites B-027 only.
+- [ ] The Gold title list with per-title scenario ids is committed as the input BEN-044 measures; WIN prose cites B-027 only.
 - [ ] The V2-D03 demo title runs at 2560 by 1440 with VRR and HDR active on H-002 (the V2-D03 resolution).
 
 #### Verification
@@ -1637,7 +1637,7 @@ Hosting Decision (WIN-013). Object-mapping Decision (WIN-036). DXVK (WIN-026). P
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: WIN-010, WIN-054, LNX-035, LNX-015
+- Depends on: WIN-010, WIN-054, LNX-035, LNX-015, WIN-006
 - Baseline: §48, §56.2
 - Corpora: C-007
 - Risks: R-032
@@ -2077,7 +2077,7 @@ W2 thresholds (WIN-071). Passthrough completeness (WIN-072). Linux IDE (LNX). He
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: WIN-051
+- Depends on: WIN-051, LAB-026
 - Baseline: §48, §63
 - Corpora: C-008
 - Invariants: I-071
@@ -2329,7 +2329,7 @@ W3 thresholds (WIN-080). W2 V3 run (WIN-071).
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: WIN-071
+- Depends on: WIN-071, LAB-026
 - Baseline: §48
 - Corpora: C-009
 - Invariants: I-071

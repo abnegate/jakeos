@@ -15,7 +15,7 @@
 | MED-007 | Decide native media pipeline versus GStreamer or FFmpeg | todo | blocked | S | MED-009, GOV-020, MED-010, SDK-097 |
 | MED-008 | Define Layer 2 decoder encoder Camera and Frame Interfaces | todo | blocked | M | MED-007, MED-004, MED-001, IPC-035, IPC-012 |
 | MED-009 | Prototype sandboxed decoder Components exchanging MemoryObjects | todo | blocked | M | MEM-022, MEM-039, CMP-024, CMP-021, SDK-002 |
-| MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | todo | ready | M | none |
+| MED-010 | Prototype decoder, encoder, Camera and Frame Interfaces | todo | blocked | M | IPC-012, MEM-010, SDK-002 |
 
 ## V2
 
@@ -57,7 +57,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| MED-037 | Add Camera to the Tier 1 hardware test suite every RC | todo | blocked | M | MED-030, HW-086 |
+| MED-037 | Add Camera to the Tier 1 hardware test suite every RC | todo | blocked | M | MED-030, HW-086, REL-048 |
 | MED-038 | Deliver HDR decoded Frames Zero-copy to the compositor | todo | blocked | M | MED-016, MED-017, GFX-068 |
 | MED-039 | Lock Layer 2 media Interface versions for the 1.x line | todo | blocked | S | MED-008, MED-022, MED-013, IPC-068, IPC-062, MED-010, MED-007 |
 | MED-040 | Re-run B-046 on every Tier 1 machine for V4 regression | todo | blocked | S | MED-028, MED-038, BEN-059 |

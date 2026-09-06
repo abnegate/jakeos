@@ -8,9 +8,9 @@
 | --- | --- | --- | --- | --- | --- |
 | APP-001 | Publish warm and cold startup for the four native applications | todo | blocked | S | APP-004, APP-003, APP-005, APP-006, Q-029, BEN-005 |
 | APP-002 | Build the OS-owned file chooser UI minting UserSelected capabilities | todo | blocked | M | STO-034, GFX-040, UIP-024, UIP-025, SEC-007, CAP-029, SDK-017 |
-| APP-003 | Build the Demo native Text Editor | todo | blocked | M | UIP-024, TXT-012, STO-024 |
+| APP-003 | Build the Demo native Text Editor | todo | blocked | M | UIP-024, TXT-012, STO-024, APP-008 |
 | APP-004 | Build the Demo native Terminal on the system text stack | todo | blocked | M | APP-009, APP-008, UIP-024, UIP-023, TXT-009, UIP-001, SDK-023, SDK-025 |
-| APP-005 | Build the Demo Image Viewer with an isolated decoder Component | todo | blocked | M | APP-002, STO-034, GFX-026, UIP-025, SDK-013 |
+| APP-005 | Build the Demo Image Viewer with an isolated decoder Component | todo | blocked | M | APP-002, STO-034, GFX-026, UIP-025, SDK-013, STO-007 |
 | APP-006 | Build the privileged File Browser that hands out storage capabilities | todo | blocked | M | UIP-024 |
 | APP-007 | Build a minimal session host that launches the four Demo applications | todo | blocked | S | APP-004, APP-006, APP-003, APP-005, GFX-010, UIP-016, SVC-015, PKG-031 |
 | APP-008 | Document first-party applications as Component graphs | todo | blocked | S | CMP-024 |
@@ -27,7 +27,7 @@
 | APP-014 | Build the Notify service with Capability-gated posting and history | todo | blocked | M | IPC-012, SVC-015, GFX-009, SEM-007, CAP-025, UIP-024 |
 | APP-015 | Expose Semantic interfaces for Terminal.run and Editor.open | todo | blocked | S | SEM-006, SEM-007, SEM-004, SEM-002, APP-016, APP-011 |
 | APP-016 | Extend Terminal for daily development with tabs, splits and graphics | todo | blocked | M | APP-004, APP-009, LNX-022, TXT-020 |
-| APP-017 | Build a thin panel with a running-application list for daily driving | todo | blocked | S | APP-007, APP-013, UIP-016 |
+| APP-017 | Build a thin panel with a running-application list for daily driving | todo | blocked | S | APP-007, APP-013, UIP-016, LNX-038 |
 | APP-018 | Build a window switcher usable for daily development | todo | blocked | S | APP-017, GFX-010, UIP-013 |
 | APP-019 | Decide browser strategy for 1.0 and the native WebView Component | todo | blocked | S | APP-021, LNX-031, Q-044 |
 | APP-020 | Decide IDE strategy for 1.0 and the criteria for a native port | todo | blocked | S | APP-003, LNX-032, SDK-040, Q-045 |
@@ -57,7 +57,7 @@
 | APP-039 | Build logout, shutdown, inhibitors, auto-login and session restore | todo | blocked | M | APP-056, APP-030, PWR-012, PWR-013, SEC-028, PKG-022 |
 | APP-040 | Build the Settings application chassis as per-panel Components | todo | blocked | M | SVC-013, SVC-028, UIP-044, CMP-024, APP-017 |
 | APP-041 | Build Settings panels for displays, network, Bluetooth, sound and printers | todo | blocked | M | APP-040, GFX-065, NET-021, HW-036, AUD-009 |
-| APP-042 | Build on-screen display overlays for volume, brightness and lock | todo | blocked | S | APP-043, AUD-009, PWR-018, UIP-045 |
+| APP-042 | Build on-screen display overlays for volume, brightness and lock | todo | blocked | S | APP-043, AUD-009, PWR-018, UIP-045, APP-033 |
 | APP-043 | Build the desktop panel and taskbar with Personality integration | todo | blocked | M | APP-017, UIP-016 |
 | APP-044 | Build the Settings UI for named global shortcut bindings | todo | blocked | S | UIP-045, APP-040 |
 | APP-045 | Build the store client with install-time Capability review | todo | blocked | M | REL-012, REL-013, PKG-064, PKG-075, CAP-043, APP-025 |
@@ -81,7 +81,7 @@
 | APP-058 | Polish the desktop shell and applications for external alpha users | todo | blocked | M | APP-048, APP-061, SEC-062, APP-063 |
 | APP-059 | Build the automation-rule editor over Semantic interfaces | todo | blocked | M | SEM-031, SEM-029, SEM-018, SEM-025, APP-040 |
 | APP-060 | Build the backup and restore UI over snapshot-based user-data backup | todo | blocked | M | STO-071, APP-040, APP-002 |
-| APP-061 | Implement the native first-party applications selected by the set Decision | todo | blocked | L | APP-051, APP-053, CMP-024, UIP-024, APP-008 |
+| APP-061 | Implement the native first-party applications selected by the set Decision | todo | blocked | L | APP-051, APP-053, CMP-024, UIP-024, APP-008, ACC-015 |
 | APP-062 | Build the migration assistant UI over the installer import engine | todo | blocked | M | INS-049, INS-033, INS-036, APP-040, APP-002 |
 | APP-063 | Build multi-user session switching with separate Capability stores | todo | blocked | S | SEC-060, SEC-064, APP-030, CAP-049 |
 | APP-064 | Build the OS-owned print dialog minting per-job print capabilities | todo | blocked | M | HW-071, GFX-040, APP-053, APP-002 |

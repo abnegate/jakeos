@@ -4,7 +4,7 @@
 - Baseline: §35, §36
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 36 live, 0 done, 0 in-progress, 36 todo, 0 dropped. Ready: 1. Blocked: 35. Weighted: 0%.
+Tasks: 36 live, 0 done, 0 in-progress, 36 todo, 0 dropped. Ready: 0. Blocked: 36. Weighted: 0%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -395,7 +395,7 @@ CLI verbs (SDK-041, SDK-042). Rebuild trigger on file change (ENV-027). History 
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: CMP-005, ENV-002, ENV-003, ENV-004, ENV-005, ENV-007
+- Depends on: CMP-005, ENV-002, ENV-003, ENV-004, ENV-005, ENV-007, ENV-001
 - Baseline: §10, §35
 - Invariants: I-019, I-043
 
@@ -515,7 +515,7 @@ Inspect CLI rendering (SDK-007). Provider registry (OBS-019). Audit log (OBS).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: CMP-017, ENV-009, ENV-013, ENV-015, ENV-019, LNX-032, PKG-058
+- Depends on: CMP-017, ENV-009, ENV-013, ENV-015, ENV-019, LNX-032, PKG-058, ENV-001
 - Baseline: §3, §10, §35, §36
 - Threats: T-011
 - Invariants: I-019, I-025, I-043
@@ -641,7 +641,7 @@ Toolchain and image build (BLD-043). Bit-for-bit rebuild CI (BLD-041). B-039 pub
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: none
+- Depends on: PKG-011
 - Baseline: §35, §36
 - Explores: S-021
 
@@ -760,7 +760,7 @@ Terminal and Editor applications (APP). IDE strategy (APP-020). Semantic startEn
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: ENV-008, ENV-009, ENV-010
+- Depends on: ENV-008, ENV-009, ENV-010, ENV-001
 - Baseline: §35
 
 V2 adoption: converters report unsupported constructs explicitly so developers are not forced to hand-rewrite project environments. The converter reads those files as documents and emits environment.yaml; it does not start a Docker daemon or make POSIX the native API.

@@ -29,6 +29,7 @@
 | LAB-011 | Equip the lab with netboot, capture, USB switching and radio peers | todo | blocked | L | LAB-002, LAB-007, LAB-003 |
 | LAB-012 | Install Linux comparison baselines on lab Reference machines | todo | blocked | S | LAB-007, LAB-003, BEN-006 |
 | LAB-013 | Instrument lab machines with external meters and battery-drain cycles | todo | blocked | M | BEN-018, LAB-010, LAB-006, LAB-007, PWR-003 |
+| LAB-026 | Acquire and maintain the compatibility-Corpus software library, lab store accounts and licences | todo | blocked | M | LAB-010 |
 
 ## V2
 
@@ -38,23 +39,24 @@
 | LAB-015 | Install Windows dual-boot baselines on the AMD desktop | todo | blocked | S | LAB-012, LAB-003 |
 | LAB-016 | Maintain a firmware version matrix and test vendor updates | todo | blocked | M | LAB-010, HW-023 |
 | LAB-017 | Procure an HDR reference display and colorimeter | todo | blocked | S | LAB-003 |
-| LAB-018 | Procure and rack V2 target machines, dock and extra displays | todo | blocked | M | HW-018, HW-003, LAB-011, LAB-007 |
+| LAB-018 | Procure and rack V2 target machines, dock and extra displays | todo | blocked | M | HW-018, HW-003, LAB-011, LAB-007, LAB-001, LAB-013 |
 | LAB-019 | Run Vulkan CTS and compositor tests nightly on lab GPUs | todo | blocked | M | LAB-010, LAB-018, GFX-027 |
+| LAB-027 | Procure and instrument the macOS comparison machine for class-level §54 comparisons | todo | blocked | S | LAB-002, LAB-013, LAB-001 |
 
 ## V3
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | LAB-020 | Procure assistive-technology hardware including a braille display | todo | blocked | S | LAB-011 |
-| LAB-021 | Procure and rack the six-machine V3 Tier 1 lab fleet | todo | blocked | M | HW-018, LAB-018 |
+| LAB-021 | Procure and rack the six-machine V3 Tier 1 lab fleet | todo | blocked | M | HW-018, LAB-018, LAB-001 |
 | LAB-022 | Run installer and Secure Boot qualification across the Tier 1 fleet | todo | blocked | M | BOOT-031, BOOT-044, INS-027, LAB-010, LAB-021 |
 
 ## V4
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| LAB-023 | Procure and rack the ten-machine V4 Tier 1 lab fleet | todo | blocked | M | LAB-021 |
-| LAB-024 | Run multi-day soak and release-candidate fleet soaks on Tier 1 | todo | blocked | L | LAB-014, LAB-010, LAB-023, OBS-036 |
+| LAB-023 | Procure and rack the ten-machine V4 Tier 1 lab fleet | todo | blocked | M | LAB-021, LAB-001 |
+| LAB-024 | Run multi-day soak and release-candidate fleet soaks on Tier 1 | todo | blocked | L | LAB-014, LAB-010, LAB-023, OBS-036, LAB-016 |
 
 ## 1.0
 

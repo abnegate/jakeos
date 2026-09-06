@@ -16,7 +16,7 @@
 | WIN-003 | Study kernel-level anti-cheat feasibility under the Capability model | todo | ready | M | WIN-001 |
 | WIN-004 | Lint the tree against the Windows Personality clean-room policy | todo | blocked | S | WIN-005 |
 | WIN-005 | Decide a clean-room policy for the Windows Personality | todo | ready | S | WIN-001, GOV-003 |
-| WIN-006 | Build the per-title Windows scenario harness | todo | blocked | M | WIN-009 |
+| WIN-006 | Build the per-title Windows scenario harness | todo | blocked | M | WIN-009, LAB-026 |
 | WIN-007 | Publish an upstream-first policy for Wine, Proton, DXVK and VKD3D | todo | blocked | S | WIN-005, PKG-010 |
 | WIN-008 | Decide that Win32 emulation stays in userspace | todo | blocked | S | WIN-001, GOV-003, Q-050 |
 | WIN-009 | Define the W1 Corpus and rating scale | todo | blocked | M | WIN-001, WIN-002, WIN-010 |
@@ -70,7 +70,7 @@
 | WIN-052 | Map WASAPI and XAudio2 onto native low-latency audio Objects | todo | blocked | M | WIN-054, AUD-022 |
 | WIN-053 | Expose the Win32 API Surface required by the W1 Corpus | todo | blocked | L | WIN-054, WIN-011, WIN-038 |
 | WIN-054 | Integrate Wine and Proton as the Windows Personality core | todo | blocked | L | WIN-036, WIN-015, WIN-004, GOV-047 |
-| WIN-055 | Enable 32-bit Win32 binaries under the Windows Personality | todo | blocked | M | WIN-010, WIN-054, LNX-035, LNX-015 |
+| WIN-055 | Enable 32-bit Win32 binaries under the Windows Personality | todo | blocked | M | WIN-010, WIN-054, LNX-035, LNX-015, WIN-006 |
 | WIN-056 | Map XInput, DirectInput, raw input and force feedback | todo | blocked | M | WIN-054, HW-049 |
 | WIN-086 | Provide Media Foundation and DirectShow playback for Windows titles through the sandboxed media framework | todo | blocked | M | WIN-036, MED-007, MED-004 |
 
@@ -91,7 +91,7 @@
 | WIN-067 | Ship a Proton-style per-application compatibility database | todo | blocked | M | WIN-070, WIN-044 |
 | WIN-068 | Publish per-title W2 reports with the public rating scale | todo | blocked | M | WIN-071, REL-015 |
 | WIN-069 | Verify V3 W2 thresholds and the Windows game-on-laptop Demo | todo | blocked | S | WIN-071, WIN-072 |
-| WIN-070 | Define the W2 Corpus of 150 titles and scenario scripts | todo | blocked | M | WIN-051 |
+| WIN-070 | Define the W2 Corpus of 150 titles and scenario scripts | todo | blocked | M | WIN-051, LAB-026 |
 | WIN-071 | Run the W2 Corpus to the V3 Gold and Silver thresholds | todo | blocked | L | WIN-070, WIN-072, WIN-006, WIN-030, WIN-061 |
 | WIN-072 | Extend input, audio, HDR and VRR passthrough across the W2 Corpus | todo | blocked | M | WIN-032, WIN-050, WIN-056, WIN-052, WIN-070 |
 
@@ -105,7 +105,7 @@
 | WIN-076 | Record the Windows Personality feature freeze for 1.x | todo | blocked | S | WIN-080, WIN-036, WIN-035, WIN-013 |
 | WIN-077 | Verify V4 W3 thresholds and Gold-hold on the beta fleet | todo | blocked | S | WIN-080, WIN-078, WIN-074 |
 | WIN-078 | Hold zero Gold-to-lower regressions on W2 entries versus V3 | todo | blocked | S | WIN-080, WIN-071 |
-| WIN-079 | Define the W3 Corpus of 300 titles and scenario scripts | todo | blocked | M | WIN-071 |
+| WIN-079 | Define the W3 Corpus of 300 titles and scenario scripts | todo | blocked | M | WIN-071, LAB-026 |
 | WIN-080 | Run the W3 Corpus to the V4 Gold and Silver thresholds | todo | blocked | L | WIN-079, WIN-071, WIN-006 |
 
 ## 1.0

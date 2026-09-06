@@ -5,7 +5,7 @@
 - Baseline gap: The baseline names Reference machines, Input-to-photon latency and energy tracking but specifies no physical lab, racks, remote power, consoles, capture, scheduler or procurement.
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 25 live, 1 done, 0 in-progress, 24 todo, 0 dropped. Ready: 2. Blocked: 22. Weighted: 1%.
+Tasks: 27 live, 1 done, 0 in-progress, 26 todo, 0 dropped. Ready: 2. Blocked: 24. Weighted: 1%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -556,7 +556,7 @@ HDR output pipeline and tone mapping (GFX-068, GFX-063). ICC application (GFX-07
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: HW-018, HW-003, LAB-011, LAB-007
+- Depends on: HW-018, HW-003, LAB-011, LAB-007, LAB-001, LAB-013
 - Baseline: §62
 - Risks: R-081
 - Invariants: I-074
@@ -572,7 +572,7 @@ AMD laptop bring-up (HW-039). Experimental NVIDIA driver path (HW-052). MST comp
 - [ ] H-005 is in the lab on the accepted power and console stack, and `registers/hardware.md` records its SKU.
 - [ ] A dock and a second display are attached so H-004 and H-005 can run a two-display job without recabling.
 - [ ] H-006 is racked as experimental with power and console, and no V2 gate job requires it to pass.
-- [ ] Photon and energy fixtures from earlier rungs are documented as attachable on the V2 laptops.
+- [ ] The LAB-001 photon fixture class and the LAB-013 external meter are mounted and calibrated on H-004 and H-005, and a scheduler job runs B-020 and B-031 on each.
 
 #### Verification
 - Manual: operator power-cycles H-005 and H-006 from the remote path and files console logs.
@@ -647,7 +647,7 @@ Braille protocol and screen reader (ACC-027). Bluetooth host (HW-035). HID servi
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: HW-018, LAB-018
+- Depends on: HW-018, LAB-018, LAB-001
 - Baseline: §63
 - Risks: R-081
 - Invariants: I-074
@@ -663,7 +663,7 @@ Extra laptop bring-up (HW-062). NVIDIA Tier 1 driver bring-up (HW-070). Installe
 - [ ] H-006, H-007 and H-008 are in the lab on the accepted power, console and capture stack, and `registers/hardware.md` records their SKUs.
 - [ ] All six V3 hardware-scope machines accept scheduler reserve, flash and recover jobs.
 - [ ] Each new machine record lists IOMMU, TPM 2.0 and Secure Boot enrolment posture required by I-074.
-- [ ] Photon, energy, dock and radio fixtures are documented per machine or marked not-applicable with a reason.
+- [ ] The LAB-001 photon fixture class is mounted and calibrated on the primary display of every V3 Tier 1 machine and B-020 runs on each as a scheduler job; energy, dock and radio fixtures are attached or marked not-applicable with a reason.
 
 #### Verification
 - Manual: operator power-cycles H-006, H-007 and H-008 from the remote path and files console logs.
@@ -707,7 +707,7 @@ Installer implementation (INS-027, INS-032). Secure Boot strategy and shim (BOOT
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: LAB-021
+- Depends on: LAB-021, LAB-001
 - Baseline: §62, §63
 - Risks: R-081
 - Invariants: I-074
@@ -721,7 +721,7 @@ Second-generation bring-up (HW-081, HW-080). Combined hardware suite content (HW
 - [ ] H-009, H-010, H-011, H-012, H-013 and H-014 are in the lab on the accepted power, console and capture stack, with SKUs recorded.
 - [ ] At least the ten named V4 Tier 1 machines accept scheduler reserve, flash and recover jobs.
 - [ ] Each new machine record lists IOMMU, TPM 2.0 and Secure Boot enrolment posture required by I-074.
-- [ ] A fleet inventory view lists every V4 hardware-scope H-ID with fixture attachments or an explicit not-applicable reason.
+- [ ] Every V4 Tier 1 machine has the LAB-001 photon fixture mounted and calibrated with B-020 running as a scheduler job; a fleet inventory view lists every V4 hardware-scope H-ID with its fixture attachments or an explicit not-applicable reason.
 
 #### Verification
 - Manual: operator power-cycles each newly racked H-ID and files console logs.
@@ -737,7 +737,7 @@ Second-generation bring-up (HW-081, HW-080). Combined hardware suite content (HW
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: LAB-014, LAB-010, LAB-023, OBS-036
+- Depends on: LAB-014, LAB-010, LAB-023, OBS-036, LAB-016
 - Baseline: §54
 - Risks: R-063
 - Invariants: I-061
@@ -791,6 +791,65 @@ Stable channel launch (REL-063, REL-066). HCL publication (HW-088, REL-048). Com
 - Integration: `lab:tests/soak/stable_fleet_*` on every 1.0 hardware-scope H-ID.
 - Demo: per-machine hardware result bundle produced for the candidate generation on the Tier 1 fleet.
 - Review: REL and HW leads confirm the bundle is the lab evidence their HCL and launch tasks consume.
+
+#### Evidence
+- none
+
+### LAB-026 · Acquire and maintain the compatibility-Corpus software library, lab store accounts and licences
+- Type: build
+- Milestone: V1
+- Status: todo
+- Size: M
+- Owner: none
+- Depends on: LAB-010
+- Baseline: §56.2, §56.3
+- Invariants: I-096
+
+Every compatibility corpus (C-002 through C-009) is a list of real applications and games that must be installed on lab machines and run under automation, hundreds of times per rung. Nothing in the plan bought them, held the store accounts, or checked that their licences permit automated lab use; without that, C-007 cannot run at V2 and C-009 cannot exist at V4. This task owns the corpus software library: lab accounts on Steam, GOG, itch and the Linux app stores, purchased licences for every paid corpus entry, installers pinned by content hash for every free entry, the licence register that records the terms under which each entry may be run in the lab and reported on publicly, and custody of account credentials in the secrets service. It grows with the corpora and is the cost line GOV-041 finances.
+
+#### Out of scope
+Corpus definitions and thresholds (LNX and WIN corpus tasks, `registers/corpora.md`). Scenario harnesses (WIN-006, LNX-007). Windows dual-boot licences for baselines (LAB-015). Funding model (GOV-041).
+
+#### Acceptance criteria
+- [ ] A committed licence register lists every entry of every defined corpus with source, version pin or content hash, licence or EULA terms, whether automated lab execution and public per-title reporting are permitted, and the account that holds it; an entry whose terms forbid either is flagged and reported to the corpus owner before it is scheduled.
+- [ ] Lab store accounts (Steam, GOG, itch, Flathub mirror) exist under the project entity with credentials held in the lab secrets store; no scenario script embeds a credential.
+- [ ] Every title or application a corpus task schedules is present in the library before that task's first run; a scheduler job that references an entry absent from the library fails with the entry named.
+- [ ] The purchase ledger for corpus software is published as an input to the GOV-041 infrastructure-cost finances.
+- [ ] The library grows to cover C-007 before V2-G19 runs, C-008 before V3-G19, and C-009 and C-006 before V4-G18 and V4-G19; each corpus-definition task lists the library as its input.
+
+#### Verification
+- Integration: `lab:tests/library/entry_present_*` fails a scheduled scenario whose entry is absent from the library.
+- Manual: LAB operator audits the licence register against the corpora before each corpus gate run and files discrepancies against this task id.
+- Review: GOV licensing reviewer signs off on the register format and terms columns.
+
+#### Evidence
+- none
+
+### LAB-027 · Procure and instrument the macOS comparison machine for class-level §54 comparisons
+- Type: build
+- Milestone: V2
+- Status: todo
+- Size: S
+- Owner: none
+- Depends on: LAB-002, LAB-013, LAB-001
+- Baseline: §54
+- Invariants: I-061
+
+§54 compares every metric against Linux, Windows and macOS. Linux baselines are LAB-012 and Windows baselines are LAB-015; nothing procured a macOS machine, so every macOS column in V4-G17 and 1.0-G13 would have been vacuously `class: none`. Exact hardware parity with Apple silicon is impossible, so the comparison is class-level (a current Apple laptop against the Tier 1 laptop class) on the metrics BEN-046 names: input-to-photon, application startup and energy. This task buys one current Apple laptop, mounts the LAB-001 photon fixture class and the LAB-013 external meter on it, and records it in the lab inventory as comparison equipment, not as a Reference machine.
+
+#### Out of scope
+Baseline pinning and comparable-metric selection (BEN-046). Linux baselines (LAB-012). Windows baselines (LAB-015). Apple hardware as a JakeOS target (out of scope through 1.0, I-001).
+
+#### Acceptance criteria
+- [ ] A current-generation Apple laptop is in the lab inventory with model, macOS version and purchase record, marked as comparison equipment with no H-ID.
+- [ ] The LAB-001 photon fixture class is mounted and calibrated on its display and the LAB-013 external meter protocol records its idle and battery-drain runs.
+- [ ] A scheduler job can run the B-016, B-020 and B-031 comparison procedures on it and store results with the job id; the machine never appears in a JakeOS gate job.
+- [ ] The inventory record states that comparisons are class-level and names the Tier 1 laptop class it is compared against.
+
+#### Verification
+- Manual: LAB operator runs the B-020 procedure on the Apple laptop and files the capture log on the pull request.
+- Integration: `lab:tests/macos_baseline/*` records meter and photon series for one run.
+- Review: BEN lead confirms the machine class matches BEN-046.
 
 #### Evidence
 - none

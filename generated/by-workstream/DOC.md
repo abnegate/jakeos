@@ -64,7 +64,7 @@
 | DOC-036 | Record documentation review sign-off for beta | todo | blocked | S | DOC-035, DOC-034 |
 | DOC-037 | Write the additional-language SDK guide | todo | blocked | S | DOC-038, SDK-024, SDK-086 |
 | DOC-038 | Write the C SDK guide | todo | blocked | M | DOC-032, SDK-033, SDK-034 |
-| DOC-039 | Write developer-program documentation | todo | blocked | S | DOC-015, GOV-071, GOV-063, SDK-080 |
+| DOC-039 | Write developer-program documentation | todo | blocked | S | DOC-015, GOV-071, GOV-063, SDK-080, GOV-073 |
 
 ## 1.0
 

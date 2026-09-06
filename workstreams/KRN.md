@@ -335,7 +335,7 @@ Intel and AMD laptop fragments (KRN-049). Hardening overlay (KRN-034). QEMU matr
 #### Acceptance criteria
 - [ ] Checked-in fragments exist for QEMU minimal, QEMU desktop and H-002.
 - [ ] CI on `qemu-x86_64` builds and boots the QEMU fragments; CI on `hw-h002` builds and boots the H-002 fragment.
-- [ ] A kconfig check fails if a fragment disables a symbol the retained-mechanism inventory marks required.
+- [ ] A kconfig check fails if a fragment disables a symbol listed under `kconfig` in `Documentation/jakeos/retained.toml` (KRN-017).
 
 #### Verification
 - Integration: build-and-boot job per fragment on the named matrix entries.
@@ -378,7 +378,7 @@ Capability test content (CAP). Channel test content (IPC). Operation lifecycle t
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: KRN-010, KRN-001, KRN-017, KRN-015, KRN-016
+- Depends on: KRN-010, KRN-001, KRN-017, KRN-015, KRN-016, KRN-014
 - Baseline: §5.1, §6
 - Invariants: I-010
 
@@ -421,7 +421,7 @@ kselftest subsets for DRM, PCI, USB, NVMe/block, networking and ACPI, plus a MOD
 Runner and QEMU axes (BLD-012, BLD-007). L0 corpus scenarios (LNX-002). Audio driver inventory (AUD, via the retained-mechanism list).
 
 #### Acceptance criteria
-- [ ] A checked-in matrix maps each retained DRM, PCI, USB, NVMe/block, networking and ACPI kselftest subset to H-001 and H-002.
+- [ ] A checked-in matrix generated from the `kselftest` entries of `Documentation/jakeos/retained.toml` (KRN-017) maps each retained DRM, PCI, USB, NVMe/block, networking and ACPI subset to H-001 and H-002.
 - [ ] A MODULE_LICENSE and GPL-only-symbol test is in the matrix and fails when an inherited module's license status changes.
 - [ ] Pre-merge CI on `qemu-x86_64` and nightly CI on `hw-h002` run the matrix; a failing subset blocks merge of the change that introduced it.
 - [ ] Native-subsystem changes cannot land while any matrix entry is red.
@@ -512,7 +512,7 @@ Regression matrix contents (KRN-014). Per-workstream inventories that consume th
 - [ ] `reports/spikes/KRN-017.md` lists each retained mechanism, the Linux subsystem path, and the native semantic it does not provide.
 - [ ] ARM64 and RISC-V arch code are listed as compile-kept, not as 1.0 platforms (I-011, I-012).
 - [ ] KVM, page tables, allocators, interrupts and x86-64 are listed as retained.
-- [ ] The report is the input file the config-fragment required-symbol check and the regression matrix consume.
+- [ ] The machine-readable inventory is committed in the kernel tree at `Documentation/jakeos/retained.toml` with one entry per mechanism carrying `subsystem`, `path`, `mechanism`, `replaces` (the native semantic it does not provide), `kselftest` (the subset that guards it), `kconfig` (the symbols a fragment must keep enabled) and `arch` (retained, compile-kept or dropped); the spike report cites it and KRN-011 and KRN-014 consume it without a second copy.
 
 #### Verification
 - Report: which mechanisms are retained, which semantics are replaced, which arch code is compile-kept, and which later gate reviews the list.
@@ -822,7 +822,7 @@ NVIDIA driver stance (HW-018). Secure Boot shim versus project keys (BOOT-031). 
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: KRN-003, KRN-017
+- Depends on: KRN-003, KRN-017, KRN-014
 - Baseline: §5.1, §51
 - Decision: D-0163
 

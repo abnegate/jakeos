@@ -17,7 +17,7 @@
 | MEM-009 | Document MemoryObject security semantics for the V0 threat model | todo | blocked | S | MEM-003, MEM-001, MEM-008, MEM-006 |
 | MEM-010 | Implement single-owner MemoryObject transfer over a Channel with sender losing access | todo | blocked | L | MEM-007, MEM-003 |
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | todo | ready | M | none |
-| MEM-012 | Verify MemoryObject transfer by physical-page identity in the V0 Demo pipeline | todo | blocked | S | MEM-010 |
+| MEM-012 | Verify MemoryObject transfer by physical-page identity in the V0 Demo pipeline | todo | blocked | S | MEM-010, IPC-014 |
 
 ## V0.5
 
@@ -52,7 +52,7 @@
 | MEM-034 | Decide the MemoryObject locality and placement attribute model | todo | blocked | S | MEM-017 |
 | MEM-035 | Review MemoryObject L1 surfaces for freeze candidacy against future hardware | todo | blocked | M | MEM-017, MEM-043 |
 | MEM-036 | Apply the huge-page policy to immutable Package and MemoryObject mappings | todo | blocked | M | MEM-021, MEM-016 |
-| MEM-037 | Map DMA-compatible MemoryObjects through per-domain IOMMU translation | todo | blocked | M | MEM-028 |
+| MEM-037 | Map DMA-compatible MemoryObjects through per-domain IOMMU translation | todo | blocked | M | MEM-028, HW-017 |
 | MEM-038 | Implement the pinned property so a MemoryObject is never swapped or migrated | todo | blocked | M | MEM-005, MEM-004 |
 | MEM-039 | Transfer network-received MemoryObjects to a Decoder without copying | todo | blocked | L | MEM-010, MEM-028, MEM-037 |
 | MEM-040 | Track and expose NUMA locality of a MemoryObject | todo | blocked | M | MEM-034 |

@@ -40,7 +40,7 @@
 | GFX-027 | Run the retained GPU driver regression matrix on virtio-gpu and the AMD desktop | todo | blocked | M | GFX-001, GFX-008, KRN-014, BLD-007 |
 | GFX-028 | Add CI lint forbidding DRM ioctls, device nodes and fourcc in public graphics IDL | todo | blocked | S | GFX-038, GFX-005, GFX-030, GFX-022, GFX-023, GFX-014 |
 | GFX-029 | Test zero dropped frames over a 60 s idle desktop capture | todo | blocked | S | GFX-006, GFX-008 |
-| GFX-030 | Define and implement the RenderQueue abstraction | todo | blocked | M | GFX-017, GFX-016, GFX-005 |
+| GFX-030 | Define and implement the RenderQueue abstraction | todo | blocked | M | GFX-017, GFX-016, GFX-005, GFX-023 |
 | GFX-031 | Dispatch seat input from the HW input service to the focused Surface | todo | blocked | M | GFX-042, HW-011, UIP-012, UIP-005 |
 | GFX-032 | Evaluate Smithay, wlroots, Mutter and KWin for DRM/KMS plumbing reuse | todo | blocked | M | GFX-035, GFX-001 |
 | GFX-033 | Prototype monolithic versus split compositor and measure crash-rebind and latency | todo | blocked | L | GFX-032, LAB-003 |
@@ -103,7 +103,7 @@
 | GFX-080 | Implement per-display scale factors | todo | blocked | M | GFX-077, GFX-049 |
 | GFX-081 | Skip idle frames and lower refresh on battery under SCH energy intent | todo | blocked | M | GFX-006, GFX-029, SCH-045 |
 | GFX-082 | Provide a non-suppressible indicator layer for camera, microphone, capture and location | todo | blocked | M | GFX-061, GFX-040, CAP-001 |
-| GFX-083 | Make shader cache, allocation broker and display policy restartable | todo | blocked | M | GFX-051, GFX-048, GFX-009 |
+| GFX-083 | Make shader cache, allocation broker and display policy restartable | todo | blocked | M | GFX-051, GFX-048, GFX-009, GFX-050 |
 | GFX-084 | Build the OS-owned screen recorder over the capture Capability | todo | blocked | M | GFX-061, GFX-085, MED-026, MED-018 |
 | GFX-085 | Build the OS-owned screen-share picker with per-app scoping for portals | todo | blocked | M | GFX-061, GFX-040 |
 | GFX-086 | Build the OS-owned screenshot tool with region selection and annotation | todo | blocked | M | GFX-061, GFX-085 |
@@ -115,7 +115,7 @@
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
 | GFX-089 | Decide whether RDP/VNC clients and a remote-desktop server are in 1.0 scope | todo | blocked | S | GFX-092 |
-| GFX-090 | Build the per-machine display test suite for Tier 1 hardware | todo | blocked | M | GFX-071, GFX-068, GFX-088, GFX-077, LAB-021 |
+| GFX-090 | Build the per-machine display test suite for Tier 1 hardware | todo | blocked | M | GFX-071, GFX-068, GFX-088, GFX-077, LAB-021, HW-070 |
 | GFX-091 | Add fuzz targets for compositor and graphics interfaces | todo | blocked | M | GFX-038, GFX-005, GFX-023, GFX-043, BLD-035 |
 | GFX-092 | Support Surfaces produced by a KVM guest as remote surfaces | todo | blocked | L | GFX-009, GFX-038, VIRT-003, IPC-025 |
 

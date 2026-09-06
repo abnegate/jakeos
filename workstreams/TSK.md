@@ -1460,7 +1460,7 @@ GPUDispatch kind (TSK-049). GPU abort semantics (HET-012). NetworkConnection obj
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: TSK-018, TSK-010, TSK-017, ABI-014, HET-019, HET-016, HET-003
+- Depends on: TSK-018, TSK-010, TSK-017, ABI-014, HET-019, HET-016, HET-003, HET-012
 - Baseline: §18, §37, §19
 - Benchmarks: B-048
 

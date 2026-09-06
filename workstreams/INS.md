@@ -21,7 +21,7 @@ SystemGeneration composition, store layout, `os generation` and `os restore` (PK
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BOOT-008, BOOT-011, PKG-008, PKG-016, PKG-029, REL-001, STO-014, STO-021
+- Depends on: BOOT-008, BOOT-011, PKG-008, PKG-016, PKG-029, REL-001, STO-014, STO-021, SVC-007
 - Baseline: §27, §30, §57, §60
 - Risks: R-018
 - Invariants: I-009, I-020, I-022, I-080
@@ -410,7 +410,7 @@ Recovery UX for unlock, restore, reinstall and logs (INS-041). Filesystem repair
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: APP-040, BOOT-028, BOOT-014, INS-006, PKG-073, PKG-074, PKG-060, SDK-069
+- Depends on: APP-040, BOOT-028, BOOT-014, INS-006, PKG-073, PKG-074, PKG-060, SDK-069, PKG-017
 - Baseline: §30, §31, §62
 - Invariants: I-022
 
@@ -559,7 +559,7 @@ Browser strategy (APP-019). Secrets service (SEC). Migration assistant chrome (A
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: INS-021, OBS-006, OBS-034, SDK-007
+- Depends on: INS-021, OBS-006, OBS-034, SDK-007, HW-068
 - Baseline: §24, §63, §64
 
 Ship a built-in bug reporter that bundles SystemGeneration ID, hardware fingerprint, relevant traces and `os inspect` output with user-controlled redaction. Crash-report consent and intake stay on the crash-client and REL path; this is the user-initiated bundle.
@@ -967,7 +967,7 @@ Lab scheduling (LAB-022). FDE contract check (SEC-055). QEMU layouts (INS-031).
 - [ ] Automated encrypted install plus first-boot succeeds on H-002, H-004, H-005, H-006, H-007 and H-008 in the LAB qualification job.
 - [ ] Each run records an HCL verdict before commit and a recovery generation present after commit.
 - [ ] Failures are filed per H-ID with serial and installer logs attached to this task id.
-- [ ] At least 98 of 100 automated encrypted installs succeed on each V3 Tier 1 machine in the qualification job (the V3-G01 success rate and run count).
+- [ ] At least 99 of 100 automated encrypted installs succeed on each V3 Tier 1 machine in the qualification job, and every failure is classified as lab infrastructure with the log attached; a failure attributable to the installer fails the gate regardless of count (the V3-G01 success rate and run count).
 
 #### Verification
 - Integration: LAB qualification suite `installer:tests/tier1_install` on every V3 Tier 1 H-ID.
@@ -1012,7 +1012,7 @@ Adopt-versus-copy decision (INS-023). Volume unlock (STO-074). Migration UI chro
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: APP-040, APP-043, GFX-008, GFX-010, HW-066, INS-004, INS-001
+- Depends on: APP-040, APP-043, GFX-008, GFX-010, HW-066, INS-004, INS-001, HW-068
 - Baseline: §60, §63
 - Invariants: I-095
 
