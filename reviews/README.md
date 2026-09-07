@@ -10,4 +10,5 @@ Reviews are hand-written and are not read by the `roadmap` tool.
 | [02 · Compounding and swarm readiness](02-compounding-and-swarm-readiness.md) | Dependency-order walk of V0 to V2, cross-task consistency sweeps, unresolved gate quantities, hosting of inherited C stacks, mis-scheduled hardware |
 | [03 · Walking back from 1.0](03-reverse-chain-from-1.0.md) | Closure of every 1.0 and V4 gate traced to V0 roots; missing lab resources, cross-task criteria outside their closure, inventory formats, re-weighing of earlier defaults |
 | [04 · Dry run of the swarm's first day](04-swarm-dry-run.md) | Wave structure and critical chain of V0, deadlocked questions, the missing platform repository, verification environments as done-time rules, operator decisions before the swarm starts |
+| [05 · Every task executable from its own block](05-executable-tasks.md) | Full rewrite of all 191 open V0 tasks to the claim-day standard, the Deliverables section and its lints, measured before and after |
 | [Accepted decisions at the start of V0](accepted-decisions.md) | One line per accepted decision: the option taken and what it forecloses, grouped by area, for reading as a set |
