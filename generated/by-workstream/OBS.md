@@ -6,17 +6,17 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | blocked | S | OBS-011, Q-001 |
+| OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | blocked | S | OBS-011, Q-001, BEN-005, BLD-082 |
 | OBS-002 | Trace and inspect Capability grant, derivation, transfer and revocation | todo | blocked | M | OBS-008, OBS-006, CAP-001, CAP-003 |
 | OBS-003 | Decide the tracing substrate and its measured overhead ceiling | todo | blocked | S | OBS-010 |
 | OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | blocked | M | OBS-011, IPC-012, BLD-082 |
 | OBS-005 | Expose Component and Task inspection data including the awaited Operation | todo | blocked | M | OBS-006, CMP-005, TSK-021, TSK-020 |
-| OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | blocked | L | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 |
+| OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | blocked | L | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007, BLD-082 |
 | OBS-007 | Expose Channel, Operation, MemoryObject and ResourceDomain inspection data | todo | blocked | L | OBS-006, IPC-009, TSK-013, MEM-005, SCH-007, SCH-009 |
 | OBS-008 | Emit lifecycle and ownership trace events for every V0 primitive | todo | blocked | M | OBS-011, CMP-005, TSK-021, TSK-023, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 |
-| OBS-009 | Ship the os trace first cut showing IPC flow, scheduling delays and failures | todo | blocked | L | OBS-008, OBS-004, OBS-007, SCH-010 |
+| OBS-009 | Ship the os trace first cut showing IPC flow, scheduling delays and failures | todo | blocked | L | OBS-008, OBS-004, OBS-007, SCH-010, BLD-082 |
 | OBS-010 | Study eBPF, ftrace, Fuchsia tracing and Perfetto for the native tracing layer | todo | ready | M | none |
-| OBS-011 | Implement the structured semantic trace ring with runtime global enable | todo | blocked | L | OBS-003 |
+| OBS-011 | Implement the structured semantic trace ring with runtime global enable | todo | blocked | L | OBS-003, KRN-013 |
 
 ## V0.5
 
