@@ -257,7 +257,7 @@ fn validate_deliverables(repo: &Repo, task: &Task, diagnostics: &mut Diagnostics
         .iter()
         .any(|token| token == task.milestone())
         && task.deliverables.is_empty()
-        && task.status() != Status::Dropped;
+        && matches!(task.status(), Status::Todo | Status::InProgress);
     if !wants {
         return;
     }

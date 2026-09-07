@@ -1117,7 +1117,9 @@ fn deliverables_section_is_parsed_formatted_and_checked() {
     common::write(&repo.path, "workstreams/GOV.md", &gov);
     let entries = common::check_entries(&repo.path, false, None);
     assert!(
-        !common::codes(&entries).iter().any(|code| code.starts_with("E-")),
+        !common::codes(&entries)
+            .iter()
+            .any(|code| code.starts_with("E-")),
         "a well-formed Deliverables section is accepted: {:?}",
         common::codes(&entries)
     );
@@ -1164,6 +1166,42 @@ fn deliverables_are_required_where_the_policy_says_so() {
     assert!(
         !common::has_code(&entries, "W-020"),
         "{:?}",
+        common::codes(&entries)
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace(
+            "#### Deliverables\n- roadmap:tools/roadmap/src/validate/mod.rs · The validator entry point.\n\n",
+            "",
+        )
+        .replace(
+            "- Status: todo\n- Size: L\n- Owner: none",
+            "- Status: in-progress\n- Size: L\n- Owner: @jake",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        common::has_code(&entries, "E-117"),
+        "an in-progress build task without Deliverables errors: {:?}",
+        common::codes(&entries)
+    );
+    let gov = common::read(&repo.path, "workstreams/GOV.md")
+        .replace(
+            "- Status: in-progress\n- Size: L\n- Owner: @jake",
+            "- Status: done\n- Size: L\n- Owner: @jake\n- Verified by: @reviewer",
+        )
+        .replace(
+            "- [ ] `roadmap check` validates the fixture repository.",
+            "- [x] `roadmap check` validates the fixture repository.",
+        )
+        .replace(
+            "#### Evidence\n- none",
+            "#### Evidence\n- https://example.org/roadmap/commit/abc1234",
+        );
+    common::write(&repo.path, "workstreams/GOV.md", &gov);
+    let entries = common::check_entries(&repo.path, false, None);
+    assert!(
+        !common::has_code(&entries, "E-117") && !common::has_code(&entries, "W-020"),
+        "a done task is frozen and exempt: {:?}",
         common::codes(&entries)
     );
 }
