@@ -28,18 +28,24 @@ Kernel DRM driver code and rebase of amdgpu, i915/xe, nouveau and virtio-gpu (KR
 - Risks: R-013
 - Invariants: I-045, I-054
 
-Collapse every GFX retain-Linux DRM item into one inventory that names amdgpu, i915/xe, nouveau and virtio-gpu as the inherited graphics mechanism under native Surface and Buffer objects. The inventory feeds KRN's retained-mechanism list and records the §57 non-goal that JakeOS does not ship a native GPU driver stack before 1.0.
+Graphics inherits Linux's DRM and KMS drivers and never ships a native GPU driver stack before 1.0 (§5.1, §39, §55, §56.1, §57). `compositor/inventory/retained-drm.toml` in the platform monorepo lists `amdgpu` (H-002, H-005 and later AMD machines), `i915` and `xe` (Intel laptops from H-004), `nouveau` (the V3 NVIDIA desktop H-006, as a presence entry) and `virtio-gpu` (H-003), each with its kernel path, the kselftest or IGT subset that guards it, the `retained.toml` mechanism id, and the native object it backs (a `Surface` and `Buffer` through the compositor's DRM broker, GFX at V0.5; the GPU broker for `ComputeDevice` at V2). The inventory states that native applications never open a DRM device node or issue a DRM ioctl (the compositor and the broker hold the device Capabilities), is cited by KRN-017's report as the graphics row, and records the standing review rule: a patch that adds a native kernel GPU driver before 1.0 without an accepted decision fails the ABI-006 gate (an item added to the checklist).
 
 <!-- covers: INV-0128, INV-1060, INV-1117, INV-0022, INV-0067, INV-0723, INV-0724 -->
 
 #### Out of scope
-Kernel DRM code changes (KRN). Per-rebase regression runs (GFX-027).
+Kernel DRM code changes (KRN). Per-rebase regression runs (GFX-027). The DRM broker (GFX at V0.5). Hybrid graphics (GFX-072).
+
+#### Deliverables
+- gfx:inventory/retained-drm.toml · One entry per driver: kernel path, guard subset, `retained.toml` id, native object and rung.
+- gfx:inventory/README.md · The no-native-GPU-stack rule, the no-DRM-node rule for native applications, and how an entry changes when a rung lands.
+- abi:review/checklist.md · The GFX item: a native kernel GPU driver before 1.0 needs an accepted decision (extending ABI-006's file).
+- gfx:tests/inventory/retained_drm_*.rs · Tests: every entry cross-references a `retained.toml` mechanism and names a guard subset that exists.
 
 #### Acceptance criteria
-- [ ] The inventory lists amdgpu, i915/xe, nouveau and virtio-gpu with the native object each backs.
-- [ ] The inventory states that native applications do not open DRM device nodes or issue DRM ioctls.
-- [ ] The inventory is cited by KRN-017 as the graphics row of the retained-mechanism list.
-- [ ] A standing review rule rejects a patch that adds a native kernel GPU driver before 1.0 without an accepted decision.
+- [ ] `compositor/inventory/retained-drm.toml` lists `amdgpu`, `i915` and `xe`, `nouveau` and `virtio-gpu` with the kernel path, guard subset, `retained.toml` id and the native object each backs.
+- [ ] `gfx/inventory/README.md` states that native applications do not open DRM device nodes or issue DRM ioctls.
+- [ ] KRN-017's report cites the inventory as the graphics row of the retained-mechanism list, and `gfx:tests/inventory/retained_drm_*` passes.
+- [ ] `abi/review/checklist.md` carries the rule that a patch adding a native kernel GPU driver before 1.0 without an accepted decision fails the gate.
 
 #### Verification
 - Review: KRN and GFX leads record inventory sign-off on the pull request.

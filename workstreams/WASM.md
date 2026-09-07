@@ -30,18 +30,22 @@ The runtime stays in userspace. Wasm is not the Native ABI (I-046). Native machi
 - Decision: D-0334
 - Invariants: I-046, I-014
 
-V0 records how Wasm sits next to machine-code Components so later rungs do not treat Wasm as the Native ABI or duplicate WIT and WASI without justification (§13, §57). Native machine code remains a first-class target. This Decision is the V0 Wasm ADR; integration waits for V1.
+§13 makes Wasm modules cheap isolated components that reuse the Component Model and WASI; §57 forbids forcing everything into Wasm and I-046 keeps machine code first-class. D-0334's three options (first-class Component kind, in-process plugin runtime only, Wasm as the Native ABI) carry their consequences; the executing agent fills the Decision from `reports/spikes/WASM-002.md`: how WIT resources and versioning map onto native Interfaces (so WIT and WASI are mapped once on S-029 rather than duplicated under native names), what a Wasm Component's Capabilities, Channels and ResourceDomain look like if it is a Component kind, and records option C as rejected with the §57 and I-046 reasons. Integration waits for V1 (WASM-007, WASM-008); this is the V0 ADR that stops later rungs from treating Wasm as the machine ABI.
 
 <!-- covers: INV-0264, INV-1119 -->
 
 #### Out of scope
-Runtime crate and host placement (WASM-007). Native IDL versus WIT mapping (IPC-022). Host implementation (WASM-012).
+Runtime crate and host placement (WASM-007). Native IDL versus WIT mapping (IPC-022). Host implementation (WASM-012). The study (WASM-002).
+
+#### Deliverables
+- roadmap:decisions/D-0334-decide-wasm-role.md · The Decision, Consequences, rejected options and follow-ups filled from the WASM-002 report, cited in Evidence.
+- roadmap:registers/surfaces.md · S-029 `Decided by: WASM-001`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] Option A (Wasm is a first-class Component kind beside machine code, WIT and WASI reused rather than duplicated), option B (Wasm is only an in-process plugin runtime inside a machine-code Component, not a Component kind), and option C (Wasm is the Native ABI and every application is a Wasm module) are evaluated against I-046 and §57.
-- [ ] The accepted option keeps native machine-code Components first-class and records that option C is rejected.
-- [ ] The Decision states that WIT and WASI are not duplicated under native names without a cited justification.
-- [ ] ABI and CMP leads record Review sign-off on the pull request.
+- [ ] D-0334 evaluates option A (Wasm as a first-class Component kind beside machine code with WIT and WASI reused), option B (Wasm only as an in-process plugin runtime) and option C (Wasm as the Native ABI) against I-046 and §57, citing `reports/spikes/WASM-002.md`.
+- [ ] The accepted option keeps native machine-code Components first-class and records option C as rejected with reasons.
+- [ ] The Decision states that WIT and WASI are not duplicated under native names without a cited justification, and S-029 is `prototyped` with WASM-001 under `Decided by`.
+- [ ] Review records ABI and CMP lead sign-off on the pull request.
 
 #### Verification
 - Review: ABI and CMP leads sign off on the pull request; the Decision lists at least two options.
@@ -59,18 +63,21 @@ Runtime crate and host placement (WASM-007). Native IDL versus WIT mapping (IPC-
 - Baseline: §13, §58
 - Explores: S-029
 
-V0 L1-informing study in the FIDL class: WIT, resources, interface versioning and WASI capability interfaces feed IPC-006, CMP Component Decisions and WASM-001 (§13, §58). V0 bars Wasm integration beyond an ADR; this study is the research input, not a host.
+The WebAssembly Component Model solved interface typing, resources and versioning for a sandboxed component world, and WASI Preview2 made capabilities its authority model (§13, §58). This written study reads the Component Model specification (WIT, resources, world and interface versioning) and WASI Preview2 at named revisions and answers, for the native model: which WIT ideas (resource handles with ownership, interface versions in package names, world composition) the native IDL (IPC-006) and Component model (CMP) adopt or reject and why; how WASI's capability-based interfaces align with native Capabilities (where a WASI import is a Capability grant and where it smuggles ambient authority, such as preopens); and which questions remain for WASM-001 and IPC-022. The report `reports/spikes/WASM-002.md` confirms explicitly that Wasm is not proposed as the Native ABI and freezes nothing on S-029.
 
 <!-- covers: INV-0263, INV-1141, INV-1142 -->
 
 #### Out of scope
-IDL selection (IPC-006). Wasm role Decision (WASM-001). Runtime evaluation (WASM-003). Host implementation (WASM-012).
+IDL selection (IPC-006). Wasm role decision (WASM-001). Runtime evaluation (WASM-003). Host implementation (WASM-012).
+
+#### Deliverables
+- roadmap:reports/spikes/WASM-002.md · The study with the adopted and rejected WIT ideas, the WASI-to-Capability alignment table, the open questions, and the not-the-Native-ABI confirmation.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/WASM-002.md` exists with the spike skeleton headings.
-- [ ] The report lists adopted and rejected ideas from the WebAssembly Component Model (WIT, resources, interface versioning) for the native Interface and Component model.
-- [ ] The report scores WASI capability-based interfaces against native Capability and names alignments and mismatches.
-- [ ] Findings are cited by IPC-006 and WASM-001.
+- [ ] `reports/spikes/WASM-002.md` exists with the spike skeleton headings and cites the Component Model and WASI Preview2 specifications by revision.
+- [ ] The report lists adopted and rejected ideas from WIT, resources and interface versioning for the native Interface and Component model, with the reason for each.
+- [ ] The report scores WASI capability-based interfaces against native Capability in one table, naming alignments and the mismatches (such as preopens) that are ambient authority.
+- [ ] The report's findings are cited by IPC-006 and WASM-001 and it confirms Wasm is not proposed as the Native ABI.
 
 #### Verification
 - Report: which WIT, resource and versioning ideas the native IDL and Component model adopt or reject; how WASI capability interfaces align with native Capability; which questions remain for WASM-001 and IPC-022; confirmation that Wasm is not proposed as the Native ABI.

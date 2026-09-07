@@ -29,19 +29,21 @@ Handle encoding, syscall entry, error taxonomy, ComputeDevice type-id reservatio
 - Risks: R-007
 - Invariants: I-024, I-058, I-064, I-100
 
-V0 scopes HET to this enumeration Decision so later classes do not require an ABI break. The record chooses how devices are named and listed, whether the CPU is a ComputeDevice, and whether placement cost is visible, without assuming topology stays CPU plus RAM plus GPU or that execution is CPU-only by design (§1, §37, §38). Nothing Layer 1 is frozen.
+V0 scopes HET to one decision so that later device classes never need an ABI break (§1, §37, §38, §65). D-0117 fixes how compute devices are named and enumerated: option A, a closed class enum (CPU, GPU, NPU, DSP, FPGA, accelerator) with type ids reserved in the ABI-005 registry; option B, an extensible class id (a registry the platform owns, with vendor and class namespaces) that adds an NPU or a novel architecture without touching existing type ids. It states whether the CPU itself is a `ComputeDevice` (a uniform dispatch target) or scheduler-only, and whether locality and cost (D-0198's attributes) are queryable or hidden (I-064), without assuming the topology stays CPU plus RAM plus GPU or that execution is CPU-only by design (§38, I-100). HET-002's survey is the evidence; no Layer 1 surface is frozen. The executing agent writes the options with the survey's findings, records the Decision as the enumeration shape and the CPU and cost rules, and lists follow-ups (ABI-032 type-id reservation, HET-009 implementation).
 
 <!-- covers: INV-0045, INV-0678, INV-0686, INV-0705, INV-0715, INV-0716, INV-1300 -->
 
 #### Out of scope
-Layer 1 type-id reservation (ABI-032). GPU backend (HET-003). Queue derivation (HET-011). Implementation (HET-009).
+Layer 1 type-id reservation (ABI-032). GPU backend (HET-003). Queue derivation (HET-011). Implementation (HET-009). Placement attributes (MEM-034).
+
+#### Deliverables
+- roadmap:decisions/D-0117-decide-computedevice-enumeration.md · Options with the HET-002 findings, the Decision as the enumeration shape plus the CPU and cost-visibility rules, rejected option, follow-ups.
 
 #### Acceptance criteria
-- [ ] Option A (closed class enum of CPU, GPU, NPU, DSP, FPGA, accelerator) and Option B (extensible class id) are evaluated against adding an NPU or a novel architecture without changing existing type ids.
-- [ ] The accepted option states whether the CPU is a ComputeDevice or scheduler-only, and whether locality and cost are queryable or hidden (I-064).
-- [ ] The accepted option does not assume a fixed CPU/GPU split or coherent memory between all devices (§38).
-- [ ] No listed Layer 1 surface is recorded as frozen.
-- [ ] Review sign-off is recorded on the pull request.
+- [ ] D-0117 evaluates option A (closed class enum of CPU, GPU, NPU, DSP, FPGA, accelerator) and option B (extensible class id) against adding an NPU or a novel architecture without changing existing type ids, citing `reports/spikes/HET-002.md`.
+- [ ] The accepted option states whether the CPU is a `ComputeDevice` or scheduler-only, and whether locality and cost are queryable or hidden (I-064).
+- [ ] The accepted option does not assume a fixed CPU and GPU split or coherent memory between all devices (§38), and no listed Layer 1 surface is recorded as frozen.
+- [ ] Review records ABI lead and HET reviewer sign-off on the pull request.
 
 #### Verification
 - Review: ABI lead and HET reviewer sign-off recorded on the pull request.
@@ -59,22 +61,24 @@ Layer 1 type-id reservation (ABI-032). GPU backend (HET-003). Queue derivation (
 - Baseline: §37, §38, §58, §65
 - Explores: S-028
 - Risks: R-007
-- Invariants: I-045, I-046
 
-Layer 1 spikes belong in V0; committing ComputeDevice without this survey would freeze S-028 by accident (R-007). The report compares SYCL/oneAPI, CUDA graphs, Vulkan compute, Metal, Level Zero and ONNX Runtime execution providers against ComputeDevice, ComputeQueue, preference axes and Capability gating (§37, §58). Wasm as the native machine ABI is out of bounds (I-046). The spike does not freeze S-028.
+Committing a ComputeDevice API without a survey would freeze S-028 by accident (R-007, §65). This written study compares SYCL and oneAPI, CUDA graphs, Vulkan compute, Metal, Level Zero and ONNX Runtime execution providers against the native shape: `ComputeDevice` (enumeration and identity), `ComputeQueue` (submission), preference axes (locality, latency, power) and Capability gating (§37, §38, §58). For each model the report `reports/spikes/HET-002.md` states what maps onto `ComputeDevice` and `ComputeQueue`, which submission objects map onto a queue versus a hidden driver queue, what would leak DRM, CUDA or POSIX device nodes to native software, whether it exposes locality and cost or hides them, and what to reject; and whether any portable IR (SPIR-V, the ONNX graph) is usable without making Wasm the native machine ABI (I-046). Sources are cited by revision; nothing on S-028 is frozen.
 
 <!-- covers: INV-0697 -->
 
 #### Out of scope
-Enumeration ADR (HET-001). GPU submit prototype (HET-010). Production ABI (HET-009).
+Enumeration decision (HET-001). GPU submit prototype (HET-010). Production ABI (HET-009).
+
+#### Deliverables
+- roadmap:reports/spikes/HET-002.md · The survey with per-model sections, the mapping table onto `ComputeDevice` and `ComputeQueue`, the leak and reject lists, and the portable-IR finding.
 
 #### Acceptance criteria
-- [ ] The report covers SYCL/oneAPI, CUDA graphs, Vulkan compute, Metal, Level Zero and ONNX Runtime execution providers with citations.
-- [ ] For each model the report states what maps onto ComputeDevice and ComputeQueue, what would leak DRM, CUDA or POSIX device nodes to native software, and what to reject.
-- [ ] The report answers the Report questions and does not freeze S-028.
+- [ ] `reports/spikes/HET-002.md` covers SYCL and oneAPI, CUDA graphs, Vulkan compute, Metal, Level Zero and ONNX Runtime execution providers with sources cited by revision.
+- [ ] For each model the report states what maps onto `ComputeDevice` and `ComputeQueue`, what would leak DRM, CUDA or POSIX device nodes to native software, whether locality and cost are exposed or hidden, and what to reject.
+- [ ] The report answers the Report questions, names any usable portable IR without making Wasm the native machine ABI, and does not freeze S-028.
 
 #### Verification
-- Report: Which models expose locality and cost rather than hiding them? Which submission objects map onto ComputeQueue versus a hidden driver queue? Which models require ambient device access that `Capability<ComputeDevice>` would replace? Which portable IR, if any, is usable without making Wasm the native machine ABI? Path `reports/spikes/HET-002.md`.
+- Report: which models expose locality and cost rather than hiding them; which submission objects map onto `ComputeQueue` versus a hidden driver queue; which models require ambient device access that `Capability<ComputeDevice>` would replace; which portable IR, if any, is usable without making Wasm the native machine ABI; path `reports/spikes/HET-002.md`.
 
 #### Evidence
 - none

@@ -23,22 +23,28 @@ Capability table, rights encoding, derivation, revocation walk and persistent gr
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: CAP-005, CAP-001, CMP-005
+- Depends on: CAP-005, CAP-001, CMP-005, OBS-006
 - Baseline: §9.1, §11
 - Threats: T-001, T-038
 - Invariants: I-021
 
-V0 isolation demo and §9.1/§11 require a native Component, including a fixture ImageDecoder, to hold no ambient process-enumeration or network Capability. An exploit is confined to the smallest useful unit.
+A native Component holds no ambient authority to see other Components, Tasks or the network (§9.1, §11, I-021): an exploit is confined to the smallest useful unit. `jakeos/sec/enumeration.rs` makes enumeration a Capability-gated Operation: `component.enumerate` and `task.enumerate` exist only through the OBS-006 inspect Interface, require `Capability<Inspect>` with the appropriate scope, and return `Error::Rights` with no handle otherwise, emitting a CAP-001 `deny` record. `security/harness/ambient/` in the platform monorepo (`jakeos-sec-ambient-harness`) is the reusable negative harness: given a Component's launch set it asserts what the Component cannot do (enumerate, connect, open a path, enter a Linux syscall) and produces the denial list CMP-012's intruder fixture and V0-D04 use. The ImageDecoder fixture (SDK-002) is the positive case: its `Component.toml` launch set has no network Capability, `os inspect capability` lists none, no Connect Operation kind exists at V0 through which it could reach the network, and it cannot enumerate other Components.
 
 <!-- covers: INV-0206, INV-0239, INV-0242 -->
 
 #### Out of scope
-Memory and object isolation (CMP-012). Filesystem and device denials (SEC-003). Syscall filter (ABI).
+Memory and object isolation (CMP-012). Filesystem and device denials (SEC-003). Syscall filter (ABI-035). The inspect Interface (OBS-006).
+
+#### Deliverables
+- kernel:jakeos/sec/sec.rs · Crate root for the SEC area.
+- kernel:jakeos/sec/enumeration.rs · `component.enumerate` and `task.enumerate` behind `Capability<Inspect>`, with the `deny` record on refusal.
+- sec:harness/ambient/ · Crate `jakeos-sec-ambient-harness`: the negative assertions over a launch set and the denial list output.
+- kernel:tools/testing/selftests/jakeos/sec/isolation_enum_*.rs · Selftests: enumeration refused without the Capability, denial recorded, ImageDecoder launch set has no network Capability.
 
 #### Acceptance criteria
-- [ ] A freshly created native Component that enumerates other Components or Tasks receives `Error::Rights` and allocates no handle, on `qemu-x86_64`.
-- [ ] The ImageDecoder fixture holds no network Capability: its launch set and `os inspect capability` list none, and no Connect Operation kind exists at V0 through which it could reach the network.
-- [ ] The ImageDecoder fixture cannot enumerate other Components; the denial is visible in the Capability audit log.
+- [ ] A freshly created native Component that calls `component.enumerate` or `task.enumerate` without `Capability<Inspect>` receives `Error::Rights`, allocates no handle, and a CAP-001 `deny` record names it, on `qemu-x86_64`.
+- [ ] The ImageDecoder fixture holds no network Capability: its `Component.toml` launch set and `os inspect capability` list none, and no Connect Operation kind exists at V0 through which it could reach the network.
+- [ ] `jakeos-sec-ambient-harness` run against the ImageDecoder launch set produces the denial list (enumerate, connect, path open, Linux syscall) that V0-D04 shows, and CMP-012's intruder fixture uses the harness.
 
 #### Verification
 - Unit: `kernel:tests/sec/isolation_enum_*` on `qemu-x86_64` and `hw-h002`.

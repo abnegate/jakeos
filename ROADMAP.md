@@ -184,10 +184,10 @@ Makespan (size-weight estimates): 118.
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |
+| OBS-006 | 25 |
 | CAP-003 | 24 |
 | IPC-010 | 24 |
 | LAB-003 | 24 |
-| OBS-006 | 24 |
 | SEM-029 | 24 |
 | Q-001 | 23 |
 | KRN-017 | 21 |

@@ -1320,7 +1320,7 @@
 | WASM-022 | Lock Wasm host Interface versions with a conformance suite | todo | WASM-002, WASM-003, WASM-001, WASM-007, WASM-008, WASM-014, WASM-020, IPC-022, IPC-068 | V4 |
 | WASM-023 | Reproduce Wasm AOT artefacts bit-for-bit | todo | WASM-005, BLD-041, BLD-074 | V4 |
 | WASM-024 | Publish Wasm instantiation metrics against Linux Wasmtime | todo | WASM-006, BEN-060 | 1.0 |
-| SEC-001 | Deny ambient process enumeration in native Components | todo | CAP-005, CAP-001, CMP-005 | V0 |
+| SEC-001 | Deny ambient process enumeration in native Components | todo | CAP-005, CAP-001, CMP-005, OBS-006 | V0 |
 | SEC-003 | Test no ambient filesystem, home, device, or app data | todo | SEC-009, SEC-006, CAP-025 | V0.5 |
 | SEC-004 | Decide authority sources and precedence | todo | CAP-007 | V0.5 |
 | SEC-006 | Implement the grant taxonomy in the permission runtime | todo | SEC-007, SEC-004, CAP-025, PKG-028 | V0.5 |
@@ -2193,10 +2193,10 @@
 | CMP-005 | 26 |
 | SCH-010 | 26 |
 | CAP-007 | 25 |
+| OBS-006 | 25 |
 | CAP-003 | 24 |
 | IPC-010 | 24 |
 | LAB-003 | 24 |
-| OBS-006 | 24 |
 | SEM-029 | 24 |
 | Q-001 | 23 |
 | KRN-017 | 21 |
