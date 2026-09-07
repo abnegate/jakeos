@@ -474,16 +474,16 @@
 | SCH-059 | Sign off SCH benchmarks within the B-051 regression band versus V4 on Tier 1 | todo | SCH-055, SCH-056, BEN-061 | 1.0 |
 | SCH-060 | Write the 1.0 stability statement for ResourceDomain and Scheduling intent | todo | SCH-030, SCH-058, ABI-049 | 1.0 |
 | SCH-061 | Allow per-ResourceDomain pluggable scheduling policies via sched_ext | todo | KRN-024, SCH-004, SCH-058 | LATER |
-| OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | OBS-011, Q-001 | V0 |
+| OBS-001 | Measure tracing overhead enabled versus disabled on the IPC benchmark | todo | OBS-011, Q-001, BEN-005, BLD-082 | V0 |
 | OBS-002 | Trace and inspect Capability grant, derivation, transfer and revocation | todo | OBS-008, OBS-006, CAP-001, CAP-003 | V0 |
 | OBS-003 | Decide the tracing substrate and its measured overhead ceiling | todo | OBS-010 | V0 |
 | OBS-004 | Generate tracing metadata from the IDL so every Channel call is observable by name | todo | OBS-011, IPC-012, BLD-082 | V0 |
 | OBS-005 | Expose Component and Task inspection data including the awaited Operation | todo | OBS-006, CMP-005, TSK-021, TSK-020 | V0 |
-| OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 | V0 |
+| OBS-006 | Build the typed kernel inspection Interface for per-Object metadata | todo | CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007, BLD-082 | V0 |
 | OBS-007 | Expose Channel, Operation, MemoryObject and ResourceDomain inspection data | todo | OBS-006, IPC-009, TSK-013, MEM-005, SCH-007, SCH-009 | V0 |
 | OBS-008 | Emit lifecycle and ownership trace events for every V0 primitive | todo | OBS-011, CMP-005, TSK-021, TSK-023, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007 | V0 |
-| OBS-009 | Ship the os trace first cut showing IPC flow, scheduling delays and failures | todo | OBS-008, OBS-004, OBS-007, SCH-010 | V0 |
-| OBS-011 | Implement the structured semantic trace ring with runtime global enable | todo | OBS-003 | V0 |
+| OBS-009 | Ship the os trace first cut showing IPC flow, scheduling delays and failures | todo | OBS-008, OBS-004, OBS-007, SCH-010, BLD-082 | V0 |
+| OBS-011 | Implement the structured semantic trace ring with runtime global enable | todo | OBS-003, KRN-013 | V0 |
 | OBS-012 | Require a Capability to read another Component traces | todo | OBS-014, OBS-006, OBS-011 | V0.5 |
 | OBS-013 | Trace compositor frame timing, queueing and presentation events | todo | OBS-008, GFX-010, GFX-024 | V0.5 |
 | OBS-014 | Decide who may trace and inspect which Components | todo | OBS-006, OBS-011 | V0.5 |
@@ -2182,9 +2182,9 @@
 
 | Blocker | Tasks |
 | --- | --- |
-| BEN-005 | 64 |
+| BEN-005 | 65 |
+| BLD-082 | 43 |
 | CAP-005 | 41 |
-| BLD-082 | 40 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -2209,11 +2209,11 @@
 | BLD-012 | 18 |
 | GOV-024 | 18 |
 | HW-015 | 18 |
+| KRN-013 | 18 |
 | MEM-010 | 18 |
 | PKG-038 | 18 |
 | WIN-054 | 18 |
 | BLD-009 | 17 |
-| KRN-013 | 17 |
 | OBS-019 | 17 |
 | PKG-022 | 17 |
 | SVC-013 | 17 |

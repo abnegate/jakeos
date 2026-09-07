@@ -23,25 +23,31 @@ OBS owns observability as architecture (§24, §67 principle 11): the tracing su
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: OBS-011, Q-001
+- Depends on: OBS-011, Q-001, BEN-005, BLD-082
 - Baseline: §24, §54
 - Benchmarks: B-012
 
-Run harness `bench:tracing-overhead` so V0-G17 can publish B-012 on H-001 and H-002: the slowdown of B-004 and B-003 with tracing enabled versus disabled, and the cost of a disabled tracepoint on the hot path. The V0 target is publish-only; later rungs read the ceiling recorded by OBS-003 from the register.
+Observability that costs too much gets turned off, so its cost is a gate (§24, §54). The harness `bench/harness/B-012/` (crate `jakeos-bench-tracing-overhead`, scenario `tracing-overhead`) runs the B-004 same-core round trip and the B-003 Task handoff three times in one session: with the OBS-011 ring globally disabled, with it enabled at the V0 default scope set, and with every scope enabled; and it measures the cost of a disabled tracepoint on the B-004 hot path by comparing a kernel built with `CONFIG_JAKEOS_TRACE=n` against the disabled-at-runtime configuration. Records go to the BEN-005 time series from the BLD-010 nightly job on `qemu-x86_64` and `hw-h002`; reports go to `reports/benchmarks/B-012/h001.md` and `h002.md` as slowdown ratios beside the raw numbers. V0 is publish-only; later rungs compare against the ceiling D-0211 (OBS-003) recorded in the register.
 
 <!-- covers: GAP-0532 -->
 
 #### Out of scope
-IPC round-trip publication itself (BEN-003, B-004). Methodology (Q-001).
+IPC round-trip publication itself (BEN-003, B-004). Methodology (Q-001, BEN-064). The ring (OBS-011).
+
+#### Deliverables
+- bench:harness/B-012/ · Crate `jakeos-bench-tracing-overhead`: the three-configuration session and the compiled-out comparison.
+- bench:harness/B-012/README.md · The method as registered on B-012.
+- roadmap:reports/benchmarks/B-012/h001.md · The H-001 report (labelled QEMU).
+- roadmap:reports/benchmarks/B-012/h002.md · The H-002 report V0-G17 cites.
 
 #### Acceptance criteria
-- [ ] A committed B-012 report exists for H-001 and H-002 with tracing enabled and disabled on the same session.
-- [ ] The disabled-tracepoint cost is reported on the same B-004 path.
-- [ ] No superiority claim appears without the published table (I-061).
+- [ ] `reports/benchmarks/B-012/h001.md` and `h002.md` exist with B-004 and B-003 measured disabled, default-enabled and fully enabled in one session, as slowdown ratios beside the raw numbers, following the BEN-005 skeleton.
+- [ ] The disabled-tracepoint cost is reported on the B-004 path by comparing the runtime-disabled configuration against a `CONFIG_JAKEOS_TRACE=n` build on the same machine.
+- [ ] The V0 target kind of B-012 is `publish` and no superiority claim appears without the published table (I-061).
 
 #### Verification
 - Bench: B-012 on H-001 and H-002; target per register (V0 publish).
-- Review: BEN lead confirms the harness matches registers/benchmarks.md.
+- Review: BEN lead confirms the harness matches `registers/benchmarks.md`.
 
 #### Evidence
 - none
@@ -56,18 +62,24 @@ IPC round-trip publication itself (BEN-003, B-004). Methodology (Q-001).
 - Baseline: §7, §24, §64
 - Invariants: I-028
 
-Every grant, derivation, transfer, revocation and typed denial emits a structured semantic event and is visible through the inspect interface as holder, target object, rights, derivation chain and revocation state (§7, §24). V0-D04 requires a typed denial in the audit trail. These are live events; the durable tamper-evident store is OBS-044.
+CAP-001 emits the audit events; OBS makes them a first-class part of the trace and inspect model (§7, §24, §64). `jakeos/obs/events/capability.rs` defines the S-010 event schema for the `capability` scope (`grant`, `derive`, `transfer`, `revoke`, `deny`, each with holder Component, target object identity, rights word before and after, derivation depth and outcome, named in Capability terms and never as raw kernel internals), which CAP-001's `audit::emit` fills; and the `capability` inspect provider (CAP-002's `jakeos/obs/providers/capability.rs`) gains the derivation chain (parent handles up to the root) and revocation state so `os inspect capability <handle>` prints holder, target, rights, chain and state. V0-D04's typed denial is one `deny` event in this schema, visible in `os trace --scope capability`. Durable, tamper-evident storage is OBS-044.
 
 <!-- covers: INV-0183, INV-0463, INV-0451 -->
 
 #### Out of scope
-Rights encoding and mint/derive (CAP). Durable tamper-evident log (OBS-044). Permissions UI (APP, SEC).
+Rights encoding and mint or derive (CAP-003, CAP-010). Durable tamper-evident log (OBS-044). Permissions UI (APP-012, SEC). The audit probes (CAP-001).
+
+#### Deliverables
+- kernel:jakeos/obs/events/capability.rs · The `capability` scope event schema on S-010 and the typed constructors CAP-001 calls.
+- kernel:jakeos/obs/providers/capability.rs · Derivation chain and revocation state fields (extending CAP-002's provider).
+- idl:interfaces/obs/CapabilityEvents.idl · The event types as Layer 2 messages for `os trace` and later exporters.
+- kernel:tools/testing/selftests/jakeos/obs/capability_audit_*.rs · Selftests: four event kinds with fields, `deny` on a forged derive, chain and state in inspect.
 
 #### Acceptance criteria
-- [ ] Grant, derive, transfer and revoke each emit a typed event naming holder, target and rights.
-- [ ] `os inspect capability` (SDK) can print holder, target, rights, derivation chain and revocation state from OBS data.
-- [ ] A forged or over-wide derive that returns `Error::Rights` is present as a denial event and allocates no handle.
-- [ ] Events are named in Capability terms, not as raw kernel internals.
+- [ ] Grant, derive, transfer and revoke each emit a typed `capability`-scope event naming holder, target object identity, rights before and after and outcome, on `qemu-x86_64` and `hw-h002`.
+- [ ] `os inspect capability <handle>` prints holder, target, rights, the derivation chain to the root and revocation state from the provider's data.
+- [ ] A forged or over-wide derive that returns `Error::Rights` appears as a `deny` event and allocates no handle.
+- [ ] Event names and fields use Capability terms; no event carries a kernel pointer, `task_struct` field or other raw internal.
 
 #### Verification
 - Unit: `kernel:tests/obs/capability_audit_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.
@@ -88,22 +100,27 @@ Rights encoding and mint/derive (CAP). Durable tamper-evident log (OBS-044). Per
 - Decision: D-0211
 - Risks: R-034
 
-One Decision for the V0 tracing substrate and the overhead ceiling that B-012 later verifies: extend inherited ftrace, tracepoints and eBPF; build a native per-Component structured ring; or layer a native semantic schema over eBPF. The Decision lists ABI surface S-010 and records that a disabled tracepoint stays off the hot path. Observability is architecture (§24), so the cost is bounded before every primitive is instrumented.
+Observability is architecture (§24), so its substrate and cost ceiling are decided before every primitive is instrumented. D-0211's three options (extend ftrace, tracepoints and eBPF; a native per-Component structured ring; a native semantic schema over eBPF) carry their consequences; the executing agent fills the Decision from `reports/spikes/OBS-010.md`: the overhead each showed on the B-004 path enabled and disabled, whether a disabled scope stays off the hot path, the semantic fit for Component and Task identity, and what retained Linux tooling (`perf`, `bpftrace`) still provides beside it. The Decision names the substrate OBS-011 implements, records the overhead ceiling B-012 later verifies as a target kind in `registers/benchmarks.md` (never as a number in the decision prose), states whether disabled scopes pay on the hot path, and lists S-010 as `prototyped`.
 
 <!-- covers: GAP-0532, INV-0472 -->
 
 #### Out of scope
-eBPF as sched_ext or network policy (KRN-024). Export format (OBS-015). Implementation (OBS-011).
+eBPF as `sched_ext` or network policy (KRN-024). Export format (OBS-015). Implementation (OBS-011). The overhead harness (OBS-001).
+
+#### Deliverables
+- roadmap:decisions/D-0211-decide-tracing-substrate.md · The Decision, Consequences, rejected options and follow-ups filled from the OBS-010 report, cited in Evidence.
+- roadmap:registers/benchmarks.md · B-012's later target kinds recording the ceiling the Decision names.
+- roadmap:registers/surfaces.md · S-010 `Decided by: OBS-003`, `State: prototyped`.
 
 #### Acceptance criteria
-- [ ] The Decision evaluates at least two of: extend ftrace/tracepoints/eBPF; native per-Component structured ring; native semantic schema over eBPF.
-- [ ] The accepted option names the overhead ceiling that B-012 verifies and whether disabled scopes pay on the hot path.
-- [ ] The Decision lists ABI surface S-010 in prototyped state and does not freeze it.
-- [ ] A Review line records ABI and kernel lead sign-off on the pull request.
+- [ ] D-0211 evaluates at least two of: extend ftrace, tracepoints and eBPF; native per-Component structured ring; native semantic schema over eBPF, with the OBS-010 findings for each.
+- [ ] The accepted option names the substrate OBS-011 implements, the overhead ceiling B-012 verifies (recorded as a target kind in the register, not as prose), and whether disabled scopes pay on the hot path.
+- [ ] D-0211 lists S-010 in `prototyped` state and does not freeze it, and `reports/spikes/OBS-010.md` is cited in Evidence.
+- [ ] Review records ABI and kernel lead sign-off on the pull request.
 
 #### Verification
-- Review: ABI and kernel leads sign off on the pull request; Evidence will contain `decision:<D-ID>` when the file is accepted.
-- Report: Spike OBS-010 is cited as Evidence in the Decision options.
+- Review: ABI and kernel leads sign off on the pull request; Evidence will contain `decision:D-0211` when the file is accepted.
+- Report: spike OBS-010 is cited as Evidence in the Decision options.
 
 #### Evidence
 - none
@@ -117,22 +134,31 @@ eBPF as sched_ext or network policy (KRN-024). Export format (OBS-015). Implemen
 - Depends on: OBS-011, IPC-012, BLD-082
 - Baseline: §14, §24
 
-OBS owns the event-id, method-name and message-type schema that IDL codegen emits so every Channel call appears in `os trace` by Interface and method rather than as an anonymous send (§14, §24). The V0 demo trace must show `Channel<Request>` by name. IPC owns the compiler; this task is the OBS metadata plugin and schema.
+A Channel call must appear in `os trace` by Interface and method, not as an anonymous send (§14, §24). OBS owns the schema: `idl/src/backend/rust/trace_schema.rs` (the OBS metadata emitter inside IPC-012's Rust backend, written by OBS against IPC's IR without forking it) emits, per compiled Interface, a `TRACE_SCHEMA` table of stable event ids (a hash of Interface name, version and method name), method names and message type ids, and the generated stubs (IPC-013) open a span with that id at each call and close it on completion; `jakeos/obs/events/ipc.rs` defines the `ipc` scope events (`call_start`, `call_end`, `send`, `receive`) that carry the event id so the trace view (OBS-009) resolves it to `ImageDecoder.decode` through the schema table the runtime registers at Component start. The OBS review gate (OBS-017 later; at V0 the ABI-006 checklist item) fails a Channel whose IDL compiles without trace metadata.
+
+The V0 demo trace names `Channel<ImageDecoder>` and `decode`, not a numeric opcode alone.
 
 <!-- covers: INV-0290 -->
 
 #### Out of scope
-IDL compiler front end and Rust stubs (IPC-012). CLI rendering (SDK-008).
+IDL compiler front end and Rust stubs (IPC-012). CLI rendering (SDK-008). The trace view (OBS-009).
+
+#### Deliverables
+- idl:src/backend/rust/trace_schema.rs · The `TRACE_SCHEMA` emitter over IPC-012's IR.
+- kernel:jakeos/obs/events/ipc.rs · The `ipc` scope event schema carrying event ids.
+- ipc:src/trace.rs · Runtime registration of a Component's schema tables with the trace ring at start (extending IPC-013's crate).
+- idl:tests/obs_metadata_*.rs · Tests: schema emitted for the sample Interface, stable ids across runs, missing-metadata detection.
+- abi:review/checklist.md · The OBS item: a Channel Interface without trace metadata fails review (extending ABI-006's file).
 
 #### Acceptance criteria
-- [ ] Generated stubs emit a span with Interface name, method name and message type on every Channel call.
-- [ ] A Channel whose IDL has no tracing metadata fails the OBS review gate.
-- [ ] The V0 demo trace names `Channel<Request>` rather than a numeric opcode alone.
+- [ ] Generated stubs open and close a span with the Interface name, method name and message type id on every Channel call, resolved by name in the trace view, on `qemu-x86_64`.
+- [ ] A Channel whose IDL compiles without a `TRACE_SCHEMA` table fails the OBS review item, and the schema's event ids are stable across two compiler runs.
+- [ ] The V0 demo trace names `Channel<ImageDecoder>` and `decode` rather than a numeric opcode alone.
 
 #### Verification
 - Unit: `idl:tests/obs_metadata_*` on the V0 demo Interface.
 - Integration: V0-D01 pipeline trace on H-001 shows method names from generated metadata.
-- Review: IPC lead confirms the plugin does not fork the compiler IR.
+- Review: IPC lead confirms the emitter does not fork the compiler IR.
 
 #### Evidence
 - none
@@ -146,22 +172,29 @@ IDL compiler front end and Rust stubs (IPC-012). CLI rendering (SDK-008).
 - Depends on: OBS-006, CMP-005, TSK-021, TSK-020
 - Baseline: §20, §24, §64
 
-Deliver the §64 inspect shape for Component and Task: name, state, memory, CPU consumption, held Capabilities, Tasks, owner TaskGroup, and the Operation a suspended Task waits on (for example `Channel<ImageDecodeRequest>`). Tooling does not reconstruct wait edges from scheduler traces when the kernel already stores them.
+§64 shows what `os inspect` prints for a Component and a Task; this task supplies that data. The `component` provider (CMP-014's `jakeos/obs/providers/component.rs`) is completed to the §64 field set: name (from the manifest at V0.5; the Code object's name at V0), state, resident memory and CPU consumption (from the domain counters SCH-007 attributes), held Capabilities (count and, with the `Inspect` right, the list), member Tasks and the owning TaskGroup; the `task` provider (`jakeos/obs/providers/task.rs`) returns identity per D-0314, state, owning TaskGroup, intent, and for a suspended Task the awaited Operation's identity and type (`Channel<ImageDecodeRequest>` for a Receive), read from TSK-020's `awaited_operation` field so tooling never reconstructs wait edges from scheduler traces. Both are Layer 2 messages on the OBS-006 Interface (`idl/interfaces/obs/Inspect.idl` gains `ComponentRecord` and `TaskRecord`). Destroy removes the record from enumeration.
 
 <!-- covers: INV-1263, INV-0447, INV-0448, INV-0383, INV-0459 -->
 
 #### Out of scope
-CLI formatting (SDK-007). TaskGroup tree as its own inspect kind (OBS-018). Channel, Operation, MemoryObject and ResourceDomain providers (OBS-007).
+CLI formatting (SDK-007). TaskGroup tree as its own inspect kind (OBS-018). Channel, Operation, MemoryObject and ResourceDomain providers (OBS-007). The Interface itself (OBS-006).
+
+#### Deliverables
+- kernel:jakeos/obs/providers/component.rs · The full §64 Component record (extending CMP-014's provider).
+- kernel:jakeos/obs/providers/task.rs · The Task record with the awaited Operation.
+- idl:interfaces/obs/Inspect.idl · `ComponentRecord` and `TaskRecord` message types (extending OBS-006's Interface).
+- kernel:tools/testing/selftests/jakeos/obs/inspect_component_*.rs · Selftests for the Component field set and removal on destroy.
+- kernel:tools/testing/selftests/jakeos/obs/inspect_task_*.rs · Selftests for the Task record and the awaited Operation of a Task blocked on Receive.
 
 #### Acceptance criteria
-- [ ] Inspect of a live Component returns name, state, memory, CPU consumption, held Capabilities and member Tasks.
-- [ ] Inspect of a suspended Task returns the awaited Operation identity and type.
-- [ ] Destroying the Component removes it from enumeration and reclaims the inspect records.
+- [ ] Inspect of a live Component returns name, state, resident memory, CPU consumption, held Capabilities, member Tasks and owning TaskGroup, on `qemu-x86_64` and `hw-h002`.
+- [ ] Inspect of a suspended Task returns the awaited Operation's identity and type, read from the kernel's stored wait edge, and a Task blocked on Receive reports that Channel type.
+- [ ] Destroying the Component removes it and its Tasks from enumeration and reclaims the records.
 
 #### Verification
 - Unit: `kernel:tests/obs/inspect_component_*` and `inspect_task_*` on `qemu-x86_64` and `hw-h002`.
 - Demo: V0-D01 `os inspect component` on H-002 matches the §64 field set.
-- Integration: A Task blocked on Receive reports that Channel as the wait object.
+- Integration: a Task blocked on Receive reports that Channel as the wait object.
 
 #### Evidence
 - none
@@ -172,21 +205,31 @@ CLI formatting (SDK-007). TaskGroup tree as its own inspect kind (OBS-018). Chan
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007
+- Depends on: CMP-005, TSK-021, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007, BLD-082
 - Baseline: §7, §24, §64
 
-The Layer 2-shaped inspect Interface that userspace tools call: enumerate live objects by kind and read ownership, relationships, resource use and wait state through typed messages rather than proc-style text (§64). V0-G10 requires `os inspect component|task|channel|capability|memory|resource` to print state, ownership and relationships. SDK renders; OBS supplies the Interface and kernel providers' registration.
+Inspection is a typed Interface, not proc-style text (§24, §64). `idl/interfaces/obs/Inspect.idl` defines the Layer 2 Interface a tool calls: `enumerate(kind) -> stream of ObjectRef`, `read(ref) -> Record` where `Record` is a union of the per-kind records (component, task, channel, capability, memory, resource, operation), each with owner, relationship edges (owner, members, peers, parent) and resource-use fields; `jakeos/obs/inspect.rs` is the kernel service behind it: a provider registry (`register_provider(kind, provider)`) that every kernel object kind registers with (ABI-005's `register_type` requires a provider, and a kind without one fails the KRN-012 unit tests until OBS-017 makes it a lint), and the access rule: the caller holds `Capability<Inspect>` with the scope OBS-014 later refines (V0: the caller's own Component's objects, plus everything under the session's debug grant for the inspect suite); a caller without it receives `Error::Rights` and no object list. SDK-007 renders; this task is the Interface, the registry and the six V0 kinds' registration.
 
 <!-- covers: INV-1264, INV-0457, INV-0458 -->
 
 #### Out of scope
-Per-kind field sets (OBS-005, OBS-007). CLI (SDK-007). Userspace service providers (OBS-019).
+Per-kind field sets (OBS-005, OBS-007). CLI (SDK-007). Userspace service providers (OBS-019). Access policy decision (OBS-014).
+
+#### Deliverables
+- idl:interfaces/obs/Inspect.idl · The Interface: `enumerate`, `read`, `ObjectRef`, the `Record` union.
+- kernel:jakeos/obs/obs.rs · Crate root for the OBS area.
+- kernel:jakeos/obs/inspect.rs · The kernel service: provider registry, enumeration, access check.
+- kernel:jakeos/obs/providers/mod.rs · Provider trait and registration for the six V0 kinds.
+- kernel:jakeos/cap/rights_decl.rs · The `Inspect` Capability vocabulary (extending CAP-011's file).
+- obs:inspect-client/ · Crate `jakeos-obs-inspect`: the typed client over the Interface that SDK-007 uses.
+- kernel:tools/jakeos/fuzz/obs_inspect/ · Fuzz target over `read` with random refs (`kernel:fuzz/obs_inspect`).
+- kernel:tools/testing/selftests/jakeos/obs/inspect_interface_*.rs · Selftests: enumerate per kind, record fields, rights refusal, missing provider detected.
 
 #### Acceptance criteria
-- [ ] A Capability to the inspect Interface enumerates every live object of a requested kind.
-- [ ] Each record includes owner, relationship edges and resource-use fields required by V0-G10.
-- [ ] A caller without inspect rights receives `Error::Rights` and no object list.
-- [ ] Adding a kernel object kind without an inspect provider fails OBS-017.
+- [ ] A holder of `Capability<Inspect>` enumerates every live object of a requested kind through the Interface and reads each record with owner, relationship edges and resource-use fields, for all six V0 kinds, on `qemu-x86_64` and `hw-h002` (V0-G10).
+- [ ] A caller without `Capability<Inspect>` receives `Error::Rights` and no object list.
+- [ ] Registering a kernel object kind without an inspect provider fails the KRN-012 unit tests (OBS-017 later makes it a lint).
+- [ ] `kernel:fuzz/obs_inspect` runs one hour nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/obs/inspect_interface_*` on `qemu-x86_64` and `hw-h002`.
@@ -206,18 +249,29 @@ Per-kind field sets (OBS-005, OBS-007). CLI (SDK-007). Userspace service provide
 - Baseline: §16, §19, §23, §24, §64
 - Risks: R-073
 
-Providers for the remaining four V0 inspect kinds. Channel: endpoints, message type, queue depth, blocked senders and receivers. Operation: a uniform enumerable set of outstanding work per Task, Component and ResourceDomain with kind, submitter, state, deadline and completion latency. MemoryObject: size, properties, owner and mappings. ResourceDomain: budgets, consumption and members. Transfer history and throttling events wait for V0.5.
+The remaining four V0 inspect kinds (§16, §19, §23, §64). `jakeos/obs/providers/channel.rs` (IPC-010's provider completed): endpoints, Interface type, queue depth and occupancy (IPC-009), blocked senders and receivers, peer-closed state. `jakeos/obs/providers/operation.rs`: a uniform enumerable set of outstanding Operations per Task, Component and ResourceDomain with kind, submitter, state, deadline and, once completed, completion latency, read from TSK-013's object. `jakeos/obs/providers/memory.rs` (MEM-005's provider completed): size, properties, owner, current mappings. `jakeos/obs/providers/resourcedomain.rs` (SCH-007's provider completed): budgets, consumption, limits (SCH-009) and members. `Inspect.idl` gains the four record types. Transfer history (OBS-021) and throttling events (OBS-022) wait for V0.5.
 
 <!-- covers: INV-0450, INV-0452, INV-0372, INV-0453, INV-0320, INV-0444, INV-0454, INV-0461, INV-0459 -->
 
 #### Out of scope
 Component and Task providers (OBS-005). MemoryObject transfer history (OBS-021). Throttling events (OBS-022). Queue-depth policy (IPC-009).
 
+#### Deliverables
+- kernel:jakeos/obs/providers/channel.rs · The full Channel record (extending IPC-010's provider).
+- kernel:jakeos/obs/providers/operation.rs · The Operation record and per-Task, per-Component, per-domain enumeration.
+- kernel:jakeos/obs/providers/memory.rs · The full MemoryObject record (extending MEM-005's provider).
+- kernel:jakeos/obs/providers/resourcedomain.rs · The full ResourceDomain record (extending SCH-007's provider).
+- idl:interfaces/obs/Inspect.idl · `ChannelRecord`, `OperationRecord`, `MemoryRecord`, `ResourceRecord` (extending OBS-006's Interface).
+- kernel:tools/testing/selftests/jakeos/obs/inspect_channel_*.rs · Selftests for the Channel record.
+- kernel:tools/testing/selftests/jakeos/obs/inspect_operation_*.rs · Selftests for Operation enumeration by Task, Component and domain.
+- kernel:tools/testing/selftests/jakeos/obs/inspect_memory_*.rs · Selftests for the MemoryObject record including owner change after transfer.
+- kernel:tools/testing/selftests/jakeos/obs/inspect_resource_*.rs · Selftests for the ResourceDomain record.
+
 #### Acceptance criteria
-- [ ] `os inspect channel` data includes endpoints, message type, queue depth and blocked parties.
-- [ ] Outstanding Operations are enumerable per Task, Component and ResourceDomain with deadline and state.
-- [ ] `os inspect memory` data includes size, properties, owner and current mappings.
-- [ ] `os inspect resource` data includes budgets, current consumption and member Components.
+- [ ] `os inspect channel` data includes endpoints, Interface type, queue depth and occupancy, blocked senders and receivers and peer-closed state, on `qemu-x86_64` and `hw-h002`.
+- [ ] Outstanding Operations are enumerable per Task, per Component and per ResourceDomain with kind, submitter, state and deadline, and a completed Operation's record carries its completion latency until reclaimed.
+- [ ] `os inspect memory` data includes size, properties, owner and current mappings, and shows the new owner after a transfer.
+- [ ] `os inspect resource` data includes budgets, current consumption, object limits and member Components.
 
 #### Verification
 - Unit: `kernel:tests/obs/inspect_channel_*`, `inspect_operation_*`, `inspect_memory_*`, `inspect_resource_*` on `qemu-x86_64` and `hw-h002`.
@@ -236,22 +290,29 @@ Component and Task providers (OBS-005). MemoryObject transfer history (OBS-021).
 - Depends on: OBS-011, CMP-005, TSK-021, TSK-023, TSK-013, CAP-005, IPC-010, MEM-005, SCH-007
 - Baseline: §19, §24, §59
 
-Creation, destruction and owner-change events for Component, Task, TaskGroup, Channel, Capability, Operation, MemoryObject and ResourceDomain, named in primitive terms (Channel send, Operation complete) with typed fields. Operation submit events carry identity, submitter and parent span (§19). These feed `os trace` at V0.
+Every V0 primitive's creation, destruction and owner change is a trace event (§19, §24, §59). `jakeos/obs/events/lifecycle.rs` defines the `lifecycle` scope schema on S-010: `create`, `destroy` and `owner_change` for Component, Task, TaskGroup, Channel, Capability, Operation, MemoryObject and ResourceDomain, each with the object identity, the owner before and after, and the D-0306 timestamp; and the `operation` scope: `submit` (identity, submitter Task, kind, parent span from the IPC-013 call span if any), `complete` (result kind, latency) and `cancel`. Each area's create and destroy path calls the typed constructor; TSK-013's `trace.rs` calls the `operation` constructors. Event names are the primitive terms (`Channel send`, `Operation complete`), never free-form strings or kernel internals; a primitive kind without create and destroy events fails the KRN-012 unit tests (OBS-017 later lints it). These events are what `os trace` shows at V0.
 
 <!-- covers: INV-1166, INV-0456, INV-0457, INV-0468, INV-0366 -->
 
 #### Out of scope
-IPC flow graph and scheduling-delay aggregation (OBS-009). IDL method names (OBS-004). Per-domain dynamic enable (OBS-025).
+IPC flow graph and scheduling-delay aggregation (OBS-009). IDL method names (OBS-004). Per-domain dynamic enable (OBS-025). The ring (OBS-011).
+
+#### Deliverables
+- kernel:jakeos/obs/events/lifecycle.rs · The `lifecycle` scope schema and typed constructors for the eight kinds.
+- kernel:jakeos/obs/events/operation.rs · The `operation` scope schema (`submit`, `complete`, `cancel`) with parent-span linkage.
+- kernel:jakeos/obs/events/mod.rs · The event registry the KRN-012 completeness test reads.
+- kernel:tools/jakeos/fuzz/obs_events/ · Fuzz target over event emission under concurrent create and destroy (`kernel:fuzz/obs_events`).
+- kernel:tools/testing/selftests/jakeos/obs/lifecycle_*.rs · Selftests: events per kind with identity and owner, submit with parent span, no free-form strings, completeness.
 
 #### Acceptance criteria
-- [ ] Create and destroy of each V0 primitive kind emit typed events with object identity and owner.
-- [ ] Operation submit events include identity, submitter and parent span.
-- [ ] Event names use primitive terms, not free-form strings or raw kernel internals.
-- [ ] A primitive kind without create/destroy events fails OBS-017.
+- [ ] Create and destroy of each of the eight V0 primitive kinds emit typed events with object identity and owner, and an owner change emits `owner_change` with before and after, on `qemu-x86_64` and `hw-h002`.
+- [ ] Operation `submit` events include identity, submitter and parent span; `complete` carries result kind and latency.
+- [ ] Event names use primitive terms and typed fields; no event carries a free-form string or a raw kernel internal.
+- [ ] A primitive kind without create and destroy events fails the KRN-012 completeness test, and `kernel:fuzz/obs_events` runs one hour nightly without a panic.
 
 #### Verification
 - Unit: `kernel:tests/obs/lifecycle_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: V0 demo pipeline produces create/destroy events for Component, Channel, Operation and MemoryObject.
+- Integration: V0 demo pipeline produces create and destroy events for Component, Channel, Operation and MemoryObject.
 - Fuzz: `kernel:fuzz/obs_events` one hour nightly without panic.
 
 #### Evidence
@@ -263,25 +324,33 @@ IPC flow graph and scheduling-delay aggregation (OBS-009). IDL method names (OBS
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: OBS-008, OBS-004, OBS-007, SCH-010
+- Depends on: OBS-008, OBS-004, OBS-007, SCH-010, BLD-082
 - Baseline: §24, §59, §64
 
-V0-G10 and V0-D01 require `os trace` to show IPC flow and scheduling delays for the §59 demo. OBS supplies the flow graph between Components, wakeup-to-run per Task, Operation latency, run-queue wait, and failure events (Operation errors, Component crashes, revocations). SDK owns the command; this task is the queryable trace view and aggregations.
+`os trace` must show the §59 demo as IPC flow and scheduling delays (§24, §59, §64, V0-G10, V0-D01). OBS supplies the queryable view and the aggregations in the platform crate `observability/trace/` (`jakeos-obs-trace`): `flow.rs` builds the flow graph between Components from `ipc` scope events (edges labelled by Interface and method via the OBS-004 schema, with counts and latency percentiles); `sched.rs` computes wakeup-to-run per Task from the `wakeup_to_run` events SCH-005 emits and run-queue wait per intent class; `operations.rs` computes Operation completion latency from `operation` scope events; `failures.rs` collects Operation errors, Component exit causes (D-0066) that are not `Exited`, peer disconnects and revocations as a failure list with the objects involved. The crate reads the live ring through the OBS-011 read Interface (`idl/interfaces/obs/Trace.idl`: `enable(scopes)`, `disable`, `read(cursor) -> stream of Event`) and exposes the views to SDK-008, which owns the command. Offline export is OBS-015 at V0.5.
 
 <!-- covers: INV-0464, INV-0465, INV-0460, INV-0461, INV-0462, INV-1209 -->
 
 #### Out of scope
-CLI binary (SDK-008). Offline export format (OBS-015). Daily-driving filters and histograms (OBS-037). Per-intent-class histograms (OBS-040).
+CLI binary (SDK-008). Offline export format (OBS-015). Daily-driving filters and histograms (OBS-037). Per-intent-class histograms (OBS-040). The events themselves (OBS-008).
+
+#### Deliverables
+- obs:trace/ · Crate `jakeos-obs-trace`: `flow.rs`, `sched.rs`, `operations.rs`, `failures.rs` and the ring reader.
+- idl:interfaces/obs/Trace.idl · The trace read Interface: `enable`, `disable`, `read`.
+- kernel:jakeos/obs/trace_read.rs · The kernel side of `Trace.idl` over the OBS-011 ring.
+- obs:tests/trace/flow_*.rs · Tests over a recorded demo trace: flow graph edges by name, wakeup-to-run per Task, Operation latency, failure list.
+- kernel:tools/testing/selftests/jakeos/obs/trace_flow_*.rs · Kernel-side tests that the demo run produces the events the views need.
+- kernel:tools/testing/selftests/jakeos/obs/trace_sched_*.rs · Kernel-side tests for `wakeup_to_run` under mixed intent.
 
 #### Acceptance criteria
-- [ ] A live trace of the V0 demo shows Channel sends between Component A and B as a flow graph.
-- [ ] Wakeup-to-run delay is present per Task on that trace.
-- [ ] Operation completion latency is present on the same session.
-- [ ] An Operation error, a Component panic disconnect and a revocation each appear as failure events.
+- [ ] A live trace of the V0 demo yields a flow graph with Component A to Component B edges labelled `ImageDecoder.decode` and counts, through `jakeos-obs-trace`, on `qemu-x86_64` and `hw-h002`.
+- [ ] Wakeup-to-run delay is present per Task on that trace and run-queue wait is broken down by intent class.
+- [ ] Operation completion latency is computed on the same session from `submit` and `complete` events.
+- [ ] An Operation error, a Component panic disconnect and a revocation each appear in the failure list with the objects involved.
 
 #### Verification
 - Integration: V0-D01 on H-002 with `os trace` displaying the pipeline flow.
-- Unit: `kernel:tests/obs/trace_flow_*` and `trace_sched_*` on `qemu-x86_64`.
+- Unit: `kernel:tests/obs/trace_flow_*` and `trace_sched_*` on `qemu-x86_64`; `obs:tests/trace/flow_*` on host CI.
 - Demo: V0-D01 live flow on H-002.
 
 #### Evidence
@@ -298,21 +367,26 @@ CLI binary (SDK-008). Offline export format (OBS-015). Daily-driving filters and
 - Explores: S-010
 - Risks: R-034
 
-Time-boxed comparison of inherited ftrace/tracepoints/eBPF, Fuchsia tracing and Perfetto against a native structured ring, focused on ABI surface S-010 (the tracing event record and enable bit). The report informs OBS-003 and records what retained Linux tooling (perf, bpftrace) can still provide beside native semantic events (§58).
+OBS-003 must pick the tracing substrate from evidence (§24, §58). This time-boxed study reads the inherited ftrace, tracepoint and eBPF machinery at the merged upstream tag, Fuchsia's tracing system and Perfetto's data model, and builds one probe under `jakeos/spikes/obs/ring/` behind `CONFIG_JAKEOS_SPIKES`: a minimal native structured ring with a global enable, instrumented on the ABI-019 syscall prototype's entry path, so the B-004-shaped cost of a disabled and an enabled native tracepoint can be compared with an ftrace tracepoint and an eBPF probe on the same path on `qemu-x86_64`. The report `reports/spikes/OBS-010.md` compares, per substrate: overhead enabled versus disabled on that path (as spike evidence, not a gate), whether a disabled scope stays off the hot path, in-kernel filtering safety, semantic fit for Component, Task, Channel and Operation identity, and what retained tooling (`perf`, `bpftrace`) still provides beside native events; and it maps the Fuchsia and Perfetto schemas onto the native primitives. It recommends an option set for OBS-003 without choosing.
 
 <!-- covers: INV-0476, INV-1145 -->
 
 #### Out of scope
-The substrate Decision (OBS-003). eBPF as sched_ext or network policy (KRN-024). Implementation (OBS-011).
+The substrate decision (OBS-003). eBPF as `sched_ext` or network policy (KRN-024). Implementation (OBS-011).
+
+#### Deliverables
+- kernel:jakeos/spikes/obs/ring/ · The minimal native ring probe and the ftrace and eBPF comparison probes on the ABI-019 entry path.
+- runtime:spikes/obs-ring-driver/ · Drives the entry path with tracing off, native on, ftrace on and eBPF on, recording per-call cost.
+- roadmap:reports/spikes/OBS-010.md · The comparison, the schema mappings and the recommended option set.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/OBS-010.md` exists with the Spike skeleton headings.
-- [ ] The report compares overhead on the B-004 path, in-kernel filtering safety, semantic-event fit and retained-tooling coverage for each substrate.
-- [ ] The report recommends an option set for OBS-003 without selecting it.
+- [ ] `reports/spikes/OBS-010.md` exists with the spike skeleton headings and compares ftrace with tracepoints and eBPF, Fuchsia tracing, Perfetto and the native ring on overhead (enabled and disabled, labelled unpublished prototype measurements), in-kernel filtering safety, semantic fit and retained-tooling coverage.
+- [ ] The report maps the Fuchsia and Perfetto schemas onto Component, Task, Channel and Operation and states which semantic events must be native and which retained tooling can still provide.
+- [ ] The report recommends an option set for OBS-003 without selecting one and does not freeze S-010.
 
 #### Verification
-- Report: answers overhead on B-004 enabled versus disabled; whether disabled scopes can stay off the hot path; which semantic events must be native versus retained Linux tooling; how Fuchsia and Perfetto schemas map onto Component, Task, Channel and Operation; recommended option set for the substrate Decision.
-- Bench: B-012 prototype numbers on H-001 attached as Spike Evidence, not as a Gate.
+- Report: overhead on B-004 enabled versus disabled; whether disabled scopes can stay off the hot path; which semantic events must be native versus retained Linux tooling; how Fuchsia and Perfetto schemas map onto Component, Task, Channel and Operation; recommended option set for the substrate decision.
+- Bench: B-012 prototype numbers on H-001 attached as spike evidence, not as a gate.
 - Review: OBS and KRN leads record that S-010 was explored.
 
 #### Evidence
@@ -324,23 +398,33 @@ The substrate Decision (OBS-003). eBPF as sched_ext or network policy (KRN-024).
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: OBS-003
+- Depends on: OBS-003, KRN-013
 - Baseline: §24, §59
 - Risks: R-034
 - Invariants: I-034
 
-The V0 tracing substrate chosen by OBS-003: typed-field records named in primitive terms, never free-form strings or raw kernel internals, with a global enable that keeps a disabled tracepoint off the hot path (ABI surface S-010). V0-G10 needs this ring so `os trace` can show the Demo. Per-Component and per-ResourceDomain enable wait for V0.5.
+The V0 tracing substrate D-0211 (OBS-003) chose (§24, §59): `jakeos/obs/ring.rs` implements it as the S-010 record store (a native per-CPU structured ring, an eBPF-fed native schema, or an ftrace extension per the decision) with typed-field records named in primitive terms (the S-010 record header: scope id, event id, D-0306 timestamp, Component identity, then the typed payload the scope schema defines), a global enable set by `trace.enable(scopes)` through the `Trace.idl` Interface (OBS-009) for a holder of `Capability<Trace>`, and the hot-path rule the decision recorded: a disabled tracepoint is one predictable branch and nothing else (a static key or the decision's equivalent), so the B-012 disabled configuration measures that branch and no more. Per-Component and per-ResourceDomain enable is OBS-025 at V0.5; V0 has the global scope set.
+
+`unsafe` is confined to the ring module the decision names; OBS-008's events and OBS-004's spans are the first writers.
 
 <!-- covers: INV-0467, INV-0468, INV-0471 -->
 
 #### Out of scope
-Per-primitive, per-Component and per-ResourceDomain enable (OBS-025). Export format (OBS-015). Access policy (OBS-014). CLI (SDK-008).
+Per-primitive, per-Component and per-ResourceDomain enable (OBS-025). Export format (OBS-015). Access policy (OBS-014). CLI (SDK-008). The decision (OBS-003).
+
+#### Deliverables
+- kernel:jakeos/obs/ring.rs · The D-0211 substrate: record store, S-010 record header, global enable, the disabled-tracepoint branch.
+- kernel:jakeos/obs/scopes.rs · The V0 scope set (`lifecycle`, `operation`, `ipc`, `capability`, `sched`) and their ids.
+- kernel:include/uapi/linux/jakeos/trace.h · The S-010 record header layout (generated from ABI-017 once it exists).
+- kernel:jakeos/cap/rights_decl.rs · The `Trace` Capability vocabulary (extending CAP-011's file).
+- kernel:tools/testing/selftests/jakeos/obs/trace_ring_*.rs · Selftests: enable records, disable records nothing, typed fields only, record header layout.
+- kernel:Documentation/jakeos/obs/ring.md · The record layout, scopes, enable semantics and the hot-path rule.
 
 #### Acceptance criteria
-- [ ] Enabling tracing globally records typed events; disabling it records none on a subsequent B-004 run.
-- [ ] Event records have typed fields and primitive names, not free-form strings.
-- [ ] A disabled tracepoint does not appear on the B-004 hot path in the B-012 disabled configuration.
-- [ ] No `unsafe` outside the substrate module named in the Decision.
+- [ ] Enabling tracing globally through `trace.enable` records typed events in the V0 scopes; disabling it records none on a subsequent B-004 run, on `qemu-x86_64` and `hw-h002`.
+- [ ] Every record carries the S-010 header (scope id, event id, timestamp, Component identity) and typed payload fields with primitive names; no record carries a free-form string.
+- [ ] A disabled tracepoint costs the single branch the decision recorded and nothing else on the B-004 hot path, as the B-012 disabled configuration measures.
+- [ ] No `unsafe` outside `jakeos/obs/ring.rs` in the OBS area (BLD-011 inventory).
 
 #### Verification
 - Unit: `kernel:tests/obs/trace_ring_*` on `qemu-x86_64` and `hw-h002`.

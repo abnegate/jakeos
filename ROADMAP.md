@@ -69,15 +69,15 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5898 |
-| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5757 |
-| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5674 |
-| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5632 |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5528 |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5910 |
+| KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5775 |
+| BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5692 |
+| ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5647 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5529 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5510 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5498 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5496 |
 | CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5496 |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5492 |
 | TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5485 |
 | ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5481 |
 | ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5479 |
@@ -150,8 +150,8 @@ Makespan (size-weight estimates): 115.
 
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
-| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1859 | 5616 |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | 1824 | 5528 |
+| ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1863 | 5631 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | 1825 | 5529 |
 | CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1809 | 5491 |
 | ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1803 | 5481 |
 | ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | 1803 | 5479 |
@@ -175,9 +175,9 @@ Makespan (size-weight estimates): 115.
 
 | Blocker | Tasks |
 | --- | --- |
-| BEN-005 | 64 |
+| BEN-005 | 65 |
+| BLD-082 | 43 |
 | CAP-005 | 41 |
-| BLD-082 | 40 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
 | SCH-007 | 32 |
@@ -202,11 +202,11 @@ Makespan (size-weight estimates): 115.
 | BLD-012 | 18 |
 | GOV-024 | 18 |
 | HW-015 | 18 |
+| KRN-013 | 18 |
 | MEM-010 | 18 |
 | PKG-038 | 18 |
 | WIN-054 | 18 |
 | BLD-009 | 17 |
-| KRN-013 | 17 |
 | OBS-019 | 17 |
 | PKG-022 | 17 |
 | SVC-013 | 17 |
