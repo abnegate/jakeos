@@ -27,22 +27,28 @@ Kernel fork, config fragments and retained-subsystem policy (KRN). Native init, 
 - Risks: R-010
 - Invariants: I-079
 
-Boot the forked kernel on H-001 from a CI-built UEFI image so V0 has a reproducible QEMU/OVMF path. §5.1 preserves boot; the image is the tagged-commit artifact BLD produces, not a hand-rolled firmware tree.
+V0 has one reproducible QEMU boot path (§5.1, §59): the BLD-009 image (a GPT disk with an ESP holding the retained bootloader, systemd-boot or the UKI stub D-0051 implies, the kernel built from KRN-011's `qemu-minimal.config`, and the retained initramfs) boots on the BLD-012 default cell under OVMF (UEFI-only per D-0049; the cell is `q35`, OVMF without Secure Boot for this rung, no CSM) to a serial login prompt, with `jakeos: boot complete` on the serial console for the harness. `tools/testing/selftests/jakeos/boot/qemu_ovmf_boot.sh` is the test: it boots the tagged image on `qemu-x86_64`, asserts the marker, asserts the kernel version string matches the tag (`uname -r` over serial), asserts the firmware was OVMF (the `efi:` lines in `dmesg`), and fails before QEMU starts when the OVMF firmware blob is missing from the BLD-009 mirror, attributing the failure to BOOT-001 through the BLD-006 agent's task-id convention. The image is the tagged-commit artifact, never a hand-rolled firmware tree.
 
 <!-- covers: INV-1154 -->
 
 #### Out of scope
-Physical Reference machine boot (BOOT-002). Native Component launch beside init (BOOT-005). QEMU matrix definition (BLD-012).
+Physical reference machine boot (BOOT-002). Native Component launch beside init (BOOT-005). QEMU matrix definition (BLD-012). Image assembly (BLD-009).
+
+#### Deliverables
+- kernel:tools/testing/selftests/jakeos/boot/qemu_ovmf_boot.sh · The boot test: marker, version string, OVMF assertion, missing-firmware failure.
+- bld:image/esp/ · The ESP layout (bootloader entry for the kernel and initramfs) the BLD-009 image builder writes.
+- bld:qemu/matrix.toml · The default cell's OVMF firmware path resolved through the mirror (extending BLD-012's file).
+- kernel:.github/workflows/pre-merge.yml · The `smoke-boot` job running `qemu_ovmf_boot.sh` (extending BLD-012's job).
 
 #### Acceptance criteria
-- [ ] A tagged CI image boots to a serial login prompt on H-001 under OVMF with Secure Boot enrollment disabled for this rung.
-- [ ] Repeating the boot from the same tagged commit on H-001 yields the same kernel version string and no firmware fallback to a BIOS image.
-- [ ] A missing OVMF firmware blob fails the job before QEMU starts, with the failure mapped to this task id by the guest test agent.
-- [ ] CI matrix entry `qemu-x86_64` records boot-complete over serial and rejects a CSM-enabled machine type.
+- [ ] A tagged CI image boots to a serial login prompt on `qemu-x86_64` under OVMF with Secure Boot enrolment disabled for this rung, and `jakeos: boot complete` appears on the serial console.
+- [ ] Repeating the boot from the same tagged commit yields the same kernel version string over serial and `dmesg` shows an EFI firmware handoff with no fallback to a BIOS image.
+- [ ] A missing OVMF firmware blob fails the job before QEMU starts, with the failure attributed to BOOT-001 by the guest test agent's task-id convention.
+- [ ] The `qemu-x86_64` cell records boot-complete over serial and refuses a CSM-enabled machine type.
 
 #### Verification
 - Integration: `kernel:tests/boot/qemu_ovmf_boot` on CI matrix entry `qemu-x86_64` (H-001).
-- Manual: rebuild the tagged image with BLD's one-command path and confirm OVMF handoff on a clean QEMU invocation.
+- Manual: rebuild the tagged image with `./build/jakeos-build image --profile qemu-x86_64` and confirm OVMF handoff on a clean QEMU invocation.
 
 #### Evidence
 - none
@@ -57,22 +63,27 @@ Physical Reference machine boot (BOOT-002). Native Component launch beside init 
 - Baseline: §5.1, §59
 - Invariants: I-074, I-079
 
-Take the same tagged CI image that boots on H-001 and boot it on H-002 so V0 and §59 have one physical Reference machine. The task covers UEFI firmware quirks, serial console and LAB power-cycle automation, not a second firmware architecture.
+The same tagged image that boots on H-001 boots on H-002, so V0 has one physical machine (§5.1, §59). The image is written to H-002's NVMe by the LAB-003 flash path; the machine's firmware is set to UEFI with CSM disabled; `tools/testing/selftests/jakeos/boot/hw_h002_uefi.sh` runs on the `hw-h002` runner: it power-cycles H-002 through the LAB-003 PDU or Redfish path, captures the serial or USB-debug console, asserts the `jakeos: boot complete` marker and the same kernel version string as the QEMU image, asserts from the boot log that the vendor firmware handed off via EFI and that a TPM 2.0 is present (Secure Boot stays off for this rung), and asserts the job definition contains no BIOS-only boot target. Firmware quirks found on the way are recorded in the LAB-003 rack record, not worked around in the kernel.
 
 <!-- covers: INV-1154 -->
 
 #### Out of scope
-QEMU/OVMF CI boot (BOOT-001). SKU selection (HW-003). Rack and console (LAB-003).
+QEMU and OVMF CI boot (BOOT-001). SKU selection (HW-003). Rack and console (LAB-003). Secure Boot enrolment (BOOT at V0.5 and later).
+
+#### Deliverables
+- kernel:tools/testing/selftests/jakeos/boot/hw_h002_uefi.sh · The hardware boot test over the LAB power and console paths.
+- lab:racks/h002.md · Firmware setup (UEFI, CSM off), flash path, and quirks found (extending LAB-003's rack record).
+- kernel:.github/workflows/nightly.yml · The `hw-boot-h002` job on the `lab-hw-h002` runner.
 
 #### Acceptance criteria
-- [ ] H-002 boots the tagged CI image to a serial prompt under UEFI with CSM disabled in firmware setup.
-- [ ] LAB remote power-off and power-on of H-002 completes a cold boot that reaches the same serial prompt.
-- [ ] The boot log on H-002 names the OVMF-equivalent vendor firmware and records TPM 2.0 presence without requiring Secure Boot on for this rung.
-- [ ] A BIOS-only boot target is absent from the H-002 job definition.
+- [ ] H-002 boots the tagged CI image to a serial prompt under UEFI with CSM disabled in firmware setup, and `jakeos: boot complete` appears on the console.
+- [ ] A LAB remote power-off and power-on of H-002 completes a cold boot that reaches the same prompt and the same kernel version string as the `qemu-x86_64` image.
+- [ ] The boot log on H-002 shows the vendor firmware's EFI handoff and TPM 2.0 presence without requiring Secure Boot on for this rung.
+- [ ] The `hw-boot-h002` job definition contains no BIOS-only boot target.
 
 #### Verification
 - Integration: `kernel:tests/boot/hw_h002_uefi` on CI matrix entry `hw-h002`.
-- Manual: LAB operator power-cycles H-002 from the rack PDU and captures serial through the documented console.
+- Manual: the LAB operator power-cycles H-002 from the rack PDU and captures serial through the documented console.
 
 #### Evidence
 - none
@@ -152,22 +163,28 @@ Native init implementation (SVC-007). Early-userspace design at V0.5 (SVC-003). 
 - Risks: R-010
 - Invariants: I-094
 
-Implement the accepted V0 boot strategy so the V0 demos start from one retained initramfs: native Components A and B, and the Linux busybox plus L0 corpus, run side by side. Linux init remains the first userspace; native Components are launched beside it from mapped initramfs objects, not from a native init.
+D-0051 (BOOT-004) says V0 boots exactly as Linux does and starts native Components beside Linux init (§5.1, §59). `build/image/native-launch/` in the platform monorepo is the small launcher: an initramfs hook (`bld:image/native-launch.conf`, installed by the BLD-009 image builder into the retained initramfs's init sequence after the root is mounted) starts `jakeos-native-launch` (crate `jakeos-build-native-launch`, a Linux-hosted helper permitted by ABI-003 for this crate only) which reads `/etc/jakeos/native-launch.toml` (the list of Code objects to launch from the initramfs, their launch Capability sets from each `Component.toml`, and the ResourceDomain to create for them), creates the domain through SCH-007, wraps each initramfs file as a Code object through CMP-003's `from_initramfs`, and starts each through the CMP-005 builder. Linux init remains PID 1 and the first user space; the V0 demo pair (CMP-011) and the BLD-006 guest agent are launched this way, and a busybox shell and the L0 corpus (LNX-002) run on the same booted kernel. No native Component receives a POSIX namespace, file descriptor or Linux syscall as its native ABI; tearing the Components down leaves Linux init running. Native init replaces this at V0.5 (SVC-007, R-010).
 
 <!-- covers: INV-0120, EXTRA-046 -->
 
 #### Out of scope
-Native init (SVC-007). Package-backed launch (CMP-027). L0 corpus pass rate (LNX).
+Native init (SVC-007). Package-backed launch (CMP-027). L0 corpus pass rate (LNX-002). Image assembly (BLD-009).
+
+#### Deliverables
+- bld:image/native-launch/ · Crate `jakeos-build-native-launch`: reads the launch list, creates the domain, wraps Code objects, starts Components through the builder.
+- bld:image/native-launch.conf · The initramfs hook that runs the launcher after root mount.
+- bld:image/native-launch.toml · The V0 launch list: guest agent, demo Components, their `Component.toml` paths.
+- runtime:tests/boot/initramfs_native_launch_*.rs · Tests: Components appear in `os inspect component`, busybox and L0 coexist, no POSIX authority on native Components, teardown leaves init running.
 
 #### Acceptance criteria
-- [ ] The V0 CI image on H-001 reaches Linux init from the retained initramfs and then starts two native Components whose identities appear in `os inspect component`.
+- [ ] The V0 CI image on `qemu-x86_64` and `hw-h002` reaches Linux init from the retained initramfs and then starts the native Components listed in `native-launch.toml`, whose identities appear in `os inspect component`.
 - [ ] A Linux busybox shell and the L0 corpus jobs run on the same booted kernel as those Components.
-- [ ] No native Component is granted a POSIX namespace, file descriptor or Linux syscall as its native ABI; personality paths stay inside LNX.
-- [ ] Tearing down the two native Components leaves Linux init running.
+- [ ] No native Component started this way holds a POSIX namespace, file descriptor or Linux syscall table as its native ABI; the CMP-012 negative tests pass against them and personality paths stay inside LNX.
+- [ ] Tearing down the native Components leaves Linux init running and the shell responsive.
 
 #### Verification
 - Integration: `runtime:tests/boot/initramfs_native_launch` on CI matrix entries `qemu-x86_64` and `hw-h002`.
-- Demo: Component A/B Channel round trip started from the retained initramfs on H-001, shown beside busybox.
+- Demo: Component A and B Channel round trip started from the retained initramfs on H-001, shown beside busybox.
 
 #### Evidence
 - none

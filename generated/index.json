@@ -36548,12 +36548,14 @@
       "depends_on": [
         "CAP-005",
         "CAP-001",
-        "CMP-005"
+        "CMP-005",
+        "OBS-006"
       ],
       "blockers": [
         "CAP-005",
         "CAP-001",
-        "CMP-005"
+        "CMP-005",
+        "OBS-006"
       ],
       "covers": [
         "INV-0206",

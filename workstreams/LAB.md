@@ -32,21 +32,29 @@ SKU selection, driver bring-up, HID services, LVFS firmware updates and HCL prob
 - Risks: R-022
 - Invariants: I-061
 
-V0.5 compositor gates publish B-020 on H-002. Software timestamps cannot measure Input-to-photon latency (§54). This task installs the sensor, HID injector and calibration path chosen by LAB-004 on the racked AMD desktop so GFX-004 and BEN-010 drive a fixture rather than a guess. Later racks reuse the same fixture design.
+Input-to-photon latency cannot be a software timestamp (§54); it needs a sensor on the glass. This task installs on H-002 the fixture LAB-004 chose: the sensor (photodiode or camera per the report) mounted on the attached display over a calibration patch region, a programmable HID injector (a microcontroller presenting a USB HID keyboard and mouse, driven from the runner) whose injection is timestamped on the same clock as the sensor, and a capture device that records both edges into one log. `lab/photon/` in the platform monorepo holds the firmware and host software (`jakeos-lab-photon`: injector control, sensor capture, calibration against a known-delay reference such as a hardware-triggered LED), the capture schema (`lab/photon/schema.json`: one record per trial with injection timestamp, photon edge timestamp, display connector and calibration id) that GFX-004 and BEN-010 consume, and the calibration record `lab/photon/calibration/h002.toml` naming sensor model, mounting, display connector and the delay standard. No B-020 number appears in LAB prose (I-061); a second lab machine attaches the same fixture class by adding its own calibration record without a schema change (LAB-018, LAB-021, LAB-023 reuse it).
 
 <!-- covers: EXTRA-049, GAP-0138, GAP-0546 -->
 
 #### Out of scope
-Sensor choice (LAB-004). Harness and B-020 publication (GFX-004, BEN-010). Toolkit-stage timestamps (UIP).
+Sensor choice (LAB-004). Harness and B-020 publication (GFX-004, BEN-010). Toolkit-stage timestamps (UIP). Racking (LAB-003).
+
+#### Deliverables
+- lab:photon/firmware/ · HID injector firmware presenting keyboard and mouse with host-triggered, timestamped injection.
+- lab:photon/host/ · Crate `jakeos-lab-photon`: injector control, sensor capture, single-clock correlation, calibration routine.
+- lab:photon/schema.json · The per-trial capture record schema GFX-004 and BEN-010 consume.
+- lab:photon/calibration/h002.toml · Sensor model, mounting, display connector, delay standard and calibration result for H-002.
+- lab:tests/photon/h002_fixture_*.rs · Tests: calibration patch produces a photon edge, injection produces an input event in the same log, schema round trip.
+- lab:photon/README.md · How to mount the fixture on another machine and add its calibration record.
 
 #### Acceptance criteria
-- [ ] The accepted sensor from LAB-004 is mounted on H-002 and records a pixel-change event when the attached display lights a calibration patch.
-- [ ] Programmable HID injection on H-002 produces a matching input event in the same capture log as the photon event.
-- [ ] A calibration record in the repository names sensor model, mounting, display connector and the delay standard used; no B-020 number appears in LAB prose (I-061).
-- [ ] A second lab machine can attach the same fixture class without rewriting the capture schema.
+- [ ] The LAB-004 sensor is mounted on H-002 and records a photon edge when the attached display lights the calibration patch, on the `hw-h002` runner.
+- [ ] Programmable HID injection on H-002 produces a matching input event in the same capture log as the photon edge, on one clock.
+- [ ] `lab/photon/calibration/h002.toml` names sensor model, mounting, display connector and the delay standard used, and no B-020 number appears in LAB prose (I-061).
+- [ ] A second lab machine attaches the same fixture class by adding a calibration record without changing `schema.json`.
 
 #### Verification
-- Manual: operator fires the calibration patch on H-002 and files the capture log on the pull request.
+- Manual: the operator fires the calibration patch on H-002 and files the capture log on the pull request.
 - Integration: `lab:tests/photon/h002_fixture_*` records HID and photon edges on CI matrix entry `hw-h002`.
 - Review: BEN lead confirms the fixture matches the B-020 method.
 
@@ -96,21 +104,29 @@ Scheduler family and unbootable recovery (LAB-005). SKU list (HW-003). Quiet per
 - Risks: R-022, R-081
 - Invariants: I-074
 
-V0 hardware scope is QEMU plus one AMD desktop. EXTRA-052 and the V0 boot-on-hardware gate need H-002 on the accepted power, console and capture stack before BOOT-002 can power-cycle it. The SKU is the machine HW-003 names; this task buys, racks and documents the outlet, console path and capture port.
+V0 hardware scope is QEMU plus one AMD desktop (§59, §62), and the V0 boot-on-hardware gate needs that machine on the accepted lab stack (D-0169) before BOOT-002 can power-cycle it. This task buys the SKU HW-003 named (D-0129: Zen 4-class CPU, RDNA 3-class discrete GPU, NVMe, wired Ethernet, IOMMU, TPM 2.0, Secure Boot with custom-key enrolment), racks it in the home or office lab on a network-controlled PDU outlet, attaches a serial or USB-debug console adapter and an HDMI capture device, registers it as the self-hosted runner `lab-hw-h002` (D-0034) with the `hw-h002` matrix entry, and documents everything in `lab/racks/h002.md`: outlet, console path, capture port, flash path (how the runner writes a BLD-009 image to the NVMe), and the IOMMU, TPM 2.0 and Secure Boot posture I-074 requires. `lab/racks/h002/power.sh` power-cycles it through the PDU or Redfish path and yields a console prompt; `registers/hardware.md` records the SKU once procured.
 
 <!-- covers: EXTRA-052 -->
 
 #### Out of scope
 SKU decision (HW-003). Kernel bring-up (HW-001). UEFI boot of the CI image (BOOT-002). Soak scheduling (LAB-010).
 
+#### Deliverables
+- lab:racks/h002.md · Outlet, console path, capture port, flash path, runner registration, firmware posture.
+- lab:racks/h002/power.sh · Remote power-off and power-on through the PDU or Redfish path.
+- lab:racks/h002/console.sh · Console capture to a log file.
+- lab:racks/h002/flash.sh · Writes a BLD-009 image to the NVMe from the runner.
+- roadmap:registers/hardware.md · H-002 SKU recorded, `Status: procured`.
+- lab:tests/rack/h002_power_console_*.sh · Tests: power cycle yields a console prompt, capture and console each log a cold boot.
+
 #### Acceptance criteria
-- [ ] H-002 is in the lab on the accepted power and console stack, and `registers/hardware.md` records its SKU once procured.
-- [ ] Remote power-off and power-on of H-002 is invoked from the documented PDU or Redfish path and yields a console prompt.
-- [ ] Display capture and a serial or USB-debug console each produce a log for a cold boot of H-002.
-- [ ] The rack record lists IOMMU, TPM 2.0 and Secure Boot enrolment posture required by I-074.
+- [ ] H-002 is in the lab on the accepted power and console stack, registered as the `lab-hw-h002` runner serving the `hw-h002` matrix entry, and `registers/hardware.md` records its SKU with `Status: procured`.
+- [ ] `lab/racks/h002/power.sh` power-cycles H-002 from the documented PDU or Redfish path and yields a console prompt.
+- [ ] Display capture and the serial or USB-debug console each produce a log for a cold boot of H-002 through `console.sh`.
+- [ ] `lab/racks/h002.md` lists the IOMMU, TPM 2.0 and Secure Boot enrolment posture required by I-074 and the flash path `flash.sh` implements.
 
 #### Verification
-- Manual: operator power-cycles H-002 from the documented remote path and attaches console and capture logs to the pull request.
+- Manual: the operator power-cycles H-002 from the documented remote path and attaches console and capture logs to the pull request.
 - Integration: `lab:tests/rack/h002_power_console_*` on CI matrix entry `hw-h002`.
 - Review: HW lead confirms the SKU matches HW-003.
 
@@ -128,21 +144,23 @@ SKU decision (HW-003). Kernel bring-up (HW-001). UEFI boot of the CI image (BOOT
 - Risks: R-022
 - Invariants: I-061
 
-B-020 cannot be a software timestamp. This spike compares a photodiode against a high-speed camera on H-002, with HID injection and a calibration source, so LAB-001 installs a chosen fixture rather than both. The report is the method; BEN publishes results later.
-
-Required by V0.5-G15 (Input-to-photon latency published): LAB-001 installs the fixture this report chooses.
+B-020 cannot be a software timestamp (§54), and LAB-001 should install one fixture, not two. This spike compares, on H-002, a photodiode (a fast phototransistor on an ADC sampled at the injector's clock) against a high-speed camera (a camera module or USB3 camera at its top frame rate) for detecting the first pixel change after a HID injection from the same microcontroller against the same calibration source (a hardware-triggered LED with known delay), on temporal resolution, mounting practicality on a laptop lid as well as a desktop monitor, calibration drift, and cost. `lab/spikes/photon/` holds the two prototype captures and the comparison script. The report `reports/spikes/LAB-004.md` names the sensor, injection path and calibration standard LAB-001 must install, cites B-020 rather than a latency number (I-061), and states whether the same fixture class and `schema.json` port to the later laptop racks (H-004 at LAB-007) without a new schema.
 
 #### Out of scope
-Fixture installation (LAB-001). B-020 publication (GFX-004, BEN-010). Visible-UI boundary (BEN).
+Fixture installation (LAB-001). B-020 publication (GFX-004, BEN-010). Visible-UI boundary (BEN-016).
+
+#### Deliverables
+- lab:spikes/photon/ · The photodiode and camera capture prototypes and the comparison script.
+- roadmap:reports/spikes/LAB-004.md · The comparison and the fixture recommendation.
 
 #### Acceptance criteria
 - [ ] `reports/spikes/LAB-004.md` exists with the spike skeleton headings.
-- [ ] The report compares photodiode and high-speed camera on H-002 against the same HID injection and calibration source.
+- [ ] The report compares the photodiode and the high-speed camera on H-002 against the same HID injection and calibration source, on temporal resolution, mounting, calibration drift and cost.
 - [ ] The report names the sensor, injection path and calibration standard LAB-001 must install, and cites B-020 rather than a latency number (I-061).
-- [ ] The report states whether the same fixture class ports to later laptop racks.
+- [ ] The report states whether the same fixture class and capture schema port to later laptop racks without a new schema.
 
 #### Verification
-- Report: Photodiode or high-speed camera? How is HID injected? What calibration standard is used? Does the capture schema port to H-004 without a new ABI? Which traces may B-020 cite?
+- Report: photodiode or high-speed camera; how is HID injected; what calibration standard is used; does the capture schema port to H-004 without a new ABI; which traces may B-020 cite?
 - Review: BEN lead records that the recommendation matches the B-020 method.
 
 #### Evidence

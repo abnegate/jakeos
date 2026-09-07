@@ -30,17 +30,24 @@ Kernel fork, retained-mechanism inventory and divergence phases (KRN). Native AB
 - Risks: R-004
 - Invariants: I-006, I-010, I-049
 
-Phase A keeps the Linux syscall ABI, ELF loading including glibc dynamic linking, and the POSIX process, PID, file-descriptor, signal, `/proc`, `/sys`, socket, `fork`, `exec`, epoll and path surfaces so unmodified Linux userspace boots beside native Components (§3, §46, §59). Native software still sees none of these. The retained path is the C-001 detector for native hooks that would otherwise regress Linux behaviour (R-004).
+Phase A keeps the Linux syscall ABI whole (§3, §6, §46, §59): the x86-64 syscall table, ELF loading with glibc dynamic linking, and the POSIX process, PID, file-descriptor, signal, `/proc`, `/sys`, socket, `fork`, `exec`, epoll and path surfaces, so unmodified Linux user space boots from the retained initramfs beside native Components. The work is guarding, not building: `personality-linux/retain/` in the platform monorepo holds the retention test suite (`personality:tests/retain/syscall_abi_*`): an unmodified glibc-linked ELF starts; `fork`, `exec`, epoll, a listening BSD socket, `/proc/self` and `/sys` work for that process; and the same image's native Component (CMP-012's intruder fixture) has no Linux syscall table routed by the ABI-002 entry layer and cannot open a POSIX path. `retained.toml` (KRN-017) lists the syscall path as a retained mechanism with this suite as its `kselftest` field so KRN-014's matrix runs it, and the C-001 corpus (LNX-002) is the detector for native hooks that would regress Linux behaviour (R-004). Native software sees none of this (I-006, I-049).
 
 <!-- covers: INV-0004, INV-0082, INV-0083, INV-0084, INV-0085, INV-0086, INV-0087, INV-0088, INV-0089, INV-0090, INV-0091, INV-0092, INV-0093, INV-0105, INV-0849, INV-0858, INV-1168, INV-0865 -->
 
 #### Out of scope
 Native ABI entry layer (ABI-002). Translation onto native primitives (LNX-090). L0 scenario scripts (LNX-002). Retained-mechanism inventory (KRN-017).
 
+#### Deliverables
+- personality-linux:retain/tests/syscall_abi_*.rs · The retention suite: glibc ELF start, the POSIX surfaces, native Component exclusion.
+- personality-linux:retain/fixtures/ · The glibc-linked test binaries and a static Go binary used by the suite.
+- kernel:Documentation/jakeos/retained.toml · The `syscall-abi` mechanism entry naming this suite (extending KRN-017's inventory).
+- docs:personality/linux/retention.md · What phase A retains, what native software never sees, and how the suite guards it.
+
 #### Acceptance criteria
 - [ ] An unmodified glibc-linked ELF starts through the Linux syscall ABI on CI matrix entries `qemu-x86_64` and `hw-h002`.
 - [ ] `fork`, `exec`, epoll, a listening BSD socket, `/proc/self` and `/sys` are available to that process and not to a native Component started in the same image.
-- [ ] A native Component in the same boot has no Linux syscall table and cannot open a POSIX path.
+- [ ] A native Component in the same boot has no Linux syscall table routed by the entry layer and cannot open a POSIX path (the CMP-012 intruder fixture asserts it).
+- [ ] `retained.toml` lists the syscall path as a retained mechanism with this suite as its `kselftest` field, and KRN-014's matrix runs it.
 
 #### Verification
 - Integration: `personality:tests/retain/syscall_abi_*` on `qemu-x86_64` and `hw-h002`.
@@ -62,17 +69,25 @@ Native ABI entry layer (ABI-002). Translation onto native primitives (LNX-090). 
 - Risks: R-004
 - Invariants: I-096
 
-C-001 is the V0 compatibility firewall: the LTP syscall subset plus busybox, bash, coreutils, python3 and a static Go binary must match the unforked kernel of the same version on the same hardware (§6, §59). Results land under `reports/compat/C-001/`. Native hooks that regress this corpus fail the merge.
+C-001 is the V0 compatibility firewall (§6, §46, §59): the LTP syscall subset named in `registers/corpora.md` plus busybox, bash, coreutils, python3 and a static Go binary must behave on the fork exactly as on the unforked kernel of the same version (BEN-006's pinned image) on the same hardware. `bench/compat/linux-L0/` in the platform monorepo (crate `jakeos-compat-linux-l0`, the `compat:linux-L0` scenario runner) installs the corpus into the retained initramfs image, runs each entry on the fork and on the baseline kernel in the same session, and diffs pass and fail per test case; the report `reports/compat/C-001/h001.md` and `h002.md` follows `reports/README.md`'s compat skeleton and states the threshold from the register (zero regressions at V0). The runner is a KRN-014 matrix row through `retained.toml` and a `pre-merge` job on `qemu-x86_64`, so a native-hook patch that drops a previously passing case fails CI (R-004); BLD-017 generalises the plumbing after V0.
 
 <!-- covers: INV-0141 -->
 
 #### Out of scope
-Scenario CI plumbing after V0 (BLD-017). L1 GUI scenarios (LNX-007). kselftests for retained subsystems (KRN-014).
+Scenario CI plumbing after V0 (BLD-017). L1 GUI scenarios (LNX-007). kselftests for retained subsystems (KRN-014). The baseline image (BEN-006).
+
+#### Deliverables
+- compat:linux-L0/ · Crate `jakeos-compat-linux-l0`: corpus install, dual-kernel run, per-case diff, report rendering.
+- compat:linux-L0/corpus.toml · The C-001 entries (LTP subset list, busybox, bash, coreutils, python3, the static Go binary) with their content hashes in the BLD-009 mirror.
+- roadmap:reports/compat/C-001/h001.md · The H-001 report.
+- roadmap:reports/compat/C-001/h002.md · The H-002 report V0-G19 cites.
+- kernel:.github/workflows/pre-merge.yml · The `compat-l0` job on `qemu-x86_64`.
+- personality-linux:tests/corpus/l0_*.rs · Tests for the runner: diff detection on a fixture regression.
 
 #### Acceptance criteria
-- [ ] C-001 runs on H-001 and H-002 against the unforked baseline of the same kernel version.
-- [ ] The committed report meets the C-001 V0 threshold in the register.
-- [ ] A native-hook patch that drops a previously passing C-001 case fails CI.
+- [ ] `compat:linux-L0` runs C-001 on `qemu-x86_64` and `hw-h002` against the BEN-006 unforked baseline of the same kernel version in the same session and produces per-case diffs.
+- [ ] `reports/compat/C-001/h001.md` and `h002.md` exist, follow the compat skeleton and meet the C-001 V0 threshold in the register (zero regressions).
+- [ ] A native-hook patch that drops a previously passing C-001 case fails the `compat-l0` `pre-merge` job (fixture regression test).
 
 #### Verification
 - Compat: C-001 scenario `compat:linux-L0` on H-001 and H-002.

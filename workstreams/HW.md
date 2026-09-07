@@ -28,22 +28,28 @@ Lab procurement, racks, radio peers and soak calendars (LAB). Kernel fork, rebas
 - Risks: R-022
 - Invariants: I-074
 
-V0 hardware scope is QEMU plus one designated AMD desktop. LAB racks H-002 and BOOT boots the CI-built image. This task records the SKU, firmware version, IOMMU, TPM 2.0 and Secure Boot enrolment posture required by HW-003, and archives a passing boot log.
+V0 hardware scope is QEMU plus one AMD desktop (§59, §62). LAB-003 racks H-002 and BOOT-002 boots it; this task records the machine and proves the retained hardware layer enumerates on it. The `registers/hardware.md` H-002 entry gains the procured SKU (mainboard, CPU, GPU, NVMe, NIC models), the firmware version, and the IOMMU, TPM 2.0 and Secure Boot enrolment posture D-0129 requires (Status moves to `in-lab`); `hardware/bringup/h002/` in the platform monorepo holds the archived boot log of the tagged CI image reaching user space, the `lspci -vv`, `lsusb -v` and `dmesg` captures, and `probe.toml` (the device inventory BLD-007's probe comparison uses as its first baseline). The kernel log must list the PCI root complex and every USB host controller; no bus that the QEMU image enumerates may be missing on H-002, and any device the retained drivers do not bind is recorded as a quirk for HW-005.
 
 <!-- covers: INV-1154 -->
 
 #### Out of scope
-Racking and capture (LAB-003). Kernel boot image (BOOT-002). Compositor GPU path (HW-010).
+Racking and capture (LAB-003). Kernel boot image (BOOT-002). Compositor GPU path (HW-010). Retained-bus regression gating (HW-005).
+
+#### Deliverables
+- roadmap:registers/hardware.md · H-002 SKU fields, firmware version, IOMMU, TPM 2.0 and Secure Boot posture, `Status: in-lab`.
+- hw:bringup/h002/boot.log · The archived boot log of the tagged image reaching user space.
+- hw:bringup/h002/probe.toml · The device inventory (PCI, USB, DRM connectors, block, network) as the BLD-007 probe baseline.
+- hw:bringup/h002/quirks.md · Devices without a bound driver or with firmware quirks, for HW-005 and LAB-003.
 
 #### Acceptance criteria
-- [ ] `registers/hardware.md` entry H-002 names the procured SKU, firmware version, and IOMMU, TPM 2.0 and Secure Boot enrolment state.
-- [ ] A boot log from H-002 of the tagged CI image is committed under Evidence and shows the kernel reaching userspace.
-- [ ] The kernel log on H-002 lists the PCI root complex and USB host controllers; no inventoried bus is missing versus the QEMU image.
+- [ ] The `registers/hardware.md` entry H-002 names the procured SKU and firmware version and records IOMMU, TPM 2.0 and Secure Boot enrolment state, with `Status: in-lab`.
+- [ ] `hw/bringup/h002/boot.log` from the tagged CI image shows the kernel reaching user space on H-002 and is committed as Evidence.
+- [ ] The kernel log on H-002 lists the PCI root complex and every USB host controller, and `probe.toml` shows no inventoried bus missing relative to the `qemu-x86_64` image; unbound devices are listed in `quirks.md`.
 
 #### Verification
-- Integration: boot-log capture on CI matrix entry `hw-h002`.
-- Review: HW lead confirms H-002 fields match the accepted target-hardware Decision.
-- Manual: serial console on H-002 shows the same kernel version as the QEMU CI image.
+- Integration: boot-log and probe capture on CI matrix entry `hw-h002`.
+- Review: HW lead confirms the H-002 fields match D-0129.
+- Manual: the serial console on H-002 shows the same kernel version as the QEMU CI image.
 
 #### Evidence
 - none
@@ -120,17 +126,22 @@ Lab site and racking (LAB-002, LAB-003). Public vendor purchase ranking (HW-044)
 - Baseline: §2, §5.1, §55
 - Invariants: I-010, I-054
 
-Collapse PCIe, USB, ACPI, input, Bluetooth, firmware loading, power-management hooks and hardware discovery into one inventory that feeds KRN's retained-mechanism list. No driver class is replaced here. The inventory names the native object each bus will back once HW-008 lands.
+The hardware layer is retained (§2, §5.1, §55, D-0122): PCIe, USB, ACPI, input (evdev and HID), Bluetooth, firmware loading (`request_firmware` and the D-0097 blob set), power-management hooks and hardware discovery. `hardware/inventory/retained-buses.toml` in the platform monorepo lists each with its kernel subsystem path, the kselftest subset that guards it, and the native object each will back once HW-008's user-space driver framework lands (or the rung at which it does): PCI and USB back `Object<Device>` (HW-008), input backs the UIP input path (UIP-005), Bluetooth backs the V2 HW-037 service, firmware load stays kernel-internal, ACPI backs PWR's Layer 2 service (D-0232). The file is the hardware row of KRN-017's `retained.toml` (each entry cross-references its `[[mechanism]]` id) and states that native software never opens `sysfs` or a device node as a native API. No driver class is replaced here; HW-005 gates the regressions.
 
 <!-- covers: INV-0016, INV-0017, INV-0020, INV-0021, INV-0025, INV-0027, INV-0033, INV-0069, INV-0125, INV-0126, INV-0127, INV-0131, INV-0132, INV-0134, INV-0135, INV-0136, INV-1327 -->
 
 #### Out of scope
-Merge-blocking regression runs (HW-005). DRM inventory (GFX-001). Whole-kernel retained list (KRN-017).
+Merge-blocking regression runs (HW-005). DRM inventory (GFX-001). Whole-kernel retained list (KRN-017). The user-space driver framework (HW-008).
+
+#### Deliverables
+- hw:inventory/retained-buses.toml · One entry per bus or facility: subsystem path, kselftest subset, `retained.toml` mechanism id, native object or rung.
+- hw:inventory/README.md · The rule that native software never opens `sysfs` or device nodes, and how an entry changes when a class moves to user space.
+- hw:tests/inventory/retained_buses_*.rs · Tests: every entry cross-references a `retained.toml` mechanism and names a kselftest subset that exists.
 
 #### Acceptance criteria
-- [ ] The inventory lists PCIe, USB, ACPI, input, Bluetooth, firmware load, power-management hooks and hardware discovery with the native object or later rung each backs.
-- [ ] The inventory is cited as the hardware row of KRN-017.
-- [ ] The inventory states that native software does not open sysfs or device nodes as a native API.
+- [ ] `hw/inventory/retained-buses.toml` lists PCIe, USB, ACPI, input, Bluetooth, firmware load, power-management hooks and hardware discovery with the kernel path, the kselftest subset and the native object or later rung each backs.
+- [ ] Every entry cross-references its `retained.toml` mechanism id, and KRN-017's report cites the file as its hardware row.
+- [ ] `hw/inventory/README.md` states that native software does not open `sysfs` or device nodes as a native API, and `hw:tests/inventory/retained_buses_*` passes.
 
 #### Verification
 - Review: KRN and HW leads record inventory sign-off on the pull request.
@@ -150,17 +161,22 @@ Merge-blocking regression runs (HW-005). DRM inventory (GFX-001). Whole-kernel r
 - Risks: R-013
 - Invariants: I-054, I-098
 
-Second of the two retain tasks: kselftest and boot-time enumeration checks for the inventoried buses on H-001 and H-002. A native feature that regresses a retained driver is rejected. Bluetooth and laptop power are presence checks until later rungs.
+The second retain task (§5.1, §55): the buses HW-004 inventoried are guarded by tests that block a native change that breaks them. `hardware/tests/retain/` (`hw:tests/retain/pcie_usb_acpi_input_*`) runs the kselftest subsets named in `retained-buses.toml` for PCI, USB, ACPI and input plus boot-time enumeration checks against HW-001's `probe.toml` (every PCI device, USB host controller, ACPI power object and input device present at bring-up is present now) on `qemu-x86_64` and `hw-h002`; the Bluetooth controller and the ACPI power objects are presence checks only until their rungs. The tests are registered as rows of KRN-014's `retained-matrix.toml` (through `retained-buses.toml`'s kselftest fields), so they run in KRN-014's `retained-matrix` job rather than a second runner, and a native change that removes an inventoried bus without an accepted classification decision (D-0121, HW-016 at V1) is rejected by the same job.
 
 <!-- covers: INV-0016, INV-0017, INV-0020, INV-0021, INV-0025, INV-0027, INV-0033, INV-0069, INV-0125, INV-0126, INV-0127, INV-0131, INV-0132, INV-0134, INV-0135, INV-0136, INV-1327 -->
 
 #### Out of scope
-Matrix contents for DRM, NVMe and networking (KRN-014). Bluetooth profiles (HW-037).
+Matrix contents for DRM, NVMe and networking (KRN-014). Bluetooth profiles (HW-037). Laptop power (PWR). The inventory (HW-004).
+
+#### Deliverables
+- hw:tests/retain/pcie_usb_acpi_input_*.rs · The kselftest invocations and probe-baseline enumeration checks for the four classes plus Bluetooth and ACPI power presence.
+- hw:tests/retain/baseline.rs · Comparison against `hw/bringup/h002/probe.toml`.
+- kernel:Documentation/jakeos/retained-matrix.toml · The HW rows, generated from `retained-buses.toml`'s kselftest fields (extending KRN-014's generated matrix).
 
 #### Acceptance criteria
-- [ ] CI on `qemu-x86_64` and `hw-h002` runs kselftest subsets for PCI, USB, ACPI and input named by the inventory and fails the merge on a regression.
-- [ ] A native feature that removes an inventoried bus without an accepted classification Decision is rejected by the same job.
-- [ ] Bluetooth controller and ACPI power objects are asserted present on H-002 without requiring pairing or suspend success.
+- [ ] KRN-014's `retained-matrix` job on `qemu-x86_64` and `hw-h002` runs the kselftest subsets for PCI, USB, ACPI and input named by `retained-buses.toml` and fails the merge on a regression.
+- [ ] A native change that removes an inventoried bus, or a device present in `probe.toml`, without an accepted classification decision is rejected by the same job.
+- [ ] The Bluetooth controller and ACPI power objects are asserted present on `hw-h002` without requiring pairing or suspend success.
 
 #### Verification
 - Integration: `hw:tests/retain/pcie_usb_acpi_input_*` on `qemu-x86_64` and `hw-h002`.

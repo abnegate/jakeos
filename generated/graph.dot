@@ -6798,6 +6798,7 @@ digraph roadmap {
   "OBS-006" -> "OBS-043";
   "OBS-006" -> "OBS-045";
   "OBS-006" -> "SDK-007";
+  "OBS-006" -> "SEC-001";
   "OBS-006" -> "SEC-008";
   "OBS-007" -> "OBS-009";
   "OBS-007" -> "OBS-017";

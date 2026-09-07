@@ -26,18 +26,25 @@ Package and SystemGeneration composition (PKG). Chooser UI, File Browser chrome,
 - Threats: T-001, T-003
 - Invariants: I-016, I-021
 
-V0 proves the native execution model with a File object sufficient for the capability gates: a holder of `Capability<File, ReadWrite>` derives `Capability<File, Read>`, forged handles and Admin derivation fail, and revocation walks a derivation tree. Native Components receive no filesystem namespace. Raw block and filesystem passthrough remain for the Linux personality; the user-space Storage service and the full Operation surface wait for V0.5.
+V0 needs one storage-flavoured object to prove the capability gates on something that is not a Channel (§7, §25): `Object<File>`. `jakeos/sto/file.rs` registers the `File` type id with ABI-005 and wraps a retained VFS `struct file` opened kernel-side (there is no path-taking Operation: the V0 launcher, BOOT-005, mints `Capability<File>` for a named initramfs file into a Component's launch set, and that is the only way a Component obtains one) with rights `Read`, `Write`, `Admin` (declared in CAP-011's `rights_decl.rs`) and the Read and Write kinds of TSK-011 as its Operations. The CAP gates run against it: `Capability<File, ReadWrite>` derives `Capability<File, Read>` and the child cannot Write; deriving Admin without Admin, or forging a handle, returns `Error::Rights` with no handle; revoking a root at derivation depth 8 fails every descendant within one Operation (CAP-004); and a freshly created Component holds no File Capability and no filesystem namespace (I-016, I-021). Raw block and filesystem passthrough stay with the Linux personality; the user-space Storage service, Directory, Blob and the chooser arrive at V0.5.
 
 <!-- covers: INV-0479, INV-0478 -->
 
 #### Out of scope
-Directory, Blob, chooser and content store (STO V0.5). Rights encoding (CAP). Personality path views (LNX).
+Directory, Blob, chooser and content store (STO V0.5). Rights encoding (CAP-010). Personality path views (LNX-019). Durability (STO-038).
+
+#### Deliverables
+- kernel:jakeos/sto/sto.rs · Crate root for the STO area.
+- kernel:jakeos/sto/file.rs · `Object<File>` over a kernel-side `struct file`, the `Read`, `Write` and `Admin` rights binding, the Read and Write kind handlers.
+- kernel:jakeos/cap/rights_decl.rs · The `File` rights vocabulary (extending CAP-011's file).
+- bld:image/native-launch.toml · The demo's File grant (a named initramfs file) in the launch set (extending BOOT-005's launch list).
+- storage:tests/file_v0_*.rs · The V0 File suite: derive attenuation, Admin and forgery refusal, depth-8 revocation, empty launch set.
 
 #### Acceptance criteria
-- [ ] `Capability<File, ReadWrite>` derives `Capability<File, Read>` and the derived handle cannot Write.
-- [ ] Deriving Admin or forging a File handle returns `Error::Rights` and allocates no handle.
-- [ ] Revoking a File capability makes every derived capability fail within one Operation at derivation depth 8.
-- [ ] A freshly created native Component holds no File capability and no filesystem namespace.
+- [ ] `Capability<File, ReadWrite>` derives `Capability<File, Read>` and a Write through the derived handle returns `Error::Rights`, on `qemu-x86_64` and `hw-h002`.
+- [ ] Deriving Admin from a handle without Admin, or forging a File handle, returns `Error::Rights` and allocates no handle.
+- [ ] Revoking a root File Capability makes every derived Capability fail within one Operation at derivation depth 8.
+- [ ] A freshly created native Component holds no File Capability and no filesystem namespace; the only way to hold one at V0 is the BOOT-005 launch set, and no path-taking Operation exists in the kind table.
 
 #### Verification
 - Unit: `storage:tests/file_v0_*` on CI matrix entries `qemu-x86_64` and `hw-h002`.

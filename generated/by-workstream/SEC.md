@@ -6,7 +6,7 @@
 
 | ID | Title | Status | Derived | Size | Depends on |
 | --- | --- | --- | --- | --- | --- |
-| SEC-001 | Deny ambient process enumeration in native Components | todo | blocked | S | CAP-005, CAP-001, CMP-005 |
+| SEC-001 | Deny ambient process enumeration in native Components | todo | blocked | S | CAP-005, CAP-001, CMP-005, OBS-006 |
 | SEC-002 | Publish threat model and threat Register | done | done | M | none |
 
 ## V0.5
