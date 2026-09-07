@@ -8,7 +8,7 @@ Size weights are estimates (S=1, M=3, L=8, XL=20). Progress is shown as count %,
 
 | Token | Title | Status | Gates | Count | Weighted | Ready | Blocked |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| V0 | Execution model | active | 0/21 | 14% (30/221) | 7% | 25 | 166 |
+| V0 | Execution model | active | 0/21 | 14% (30/221) | 7% | 23 | 168 |
 | V0.5 | Application model | next | 0/29 | 2% (8/439) | 1% | 24 | 407 |
 | V1 | Developer preview | planned | 0/30 | 1% (4/571) | 0% | 10 | 557 |
 | V2 | Desktop preview | planned | 0/30 | 1% (4/474) | 0% | 1 | 469 |
@@ -69,12 +69,11 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 
 | ID | Title | Milestone | Size | Downstream |
 | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5910 |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5990 |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5775 |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5692 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5647 |
 | BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5532 |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5510 |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5501 |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5499 |
 | CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5499 |
@@ -84,6 +83,7 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 | MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4823 |
 | TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4805 |
 | CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4530 |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4324 |
 
 ## Critical path
 
@@ -176,7 +176,7 @@ Makespan (size-weight estimates): 118.
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 65 |
-| BLD-082 | 43 |
+| BLD-082 | 48 |
 | CAP-005 | 41 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |

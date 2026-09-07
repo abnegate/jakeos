@@ -1951,8 +1951,9 @@
 | BEN-001 | Publish V0 Component, Task and ResourceDomain cost benchmarks | todo | BEN-005, BEN-006, CMP-001, CMP-002, TSK-002, TSK-020, TSK-018, SCH-001, SCH-010, LAB-003 | V0 |
 | BEN-002 | Publish V0 Demo pipeline latency, copies and memory | todo | BEN-005, BEN-006, CMP-011, MEM-010, MEM-012, IPC-016, LAB-003 | V0 |
 | BEN-003 | Publish V0 IPC, MemoryObject and syscall-overhead benchmarks | todo | BEN-005, BEN-006, BEN-008, IPC-008, IPC-016, MEM-010, OBS-001, LNX-001, LAB-003 | V0 |
+| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | todo | BLD-082 | V0 |
 | BEN-005 | Build the shared benchmark runner and CI publication | todo | BEN-064, BLD-082 | V0 |
-| BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | LAB-003 | V0 |
+| BEN-006 | Pin Linux comparison baseline images on reference hardware | todo | LAB-003, BLD-082 | V0 |
 | BEN-008 | Measure native IPC against Unix socket, pipe and D-Bus | todo | BEN-005, IPC-016, IPC-015 | V0 |
 | BEN-009 | Publish native application startup and input-to-photon | todo | BEN-005, CMP-019, CMP-018, APP-001, APP-004, APP-003, APP-005, LAB-001 | V0.5 |
 | BEN-010 | Publish compositor frame and Input-to-photon latency | todo | BEN-005, GFX-003, GFX-004, GFX-006, LAB-001, LAB-004, LAB-003 | V0.5 |
@@ -2114,8 +2115,9 @@
 | DOC-040 | Snapshot the 1.0 documentation set per release | todo | DOC-007, DOC-035 | 1.0 |
 | DOC-041 | Verify documentation completeness for the 1.0 Gate | todo | DOC-035, DOC-036, DOC-034, DOC-042, DOC-040, DOC-038, SDK-096 | 1.0 |
 | DOC-042 | Write 1.0 release notes with V3 and V4 migration paths | todo | REL-014, DOC-015, APP-068, LNX-109, WIN-083, GOV-083 | 1.0 |
-| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | GOV-006 | V0 |
-| GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | GOV-005 | V0 |
+| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | GOV-006, BLD-082 | V0 |
+| GOV-006 | Publish charter, vision, architecture map and layer stability policy | todo | BLD-082 | V0 |
+| GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | GOV-005, BLD-082 | V0 |
 | GOV-008 | Record the V0 exit review | todo | CAP-008, ABI-010, CAP-010, IPC-006, IPC-003, CMP-010 | V0 |
 | GOV-015 | Publish the research-programme index that every ADR must cite | todo | GOV-005 | V0.5 |
 | GOV-017 | Author the V0.5 Milestone gates mapping the application model | todo | GOV-007 | V0.5 |
@@ -2183,7 +2185,7 @@
 | Blocker | Tasks |
 | --- | --- |
 | BEN-005 | 65 |
-| BLD-082 | 43 |
+| BLD-082 | 48 |
 | CAP-005 | 41 |
 | IPC-012 | 33 |
 | SVC-015 | 33 |
