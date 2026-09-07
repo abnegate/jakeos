@@ -50933,7 +50933,7 @@
         "GAP-0087"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5926,
+      "downstream_weight": 6006,
       "anchored": true
     },
     {
@@ -50973,7 +50973,7 @@
         "GAP-0160"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5942,
+      "downstream_weight": 6022,
       "anchored": true
     },
     {
@@ -50993,7 +50993,7 @@
         "GAP-0086"
       ],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5956,
+      "downstream_weight": 6034,
       "anchored": true
     },
     {
@@ -52889,7 +52889,7 @@
       "blockers": [],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5910,
+      "downstream_weight": 5990,
       "anchored": true
     },
     {
@@ -52913,7 +52913,7 @@
       ],
       "covers": [],
       "file": "workstreams/BLD.md",
-      "downstream_weight": 5907,
+      "downstream_weight": 5987,
       "anchored": true
     },
     {
@@ -53700,13 +53700,16 @@
       "type": "build",
       "milestone": "V0",
       "status": "todo",
-      "derived": "ready",
+      "derived": "blocked",
       "size": "S",
       "owner": "none",
       "depends_on": [
-        "BEN-007"
+        "BEN-007",
+        "BLD-082"
       ],
-      "blockers": [],
+      "blockers": [
+        "BLD-082"
+      ],
       "covers": [
         "INV-0062",
         "INV-0987",
@@ -53755,10 +53758,12 @@
       "depends_on": [
         "BEN-007",
         "KRN-010",
-        "LAB-003"
+        "LAB-003",
+        "BLD-082"
       ],
       "blockers": [
-        "LAB-003"
+        "LAB-003",
+        "BLD-082"
       ],
       "covers": [
         "INV-1034"
@@ -58220,7 +58225,7 @@
         "GAP-0384"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 6007,
+      "downstream_weight": 6036,
       "anchored": true
     },
     {
@@ -58263,7 +58268,7 @@
         "GAP-0385"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 6002,
+      "downstream_weight": 6033,
       "anchored": true
     },
     {
@@ -58283,7 +58288,7 @@
         "GAP-0164"
       ],
       "file": "workstreams/GOV.md",
-      "downstream_weight": 6048,
+      "downstream_weight": 6050,
       "anchored": true
     },
     {
@@ -58297,10 +58302,12 @@
       "owner": "none",
       "depends_on": [
         "GOV-004",
-        "GOV-006"
+        "GOV-006",
+        "BLD-082"
       ],
       "blockers": [
-        "GOV-006"
+        "GOV-006",
+        "BLD-082"
       ],
       "covers": [
         "GAP-0056",
@@ -58325,13 +58332,16 @@
       "type": "docs",
       "milestone": "V0",
       "status": "todo",
-      "derived": "ready",
+      "derived": "blocked",
       "size": "M",
       "owner": "none",
       "depends_on": [
-        "GOV-004"
+        "GOV-004",
+        "BLD-082"
       ],
-      "blockers": [],
+      "blockers": [
+        "BLD-082"
+      ],
       "covers": [
         "INV-0059",
         "INV-0116",
@@ -58355,10 +58365,12 @@
       "depends_on": [
         "GOV-002",
         "GOV-001",
-        "GOV-005"
+        "GOV-005",
+        "BLD-082"
       ],
       "blockers": [
-        "GOV-005"
+        "GOV-005",
+        "BLD-082"
       ],
       "covers": [
         "GAP-0038",

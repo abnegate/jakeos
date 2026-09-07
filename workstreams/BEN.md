@@ -4,7 +4,7 @@
 - Baseline: §10, §34, §53, §54, §59
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 64 live, 2 done, 0 in-progress, 62 todo, 0 dropped. Ready: 2. Blocked: 60. Weighted: 3%.
+Tasks: 64 live, 2 done, 0 in-progress, 62 todo, 0 dropped. Ready: 1. Blocked: 61. Weighted: 3%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -31,21 +31,34 @@ Per-subsystem harness implementation and the code under test (CMP, TSK, IPC, MEM
 - Risks: R-001, R-009
 - Invariants: I-029, I-061
 
-V0 benchmark gates for Component creation, Task creation, idle memory, native handoff, Operation submit-to-completion, wakeup-to-run per intent class, ResourceDomain lifecycle, and concurrent Task scale are publish-only (§10, §20, §59). This task wires the CMP, TSK, and SCH harnesses through the shared runner and commits the gate reports on H-001 and H-002.
+The V0 execution-model gates are publish-only numbers (§10, §20, §22, §23, §54, §59) and this task is the roll-up that commits them. The eight harnesses already exist (CMP-001 for B-001, CMP-002 for B-008, TSK-002 for B-003, SCH-001 for B-011) or are added here as thin scenarios over the primitives: `bench/harness/B-002/` (`jakeos-bench-task-spawn`: `task.spawn` latency), `bench/harness/B-009/` (shared with ABI-001: the no-op Operation submit-to-completion of the production TSK-018 path), `bench/harness/B-010/` (`jakeos-bench-wakeup-intent`: wakeup-to-run per intent class from SCH-010's `wakeup_to_run` events) and `bench/harness/B-014/` (`jakeos-bench-task-scale`: the live-Task population from the register method with memory per Task and creation wall time, no kernel thread per Task). Every harness runs from the BLD-010 nightly job on `qemu-x86_64` and `hw-h002`; this task writes the reports under `reports/benchmarks/<B-NNN>/h001.md` and `h002.md` per BEN-005's skeleton and the BEN-064 methodology, each report matching its register `Method`.
+
+If B-001's published H-002 p50 exceeds the register's V0 advisory band, the B-001 report names V0-G11's Or path (an accepted decision on root cause and remediation) instead of inventing a number in prose.
 
 <!-- covers: INV-0228, INV-0232, INV-1019, INV-1020, INV-0378, INV-0384, INV-0359, INV-0423, INV-0445, INV-1043 -->
 
 #### Out of scope
-Harness implementation (CMP, TSK, SCH). Fast-path Component creation (CMP). V1 absolute B-001 and B-002 targets (BEN-029).
+Harness implementation for B-001, B-003, B-008 and B-011 (CMP-001, TSK-002, CMP-002, SCH-001). Fast-path Component creation (CMP-034). V1 absolute B-001 and B-002 targets (BEN-029).
+
+#### Deliverables
+- bench:harness/B-002/ · Crate `jakeos-bench-task-spawn`, scenario `task-spawn`.
+- bench:harness/B-010/ · Crate `jakeos-bench-wakeup-intent`, scenario `wakeup-to-run` per intent class.
+- bench:harness/B-014/ · Crate `jakeos-bench-task-scale`, scenario `task-scale` with memory per Task and creation wall time.
+- roadmap:reports/benchmarks/B-002/h001.md · B-002 H-001 report; likewise `h002.md`.
+- roadmap:reports/benchmarks/B-009/h001.md · B-009 production-path H-001 report; likewise `h002.md` (ABI-001 owns the prototype-era reports).
+- roadmap:reports/benchmarks/B-010/h001.md · B-010 H-001 report; likewise `h002.md`.
+- roadmap:reports/benchmarks/B-014/h001.md · B-014 H-001 report; likewise `h002.md`.
+- roadmap:reports/benchmarks/README.md · The V0 roll-up index pointing at every B-001 through B-014 report per machine.
 
 #### Acceptance criteria
-- [ ] A report exists under `reports/benchmarks/` for B-001, B-002, B-003, B-008, B-009, B-010, B-011, and B-014 on H-001 and H-002 matching each register Method.
-- [ ] B-014 records memory per Task and creation wall time at the live-Task scale named in the register Method, without a kernel thread per Task.
-- [ ] Each cited B-ID's V0 target kind is `publish`; no absolute threshold is asserted as a V0 gate.
-- [ ] If B-001's published p50 exceeds the register's V0 advisory band, the report names the Or path rather than inventing a number in prose.
+- [ ] Reports exist under `reports/benchmarks/` for B-001, B-002, B-003, B-008, B-009, B-010, B-011 and B-014 on H-001 and H-002, each following the BEN-005 skeleton and matching its register `Method`, and `reports/benchmarks/README.md` indexes them.
+- [ ] The B-014 reports record memory per Task and creation wall time at the live-Task scale the register method names, with the kernel-context count showing no kernel thread per Task.
+- [ ] Each cited B-ID's V0 target kind is `publish`; no report asserts a threshold as a V0 gate.
+- [ ] If B-001's published H-002 p50 exceeds the register's V0 advisory band, the B-001 report names V0-G11's Or path and the decision it requires.
 
 #### Verification
 - Bench: B-001, B-002, B-003, B-008, B-009, B-010, B-011, B-014 on H-001 and H-002; target per register.
+- Unit: `bench:tests/B-002/scenario_*`, `bench:tests/B-010/scenario_*`, `bench:tests/B-014/scenario_*` asserting record shape.
 - Review: BEN methodology sign-off recorded on the pull request.
 
 #### Evidence
@@ -62,18 +75,23 @@ Harness implementation (CMP, TSK, SCH). Fast-path Component creation (CMP). V1 a
 - Benchmarks: B-013
 - Invariants: I-061, I-063
 
-§59 requires the V0 demo to be measured: end-to-end latency from Component A submitting on a Channel to A reading the transferred MemoryObject, copies per stage by physical-page identity, memory per Component and per Channel, creation cost of the objects in the pipeline, native handoff versus a Linux switch, and A-to-B placement on different cores and different NUMA nodes where the hardware has them.
+§59 says the demo is measured, not just shown. The B-013 harness (`bench/harness/B-013/`, `jakeos-bench-demo-pipeline`, wrapping CMP-011's driver) records, per BEN-064, for the payload sizes in the register method: end-to-end latency from Component A's `decode` submission to A's first read of the transferred MemoryObject (p50 and p99); copies per stage from IPC-016's copy accounting and MEM-012's page identity (the register's expected value is zero payload copies); resident memory per Component and per Channel from the SCH-007 counters; creation cost of the objects in the pipeline (Components, Channel, MemoryObject) as a breakdown; native handoff versus a Linux `futex` switch in the same session; and A-to-B placement variants: same core, different cores, and different NUMA nodes on `hw-h002` when the machine has them (`qemu-x86_64` runs the multi-node cell of BLD-012 for the NUMA variant). Reports go to `reports/benchmarks/B-013/h001.md` and `h002.md`; V0 is publish-only and no superiority claim appears outside the tables.
 
 <!-- covers: INV-0339, INV-1170, INV-1171, INV-1172, INV-1173, INV-1174 -->
 
 #### Out of scope
-Demo implementation (CMP-011). Standing IPC and MemoryObject microbenchmarks (BEN-003).
+Demo implementation (CMP-011). Standing IPC and MemoryObject microbenchmarks (BEN-003). The B-013 harness crate (CMP-011 creates it; this task adds the placement variants and reports).
+
+#### Deliverables
+- bench:harness/B-013/src/placement.rs · Same-core, cross-core and cross-NUMA placement variants for A and B (extending CMP-011's harness).
+- bench:harness/B-013/src/stages.rs · Per-stage creation cost breakdown and copy accounting readout.
+- roadmap:reports/benchmarks/B-013/h001.md · The H-001 report (labelled QEMU; NUMA variant on the multi-node cell).
+- roadmap:reports/benchmarks/B-013/h002.md · The H-002 report V0-G18 cites.
 
 #### Acceptance criteria
-- [ ] A B-013 report exists for H-001 and H-002 with end-to-end latency, copy count, and memory overhead for the payload sizes in the register Method.
-- [ ] The same reports include same-core, cross-core, and cross-NUMA placements of A and B where the machine has NUMA.
-- [ ] The V0 target kind is `publish`.
-- [ ] No superiority claim appears outside the report tables.
+- [ ] `reports/benchmarks/B-013/h001.md` and `h002.md` exist with end-to-end latency p50 and p99, copy count per stage, and memory per Component and per Channel for the payload sizes in the register method, following the BEN-005 skeleton.
+- [ ] The reports include same-core, cross-core and cross-NUMA placements of A and B where the machine has NUMA (the BLD-012 multi-node cell on H-001), and the native handoff versus Linux `futex` switch from the same session.
+- [ ] The V0 target kind of B-013 is `publish`, and no superiority claim appears outside the report tables.
 
 #### Verification
 - Bench: B-013 on H-001 and H-002; target per register.
@@ -94,22 +112,32 @@ Demo implementation (CMP-011). Standing IPC and MemoryObject microbenchmarks (BE
 - Benchmarks: B-004, B-005, B-006, B-007, B-012, B-026
 - Invariants: I-061
 
-V0 gates for same-core and cross-core Channel round trip, throughput, MemoryObject transfer versus memcpy, tracing overhead on the IPC path, and fork syscall microbenchmarks versus the pinned upstream kernel are publish-only. Absolute IPC targets wait for V1. Personality productisation stays at V1; this task publishes only the fork syscall microbench rows of B-026.
+The V0 communication gates (§15, §17, §24, §54) are published here: B-004 and B-005 from IPC-008's harness, B-012 from OBS-001's, B-007 from MEM-010's `jakeos-bench-memoryobject-transfer` (payload sizes per the register, copy count by page identity, `memcpy` baseline), plus two scenarios this task adds: `bench/harness/B-006/` (`jakeos-bench-ipc-fanout`: one server, N clients, throughput and tail latency at the register's N) and `bench/harness/B-026/` (`jakeos-bench-syscall-micro`: the LMbench-style Linux syscall microbenchmarks, `getpid`, `read` of one byte, `stat`, `fork` plus `exit`, `mmap` plus `munmap`, run on the personality side of the fork and on the BEN-006 pinned upstream kernel image on the same machine, so the fork's retained syscall path is shown unchanged). Every harness runs from BLD-010's nightly job on `qemu-x86_64` and `hw-h002`, and this task writes the reports under `reports/benchmarks/<B-NNN>/` with Linux Unix-domain-socket and pipe rows where the register method names them. B-026's V0 report is the syscall microbenchmark set only; the L2 corpus workloads arrive at V1 (BEN-027).
 
 <!-- covers: INV-0303, INV-0304, INV-1021, INV-1022, INV-1023, INV-1024, INV-1030, INV-0466 -->
 
 #### Out of scope
-IPC fast-path implementation (IPC). Tracing substrate (OBS). Linux personality workload overhead (BEN-027). V1 absolute B-004 and B-005 (BEN-029).
+IPC fast-path implementation (IPC-016). Tracing substrate (OBS-011). Linux personality workload overhead (BEN-027). V1 absolute B-004 and B-005 (BEN-029).
+
+#### Deliverables
+- bench:harness/B-006/ · Crate `jakeos-bench-ipc-fanout`, scenario `ipc-fanout`.
+- bench:harness/B-026/ · Crate `jakeos-bench-syscall-micro`, scenario `syscall-micro` runnable on the fork and on the pinned upstream image.
+- roadmap:reports/benchmarks/B-004/h001.md · B-004 reports (with IPC-008); likewise `h002.md`.
+- roadmap:reports/benchmarks/B-005/h001.md · B-005 reports (with IPC-008); likewise `h002.md`.
+- roadmap:reports/benchmarks/B-006/h001.md · B-006 reports; likewise `h002.md`.
+- roadmap:reports/benchmarks/B-007/h001.md · B-007 reports (with MEM-012); likewise `h002.md`.
+- roadmap:reports/benchmarks/B-012/h001.md · B-012 reports (with OBS-001); likewise `h002.md`.
+- roadmap:reports/benchmarks/B-026/h001.md · B-026 syscall microbenchmark reports, fork versus pinned upstream; likewise `h002.md`.
 
 #### Acceptance criteria
-- [ ] Reports exist for B-004, B-005, B-006, B-007, and B-012 on H-001 and H-002 matching each register Method, including Linux Unix-domain-socket and pipe rows on the same machine.
-- [ ] B-007 covers the payload sizes named in the register and records copy count by physical-page identity.
-- [ ] B-026's V0 report is the syscall microbenchmark set versus the pinned upstream kernel, not L2 corpus workloads.
-- [ ] Each cited B-ID's V0 target kind is `publish`.
-- [ ] No superiority claim appears outside the report tables.
+- [ ] Reports exist for B-004, B-005, B-006, B-007 and B-012 on H-001 and H-002 following the BEN-005 skeleton and each register `Method`, including Linux Unix-domain-socket and pipe rows measured on the same machine in the same session where the method names them.
+- [ ] The B-007 reports cover the payload sizes named in the register and record copy count by physical-page identity with the `memcpy` baseline.
+- [ ] The B-026 V0 reports are the syscall microbenchmark set run on the fork's retained syscall path and on the BEN-006 pinned upstream kernel on the same machine, not L2 corpus workloads.
+- [ ] Each cited B-ID's V0 target kind is `publish`, and no superiority claim appears outside the report tables.
 
 #### Verification
-- Bench: B-004, B-005, B-006, B-007, B-012 on H-001 and H-002; target per register. B-026 syscall microbench on H-001 and H-002; target per register.
+- Bench: B-004, B-005, B-006, B-007, B-012 on H-001 and H-002; target per register. B-026 syscall microbenchmarks on H-001 and H-002; target per register.
+- Unit: `bench:tests/B-006/scenario_*` and `bench:tests/B-026/scenario_*` asserting record shape and the two-kernel session.
 - Review: BEN methodology sign-off recorded on the pull request.
 
 #### Evidence
@@ -121,25 +149,33 @@ IPC fast-path implementation (IPC). Tracing substrate (OBS). Linux personality w
 - Status: todo
 - Size: S
 - Owner: none
-- Depends on: BEN-007
+- Depends on: BEN-007, BLD-082
 - Baseline: §53, §54, §57
 - Invariants: I-009, I-050, I-052, I-061, I-088
 
-§53, §54, and §57 collapse into one lint: no performance claim without a named B-ID and a report from its harness, no rewrite-Linux-faster framing, and benchmark priorities tied to user-perceivable outcomes. The matrix lists every architectural claim against a B-ID. CI fails a docs or task change that cites a number or an unbacked superiority claim.
+§53, §54 and §57 collapse into one lint and one matrix: no performance claim without a B-ID and a report from its harness, no "faster Linux rewrite" framing, and every architectural performance claim traced to a benchmark. `bench/claims/matrix.md` maps every §54 metric and every performance claim in `BASELINE.md` and the milestone files to its B-ID in `registers/benchmarks.md`. The lint `bench/claims/lint/` (crate `jakeos-bench-claim-lint`, run in the roadmap's CI by `roadmap check` through the existing numbers-in-prose rule extended with these patterns, and in the platform's `pre-merge` as `bench-claims` over `docs/`) rejects: a performance number in prose (a duration, throughput, percentage or multiplier attached to a component or operation) outside a register `Method`, `Targets` clause or committed report body; a superiority sentence (`faster than`, `outperforms`, `lower latency than` and the list in `bench/claims/patterns.toml`) without a B-ID in the same sentence; and rewrite-framing phrases (`faster Linux`, `rewrite of Linux`, `Linux but faster`). The allowlist is empty except for the register fields and report bodies. BLD-011 makes the platform job required.
 
 <!-- covers: INV-0062, INV-0987, INV-0989, INV-1018, INV-1126 -->
 
 #### Out of scope
-Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement audit (BEN-062).
+Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement audit (BEN-062). Making the job required (BLD-011).
+
+#### Deliverables
+- bench:claims/matrix.md · Every §54 metric and every performance claim in the baseline and milestones mapped to a B-ID.
+- bench:claims/patterns.toml · The number-in-prose, superiority and rewrite-framing patterns and the empty allowlist.
+- bench:claims/lint/ · Crate `jakeos-bench-claim-lint` over Markdown sources.
+- platform:.github/workflows/pre-merge.yml · The `bench-claims` job over `docs/`.
+- roadmap:tools/roadmap/src/validate/text.rs · The roadmap validator's numbers-in-prose rule extended with the superiority and rewrite-framing patterns.
+- roadmap:tools/roadmap/tests/invalid.rs · `claim_lint_*` fixtures: a number in prose, an unbacked superiority sentence, a B-ID citation that passes, a rewrite-framing phrase.
 
 #### Acceptance criteria
-- [ ] A committed matrix maps every §54 claim to a B-ID in `registers/benchmarks.md`.
-- [ ] CI rejects a docs, milestone, or task change that states a performance number or a superiority claim without a B-ID.
-- [ ] CI rejects framing that the project is a faster Linux rewrite.
-- [ ] The lint allowlist is empty except for register Method, Targets, and committed report bodies.
+- [ ] `bench/claims/matrix.md` maps every §54 claim to a B-ID in `registers/benchmarks.md`, and a §54 metric without a B-ID fails the lint.
+- [ ] The roadmap validator and the platform `bench-claims` job reject a docs, milestone or task change that states a performance number in prose or a superiority claim without a B-ID in the same sentence.
+- [ ] The lint rejects framing that the project is a faster Linux rewrite (the `patterns.toml` phrases).
+- [ ] The allowlist is empty except for register `Method` and `Targets` fields and committed report bodies.
 
 #### Verification
-- Unit: `roadmap:tests/claim_lint_*` covering a number in prose, an unbacked superiority sentence, and a B-ID citation that passes.
+- Unit: `roadmap:tests/claim_lint_*` covering a number in prose, an unbacked superiority sentence, a rewrite-framing phrase and a B-ID citation that passes.
 - Review: GOV and BEN leads sign off on the pull request.
 
 #### Evidence
@@ -156,21 +192,29 @@ Register target kinds (BEN-007). Public dashboard (BEN-031). 1.0 announcement au
 - Risks: R-009
 - Invariants: I-061
 
-V0 requires a harness and CI on QEMU plus the reference desktop; the generated results block reflects committed gate-run reports while nightly results go to the time-series export. This is the shared runner in the `bench` repository, the report skeleton under `reports/benchmarks/`, the environment record (frequency pin, mitigations, warm or cold, iteration count), and per-commit history. The public dashboard is V1.
+Every benchmark in the roadmap runs through one runner so results are comparable (§54, §59). `bench/runner/` (crate `jakeos-bench-runner`, binary `jakeos-bench`) invokes a harness by B-ID (`jakeos-bench run B-004 --machine H-002`), discovering it under `bench/harness/<B-NNN>/` by a `Bench.toml` manifest (scenarios, payload axes, required kernel configuration, required matrix entry); applies the BEN-064 methodology (pins the CPU set, records governor and frequency, SMT state, mitigation state from `/sys/devices/system/cpu/vulnerabilities`, warm and cold labelling, iteration and warm-up counts) and refuses to run when any environment field cannot be recorded; writes the time-series record `bench/results/<B-NNN>/<run-id>.json` (schema `bench/results/schema.json`: B-ID, scenario, machine H-ID, matrix entry, kernel and platform commit hashes, environment fields, per-scenario percentiles and raw samples path); and renders a gate-run report from a record with `jakeos-bench report <run-id>` into the `reports/README.md` skeleton, at the path `reports/benchmarks/<B-NNN>/<alias>@<sha>-<H-NNN>.md`, which the owning benchmark task commits. `roadmap gen` reflects committed gate-run reports in the generated results block; measured values never appear in `registers/benchmarks.md` entries. The public dashboard (BEN-031) and time-series store (BEN-032) come later.
 
 <!-- covers: INV-1040 -->
 
 #### Out of scope
-Methodology Decision (BEN-007). CI job wiring and QEMU matrix (BLD-010, BLD-012). Public dashboard (BEN-031). Quiet fleet (BLD-048). Time-series store (BEN-032).
+Methodology decision (BEN-007, BEN-064). CI job wiring and QEMU matrix (BLD-010, BLD-012). Public dashboard (BEN-031). Quiet fleet (BLD-048). Time-series store (BEN-032).
+
+#### Deliverables
+- bench:runner/ · Crate `jakeos-bench-runner`, binary `jakeos-bench`: harness discovery, environment capture, refusal on missing fields, record writing, report rendering.
+- bench:results/schema.json · The time-series record schema.
+- bench:harness/Bench.toml.example · The harness manifest format every `bench/harness/<B-NNN>/` provides.
+- roadmap:reports/README.md · The benchmark report skeleton and the path grammar (extending the existing file).
+- bench:tests/runner_*.rs · Tests: environment record complete, path grammar, rejection of an unlabelled run, deterministic report rendering.
+- docs:bench/runner.md · How to add a harness, run it and commit a gate report.
 
 #### Acceptance criteria
-- [ ] The `bench` runner invokes a registered harness by B-ID, records the environment fields named by BEN-007, and writes a report matching `reports/README.md`.
-- [ ] A committed gate-run report on H-001 for a V0 B-ID appears in the generated results block after `roadmap gen`, without measured values in `registers/benchmarks.md` entries.
-- [ ] Report paths match `reports/benchmarks/<B-NNN>/<alias>@<sha>-<H-NNN>.md`.
-- [ ] A run that omits frequency pin or warm/cold labelling is rejected by the runner.
+- [ ] `jakeos-bench run <B-NNN> --machine <H-NNN>` discovers the harness by its `Bench.toml`, records every BEN-064 environment field, and writes `bench/results/<B-NNN>/<run-id>.json` matching `schema.json`.
+- [ ] `jakeos-bench report <run-id>` writes a report matching `reports/README.md` at `reports/benchmarks/<B-NNN>/<alias>@<sha>-<H-NNN>.md`, and a committed gate-run report on H-001 for a V0 B-ID appears in the generated results block after `roadmap gen` with no measured value in `registers/benchmarks.md`.
+- [ ] A run that cannot record frequency pinning, mitigation state or warm and cold labelling is refused before any harness executes.
+- [ ] `bench:tests/runner_*` cover environment completeness, path grammar, refusal and deterministic rendering.
 
 #### Verification
-- Unit: `bench:tests/runner_*` for environment record, path grammar, and rejection of an unlabelled run.
+- Unit: `bench:tests/runner_*` for environment record, path grammar and rejection of an unlabelled run.
 - Integration: BLD-010 invokes the runner on H-001 after this task lands.
 - Review: BLD lead sign-off recorded on the pull request.
 
@@ -183,21 +227,27 @@ Methodology Decision (BEN-007). CI job wiring and QEMU matrix (BLD-010, BLD-012)
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: BEN-007, KRN-010, LAB-003
+- Depends on: BEN-007, KRN-010, LAB-003, BLD-082
 - Baseline: §54
 - Invariants: I-061
 
-§54 requires every claim compared against Linux on identical hardware. This task pins the upstream kernel version that was forked plus a mainstream distribution userspace on H-002 (and the matching QEMU image on H-001) so V0 tables have a replayable baseline rather than a moving distro snapshot.
+Every claim is compared against Linux on identical hardware (§54), and a comparison against a moving distribution snapshot is not replayable. `bench/baselines/linux-v0.toml` pins the baseline: the upstream kernel version the fork was cut from (D-0166, matching KRN-010's `upstream/master` tag), a mainstream distribution user-space image identified by its content hash and mirrored through BLD-009 (a minimal Debian stable or Fedora image, named in the record), the boot command line, and the mitigation and governor settings BEN-064 requires; `bench/baselines/build.sh` produces the bootable H-002 disk image and the matching `qemu-x86_64` image from the record, and the LAB-003 rack record documents the baseline boot entry on H-002 so the runner can boot it for a Linux column. Re-running any V0 harness's Linux column against the record reproduces it without an unpinned `latest` tag anywhere.
 
 <!-- covers: INV-1034 -->
 
 #### Out of scope
 Windows images (BEN-047). macOS class (BEN-046). Container runtime images (BEN-020). Lab dual-boot install at V1 (LAB-012).
 
+#### Deliverables
+- bench:baselines/linux-v0.toml · Kernel version, user-space image hash, boot command line, environment settings.
+- bench:baselines/build.sh · Builds the H-002 and `qemu-x86_64` baseline images from the record through the BLD-009 mirror.
+- lab:racks/h002.md · The baseline boot entry and how the runner selects it (extending LAB-003's rack record).
+- bench:tests/baselines/replay_*.rs · Test: a B-004 Linux-column replay on `qemu-x86_64` from the pinned image reproduces the record's environment fields.
+
 #### Acceptance criteria
-- [ ] A committed baseline record names kernel version, userspace image hash, and boot command line for H-001 and H-002.
-- [ ] Re-running any V0 harness against that record reproduces the Linux column without an unpinned `latest` tag.
-- [ ] The fork's upstream version in the record matches KRN-010.
+- [ ] `bench/baselines/linux-v0.toml` names the kernel version, user-space image content hash and boot command line for H-001 and H-002, and every input resolves through the BLD-009 mirror with no `latest` tag.
+- [ ] Re-running a V0 harness's Linux column against the record reproduces the environment fields and boots the pinned image on `qemu-x86_64` and `hw-h002`.
+- [ ] The fork's upstream version in the record matches the KRN-010 tag.
 
 #### Verification
 - Integration: one B-004 Linux-column replay on H-001 from the pinned image.
@@ -248,17 +298,21 @@ Runner implementation (BEN-005). Merge-gate policy (BEN-033). Visible-UI boundar
 - Baseline: §15, §53, §54
 - Invariants: I-061, I-066
 
-§53 IPC study: typed message plus ownership transfer plus scheduler-aware handoff versus serialize-syscall-copy-deserialize on Unix sockets, pipes, and D-Bus. Standing numbers live in BEN-003; this report informs V1 absolute B-004 and B-005 targets and records which expensive steps the native path removes rather than micro-optimizes.
+The §53 IPC study asks what the native path removes, not how much faster it is: typed message plus ownership transfer plus scheduler-aware handoff, against serialise, syscall, copy and deserialise on Unix-domain sockets, pipes and D-Bus. Under `bench/spikes/ipc-study/` the study runs the B-004 and B-005 methods through the BEN-005 runner on `qemu-x86_64` and `hw-h002` for native Channel (IPC-016 with IPC-015 handoff), Unix-domain socket, pipe and D-Bus (`dbus-daemon` and `dbus-broker` on the personality side, as personality baselines only, since D-Bus is forbidden as a native API), instrumented per step with `perf` and the kernel's copy accounting so each stage (serialise, enter, copy, wake, deserialise) is costed separately. The report `reports/spikes/BEN-008.md` names, in its "Rules out" section, the inherited steps that remain expensive after measurement and which the native path removes rather than micro-optimises, and says whether the V1 absolute B-004 and B-005 target kinds are still the right kinds. Standing numbers live in BEN-003.
 
 <!-- covers: INV-1008 -->
 
 #### Out of scope
-Standing B-004/B-005 publication (BEN-003). Fast-path technique Decision (IPC). D-Bus as a native API (forbidden, LNX).
+Standing B-004 and B-005 publication (BEN-003). Fast-path technique decision (IPC-003). D-Bus as a native API (forbidden, LNX).
+
+#### Deliverables
+- bench:spikes/ipc-study/ · The per-stage instrumented comparison over the four transports through the runner.
+- roadmap:reports/spikes/BEN-008.md · The study with the skeleton headings, the per-stage tables and the "Rules out" section.
 
 #### Acceptance criteria
 - [ ] `reports/spikes/BEN-008.md` exists with the skeleton headings from `reports/README.md`.
-- [ ] The Measured section names B-004 and B-005 methods and compares native Channel, Unix-domain socket, pipe, and D-Bus on H-001 and H-002.
-- [ ] The Rules out section names at least one inherited IPC shape that remains expensive after measurement.
+- [ ] The Measured section names the B-004 and B-005 methods and compares native Channel, Unix-domain socket, pipe and D-Bus on `qemu-x86_64` and `hw-h002`, costed per stage, labelled unpublished spike measurements.
+- [ ] The "Rules out" section names at least one inherited IPC step that remains expensive after measurement and states which steps the native path removes.
 
 #### Verification
 - Report: which inherited steps remain on the native path; whether V1 absolute B-004 and B-005 targets are still the right kinds; whether D-Bus is comparable only as a personality baseline.
@@ -1878,20 +1932,26 @@ Dataset license Decision (GOV). Bit-for-bit image reproducibility (BLD). Claim a
 - Risks: R-009
 - Invariants: I-061
 
-BEN-007 fixed the target-kind policy and left the methodology standard that Q-001 asks for unwritten: the reference hardware list per rung, warm and cold definitions, the percentiles every report states, iteration and warm-up counts, CPU frequency pinning, SMT and mitigation settings, and how a QEMU profile is labelled so it is never read as a hardware result. Every V0 benchmark task depends on Q-001; this Decision answers it so the runner (BEN-005) has fields to enforce. It does not restate any number in prose.
+D-0031 fixed target kinds; D-0348 fixes how every number is produced, answering Q-001 so the BEN-005 runner has fields to enforce (§54, §59). Options: one standard for every B-ID (p50 and p99 with fixed iteration and warm-up counts, CPU set pinned, governor fixed, mitigations at the shipped default, SMT as shipped, warm defined as after the warm-up iterations and cold as first run after a fresh boot); a per-B-ID methodology recorded on each register entry; or adopting an existing published benchmarking standard verbatim. The accepted option lists the reference hardware per rung by H-ID (from D-0129, HW-003), the statistics every report states, the counts (as numbers in the decision, the one place they may appear before the register), the environment fields the runner refuses a run for omitting, and the rule that a QEMU-profile result is labelled functional coverage, never a performance result.
+
+The executing agent writes the decision, adds the environment field list to `registers/benchmarks.md`'s preamble, and marks Q-001 answered.
 
 #### Out of scope
 Target kinds and register-only numbers (BEN-007, D-0031). Runner implementation (BEN-005). Energy measurement method (BEN-018). Visible-UI boundary (BEN-016).
 
+#### Deliverables
+- roadmap:decisions/D-0348-decide-benchmark-methodology.md · Options, the Decision with the hardware list, statistics, counts, environment fields and the QEMU labelling rule, rejected options, follow-ups.
+- roadmap:registers/benchmarks.md · The preamble's environment field list the runner enforces.
+- roadmap:registers/questions.md · Q-001 `Status: answered`.
+
 #### Acceptance criteria
-- [ ] Option A (one standard for every B-ID: p50 and p99 with fixed iteration and warm-up counts, frequency pinned, mitigations at the shipped default, SMT as shipped), option B (per-B-ID methodology recorded on each register entry), and option C (adopt an existing published benchmarking standard verbatim) are evaluated.
-- [ ] The accepted option records the hardware list per rung by H-ID, the warm and cold definitions, the statistics reported, iteration and warm-up counts, frequency pinning, SMT and mitigation settings, and the rule that QEMU-profile results are labelled as functional coverage rather than performance results.
-- [ ] The accepted option names the environment fields the BEN-005 runner rejects a run for omitting.
-- [ ] Q-001 is marked answered by this task in `registers/questions.md` when the Decision is accepted.
-- [ ] A Review line names who accepts the Decision.
+- [ ] D-0348 evaluates option A (one standard for every B-ID), option B (per-B-ID methodology on each register entry) and option C (an existing published standard verbatim).
+- [ ] The accepted option records the hardware list per rung by H-ID, the warm and cold definitions, the statistics reported, iteration and warm-up counts, frequency pinning, SMT and mitigation settings, and the rule that QEMU-profile results are labelled functional coverage rather than performance results.
+- [ ] The accepted option names the environment fields the BEN-005 runner rejects a run for omitting, and they appear in the `registers/benchmarks.md` preamble.
+- [ ] Q-001 is marked answered by BEN-064 in `registers/questions.md` in the same change, and Review records BEN and GOV lead sign-off on the pull request.
 
 #### Verification
-- Review: BEN and GOV leads sign off on the pull request that accepts the Decision file.
+- Review: BEN and GOV leads sign off on the pull request that accepts the decision file.
 - Manual: `registers/questions.md` shows Q-001 answered by BEN-064 in the same change.
 
 #### Evidence

@@ -4,7 +4,7 @@
 - Baseline: §1, §57, §58, §67, §68
 
 <!-- roadmap:generated:begin summary -->
-Tasks: 84 live, 12 done, 0 in-progress, 72 todo, 0 dropped. Ready: 9. Blocked: 63. Weighted: 17%.
+Tasks: 84 live, 12 done, 0 in-progress, 72 todo, 0 dropped. Ready: 8. Blocked: 64. Weighted: 17%.
 <!-- roadmap:generated:end -->
 
 ## Scope
@@ -146,28 +146,37 @@ Register schema completion and parse CI (GOV-013). Mutation commands (GOV-012). 
 - Status: todo
 - Size: L
 - Owner: none
-- Depends on: GOV-004, GOV-006
+- Depends on: GOV-004, GOV-006, BLD-082
 - Baseline: §57, §58, §65, §67, §68
 - Risks: R-007
 - Invariants: I-009, I-040, I-065, I-066
 
-V0 exit requires accepted Decisions with rejected options. This document encodes RFC stages, ADR lifecycle, the §57 checklist on the ADR template, PRINCIPLES.md, the §68 litmus questions, fossilization review, heightened ABI review versus SDK, and the research-programme process that graduates Spikes. Borrowing and replacement invariants become template gates rather than prose.
+V0 exit requires accepted decisions with rejected options, so the process that produces them is written first (§57, §58, §65, §67, §68). Four documents in the platform monorepo's `docs/process/`: `rfc.md` (RFC stages: draft, discussion, final comment period as a condition of no open blocking comments rather than a date, decision, with the V0 discussion venue named and kill criteria for spikes), `adr.md` (the ADR lifecycle: proposed, accepted or rejected, superseded; who may accept per workstream; the rule that ABI changes need ABI lead plus a second reviewer where SDK changes need one), `research.md` (the research programme: how a study becomes a spike, how a spike's findings graduate into an adr, the "Rules out" obligation), and `PRINCIPLES.md` at the repository root listing the seventeen §67 principles with their baseline citations. `decisions/TEMPLATE.md` in the roadmap gains the §57 checklist, a "Principles upheld and traded off" section and both §68 litmus questions ("What does this remove from the inherited semantics?" and "Would a new OS designed today do this?"), and the roadmap validator fails an adr whose file omits them or whose litmus answer is "history" or whose rewrite of a mature mechanism cites no B-ID (I-009).
+
+The ABI-006 review gate cites `adr.md`'s ABI rule; GOV-015 later indexes the research programme.
 
 <!-- covers: GAP-0056, GAP-0057, GAP-0070, INV-0717, INV-1129, INV-1152, INV-1281, INV-1309, INV-1310, INV-1311, INV-1312 -->
 
 #### Out of scope
 Layer 1 review-gate mechanics (ABI-006). Research study papers (DOC-001). Research-programme index (GOV-015). External RFC venue (GOV-035).
 
+#### Deliverables
+- docs:process/rfc.md · RFC stages, venue, final-comment condition, decision authority, spike kill criteria.
+- docs:process/adr.md · ADR lifecycle, acceptance authority per workstream, the ABI-versus-SDK approval bar.
+- docs:process/research.md · The research programme and the study-to-spike-to-adr graduation.
+- platform:PRINCIPLES.md · The seventeen §67 principles with baseline citations.
+- roadmap:decisions/TEMPLATE.md · The §57 checklist, the principles section and the two §68 litmus questions added.
+- roadmap:tools/roadmap/src/validate/decisions.rs · The template checks: sections present, litmus answers not "history", rewrite decisions cite a B-ID.
+- roadmap:tools/roadmap/tests/invalid.rs · Fixtures for a template missing options, missing litmus questions, and a history answer.
+
 #### Acceptance criteria
-- [ ] `decisions/TEMPLATE.md` requires at least two options, the §57 checklist, which principles are upheld and traded off, and both §68 litmus questions.
-- [ ] PRINCIPLES.md exists and lists the seventeen §67 principles with their Baseline citations.
-- [ ] The RFC process document names stages, discussion venue for V0, final-comment period as a condition not a date, Decision authority and kill criteria for Spikes.
-- [ ] ABI changes require a higher approval bar than SDK changes, recorded in the same process document.
-- [ ] An ADR whose litmus answer is history, or that replaces a mature mechanism without a cited B-ID, fails the template review.
-- [ ] A Review line names who accepts the process documents.
+- [ ] `decisions/TEMPLATE.md` requires at least two options, the §57 checklist, the principles upheld and traded off, and both §68 litmus questions, and the roadmap validator fails an adr file missing any of them.
+- [ ] `PRINCIPLES.md` exists at the platform repository root and lists the seventeen §67 principles with their baseline citations.
+- [ ] `docs/process/rfc.md` names the stages, the V0 discussion venue, the final-comment period as a condition not a date, decision authority and kill criteria for spikes; `docs/process/adr.md` records that ABI changes need a higher approval bar than SDK changes.
+- [ ] An adr whose litmus answer is "history", or that replaces a mature mechanism without a cited B-ID, fails the validator's template review, and Review records who accepts the process documents.
 
 #### Verification
-- Unit: `tools/roadmap` fixture rejecting an ADR template missing options or litmus questions.
+- Unit: `roadmap:tests/decision_template_*` rejecting an ADR missing options, litmus questions or a B-ID for a rewrite.
 - Review: ABI lead and GOV maintainer sign-off recorded on the pull request.
 
 #### Evidence
@@ -179,25 +188,33 @@ Layer 1 review-gate mechanics (ABI-006). Research study papers (DOC-001). Resear
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GOV-004
+- Depends on: GOV-004, BLD-082
 - Baseline: §1, §4, §66, §69, §70
 - Invariants: I-003, I-004
 
-V0 identity surface: MISSION.md from §70, a vision of what is not built (§1), a living §4 and §69 architecture map with Workstream owners, and the per-Layer stability policy (§66). ABI later fills concrete Layer 1 and Layer 2 deprecation windows.
+The project's identity surface (§1, §4, §66, §69, §70) lives at the platform repository root and in `docs/`: `MISSION.md` reproduces the §70 mission statement and names the nine pillars; `docs/vision.md` states what is built and what is not (not a Linux distribution, not a desktop environment on existing Linux user space, I-003 and I-004, with the §1 list of non-goals); `docs/architecture/map.md` is the living §4 and §69 diagram (a Mermaid block diagram with one box per subsystem, each linked to its owning workstream prefix in the roadmap and its directory in the monorepo); and `docs/stability.md` is the per-layer stability policy (§66): what change types Layer 1 through Layer 4 allow at each rung, that no Layer 1 surface is frozen before V4 (I-040), and that concrete deprecation windows are filled in by ABI-039 later.
 
 <!-- covers: INV-0059, INV-0116, INV-1288, INV-1333, INV-1334 -->
 
 #### Out of scope
-Layer 1 versus Layer 2 enumeration (ABI-011). Per-Layer deprecation windows (ABI-039). PRINCIPLES.md and ADR template (GOV-005).
+Layer 1 versus Layer 2 enumeration (ABI-011). Per-layer deprecation windows (ABI-039). `PRINCIPLES.md` and the ADR template (GOV-005).
+
+#### Deliverables
+- platform:MISSION.md · The §70 mission statement and the nine pillars.
+- docs:vision.md · What is built, what is not (I-003, I-004), the §1 non-goals.
+- docs:architecture/map.md · The §4 and §69 diagram with every box linked to its prefix and directory.
+- docs:stability.md · The per-layer stability policy with the no-freeze-before-V4 rule.
+- tools:map-check/ · Crate `jakeos-tools-map-check`: fails when a §69 box in `map.md` has no prefix link or a workstream prefix has no box.
 
 #### Acceptance criteria
-- [ ] MISSION.md reproduces the §70 mission statement and names the nine pillars.
-- [ ] The vision document states the project is not a Linux distribution and not a desktop environment on existing Linux userspace (I-003, I-004).
-- [ ] The architecture map links every §69 box to its owning prefix.
-- [ ] A per-Layer stability policy names allowed change types for Layer 1 through Layer 4 without freezing any Layer 1 surface (I-040).
+- [ ] `MISSION.md` reproduces the §70 mission statement verbatim and names the nine pillars.
+- [ ] `docs/vision.md` states that the project is not a Linux distribution and not a desktop environment on existing Linux user space (I-003, I-004) and lists the §1 non-goals.
+- [ ] `docs/architecture/map.md` links every §69 box to its owning prefix and monorepo directory, and `jakeos-tools-map-check` passes on it.
+- [ ] `docs/stability.md` names the allowed change types for Layer 1 through Layer 4 per rung without freezing any Layer 1 surface (I-040), and defers concrete windows to ABI-039.
 
 #### Verification
-- Review: architecture lead sign-off recorded on the pull request that adds MISSION.md, the vision page, the architecture map and the Layer policy.
+- Unit: `tools:tests/map/check_*` with a fixture missing a prefix link.
+- Review: architecture lead sign-off recorded on the pull request that adds `MISSION.md`, the vision page, the architecture map and the layer policy.
 
 #### Evidence
 - none
@@ -208,28 +225,35 @@ Layer 1 versus Layer 2 enumeration (ABI-011). Per-Layer deprecation windows (ABI
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: GOV-002, GOV-001, GOV-005
+- Depends on: GOV-002, GOV-001, GOV-005, BLD-082
 - Baseline: §57, §59, §65
 - Risks: R-006
 - Invariants: I-094, I-099
 
-CONTRIBUTING, MAINTAINERS/CODEOWNERS, AI-assisted contribution rules, and who may close a Gate with what Evidence. The V0 Milestone file maps every §59 item and states that V0 is not a usable desktop.
+Who may change what, and who may close a gate with what evidence, is written before the first external contribution (§57, §59, §65). In both code repositories: `CONTRIBUTING.md` (commit conventions: conventional commits, `Signed-off-by` per D-0092, the `Jakeos-Divergence` trailer in the kernel; review expectations; response-time targets as conditions, for example "before the next merge-queue run", never dates; how to propose or modify a roadmap task through the roadmap repository) and `.github/CODEOWNERS` mapping every directory to its workstream lead (the platform map from BLD-081's alias table, the kernel map from KRN-013's areas) with the forge requiring that review on non-metadata pull requests. In the roadmap repository: `docs/ai-policy.md` (disclosure of AI assistance in the pull request body, provenance and licence compatibility of generated code, the reviewer's responsibility for what they approve) and, in `milestones/V0.md`'s Notes, the gate governance: who approves a gate closure (the workstream lead of each `Verified by` task plus a GOV maintainer), the evidence a closure requires, how a milestone is re-scoped or a task dropped (through `roadmap drop` with a decision when a gate is affected), and the statement that V0 is not a usable desktop and includes no UI or desktop deliverable (I-094). GOV-007 also verifies that the V0 milestone file maps every §59 item to a gate.
 
 <!-- covers: GAP-0038, GAP-0064, GAP-0066, GAP-0069, INV-1153, INV-1176 -->
 
 #### Out of scope
-V0.5 Gate mapping (GOV-017). Code of Conduct (GOV-030). Merge-queue CI (BLD-001).
+V0.5 gate mapping (GOV-017). Code of conduct (GOV-030). Merge-queue CI (BLD-001). The verifier policy itself (CONVENTIONS section 13).
+
+#### Deliverables
+- kernel:CONTRIBUTING.md · Kernel contribution rules including the divergence trailer and DCO.
+- platform:CONTRIBUTING.md · Platform contribution rules including the CLA of D-0092.
+- kernel:.github/CODEOWNERS · Area directories to workstream leads.
+- platform:.github/CODEOWNERS · Alias directories to workstream leads.
+- roadmap:docs/ai-policy.md · Disclosure, provenance, licence compatibility and reviewer responsibility for AI-assisted contributions.
+- roadmap:milestones/V0.md · Gate governance and the not-a-desktop statement in Notes; every §59 item mapped to a gate.
 
 #### Acceptance criteria
-- [ ] CONTRIBUTING names commit conventions, review expectations, response-time targets as conditions, and how to propose or modify roadmap tasks.
-- [ ] A MAINTAINERS or CODEOWNERS mapping exists per Workstream and the forge requires that review on non-metadata pull requests.
-- [ ] The AI-assisted contribution policy covers disclosure, provenance, license compatibility of generated code and reviewer responsibility.
-- [ ] The V0 Milestone file maps every §59 required item and states that V0 is not a usable desktop and includes no UI or desktop deliverable (I-094).
-- [ ] Gate-exit rules name who approves, what Evidence is required, and how a Milestone is re-scoped or a task dropped.
+- [ ] Both `CONTRIBUTING.md` files name commit conventions, review expectations, response-time targets as conditions, and how to propose or modify roadmap tasks.
+- [ ] `CODEOWNERS` in both repositories maps every directory to a workstream lead, and branch protection requires that review on pull requests that are not metadata-only.
+- [ ] `docs/ai-policy.md` covers disclosure, provenance, licence compatibility of generated code and reviewer responsibility.
+- [ ] `milestones/V0.md` maps every §59 required item to a gate, states that V0 is not a usable desktop and includes no UI or desktop deliverable (I-094), and names who approves a gate closure, what evidence it requires, and how a milestone is re-scoped or a task dropped.
 
 #### Verification
-- Review: GOV maintainer sign-off recorded on the pull request that lands CONTRIBUTING, CODEOWNERS, the AI policy and the V0 Milestone file.
-- Manual: a metadata-only Status change merges on green checks without human review unless it sets `Status: done`, in which case CI requires the `Verified by` handle to be the pull request author or an approver; an acceptance-criteria change requires the owning Lead.
+- Review: GOV maintainer sign-off recorded on the pull request that lands `CONTRIBUTING.md`, `CODEOWNERS`, the AI policy and the V0 milestone notes.
+- Manual: a metadata-only status change merges on green checks without human review unless it sets `Status: done`, in which case CI requires the `Verified by` handle to be the pull request author or an approver; an acceptance-criteria change requires the owning lead through `CODEOWNERS`.
 
 #### Evidence
 - none
@@ -243,15 +267,19 @@ V0.5 Gate mapping (GOV-017). Code of Conduct (GOV-030). Merge-queue CI (BLD-001)
 - Depends on: CAP-008, ABI-010, CAP-010, IPC-006, IPC-003, CMP-010, WIN-001, BOOT-004
 - Baseline: §57, §59, §65
 
-Record the V0 exit review: V0 execution-model Decisions (handle representation, capability encoding, IDL, fast-path, wrapper-versus-native, Windows scoping, boot strategy) plus the threat model and ABI specification tasks named by V0-G20. Layer 1 surfaces remain unfrozen.
+The V0 exit review is one document, `reviews/v0-exit.md` in the roadmap repository, that a reader can check against the milestone file (§57, §59, §65). It lists every V0 decision named by V0-G20 (handle representation D-0055, handle word D-0007, rights encoding D-0059, IDL D-0148, fast path D-0142, wrapper-versus-native D-0069, Windows scoping D-0342, boot strategy D-0051) with its status and the pull request that accepted it; records the threat model (SEC-002) and ABI specification (ABI-017) tasks as done with their evidence; confirms from `registers/surfaces.md` that every Layer 1 surface is `prototyped` and none `frozen`; and attaches the `roadmap gate V0` output showing every gate satisfied and the `roadmap progress` output showing every V0 task `done` or `dropped` with a reason. The V0 milestone file's Notes link the review.
 
 #### Out of scope
-Per-Gate verification (the Gate `Verified by` tasks). Generated roll-up (GOV roadmap tooling).
+Per-gate verification (the gate `Verified by` tasks). Generated roll-up (the roadmap tool). The decisions themselves.
+
+#### Deliverables
+- roadmap:reviews/v0-exit.md · The exit review with the decision table, the surface check, and the attached `roadmap gate V0` and `roadmap progress` outputs.
+- roadmap:milestones/V0.md · The Notes link to the exit review.
 
 #### Acceptance criteria
-- [ ] Every Decision named in Depends on is accepted.
-- [ ] The V0 Milestone file records this exit review and the generated roll-up shows every V0 task `done` or `dropped` with reason.
-- [ ] Layer 1 surfaces remain unfrozen.
+- [ ] Every decision named in `Depends on` and by V0-G20 is `accepted` and listed in `reviews/v0-exit.md` with the pull request that accepted it.
+- [ ] `reviews/v0-exit.md` attaches `roadmap gate V0` showing every V0 gate satisfied and `roadmap progress` showing every V0 task `done` or `dropped` with a reason, and `milestones/V0.md` links it.
+- [ ] `registers/surfaces.md` shows every Layer 1 surface `prototyped` and none `frozen`, confirmed in the review.
 
 #### Verification
 - Review: GOV maintainer sign-off recorded on the pull request that lands the exit review.

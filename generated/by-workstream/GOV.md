@@ -10,9 +10,9 @@
 | GOV-002 | Decide contributor licensing, copyright holder and DCO or CLA | done | done | M | GOV-003 |
 | GOV-003 | Decide the license firewall and outbound project licenses | done | done | M | none |
 | GOV-004 | Decide the Markdown-plus-Rust-CLI roadmap process | done | done | S | none |
-| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | blocked | L | GOV-004, GOV-006 |
-| GOV-006 | Publish charter, vision, architecture map and layer stability policy | todo | ready | M | GOV-004 |
-| GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | blocked | M | GOV-002, GOV-001, GOV-005 |
+| GOV-005 | Publish RFC, ADR, research and ABI-review process with principles | todo | blocked | L | GOV-004, GOV-006, BLD-082 |
+| GOV-006 | Publish charter, vision, architecture map and layer stability policy | todo | blocked | M | GOV-004, BLD-082 |
+| GOV-007 | Publish contributing, CODEOWNERS, AI policy and V0 Gate governance | todo | blocked | M | GOV-002, GOV-001, GOV-005, BLD-082 |
 | GOV-008 | Record the V0 exit review | todo | blocked | S | CAP-008, ABI-010, CAP-010, IPC-006, IPC-003, CMP-010, WIN-001, BOOT-004 |
 
 ## V0.5

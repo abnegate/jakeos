@@ -4,12 +4,11 @@
 
 | ID | Title | Milestone | Size | Downstream | Owner |
 | --- | --- | --- | --- | --- | --- |
-| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5910 | none |
+| BLD-081 | Define the platform monorepo layout, crate naming and the Verification path-alias grammar | V0 | S | 5990 | none |
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5775 | none |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5692 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5647 | none |
 | BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5532 | none |
-| BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5510 | none |
 | CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5501 | none |
 | CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5499 | none |
 | CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5499 | none |
@@ -33,7 +32,6 @@
 | BOOT-015 | Explore systemd-boot+UKI and a Rust UEFI stub booting a SystemGeneration from the store | V0.5 | M | 2963 | none |
 | SVC-003 | Decide native init versus retained initramfs/systemd for early boot | V0.5 | S | 2907 | none |
 | UIP-019 | Write UI protocol threat review: focus stealing, input injection, exfiltration | V0.5 | S | 2109 | none |
-| GOV-006 | Publish charter, vision, architecture map and layer stability policy | V0 | M | 2034 | none |
 | GOV-016 | Publish the userspace dependency license allowlist | V0.5 | S | 1693 | none |
 | CMP-030 | Study Erlang/BEAM supervision and restart strategies for Component recovery | V0.5 | S | 1647 | none |
 | LNX-011 | Treat Linux compatibility as a product | V0.5 | S | 1617 | none |
