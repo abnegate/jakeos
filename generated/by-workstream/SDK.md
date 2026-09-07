@@ -13,7 +13,7 @@
 | SDK-005 | Expose Operation cancel, deadline and await on the Rust SDK | todo | blocked | M | SDK-009, TSK-010, TSK-013, ABI-009, BLD-082 |
 | SDK-006 | Implement the os CLI skeleton for inspect and trace | todo | blocked | S | BLD-082 |
 | SDK-007 | Ship os inspect for every V0 Object kind | todo | blocked | M | SDK-006, OBS-006, OBS-005, OBS-007, BLD-082 |
-| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | blocked | M | SDK-006, OBS-011, OBS-003, BLD-082 |
+| SDK-008 | Ship os trace with structured dynamically enabled tracing | todo | blocked | M | SDK-006, OBS-011, OBS-003, OBS-009, BLD-082 |
 | SDK-009 | Implement the primary Rust SDK crate over the Native ABI | todo | blocked | M | SDK-003, ABI-007, ABI-009, ABI-002, CAP-003, MEM-005, IPC-010, BLD-082 |
 | SDK-010 | Decide the userspace executor shape for the native runtime | todo | blocked | S | SDK-011, TSK-009 |
 | SDK-011 | Study Rust async and Tokio for mapping Operations onto SDK futures | todo | blocked | M | TSK-014, TSK-016 |

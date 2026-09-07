@@ -27,21 +27,28 @@ Layer 1 entry, handle encoding, error model and the generated C header (ABI). ID
 - Baseline: §52
 - Invariants: I-021
 
-The `#[component]` attribute generates Component bootstrap, runtime start and tracing setup so the secure path is the default (§52). `Context` exposes exactly the Capabilities granted at launch; there is no ambient handle table and no filesystem or network API on Context.
+The secure path must be the default path (§52): a native program starts with `#[component] async fn main(ctx: Context)` and nothing else. The attribute macro in `sdk/macros/` (crate `jakeos-sdk-macros`) generates the entry symbol the runtime's loader (CMP-003) calls, performs the Layer 1 handshake (ABI-004 via `jakeos-runtime-abi`), starts the executor (SDK-004) and the tracing registration (OBS-004), constructs `Context` and runs `main` as the root Task of the Component's TaskGroup so every spawned Task is owned. `Context` in `sdk/core/src/context.rs` exposes exactly the Capabilities granted at launch (D-0054, CAP-007): typed accessors `ctx.capability::<T>()` return the launch-set entry of that kind or `Error::Rights` with no handle allocated; there is no ambient handle table, no filesystem or network API on `Context`, and the only way to obtain more authority is a Capability arriving on a Channel. Window and chooser accessors arrive at V0.5 (SDK-023, SDK-017).
 
 <!-- covers: INV-0963, INV-0964 -->
 
 #### Out of scope
-Kernel Component object (CMP-014). Window and chooser methods on Context (SDK-023, SDK-017).
+Kernel Component object (CMP-014). Window and chooser methods on Context (SDK-023, SDK-017). The executor (SDK-004). Task-ownership lint (SDK-016).
+
+#### Deliverables
+- sdk:macros/ · Crate `jakeos-sdk-macros`: the `#[component]` attribute generating entry, handshake, executor start, tracing registration and `Context` construction.
+- sdk:core/src/context.rs · `Context`: launch-set accessors, `Error::Rights` on a missing kind, no ambient authority.
+- sdk:core/src/entry.rs · The entry protocol between the loader and the generated symbol.
+- sdk:tests/component_macro_*.rs · Tests: a macro-only crate starts and traces; missing Capability kind returns `Error::Rights`; spawned Task owned by the Component TaskGroup.
+- docs:sdk/getting-started.md · The minimal `#[component]` program and what `Context` offers at V0.
 
 #### Acceptance criteria
-- [ ] A crate with `#[component] async fn main(ctx: Context)` links the native runtime and starts tracing without a handwritten bootstrap.
-- [ ] `Context` methods resolve only Capabilities present in the launch set; a missing kind returns `Error::Rights` and allocates no handle.
-- [ ] Generated bootstrap registers the Component TaskGroup so spawned Tasks are owned: a unit test spawns a Task from `main` and `os inspect task` names the Component TaskGroup as its owner (SDK-016 later lints this).
+- [ ] A crate with `#[component] async fn main(ctx: Context)` links the native runtime, completes the Layer 1 handshake and starts tracing without a handwritten bootstrap, on `qemu-x86_64` and `hw-h002`.
+- [ ] `ctx.capability::<T>()` resolves only Capabilities present in the launch set; a missing kind returns `Error::Rights` and allocates no handle, and `Context` has no filesystem or network method.
+- [ ] The generated bootstrap runs `main` as the root Task of the Component's TaskGroup: a test spawns a Task from `main` and `os inspect task` names the Component TaskGroup as its owner (SDK-016 later lints this).
 
 #### Verification
 - Unit: `sdk:tests/component_macro_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: V0 ImageDecoder sample starts through the macro on H-001.
+- Integration: the V0 ImageDecoder sample starts through the macro on H-001.
 
 #### Evidence
 - none
@@ -55,18 +62,26 @@ Kernel Component object (CMP-014). Window and chooser methods on Context (SDK-02
 - Depends on: SDK-001, SDK-005, SDK-004, IPC-012, CMP-005, SCH-007, BLD-082
 - Baseline: §11, §14, §52, §59
 
-ImageDecoder is the reference typed service for the V0 demo: Input of image bytes, Output of a bitmap, ResourceDomain budgets from the §11 example, written against the Rust SDK and generated IDL stubs (§14, §59). The sample is a native Component, not a Linux process.
+ImageDecoder is the §11 example made real and the reference typed service of the V0 demo (§14, §52, §59). `sdk/examples/image-decoder/` is a native Component crate built with `#[component]`, the generated server stub for `idl/interfaces/sdk/ImageDecoder.idl` (IPC-012, IPC-013: `decode(request: ImageBytes) -> Result<Bitmap, DecodeError>` where `ImageBytes` is a moved `Capability<MemoryObject>` and `Bitmap` is a moved, sealed `Capability<MemoryObject>`), and a decoder for one uncompressed format (a PPM or QOI reader written in the SDK, no C library) so V0 exercises the shape without a codec dependency. Its manifest-equivalent for V0 (a `Component.toml` beside the crate, read by the demo driver until PKG lands) declares the §11 ResourceDomain budgets; exceeding them yields SCH's typed exhaustion error. `os inspect component` on the running sample names it, its Capabilities and the awaited Channel.
+
+The sample is a native Component, never a Linux process; CMP-011 uses it as Component B.
 
 <!-- covers: INV-0236, INV-0280 -->
 
 #### Out of scope
-V0 demo orchestration (CMP-011). Isolated decode library used by PhotoEditor (SDK-013). ResourceDomain enforcement (SCH).
+V0 demo orchestration (CMP-011). Isolated decode library used by PhotoEditor (SDK-013). ResourceDomain enforcement (SCH-008, SCH-009). Real codecs (MED).
+
+#### Deliverables
+- sdk:examples/image-decoder/ · Crate `jakeos-sdk-example-image-decoder`: `#[component]` entry, generated `ImageDecoderServer` implementation, the uncompressed-format decoder.
+- sdk:examples/image-decoder/Component.toml · The V0 declaration of the §11 ResourceDomain budgets and the launch Capability set.
+- idl:interfaces/sdk/ImageDecoder.idl · The Interface (shared with IPC-012's sample).
+- sdk:tests/samples/imagedecoder_*.rs · Tests: builds for the JakeOS target, decodes a fixture over a Channel, returns a sealed MemoryObject, budget exhaustion is typed.
 
 #### Acceptance criteria
-- [ ] The sample crate builds for the native JSON target and runs as a Component on H-001 and H-002.
-- [ ] Decode takes image bytes on a typed Channel and returns a MemoryObject bitmap by ownership transfer.
-- [ ] `os inspect component` on the running sample names ImageDecoder, its Capabilities and the awaited Channel.
-- [ ] The sample declares the §11 ResourceDomain budgets; exceeding them yields the SCH typed exhaustion error.
+- [ ] The sample crate builds for the `x86_64-unknown-jakeos` target (SDK-003) and runs as a Component on `qemu-x86_64` and `hw-h002`.
+- [ ] `decode` takes image bytes as a moved `Capability<MemoryObject>` on the typed Channel and returns a sealed `Bitmap` MemoryObject by ownership transfer, verified by the MEM-012 page-identity check.
+- [ ] `os inspect component` on the running sample names ImageDecoder, its Capabilities and the awaited `Channel<ImageDecoder>`.
+- [ ] The sample declares the §11 ResourceDomain budgets in `Component.toml`; exceeding them yields the SCH typed exhaustion error and no crash.
 
 #### Verification
 - Integration: `sdk:tests/samples/imagedecoder_*` on `qemu-x86_64` and `hw-h002`.
@@ -85,21 +100,28 @@ V0 demo orchestration (CMP-011). Isolated decode library used by PhotoEditor (SD
 - Baseline: §3, §50
 - Invariants: I-006, I-049, I-089
 
-Native crates must not compile as Linux binaries or the §3 firewall is void. V0 ships a custom rustc JSON target (`x86_64-unknown-jakeos`) with `alloc` only, not a `std` port. The target is consumed by the SDK crate and the ImageDecoder sample.
+If native crates compiled as Linux binaries the §3 firewall would be void (§50). V0 ships a custom rustc JSON target, `sdk/targets/x86_64-unknown-jakeos.json` (`os: "jakeos"`, `target-family` empty, `panic-strategy: "abort"` per D-0066, `linker-flavor: "ld.lld"`, a linker script `sdk/targets/jakeos.ld` placing the CMP-003 code layout, no `std` port: `core` and `alloc` only, built with `-Zbuild-std=core,alloc` from the pinned user-space toolchain of BLD-046 through BLD-009's mirror) and the `cargo` configuration `sdk/targets/config.toml` that every native crate inherits. `ABI-003`'s firewall lint fails a native crate compiled for a `*-linux-gnu` or `*-linux-musl` target. The Layer 3 `std` question (D-0264) and the upstream tier-3 proposal (SDK-090) come later; V0 has `alloc` and the SDK.
 
 <!-- covers: GAP-0090 -->
 
 #### Out of scope
-Layer 3 `std` crate (SDK-049). Upstream tier-3 proposal (SDK-090). Kernel rustc pin (BLD-013).
+Layer 3 `std` crate (SDK-049, D-0264). Upstream tier-3 proposal (SDK-090). Kernel rustc pin (BLD-013). User-space rustc pin (BLD-046).
+
+#### Deliverables
+- sdk:targets/x86_64-unknown-jakeos.json · The target specification.
+- sdk:targets/jakeos.ld · The linker script for the CMP-003 code layout.
+- sdk:targets/config.toml · The shared `cargo` configuration (`build-std`, target, linker).
+- sdk:tests/target/json_target_*.rs · Tests: `alloc` and `jakeos-sdk` build for the target; `std::fs`, `std::net` and `std::process` are absent; a Linux-target build of a native crate fails ABI-003.
+- docs:sdk/target.md · What the target provides and forbids, and how to build for it.
 
 #### Acceptance criteria
-- [ ] `sdk/targets/x86_64-unknown-jakeos.json` exists and builds `alloc` plus the SDK crate.
-- [ ] CI compiling a native crate with the Linux gnu or musl target fails ABI-003.
-- [ ] The target does not provide `std::fs`, `std::net` or `std::process`.
+- [ ] `sdk/targets/x86_64-unknown-jakeos.json` exists and `cargo build -Zbuild-std=core,alloc --target sdk/targets/x86_64-unknown-jakeos.json` builds `alloc` and the `jakeos-sdk` crate from the BLD-009 mirror with no ambient toolchain.
+- [ ] Compiling a native crate with a `*-linux-gnu` or `*-linux-musl` target fails the ABI-003 firewall lint in CI.
+- [ ] The target provides no `std::fs`, `std::net` or `std::process`; a crate that names them fails to build.
 
 #### Verification
 - Unit: `sdk:tests/target/json_target_*` on the Linux-host CI image.
-- Integration: ImageDecoder sample builds only with the JakeOS JSON target in BLD-009.
+- Integration: the ImageDecoder sample builds only with the JakeOS JSON target in BLD-009.
 
 #### Evidence
 - none
@@ -114,18 +136,24 @@ Layer 3 `std` crate (SDK-049). Upstream tier-3 proposal (SDK-090). Kernel rustc 
 - Baseline: §18, §20, §52, §59
 - Invariants: I-030
 
-V0 exit requires a tiny native runtime with Channel and Capability wrappers sufficient to write the demo in Rust (§59). The executor drives futures from Operation completions and never wraps blocking Linux syscalls. Awaiting a Channel receive or MemoryObject read suspends only the Task, not the execution context (§20).
+V0 exit requires a tiny native runtime sufficient to write the demo in Rust (§59): `runtime/executor/` (crate `jakeos-runtime-executor`) implements the executor shape D-0258 (SDK-010) chose over the Operation transport (TSK-018) and the Task multiplexer (TSK-019, TSK-020): a `Waker` per pending future that maps onto the awaited Operation (TSK-020's runtime `wake.rs`), a run loop that reaps completions through `operation.poll` and drives ready futures, and `operation.wait` as the only blocking call when nothing is ready (I-030). `spawn` creates a Task in the Component's TaskGroup (TSK-021) and never a thread; awaiting a Channel receive or a MemoryObject read suspends only that Task, and cancelling the TaskGroup completes in-flight Operations with `Error::Cancelled` and starts no new work. The runtime never wraps a blocking Linux syscall (TSK-001 lints it) and, with the Channel and Capability wrappers of SDK-009, is the only kernel-entry code the V0 demo links.
 
 <!-- covers: INV-0360, INV-0382, INV-0977, INV-1167 -->
 
 #### Out of scope
-Kernel Operation ring (TSK-018). Executor Decision (SDK-010). Debugger Task stacks (SDK-038).
+Kernel Operation ring (TSK-018). Executor decision (SDK-010). Debugger Task stacks (SDK-038). The `Waker` contract documentation (TSK-045).
+
+#### Deliverables
+- runtime:executor/ · Crate `jakeos-runtime-executor`: run loop, `Waker` over awaited Operations, `spawn` into the TaskGroup, cancellation propagation.
+- runtime:executor/src/reactor.rs · The `poll` and `wait` driver over the TSK-018 transport (uses `jakeos-runtime-task`).
+- runtime:tests/executor_*.rs · Tests: no blocking Linux read on the hot path, two Tasks progress on one context, TaskGroup cancel completes with `Error::Cancelled`, only SDK wrappers reach the kernel.
+- docs:sdk/runtime.md · The executor model, what `spawn` means, and the cancellation semantics an application observes.
 
 #### Acceptance criteria
-- [ ] The runtime polls Operation completions and wakes the owning Task without a blocking Linux read on the hot path.
+- [ ] The runtime reaps Operation completions through `operation.poll` and wakes the owning Task, with `operation.wait` the only blocking call and no blocking Linux read on the hot path (TSK-001 passes), on `qemu-x86_64` and `hw-h002`.
 - [ ] Two Tasks in one TaskGroup make progress on one execution context while one Task awaits Receive.
 - [ ] Cancelling the TaskGroup completes in-flight Operations with `Error::Cancelled` and starts no new work.
-- [ ] Channel and Capability wrappers are the only kernel-entry types the V0 demo links.
+- [ ] The Channel and Capability wrappers of SDK-009 plus this runtime are the only kernel-entry types the V0 demo links (asserted by a symbol scan in `runtime:tests/executor_*`).
 
 #### Verification
 - Unit: `runtime:tests/executor_*` on `qemu-x86_64` and `hw-h002`.
@@ -144,17 +172,25 @@ Kernel Operation ring (TSK-018). Executor Decision (SDK-010). Debugger Task stac
 - Depends on: SDK-009, TSK-010, TSK-013, ABI-009, BLD-082
 - Baseline: §19, §52
 
-§19 is the SDK surface for outstanding work. `operation.cancel()`, `operation.deadline(...)` and `operation.await` are the V0 entry points; cancellation and deadline gates are unusable without them. Await integrates with the native runtime so the owning Task suspends until completion.
+§19 is a programming surface (§52): `sdk/core/src/operation.rs` defines `Operation<T>`, the typed handle to outstanding work, with `cancel()` (submits `operation.cancel`, TSK-010; the future then resolves to `Error::Cancelled` and never to `Ok`), `deadline(at: Deadline)` (sets the D-0306 deadline on submission or re-arms it; the future resolves to `Error::DeadlineExceeded` if the deadline passes first), and `IntoFuture` so `.await` suspends only the owning Task through the SDK-004 executor and resumes on completion. `Deadline` is the D-0306 representation with `Deadline::after(duration)` and `Deadline::at(instant)` constructors. Every Operation-returning SDK call (Channel send and receive, MemoryObject read, Timer) returns this type, so cancellation and deadlines are uniform; TSK-024's acceptance suite drives these wrappers.
 
 <!-- covers: INV-0369, INV-0370, INV-0371 -->
 
 #### Out of scope
-Kernel cancel and deadline (TSK-010). Executor (SDK-004).
+Kernel cancel and deadline (TSK-010). Executor (SDK-004). Deadline representation decision (TSK-004).
+
+#### Deliverables
+- sdk:core/src/operation.rs · `Operation<T>` with `cancel`, `deadline`, `IntoFuture` and the typed result mapping.
+- sdk:core/src/deadline.rs · `Deadline` in the D-0306 representation with `after` and `at`.
+- sdk:tests/operation/cancel_*.rs · Tests: cancel yields `Error::Cancelled`, never `Ok`.
+- sdk:tests/operation/deadline_*.rs · Tests: deadline first yields `Error::DeadlineExceeded`.
+- sdk:tests/operation/await_*.rs · Tests: only the owning Task suspends.
 
 #### Acceptance criteria
-- [ ] `cancel()` on an outstanding Operation yields `Error::Cancelled` and never delivers an Ok result.
-- [ ] `deadline(...)` on an outstanding Operation yields `Error::DeadlineExceeded` when the deadline passes first.
-- [ ] `await` suspends only the owning Task and resumes on completion on `qemu-x86_64` and `hw-h002`.
+- [ ] `cancel()` on an outstanding `Operation<T>` makes the future resolve to `Error::Cancelled` and never to `Ok`, on `qemu-x86_64` and `hw-h002`.
+- [ ] `deadline(...)` on an outstanding Operation makes the future resolve to `Error::DeadlineExceeded` when the deadline passes first, using `Deadline::after` and `Deadline::at`.
+- [ ] `.await` suspends only the owning Task and resumes on completion; another Task in the TaskGroup runs meanwhile.
+- [ ] Every Operation-returning SDK call returns `Operation<T>`, and TSK-024's acceptance suite drives these wrappers rather than raw entry.
 
 #### Verification
 - Unit: `sdk:tests/operation/cancel_*`, `deadline_*`, `await_*` on `qemu-x86_64` and `hw-h002`.
@@ -173,21 +209,27 @@ Kernel cancel and deadline (TSK-010). Executor (SDK-004).
 - Baseline: §64
 - Invariants: I-034
 
-§64 requires developer tooling from V0. The `os` binary is the home for inspect and trace and later env, history, restore, new, test, help, publish, bisect, profile and call. This task ships the binary, subcommand dispatch and Capability-gated invocation; subcommands land in sibling tasks.
+Developer tooling exists from V0 (§64) and `os` is its home. `sdk/os/` (crate `jakeos-sdk-os`, binary `os`, the one unprefixed binary per BLD-081) is a native Component built with `#[component]` (or, until the runtime boots, a Linux-hosted build for the lab operator, gated behind a `host` feature that ABI-003 permits only for this crate) with subcommand dispatch (`os inspect`, `os trace` at V0; `env`, `history`, `restore`, `new`, `test`, `help`, `publish`, `bisect`, `profile`, `call` later), `--help` listing available subcommands, stable exit codes (`0` success, `2` usage, `3` rights, `4` not found, `5` internal) usable by scripts, and Capability-gated invocation: a subcommand that needs `Capability<Inspect>` or `Capability<Trace>` and finds neither in its launch set exits `3` with `Error::Rights` and prints no object state. Subcommand content lands in SDK-007 and SDK-008.
 
 <!-- covers: INV-1252 -->
 
 #### Out of scope
-Inspect rendering (SDK-007). Trace rendering (SDK-008). Package and generation subcommands (PKG).
+Inspect rendering (SDK-007). Trace rendering (SDK-008). Package and generation subcommands (PKG). JSON output (SDK-035).
+
+#### Deliverables
+- sdk:os/ · Crate `jakeos-sdk-os`, binary `os`: dispatch, `--help`, exit codes, Capability gating, the `host` feature.
+- sdk:os/src/exit.rs · The stable exit-code table.
+- sdk:tests/cli/skeleton_*.rs · Tests: `--help` lists `inspect` and `trace`, missing Capability exits `3`, unknown subcommand exits `2`.
+- docs:sdk/os-cli.md · The subcommand list per rung and the exit codes.
 
 #### Acceptance criteria
-- [ ] `os --help` lists at least `inspect` and `trace` as subcommands from the V0 image.
-- [ ] Invoking `os` without an inspect Capability returns `Error::Rights` and prints no object state.
-- [ ] Unknown subcommands exit non-zero with a stable error code usable by scripts.
+- [ ] `os --help` lists at least `inspect` and `trace` from the V0 image on `qemu-x86_64`.
+- [ ] Invoking a subcommand without the Capability it needs exits with code `3`, returns `Error::Rights` internally and prints no object state.
+- [ ] An unknown subcommand exits with code `2`; the exit-code table in `docs/sdk/os-cli.md` matches `exit.rs`.
 
 #### Verification
 - Unit: `sdk:tests/cli/skeleton_*` on `qemu-x86_64`.
-- Integration: V0 image contains the `os` binary on H-001.
+- Integration: the V0 image contains the `os` binary on H-001.
 
 #### Evidence
 - none
@@ -201,17 +243,22 @@ Inspect rendering (SDK-007). Trace rendering (SDK-008). Package and generation s
 - Depends on: SDK-006, OBS-006, OBS-005, OBS-007, BLD-082
 - Baseline: §24, §64
 
-V0 exit prints Component, Task, Channel, Capability, MemoryObject and ResourceDomain state (§64). OBS owns the data plane; this task is the `os inspect` command that renders those records. Tooling does not reconstruct wait edges from scheduler traces when inspect already stores them.
+V0 exit prints the state of every kernel object kind (§64, V0-G10). `sdk/os/src/inspect.rs` implements `os inspect <kind> [<handle>]` for `component`, `task`, `channel`, `capability`, `memory` and `resource` over the OBS-006 Interface through `jakeos-obs-inspect`: without a handle it enumerates and prints one line per object (identity, owner, state); with a handle it prints the §64 field set for that kind as a labelled block (for a Task, the awaited Operation by Interface type, `Channel<ImageDecodeRequest>`, never a numeric opcode alone). The rendering reads the OBS records as they are; it never reconstructs wait edges from scheduler traces. A caller without `Capability<Inspect>` gets exit code `3` and an empty listing.
 
 <!-- covers: INV-1253, INV-1254, INV-1255, INV-1256, INV-1257, INV-1258 -->
 
 #### Out of scope
 Inspect Interface and providers (OBS-006, OBS-005, OBS-007). ComputeQueue inspect (SDK-065). JSON output (SDK-035).
 
+#### Deliverables
+- sdk:os/src/inspect.rs · The six kinds' enumeration and detail rendering over `jakeos-obs-inspect`.
+- sdk:os/src/render.rs · The labelled-block and one-line formats shared by later subcommands.
+- sdk:tests/cli/inspect_*.rs · Tests over recorded OBS records: field set per kind, awaited Operation by type, rights refusal.
+
 #### Acceptance criteria
-- [ ] `os inspect component|task|channel|capability|memory|resource` prints owner, relationships and the §64 field set for a live object.
-- [ ] Inspect of a Task waiting on Receive names the Channel type rather than a numeric opcode alone.
-- [ ] A caller without inspect rights receives `Error::Rights` and an empty listing.
+- [ ] `os inspect component|task|channel|capability|memory|resource` prints owner, relationships and the §64 field set for a live object, and enumerates all objects of the kind without a handle, on `qemu-x86_64` and `hw-h002` (V0-G10).
+- [ ] Inspect of a Task waiting on Receive names the Channel's Interface type rather than a numeric opcode alone.
+- [ ] A caller without `Capability<Inspect>` gets exit code `3` and an empty listing.
 
 #### Verification
 - Integration: V0-G10 listing of all six kinds on H-001 and H-002.
@@ -227,20 +274,24 @@ Inspect Interface and providers (OBS-006, OBS-005, OBS-007). ComputeQueue inspec
 - Status: todo
 - Size: M
 - Owner: none
-- Depends on: SDK-006, OBS-011, OBS-003, BLD-082
+- Depends on: SDK-006, OBS-011, OBS-003, OBS-009, BLD-082
 - Baseline: §24, §64
 
-V0 demo and the tracing-overhead gate need `os trace` over the OBS substrate (§24, §64). Enablement is dynamic and Capability-gated; disabled scopes are OBS's problem, this command only requests and renders them.
+`os trace` is how the V0 demo is shown and how B-012 sessions start (§24, §64). `sdk/os/src/trace.rs` implements `os trace [--scope <s>...] [--flow] [--sched] [--failures]` over the `Trace.idl` Interface (OBS-009) through `jakeos-obs-trace`: `enable` with the requested scopes (default: the V0 scope set), a live stream of events rendered one per line in primitive terms (`Channel send ImageDecoder.decode A -> B`, `Operation complete ...`), the aggregated views (`--flow` prints the flow graph, `--sched` wakeup-to-run per Task, `--failures` the failure list), and `disable` on exit; `os trace enable` and `os trace disable` change the enabled scopes on a running session without restarting any traced Component. A caller without `Capability<Trace>` gets exit code `3` and no event payload.
 
 <!-- covers: INV-1259 -->
 
 #### Out of scope
-Trace ring (OBS-011). Overhead measurement (OBS-001). Offline export (SDK-022).
+Trace ring (OBS-011). Overhead measurement (OBS-001). Offline export (SDK-022, OBS-015). The views (OBS-009).
+
+#### Deliverables
+- sdk:os/src/trace.rs · The subcommand: enable and disable, live stream, `--flow`, `--sched`, `--failures`.
+- sdk:tests/cli/trace_*.rs · Tests over a recorded demo trace: event lines in primitive terms, view rendering, rights refusal, enable and disable without restart.
 
 #### Acceptance criteria
-- [ ] `os trace` on the V0 demo shows Channel send and Operation complete events named in primitive terms.
-- [ ] Enable and disable take effect on a running session without restarting the traced Component.
-- [ ] A caller without trace rights receives `Error::Rights` and no event payload.
+- [ ] `os trace` on the V0 demo shows Channel send and Operation complete events named in primitive terms and by Interface and method, on `qemu-x86_64` and `hw-h002`.
+- [ ] `os trace enable` and `os trace disable` take effect on a running session without restarting the traced Component (asserted by continuing the demo across the change).
+- [ ] `--flow`, `--sched` and `--failures` render the OBS-009 views, and a caller without `Capability<Trace>` gets exit code `3` and no event payload.
 
 #### Verification
 - Demo: V0-D01 `os trace` displays the ImageDecoder flow on H-002.
@@ -260,22 +311,33 @@ Trace ring (OBS-011). Overhead measurement (OBS-001). Offline export (SDK-022).
 - Baseline: §4, §16, §50, §52
 - Invariants: I-005, I-063
 
-Native applications execute against the SDK rather than the kernel (§4, §50). The crate maps kernel failures to typed errors (`Error::Rights`, `Error::Cancelled`, `Error::Revoked`, `Error::Disconnected`, `Error::DeadlineExceeded`) and defaults MemoryObject APIs to move semantics (§16, §52).
+Native applications program against the SDK, not the kernel (§4, §50, §52). `sdk/core/` (crate `jakeos-sdk`) is the primary crate: `Capability<T, R>` (a typed, rights-parameterised handle wrapper over the D-0007 word with `derive`, `query` and the transfer marker), `Channel<T>` (typed endpoint wrapper over IPC-010 with `send` and `receive` returning `Operation<T>`), `MemoryObject` (create, map into a typed `Mapping` guard, seal, and a `move`-only API: a `MemoryObject` value is consumed by `send`, and a use after move is a compile error, while a kernel-level stale use returns `Error::Revoked`), `ResourceDomain` and `TaskGroup` handles, and the `Error` enum that maps every D-0006 kernel failure onto `Error::Rights`, `Error::Cancelled`, `Error::Revoked`, `Error::Disconnected`, `Error::DeadlineExceeded`, `Error::Exhausted`, `Error::Integrity`, never an errno. No public function is a thin wrapper over a Linux syscall (I-005); the crate is `#![no_std]` with `alloc`, `#![forbid(unsafe_code)]` except in `sdk/core/src/sys/` where the D-0003 (ABI-007) binding to the entry layer lives.
 
 <!-- covers: INV-0937, INV-0104, INV-0982, INV-0316 -->
 
 #### Out of scope
-Runtime executor (SDK-004). C binding (SDK-033). `std` facade (SDK-049).
+Runtime executor (SDK-004). C binding (SDK-033). `std` facade (SDK-049). Operation wrapper (SDK-005). The `Context` (SDK-001).
+
+#### Deliverables
+- sdk:core/ · Crate `jakeos-sdk` (`#![no_std]`, `alloc`).
+- sdk:core/src/capability.rs · `Capability<T, R>` with `derive`, `query` and transfer semantics.
+- sdk:core/src/channel.rs · `Channel<T>` with `send` and `receive` returning `Operation<T>`.
+- sdk:core/src/memory.rs · `MemoryObject`, `Mapping`, `seal`, move-only transfer.
+- sdk:core/src/error.rs · The `Error` enum and the D-0006 mapping.
+- sdk:core/src/sys/ · The only `unsafe`: the ABI-007 binding to the entry layer, generated from ABI-017 where possible.
+- sdk:tests/error_model_*.rs · Tests: every kernel failure code maps to a typed variant, never errno.
+- sdk:tests/memoryobject_move_*.rs · Tests: use after move fails to compile (`trybuild`) and a stale kernel-level use returns `Error::Revoked`.
+- docs:sdk/api.md · The crate's public surface with the move-semantics rule.
 
 #### Acceptance criteria
-- [ ] The crate builds for the native JSON target and is the only userspace dependency of the V0 demo.
-- [ ] Moving a MemoryObject invalidates the source handle; a subsequent use returns `Error::Revoked`.
-- [ ] Kernel failure codes surface as the typed error enum, never as errno.
-- [ ] No public SDK function is a thin wrapper over a Linux syscall (I-005).
+- [ ] `jakeos-sdk` builds for the `x86_64-unknown-jakeos` target and is the only user-space dependency of the V0 demo besides `jakeos-runtime-executor` and the generated IDL stubs.
+- [ ] Moving a `MemoryObject` into `send` consumes the value (a use after move fails to compile in the `trybuild` test) and a stale kernel-level use of the old handle returns `Error::Revoked`.
+- [ ] Every kernel failure code surfaces as a variant of the typed `Error` enum, never as errno, asserted for each D-0006 vocabulary term.
+- [ ] No public SDK function is a thin wrapper over a Linux syscall (I-005): ABI-003 and ABI-018 pass, and `unsafe` appears only under `sdk/core/src/sys/`.
 
 #### Verification
 - Unit: `sdk:tests/error_model_*`, `memoryobject_move_*` on `qemu-x86_64` and `hw-h002`.
-- Integration: ImageDecoder sample links only this crate plus generated IDL stubs.
+- Integration: the ImageDecoder sample links only this crate, the executor and the generated IDL stubs.
 
 #### Evidence
 - none
@@ -290,20 +352,21 @@ Runtime executor (SDK-004). C binding (SDK-033). `std` facade (SDK-049).
 - Baseline: §18, §20, §52, §58
 - Decision: D-0258
 
-V0 tiny-runtime gate needs a recorded choice among a custom executor over Operation completions, a Tokio subset with an Operation reactor, and an embassy-style executor before the runtime is built. CMP owns the kernel and runtime split; this Decision owns only the userspace executor.
-
-Required by V0-G20 (V0 decisions, Rust policy, threat model and roll-up): every V0 architecture decision has an accepted decision listing at least two options.
+Before the tiny runtime (SDK-004) is built, the shape of its executor is recorded (§18, §20, §52): D-0258 evaluates a custom executor written over Operation completions (small, exactly fits TSK-020's wake path, no ecosystem), a Tokio subset with a reactor that submits Operations instead of `epoll` (ecosystem compatibility for crates that only need the `tokio` traits, a large dependency, work-stealing that must agree with the D-0315 Task mapping), and an embassy-style executor (static, allocation-free, designed for exactly-one-reactor systems), using SDK-011's study as evidence. The accepted option states that the executor never wraps a blocking Linux syscall, names the `Waker` contract (how a `Waker` maps onto an awaited Operation, documented later by TSK-045), and how `spawn` relates to `task.spawn` (TSK-021). CMP owns the kernel and runtime split (D-0315); this decision owns only the user-space executor. V0-G20 requires it as an accepted V0 decision.
 
 #### Out of scope
-Kernel Task mapping (TSK-009). Runtime implementation (SDK-004).
+Kernel Task mapping (TSK-009). Runtime implementation (SDK-004). `Waker` contract documentation (TSK-045).
+
+#### Deliverables
+- roadmap:decisions/D-0258-decide-executor-shape.md · Options with ecosystem, size and mapping consequences, Evidence citing `reports/spikes/SDK-011.md`, the Decision as the shape plus the `Waker` and `spawn` rules, rejected options, follow-ups.
 
 #### Acceptance criteria
-- [ ] Option A (custom executor), option B (Tokio subset over Operations), and option C (embassy-style executor) are evaluated against SDK-011.
-- [ ] The Decision states that the executor never wraps blocking Linux syscalls and names the waker contract TSK-045 later documents.
-- [ ] TSK lead records Review sign-off on the pull request.
+- [ ] D-0258 evaluates option A (custom executor over Operation completions), option B (Tokio subset over an Operation reactor) and option C (embassy-style executor) against `reports/spikes/SDK-011.md`.
+- [ ] The Decision states that the executor never wraps a blocking Linux syscall, names the `Waker` contract TSK-045 later documents, and states how `spawn` maps onto `task.spawn`.
+- [ ] Review records TSK and SDK lead sign-off on the pull request.
 
 #### Verification
-- Review: TSK and SDK leads sign off on the pull request; Evidence will contain `decision:<D-ID>` when the file is accepted.
+- Review: TSK and SDK leads sign off on the pull request; Evidence will contain `decision:D-0258` when the file is accepted.
 
 #### Evidence
 - none
@@ -317,20 +380,24 @@ Kernel Task mapping (TSK-009). Runtime implementation (SDK-004).
 - Depends on: TSK-014, TSK-016
 - Baseline: §18, §20, §58
 
-V0 runtime cannot wrap blocking Linux syscalls. This spike studies Rust Future, Pin and Waker, and Tokio work-stealing, task budgets and cooperative scheduling, as inputs to SDK-010 and the tiny native runtime used by the V0 demo (§58).
+The V0 runtime cannot wrap blocking Linux syscalls, so how Rust's `Future`, `Pin` and `Waker` map onto Operation completions must be worked out before SDK-010 decides (§18, §20, §58). This study reads the Rust async model and Tokio's runtime (work-stealing scheduler, task budgets, cooperative scheduling, the `mio` reactor) at named revisions, and builds a probe under `sdk/spikes/executor-probe/` on the ABI-019 syscall prototype and TSK-014's transport prototypes: a minimal executor whose `Waker` is an awaited-Operation registration and whose wait path is the prototype's completion wait, driving the TSK-016 multiplexing prototype, to show whether a Tokio-style work-stealing loop can run over TSK multiplexing without hidden blocking and what a custom or embassy-style loop costs by comparison. The report `reports/spikes/SDK-011.md` maps completion onto `Waker` without a blocking syscall on the wait path, compares the three executor shapes, and recommends an option set for SDK-010 without selecting one; it confirms the probe does not fork S-005.
 
 <!-- covers: INV-1147, INV-1148 -->
 
 #### Out of scope
-Executor Decision (SDK-010). Production runtime (SDK-004).
+Executor decision (SDK-010). Production runtime (SDK-004). The transport and multiplexing prototypes (TSK-014, TSK-016).
+
+#### Deliverables
+- sdk:spikes/executor-probe/ · The minimal executor probe over the ABI-019 and TSK-014 prototypes, driving the TSK-016 multiplexer.
+- roadmap:reports/spikes/SDK-011.md · The mapping, the three-shape comparison and the recommended option set.
 
 #### Acceptance criteria
-- [ ] `reports/spikes/SDK-011.md` exists with the Spike skeleton headings.
-- [ ] The report maps Operation completion onto Waker without a blocking Linux syscall on the wait path.
-- [ ] The report compares custom, Tokio-subset and embassy-style executors and recommends an option set without selecting it.
+- [ ] `reports/spikes/SDK-011.md` exists with the spike skeleton headings and maps Operation completion onto `Waker` with no blocking Linux syscall on the wait path, demonstrated by the probe on `qemu-x86_64`.
+- [ ] The report compares custom, Tokio-subset and embassy-style executors on ecosystem fit, size, and compatibility with the TSK-016 multiplexing models, and recommends an option set for SDK-010 without selecting one.
+- [ ] The report confirms the probe does not fork S-005 and names the questions SDK-010 must still answer.
 
 #### Verification
-- Report: answers how Future/Pin/Waker map onto Operation completions; whether Tokio work-stealing can run over TSK multiplexing without hidden blocking; which executor options remain after rejecting a blocking-syscall reactor; recommended option set for SDK-010.
+- Report: how `Future`, `Pin` and `Waker` map onto Operation completions; whether Tokio work-stealing can run over TSK multiplexing without hidden blocking; which executor options remain after rejecting a blocking-syscall reactor; recommended option set for SDK-010.
 - Review: TSK lead records that S-005 is not forked by the prototype.
 
 #### Evidence

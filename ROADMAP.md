@@ -73,34 +73,34 @@ Tasks 46 done / 2281 live (0 dropped). Weighted 1%. Gates 0/187.
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5775 |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5692 |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5647 |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5529 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5532 |
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5510 |
-| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5498 |
-| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5496 |
-| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5496 |
-| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5485 |
-| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5481 |
-| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5479 |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4820 |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4527 |
+| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5501 |
+| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5499 |
+| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5499 |
+| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5488 |
+| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5484 |
+| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5482 |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4823 |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4805 |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4530 |
 
 ## Critical path
 
 # Critical path to V0
 
-Makespan (size-weight estimates): 115.
+Makespan (size-weight estimates): 118.
 
-1. weight 115 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → OBS-009
-2. weight 113 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → IPC-019 → IPC-002 → IPC-021
-3. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → SDK-007
-4. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → CMP-011 → BEN-002
-5. weight 107 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007
-6. weight 99 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → TSK-024
-7. weight 96 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011
-8. weight 94 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → BEN-008 → BEN-003
-9. weight 91 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → IPC-008
-10. weight 85 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004
+1. weight 118 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → OBS-009 → SDK-008
+2. weight 115 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → OBS-009
+3. weight 113 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → IPC-019 → IPC-002 → IPC-021
+4. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007 → SDK-007
+5. weight 110 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-013 → CMP-011 → BEN-002
+6. weight 107 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → IPC-009 → OBS-007
+7. weight 99 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011 → TSK-024
+8. weight 96 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-010 → CAP-004 → STO-001 → TSK-011
+9. weight 94 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → BEN-008 → BEN-003
+10. weight 91 · KRN-002 → KRN-005 → KRN-007 → KRN-010 → BLD-013 → BLD-009 → BLD-012 → KRN-014 → KRN-013 → ABI-002 → ABI-005 → CMP-014 → TSK-023 → TSK-013 → TSK-018 → TSK-020 → SCH-005 → IPC-015 → IPC-008
 
 ## Slack
 
@@ -124,6 +124,7 @@ Makespan (size-weight estimates): 115.
 - KRN-014 slack 0 ef 28 lf 28
 - OBS-007 slack 0 ef 107 lf 107
 - OBS-009 slack 0 ef 115 lf 115
+- SDK-008 slack 0 ef 118 lf 118
 - STO-001 slack 0 ef 88 lf 88
 - TSK-010 slack 0 ef 77 lf 77
 - TSK-011 slack 0 ef 96 lf 96
@@ -132,18 +133,17 @@ Makespan (size-weight estimates): 115.
 - TSK-023 slack 0 ef 53 lf 53
 - KRN-003 slack 1 ef 2 lf 3
 - KRN-006 slack 1 ef 2 lf 3
-- IPC-002 slack 2 ef 110 lf 112
-- IPC-013 slack 2 ef 104 lf 106
-- IPC-019 slack 2 ef 107 lf 109
-- IPC-021 slack 2 ef 113 lf 115
-- BEN-002 slack 5 ef 110 lf 115
 - BLD-004 slack 5 ef 1 lf 6
-- CMP-011 slack 5 ef 107 lf 112
-- SDK-007 slack 5 ef 110 lf 115
+- IPC-002 slack 5 ef 110 lf 115
+- IPC-013 slack 5 ef 104 lf 109
+- IPC-019 slack 5 ef 107 lf 112
+- IPC-021 slack 5 ef 113 lf 118
 - BLD-002 slack 7 ef 6 lf 13
 - BLD-081 slack 7 ef 7 lf 14
 - BLD-082 slack 7 ef 10 lf 17
 - ABI-001 slack 8 ef 19 lf 27
+- ABI-008 slack 8 ef 20 lf 28
+- ABI-012 slack 8 ef 23 lf 31
 
 
 ## Decision leverage
@@ -151,25 +151,25 @@ Makespan (size-weight estimates): 115.
 | ID | Title | Downstream tasks | Downstream weight |
 | --- | --- | --- | --- |
 | ABI-011 | Decide Layer 1 scope: enumerate L1 primitives and place every concept in L1 or L2 | 1863 | 5631 |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | 1825 | 5529 |
-| CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1809 | 5491 |
-| ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1803 | 5481 |
-| ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | 1803 | 5479 |
-| ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | 1802 | 5478 |
-| ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | 1802 | 5478 |
-| ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1802 | 5478 |
-| ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1801 | 5475 |
-| ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1806 | 5470 |
-| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1742 | 5241 |
-| MEM-002 | Decide the MemoryObject kernel implementation basis | 1613 | 4810 |
-| TSK-008 | Decide whether every Task has kernel-visible identity | 1598 | 4794 |
-| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1575 | 4686 |
-| TSK-007 | Decide Operation submission/completion transport and batching expression | 1557 | 4642 |
-| CMP-010 | Decide the Phase A Component implementation strategy | 1523 | 4516 |
-| TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1509 | 4465 |
-| ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1464 | 4326 |
-| TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1465 | 4317 |
-| TSK-003 | Decide Task cancellation model and resource cleanup | 1464 | 4310 |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | 1826 | 5532 |
+| CAP-008 | Decide the userspace Capability<T> handle representation and table design | 1810 | 5494 |
+| ABI-010 | Decide the Layer 1 handle word: packing of the CAP-008 representation, type tag and Generation | 1804 | 5484 |
+| ABI-008 | Decide the Native ABI entry mechanism and the maximum count of kernel entry points | 1804 | 5482 |
+| ABI-009 | Decide the Operation result error model: typed enum per kind or uniform error Object | 1803 | 5481 |
+| ABI-014 | Decide whether the Operation kind set is a closed kernel enum or extensible registry | 1803 | 5481 |
+| ABI-015 | Decide how user space identifies an Operation: Capability, ring index or opaque handle | 1803 | 5481 |
+| ABI-012 | Decide Object-Operation dispatch with async-only submission and move semantics | 1802 | 5478 |
+| ABI-013 | Decide which Object<T> types live in the kernel and the kernel-residency criteria | 1807 | 5473 |
+| CAP-010 | Decide rights and transfer-rights encoding including Admin authority | 1743 | 5244 |
+| MEM-002 | Decide the MemoryObject kernel implementation basis | 1614 | 4813 |
+| TSK-008 | Decide whether every Task has kernel-visible identity | 1599 | 4797 |
+| SCH-002 | Decide hierarchical versus flat ResourceDomains and budget delegation via Capability | 1576 | 4689 |
+| TSK-007 | Decide Operation submission/completion transport and batching expression | 1558 | 4645 |
+| CMP-010 | Decide the Phase A Component implementation strategy | 1524 | 4519 |
+| TSK-005 | Decide whether Operations may complete inline at submit and how the ABI signals it | 1511 | 4471 |
+| ABI-007 | Decide the binding substrate: C-compatible ABI header plus IDL-generated language stubs | 1466 | 4332 |
+| TSK-004 | Decide deadline and timestamp representation in the Operation ABI | 1467 | 4323 |
+| TSK-003 | Decide Task cancellation model and resource cleanup | 1466 | 4316 |
 
 ## Blocked by
 
@@ -617,6 +617,7 @@ Makespan (size-weight estimates): 115.
 | MED-004 | 5 |
 | MED-024 | 5 |
 | MEM-017 | 5 |
+| OBS-009 | 5 |
 | OBS-015 | 5 |
 | OBS-027 | 5 |
 | PKG-006 | 5 |
@@ -770,7 +771,6 @@ Makespan (size-weight estimates): 115.
 | MEM-037 | 4 |
 | MEM-038 | 4 |
 | MEM-041 | 4 |
-| OBS-009 | 4 |
 | OBS-025 | 4 |
 | OBS-049 | 4 |
 | PKG-021 | 4 |

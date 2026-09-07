@@ -8,21 +8,21 @@
 | KRN-017 | Produce the retained-mechanism inventory from a study of Linux subsystems | V0 | M | 5775 | none |
 | BLD-013 | Establish pinned Rust-in-kernel toolchain and Kbuild integration | V0 | L | 5692 | none |
 | ABI-022 | Study Zircon handles, rights, VMOs, Channels, FIDL and Component framework | V0 | M | 5647 | none |
-| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5529 | none |
+| BEN-064 | Decide the benchmark methodology standard: hardware list, warm and cold runs, percentiles, iterations, pinning and mitigations | V0 | S | 5532 | none |
 | BEN-004 | Enforce claim-to-benchmark lint and traceability matrix | V0 | S | 5510 | none |
-| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5498 | none |
-| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5496 | none |
-| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5496 | none |
-| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5485 | none |
-| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5481 | none |
-| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5479 | none |
-| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4820 | none |
-| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4802 | none |
-| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4527 | none |
-| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4318 | none |
-| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | V0 | M | 4313 | none |
-| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4253 | none |
-| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4203 | none |
+| CAP-015 | Study seL4 CSpaces, derivation trees, revocation and Verification for CAP | V0 | S | 5501 | none |
+| CAP-012 | Study CHERI Capability hardware for ABI escape hatches | V0 | S | 5499 | none |
+| CAP-013 | Prototype dense index, sparse token and sealed-pointer Capability handle layouts | V0 | M | 5499 | none |
+| TSK-014 | Prototype Operation submission/completion transports and measure wake-up latency | V0 | M | 5488 | none |
+| ABI-019 | Prototype syscall-per-Operation, shared submission page and vDSO trampoline entry | V0 | M | 5484 | none |
+| ABI-020 | Prototype typed kernel-boundary errors without errno | V0 | S | 5482 | none |
+| MEM-011 | Prototype MemoryObject Ownership transfer over shmem, dma-buf and native backings | V0 | M | 4823 | none |
+| TSK-016 | Prototype Task multiplexing models and measure hidden blocking | V0 | M | 4805 | none |
+| CMP-015 | Measure the dominant costs of Component creation on the Linux wrapper | V0 | M | 4530 | none |
+| TSK-015 | Prototype in-kernel deadline enforcement and measure per-Operation overhead | V0 | M | 4324 | none |
+| TSK-017 | Prototype cancellation state machine for hardware-committed Operations on NVMe | V0 | M | 4319 | none |
+| IPC-018 | Study Cap'n Proto RPC, FIDL/Overnet, Genode and QNX before fixing the Channel wire model | V0 | S | 4259 | none |
+| WASM-002 | Study Component Model and WASI as native-model inputs | V0 | M | 4209 | none |
 | CAP-007 | Decide explicit grant sources replacing ambient permissions | V0 | S | 4096 | none |
 | ABI-021 | Prototype Layer 1 version and feature handshake | V0 | S | 3775 | none |
 | PKG-041 | Study Nix, OSTree and casync stores, generations and rollback for PKG design | V0.5 | M | 3701 | none |
